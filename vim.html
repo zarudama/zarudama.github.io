@@ -1,0 +1,775 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>vim やること &#8212; zarudama 1.0 ドキュメント</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="vim">
+<span id="vim"></span><h1>vim やること<a class="headerlink" href="#vim" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>[ ] w3mがまともに動くようにする。<ul>
+<li>[ ] 検索がyahooなのをgoogleに</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">,,</span></code>コマンドで <code class="docutils literal notranslate"><span class="pre">altenative</span> <span class="pre">file</span></code> を実行できるようにする。</li>
+<li>[ ] Voomで目次上で編集ができるようにする。</li>
+<li>[ ] pandocのhtmlエクスポートで toc をいい感じにする。</li>
+<li>[x] タブの使い方</li>
+<li>[x] vimgrepの使い方</li>
+<li>[ ] ファイルをまたぐ置換の方法</li>
+<li>[ ] tagジャンプ</li>
+<li>[ ] windowsでxcopyができない</li>
+<li>[ ] キーバインドからコマンド名を調べる方法</li>
+<li>[ ] キーバインドの変更方法</li>
+<li>[x] ファイルのリロード
+:e!</li>
+</ul>
+</div>
+<div class="section" id="voom">
+<span id="voom"></span><h1>voom<a class="headerlink" href="#voom" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>python3.6.5 で問題なく動いた。</p>
+</div>
+<div class="section" id="markdown">
+<span id="markdown"></span><h1>markdown<a class="headerlink" href="#markdown" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここを参考に
+http://yuheikagaya.hatenablog.jp/entry/2015/06/05/000000</p>
+<ul class="simple">
+<li>アウトラインは unite の outlineで実現</li>
+<li>左側に固定で表示する</li>
+</ul>
+<div class="section" id="ctags">
+<span id="ctags"></span><h2>ctags の導入<a class="headerlink" href="#ctags" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>下記からダウンロードしてPATHの通ったところに置くだけ。
+http://hp.vector.co.jp/authors/VA025040/ctags/</li>
+<li>vimの実行ファイルと同じ場所位に配置した。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="vimorgnizer">
+<span id="vimorgnizer"></span><h1>vimorgnizer<a class="headerlink" href="#vimorgnizer" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="">
+<span id="id1"></span><h2>インストール<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="">
+<span id="id2"></span><h3>旧方式でインストール<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>https://github.com/hsitz/VimOrganizer/blob/master/INSTALL.txt</p>
+</div>
+<div class="section" id="neobundle">
+<span id="neobundle"></span><h3>neobundle でインストール<a class="headerlink" href="#neobundle" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>.vimrc に下記を追加</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NeoBundle</span> <span class="s1">&#39;hsitz/VimOrganizer&#39;</span>
+</pre></div>
+</div>
+<p>vim を起動して :NeoBundelInstall を実行</p>
+</div>
+</div>
+<div class="section" id="calender-vim">
+<span id="calender-vim"></span><h2>calender.vim<a class="headerlink" href="#calender-vim" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>http://www.vim.org/scripts/script.php?script_id=52</p>
+<ul class="simple">
+<li>calendar.vim をダウンロード</li>
+<li>~/apps/vim80-kaoriya-win64/vim80/plugin/ にコピー</li>
+</ul>
+</div>
+<div class="section" id="narrowregion-plugin">
+<span id="narrowregion-plugin"></span><h2>NarrowRegion plugin<a class="headerlink" href="#narrowregion-plugin" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>https://www.vim.org/scripts/script.php?script_id=3075</p>
+<ul class="simple">
+<li>NrrwRgn-0.33.vmbをダウンロード</li>
+<li>ファイルを開いてvimから :so % コマンド実行</li>
+</ul>
+</div>
+<div class="section" id="universal-text-linking-plugin">
+<span id="universal-text-linking-plugin"></span><h2><code class="docutils literal notranslate"><span class="pre">Universal</span> <span class="pre">Text</span> <span class="pre">Linking</span></code> plugin.<a class="headerlink" href="#universal-text-linking-plugin" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>https://www.vim.org/scripts/script.php?script_id=293</p>
+<ul class="simple">
+<li>utl_3_0a.vba をダウンロード</li>
+<li>ファイルを開いてvimから :so % コマンド実行</li>
+</ul>
+</div>
+<div class="section" id="vimrc">
+<span id="vimrc"></span><h2>vimrcの修正<a class="headerlink" href="#vimrc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>下記に付属しているvimrcの内容を自分の.vimrcにコピペ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/.</span><span class="n">vim</span><span class="o">/</span><span class="n">bundle</span><span class="o">/</span><span class="n">VimOrganizer</span><span class="o">/</span><span class="n">_vimrc</span>
+</pre></div>
+</div>
+<p>これでorgファイルを開けるようになった。
+.dotooプラグインよりはるかに軽い。</p>
+</div>
+<div class="section" id="todo">
+<span id="todo"></span><h2>todo<a class="headerlink" href="#todo" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>clock in はできるが clock out ができない。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h1>折りたたみ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zi</span> <span class="p">:</span> <span class="n">折りたたみの有効無効の切り替え</span>
+<span class="n">zf</span> <span class="p">:</span> <span class="n">折りたたみの作成</span><span class="p">(</span><span class="n">範囲選択の開始行と終了行の末尾にマーカーを追加する</span><span class="p">)</span>
+<span class="n">za</span> <span class="p">:</span> <span class="n">折りたたみの開閉</span>
+<span class="n">zA</span> <span class="p">:</span> <span class="n">折りたたみの再帰的開閉</span>
+<span class="n">zd</span> <span class="p">:</span> <span class="n">折りたたみの削除</span>
+<span class="n">zR</span> <span class="p">:</span> <span class="n">バッファ内の全ての折りたたみを開く</span>
+<span class="n">zM</span> <span class="p">:</span> <span class="n">バッファ内の全ての折りたたみを閉じる</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h1>カスタマイズ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="">
+<span id="id5"></span><h2>クリップボードを共有する<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>gvimrcに下記を追加する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot; m-oono</span>
+<span class="nb">set</span> <span class="n">clipboard</span><span class="o">=</span><span class="n">unnamed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="netrw">
+<span id="netrw"></span><h1>netrw<a class="headerlink" href="#netrw" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:Explorer   現在のバッファでブラウジングを開始（編集中なら水平に分割）
+:Explorer!  上と同じ。ただし編集中の場合に垂直分割
+:Hexplorer  横方向に分割して下のウィンドウでブラウジングを開始
+:Hexplorer! 上と同じ。ただし上のウィンドウでブラウジングを開始
+:Vexplorer  縦方向に分割して左のウィンドウでブラウジングを開始
+:Vexplorer! 上と同じ。ただし右のウィンドウでブラウジングを開始
+:Texplorer  新しいタブでブラウジングを開始
+
+Ret ファイルを開く or ディレクトリを移動する
+o   上と同じ。ただし、水平方向に分割する
+v   上と同じ。ただし、垂直方向に分割する
+t   上と同じ。ただし、新しいタブに表示する
+p   上と同じ。ただし、プレビューウィンドウに表示する
+–   上の階層へ移動する
+u   前にいたディレクトリに戻る（アンドゥ的な）
+U   uで戻る前のディレクトリに移動する（リドゥ的な）
+c   このバッファのカレントディレクトリを、現在開いているディレクトリに変更
+</pre></div>
+</div>
+</div>
+<div class="section" id="vimgrep">
+<span id="vimgrep"></span><h1>vimgrepの使い方<a class="headerlink" href="#vimgrep" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>コマンド</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:vim<span class="o">[</span>grep<span class="o">]</span> <span class="o">{</span>pattern<span class="o">}</span> <span class="o">{</span>file<span class="o">}</span> ...
+</pre></div>
+</div>
+<p>結果の閲覧方法</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:cn<span class="o">[</span>ext<span class="o">]</span> 次の結果へ
+:cp<span class="o">[</span>revious<span class="o">]</span> 前の結果へ
+:cw<span class="o">[</span>indow<span class="o">]</span> QuickFix作成
+</pre></div>
+</div>
+<p>より良いコマンド</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:vim hoge **<span class="p">|</span>cw
+</pre></div>
+</div>
+<p>.vimrc</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">autocmd</span> <span class="n">QuickFixCmdPost</span> <span class="o">*</span><span class="n">grep</span><span class="o">*</span> <span class="n">cwindow</span>
+</pre></div>
+</div>
+<div class="section" id="file">
+<span id="file"></span><h2>{file}の指定方法<a class="headerlink" href="#file" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>カレントディレクトリ以下のあらゆるファイルを対象にする</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">vim</span> <span class="p">{</span><span class="n">pattern</span><span class="p">}</span> <span class="o">**</span>
+</pre></div>
+</div>
+<p>app/views以下のあらゆるファイルを対象にする（ディレクトリを再帰的に検索）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">vim</span> <span class="p">{</span><span class="n">pattern</span><span class="p">}</span> <span class="n">app</span><span class="o">/</span><span class="n">views</span><span class="o">/**</span>
+</pre></div>
+</div>
+<p>app/views/users内のファイルを対象にする</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">vim</span> <span class="p">{</span><span class="n">pattern</span><span class="p">}</span> <span class="n">app</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">users</span><span class="o">/*</span>
+</pre></div>
+</div>
+<p>app/views以下のerbファイルを対象にする</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">vim</span> <span class="p">{</span><span class="n">pattern</span><span class="p">}</span> <span class="n">app</span><span class="o">/</span><span class="n">views</span><span class="o">/**/*.</span><span class="n">erb</span>
+</pre></div>
+</div>
+<p>app/views以下で_で始まるerbファイルを対象にする</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">vim</span> <span class="p">{</span><span class="n">pattern</span><span class="p">}</span> <span class="n">app</span><span class="o">/</span><span class="n">views</span><span class="o">/**/</span><span class="n">_</span><span class="o">*.</span><span class="n">erb</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pattern">
+<span id="pattern"></span><h2>{pattern}の指定方法<a class="headerlink" href="#pattern" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+</div>
+<div class="section" id="vim">
+<span id="id6"></span><h1>実践vim<a class="headerlink" href="#vim" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="">
+<span id="id7"></span><h2>オペレータ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オペレータ＋モーション＝アクション</p>
+<ul class="simple">
+<li>オペレーションとは y , c など</li>
+<li>モーションとは、wとか範囲を示すもの</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h2>ドットの公式<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>一回の移動＋一回の変更</p>
+</div>
+<div class="section" id="">
+<span id="id9"></span><h2>ノーマルモード<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>; 移動の繰り返し
+, 逆方向の移動の繰り返し
+. コマンドの繰り返し
+daw 単語を削除(覚えた方 delete a word )
+dap 段落を削除
+zz カーソル位置を真ん中にする。
+e 次の単語の終端へ移動する。
+w 次の単語の始端へ移動する。
+t コピーする。copy to のtらしい。
+C-o 一つ前の場所に戻る？</p>
+<div class="section" id="">
+<span id="id10"></span><h3>バッファリスト<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>:ls バッファリスト。%が現在選択中のバッファ。#はだいたいバッファ
+C-^ 代替バッファに切り替える。
+:bnext :bprev バッファリストを前後に移動
+:bfirest :blast バッファリストの先頭及び末尾に移動する。
+:buffer N :lsで表示された番号に直接移動する。
+:buffer {buffername} バッファ名を指定して切り替える。
+:bufdo :lsで表示されたすべてのバッファに対してExコマンドを実行する。</p>
+<p>vimのリストをサクサク移動するためのキーバインド</p>
+<div class="highlight-vimscript notranslate"><div class="highlight"><pre><span></span>nnoremap &lt;silent&gt; [b :bprevious&lt;CR&gt;
+nnoremap &lt;silent&gt; ]b :bnext&lt;CR&gt;
+nnoremap &lt;silent&gt; [B :bfirst&lt;CR&gt;
+nnoremap &lt;silent&gt; ]B :blast&lt;CR&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id11"></span><h3>隠しバッファ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>バッファを保存せずに:nextなどのバッファ切り替えをすると警告が表示される。
+これを無視して切り替えるには、:next!としてビックリマークをつける。
+この時保存していないバッファのことを隠しバッファという。
+hidden を設定すると:next!とせずに:nextでバッファを切り替えることができる。</p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id12"></span><h2>分割ウィンドウ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>C-w s 水平に分割する。
+C-w v 垂直に分割する。
+C-w C-w ウィンドウを切り替える。
+C-w c アクティブなウィンドウを閉じる。
+C-w o アクティブなウィンドウ意外をすべて閉じる。
+C-w = すべてのウィンドウを同じ幅と高さにする。</p>
+</div>
+<div class="section" id="">
+<span id="id13"></span><h2>タブページ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>タブはvimではコンテナとイメージしたほうが良い。通常のエディタのタブではないことに留意すること。
+:lcd {path} 現在アクティブなウィンドウ用の作業ディレクトリを指定する。
+:windo lcd {path} 現在のタブに対して作業ディレクトリを指定する。</p>
+<p>:tabe {filename} 新規タブページ
+:tabc 現在のタブページとウィンドウを閉じる。
+:tabo アクティブなタブページ意外のタブをすべて閉じる。
+:tabmove [N] 現在のタブを移動する。Nが0で先頭。省略で末尾。
+C-w T 現在のウィンドウを新たなタブページに移動する。</p>
+<p>{N}gt 指定した番号のタブに移動する。goto tab {N}
+{N}gT 上記の逆</p>
+</div>
+<div class="section" id="">
+<span id="id14"></span><h2>挿入モード<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>C-h バックスペース
+C-w 直前の単語を削除
+C-u 行頭までを削除</p>
+<p>C-o 挿入ノーマルモード。一回だけのマールモードのコマンドを実行できる。
+C-r{register} registerの内容をペーストする。registerは通常0.
+C-r= 計算式を入力すると計算結果を挿入する。</p>
+</div>
+<div class="section" id="">
+<span id="id15"></span><h2>ビジュアルモード<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>v 文字指向ビジュアルモード
+V 行指向ビジュアルモード
+C-v ブロック指向ビジュアルモード
+それぞれもう一度押すことでノーマルモードにトグルする。</p>
+<p>gv 直前のビジュアルな選択範囲を再度選択する。
+o 選択範囲のもう一方に移動する。
+select from here to here.</p>
+</div>
+<div class="section" id="">
+<span id="id16"></span><h2>コマンドモード<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="">
+<span id="id17"></span><h3>基本形式<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>:[renge]コマンド</p>
+</div>
+<div class="section" id="renge">
+<span id="renge"></span><h3>rengeは以下の形式<a class="headerlink" href="#renge" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>:{start},{end} 範囲を行番号で示すことができる。</p>
+</div>
+<div class="section" id="">
+<span id="id18"></span><h3>特殊な記号<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>. 現在行
+$ 最終行
+% すべての行</p>
+<p>例）
+:.,$p =&gt; .は現在行、＄は最後の行、pはprintコマンド
+:%p =&gt; ファイルのすべての行を表示する。</p>
+</div>
+<div class="section" id="t">
+<span id="t"></span><h3>コピー(:t)コマンドの例<a class="headerlink" href="#t" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>:{コピーしたい行番号}t{コピー先の行番号}
+:6t.
+6行目を現在行の下にコピー
+:t6
+現在行を 6 行目の下にコピー
+:t.
+現在行をコピー（ノーマルモードの
+yyp
+に相当）
+:t$
+現在行をファイル末尾にコピー
+:’&lt;,’&gt;t0
+ビジュアルな選択範囲をファイル先頭にコピー</p>
+</div>
+<div class="section" id="m">
+<span id="m"></span><h3>移動(:m)コマンドの例<a class="headerlink" href="#m" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>使い方は、コピーコマンドと同じ。tをmにするだけ。</p>
+</div>
+<div class="section" id="normal">
+<span id="normal"></span><h3>ノーマル(:normal)コマンドの例<a class="headerlink" href="#normal" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>:%normal A;
+すべての行に対して末尾にセミコロンを追記する。</p>
+<p>:%normal i//
+すべての行に対して先頭にコメントを挿入する。
+※normalコマンドは各行にコマンドを実行する前に先頭に移動するため。</p>
+</div>
+<div class="section" id="">
+<span id="id19"></span><h3>補完<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>tab 順に候補を保管する。
+C-d 補完後方を一覧表示する。</p>
+<p>下記を設定すると、C-p,C-nで候補を選択できる。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> wildmenu
+<span class="nb">set</span> <span class="nv">wildmode</span><span class="o">=</span>full
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id20"></span><h3>特殊なキー操作<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>C-r C-w カーソル位置にあるwordをコマンドラインにコピー&amp;ペーストする。
+C-r Ca だと選択する対象がwordではなくWORDになる。</p>
+<p>C-u 行の先頭まで削除
+C-w 前の単語を削除</p>
+</div>
+<div class="section" id="">
+<span id="id21"></span><h3>履歴<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>書きを設定して履歴するバッファを200こぐらいまでにしたほうがよい。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="nv">history</span><span class="o">=</span><span class="m">200</span>
+</pre></div>
+</div>
+<p>履歴では例えば:help と入力してから上下キー押下するとhelpに関するものだけをフィルタしてくれる。
+C-p,C-nでも履歴を辿れるが、この場合フィルタが聞かない。フィルタを聞くようにするためには下記の設定が必要になる。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cnoremap &lt;C-p&gt; &lt;Up&gt;
+cnoremap &lt;C-n&gt; &lt;Down&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id22"></span><h3>コマンドラインウィンドウ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>コマンドの履歴を編集することができる。</p>
+<p>q: ノーマルモードから起動する。
+q/ ノーマルモードから検索履歴を含めて起動
+C-f コマンドラインから起動
+Enter コマンド実行
+:q 終了</p>
+</div>
+<div class="section" id="">
+<span id="id23"></span><h3>シェルコマンド<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>:!{cmd} シェルコマンドcmdを実行する。
+:!ruby % %は現在実行中のファイル名としてコマンドに渡すことができる。
+:read !{cmd} 現在のバッファにコマンド出力の内容を挿入する。
+:write !{cmd} 現在のバッファの内容をコマンドの標準入力に送る。
+:[range]!{filter} 範囲を指定してコマンドを実行することでフィルタとして使用できる。</p>
+<p>ソートコマンドをフィルタとして活用する例
+下記のCSVファイルの場合。</p>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>first name,last name,email
+jane,doe,jane@example.com
+drew,neil,drew@vimcasts.org
+john,smith,john@example.com
+</pre></div>
+</div>
+<p>:2,$!sort -t',' -k2
+1行目はヘッダなので2行目から最後までを2,$で指定。
+csvなので-tオプションでデリミタを指定、2列めのフィールドでソートしたいので-kオプションで2を指定。</p>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id24"></span><h1>文字化け<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>vimの文字コードを確認
+:set enc?</p>
+<p>ファイルの文字コードを確認
+もし「latin1」という値が帰ってきたら、ファイルを開く際の判別に失敗している。
+失敗する原因は、set fileencodingsに正しい値が設定されていないため。
+:set fenc?</p>
+<p>文字コードを指定して、ファイルを開き直す。
+:e ++enc=uec-jp</p>
+<p>エンコードを指定する。
+:set fenc={文字コード}</p>
+<p>文字コードを正しく認識できるように.vimrcに下記を追記しておく。
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac</p>
+<div class="section" id="">
+<span id="id25"></span><h2>参考<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>http://www-creators.com/archives/1486</p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id26"></span><h1>設定ファイル<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="highlight-vimscript notranslate"><div class="highlight"><pre><span></span>set nocompatible
+set number
+set ignorecase
+syntax on
+hi Comment ctermfg=2
+
+&quot; vimの内部文字コード
+set encoding=utf-8
+
+&quot; ファイルを読み込む時の文字コード
+set fileencodings=utf-8,cp932,euc-jp,sjis
+
+&quot; ファイルを保存する時の文字コード
+&quot;set fileencoding=utf-8
+
+</pre></div>
+</div>
+<ul class="simple">
+<li>=set nocompatible= は、vimとして起動させる。</li>
+<li>=set number= は、行番号表示指定。</li>
+<li>=set ignorecase= は、検索時に大文字小文字を無視する指定。</li>
+<li>=syntax on= は、構文表示をカラフルにする指定。</li>
+<li>=hi Comment ctermfg=2= は、コメントの色がデフォルトだと見ずらいので、黄色にする指定。</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id27"></span><h1>基本<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>{count}{operator}{motion}
+count:数字を入力
+opertator:y,dなどオペレータコマンド
+motion:^,$などの移動コマンド</p>
+<div class="section" id="">
+<span id="id28"></span><h2>オペレータ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>2回連打することで、オペレータの有効範囲が行になる。</li>
+<li>数指定で繰り返し指定。</li>
+<li>モーションのあとに押下で、その範囲に対しての指定になる</li>
+</ul>
+</div>
+</div>
+<div class="section" id="">
+<span id="id29"></span><h1>カーソル移動<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+: 下の行の先頭に移動
+-: 上の行の先頭に移動
+$: 行末
+0 or | :カーソル行の先頭へ移動
+^ or _ :カーソル行の先頭文字へ移動
+G:最終行へ移動
+H:最上行
+M:中央行
+L:最下行
+
+w:次の単語の先頭に移動(記号で止まる)
+W:次の単語の先頭に移動(記号で止まらない)
+
+e:次の単語の末尾に移動(記号で止まる)
+E:次の単語の末尾に移動(記号で止まらない)
+
+b:前の単語の先頭に移動(記号で止まる)
+B:前の単語の先頭に移動(記号で止まらない)
+
+%:対応する括弧に移動
+
+{,}: 段落単位で移動
+
+ma:aレジスタに現在のカーソル位置を記憶
+&#39;a:記録されている行に移動
+`a:記録されている場所に移動
+aは[a-z]で良い。
+
+&#39;&#39;:直前移動コマンドで移動した行に移動
+``:直前移動コマンドで移動した場所に移動
+    # スクロール
+C-f :次のページ
+C-b: 前のページ
+
+C-d: 半ページ進む
+C-u: 半ページ戻る
+
+C-e: 1行進む
+C-y: 1行戻る
+
+z-ENTER: カーソル行を最上行へ
+z-. : カーソル行を真ん中へ
+z-- : カーソル行を最下行へ
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id30"></span><h1>文字の検索<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>/:文字列を順方向に検索
+?:文字列を逆方向に検索
+f,F:同じ行にある1文字を検索して移動
+t,T:同じ行にある1文字を検索して直前移動
+;:1文字検索の左向きの再検索
+::1文字検索の右向きの再検索
+:noh 検索のハイライトを解除</p>
+</div>
+<div class="section" id="">
+<span id="id31"></span><h1>文字の書きかえ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>s:カーソル位置の1文字を複数の文字に置き換える。
+r:カーソル位置の1文字を別の1文字に置き換える。
+R:カーソル位置から順に上書きしていく。
+~:カーソル位置の大文字小文字変換</p>
+</div>
+<div class="section" id="">
+<span id="id32"></span><h1>やり直し<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>u:やり直し
+U:行での全取り消し
+C-r:やり直しのやり直し
+.:直前のコマンドの再実行</p>
+</div>
+<div class="section" id="">
+<span id="id33"></span><h1>操作の記録<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>qa[操作]:aレジスタに操作を記録。Aの場合は追記。もういちどqで記録終了
+&#64;a:aレジスタの操作を再生
+&#64;&#64;:直前に再生したレジスタを再生</p>
+</div>
+<div class="section" id="">
+<span id="id34"></span><h1>整形<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="ow">or</span> <span class="o">&lt;&lt;</span><span class="p">:</span><span class="n">カーソル行をシフト</span>
+<span class="o">&gt;%</span> <span class="ow">or</span> <span class="o">&lt;%</span><span class="p">:</span><span class="n">対応する括弧までの行をシフト</span>
+<span class="o">&gt;</span><span class="p">}</span> <span class="ow">or</span> <span class="o">&lt;</span><span class="p">}:</span><span class="n">対応する段落の行をシフト</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id35"></span><h1>置換<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:%s/&lt;置換前文字&gt;/&lt;置換後文字&gt;/gc
+</pre></div>
+</div>
+<p>%:すべての行が対象
+s:置換を指定
+g:各行の全ての文字が対象
+c:置換確認する</p>
+<p>デリミタは、切り替えられる。
+パス名などを変更する際に便利。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%s<span class="p">;</span>/var/home<span class="p">;</span>/home<span class="p">;</span>gc
+</pre></div>
+</div>
+<p>hogefuga
+hoge</p>
+<p>正規表現の場合</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:s /hoge<span class="se">\(</span>.#<span class="se">\)</span>hoge/huga<span class="se">\1</span>huga/g
+</pre></div>
+</div>
+<p>カッコと後方参照には、バックスラッシュを使用する。</p>
+<p>空白をタブにする例</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:s/ +/    /g
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id36"></span><h1>単語検索<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>検索したい単語の上で次のキーを押下する。
+完全一致： #(#)
+部分一致： g#(g#)
+括弧内は、上方向へ検索する場合。</p>
+</div>
+<div class="section" id="vim">
+<span id="id37"></span><h1>vimで編集すると改行が挿入される問題<a class="headerlink" href="#vim" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="">
+<span id="id38"></span><h2>問題<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>tagファイルなどの出力結果に改行がはいると、jsの文字列処理でエラーになることがある。</li>
+<li>diffで改行の有無が表示されてしまう。</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id39"></span><h2>なぜ？<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>POSIXのテキストファイルの仕様では、最後に改行を入れることが必須。vimは仕様に忠実である。
+とはいえ現状では、仕様を無視しているテキストエディタのほうが多いため(emacsもそう)
+多勢に合わせる必要がある。</p>
+</div>
+<div class="section" id="vim">
+<span id="id40"></span><h2>vim側で改行をなくす方法。<a class="headerlink" href="#vim" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイル末尾の改行をとりはずす。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:set bin noeol
+:wq
+</pre></div>
+</div>
+<p>このとき上記コマンド以外はなにもしないこと。</p>
+</div>
+<div class="section" id="">
+<span id="id41"></span><h2>参考<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>https://github.com/vim-jp/issues/issues/152</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">vim やること</a></li>
+<li><a class="reference internal" href="#voom">voom</a></li>
+<li><a class="reference internal" href="#markdown">markdown</a><ul>
+<li><a class="reference internal" href="#ctags">ctags の導入</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vimorgnizer">vimorgnizer</a><ul>
+<li><a class="reference internal" href="#">インストール</a><ul>
+<li><a class="reference internal" href="#">旧方式でインストール</a></li>
+<li><a class="reference internal" href="#neobundle">neobundle でインストール</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#calender-vim">calender.vim</a></li>
+<li><a class="reference internal" href="#narrowregion-plugin">NarrowRegion plugin</a></li>
+<li><a class="reference internal" href="#universal-text-linking-plugin"><code class="docutils literal notranslate"><span class="pre">Universal</span> <span class="pre">Text</span> <span class="pre">Linking</span></code> plugin.</a></li>
+<li><a class="reference internal" href="#vimrc">vimrcの修正</a></li>
+<li><a class="reference internal" href="#todo">todo</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#">折りたたみ</a></li>
+<li><a class="reference internal" href="#">カスタマイズ</a><ul>
+<li><a class="reference internal" href="#">クリップボードを共有する</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#netrw">netrw</a></li>
+<li><a class="reference internal" href="#vimgrep">vimgrepの使い方</a><ul>
+<li><a class="reference internal" href="#file">{file}の指定方法</a></li>
+<li><a class="reference internal" href="#pattern">{pattern}の指定方法</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vim">実践vim</a><ul>
+<li><a class="reference internal" href="#">オペレータ</a></li>
+<li><a class="reference internal" href="#">ドットの公式</a></li>
+<li><a class="reference internal" href="#">ノーマルモード</a><ul>
+<li><a class="reference internal" href="#">バッファリスト</a></li>
+<li><a class="reference internal" href="#">隠しバッファ</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#">分割ウィンドウ</a></li>
+<li><a class="reference internal" href="#">タブページ</a></li>
+<li><a class="reference internal" href="#">挿入モード</a></li>
+<li><a class="reference internal" href="#">ビジュアルモード</a></li>
+<li><a class="reference internal" href="#">コマンドモード</a><ul>
+<li><a class="reference internal" href="#">基本形式</a></li>
+<li><a class="reference internal" href="#renge">rengeは以下の形式</a></li>
+<li><a class="reference internal" href="#">特殊な記号</a></li>
+<li><a class="reference internal" href="#t">コピー(:t)コマンドの例</a></li>
+<li><a class="reference internal" href="#m">移動(:m)コマンドの例</a></li>
+<li><a class="reference internal" href="#normal">ノーマル(:normal)コマンドの例</a></li>
+<li><a class="reference internal" href="#">補完</a></li>
+<li><a class="reference internal" href="#">特殊なキー操作</a></li>
+<li><a class="reference internal" href="#">履歴</a></li>
+<li><a class="reference internal" href="#">コマンドラインウィンドウ</a></li>
+<li><a class="reference internal" href="#">シェルコマンド</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#">文字化け</a><ul>
+<li><a class="reference internal" href="#">参考</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#">設定ファイル</a></li>
+<li><a class="reference internal" href="#">基本</a><ul>
+<li><a class="reference internal" href="#">オペレータ</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#">カーソル移動</a></li>
+<li><a class="reference internal" href="#">文字の検索</a></li>
+<li><a class="reference internal" href="#">文字の書きかえ</a></li>
+<li><a class="reference internal" href="#">やり直し</a></li>
+<li><a class="reference internal" href="#">操作の記録</a></li>
+<li><a class="reference internal" href="#">整形</a></li>
+<li><a class="reference internal" href="#">置換</a></li>
+<li><a class="reference internal" href="#">単語検索</a></li>
+<li><a class="reference internal" href="#vim">vimで編集すると改行が挿入される問題</a><ul>
+<li><a class="reference internal" href="#">問題</a></li>
+<li><a class="reference internal" href="#">なぜ？</a></li>
+<li><a class="reference internal" href="#vim">vim側で改行をなくす方法。</a></li>
+<li><a class="reference internal" href="#">参考</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/vim.md.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, zarudama.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/vim.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
