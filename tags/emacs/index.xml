@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on My New Hugo Site</title>
+    <link>http://example.org/tags/emacs/</link>
+    <description>Recent content in emacs on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Jul 2014 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>org-mode でファイルを開くとエラーが発生</title>
+      <link>http://example.org/posts/cask-org/</link>
+      <pubDate>Mon, 07 Jul 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/cask-org/</guid>
+      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、 そのファイルが更新された状態になってしまう。
+Invalid function: org-with-silent-modifications   似たような症状が下記にも報告されている。 http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html  上記スレッドでは、
+ ...Emacs -q and reinstalling from elpa...  としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
+かわりにcask管理のorgを取得しなおした。こんな感じ。
+$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask  その際、バージョンをひとつ前の2.8.6に変更
+(source org) (depends-on &amp;quot;org-plus-contrib&amp;quot; &amp;quot;2.8.6&amp;quot;)  これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
+Caskの指定方法が間違っていたのだろうか？</description>
+    </item>
+    
+    <item>
+      <title>Caskの導入と設定ファイルの棚卸し</title>
+      <link>http://example.org/posts/cask/</link>
+      <pubDate>Sun, 01 Jun 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/cask/</guid>
+      <description>はじめに 最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？ って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。 ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。 良いです。
+そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。 これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。 毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。 自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。
+Caskの導入  インストールは非常に簡単です。 https://github.com/cask/cask  公式にあるとおり下記コマンドを実施するだけです。
+$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python  すると、 ~/.cask にcask自身がインストールされます。 あとは、PATHに下記を追加しておきます。
+export PATH=$PATH:~/.cask/bin  これで準備オッケーです。
+Caskファイルを編集して自分の欲しいパッケージを羅列してきます。
+$ vim ~/.emacs.d/Cask  で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが =~/.emacs.d/.cask= というディレクトリに保存されていきます。
+$ cd ~/.emacs.d $ cask  簡単ですなー。
+そしてこれらを利用するにはロードパスを通しておきます。
+(require &#39;cask &amp;quot;~/.cask/cask.el&amp;quot;) (cask-initialize)  あとはいつもどおりの自分の設定を書けばオッケー。
+ちなみにWindowsでは導入できないとの情報を見ましたが 自分の環境では問題ありませんでした。環境は下記のとおりです。
+# PC Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz 2.50GHz RAM 4.00 GB # Windows Windows7 Professional Service Pack 1 32bit # emacs GNU Emacs 24.</description>
+    </item>
+    
+    <item>
+      <title>Windows7でemacsのアイコンが2重に表示されるのを防ぐ</title>
+      <link>http://example.org/posts/emacs-win-taskbar/</link>
+      <pubDate>Wed, 16 Apr 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/emacs-win-taskbar/</guid>
+      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。
+でもこれ、Windows版emacsだとうまくいきません。
+runemacs.exe を起動してタスクバーに登録しても、 起動時にDos窓が開いてアイコンが2つ表示されてしまいます。 これでは不便なのでなんとかします。
+ この問題については、下記で解説されてるので一読をおすすめします。 http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html   ただしこのサイトで公開されているツールはもうないようなので、 下記から代替ツールをダウンロードして適当なところに配置します。 https://code.google.com/p/win7appid/  runemacs.exe のショートカットを作成して、 先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。
+さきほどダウンロードしたWin7AppId1.exeを、 登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。
+DOS&amp;gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs  runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を 選択すれば準備オッケーです。
+これで、タスクバーのアイコンをランチャーとして登録し、 かつ余計なDos窓が開くこともなくなります。</description>
+    </item>
+    
+    <item>
+      <title>Emacs JDEE でlibGDXプログラミング!</title>
+      <link>http://example.org/posts/libgdx-jdee/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/libgdx-jdee/</guid>
+      <description>はじめに libGDX でゲームプログラミングを始めています。
+最初は、Eclipseでコーディングしていました。
+でも重すぎるので、軽いと評判のIntelliJ IDEAに乘りかえました。
+確かに快適でした。Eclipseよりは。しかしそれでもいろいろ不満がつのる。。。
+…結局、Emacsに戻ってきました。やはり最後はいつもの場所へ。悲しい性ですね。
+ということで、EmacsでJavaやるなら JDEE です。
+gradleプロジェクトをJDEEでも使えるようにする JDEEはgradleをサポートしてません。 でもやっぱりいるんですねー。すばらしき先人が。 GradleプロジェクトをJDEEの plj.el に変換するスクリプトを発見しました。
+ http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html  上記で紹介されている jdee.gradle を、libGDXのプロジェクトルートに配置します。 そのままだと、testディレクトリがないと怒られるので、testを含む行をコメントアウトします。
+更に build.gradle を編集し、 apply from:... を追加します。
+} } +apply from:&#39;jdee.gradle&#39; allprojects { apply plugin: &amp;quot;eclipse&amp;quot; apply plugin: &amp;quot;idea&amp;quot;  あとは、プロジェクトルートで下記コマンドを実行します。
+$ ./gradlew jdee  すると各サブプロジェクト内で、 prj.el が作成されます。
+最後に下記の plj.el をプロジェクトルートに配置します。
+(jde-project-file-version &amp;quot;1.0&amp;quot;) (jde-set-variables &#39;(jde-jdk (quote (&amp;quot;1.7&amp;quot;))) &#39;(jde-jdk-registry (quote ( ;;(&amp;quot;1.7&amp;quot; . &amp;quot;c:/Program Files/Java/jdk1.7.0_09/&amp;quot;) (&amp;quot;1.7&amp;quot; . &amp;quot;/usr/lib/jvm/jdk1.7.0/&amp;quot;) ))) &#39;(jde-jdk-doc-url &amp;quot;http://docs.</description>
+    </item>
+    
+    <item>
+      <title>第3のエディタEvilのすすめ</title>
+      <link>http://example.org/posts/evil_adventcalendar_2014/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/evil_adventcalendar_2014/</guid>
+      <description>Evil Advent Calendar 2014 の8日目の記事になります。 Evil の使用人口が少なすぎるのでEvilを使う理由などを述べて人口が増えるのを目論みます。 Evilを薦めてるのかEmacsを薦めてるのかよくわからないまとまりのない記事になってしまいました。
+EmacsとVim そこそこ経験のあるEmacserは大抵、viの操作もマスターしています。 Emacsがインストールされてない環境も多いのでそんなときはviを使ってささっと編集するのです。 hjklはもちろん、yy,dd,u,cw,yw,dw,もマスターしている人も多いのではないでしょうか？ 自分はそのたびに感じていました。
+「ああ、viはなんて編集が楽なんだろ。指が全然痛くならねぇ。」
+Emacsのカーソル移動「 C-p, C-n, C-f, C-b 」は、言葉の意味に関連付けているので覚えやすいです。 だから一見viに比べるととっつきやすんです。でも疲れるんですよ。指が圧倒的に！
+これには理由があってホームポジションで状態を持たずに沢山の操作を実現するには 修飾キーや２段ストロークキーを使うしかないのです。 なので、ほぼほぼ全ての動作に小指コントーロールがつきまといます。
+それに比べてviはどうでしょうか？ まずホームポジションから指を一切動かさずに右手だけでカーソル移動できます。 文字的には意味のないhjklですが、指の配置的には理にかなっています。 モードがあるおかげで修飾キーを使わずともいろいろと操作できます。 そして一番好きなのは
+{count}{operater}{motion}  というシンプルだけど覚えやすいコマンド体系。 viを使うたびに私は思っていました。
+「viはなんて操作しやすいのだろう」
+と。
+それでもEmacsを選ぶ理由 「そんなにviを賛美してEmacsをDisるんならとっととVimmerになれや」との声が聞こえてきそうですが、 Vimへ宗旨替えしようと思ってもできない自分がいるのです。
+その最大の理由は「Lisp」。「ハッカーと画家」を読んだ方ならわかると思いますが「Lisp」は魅力的です。 プログラマならみんな憧れがあるのではないでしょうか？ LispプログラマにはEmacserが多いですし1、Lispの開発環境といえばEmacsのSLIMEが定番です。 なのでEmacsから離れたくないのです。
+最近のVimは昔に比べてEmacsのような環境化が進んでいますし、 拡張がしやすいという理由でEmacsを選ぶ理由は薄いかもしれません。 ただしLispを勉強したいというなら別です。CommonLispにしろSchemeにしろCLojureにしろ、 やはりEmacsが一番サポートが厚い気がします。 なによりEmacs自身がLispで書かれているのでEmacsを選ぶイコール毎日Lispと戯れることになるのです。
+以上のような理由でviのコマンド体系でLispで拡張できるエディタがあったらなぁと思っていたのでした。
+2「ハッカーと画家」の作者は「vi」な人らしいです（Vimではないっぽいところが重要）。
+Evilとは、Vimの操作性を備えたelisp実行環境である。 そんな時Evilに出会ったのです。EmacsなのにVim。「俺の求めていたのはこれだー」と思いました。 なんせEmacsLispで書かれたVimなので「Lispで拡張できる最高やん」と思ったのです。 EvilはEmacsでもあるのでもちろんEmacsの沢山の魅力的な拡張がそのまま動かせます。
+ org-mode これがないと生きていけない dired 同じく！ anything,helm ライフチェンジング！これなしでは(ry auto-complate いまどきのIDEぽく eshell Editor上でShellを動かす快適さ、シェル上でS式評価できる便利さ！ gnus メールが読めちゃうよ！ skk Emacsとの相性バツグンIME!  navi2ch これで仕事中2chしててもばれない twittering-mode これで仕事中Twitterしてても(ry magit ベンリング！ slime CommonLisp 最高の開発環境！ cider Clojureといったらこれ！  こんなにあります(自分がよく使う拡張を挙げてみました)。 他にもはじめからEvil用に書かれたプラグインもあったりして 積極的にVimの機能がEvilに 移植 されています。</description>
+    </item>
+    
+  </channel>
+</rss>

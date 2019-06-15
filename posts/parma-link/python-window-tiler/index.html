@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title python window tiler を試す  -->
+<!-- @date 2013-1-29  -->
+<!-- @tag windows xmonad -->
+
+<p><a href="http://www.lifehacker.jp/2013/01/130120mykids_command_line.html" title="この記事">この記事</a> にxmonadがでてきたので、自分が普段使っているWindowsでもタイル
+型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、
+どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納
+得のいくものがなかったので、使っていなかったのだ。でもその時から大分時
+間も経ってるので、最近は何かないかなと調べたところPythonで実装されたそ
+の名もずばり「Python-windows-tiler」というものを見つけた。</p>
+
+<ul>
+<li>https://github.com/Tzbob/python-windows-tiler</li>
+<li>http://d.hatena.ne.jp/uhiaha888/20121125/1353824257</li>
+</ul>
+
+<p>使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日
+本語を含むとエラーになるのでルートに解凍するのが良いと思う。</p>
+
+<p>キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので
+Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て
+winにしてPWT.exeを再起動した。</p>
+
+<p>これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめで
+たし、と思ったのだが、Win+Lキーでウィンドウの横幅を広げようとしたらロッ
+ク画面になってしまう。。。</p>
+
+<p>てことでWin+Lを無効化する方法を模索したけど、結局どれもうまくいかなかっ
+たので横幅操作は封印することにした。てか、Winを使用するコンビネーション
+キーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win
+キー経由でタイル操作はとても使いやすい。多様する操作はこれ。</p>
+
+<table>
+<tbody>
+<tr>
+<td>Win+SPC</td>
+<td>ウィンドウレイアウトの変更</td>
+</tr>
+
+<tr>
+<td>Win+j, Win+k</td>
+<td>ALT+TABの代りになる</td>
+</tr>
+
+<tr>
+<td>Win+S+Ent</td>
+<td>プライマリの切替</td>
+</tr>
+
+<tr>
+<td>Win+数字キー</td>
+<td>仮想デスクトップの切替</td>
+</tr>
+
+<tr>
+<td>Win+S+数字キー</td>
+<td>カレントアプリを仮想デスクトップへ移動</td>
+</tr>
+</tbody>
+</table>
+
+<p>特にWin+j,kがイイ!</p>
+
+<p>自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみの
+あるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが
+逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの
+emacsでは <code>windows.el</code> を使用し、端末ではtmuxを使用してるので、タイル型
+ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱する
+のだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので
+Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分
+にはAwesome系の操作体系のほうが向いているような気がした。</p>
+
+<p>ということで、Ubuntuではxmonadをもう一度使ってみようと思う。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

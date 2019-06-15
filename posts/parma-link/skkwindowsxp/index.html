@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title SKKを導入してみる(WindowsXP) -->
+<!-- @date 2012-03-09 -->
+<!-- @tag windows skk -->
+
+<p>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、
+emacsの外の世界ではgooglIME(or MOZC)を使用していました。
+滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、
+ふと最近のWindwosSKK界隈を調べてみると、今まで<a href="http://homepage3.nifty.com/monjya/skkime.jis.html" title="skkime">skkime</a> 一択だったのに
+クライアントが増えてます!。。。ということでいくつか検証してみて
+最終的に下記の組み合わせを使用することにしました。快適!快適ー!</p>
+
+<ul>
+<li><a href="http://code.google.com/p/corvus-skk/" title="corvus-SKK(IME)">corvus-SKK(IME)</a></li>
+<li><a href="http://www.megadriver.info/~fumi/wceskkserv/" title="wceSKKServ(辞書サーバー)">wceSKKServ(辞書サーバー)</a></li>
+<li><a href="http://d.hatena.ne.jp/hitode909/20110421/1303274561" title="google-ime-skk(辞書サーバー)">google-ime-skk(辞書サーバー)</a></li>
+</ul>
+
+<p>ということで以下に調べた内容をメモしておきます。</p>
+
+<h1 id="corvus-skk">corvus-SKK</h1>
+
+<ul>
+<li>最近できたらしいWindows用のFEP</li>
+<li>辞書が独自形式</li>
+<li>取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。</li>
+<li>emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。</li>
+<li>サーバーがひとつしか使えない</li>
+<li>wceSKKServであれば、複数の辞書を扱えるので問題なし</li>
+<li>トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない</li>
+<li>独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。</li>
+<li>StickyShiftが使える!</li>
+<li>Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
+</ul>
+
+<h2 id="によるstickyshiftを実現する方法">「;」によるStickyShiftを実現する方法</h2>
+
+<ul>
+<li>設定画面で[位置] タブで下記の設定を施す。</li>
+</ul>
+
+<p>開始：;
+  代替：なし
+  送り：なし</p>
+
+<h1 id="http-coexe-web-fc2-com-skkfep-html-skk日本語入力fep"><a href="http://coexe.web.fc2.com/skkfep.html" title="SKK日本語入力FEP">SKK日本語入力FEP</a></h1>
+
+<ul>
+<li>軽快な動作を目的とした比較的新しいWindows版SKK。</li>
+<li>Windowsアプリを使いやすくするための独自機能が特徴。</li>
+<li><a href="http://coexe.web.fc2.com/programs.html#skkime" title="SKK-IME1.5改">SKK-IME1.5改</a> と同じ作者であり基本理念が引き継がれている。</li>
+<li>WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
+<li>WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。</li>
+</ul>
+
+<h1 id="wceskkserv">wceSKKServ</h1>
+
+<ul>
+<li>wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。</li>
+<li>wceSKKServで使用する辞書は、euc-jpしか受付ない模様。</li>
+<li>サーバにはユーザ辞書は指定できない。</li>
+<li>従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。</li>
+<li>どうしてもしたい場合は、コピーしたものを使う。</li>
+<li>例えばスタートアップでユーザー辞書をコピーするとか。</li>
+<li>サーバを使うメリットとしては、以下がある。</li>
+<li>linux環境において辞書を共用することでメモリの節約</li>
+<li>予めサーバーとして立ちあげておくことで、起動がスムーズになる</li>
+<li>サーバー側に複数の辞書を登録することで、クライアント側では、</li>
+   そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。
+</ul>
+
+<h1 id="google-ime-skk">google-ime-skk</h1>
+
+<p>最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、
+Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。
+この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、
+ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。</p>
+
+<p>また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、
+このサーバを使えば、その問題も解決します。
+スバラシス!</p>
+
+<h2 id="xp環境でのインストール">xp環境でのインストール</h2>
+
+<p>gemを入れてから下記でインストールする。</p>
+
+<p>dos> gem install google-ime-skk
+dos> gem install json</p>
+
+<p>下記のようなバッチファイルを作ってスタートアップに登録しておく。
+「gskk.bat」</p>
+
+<p>google-ime-skk.bat</p>
+
+<p>あとは下記に接続すればok。</p>
+
+<p>localhost:55100</p>
+
+<p>コンソールが表示されるのが嫌という向きもあるだろうが
+自分の場合は、あとでログが見れたほうが嬉しいことが多いので
+そのままにしている。</p>
+
+<p>また、バーチャルデスクトップ(WinDeskwide)を使っているので
+不要なウィンドウは全部そっちに集めてスッキリできるので問題ない。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

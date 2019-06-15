@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title windows版emacs24.3で画像を表示する。 -->
+<!-- @date 2013-5-3  -->
+<!-- @tag emacs windows -->
+
+<ul>
+Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
+<li><code>F1 v dynamic-library-alist</code> で必要なdllを調べる。</li>
+<li>表示されたdllをググッてダウンロードする。</li>
+<li>PATHの通った場所へdllを置く。</li>
+</ul>
+
+<ul>
+自分の場合pngが表示されなかったので
+<li><code>libpng14-14.dll</code> が表示されたのでこれをググり、下記サイトからダウンロードした。</li>
+<li>http://www.gtk.org/download/win32.php</li>
+<li>emacsを再起動後、 <code>zlib1.dll</code> がないと怒られたので、これもダウンロードして配置。</li>
+<li>emacsを再起動し、 <code>M-x image-dired</code> でpng画像を開いたところ無事表示できた。</li>
+あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
+</ul>
+
+<p>emacs(Windows版)で画像を表示している様子
+<a href="http://mikio.github.io/img/image-dired/image-dired.png" title="http://mikio.github.io/img/image-dired/image-dired.png">http://mikio.github.io/img/image-dired/image-dired.png</a></p>
+
+<p>w3mでakb48を検索してみた。
+<a href="http://mikio.github.io/img/image-dired/w3m.png" title="http://mikio.github.io/img/image-dired/w3m.png">http://mikio.github.io/img/image-dired/w3m.png</a></p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>http://qiita.com/items/dc621c568a294004f5a2</li>
+<li>http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files</li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title (超個人的)Ubuntuインストール後にやることまとめ -->
+<!-- @date 2012-5-5  -->
+<!-- @tag ubuntu -->
+
+<p>Ubuntu12.04LTS版です。</p>
+
+<h1 id="最初にやること">最初にやること</h1>
+
+<h2 id="ホーム配下のディレクトリリネーム">ホーム配下のディレクトリリネーム</h2>
+
+<p>ホーム配下のディレクトリが日本語になっているので早々に英語化する。</p>
+
+<p>LANG=C xdg-user-dirs-gtk-update</p>
+
+<h2 id="update">update</h2>
+
+<p>最初は、メニューがところどころ日本語になっていなかったりする。
+なにはともあれアップデートマネージャで最新にアップデートする。</p>
+
+<h2 id="端末の設定">端末の設定</h2>
+
+<h1 id="ime起動ショートカットの変更">IME起動ショートカットの変更</h1>
+
+<ul>
+<li>[Windwoskキー] -> [gnome-terminal]</li>
+<li>[メニュー] -> [編集] -> [キーボードショートカット] </li>
+<li>すべてチェックを外しておく</li>
+<li>[右上のパネル（キーボード）] -> [設定] -> [一般] タブ</li>
+<li>[キーボードショットカット] -> [切り替え] </li>
+<li>[Zenkaku_Hankaku]だけにする</li>
+</ul>
+
+<h1 id="xmodmapによるキーマッピング">xmodmapによるキーマッピング</h1>
+
+<p>下記を参考にした。
+http://d.hatena.ne.jp/kenbeese/20120214/title</p>
+
+<p>~/.Xmodmapを作成する。</p>
+
+<p>keycode 102 = Control_L
+keycode 100 = Control_L
+keycode 101 = Shift_L</p>
+
+<p>keycode  66 = Control_L NoSymbol Control_L
+clear Lock</p>
+
+<p>add Control = Control_L</p>
+
+<p>反映</p>
+
+<p>xmodmap ~/.xmodmap</p>
+
+<p>これにより下記の割り当てになる。</p>
+
+<p>無変換(102)→ctrl
+変換(keycode 100)→ctrl
+カタカナひらがな(101)→shift</p>
+
+<p>更に起動時に自動的に有効になるように、 <code>~/xinitrc</code> を準備する。
+下記を記述する。</p>
+
+<pre><code class="language-sh">xmodmap ~/.~Xmodmap
+</code></pre>
+
+<p>もし割り当てを変更したいときは、xevコマンドを使ってキーコードを
+調べ、 <code>~/.xmomap</code> を変更すれば良い。</p>
+
+<pre><code class="language-sh">$ xev
+</code></pre>
+
+<p>CapsLock(66,Eisu_toggle)  = 左Ctrl(Control_L)
+Win(133,Super_L) = 左Ctrl
+左ALT(64, ALT_L) = Win
+無変換(102, Muhenkan)) = 左ALT
+変換(100,Henkan_Mode) = 右CTRL
+変換(101,Hiragana_Katakana) = 右シフト</p>
+
+<h1 id="dropbox">Dropbox</h1>
+
+<h1 id="firefox">firefox</h1>
+
+<p>これがないとはじまらない。dropboxのサイトへいき、.debをダウンロードしてパッケージをインストールする。
+syncの設定して、keysnailを入れる。</p>
+
+<h1 id="mig-1m">Mig 1M</h1>
+
+<ul>
+1MのMはMonoSpaceのM。つまり等幅フォントということ。
+下記から「Mig 1M」フォントをダウンロードする。
+<li>http://mix-mplus-ipa.sourceforge.jp/download.html</li>
+あとは下記のコマンドで使えるようになる。
+</ul>
+
+<p>mkdir ~/.fonts 
+cp migu-1m-20120411.zip ~/.fonts
+cd ~/.fonts 
+unzip migu-1m-20120411.zip
+fc-cache -fv</p>
+
+<h1 id="vlゴシック">VLゴシック</h1>
+
+<ul>
+下記をfirefoxから開けばOK
+<li>http://apt.ubuntu.com/p/ttf-vlgothic</li>
+</ul>
+
+<p>インストールしたフォントを使用するには、Advanced Settingsを
+ソフトウェアセンターからインストールする必要がある(gnome-tweak-toolで検索する)。</p>
+
+<p>Advanced Settingsをインストールすると、Launcherに「高度な設定」アイコンがあるのでこれを起動し、
+フォントを選択すればよい。</p>
+
+<h1 id="全体のキーボード操作をemacs系にする">全体のキーボード操作をemacs系にする</h1>
+
+<p>ターミナルで下記コマンドを実行する。</p>
+
+<p>sudo apt-get install dconf-tools
+gsettings get org.gnome.desktop.interface gtk-key-theme Emacs</p>
+
+<p>手動の場合は以下。</p>
+
+<p>dconf-editor</p>
+
+<p>以下のパスで</p>
+
+<p>/org/gnome/desktop/interface/gtk-key-theme</p>
+
+<p>値をEmacsにする。Eは大文字なので注意すること。もどすときはDefaultにする。</p>
+
+<h1 id="paco">paco</h1>
+
+<ul>
+<li>http://paco.sourceforge.net/</li>
+<li>http://d.hatena.ne.jp/rx7/20081011/p2</li>
+</ul>
+
+<p>pacoは、make install によってインストールされたアプリケーションのパッ
+ケージ管理をしてくれる。</p>
+<!-- ソースは適当にWebからダウンロード -->
+
+<p>sudo apt-get install libgtkmm-2.4-dev
+cd ~/src/paco-2.0.9/
+./configure
+make
+sudo make install
+sudo make logme</p>
+
+<h1 id="emacs">emacs</h1>
+
+<p>ソースは最新版(ver24)を取ってくる。build-depは多分emacs23でOK。</p>
+<!-- ソースは適当にWebからダウンロード。「emacs24」とかで検索。 -->
+
+<p>sudo apt-get build-dep emacs23
+cd ~/src/emacs-24/</p>
+<!-- configureで画像関連でエラーになるかも。そのときは -->
+<!-- sudo apt-get install libgif-dev ligtiff-dev libxpm-dev -->
+
+<p>./configure
+make
+sudo paco -D make install</p>
+
+<p>ついでにw3mも入れとく。</p>
+
+<p>sudo apt-get install w3m</p>
+
+<h1 id="cmigemo">cmigemo</h1>
+
+<p>Kaoriaからソースを取得する。</p>
+
+<p>wget http://cmigemo.googlecode.com/files/cmigemo-default-src-20110227.zip
+unzip cmigemo-default-src-20110227.zip
+cd cmigemo-default-src-20110227</p>
+
+<p>そのままコンパイルするとエラーがでるので修正する。</p>
+
+<p>src/wordbuf.c:118: error: ‘INT_MAX’ undeclared (first use in this function)
+src/wordbuf.c:118: error: (Each undeclared identifier is reported only once
+src/wordbuf.c:118: error: for each function it appears in.)</p>
+
+<p>wordbuf.cに下記を追加する。</p>
+
+<p>#include <limits.h></p>
+
+<p>あとは下記のとおり。</p>
+
+<p>sudo apt-get install curl
+sudo apt-get install nkf</p>
+
+<p>cd ~/src/cmigemo-default-src/
+sh ./configure 
+make gcc
+cd dict
+make utf-8
+cd ..
+sudo paco -D make gcc-install</p>
+
+<p>次のようにテストできる。</p>
+
+<p>$ cmigemo -d /usr/local/share/migemo/utf-8/migemo-dict
+migemo_open("/usr/local/share/migemo/utf-8/migemo-dict")=0xf54010
+clock()=0.300000
+QUERY: kyassyu
+PATTERN: (ｷｬｯｼｭ|キャッシュ|きゃっしゅ|ｋｙａｓｓｙｕ|kyassyu)</p>
+
+<h1 id="git">git</h1>
+
+<pre><code class="language-sh">sudo apt-get install git
+git config --global alias.st &quot;status&quot;
+git config --global alias.ci &quot;commit&quot;
+git config --global alias.br &quot;branch&quot;
+git config --global alias.co &quot;checkout&quot;
+git config --global color.ui &quot;auto&quot;
+git config --global core.pager &quot;cat&quot;
+git config --global user.email &quot;hoge@faga.com&quot;
+git config --global user.name &quot;hoge&quot;
+</code></pre>
+
+<h1 id="skk-uim">skk(uim)</h1>
+
+<ul>
+ubuntuは、標準でiBusを使用しているが、ibus-sskは
+変換時にemacsのキーバインドが使えないので、
+変わりにuimというインプットメソッドがあるので入れてみる。
+<li>http://ubuntu-note.blog.so-net.ne.jp/2010-10-17-1</li>
+</ul>
+
+<p>sudo apt-get install uim uim-skk</p>
+
+<ul>
+<li>設定　言語サポート　「キーボードに使うIMシステム」</li>
+<li>uimを選択</li>
+その後ログアウトすれば使用できるようになる。
+<li>Dashでuimを入力すると設定画面が表示される</li>
+<li>ツールバーは表示できない。</li>
+</ul>
+
+<ul>
+emacsと重複するため、SKKの起動キーを変更する。
+<li>[設定] -> [SKKキー設定1] </li>
+<li>Zenkaku_Hankakuだけにする</li>
+</ul>
+
+<h1 id="jdk">jdk</h1>
+
+<ul>
+下記よりjdk最新版を取得する。
+<li>http://www.oracle.com/technetwork/java/javase/downloads/index.html</li>
+</ul>
+
+<p>CUIから最新版をダウンロードする場合。</p>
+
+<pre><code class="language-sh">wget --no-cookies --header &quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&quot; -O jdk-6u41-linux-i586.bin 'http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-i586.bin'
+</code></pre>
+
+<p>解凍したディレクトリを移動する。</p>
+
+<p>sudo mkdir <em>usr/lib/jvm/
+sudo mv ./jdk1.7.0_04</em> /usr/lib/jvm/jdk1.7.0</p>
+
+<p>下記でインストールする。</p>
+
+<p>sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0/bin/javac" 1
+sudo update-alternatives --install "/usr/bin/javap" "javap" "/usr/lib/jvm/jdk1.7.0/bin/javap" 1
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0/bin/javaws" 1</p>
+
+<p>複数のjavaがあれば、下記でデフォルトにするコマンドを選択する。
+今回はoracleJavaのみなので必要ない。</p>
+
+<p>sudo update-alternatives --config java</p>
+
+<p>下記で確認する。</p>
+
+<p>java -version
+javac
+javap
+javaws</p>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+<li>http://radi0ant.hatenablog.com/entry/2011/12/29/015013</li>
+<li>http://askubuntu.com/questions/55848/how-do-i-install-oracle-java-jdk-7</li>
+</ul>
+
+<h1 id="lein-clojure">lein(clojure)</h1>
+
+<p>binディレクトリを作成する。</p>
+
+<p>$ cd ~
+$ mkdir bin
+$ vi .bashrch</p>
+<!-- 下記を追加 -->
+
+<p>export PATH=~/bin</p>
+
+<p>leinをインストールする。</p>
+
+<p>cd ~/bin
+wget https://raw.github.com/technomancy/leiningen/stable/bin/lein
+chmod +x lein
+./elin repl # ダウンロード後、repl開始</p>
+
+<h1 id="eclipse">eclipse</h1>
+
+<ul>
+<li>http://gihyo.jp/admin/serial/01/ubuntu-recipe/0167</li>
+</ul>
+
+<p>ソフトウェアセンターから「eclipse」」とpleiadesをインストールする。
+その後、/etc/eclipse.iniを編集する。</p>
+
+<p>-javaagent:/usr/lib/eclipse/plugins/jp.sourceforge.mergedoc.pleiades/pleiades.jar</p>
+
+<p>この時、eclipse.iniのそれぞれのパラメータの改行位置がおかしいことがあるので、その時は適切に編集する。
+編集が終ったら、Dashメニューより起動して日本語化されていることを確認す
+る。</p>
+
+<h1 id="その他">その他</h1>
+
+<h2 id="dvdについて">DVDについて</h2>
+
+<p>DVDをみるためには以下のインストールが必要。</p>
+
+<pre><code class="language-sh">$ sudo apt-get install ubuntu-restricted-extras
+$ sudo sh /usr/share/doc/libdvdread4/install-css.sh
+</code></pre>
+
+<ul>
+<li>iso マウントには Frius ISO mount</li>
+<li>dvd バックアップには、k9 copy</li>
+</ul>
+
+<h2 id="vmwareなどでインストールしたときにlocaleに日本語がない場合">vmwareなどでインストールしたときにlocaleに日本語がない場合</h2>
+
+<p>sudo apt-get install language-pack-ja
+sudo dpkg-reconfigure locales</p>
+
+<h2 id="クリップボード履歴">クリップボード履歴</h2>
+
+<p>sudo apt-get install parcellite</p>
+
+<h2 id="スクリーンショット">スクリーンショット</h2>
+
+<p>Ubuntuでは標準でスクリーンショットがあって、PrintScrキーを押下するだけでアクティブウィンドウが
+png形式でキャプチャされる。
+けれども、この場合、クライアント領域だけのキャプチャになるので用途によっては不便である。
+その編の問題を解決してくれるソフトがShutterである</p>
+
+<p>sudo apt-get install shutter</p>
+
+<p>http://ankyo.blog.so-net.ne.jp/2011-04-07</p>
+
+<h1 id="日本語imeについて">日本語IMEについて</h1>
+
+<ul>
+Linuxは、日本語入力には３つのソフトウェアが必要。
+<li>日本の文字を入力するためのシステムであるインプットメソッド</li>
+<li>かな漢字の変換をするシステム</li>
+<li>両者をつなぐ日本語ブリッジ</li>
+</ul>
+
+<ul>
+<li>インプットメソッドの例</li>
+<li>SCIM</li>
+<li>iBus</li>
+<li>uim</li>
+</ul>
+
+<ul>
+<li>かな漢字変換システムの例</li>
+<li>Anthy</li>
+<li>MOZC</li>
+<li>SKK</li>
+</ul>
+
+<ul>
+<li>日本語ブリッジの例</li>
+<li>ibus-mozc</li>
+<li>uim-skk</li>
+<li>scim-anthy</li>
+</ul>
+
+<p>最近のUbuntuでは、インプットメソッドに、iBus,
+かな漢字変換システムには、Anthyを使用している。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

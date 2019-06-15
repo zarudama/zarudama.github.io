@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Searches | My New Hugo Site</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+  <title>Responsive Side Menu &ndash; Layout Examples &ndash; Pure</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/layouts/side-menu.css">
+  
+
+  <script src="data.js"></script>
+  <style>
+    body {
+      background: #fafafa;
+    }
+    input {
+      color: deeppink;
+      font-size: 1.2em;
+      font-weight: bolder;
+    }
+    input::-webkit-input-placeholder {
+      color: pink;
+    }
+    #result {
+      margin: 1em;
+    }
+    .item_title {
+      text-decoration: none;
+      color: #36f;
+      font-weight: bolder;
+    }
+    .item_excerpt {
+      background: white;
+      margin: 0.5em 2em 1em;
+      padding: 0.5em;
+      border: dashed 1px lightgray;
+      font-size: smaller;
+    }
+    .item_excerpt b {
+      background: pink;
+    }
+  </style>
+</head>
+<body>
+
+    <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main">
+            <div class="content">
+
+            <h1>Searches</h1>
+<input onkeyup="search(this.value)" size="15" autocomplete="off" autofocus placeholder="検索ワード" />
+<span id="inputWord"></span> <span id="resultCount"></span>
+<div id="result"></div>
+
+            </div>
+        </div>
+    </div>
+<script>
+function search(query) {
+  var result = searchData(query);
+  var html = createHtml(result);
+  showResult(html);
+  showResultCount(result.length, data.length);
+}
+
+function searchData(query) {
+  
+  
+  var result = [];
+
+  query = query.trim();
+  if (query.length < 1) {
+    return result;
+  }
+  var re = new RegExp(query, 'i');
+  for (var i = 0; i < data.length; ++i) {
+    var pos = data[i].body.search(re);
+    if (pos != -1) {
+      result.push([i, pos, pos + query.length]);
+    }
+  }
+  return result;
+}
+
+function createHtml(result) {
+  var htmls = [];
+  for (var i = 0; i < result.length; ++i) {
+    var dataIndex = result[i][0];
+    var startPos = result[i][1];
+    var endPos = result[i][2];
+    var url = data[dataIndex].url;
+    var title = data[dataIndex].title;
+    var body = data[dataIndex].body;
+    htmls.push(createEntry(url, title, body, startPos, endPos));
+  }
+  return htmls.join('');
+}
+
+function createEntry(url, title, body, startPos, endPos) {
+  return '<div class="item">' +
+      '<a class="item_title" href="' + url + '">' + title + '</a>' +
+      '<div class="item_excerpt">' + excerpt(body, startPos, endPos) + '</div>' +
+      '</div>';
+}
+
+function excerpt(body, startPos, endPos) {
+  return [
+    body.substring(startPos - 30, startPos),
+    '<b>', body.substring(startPos, endPos), '</b>',
+    body.substring(endPos, endPos + 200)
+  ].join('');
+}
+
+function showResult(html) {
+  var el = document.getElementById('result');
+  el.innerHTML = html;
+}
+
+function showResultCount(count, total) {
+  var el = document.getElementById('resultCount');
+  el.innerHTML = '<b>' + count + '</b> 件見つかりました（' + total + '件中）';
+}
+</script>
+
+<script src="/js/ui.js"></script>
+</body>
+</html>

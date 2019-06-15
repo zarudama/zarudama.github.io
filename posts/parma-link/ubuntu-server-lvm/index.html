@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title Ubuntu Server インストール時に前回作ったLVMが削除できなかった。 -->
+<!-- @date 2012-12-30  -->
+<!-- @tag ubuntu hamari -->
+
+<p>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら
+VGやLVMが削除できなくて先に進めなくなった。</p>
+
+<p>この状態を回避するには、 まず <code>ALT+F2</code> でコンソールを切り替える。
+Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 <code>ALT + F1 - F4</code> で切り替えられるのだ。</p>
+
+<p>まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。</p>
+
+<pre><code class="language-sh">$ lvremove /dev/{ボリュームグループ}/{論理ボリューム}
+$ vgremove /dev/{ボリュームグループ}
+</code></pre>
+
+<p>で削除できる。
+この時、swap領域に割り当てたものが削除できない場合があるが
+その時は、いったんインストール作業を中断してやり直せばよい。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

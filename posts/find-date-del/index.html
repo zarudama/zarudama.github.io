@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">特定の日付より古いファイルを削除する方法</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。</p>
+
+<p><a href="http://mikio.github.io/img/find-del/find1.png" title="http://mikio.github.io/img/find-del/find1.png">http://mikio.github.io/img/find-del/find1.png</a></p>
+
+<p>findがすぐに思いつくが、findには日付指定のオプションが見あたらない。</p>
+
+<h2 id="答え">答え</h2>
+
+<p>touchでダミーファイルを作って、findのnewerオプションと否定演算子を使い、xargsとrmで削除する。</p>
+
+<pre><code class="language-sh">$ touch -t 201303030000 /tmp/hoge
+$ find /usr/local/apache/logs \! -newer /tmp/hoge|sort|less
+</code></pre>
+
+<p>中身を確認して問題なさそうなら</p>
+
+<pre><code class="language-sh">$ find /usr/local/apache/logs \! -newer /tmp/hoge|xargs rm
+</code></pre>
+
+<h2 id="解説">解説</h2>
+
+<p>普通に考えると <code>find</code> を使って <code>-mtime</code> などで日数を指定する。</p>
+
+<pre><code class="language-sh">$ find /usr/local/apache/logs -mtime +180|wc -l
+554
+$ find /usr/local/apache/logs -mtime +90|wc -l
+757
+</code></pre>
+
+<p>でも今回の要件の場合日数を計算するのが面倒なので日付を直接指定して削除したい。
+しかし <code>man find</code> してもそんなオプションはない。
+だが良くみるとファイルのタイムスタンプを基準にするオプション <code>newer</code> ならある。
+このオプションを使えばなんとかなりそうである。</p>
+
+<p>まず下記のようにダミーのファイルを作成する。</p>
+
+<pre><code class="language-sh">$ touch -t 201303030000 /tmp/hoge
+</code></pre>
+
+<p>tオプションの意味は <code>YYYYMMDDhhmm</code> 。詳細は <code>man touch</code> 参照。</p>
+
+<p>で、このファイルのタイムスタンプを基準に <code>newer</code> を使えばよい。</p>
+
+<pre><code class="language-sh">$ find /usr/local/apache/logs -newer hoge|sort|less
+</code></pre>
+
+<p>これで2013年3月3日以降に変更されたファイルを抽出できる。
+だが今回の場合は「指定日以前」のファイルを抽出したいのでこれでは駄目だ。</p>
+
+<p><code>newer</code> があるなら <code>older</code> オプションがありそうだが残念ながらなかった。
+ではどうすればいいんだと小一時間考えた結果、否定オプション <code>!</code> を使えば良いことがわかった。</p>
+
+<pre><code class="language-sh">$ find /usr/local/apache/logs \! -newer hoge|sort|less
+</code></pre>
+
+<p>否定オプションにはエスケープが必要である。
+ <code>newer</code> は指定した日を含む「以降」であり、
+その否定なので「以前」ではなく「前」になることに注意(当日は含まない)。</p>
+
+<p><a href="http://mikio.github.io/img/find-del/find2.png" title="http://mikio.github.io/img/find-del/find2.png">http://mikio.github.io/img/find-del/find2.png</a></p>
+
+<p>あとはこの抽出したファイルにxargsを使って適当なコマンドをあてれば良い。
+今回の場合は削除のrmコマンドを使った。</p>
+
+<h2 id="ついでに日数指定の復習">ついでに日数指定の復習</h2>
+
+<h3 id="timeの意味">timeの意味</h3>
+
+<pre><code>atime:アクセス日(access)
+ctime:ステータス変更日(chenge)
+mtime:ファイルを修正した日(modify)。普通はこれを使用する。
+</code></pre>
+
+<h3 id="日数の指定">日数の指定</h3>
+
+<p><a href="http://mikio.github.io/img/find-del/find3.png" title="http://mikio.github.io/img/find-del/find3.png">http://mikio.github.io/img/find-del/find3.png</a></p>
+
+<pre><code>-mtime 4: ちょうど4日前
+-mtime +4: 5日以前
+-mtime -4: 3日以内
+</code></pre>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+<li>http://futuremix.org/2011/01/find-newer-file-timestamp</li>
+<li>http://www.sixnine.net/roadside/find.html</li>
+<li>http://x68000.q-e-d.net/~68user/unix/pickup?find</li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

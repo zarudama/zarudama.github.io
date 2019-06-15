@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ssh on My New Hugo Site</title>
+    <link>http://example.org/tags/ssh/</link>
+    <description>Recent content in ssh on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Dec 2012 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>cygwinでssh接続できない</title>
+      <link>http://example.org/posts/parma-link/cygwinssh/</link>
+      <pubDate>Sat, 22 Dec 2012 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/parma-link/cygwinssh/</guid>
+      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定し てる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成でき ないと怒られてしまう。
+$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &#39;/home/mikio/.ssh&#39;.   この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。 http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
+debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try.</description>
+    </item>
+    
+  </channel>
+</rss>

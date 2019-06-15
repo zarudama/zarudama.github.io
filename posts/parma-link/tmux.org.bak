@@ -1,0 +1,69 @@
+# @layout post
+# @title tmux セッションの保存方法
+# @date 2012-2-12 
+# @tag tmux
+
+下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。
+- http://www.gcd.org/blog/2006/09/100/
+
+#+BEGIN_SRC sh
+agent="$HOME/tmp/ssh-agent-$USER"
+if [ -S "$SSH_AUTH_SOCK" ]; then
+        case $SSH_AUTH_SOCK in
+        /tmp/*/agent.[0-9]*)
+                ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
+        esac
+elif [ -S $agent ]; then
+        export SSH_AUTH_SOCK=$agent
+else
+        echo "no ssh-agent"
+fi
+#+END_SRC
+
+testコマンドのSオプションは以下のとおり。
+#+BEGIN_EXAMPLE
+-S FILE
+  FILE exists and is a socket
+#+END_EXAMPLE
+
+やっていることは、直接参照する$SSH_AUTH_SOCKは固定のパスにしてしまい、
+ログインごとに変わるUNIXドメインソケットはシンボリックリンクで指し示すようにしている。
+
+* その他参考にしたもの
+- http://hibari.2ch.net/test/read.cgi/unix/1268778432/
+
+#+BEGIN_EXAMPLE
+84 ：名無しさん＠お腹いっぱい。：2010/11/02(火) 15:34:12
+    screenと違って、アタッチ時に環境変数SSH_AUTH_SOCKを新しい値に更新してくれるのは
+    嬉しいんだけど、それが実際シェルに反映されるのは、新しいシェルを追加した時だけだよね？
+
+    デタッチ前から動いてるシェルのSSH_AUTH_SOCKを自動的に更新する事って出来る？
+
+87 ：名無しさん＠お腹いっぱい。：2010/11/21(日) 07:31:25
+    >>84
+    シェル側の適当なフックで、親プロセスの環境変数を調べるとか。
+
+88 ：名無しさん＠お腹いっぱい。：2010/11/24(水) 16:56:11
+    >>84
+    こんなのしてる：
+    sc() {
+    　if [ -n "$TMUX" ]; then
+    　　unset $(tmux show-env | sed -n 's/^-//p')
+    　　eval export $(tmux show-env | sed -n 's/$/"/; s/=/="/p')
+    　else
+    　　tmux -u start \; attach \; $@;
+    　fi
+    }
+    これでとにかくscって打てばアタッチするし、アタッチ済なら
+    アタッチ前シェルの環境を取り込んでくる。 
+#+END_EXAMPLE
+
+show-envはshow-environmentのエイリアスで、-で始まる環境変数はシステムか
+ら削除されたものらしい。
+#+BEGIN_SRC sh
+# "-"のついている（tmuxにより削除された環境変数）をクリア
+unset $(tmux show-env | sed -n 's/^-//p')
+
+# 環境変数の再定義
+eval export $(tmux show-env | sed -n 's/$/"/; s/=/="/p')
+#+END_SRC

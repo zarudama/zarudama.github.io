@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">第3のエディタEvilのすすめ</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p><a href="http://qiita.com/advent-calendar/2014/evil" title="Evil Advent Calendar 2014">Evil Advent Calendar 2014</a> の8日目の記事になります。
+Evil の使用人口が少なすぎるのでEvilを使う理由などを述べて人口が増えるのを目論みます。
+Evilを薦めてるのかEmacsを薦めてるのかよくわからないまとまりのない記事になってしまいました。</p>
+
+<h1 id="emacsとvim">EmacsとVim</h1>
+
+<p>そこそこ経験のあるEmacserは大抵、viの操作もマスターしています。
+Emacsがインストールされてない環境も多いのでそんなときはviを使ってささっと編集するのです。
+hjklはもちろん、yy,dd,u,cw,yw,dw,もマスターしている人も多いのではないでしょうか？
+自分はそのたびに感じていました。</p>
+
+<p>「ああ、viはなんて編集が楽なんだろ。指が全然痛くならねぇ。」</p>
+
+<p>Emacsのカーソル移動「 <code>C-p</code>, <code>C-n</code>, <code>C-f</code>, <code>C-b</code> 」は、言葉の意味に関連付けているので覚えやすいです。
+だから一見viに比べるととっつきやすんです。でも疲れるんですよ。指が圧倒的に！</p>
+
+<p>これには理由があってホームポジションで状態を持たずに沢山の操作を実現するには
+修飾キーや２段ストロークキーを使うしかないのです。
+なので、ほぼほぼ全ての動作に小指コントーロールがつきまといます。</p>
+
+<p>それに比べてviはどうでしょうか？
+まずホームポジションから指を一切動かさずに右手だけでカーソル移動できます。
+文字的には意味のないhjklですが、指の配置的には理にかなっています。
+モードがあるおかげで修飾キーを使わずともいろいろと操作できます。
+そして一番好きなのは</p>
+
+<pre><code>{count}{operater}{motion}
+</code></pre>
+
+<p>というシンプルだけど覚えやすいコマンド体系。
+viを使うたびに私は思っていました。</p>
+
+<p>「viはなんて操作しやすいのだろう」</p>
+
+<p>と。</p>
+
+<h1 id="それでもemacsを選ぶ理由">それでもEmacsを選ぶ理由</h1>
+
+<p>「そんなにviを賛美してEmacsをDisるんならとっととVimmerになれや」との声が聞こえてきそうですが、
+Vimへ宗旨替えしようと思ってもできない自分がいるのです。</p>
+
+<p>その最大の理由は「Lisp」。「ハッカーと画家」を読んだ方ならわかると思いますが「Lisp」は魅力的です。
+プログラマならみんな憧れがあるのではないでしょうか？
+LispプログラマにはEmacserが多いですし<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>、Lispの開発環境といえばEmacsのSLIMEが定番です。
+なのでEmacsから離れたくないのです。</p>
+
+<p>最近のVimは昔に比べてEmacsのような環境化が進んでいますし、
+拡張がしやすいという理由でEmacsを選ぶ理由は薄いかもしれません。
+ただしLispを勉強したいというなら別です。CommonLispにしろSchemeにしろCLojureにしろ、
+やはりEmacsが一番サポートが厚い気がします。
+なによりEmacs自身がLispで書かれているのでEmacsを選ぶイコール毎日Lispと戯れることになるのです。</p>
+
+<p>以上のような理由でviのコマンド体系でLispで拡張できるエディタがあったらなぁと思っていたのでした。</p>
+
+<p><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">2</a></sup>「ハッカーと画家」の作者は「vi」な人らしいです（Vimではないっぽいところが重要）。</p>
+
+<h1 id="evilとは-vimの操作性を備えたelisp実行環境である">Evilとは、Vimの操作性を備えたelisp実行環境である。</h1>
+
+<p>そんな時Evilに出会ったのです。EmacsなのにVim。「俺の求めていたのはこれだー」と思いました。
+なんせEmacsLispで書かれたVimなので「Lispで拡張できる最高やん」と思ったのです。
+EvilはEmacsでもあるのでもちろんEmacsの沢山の魅力的な拡張がそのまま動かせます。</p>
+
+<dl>
+<dt>org-mode</dt>
+<dd>これがないと生きていけない</dd>
+<dt>dired</dt>
+<dd>同じく！</dd>
+<dt>anything,helm</dt>
+<dd>ライフチェンジング！これなしでは(ry</dd>
+<dt>auto-complate</dt>
+<dd>いまどきのIDEぽく</dd>
+<dt>eshell</dt>
+<dd>Editor上でShellを動かす快適さ、シェル上でS式評価できる便利さ！</dd>
+<dt>gnus</dt>
+<dd>メールが読めちゃうよ！</dd>
+<dt>skk</dt>
+<dd>Emacsとの相性バツグンIME! </dd>
+<dt>navi2ch</dt>
+<dd>これで仕事中2chしててもばれない</dd>
+<dt>twittering-mode</dt>
+<dd>これで仕事中Twitterしてても(ry</dd>
+<dt>magit</dt>
+<dd>ベンリング！</dd>
+<dt>slime</dt>
+<dd>CommonLisp 最高の開発環境！</dd>
+<dt>cider</dt>
+<dd>Clojureといったらこれ！</dd>
+</dl>
+
+<p>こんなにあります(自分がよく使う拡張を挙げてみました)。
+他にもはじめからEvil用に書かれたプラグインもあったりして
+積極的にVimの機能がEvilに <a href="http://qiita.com/yukihr/items/a3841ba904979a366fb3" title="移植">移植</a> されています。</p>
+
+<p>Emacsの豊富な資産を継承しつつも、Vimの操作性を高い再現度で手にいれることができる、それがEvilなのです。
+EmcasLispという実行環境の上にEmacsLispで書かれたVimを模倣したエディタが動く。
+もうこれは、EmacsでもVim でもなく第３のエディタとっいってもいいのではないでしょうか？</p>
+
+<h1 id="evil-modeでvimの操作性とemacsの拡張性を両方手に入れる">Evil-modeでVimの操作性とEmacsの拡張性を両方手に入れる!</h1>
+
+<ul>
+Evilの魅力をちょっとまとめてみます。
+<li>Evilは、vimの基本的な操作は大体通用する。</li>
+<li>Evil(vim)は、(達人になれば)呪文をとなえるように編集ができる。それが気持ちよさにつながる。</li>
+<li>Evil(vim)は、小指への負担が少ない(重要)。</li>
+<li>Evilは、EmacsだからEditorなのに画像が表示できる。その気になれば <a href="http://d.hatena.ne.jp/kiwanami/20110413/1302709536" title="3Dゲーム">3Dゲーム</a> もつくれるぜ!</li>
+<li>Evilは、日本語編集にも強いVimとして使用できる。</li>
+<li>skkが簡単に使える。</li>
+<li>ちょっと工夫すれば、モード間のskkの状態遷移がスムーズにできる。よって日本語入力がVimなのに快適!</li>
+<li>Evilとは、Vimの効率的なテキスト編集能力と、lisp子孫の機能拡張言語を備えた第3のエディタである。</li>
+<li>EmacslispはまがりなりにもLispの子孫。言語自体にパワーある。</li>
+</ul>
+
+<h1 id="迷ったらevil-emacs">迷ったらEvil(Emacs)。</h1>
+
+<p>EmacsとVimどちらを使えばいいのか迷っている場合、私はEmacsを進めます。
+Emacs使いは、結局必要に迫られてviを操作することが多いです。
+それに比べてvi使いがEmacsの操作もできることは少ない気がします。
+viやvimの人がわざわざEmacsを操作する機会がないからですね。
+であれば、Emacserのほうが両方の操作を覚えられるという点でお得です(面倒と考えずポジティブにいきましょう)。
+Evilは、VimとEmacs両方の操作能力を求められので、EmacsもVimも全く知らない人がいきなりEvilから始めるのは
+あまりお勧めできません。ある程度両方の操作をマスターしてからのほうがいいでしょう。
+そしてその順序は上述のとおりEmacsからのほうが良いと思います。</p>
+
+<h1 id="最後に">最後に</h1>
+
+<p>どうでしょうか？ちょっとはEvilに興味を持っていただけたしょうか？
+面倒くさそうだなって思う人のほうが多そうな気もすごくするのですが、
+少しでも試してみようと思うかたが増えたら幸いです(この記事自体、既にEvilを使ってる人しか読まなそうでけどね)。</p>
+
+<h1 id="evilを使う気になった人へのちょっとしたメモ">Evilを使う気になった人へのちょっとしたメモ</h1>
+
+<p>EmacsとVimはコマンド体系が喧嘩しまくる感じです。なのでちょっとした基本は最初に知っておいたほうがいいです。
+とりあえずすぐに思いついたものだけ。</p>
+
+<h2 id="emacserじゃない人向け">Emacserじゃない人向け</h2>
+
+<ul>
+<li><code>C-g</code> は Vim の ESC みたいなもの。困ったらこれを連打。</li>
+<li><code>C-c</code> は メジャーモードのプリフィックス。そのメジャーモードで何かするときは <code>C-c</code> してからコマンドを続けることが多い。</li>
+<li><code>C-c C-c</code> は何かを実行とか決定するときによく使う。</li>
+<li><code>C-u</code> は、反対の意味的なプリフィックス。普段使ってるコマンドを <code>C-u</code> を使って実行するとオルタナティブなコマンドになる。</li>
+</ul>
+
+<h2 id="emacser向け">Emacser向け</h2>
+
+<ul>
+<li>迷ったら <code>C-z</code> これでEmacsキーバインドになる。</li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">DEFINITION NOT FOUND <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+
+<li id="fn:1">DEFINITION NOT FOUND <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

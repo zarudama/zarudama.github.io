@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">GCの発生頻度などの調査</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。</p>
+
+<p>まずはプロセスIDを調べる。例としてtomcatの場合。</p>
+
+<pre><code class="language-sh">$ sudo -u tomcat jps -v
+</code></pre>
+
+<p>tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。</p>
+
+<p>javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。</p>
+
+<pre><code class="language-sh">$ pgrep -lf java
+</code></pre>
+
+<p>PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。</p>
+
+<pre><code class="language-sh">jstat -gcutil -t 123456 3000
+</code></pre>
+
+<p>意味は以下のとおり。</p>
+
+<pre><code>jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt;
+-t タイムスタンプを出力
+-gcutil GCの統計情報
+</code></pre>
+
+<ul>
+jstatのマニュアルは以下。
+<li>http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html</li>
+</ul>
+
+<p>gcutilの見出し</p>
+
+<pre><code>Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT
+</code></pre>
+
+<p>gcutilの見出しは以下のルールになる</p>
+
+<table>
+<tbody>
+<tr>
+<td>S*</td>
+<td>Suviver</td>
+<td></td>
+</tr>
+
+<tr>
+<td>E*</td>
+<td>Eden</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Y</td>
+<td>Young</td>
+<td></td>
+</tr>
+
+<tr>
+<td>O*</td>
+<td>Old</td>
+<td></td>
+</tr>
+
+<tr>
+<td>P*</td>
+<td>Permenet</td>
+<td>Permanent領域は、JVMにロードされたクラスの置き場所</td>
+</tr>
+
+<tr>
+<td>F*</td>
+<td>Full</td>
+<td></td>
+</tr>
+
+<tr>
+<td>*C</td>
+<td>comitted</td>
+<td>javaが確保したメモリサイズ</td>
+</tr>
+
+<tr>
+<td>*U</td>
+<td>used</td>
+<td>使用済みメモリ</td>
+</tr>
+
+<tr>
+<td>*GC</td>
+<td></td>
+<td>GCの回数</td>
+</tr>
+
+<tr>
+<td>*GCT</td>
+<td></td>
+<td>GCの時間</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+GCについては、下記が詳しい。
+<li>http://www.atmarkit.co.jp/ait/articles/0404/02/news079.html</li>
+<li>http://www.atmarkit.co.jp/ait/articles/0211/30/news002.html</li>
+</ul>
+
+<h1 id="メモリ使用量を確認したいとき">メモリ使用量を確認したいとき</h1>
+
+<p>gcオプションを使えばよい。</p>
+
+<pre><code class="language-sh">$ sudo jstat -gc -t 12345 3000
+</code></pre>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

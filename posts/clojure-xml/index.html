@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">Clojureでxmlを読みこむ方法</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <h1 id="基本">基本</h1>
+
+<p>clojureでxmlを処理する方法のメモ。随時更新予定。</p>
+
+<p>下記のxmlをtest.xmlとしてプロジェクト直下に保存。</p>
+
+<pre><code class="language-sh">&lt;parent&gt;
+    &lt;child&gt;
+        hello
+    &lt;/child&gt;
+&lt;/parent&gt;
+</code></pre>
+
+<p>clojure.xml/parse関数を使うとmapデータに変換できる。</p>
+
+<pre><code class="language-Clojure">user&gt; (require '[clojure.xml :as xml])
+user&gt; (xml/parse (slurp &quot;test.xml&quot;))
+{:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&quot;\n\t\thello\n\t&quot;]}]}
+</code></pre>
+
+<p>ここでは、slurp関数を使ってXMLファイルを直接読んで処理したが、
+slurp以外の関数で読み込んだxmlを扱いたいときなどは、xmlは既に文字列になっていることが多い。
+clojure.xml/parse関数は文字列を直接パースできないので下記のようなラッパー関数を用意する。</p>
+
+<pre><code class="language-clojure">(defn xml-parse [s]
+  (xml/parse (java.io.ByteArrayInputStream. (.getBytes s))))
+</code></pre>
+
+<p>これで文字列としてのxmlもパースできるようになった。</p>
+
+<pre><code class="language-Clojure">user&gt; (def xml-doc &quot;&lt;parent&gt; &lt;child&gt; hello &lt;/child&gt; &lt;/parent&gt;&quot;)
+#'user/xml-doc
+user&gt; (xml-parse xml-doc)
+{:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&quot; hello &quot;]}]}
+</code></pre>
+
+<p>xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、
+そんな時はC-c M-o でバッファクリアすると良い感じ。</p>
+
+<h1 id="xml-seq">xml-seq</h1>
+
+<p>xmlをmapデータにしただけだと、各要素へのアクセスが大変なので
+=xml-seq= を使用して、各要素をトラバースした状態のシーケンスを用意することができる。
+この関数を使用すると、それぞれのタグが先頭になった状態シーケンスが得られる。</p>
+
+<pre><code class="language-clojure">user&gt; (xml-seq (xml-parse xml-doc))
+({:tag :parent, ;; 最初のparentタグが先頭
+  :attrs nil,
+  :content [{:tag :child, :attrs nil, :content [&quot; hello &quot;]}]}
+  {:tag :child, ;; 子供のchidleタグが先頭
+   :attrs nil,
+   :content [&quot; hello &quot;]}
+  &quot; hello &quot;     ;; 一番最後の要素
+ )
+</code></pre>
+
+<p>こうすることで、ツリー構造なXMLデータがフラットなシーケンスデータになる。
+つまり <code>for</code> などの従来のシーケンス関数がそのまま使用できるようになる。</p>
+
+<pre><code class="language-sh">&lt;parent&gt;
+    &lt;child name=&quot;taro&quot;&gt;hello&lt;/child&gt;
+    &lt;child name=&quot;hanako&quot;&gt;wao&lt;/child&gt;
+&lt;/parent&gt;
+</code></pre>
+
+<pre><code class="language-clojure">user&gt;  (def xml-doc2 &quot; &lt;parent&gt; &lt;child name=\&quot;taro\&quot;&gt;hello&lt;/child&gt; &lt;child name=\&quot;hanako\&quot;&gt;hi&lt;/child&gt; &lt;/parent&gt;&quot;)
+#'user/xml-doc2
+user&gt; (for [x (xml-seq (xml-parse xml-doc2)) :when (= :child (:tag x))] (:name (:attrs x)))
+(&quot;taro&quot; &quot;hanako&quot;)
+</code></pre>
+
+<h1 id="xml-zip">xml-zip</h1>
+
+<p><code>xml-seq</code> でxmlデータをシーケンスにできるのは良いが、正直使いづらい。
+そこでもうちょっと直感的に扱える <code>clojure.zip/xml-zip</code> 関数を使用してみる。</p>
+
+<pre><code class="language-clojure">user&gt; (require '[clojure.zip :as zip])
+user&gt; (zip/xml-zip (xml-seq (xml-parse xml-doc)))
+[({:tag :parent,
+   :attrs nil,
+   :content [
+      {:tag :child,
+       :attrs nil,
+       :content [
+          &quot; hello &quot;]}]}
+  {:tag :child,
+   :attrs nil,
+   :content [
+       &quot; hello &quot;]}
+ &quot; hello &quot;) nil]
+</code></pre>
+
+<ul>
+zipperとは、ツリー構造を扱うためのライブラリっぽい。
+<li>http://en.wikibooks.org/wiki/Clojure_Programming/Examples/API_Examples/Advanced_Data_Structures#Zippers</li>
+</ul>
+
+<h1 id="xpath">XPATH</h1>
+
+<p><code>clj-xpath</code> というライブラリを使用すれば、xpathを使うことができる。
+しかし、XPATHは正規表現のようなミニ言語であり、それなりに学習コストがかかる。
+また、要素を指定する部分が文字列になるため、実行時エラーの可能性と、
+コンパイルで時間がかかる可能性などがあるため、現時点では使用しない。</p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>http://d.hatena.ne.jp/sy-2010/20110405/1301992585</li>
+<li>https://gist.github.com/bouzuya/4648350</li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

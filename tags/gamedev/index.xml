@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gamedev on My New Hugo Site</title>
+    <link>http://example.org/tags/gamedev/</link>
+    <description>Recent content in gamedev on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Nov 2011 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Clojureでゲームプログラミングその1 実験編</title>
+      <link>http://example.org/posts/parma-link/clojure1/</link>
+      <pubDate>Wed, 09 Nov 2011 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/parma-link/clojure1/</guid>
+      <description>はじめに LispでGAMEつくろうかなと。 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
+ とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。 ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
+ウィンドウ表示 ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。
+(import (javax.swing JFrame)) (def frame (JFrame. &#34;Clojure SampleGame&#34;)) (doto frame (.setSize 640 480) (.setVisible true))
+でた。簡単すぎる！結構感動します。
+http://mikio.github.io/img/clojure-game01/01.png
+次は画像を表示してみる。
+画像表示 まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。
+java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&#34;hoge.png&#34;));
+下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
+http://mikio.github.io/img/clojure-game01/gai.png
+画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
+(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;)))
+とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
+(import (java.awt Graphics)) (def graphics (.. frame (getGraphics))) (doto graphics (.</description>
+    </item>
+    
+  </channel>
+</rss>

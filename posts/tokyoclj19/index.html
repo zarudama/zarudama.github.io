@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">tokyo.clj#19に参加してきた。</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>鉄は熱いうちに打てということで、帰宅直後のいまのうちに書いておきます。</p>
+
+<p>3年ぶりにtokyo.cljに参加してきました。
+その前の日にはsaitama.cljにも参加してきました。
+この2日間で得られた知見をメモしておきます。</p>
+
+<ul>
+<li>引数は、なんでもmapにするのがおすすめらしい。</li>
+<li>変数がないからといってletを使ってはいけないことはない。</li>
+<li>むしろ自己説明的なコードとしてどんどん使うべき。</li>
+<li><a href="http://www.luminusweb.net/" title="Luminus">Luminus</a> は結構よさげ(<a href="http://pragprog.com/book/dswdcloj/web-development-with-clojure" title="とある洋書">とある洋書</a> で推されてるとのこと)</li>
+<li>noirとLightTableとkormaとVisualStudioは全部おなじ作者</li>
+<li>ベテランのすごいエンジニアからも注目されているClojure(どんな人かはここでは言えませんが)</li>
+<li>会社経営者からも注目されているClojure(技術に強い会社をつくりたいとのこと)</li>
+<li>asyncを使った <a href="http://www.appbank.net/2013/05/11/iphone-application/599299.php" title="Dots">Dots</a> というスマホゲームのClojureScriptの移植版があるらしい。</li>
+<li>ゲームをつくるときの状態管理のひとつの実装例として、ゲーム内のすべての状態をひとつのatomで定義しておく。</li>
+<li><a href="https://www.4clojure.com/" title="4clojure">4clojure</a> は良い</li>
+<li>でも全部解く必要はない</li>
+<li>Clojureをつかって機能拡張したいからエディタ作ってますというemacserが二人もいたこと!</li>
+<li>自分もClojureでemacs的なエディタをぼんやりと作りたいなーと思ってた。</li>
+<li>WebViewを使ったエディタが最近のトレンド？(Atom, LightTable, ねこはる氏の自作エディタなどなど)</li>
+<li>以外とClojureでゲームをつくりたいという需要があること</li>
+<li>やっぱりみんな英語が得意、少なくとも情報を得るために海外サイトは見ている。</li>
+<li>Clojureをおしゃれな言語にして女子受けをよくして、ゆくゆくは <a href="http://matome.naver.jp/odai/2133291850090095101" title="アイドル">アイドル</a> を生みだそう!</li>
+<li>5月下旬にはClojureの入門本がでる</li>
+<li>次回のtokyo.cljはサイン会!(重要)</li>
+</ul>
+
+<p>勘ちがいとかあるかもしれまんせんがこんな感じ。
+ライトニングトークの内容はあとで追いかけおようと思います。</p>
+
+<p>やはり勉強会は懇親会が重要なんだなと思った次第です。
+なにより普段ひとりでClojureコード書くので実際にリアルでClojureの話をできたのはよかったですね。</p>
+
+<p>自分は長らく初級者だと思ってたんですが、
+今日いざコードを書いてみようとおもったら普通に括弧mapとか括弧ifとか打ってて、
+「あれ、これはもう初級者じゃなくね？」と思ったのでした。あ、でもこれは、EmacsLispの影響かもしれません。
+というか、Clojureのスキルはほとんどないです。
+それでもこのブログは、<a href="http://mikio.github.io/article/2014/01/05_misaki.html" title="Clojure製のブログジェネレータ">Clojure製のブログジェネレータ</a> で書いてます。
+なにが言いたいかというと、みんなClojureやりましょうです。<a href="http://www.lighttable.com/" title="LightTable">LightTable</a> とかおすすめです。</p>
+
+<p>最後に、勉強会を開催主導してくれたスタッフの皆様、お疲れさまでした。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

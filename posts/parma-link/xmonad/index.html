@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title xmonadを試す -->
+<!-- @date 2012-9-28  -->
+<!-- @tag ubuntu xmonad -->
+
+<p>CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、
+自宅のUbuntuにXmonadをいれてみました。</p>
+
+<ul>
+<li>http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124</li>
+</ul>
+
+<p>タイル型のウィンドウマネージャです。常にウィンドウ全てが一覧されるやつです。
+インストールしてみて実感しましたがタイル型はとーっても快適です。
+普段からemacsでキーボード操作メインのユーザだったらすぐに気にいるかと思います。
+とくにウィンドウ切り替えが <code>Mod+j/k</code> でできるのがイイ!
+(それに比べて WindowsのALT+tabは左手の手首が死ぬ。。。)</p>
+
+<p>今回、Xmonadというのをインストールしましたが、老舗のawesomeというのも人気があるそうです。
+ただXmonadの方が後発である分いろいろブラッシュアップされてるような印象でした。
+問題は設定ファイルがHaskellってことですかね。できれば覚えたくないですよね。
+いやHaskellは勉強して動かしたことはありますが、
+今はLisp系言語を覚え中なので他の言語はできるだけ気にせず脳の負担を増やしたくないのです。
+そういう意味で気になるのは、設定フィアルがCommonLispであるstumpwm。そのうち試したいと思います。</p>
+
+<p>しかしタイル型使ってると、UnityとかgnomuShellの動向がどうでもよくなりますな。</p>
+
+<h1 id="インストールメモ">インストールメモ</h1>
+
+<pre><code class="language-sh">$ sudo apt-get install xmonad
+$ sudo apt-get install dmenu  # キーボードランチャー
+$ sudo apt-get install xmobar # ステータスバー
+</code></pre>
+
+<p>xmorbar用の設定ファイル( <code>~/.xmobarrc</code> )を作成する。</p>
+
+<pre><code class="language-haskell">-- -*- mode:haskell -*-
+Config { font = &quot;xft:Sans-9:bold&quot;
+       , bgColor = &quot;black&quot;
+       , fgColor = &quot;grey&quot;
+       , position = Top
+       , lowerOnStart = False
+       , commands = [ Run Network &quot;eth0&quot; [&quot;-L&quot;,&quot;0&quot;,&quot;-H&quot;,&quot;32&quot;,&quot;--normal&quot;,&quot;green&quot;,&quot;--high&quot;,&quot;red&quot;] 10
+                    , Run Cpu [&quot;-L&quot;,&quot;3&quot;,&quot;-H&quot;,&quot;50&quot;,&quot;--normal&quot;,&quot;green&quot;,&quot;--high&quot;,&quot;red&quot;] 10
+                    , Run Memory [&quot;-t&quot;,&quot;Mem: &lt;usedratio&gt;%&quot;] 10
+                    , Run Swap [] 10
+                    , Run Battery [] 600
+                    , Run Com &quot;lsb_release&quot; [&quot;-s&quot;,&quot;-d&quot;] &quot;&quot; 36000
+                    , Run Date &quot;%Y %b %_d(%a) %H:%M:%S&quot; &quot;date&quot; 10
+                    ]
+       , sepChar = &quot;%&quot;
+       , alignSep = &quot;}{&quot;
+       , template = &quot;&lt;fc=#ee9a00&gt;%lsb_release%&lt;/fc&gt; | %cpu% | %memory% %swap% | %eth0% | %battery% }{ %date%&quot;
+       }
+</code></pre>
+
+<p><code>~/.xmonad/xmonad.hs</code> を作成する。</p>
+
+<pre><code class="language-haskell">import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import System.IO
+
+main = do
+        xmproc &lt;- spawnPipe &quot;/usr/bin/xmobar /home/mikio/.xmobarrc&quot;  -- .xmoabrrcのパスを記述しておく
+        xmonad $ defaultConfig
+             { manageHook = manageDocks &lt;+&gt; manageHook defaultConfig
+             , layoutHook = avoidStruts  $  layoutHook defaultConfig
+             , logHook = dynamicLogWithPP $ xmobarPP
+             { ppOutput = hPutStrLn xmproc
+             , ppTitle = xmobarColor &quot;green&quot; &quot;&quot; . shorten 50
+              }
+             , modMask = mod4Mask     -- WindowsキーをModキーとしてバインドする
+          } `additionalKeys`
+          [ ((mod4Mask .|. shiftMask, xK_z), spawn &quot;xscreensaver-command -lock&quot;)
+          , ((controlMask, xK_Print), spawn &quot;sleep 0.2; scrot -s&quot;)
+          , ((0, xK_Print), spawn &quot;scrot&quot;)
+          ]
+</code></pre>
+
+<h1 id="xinitrc">xinitrc</h1>
+
+<table>
+<tbody>
+<tr>
+<td>��低限のコマン�</td>
+</tr>
+
+<tr>
+<td>Mod-S-q</td>
+<td>ログアウト</td>
+</tr>
+
+<tr>
+<td>Mod-S-c</td>
+<td>ウィンドウクローズ</td>
+</tr>
+
+<tr>
+<td>Mod-S-RET</td>
+<td>端末起動</td>
+</tr>
+
+<tr>
+<td>Mod-p</td>
+<td>キーワードランチャー起動</td>
+</tr>
+
+<tr>
+<td>Mod-q</td>
+<td>設定ファイルの再読込</td>
+</tr>
+
+<tr>
+<td>modmapの設定とdropboxの読み込みを設定しています�</td>
+</tr>
+</tbody>
+</table>
+
+<p>(sleep 3; xmodmap ~/.xmodmap) &
+~/.dropbox-dist/dropboxd &
+exec xmona</p>
+
+<pre><code class="language-sh">
+</code></pre>
+
+<h1 id="参考サイト">参考サイト</h1>
+
+<ul>
+<li>http://d.hatena.ne.jp/uhiaha888/20110113/1294885816</li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

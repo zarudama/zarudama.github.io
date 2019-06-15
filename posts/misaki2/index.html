@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">Misakiにnrepl-serverを埋め込む</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>misakiのプラグインを開発していて、nreplから接続したかったのでその方法。
+下記のように修正。</p>
+
+<pre><code class="language-sh">mikio@gnudam:~/dev/misaki$ git diff HEAD^
+diff --git a/.gitignore b/.gitignore
+index fb7a616..777bdaa 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -7,6 +7,8 @@
+ /.lein-failures
+ /checkouts
+ /.lein-deps-sum
++misaki/src/misaki/
++/.nrepl-port
+ /blog
+ /test/public
+ /samples/*/public/201*
+diff --git a/project.clj b/project.clj
+index 82e93ff..8b0aa33 100644
+--- a/project.clj
++++ b/project.clj
+@@ -13,7 +13,9 @@
+                  [cuma &quot;0.0.4&quot;]
+                  [clj-gntp &quot;0.0.1&quot;]
+                  ; cljs compiler
+-                 [org.clojure/clojurescript &quot;0.0-1586&quot;]]
++                 [org.clojure/clojurescript &quot;0.0-1586&quot;]
++                 [org.clojure/tools.nrepl &quot;0.2.3&quot;]
++                 ]
+
+   :plugins [[codox &quot;0.6.4&quot;]
+             [lein-cloverage &quot;1.0.2&quot;]
+diff --git a/samples/blog/_config.clj b/samples/blog/_config.clj
+index e36a47f..0e74f47 100644
+--- a/samples/blog/_config.clj
++++ b/samples/blog/_config.clj
+@@ -17,6 +17,10 @@
+  ;;   default value: 8080
+  :port 8080
+
++ ;; embeded repl-server port
++ ;;   default value: 42042
++ :repl-port 42042
++
+  ;; site language
+  ;;   default value: &quot;en&quot;
+  :lang &quot;en&quot;
+diff --git a/src/misaki/config.clj b/src/misaki/config.clj
+index 735874d..8865cf6 100644
+--- a/src/misaki/config.clj
++++ b/src/misaki/config.clj
+@@ -13,6 +13,7 @@
+ ;; ## Default Value
+
+ (def PORT     &quot;Default dev server port.&quot; 8080)
++(def REPL-PORT &quot;Default dev nrepl server port.&quot; 42042)
+ (def LANGUAGE &quot;Default language.&quot;        &quot;en&quot;)
+ (def COMPILER &quot;Default compiler.&quot;        &quot;default&quot;)
+ (def POST_FILENAME_REGEXP
+@@ -102,6 +103,7 @@
+                         (path template-dir post-dir))
+       :post-sort-type (:post-sort-type config :date-desc)
+       :port           (:port config PORT)
++      :repl-port           (:repl-port config REPL-PORT)
+       :lang           (:lang config LANGUAGE)
+       :site           (:site config {})
+       :index-name     (:index-name config &quot;&quot;)
+diff --git a/src/misaki/server.clj b/src/misaki/server.clj
+index d0fee30..03a593b 100644
+--- a/src/misaki/server.clj
++++ b/src/misaki/server.clj
+@@ -13,7 +13,9 @@
+     [watchtower.core      :refer :all]
+     [compojure.core       :refer [routes]]
+     [compojure.route      :refer [files]]
+-    [ring.adapter.jetty   :refer [run-jetty]]))
++    [ring.adapter.jetty   :refer [run-jetty]]
++    [clojure.tools.nrepl.server :refer [start-server stop-server]]
++    ))
+
+ ; =elapsing
+ (defmacro elapsing
+@@ -87,18 +89,21 @@
+ (defn -main [&amp; [dir :as args]]
+   (binding [*base-dir* (normalize-path dir)]
+     (with-config
+-      ; compile all templates at first
+-      (do-all-compile)
+-
+-      ; compile all only if '--compile' option is specified
+-      (when-not (contains? (set args) &quot;--compile&quot;)
+-        (start-watcher (:template-dir *config*))
+-        (println &quot; * starting server: &quot;
+-                 (cyan (str &quot;http://localhost:&quot;
+-                            (:port *config*)
+-                            (:url-base *config*))))
+-        (run-jetty
+-          (routes (files (:url-base *config*)
+-                         {:root (:public-dir *config*)}))
+-          {:port (:port *config*)})))))
++      (let [repl-port (:repl-port *config*)
++            repl-server (start-server :port repl-port)]
++         ;; compile all templates at first
++         (do-all-compile)
++
++         ;; compile all only if '--compile' option is specified
++         (when-not (contains? (set args) &quot;--compile&quot;)
++           (start-watcher (:template-dir *config*))
++           (println &quot; * starting server: &quot;
++                    (cyan (str &quot;http://localhost:&quot;
++                               (:port *config*)
++                               (:url-base *config*))))
++           (println &quot; * starting nrepl server on port &quot; (cyan repl-port))
++           (run-jetty
++            (routes (files (:url-base *config*)
++                           {:root (:public-dir *config*)}))
++            {:port (:port *config*)}))))))
+</code></pre>
+
+<p>下記で、修正したmisakiにローカルのjarが置き換わる。</p>
+
+<pre><code class="language-sh">$ cd ~/dev/misaki/
+$ lein install
+</code></pre>
+
+<p>misaki本家が更新されたときは、</p>
+
+<pre><code class="language-sh">$ git co master
+$ git fetch upsutream
+$ git merge upstream/master
+$ lein install
+</code></pre>
+
+<p>こんな感じで。</p>
+
+<p>もし修正版のmisakiを使用したくなくなったら
+リポジトリを手動で削除すれば良い(正式なやりかたがあるかもしれんが)。</p>
+
+<pre><code class="language-sh">$ rm -rf ~/.m2/repository/misaki/misaki/0.2.6.2-beta
+$ lein deps
+</code></pre>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

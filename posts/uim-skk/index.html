@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">uim-skkでsticky-shiftを実現する</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>Ubuntuを13.04から14.04にアップグレードしました。
+Ubuntu界隈では、IMEがIBus1.5になり使いにくいと大荒れのようです。
+IBus1.5では、IMEを切り替えるとキーボードの配置まで変わるらしく、
+特に英語キーボードを使ってたりするとストレスが半端ないようです。</p>
+
+<p>私は、幸いにもuim-skkを使用していたので、この騒ぎを体験せずにすみました。
+やっぱりskkはおすすめですね。</p>
+
+<p>そんな我が道をいくuim-skkですが、ひとつ問題がありました。
+それは、sticky-shiftの設定ができないとうことです。</p>
+
+<p>私は、EmacsとWindowsのSKKFEPでは、セミコロンをSticky-Shiftとして設定しています。
+しかし、uim-skkには、設定ダイアログにそのような項目が見当たりません。
+公式ドキュメントには、対応したとはあるのですが、
+具体的な設定方法が見当りません。</p>
+
+<ul>
+<li>https://code.google.com/p/uim-doc-ja/wiki/RequestUimSolved#sticky_shift%E3%82%92%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84</li>
+</ul>
+
+<p>2chに質問したりもしたのですが、特に反応もなく放置されたままでした。</p>
+
+<ul>
+<li>http://anago.2ch.net/test/read.cgi/software/1328329402/197</li>
+</ul>
+
+<p>それでもやはりなんとかしたいと思い、 改めてドキュメントを読んでみると、
+ <code>~/.uim</code> という設定ファイルの詳しい記述方法がありました。
+最初からもっと読んでおくべきでしたね。。。</p>
+
+<ul>
+<li>https://code.google.com/p/uim-doc-ja/wiki/CustomizeUim</li>
+</ul>
+
+<p>そこで、そこの説明に載っているソース( <code>/usr/share/uim/</code> )をgrepしてみると、
+それらしきカスタム変数が定義されていたのです。
+さっそく見よう見まねで <code>~/.uim</code> を定義してみました。</p>
+
+<pre><code class="language-lisp">(require-module &quot;skk&quot;)
+(define-key skk-sticky-key? '(&quot;;&quot;))
+</code></pre>
+
+<p>これでバッチリセミコロンでSticky-Shiftできました!
+uim-skkを使用している人はぜひ試してみてください。
+快適さが全然ちがいますよ。</p>
+
+<p>以下わかったことをまとめておきます。</p>
+
+<ul>
+<li>基本は、GUIの設定ダイアログで設定する。</li>
+<li>それで設定できないものは、 <code>~/.uim</code> にSchemeで設定ファイルを記述する。</li>
+<li>ダイアログとかぶる設定は、 <code>~/.uim</code> が優先される。</li>
+<li>端末を開き、uim-shを打ち込めば、uimのschemeのREPLが起動する。</li>
+<li>(exit)で終了。</li>
+</ul>
+
+<p><a href="http://mikio.github.io/img/uim/uim.png" title="http://mikio.github.io/img/uim/uim.png">http://mikio.github.io/img/uim/uim.png</a></p>
+
+<p>Schemeで設定できる UIM ってやっぱカッコいいな。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

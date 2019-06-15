@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title Emacs中毒者に贈るJDEEによるJava開発環境の構築 -->
+<!-- @date 2012-12-23 -->
+<!-- @tag jdee emacs java -->
+
+<p>この投稿は <a href="http://qiita.com/advent-calendar/2012/emacs" title="Emacs Advent Calendar 2012">Emacs Advent Calendar 2012</a> の23日目の記事です。</p>
+
+<h1 id="追記-2013-08-01">追記(2013/08/01)</h1>
+
+<p>いつの間にか本家JDEEがCEDET2.0に対応していました。
+emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。
+これによりJDEEの導入がグッっと簡単になりました。</p>
+
+<p>そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。
+特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。</p>
+
+<ul>
+また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。
+今後に期待しましょう。
+<li>http://sourceforge.net/mailarchive/message.php?msg_id=30783951</li>
+</ul>
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、
+Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？
+私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、
+当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、
+JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。</p>
+
+<p>ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、
+なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。</p>
+
+<p>で、やっぱりJDEEがいいということで、苦労の末、
+最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。</p>
+
+<p>今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。
+今ところantベースのプロジェクトでしか使用しておらず、
+Mavenベースのプロジェクトでは動作確認してません。</p>
+
+<table>
+<tbody>
+<tr>
+<td>インポート文の自動生成</td>
+<td>JDEE</td>
+</tr>
+
+<tr>
+<td>Javadoc表示</td>
+<td>JDEE + w3m</td>
+</tr>
+
+<tr>
+<td>ビルド</td>
+<td>JDEE + ant</td>
+</tr>
+
+<tr>
+<td>デバッガ</td>
+<td>JDEE + jdb</td>
+</tr>
+
+<tr>
+<td>REPLぽいもの</td>
+<td>JDEE(BeanShell)</td>
+</tr>
+
+<tr>
+<td>コードスニペット</td>
+<td>Yasnippet</td>
+</tr>
+
+<tr>
+<td>タグジャンプ</td>
+<td>gtags(global)</td>
+</tr>
+
+<tr>
+<td>メソッド補完</td>
+<td>helm-jdee-method(拙作)</td>
+</tr>
+</tbody>
+</table>
+
+<p>まだ導入したばかりで検証してないものもあります。
+JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、
+「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。
+メソッド補完については、Helmで補完するelispを自作しました。</p>
+
+<h1 id="必要なもの">必要なもの</h1>
+
+<dl>
+JDEEのビルドには下記のものが必要になります。
+<dt>emacs24.3</dt>
+<dd>emacsは執筆時点の最新のemacs24.3を使用しています。</dd>
+</dl>
+
+<dl>
+<dt><a href="http://jdee.sourceforge.net/" title="JDEE-2.4.2">JDEE-2.4.2</a></dt>
+<dd>githubに <a href="https://github.com/emacsmirror/jdee/" title="ミラー">ミラー</a> がありますのでそちらを利用します。</dd>
+</dl>
+
+<dl>
+<dt><a href="http://cedet.sourceforge.net/" title="CEDET">CEDET</a></dt>
+<dd>CEDETは、24.3同梱のものを使用するので別途用意する必要はありません。</dd>
+</dl>
+
+<dl>
+<dt><a href="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/ant-contrib-0.6/" title="ant-contrib-0.6">ant-contrib-0.6</a></dt>
+<dd>ant-contribは、</dd>
+ant側のライブラリとしてビルド時に必要です。
+</dl>
+
+<p>あとはantの最新版とJDKの最新版を用意しておきます。
+また環境変数 <code>JAVA_HOME</code> は必須です。
+ちなみに、elib1.0はemacs22以降から組み込みなので必要ありません。</p>
+
+<p>以降では、 <code>~/site-lisp</code> とういうディレクトリを作成し、
+そこに必要なソースコードを展開してビルドすることにします。</p>
+
+<pre><code class="language-sh">~/site-lisp
+  |
+  +- jdee
+</code></pre>
+
+<p>ちなみに動作確認は、windows7,windowXP,ubuntu-server上のCUI環境でしています。
+実際の構築は、Cygwin+WindowsXPで実施しました。LinuxもMacも大体同じかと思います。</p>
+
+<h1 id="jdeeのビルド">JDEEのビルド</h1>
+
+<p>ビルドには <a href="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/ant-contrib-0.6/" title="ant-contrib-0.6">ant-contrib-0.6</a> が必要です。ant-contrib-0.6.zipを展開してできた
+ <code>ant-contrib-0.6.jar</code> を <code>~/.ant/lib/</code> ディレクトリに配置しておいてください。
+ここでは、~/srcにソースファイル群を展開し、~/site-lisp/jdeeにインストールすことにします。</p>
+
+<p>まずはJDEEモジュールを準備します。</p>
+
+<pre><code class="language-sh">$ cd ~/src
+$ git clone https://github.com/emacsmirror/jdee.git
+</code></pre>
+
+<p>jdeeディレクトリに入り <code>ant confugre</code> を実行してbuild.propertiesを生成します。</p>
+
+<pre><code class="language-sh">$ cd jdee
+$ ant configure
+</code></pre>
+
+<p>build.propertiesを編集します。 <code>cedet.dir</code>, <code>build.bin.emacs</code> を環境に合わせて編集します。</p>
+
+<pre><code class="language-sh"># 絶対パスで記述すること
+elib.dir=
+prefix.dir=C:/Users/mikio/Dropbox/site-lisp/jdee
+cedet.dir=
+build.bin.emacs=c:/Users/mikio/apps/emacs-24.3/bin/runemacs.exe
+</code></pre>
+
+<p>準備ができたらビルドします。</p>
+
+<pre><code class="language-sh">ant
+</code></pre>
+
+<p>最後に <code>prefix.dir</code> で定義したディレクトリにインストールします。
+このときインストール先のディレクトリは無くても勝手に作ってくれます。</p>
+
+<pre><code class="language-sh">ant install
+</code></pre>
+
+<p>以上で完了です。</p>
+
+<h1 id="emacsの設定">.emacsの設定</h1>
+
+<p>CEDETとJDEEのビルドができたら下記の設定を.emacsに加えます。</p>
+
+<pre><code class="language-emacs-lisp">
+
+(add-to-list 'load-path &quot;~/site-lisp/jdee/lisp&quot;)
+(load &quot;jde-autoload&quot;)
+
+(defun my-jde-mode-hook ()
+  (require 'jde)
+
+  (setq jde-build-function 'jde-ant-build) ; ビルドにantを利用する
+  (setq jde-ant-read-target t)             ; targetを問い合わせる
+  (setq jde-ant-enable-find t)             ; antに-findオプションを指定する(要らないかも)
+
+  ;; complilationバッファを自動的にスクロールさせる
+  (setq compilation-ask-about-save nil)
+  (setq compilation-scroll-output 'first-error)
+
+  (define-key jde-mode-map (kbd &quot;C-c C-v .&quot;) 'jde-complete-minibuf)
+  )
+
+(add-hook 'jde-mode-hook 'my-jde-mode-hook)
+</code></pre>
+
+<h1 id="サンプルプロジェクトの準備">サンプルプロジェクトの準備</h1>
+
+<p>ここまで作業できたら、動作確認してみましょう。
+JDEEの動作確認用に <a href="https://github.com/mikio/sample-java-project" title="Javaプロジェクト">Javaプロジェクト</a> を準備しました。
+といっても私の作ったものではなくて、
+<a href="https://github.com/skeeto/emacs-java" title="java-mode-plus">java-mode-plus</a> を作成してるskeetoさんの <a href="https://github.com/skeeto/sample-java-project" title="プロジェクト">プロジェクト</a> をforkしていくつか追加したものです。
+fork前のプロジェクトは、アノテーションを活用してすごくシンプルに書かれた、
+すばらしいプロジェクトなのですが、JDEEがアノテーションをサポートしていないため、
+わざわざ改悪？して古いライブラリを使用して書きなおしています。
+あくまでJDEEの動作確認用のものなので、そのまま使用するときは注意してください。</p>
+
+<ul>
+このプロジェクトはivyを使用しています。ivyとは、antベースのプロジェクトで、
+Mavenのリポジトリを利用して必要なjarをダウンロードするモジュールです。
+<li>http://ant.apache.org/ivy/download.cgi</li>
+上記サイトから最新版をダウンロードして展開したら、 <code>ivy-2.3.0-rc1.jar=
+ を =~/.ant/lib/</code> に配置したらインストール完了です。
+</ul>
+
+<p>ivyのインストールが終わったら、サンプルプロジェクトを下記のようにgithubから落してください。</p>
+
+<pre><code class="language-sh">$ git clone https://github.com/mikio/sample-java-project.git
+</code></pre>
+
+<p>続いてprj.elを自分の環境に合わせて編集します。</p>
+
+<pre><code class="language-emacs-lisp">(jde-project-file-version &quot;1.0&quot;)
+(jde-set-variables
+
+ ;; --------------
+ ;; project common
+ ;; --------------
+ '(jde-jdk (quote (&quot;1.7&quot;)))
+ '(jde-jdk-registry (quote ((&quot;1.7&quot; . &quot;c:/Program Files/Java/jdk1.7.0_09/&quot;)
+                            )))
+ '(jde-jdk-doc-url &quot;http://docs.oracle.com/javase/jp/6/api/&quot;)
+ '(jde-help-docsets '(
+                      ;;(&quot;JDK API&quot; &quot;file://c:/Users/mikio/Dropbox/java6_ja_apidocs/ja/api&quot; nil)
+                      (&quot;JDK API&quot; &quot;http://docs.oracle.com/javase/jp/6/api/&quot; nil)
+                      ))
+ '(jde-help-use-frames nil)
+
+ ;; --------------
+ ;; this project only
+ ;; --------------
+ '(jde-sourcepath (quote (&quot;./src&quot; &quot;./test&quot;)))
+ '(jde-global-classpath (quote (&quot;./build/classes&quot; &quot;./build/test&quot; &quot;./lib&quot;)))
+ '(jde-lib-directory-names '(&quot;lib&quot;))
+ '(jde-expand-classpath-p t)
+
+ '(jde-build-function (quote jde-ant-build))
+ '(jde-ant-enable-find t)
+ '(jde-ant-read-target t)
+ '(jde-ant-working-directory &quot;./&quot;))
+</code></pre>
+
+<p><code>jde-jdk</code> 、 <code>jde-jdk-registry</code> をローカルの環境に合わせて編集してください。</p>
+
+<p>また、今回のサンプルを使用しない場合、下記の変数を自分の環境に合わせて適宜設定すれば、
+どの環境でも動くかと思います。</p>
+
+<table>
+<tbody>
+<tr>
+<td>jde-sourcepath</td>
+<td>.javaの場所</td>
+</tr>
+
+<tr>
+<td>jde-global-classpath</td>
+<td>.class、.jarの場所</td>
+</tr>
+
+<tr>
+<td>jde-lib-directory-names</td>
+<td>.jarのあるディレクトリの正規表現</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>jde-lib-directory-names</code> には <code>*.jar</code> ファイルのあるディクレトリ名を設定します。
+今回の場合は、 <code>{PROJECT_ROOT}/lib/</code> にjarファイルがあるので <code>lib</code> としています。
+また、 <code>jde-expand-classpath-p</code> にはtを必ず設定します。
+設定しないと、BeanShell起動時に <code>*.jar</code> ファイルがClassPathに設定されません。</p>
+
+<h1 id="動作確認してみる">動作確認してみる</h1>
+
+<p>続いてもろもろの動作確認をしていきます。
+ <code>&lt;PROJECT-ROOT&gt;/src/sample/java/project/SampleJavaProject.java</code> を開いてください。</p>
+
+<h2 id="beanshell">BeanShell</h2>
+
+<p>おもむろに、 <code>C-c C-v C-k</code> でBeanShellを起動します。
+まれにJavaファイルを開いてもJde-modeにならないことがあります。
+原因はわからないのですが、もしキーバインドが効かなかった場合は、
+手動で <code>M-x jde-mode</code> してから再度、 <code>C-c C-v C-k</code> して下さい。</p>
+
+<p>BeanShellは、JDEEを使用する上でEmacsとJavaの橋渡し的な位置づけにあるようで、
+様々な動作の裏で動くみたいです。ただし非常に起動が重いので最初に起動しておくと良いです。
+起動をかけると <code>Starting the BeanShell. Pleasewait...</code> のメッセージがミニバッファに表示されるので、
+ <code>bsh %</code> のプロンプトがでるまで待ちます。コーヒーの一杯でも用意したほうがいいかもです(2回目移行は速い)。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/bean-shell.png" title="http://mikio.github.io/img/jdee/bean-shell.png">http://mikio.github.io/img/jdee/bean-shell.png</a></p>
+
+<p>BeanShellを起動しておくと、ちょっとしたAPIの挙動を調べるとき便利です。
+例えば環境変数 <code>JAVA_HOME</code> を調べるAPIの動作確認をしたい時は、</p>
+
+<pre><code class="language-sh">bsh % System.out.println(System.getenv().get(&quot;JAVA_HOME&quot;));
+C:\Program Files\Java\jdk1.7.0_09
+</code></pre>
+
+<p>という風に簡単に確認できます(いちいちSystem.out.printlnしないと結果がわからないですが)。</p>
+
+<p>ちなみに、なにか動作がおかしいな(インポートやメソッドの補完が効かないなど)と思ったら、
+このBeanShellを再起動すれば( <code>M-x jde-bsh-exit</code> でBeanShellを終了できる)治ることがあります。
+この辺はSLIMEに似てますね。</p>
+
+<h2 id="依存ライブラリのダウンロード">依存ライブラリのダウンロード</h2>
+
+<p>続いてプロジェクトに必要なjarをリポジトリからローカルにもってきます。
+通常は、下記のようにコマンドラインから入力しますが、これをJDEEから操作してみましょう。</p>
+
+<pre><code class="language-sh">$ ant lib
+</code></pre>
+
+<p><code>C-c C-v C-b</code> でantを実行できます。
+ミニバッファにantのターゲットを求めるプロンプトが表示されるので <code>C-i</code> してください。
+ターゲットの一覧が表示されます。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/ant-target.png" title="http://mikio.github.io/img/jdee/ant-target.png">http://mikio.github.io/img/jdee/ant-target.png</a></p>
+
+<p>プロンプトで <code>lib</code> と入力してエンターしてください。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/ant-lib.png" title="http://mikio.github.io/img/jdee/ant-lib.png">http://mikio.github.io/img/jdee/ant-lib.png</a></p>
+
+<p>無事成功すれば、 <code>&lt;PROJECT_ROOT&gt;/lib</code> に必要なjarファイルがダウンロードされているはずです。</p>
+
+<pre><code class="language-sh">$ ls -la lib
+total 26716
+drwxr-xr-x+ 1 mikio None       0 Dec 22 11:06 .
+drwxr-xr-x+ 1 mikio None       0 Nov 28 23:04 ..
+-rwxr-xr-x  1 mikio None   74080 Jan 10  2012 annotations-2.0.0.jar
+                  :
+                  :
+-rwxr-xr-x  1 mikio None  124724 Nov 23  2005 xmlParserAPIs-2.6.2.jar
+-rwxr-xr-x  1 mikio None  108874 Nov 16  2006 xom-1.0.jar
+</code></pre>
+
+<h2 id="ビルドエラー">ビルドエラー</h2>
+
+<p>つぎにビルドに失敗してエラー表示された時の挙動を試してみましょう。
+まず、わざとビルドを失敗させるために、ソース冒頭のimport文を全て削除します。
+次に、 <code>C-c C-v C-b RET</code> でビルドしてみてください。</p>
+
+<p>当然エラーが表示されますが、エラーが表示された場合、 <code>M-g M-n, M-g M-p</code> 
+ですばやくジャンプできます。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/ant-error.png" title="http://mikio.github.io/img/jdee/ant-error.png">http://mikio.github.io/img/jdee/ant-error.png</a></p>
+
+<h2 id="importの自動挿入とビルド">importの自動挿入とビルド</h2>
+
+<p>import文を自動挿入するには、 <code>C-c C-v z</code> してください。
+通常は、JDEEが自動で必要なクラスをどばっと挿入してくれます。
+ただし今回の場合は、候補が複数あるのでCUIによる選択画面が表示されます。
+必要なクラスのカッコのところでRETを叩いて選択してください
+( <code>org.apache.commons</code> で始まるものを選択してください)。
+最後にOKの上でRETで決定です。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/import.png" title="http://mikio.github.io/img/jdee/import.png">http://mikio.github.io/img/jdee/import.png</a></p>
+
+<p>import文の挿入が成功したら <code>C-c C-v C-b</code> でビルドプロンプトを表示し、
+何もターゲットを入力せずにエンターしてください。
+今度はビルドが成功するはずです。</p>
+
+<h2 id="apiドキュメントの参照">APIドキュメントの参照</h2>
+
+<p>カーソルをStringのところに合わせて <code>C-c C-v C-w</code> してください。
+StringクラスのJavadocがブラウザ上に開きます。
+emacserなら当然w3mですよね？ローカルにダウンロードしたAPIを指定すると更に快適です。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/javadoc.png" title="http://mikio.github.io/img/jdee/javadoc.png">http://mikio.github.io/img/jdee/javadoc.png</a></p>
+<!-- **** javaDocコメントの挿入 -->
+<!--  =C-c C-v j= でJavaDocのコメントが挿入されます。 -->
+
+<h2 id="メソッド補完">メソッド補完</h2>
+
+<p><code>C-c C-v .</code> でメソッドの補完ができます。
+ <code>options.</code> とピリオドまで打ったところで <code>C-c C-v .</code> します。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/method.png" title="http://mikio.github.io/img/jdee/method.png">http://mikio.github.io/img/jdee/method.png</a></p>
+
+<p>ミニバッファに <code>[...]</code> が表示されます。ここで <code>C-i</code> してください。
+候補が一覧表示されます。引数も含めて入力してください。
+適当なところで <code>C-i</code> しながら候補がひとつに絞りこめたところでエンターすれば、
+選んだメソッドを入力できます。これはこれで感動ものですが<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">1</a></sup> 
+・・・とっても使いづらいですね。でも安心してください。helm版を作りました。</p>
+
+<h2 id="メソッド補完-helm版">メソッド補完(Helm版)</h2>
+
+<p>ミニバッファでメソッドを補完する機能は確かに便利ですが、
+今となってはこのインターフェイスは古くさいですね。
+そこでこの機能をHelmで実現してみました。</p>
+
+<ul>
+<li><a href="https://github.com/mikio/emacs-helm-jdee-method" title="helm-jdee-method.el">helm-jdee-method.el</a>  <sup class="footnote-ref" id="fnref:3"><a href="#fn:3">2</a></sup></li>
+</ul>
+
+<p>今回は時間がなかったので手動インストールですが、そのうちMELPAに登録します。</p>
+
+<p>このelisp拡張はHelmとYasnippetに依存しています
+(導入してない方はこの機会にインストールすることをお勧めします)。
+まず<a href="https://raw.github.com/mikio/emacs-helm-jdee-method/master/helm-jdee-method.el" title="helm-jdee-moethod.el">helm-jdee-moethod.el</a> をロードパスのとおったところに置いて、
+今回設定した <code>.emacs</code> の <code>my-jde-mode-hook</code> 関数の冒頭で下記の設定をしてください。</p>
+
+<pre><code class="language-emacs-lisp">(defun my-jde-mode-hook ()
+  (require 'helm-jdee-method) ;; これを追加
+  (require 'jde)
+  (define-key jde-mode-map (kbd &quot;C-c C-v C-i&quot;) 'helm-jdee-method) ;; これを追加
+  )
+</code></pre>
+
+<p>これで例えば、 <code>options.</code> とピリオドまで打ったところで <code>C-c C-v C-i</code> すると、
+メソッドの候補一覧がhelmで表示されます。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/helm1.png" title="http://mikio.github.io/img/jdee/helm1.png">http://mikio.github.io/img/jdee/helm1.png</a></p>
+
+<p>適当に選ぶとメソッドが挿入されるのですが、Yasnippetで動的にテンプレートを作成しているので、
+引数ごとに値を入力できます。引数を入力したらTabで移動してください。</p>
+
+<p><a href="http://mikio.github.io/img/jdee/helm2.png" title="http://mikio.github.io/img/jdee/helm2.png">http://mikio.github.io/img/jdee/helm2.png</a></p>
+
+<p>先程のミニバッファ版に比べると、Eclipseのインテリセンス機能みたいで、
+なかなか便利なんじゃないでしょうか？
+また、自前のクラスもBeanShellを再起動すれば補完されますし、
+ClassPathさえ正しく設定されてれば、AndroidSDKなんかのAPIも適切に補完してくれると思います
+(Androidに関して私はまだ試してません。DalvikVMなので駄目かも？)。</p>
+
+<p>ちなみに補完機能をauto-completeにしなかった理由は、メソッド補完がかなり高コストだからです。
+これを自動でやると、とてももっさりになってしまうので、
+ユーザが必要なときに「よっこらしょ」って感じで利用することを想定しました。</p>
+
+<h1 id="操作方法まとめ">操作方法まとめ</h1>
+
+<table>
+<tbody>
+<tr>
+<td>��こまでの機能の操作方法をまとめました�</td>
+</tr>
+
+<tr>
+<td>メソッドの補完</td>
+<td>C-c C-v .</td>
+</tr>
+
+<tr>
+<td>メソッドの補完(Helm)</td>
+<td>C-c C-v C-i</td>
+</tr>
+
+<tr>
+<td>ビルド(ant)</td>
+<td>C-c C-v C-b</td>
+</tr>
+
+<tr>
+<td>BeanShell起動</td>
+<td>C-c C-v C-k</td>
+</tr>
+
+<tr>
+<td>BeanShell終了</td>
+<td>M-x jde-bsh-exit</td>
+</tr>
+
+<tr>
+<td>prj.elの再読込</td>
+<td>M-x jde-load-project-file</td>
+</tr>
+
+<tr>
+<td>自動import</td>
+<td>C-c C-v z</td>
+</tr>
+
+<tr>
+<td>javadocの表示</td>
+<td>C-c C-v C-w</td>
+</tr>
+
+<tr>
+<td>��れだけでも大分便利に使えるのではと思います�</td>
+</tr>
+</tbody>
+</table>
+
+<p>これに加えて、デバッガの起動やJunitのファイル単位の実行などが使えれば更に便利だと思いますが、
+自分はまだ試していません。</p>
+
+<p>また、これらJDEEの基本機能に加えて、私は、AutoComplete, Yasnippet,Gtagsなどを導入しており、
+かなり快適に使えてます<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">3</a></sup>flymakeも試したのですが、動作が重いのでいまのところ常用してません。</p>
+
+<h1 id="所感">所感</h1>
+
+<p>ここまで紹介しておいてなんですが、JDEEは現在では開発が停止してます。
+そのため新しい文法はサポートされてません(アノテーション、ジェネリクス、拡張for文など)。
+特にアノテーションを利用したJavaコードだと、Import文などはうまく補完できなかったりします。
+個人的には再開を願っているのですが、全然その気配がありません。。。
+そんなJDEEとは対象的にCEDETの開発は盛んで、JAVAの対応も結構進んでいるようです
+(メーリングリストでよく話題をみかけます)。
+なので将来的には、JDEEをやめてCEDETメインの環境に移行するかもしれません。</p>
+
+<p>以上、長文をここまで読んで頂いてありがとうございました。</p>
+
+<h1 id="参考url">参考URL</h1>
+
+<ul>
+<li>JDEEインストールしてからの設定とか下記のサイトが大変参考になった。</li>
+<li>http://epian-wiki.appspot.com/wiki/Emacs/JDEE</li>
+</ul>
+
+<ul>
+<li>操作方法はメニューを開けば大体わかる。詳しくは以下のサイトが詳しい。</li>
+<li>http://www.02.246.ne.jp/~torutk/jdee/jdee.html</li>
+</ul>
+
+<ul>
+<li>割と最近のMLのやりとり。</li>
+<li>http://sourceforge.net/mailarchive/message.php?msg_id=28645729</li>
+</ul>
+
+<h1 id="更新履歴">更新履歴</h1>
+
+<ul>
+<li>2013/01/15 <code>jde-lib-directory-names</code> の説明が間違っていたため、修正しました。失礼しました。</li>
+<li>2013/08/01 本家JDEEがCEDET2.0に対応したので記事も併せて修正しました。</li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:2">JDEE紹介サイトの多くが、メソッド補完のスクリーンショットにGUIメニュー版を載せていたので、CUIではメソッド補完は使えないものと勘違いしてました。 <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+
+<li id="fn:3">すみません、anything版は作成してません。要望があれば対応するかもです。 <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+
+<li id="fn:4">Yasnippetはnekopさんの定義した [[https://github.com/nekop/yasnippet-java-mode][Javaのやつ]] を利用しています。ありがとうございます。 <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

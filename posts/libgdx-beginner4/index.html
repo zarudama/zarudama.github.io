@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">libGDX入門 その04 画面遷移</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <h1 id="はじめに">はじめに</h1>
+
+<p><a href="http://libgdx.badlogicgames.com/" title="libGDX">libGDX</a> を勉強するついでに解説記事を書く <a href="http://mikio.github.io/tag/libGDX%E5%85%A5%E9%96%80.html" title="シリーズ">シリーズ</a> 4回目です。</p>
+
+<p><a href="http://mikio.github.io/article/2014/06/19_libgdx-beginner3.html" title="前回">前回</a> は、以下のことを学びました。</p>
+
+<ul>
+<li>ログ出力</li>
+<li>スプライト表示のアニメーション</li>
+<li>テクスチャラップ</li>
+<li>バーチャルパッド</li>
+</ul>
+
+<p>今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。</p>
+
+<h1 id="ライフサイクルについて">ライフサイクルについて</h1>
+
+<p>今まであえて説明を避けてきたのですが(面倒そうなので←)、
+Screenインタフェイスを扱うにあたり避けられそうもなかったので調査しました。</p>
+
+<p>libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/4/life-cycle.png" title="http://mikio.github.io/img/libgdx-beginner/4/life-cycle.png">http://mikio.github.io/img/libgdx-beginner/4/life-cycle.png</a></p>
+
+<p>メソッドは、 <code>ApplicationListener</code> のものです。</p>
+
+<p>注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。
+特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。
+私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。</p>
+
+<table>
+<tbody>
+<tr>
+<td>create()</td>
+<td>アプリケーションが新しく生成された時に呼ばれます。</td>
+</tr>
+
+<tr>
+<td>resize()</td>
+<td>アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。</td>
+</tr>
+
+<tr>
+<td>pause()</td>
+<td>スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。</td>
+</tr>
+
+<tr>
+<td>resume()</td>
+<td>待機状態から、ウィンドウがアクティブになった時に呼ばれます。</td>
+</tr>
+
+<tr>
+<td>dispose()</td>
+<td>アプリケーションが破棄される時に呼ばれます。</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。
+<li><a href="http://doc.tir.ne.jp/devel/clan/libgdx#%25E3%2583%25A9%25E3%2582%25A4%25E3%2583%2595%25E3%2582%25B5%25E3%2582%25A4%25E3%2582%25AF%25E3%2583%25AB" title="clan libGDXメモ">clan libGDXメモ</a></li>
+上記サイトの説明にもありますが、ゲームの情報を保存するときは、 <code>pause()</code> が良いようです。
+</ul>
+
+<ul>
+公式ドキュメントは下記にあります。 
+<li>https://github.com/libgdx/libgdx/wiki/The-life-cycle</li>
+</ul>
+
+<h1 id="画面遷移">画面遷移</h1>
+
+<p>今回作成したゲームでは、次のような遷移があります。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/4/screen.png" title="http://mikio.github.io/img/libgdx-beginner/4/screen.png">http://mikio.github.io/img/libgdx-beginner/4/screen.png</a></p>
+
+<p>まず「メインメニュー」が表示され、
+「START」をタップすると「ゲーム」画面になり、
+「QUIT」をタップすると「メインメニュー」画面に戻ります。
+非常にシンプルですね。</p>
+
+<p>その1でも紹介しましたが、関連するクラス図を再掲します。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/4/class.png" title="http://mikio.github.io/img/libgdx-beginner/4/class.png">http://mikio.github.io/img/libgdx-beginner/4/class.png</a></p>
+
+<p><code>ApplicationAdapter</code> クラスは、 <code>ApplicationListener</code> インタフェイスを空実装したデフォルトクラスでしたね。
+=ScreenAdapter= クラスも同様に、 <code>Screen</code> インタフェイスを空実装したデフォルトクラスです。</p>
+
+<p>今までは、 <code>ApplicationAdapter</code> クラスを継承していましたが、
+今回からは、 <code>Game</code> クラスを継承します。</p>
+
+<p><code>Game</code> クラスは、 <code>ApplicationListener</code> を実装したクラスで、画面遷移を担当する <code>Screen</code> インタフェイスの
+インスタンスを保持します。今まで <code>ApplicationAdapter</code> を継承していたクラスはこのGameクラスを継承します。</p>
+
+<p>Screenインタフェイスについては、ライフサイクルを確認したいため、 <code>MyScreenAdapter</code> クラスという
+デフォルト実装クラスを用意し、各メソッドでログを出力することにします。</p>
+
+<pre><code class="language-java">public abstract class MyScreenAdapter implements Screen {
+      :
+    @Override
+    public void show () {
+        Gdx.app.log(LOG_TAG, &quot;show&quot;);
+    }
+      :
+}
+</code></pre>
+
+<p>今回のゲームで実装するクラスは以下のとおりです。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/4/screen2.png" title="http://mikio.github.io/img/libgdx-beginner/4/screen2.png">http://mikio.github.io/img/libgdx-beginner/4/screen2.png</a></p>
+
+<p><code>LibGdxSample</code> クラスは、処理の起点となるクラスです。
+この図からは省いていますが、Screen系のクラスは先程紹介した <code>MyScreenAdapter</code> クラスを継承します。
+=MainManuScreen= クラスは、最初に表示されるメニュー(タイトル)画面です。
+=GameScreen= クラスは、実際のゲームを担当するクラスです。ほとんどの処理はこのクラスに集中します。</p>
+
+<h1 id="screenインタフェイス">Screenインタフェイス</h1>
+
+<ul>
+画面遷移がある場合は、画面ごとに <code>Screen</code> インタフェイスを実装します。
+実装すべきメソッドのほとんどは <code>ApplicationListener</code> と共通です。
+ライフサイクルについても、 <code>ApplicationListener</code> とほぼ同じです。
+=Screen= では、 <code>create()</code> メソッドがなくなり、
+変わりに <code>show()</code> メソッドと <code>hide()</code> メソッドが追加されました。
+ただし、 <code>dispose()</code> メソッドは、名前は同じでも扱いが少し違うので注意が必要です(後述します)。
+ここでは、下記3つのメソッドについて解説します。
+<li>show()</li>
+<li>hide()</li>
+<li>dispose()</li>
+</ul>
+
+<h2 id="show-とhide">show()とhide()</h2>
+
+<p><code>show()</code> メソッドは、画面切り替え開始時に1度だけ呼ばれます。
+=hide()= メソッドは、画面切り替え終了時に1度だけ呼ばれます。
+画面切り替え時とは、 <code>Game#setScreen()</code> メソッド呼び出した時のことです。</p>
+
+<p>例えば現在「メニュー画面」を表示していた場合、「ゲーム画面」に切り替えたくなったら、
+下記のようなコードを実行します。</p>
+
+<pre><code class="language-java">game.setScreen(new GameScreen(this));
+</code></pre>
+
+<p>この <code>setScreen()</code> メソッドの中で、
+現在表示中の「メニュー画面」の <code>MainMenu#hide()</code> メソッドが呼ばれ、
+次に表示予定の「ゲーム画面」の <code>GameScreen#show()</code> メソッドが呼ばれます。</p>
+
+<p><code>Game#setScreen()</code> のソースコードです。短かいので全部載せておきます。</p>
+
+<pre><code class="language-java">    public void setScreen (Screen screen) {
+        if (this.screen != null) this.screen.hide();
+        this.screen = screen;
+        if (this.screen != null) {
+            this.screen.show();
+            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        }
+    }
+</code></pre>
+
+<p><code>setScreen()</code> した時は、hide,show,resizeが即実行されるということを
+頭に叩きこんでおいたほうが良さそうですね。</p>
+
+<ol>
+<li>現在の画面の <code>Screen#hide()</code></li>
+<li>次の画面の <code>Screen#show()</code></li>
+<li>次の画面の <code>Screen#resize()</code></li>
+</ol>
+
+<p>以上から、 <code>show()</code> メソッドは初期化処理、
+ <code>hide()</code> メソッドは終了処理を実装すれば良いと思います。</p>
+
+<p>ただし、 <code>hide()</code> メソッドには、リソース解放処理を記述してはいけません。
+リソース解放処理とは、 <code>Texture#dipose()</code> や、 <code>SpriteBatch#dispose()</code> などのことです。
+理由は後述します。</p>
+
+<h2 id="dispose">dispose()</h2>
+
+<p><code>dispose()</code> メソッドには、注意すべき重要なことがあります。
+それは何かというと、 <code>Screen#dispose()</code> はシステムから自動的に呼びだされないということです。
+=ApplicationListener#dispose()= とは扱いが違いますね。</p>
+
+<p>APIマニュアルにも記述されています。</p>
+
+<pre><code>Screens are not disposed automatically. 
+You must handle whether you want to keep 
+screens around or dispose of them when another screen is set.
+</code></pre>
+
+<ul>
+<li>http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/Game.html</li>
+</ul>
+
+<p>ゲームによって、リソースの解放タイミングは様々なので、
+このようにクライアントまかせになっているのかもしれません。
+(そうすると、Screenインタフェイスを使わずに全部自分で作ったほうがいいんじゃないかという気もしてきますが。)</p>
+
+<p>ということで、 <code>dispose()</code> は自分で呼びだす必要があります。</p>
+
+<p><code>AplicationLisner</code> 利用時は、特になにも考えずに <code>ApplicationListener#dispose()=
+にリソース解放処理を記述しておけばよかったのですが、 =Screen</code> を利用する場合は、
+解放のタイミングを自分で制御しなくてはなりません。</p>
+
+<h1 id="dispose-の方法">dispose()の方法</h1>
+
+<p>サンプルやドキュメントを呼んでもいまいちこの辺の方法がわかりません。
+とはいえ何もしないわけにもいきませんので、
+現時点での解放方法について、私なりのやりかたを考えました。
+他にも良い方法あるよ？って方がいたら教えてください。</p>
+
+<h2 id="その1-hide-で解放する">その1 hide() で解放する</h2>
+
+<p>例えば、下記のように <code>Screen#render()</code> メソッドから <code>setScreen()</code> メソッドを呼びだすとします。</p>
+
+<pre><code class="language-java">public void render (float deltaTime) {
+       : 
+    game.setScreen(new MainMenuScreen(game));
+       : 
+    leftButton.draw(batch);
+       : 
+}
+</code></pre>
+
+<p>このとき、現在実行中の <code>Screen</code> インスタンスの <code>hide()</code> メソッドが呼ばれます。
+ <code>hide()</code> メソッドは下記のようにテクスチャの開放処理を実装していたとします。</p>
+
+<pre><code class="language-java">public void hide() {
+    img.dispose();
+}
+</code></pre>
+
+<p>結論をいうとこの書き方ではうまくいきません。
+なぜなら、 <code>hide()</code> でテクスチャを解放したにもかかわらず、
+その後に、テクスチャの描画処理を呼んでしまっているからです。</p>
+
+<p><code>hide()</code> にリソースの解放処理を入れるならば、 <code>redner()</code> メソッドを下記のように
+書かなければなりません。</p>
+
+<pre><code class="language-java">public void render (float deltaTime) {
+       : 
+       : 
+    leftButton.draw(batch);
+       : 
+    game.setScreen(new MainMenuScreen(game));
+    // ここには何も処理を書かない。
+}
+</code></pre>
+
+<p>つまり、 <code>setScreen()</code> を <code>render()</code> の一番最後に持ってこなければなりません。
+しかしながら、最後に呼びだすなどのルールは忘れやすそうですし、
+強制性がないので個人的にはお勧めしません。</p>
+
+<h2 id="その2-game-dispose-で全て解放する">その2 Game#dispose() で全て解放する</h2>
+
+<p>扱うリソースが少ないシンプルなゲームの場合に利用できる方法です。</p>
+
+<p><code>Game#create()</code> でそのゲームの全リソースをロードし、
+=Game#dispose()= で全リソースを解放します。
+=Screen= クラスでは、リソース管理を一切しません。
+(スクリーンからこれらのリソースにアクセスするには、 <code>Game</code> のインスンタンス経由でアクセスします)。</p>
+
+<p>こうすれば、 <code>Screen</code> 毎にリソースの管理を気にせずにすむので楽ですね。</p>
+
+<h2 id="その3-game-クラスを拡張する">その3 Game クラスを拡張する</h2>
+
+<p>今回採用した方法です。その1の方法を改良しました。</p>
+
+<p>Gameクラスを継承したクラスを少し改造します。</p>
+
+<pre><code class="language-java">public class LibGdxSample extends Game {
+    private Screen nextScreen;
+        :
+    @Override
+    public void render() {
+        super.render();
+        if (nextScreen != null) {
+            super.setScreen(nextScreen);
+            nextScreen = null;
+        }
+    }
+        :
+    @Override
+    public void setScreen (Screen screen) {
+        Gdx.app.log(LOG_TAG, &quot;setScreen&quot;);
+        nextScreen = screen;
+    }
+        :
+}
+</code></pre>
+
+<p>まず、 <code>nextScreen</code> というフィールドを新設します。
+そして <code>setScreen</code> メソッドをオーバライドし、
+=nextScreen= フィールドに <code>screen</code> をセットするだけの処理にします。
+更に <code>render()</code> メソッドの最後で、 <code>nextScreen</code> フィールドがセットされたときのみ
+=setScreen()= を呼びだすようにします。</p>
+
+<p>このような仕組みを持つことで、
+=game.setScreen()= をいつでも呼びだすことが可能になります。
+なぜなら、 <code>Screen#hide()</code> の呼びだされるタイミングが必ず <code>render()</code> の一番最後になるからです。</p>
+
+<p>以上で、 <code>Screen#hide()</code> の実行されるタイミングに気を使うことなく、
+ <code>dispose()</code> 処理を実装できるようになりました。</p>
+
+<p>後は次のように、 <code>hide()</code> から <code>dispose()</code> 処理を呼びだせば良いですね。</p>
+
+<pre><code class="language-java">    @Override
+    public void hide() {
+        dispose();
+    }
+
+    @Override
+    public void dispose() {
+        music.dispose();
+        seGet.dispose();
+        seMiss.dispose();
+        batch.dispose();
+        font.dispose();
+        img.dispose();
+        bgImg.dispose();
+        shapeRenderer.dispose();
+    }
+</code></pre>
+
+<p>最後に注意というか知っていたほうが良い知識として、
+=Screen#hide()= は、 <code>Game#dispose()</code> からも自動で呼びだされるということを述べておきます。</p>
+
+<pre><code>
+
+public abstract class Game implements ApplicationListener {
+     :
+	public void dispose () {
+		if (screen != null) screen.hide();
+	}
+     :
+}
+</code></pre>
+
+<p>なので、 <code>Game#dispose()</code> 内でわざわざ自分で  <code>Screen#dispose()</code> を呼びだす必要はありません。</p>
+
+<pre><code class="language-java">    public void dispose() {
+        super.dispose();
+        Screen screen = getScreen();
+        if (screen != null) screen.dispose();
+    }
+</code></pre>
+
+<h1 id="ゲームっぽい何か">ゲームっぽい何か</h1>
+
+<p>さて、長い説明が終わってやっとゲームの説明です(といっても非常に単純なものですが)。
+内容は、上から落ちてくる魚を取るだけのゲームです。</p>
+
+<ul>
+仕様は、
+<li>最初にメニュー画面を表示。「START」タップでゲーム開始</li>
+<li>魚をキャッチすると、1点</li>
+<li>3回取り損ねると、ゲームオーバー</li>
+<li>ポーズあり</li>
+<li>ポーズ中に「QUIT」タップでメニュー画面へ戻る</li>
+といった感じです。
+</ul>
+
+<ul>
+画像データは下記のツールを利用して作成しました。
+<li>http://takabosoft.com/edge</li>
+</ul>
+
+<ul>
+効果音は下記のサイトで作成しました。
+<li>http://www.bfxr.net/</li>
+</ul>
+
+<ul>
+BGMは下記のサイトで作成しました。
+<li>http://soundation.com/</li>
+</ul>
+
+<p>プログラムの骨組みは、前回のものを踏襲しています。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/4/001.png" title="http://mikio.github.io/img/libgdx-beginner/4/001.png">http://mikio.github.io/img/libgdx-beginner/4/001.png</a></p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/4/002.png" title="http://mikio.github.io/img/libgdx-beginner/4/002.png">http://mikio.github.io/img/libgdx-beginner/4/002.png</a></p>
+
+<p>ゲームのプログラムは、ほとんどが今まで説明してきたlibGDXの内容でつくられてます。
+なので詳しく説明しませんが、一点だけ解説するとすれば、当たり判定のところでしょうか。
+魚と猫の当り判定のコードは以下のようになっています。</p>
+
+<pre><code class="language-java">if (nekoBounds.overlaps(fishBounds)) {
+    resetFish();
+    seGet.play();
+    score += 1;
+}
+</code></pre>
+
+<p><code>nekoBoudns</code> と <code>fishBounds</code> は、 <code>Rectangle</code> クラスで、それぞれキャラクタの矩形情報です。
+=Rectangle#overlaps()= メソッドを呼ぶことで、2つの矩形が重なりあっているかを判定できます。</p>
+
+<h2 id="ソースコードについて">ソースコードについて</h2>
+
+<p>今回は、ソースコードが4ファイルになってしまったため、githubに載せることにしました。</p>
+
+<p>https://github.com/mikio/fishcatch</p>
+
+<p>思いのほかコード量が多くなってしまったのが反省点です。
+いろいろ工夫の余地はあると思うので、今後改善していきたいと思います。</p>
+
+<h2 id="アセットの管理について">アセットの管理について</h2>
+
+<p>今回実装したゲームのアセットファイルは数えるほどしかありませんので、
+画像やサウンドの読み込みは、単純に読み込むだけでした。</p>
+
+<ul>
+ゲームの種類によっては、沢山のアセットを駆使しなければならない場合もあるでしょう。
+そんなときは、libGDXの <code>AssetManager</code> クラスを使うのが良さそうです。
+<li>https://github.com/libgdx/libgdx/wiki/Managing-your-assets</li>
+非同期読み込みや依存管理、キャッシュの管理など便利な機能を多く実装しているようですね。
+=Screen= 利用時の解放処理の煩雑さも、このクラスを利用すれば解決するのかもしれません。
+</ul>
+
+<h1 id="ゲーム中のフォントについて">ゲーム中のフォントについて</h1>
+
+<ul>
+ゲーム中のフォントは、gebsite様の「Fantasy Gezone」フォントを利用させていただきました。
+ありがとうございます。
+<li>http://www.gebsite.org/</li>
+<li>http://www.gebsite.org/font/fantasygezone.html</li>
+</ul>
+
+<h1 id="おわりに">おわりに</h1>
+
+<ul>
+<a href="http://mikio.github.io/article/2014/07/05_libgdx-beginner5.html" title="次回">次回</a> 予定している内容は、
+<li>ゲームデータの保存</li>
+です。
+</ul>
+
+<h1 id="参考書籍">参考書籍</h1>
+
+<pre><code>&lt;p&gt;
+&lt;div class=&quot;figure&quot; style=&quot;float:left&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&quot;http://www.amazon.co.jp/gp/product/4844331132/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4844331132&amp;linkCode=as2&amp;tag=ocha04-22&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4844331132&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4844331132&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+
+</code></pre>
+
+<p>libGDXの作者が書いた本です。Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
+libGDXの解説ではないけれど、その思想は当然libGDXにも引き継がれています。もちろんlibGDXの理解もしやすくなります。
+また、Androidの本ではありますが、スマホに特化した内容ばかりではなく、
+どんなゲーム開発にも通用しそうな内容ばかりです。
+実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。
+そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと思います。
+ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。
+それでもlibGDXをやるなら読んでいて損はないと思います。</p>
+
+<pre><code>&lt;p&gt;
+&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+</code></pre>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

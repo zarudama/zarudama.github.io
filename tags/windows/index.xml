@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on My New Hugo Site</title>
+    <link>http://example.org/tags/windows/</link>
+    <description>Recent content in windows on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Apr 2014 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Windows7でemacsのアイコンが2重に表示されるのを防ぐ</title>
+      <link>http://example.org/posts/emacs-win-taskbar/</link>
+      <pubDate>Wed, 16 Apr 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/emacs-win-taskbar/</guid>
+      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。
+でもこれ、Windows版emacsだとうまくいきません。
+runemacs.exe を起動してタスクバーに登録しても、 起動時にDos窓が開いてアイコンが2つ表示されてしまいます。 これでは不便なのでなんとかします。
+ この問題については、下記で解説されてるので一読をおすすめします。 http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html   ただしこのサイトで公開されているツールはもうないようなので、 下記から代替ツールをダウンロードして適当なところに配置します。 https://code.google.com/p/win7appid/  runemacs.exe のショートカットを作成して、 先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。
+さきほどダウンロードしたWin7AppId1.exeを、 登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。
+DOS&amp;gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs  runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を 選択すれば準備オッケーです。
+これで、タスクバーのアイコンをランチャーとして登録し、 かつ余計なDos窓が開くこともなくなります。</description>
+    </item>
+    
+  </channel>
+</rss>

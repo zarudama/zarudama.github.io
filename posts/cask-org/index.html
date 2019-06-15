@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">org-mode でファイルを開くとエラーが発生</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。
+*.orgファイルを開くと、下記のようなエラーが <code>*Message*</code> バッファに表示され、
+そのファイルが更新された状態になってしまう。</p>
+
+<pre><code class="language-sh">	Invalid function: org-with-silent-modifications
+</code></pre>
+
+<ul>
+似たような症状が下記にも報告されている。
+<li>http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html</li>
+</ul>
+
+<p>上記スレッドでは、</p>
+
+<pre><code> ...Emacs -q and reinstalling from elpa...
+</code></pre>
+
+<p>としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。</p>
+
+<p>かわりにcask管理のorgを取得しなおした。こんな感じ。</p>
+
+<pre><code class="language-sh">$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/
+$ cd ~/.emacs.d/
+$ cask
+</code></pre>
+
+<p>その際、バージョンをひとつ前の2.8.6に変更</p>
+
+<pre><code class="language-emacs-lisp">(source org)
+(depends-on &quot;org-plus-contrib&quot; &quot;2.8.6&quot;) 
+</code></pre>
+
+<p>これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。
+なのでバージョン指定は不要かもしれない。</p>
+
+<p>Caskの指定方法が間違っていたのだろうか？</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

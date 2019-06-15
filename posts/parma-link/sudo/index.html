@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title sudoで環境変数を引き継ぎたい -->
+<!-- @date 2012-03-10 -->
+<!-- @tag linux -->
+
+<p>sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。</p>
+
+<h1 id="方法">方法</h1>
+
+<p>-Eオプションを追加する。</p>
+
+<p>sudo -E ls -la $HOME</p>
+
+<p>-Eは実行したいコマンドの直前に置く。</p>
+
+<h1 id="経過">経過</h1>
+
+<p>sudo -u hogeなどで実行すると、sudoを実行したユーザの環境変数が引き継がれない。
+昔は、こんなこと考えずに引き継がれてた気がするが、どうやらsudoのバージョンが上がって
+仕様変更されたらしい。</p>
+
+<ul>
+<li>http://arika.org/2009/04/24/sudo-and-env</li>
+</ul>
+
+<p>環境変数を引き継ぐためにはvisudoを使ってsudoersファイルに環境変数を記述するのが
+定石のようだが、/etc配下はできるだけ触りたくない。</p>
+
+<ul>
+そこで下記の方法を見つけた。-Eをつけるだけで良いらしい。
+<li>http://d.hatena.ne.jp/Yudoufu/20110326/1301129885</li>
+ただし、man sudo しても-Eオプションは何故か載っていなかった。
+（manにないだけで実際には使用できる。)
+</ul>
+
+<p>manの最後にver1.6.6とあるのでマニュアルが古いと思われる。
+sudo[Enter]で表示されるUsageにはEオプションは存在するので。</p>
+
+<h1 id="別解">別解</h1>
+
+<p>-u オプションを使用して別ユーザーとしてsudoを実行したい場合、
+そのユーザーの <code>.bashrc</code> や <code>/etc/profile</code> に定義してある設定を使用したい場合がある。
+そんなときは、-i オプションを使用すれば良い。</p>
+
+<p>sudo -u taro -i env</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

@@ -1,112 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to zarudama&#39;s documentation! &#8212; zarudama 1.0 ドキュメント</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <link rel="index" title="索引" href="genindex.html" />
-    <link rel="search" title="検索" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head><body>
-  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
 
-          <div class="body" role="main">
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
             
-  <p>.. zarudama documentation master file, created by
-sphinx-quickstart on Sat Jun 23 13:31:13 2018.
-You can adapt this file completely to your liking, but it should at least
-contain the root <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive.</p>
-<div class="section" id="welcome-to-zarudama-s-documentation">
-<span id="welcome-to-zarudama-s-documentation"></span><h1>Welcome to zarudama's documentation!<a class="headerlink" href="#welcome-to-zarudama-s-documentation" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>.. toctree::
-:maxdepth: 2
-:caption: Contents:</p>
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
 </div>
-<div class="section" id="indices-and-tables">
-<span id="indices-and-tables"></span><h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<ul class="simple">
-<li>:ref:<code class="docutils literal notranslate"><span class="pre">genindex</span></code></li>
-<li>:ref:<code class="docutils literal notranslate"><span class="pre">modindex</span></code></li>
-<li>:ref:<code class="docutils literal notranslate"><span class="pre">search</span></code></li>
-</ul>
-</div>
-
-
-          </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="#">目次</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Welcome to zarudama's documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="#">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>このページ</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.md.txt"
-            rel="nofollow">ソースコードを表示</a></li>
+<div id="main" class="markdown-body">
+<div class="content">
+<main aria-role="main">
+    <header class="homepage-header">
+        <h1>My New Hugo Site</h1>
+        
+    </header>
+    <h3>全ページのリスト</h3>
+    <ul>
+        
+        <li><a href="/">My New Hugo Site</a>
+            
+        <li><a href="/posts/">Posts</a>
+            
+        <li><a href="/posts/java/">java</a>
+            
+        <li><a href="/posts/clojure-xml/">Clojureでxmlを読みこむ方法</a>
+            
+        <li><a href="/tags/">Tags</a>
+            
+        <li><a href="/tags/clojure/">clojure</a>
+            
+        <li><a href="/tags/emacs/">emacs</a>
+            
+        <li><a href="/posts/cask-org/">org-mode でファイルを開くとエラーが発生</a>
+            
+        <li><a href="/posts/cygwin-tmux/">cygwinにtmuxを導入</a>
+            
+        <li><a href="/tags/tmux/">tmux</a>
+            
+        <li><a href="/posts/apt-cyg-bug/">apt-cygがうまくいかなくなった。</a>
+            
+        <li><a href="/tags/cygwin/">cygwin</a>
+            
+        <li><a href="/posts/cask/">Caskの導入と設定ファイルの棚卸し</a>
+            
+        <li><a href="/posts/emacs-win-taskbar/">Windows7でemacsのアイコンが2重に表示されるのを防ぐ</a>
+            
+        <li><a href="/tags/windows/">windows</a>
+            
+        <li><a href="/tags/vim/">vim</a>
+            
+        <li><a href="/posts/avi/">vimのclojure実装であるaviを試してみた。</a>
+            
+        <li><a href="/tags/awk/">awk</a>
+            
+        <li><a href="/tags/linux/">linux</a>
+            
+        <li><a href="/posts/awk/">ちょい足しawkの基本</a>
+            
+        <li><a href="/posts/parma-link/cygwinssh/">cygwinでssh接続できない</a>
+            
+        <li><a href="/tags/ssh/">ssh</a>
+            
+        <li><a href="/posts/parma-link/clojure1/">Clojureでゲームプログラミングその1 実験編</a>
+            
+        <li><a href="/tags/gamedev/">gamedev</a>
+            
+        <li><a href="/posts/parma-link/emacs-slime-nodejs-swank-js-emacsjavascript/"></a>
+            
+        <li><a href="/posts/parma-link/emacsjdeejava/"></a>
+            
+        <li><a href="/posts/parma-link/emacspackage-elisp/"></a>
+            
+        <li><a href="/posts/parma-link/eshell/"></a>
+            
+        <li><a href="/posts/parma-link/file-open/"></a>
+            
+        <li><a href="/posts/parma-link/firefox-focus/"></a>
+            
+        <li><a href="/posts/parma-link/firefox/"></a>
+            
+        <li><a href="/posts/parma-link/git-repo-delete/"></a>
+            
+        <li><a href="/posts/parma-link/helm/"></a>
+            
+        <li><a href="/posts/parma-link/howm-modeorg-mode/"></a>
+            
+        <li><a href="/posts/parma-link/java/"></a>
+            
+        <li><a href="/posts/parma-link/javap/"></a>
+            
+        <li><a href="/posts/parma-link/nexus72013/"></a>
+            
+        <li><a href="/posts/parma-link/paragrah-html/"></a>
+            
+        <li><a href="/posts/parma-link/puttycygwin-terminal/"></a>
+            
+        <li><a href="/posts/parma-link/python-window-tiler/"></a>
+            
+        <li><a href="/posts/parma-link/skkwindowsxp/"></a>
+            
+        <li><a href="/posts/parma-link/sudo/"></a>
+            
+        <li><a href="/posts/parma-link/swank-clojurenrepl/"></a>
+            
+        <li><a href="/posts/parma-link/ubuntu-1204-lts-on-zenbook-ux21e/"></a>
+            
+        <li><a href="/posts/parma-link/ubuntu-server-lvm/"></a>
+            
+        <li><a href="/posts/parma-link/ubuntu/"></a>
+            
+        <li><a href="/posts/parma-link/ubuntuxmonademacsprocessing/"></a>
+            
+        <li><a href="/posts/parma-link/windows/"></a>
+            
+        <li><a href="/posts/parma-link/windowsemacs243/"></a>
+            
+        <li><a href="/posts/parma-link/windowsmisaki/"></a>
+            
+        <li><a href="/posts/parma-link/xmonad/"></a>
+            
+        <li><a href="/search/data.js"></a>
+            
+        <li><a href="/categories/">Categories</a>
+            
+        <li><a href="/posts/libgdx-jdee/">Emacs JDEE でlibGDXプログラミング!</a>
+            
+        <li><a href="/posts/misaki/">Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</a>
+            
+        <li><a href="/posts/jvm_gcutil/">GCの発生頻度などの調査</a>
+            
+        <li><a href="/posts/jvm_mem/">JVMのヒープサイズと変更方法</a>
+            
+        <li><a href="/posts/misaki2/">Misakiにnrepl-serverを埋め込む</a>
+            
+        <li><a href="/search/">Searches</a>
+            
+        <li><a href="/posts/parma-link/cygwinsvn-upgrade/">cygwinでsvn upgradeに失敗する。</a>
+            
+        <li><a href="/posts/parma-link/cygwintmux/">cygwin経由で表示したtmuxの分割罫線が表示崩れする</a>
+            
+        <li><a href="/tags/hamari/">hamari</a>
+            
+        <li><a href="/tags/java/">java</a>
+            
+        <li><a href="/tags/jvm/">jvm</a>
+            
+        <li><a href="/tags/libgdx/">libGDX</a>
+            
+        <li><a href="/tags/libgdx%E5%85%A5%E9%96%80/">libGDX入門</a>
+            
+        <li><a href="/posts/libgdx-beginner1/">libGDX入門 その01 画像を表示したり音を鳴らしたり</a>
+            
+        <li><a href="/posts/libgdx-beginner2/">libGDX入門 その02 カメラとビューポート</a>
+            
+        <li><a href="/posts/libgdx-beginner3/">libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</a>
+            
+        <li><a href="/posts/libgdx-beginner4/">libGDX入門 その04 画面遷移</a>
+            
+        <li><a href="/posts/libgdx-beginner5/">libGDX入門 その05 ゲームデータの保存</a>
+            
+        <li><a href="/tags/misaki/">misaki</a>
+            
+        <li><a href="/tags/skk-ubuntu/">skk ubuntu</a>
+            
+        <li><a href="/tags/thinkpad/">thinkpad</a>
+            
+        <li><a href="/posts/tokyoclj19/">tokyo.clj#19に参加してきた。</a>
+            
+        <li><a href="/posts/uim-skk/">uim-skkでsticky-shiftを実現する</a>
+            
+        <li><a href="/posts/thinkpad-keyboard/">キーボードについて</a>
+            
+        <li><a href="/posts/find-date-del/">特定の日付より古いファイルを削除する方法</a>
+            
+        <li><a href="/posts/evil_adventcalendar_2014/">第3のエディタEvilのすすめ</a>
+            
     </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>クイック検索</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="検索" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2018, zarudama.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-      
-      |
-      <a href="_sources/index.md.txt"
-          rel="nofollow">Page source</a>
-    </div>
+</main>
 
-    
-
-    
-  </body>
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
 </html>

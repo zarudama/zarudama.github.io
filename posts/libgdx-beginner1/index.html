@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">libGDX入門 その01 画像を表示したり音を鳴らしたり</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <h1 id="はじめに">はじめに</h1>
+
+<p><a href="http://libgdx.badlogicgames.com/" title="libGDX">libGDX</a> は、Javaでゲームを作るためのライブラリです。
+マルチプラットフォーム対応で、PC(Windows,Linux,Mac), Android, iOS, HTMLに対応しています。</p>
+
+<p>libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。
+実際、ググってみると、英語のドキュメントは沢山みかけますが、日本語のドキュメントはまだまだ少数です。</p>
+
+<ul>
+また、公式ドキュメントも大変充実しています(英語のみ)。
+<li>https://github.com/libgdx/libgdx/wiki</li>
+実のところこのドキュメントを読めば大抵の事は解決します。
+</ul>
+
+<p>ただ、私もそうなんですが、日本語情報がないってだけで、
+重い腰が上がらないって人も多いと思います。
+そんな人向けに(というより自分の勉強ついでに)、
+そして少しでもlibGDXを使用する人が増えることを願い、
+少しずつ記事を書いていこうと思います。</p>
+
+<p>この記事が、libGDXを学ぶためのきっかけになって頂ければ幸いです。</p>
+
+<p>その2は <a href="http://mikio.github.io/article/2014/06/02_libgdx-beginner2.html" title="こちら">こちら</a>。</p>
+
+<p>このシリーズの目次は <a href="http://mikio.github.io/tag/libGDX%E5%85%A5%E9%96%80.html" title="こちら">こちら</a> 。</p>
+
+<h1 id="プロジェクトを作る">プロジェクトを作る</h1>
+
+<ul>
+libGDXでは、専用のプロジェクト生成アプリが用意されています。
+マルチプラットフォームの性質上、プロジェクトの構成が複雑なので
+素直にこのアプリを使用したほうが良いかと思います。
+<li>http://libgdx.badlogicgames.com/download.html</li>
+</ul>
+
+<p>起動は、以下のような感じです。Windowsならばダブルクリックで起動できるでしょう。</p>
+
+<pre><code class="language-sh">$ java -jar gdx-setup.jar 
+Usage: GdxSetup --dir &lt;dir-name&gt; --name &lt;app-name&gt; --package &lt;package&gt; --mainClass &lt;mainClass&gt; --sdkLocation &lt;SDKLocation&gt;
+dir ... the directory to write the project files to
+name ... the name of the application
+package ... the Java package name of the application
+mainClass ... the name of your main ApplicationListener
+sdkLocation ... the location of your android SDK. Uses ANDROID_HOME if not specified
+</code></pre>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/setup.png" title="http://mikio.github.io/img/libgdx-beginner/setup.png">http://mikio.github.io/img/libgdx-beginner/setup.png</a></p>
+
+<table>
+<tbody>
+<tr>
+<td>��力値は見たままですが�</td>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>プロジェクトの名前(設定ファイルでアプリ名として利用される)</td>
+</tr>
+
+<tr>
+<td>Package</td>
+<td>プロジェクトのパッケージ</td>
+</tr>
+
+<tr>
+<td>Game class</td>
+<td>起点となるクラス</td>
+</tr>
+
+<tr>
+<td>Destination</td>
+<td>プロジェクトの出力ディレクトリ(ディレクトリは存在しなくても自動作成してくれる)</td>
+</tr>
+
+<tr>
+<td>Android SDK</td>
+<td>AndroidSDKへのパス</td>
+</tr>
+
+<tr>
+<td>��なります�</td>
+</tr>
+</tbody>
+</table>
+
+<p>Generateボタンをクリックすれば、プロジェクトが生成されます。
+必要なライブラリ(gradle、dllやsoなど)も全部まるっとダウンロードしてくれるので楽チンです。</p>
+
+<h2 id="注意点">注意点</h2>
+
+<p>以降、プロジェクトを <code>~/dev/libgdxtest/</code> に生成した前提で話をすすめます。
+今後プロジェクトを実行する際、挙動がおかしいなと思ったら、
+下記のデイレクトリを(バックアップしたうえで)削除して再実行してみてください。</p>
+
+<pre><code class="language-sh">$ rm -rf ~/.m2
+$ rm -rf ~/.gradle
+</code></pre>
+
+<p>ともにjarファイルなどの依存ファイルを保存するディレクトリですが、
+稀に状態がおかしくなるようです。</p>
+
+<h1 id="intellijで使う">IntelliJで使う</h1>
+
+<p>Eclipseに比べて軽いと評判の <a href="http://www.jetbrains.com/idea/" title="IntelliJ IDEA">IntelliJ IDEA</a> での扱い方です。</p>
+
+<h2 id="プロジェクトのインポート">プロジェクトのインポート</h2>
+
+<p>まずは、IntelliJを起動し、Import Projectを選択します。
+既に別のプロジェクトを起動していた場合は、「close Project」を選択します。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/IntelliJIDEA_007.png" title="http://mikio.github.io/img/libgdx-beginner/IntelliJIDEA_007.png">http://mikio.github.io/img/libgdx-beginner/IntelliJIDEA_007.png</a></p>
+
+<p><code>gdx-setup.jar</code> で生成したディレクトリを選択します。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/SelectDirImport_004.png" title="http://mikio.github.io/img/libgdx-beginner/SelectDirImport_004.png">http://mikio.github.io/img/libgdx-beginner/SelectDirImport_004.png</a></p>
+
+<p>Gradleを選択し、「next」ボタンを押下します。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/ImportProject_006.png" title="http://mikio.github.io/img/libgdx-beginner/ImportProject_006.png">http://mikio.github.io/img/libgdx-beginner/ImportProject_006.png</a></p>
+
+<p>「Use default gradle wrapper」を選択します。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/ImportProject_008.png" title="http://mikio.github.io/img/libgdx-beginner/ImportProject_008.png">http://mikio.github.io/img/libgdx-beginner/ImportProject_008.png</a></p>
+
+<p>最後にFinishボタンを押下します。最初のインポートには時間がかかります。
+最終的に下記のエラー(HTML関係)が表示されますが、HTMLはひとまず使用しないので気にしないでおきます。</p>
+
+<h2 id="pc版を動かす">PC版を動かす</h2>
+
+<ul>
+<a href="http://mikio.github.io/img/libgdx-beginner/error.png" title="http://mikio.github.io/img/libgdx-beginner/error.png">http://mikio.github.io/img/libgdx-beginner/error.png</a>
+インポートが終わったら、早速実行してみます。
+<li>メニュー → Run → Edit Configrationsを選択。</li>
+</ul>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png" title="http://mikio.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png">http://mikio.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png</a></p>
+
+<table>
+<tbody>
+<tr>
+<td>��力内容は以下のとおり�</td>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>Desktop</td>
+</tr>
+
+<tr>
+<td>Use class path of module</td>
+<td>desktop</td>
+</tr>
+
+<tr>
+<td>Main class</td>
+<td>DesktopLauncher クラスを選択</td>
+</tr>
+
+<tr>
+<td>Working directory</td>
+<td>android/assetsディレクトリを選択</td>
+</tr>
+
+<tr>
+<td>��後にOKを選択します�</td>
+</tr>
+</tbody>
+</table>
+
+<p>実行環境が作成できたら、右上にあるIntelliJのセレクトボックスからDesktopを選択して再生ボタンを押下します。
+最初の実行は、インポート以上に時間がかかりますので心してください。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/run.png" title="http://mikio.github.io/img/libgdx-beginner/run.png">http://mikio.github.io/img/libgdx-beginner/run.png</a></p>
+
+<p>下記の画面が表示されたら成功です!おめでとうございます!!</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/sample.png" title="http://mikio.github.io/img/libgdx-beginner/sample.png">http://mikio.github.io/img/libgdx-beginner/sample.png</a></p>
+
+<h2 id="android版を動かす">Android版を動かす</h2>
+
+<ul>
+<li>デバイスを接続します。</li>
+<li>予めOSがきちんと認識していることを確かめておいて下さい。</li>
+<li>右上のセレクトボックスから「android」を選択し、再生ボタンを押下します。</li>
+<li>認識しているデバイスが表示されるので、選択して実行します。</li>
+</ul>
+
+<h2 id="html版を動かす">HTML版を動かす</h2>
+
+<p>ターミナルを開きます。</p>
+
+<pre><code>メニュー → View → Tool Windows → Terminal
+</code></pre>
+
+<p>ターミナルでプロジェクトルートに移動します。</p>
+
+<pre><code class="language-sh">$ cd ~/dev/libtext
+</code></pre>
+
+<p>下記のコマンドを実行します。</p>
+
+<pre><code class="language-sh">$ ./gradlew html:superDev
+</code></pre>
+
+<ul>
+いろいろ出力が表示され、最終的に <code>The code server is ready.</code> の表示がされたら、
+下記にアクセスします。
+<li>http://localhost:8080/html/</li>
+</ul>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/terminal.png" title="http://mikio.github.io/img/libgdx-beginner/terminal.png">http://mikio.github.io/img/libgdx-beginner/terminal.png</a></p>
+
+<p>HTML版は、 <code>String.format</code> メソッドが使えなかったり、
+BitmapFontが表示できなかったり制限があるので注意してください。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/html.png" title="http://mikio.github.io/img/libgdx-beginner/html.png">http://mikio.github.io/img/libgdx-beginner/html.png</a></p>
+
+<h1 id="eclipseで使う">Eclipseで使う</h1>
+
+<p>Juno4.2、日本語版で解説します。</p>
+
+<h2 id="gradleプラグインのインストール">Gradleプラグインのインストール</h2>
+
+<ul>
+<li>メニュー → ヘルプ → 新規ソフトウェアのインストール</li>
+<li>作業対象欄に下記を入力し、追加ボタンを押下</li>
+<li>http://dist.springsource.com/release/TOOLS/gradle</li>
+<li>ダイアログの名前欄に「Gradle」と入力し、OKボタンを押下</li>
+<li>「Extensions / Gradle Integration」をチェックし、「次へ」ボタンを押下</li>
+<li>「次へ」ボタンを押下</li>
+<li>「使用条件の条項に同意します」をチェックし、「完了」ボタンを押下</li>
+</ul>
+
+<h2 id="プロジェクトのインポート-1">プロジェクトのインポート</h2>
+
+<ul>
+<li>メニュー → ファイル → インポート → Gradel Project → 次へボタンを押下</li>
+<li>ルートフォルダー欄に、生成したプロジェクトディレクトリを入力、BuiildModeボタンを押下</li>
+<li>プロジェクト欄の最上意プロジェクトを選択して、完了ボタンを押下</li>
+</ul>
+
+<h2 id="pc版を動かす-1">PC版を動かす</h2>
+
+<ul>
+下記の手順です。
+<li>パッケージエクスプローラから、desktopプロジェクトを選択、右クリック</li>
+<li>実行 → Javaアプリケーション を選択</li>
+<li>型選択欄で、desktopと入力</li>
+<li>一致する項目からDesktopLauncherクラスを選択し、OKボタンを押下</li>
+以上で実行されます。
+</ul>
+
+<h2 id="android版を動かす-1">Android版を動かす</h2>
+
+<h2 id="html版を動かす-1">HTML版を動かす</h2>
+
+<ul>
+下記の手順です。
+<li>事前にデバイスをOSが認識していることを確認してください。</li>
+<li>パッケージエクスプローラから、androidプロジェクトを選択、右クリック</li>
+<li>実行 → Android アプリケーション を選択</li>
+以上で実行されます。
+下記の手順です。
+<li>パッケージエクスプローラから、gwtプロジェクトを選択、右クリック</li>
+<li>実行 → 外部ツールの構成</li>
+<li>左ペインの「プログラム」をダブルクリック</li>
+<li>名前欄に「GWT SuperDev」と入力</li>
+<li>ローション欄：ファイルシステムの参照ボタンから「gradlew(windowsの場合は、gradlew.bat)」を選択</li>
+<li>作業ディレクトリ欄：ファイルシステムの参照ボタンから、プロジェクトルートを選択</li>
+<li>引数欄に「html:superDev」と入力</li>
+<li>適用ボタンを押下</li>
+<li>実行ボタンを押下</li>
+するとコンソールビューが表示され、いろいろ出力されます。
+最終的に <code>The code server is ready.</code> の表示がされたら、
+下記にアクセスします。
+<li>http://localhost:8080/html/</li>
+</ul>
+
+<h1 id="コマンドラインで使う">コマンドラインで使う</h1>
+
+<p>コマンドラインで実行する場合は特に準備は不要で、
+最初のプロジェクト生成で既に準備は整っています。
+Emacserの自分は、この方法が一番好きです。</p>
+
+<p>基本的には、gradlewコマンドでタスクを実行するだけです。
+Windowsの場合は、gradlewに、拡張子 <code>.bat</code> を追加して実行してください。</p>
+
+<p>gradlewコマンドは、プロジェクトルートで実行する必要があります。</p>
+
+<pre><code class="language-sh">$ cd ~/dev/libgdxtest 
+</code></pre>
+
+<h2 id="pc版を動かす-2">PC版を動かす</h2>
+
+<p>下記のように実行します。</p>
+
+<pre><code class="language-sh">$ ./gradlew desktop:run
+</code></pre>
+
+<h2 id="android版を動かす-2">Android版を動かす</h2>
+
+<p>予め <code>ANDROID_HOME</code> を定義しておく必要があります。
+=.bashrc= などに記述しておきます。</p>
+
+<pre><code class="language-sh">export ANDROID_HOME=~/opt/adt-bundle-linux-x86_64-20130717/sdk
+</code></pre>
+
+<p>下記のように実行します。</p>
+
+<pre><code class="language-sh">$ gradlew android:installDebug android:run
+</code></pre>
+
+<h2 id="html版を動かす-2">HTML版を動かす</h2>
+
+<p>下記のように実行します。</p>
+
+<pre><code class="language-sh">$ ./gradlew html:superDev
+  :
+  :
+The code server is ready.
+Next, visit: http://localhost:9876/
+</code></pre>
+
+<ul>
+いろいろ出力が表示され、最終的に <code>The code server is ready.</code> の表示がされたら、
+下記にアクセスします。
+<li>http://localhost:8080/html/</li>
+HTML版は、 <code>String.format</code> メソッドが使えなかったり、
+BitmapFontが表示できなかったり制限があるので注意してください。
+</ul>
+
+<h1 id="基本的なクラスについて">基本的なクラスについて</h1>
+
+<p>gdx-setup.jarで作成される雛形は下記のとおりです。</p>
+
+<pre><code class="language-sh">PROJECT_ROOT
+  + android
+  + core
+  + desktop
+  + gradle
+  + html
+  + ios
+</code></pre>
+
+<p>環境別にディレクトリが切られ、ゲームロジックそのものは <code>core</code> ディレクトリに記述していきます。
+環境ごとのディレクトリにはそれぞれその環境専用の起動クラス(*Launcher.java)が定義されています。
+環境に依存するコード(例えば広告表示など)は、この環境別のディレクトリ内に記述してきます。</p>
+
+<p>さて <code>core/src</code> ディレクトリには下記のようなクラスがあります。</p>
+
+<pre><code class="language-java">package com.zarudama.libgdxtest;
+
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class LibGdxSample extends ApplicationAdapter {
+    SpriteBatch batch;
+    Texture img;
+
+    @Override
+    public void create () {
+        batch = new SpriteBatch();
+        img = new Texture(&quot;badlogic.jpg&quot;);
+    }
+
+    @Override
+    public void render () {
+        Gdx.gl.glClearColor(1, 0, 0, 1); //画面を赤で塗りつぶし
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // カラーバッファをクリア
+        batch.begin(); // 描画の開始
+        batch.draw(img, 0, 0); // テクスチャーを描画
+        batch.end(); // 描画の終了
+    }
+}
+</code></pre>
+
+<p>これは、 <code>gdx-setup.jar</code> で最初に作られる画像を表示するだけのクラスです。
+createメソッドは、アプリ内で一度だけ実行される処理を記述し、
+renderは毎フレーム呼びだす処理を記述します。renderはつまりメインループとなります。</p>
+
+<p>ApplicationAdapterクラスは、ApplicationListenerインターフェイスを実装したクラスです。
+ApplicationListenerインターフェイスは、libGDXでは必ず実装する必要があるため、
+ApplicationAdapterクラスが基本的な実装として用意してあります。
+単純なゲームやテストプログラムであれば、
+このクラスを継承するだけで良いのですが、
+実際のゲーム開発では、画面遷移を伴うことが多いはずです。
+なのでApplicationAdapterクラスに代わり
+Gameクラスを継承することが多くなります。
+Gameクラスは、画面遷移を担当するScreenクラスを扱い、
+GameクラスもまたApplicationListenerインターフェイスを実装しています。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/class.png" title="http://mikio.github.io/img/libgdx-beginner/class.png">http://mikio.github.io/img/libgdx-beginner/class.png</a></p>
+
+<p>SpriteBatchクラスは、libGDXで描画を担当するクラスでこれもまた必ず必要なクラスです。
+batch.beginメソッドとbatch.endメソッドの間のdrawメソッドで様々な描画を行ないます。</p>
+
+<p>Textureクラスは名前そのままの画像を扱うクラスです。この例では最もシンプルな画像表示なので、
+Textureクラスをそのまま描画していますが、実際には後述するSpriteクラスを介して
+使用することが多くなるはずです。</p>
+
+<h1 id="文字表示">文字表示</h1>
+
+<p>いろいろテストプログラムを書きたいところですが、
+まずは文字が表示できないと状態を把握できません。</p>
+
+<p>libGDXはデフォルトで文字描画をサポートしていますので、それを利用します。</p>
+
+<p>下記のように変更してください。diff形式で表示しています。"+"は追加した行、"-"は削除した行です。</p>
+
+<pre><code class="language-diff">mikio@gnudam:~/dev/libgdxtest$ git diff
+diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index ad39967..3c84c72 100644
+--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
++++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+@@ -4,17 +4,20 @@ import com.badlogic.gdx.ApplicationAdapter;
+ import com.badlogic.gdx.Gdx;
+ import com.badlogic.gdx.graphics.GL20;
+ import com.badlogic.gdx.graphics.Texture;
++import com.badlogic.gdx.graphics.g2d.BitmapFont;
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+ public class LibGdxSample extends ApplicationAdapter {
+     SpriteBatch batch;
+-    Texture img;
++    BitmapFont font;
++    Texture img;
+
+    @Override
+    public void create () {
+       batch = new SpriteBatch();
+       img = new Texture(&quot;badlogic.jpg&quot;);
+-   }
++      font = new BitmapFont();
++   }
+
+    @Override
+    public void render () {
+@@ -22,6 +25,7 @@ public class LibGdxSample extends ApplicationAdapter {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        batch.draw(img, 0, 0);
++       font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
+        batch.end();
+    }
+
++   @Override
++   public void dispose() {
++       font.dispose();
++       batch.dispose();
++       img.dispose();
++   }
+
+ }
+</code></pre>
+
+<p>サンプルでは、なぜかリソースを解放する処理が抜けていたので、
+disposeメソッドに追加してあります。disposeはアプリケーションの終了処理を記述します。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/sample2.png" title="http://mikio.github.io/img/libgdx-beginner/sample2.png">http://mikio.github.io/img/libgdx-beginner/sample2.png</a></p>
+
+<h1 id="スプライトクラスを使用する">スプライトクラスを使用する。</h1>
+
+<p>サンプルでは、Textureクラスを直接描画していましたが、
+Textureクラスはあくまで画像そのもののクラスであり、
+ゲーム内で直接扱うのには向いていません。</p>
+
+<p>ゆくゆくは拡大縮小したりアニメーションしたりする必要がでてきますので、
+そのような操作が扱いやすいSpriteクラスを使用します。</p>
+
+<pre><code class="language-sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index 3c84c72..5ab4749 100644
+--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
++++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+@@ -5,18 +5,22 @@ import com.badlogic.gdx.Gdx;
+ import com.badlogic.gdx.graphics.GL20;
+ import com.badlogic.gdx.graphics.Texture;
+ import com.badlogic.gdx.graphics.g2d.BitmapFont;
++import com.badlogic.gdx.graphics.g2d.Sprite;
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+ public class LibGdxSample extends ApplicationAdapter {
+     SpriteBatch batch;
+     BitmapFont font;
+     Texture img;
++    Sprite sprite;
+     @Override
+     public void create () {
+         batch = new SpriteBatch();
+         font = new BitmapFont();
+         img = new Texture(&quot;badlogic.jpg&quot;);
++        sprite = new Sprite(img);
+     }
+
+@@ -24,7 +28,7 @@ public class LibGdxSample extends ApplicationAdapter {
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+-       batch.draw(img, 0, 0);
++       sprite.draw(batch);
+        font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
+        batch.end();
+    }
+</code></pre>
+
+<p>このプログラムを実行しても、見た目の変化はありません。</p>
+
+<h1 id="座標系">座標系</h1>
+
+<p>サンプルプログラムの表示で気づいた方もいるかもしれませんが、libGDXでは座標の原点は左下になります。</p>
+
+<ul>
+座標系に関しては、下記の記事が詳しいです。
+<li>http://qiita.com/fslasht/items/d5798516bdbeea49a5d3</li>
+</ul>
+
+<ul>
+要点をまとめると
+<li>画面の座標系は左下が原点</li>
+<li>スプライトの座標系も左下が原点</li>
+<li>スプライトの拡縮時はまんなかが原点</li>
+<li>スプライトの回転はまんなかが原点</li>
+<li>ただしSprite#setOriginを使えば、中心を変更できる</li>
+<li>BitMapフォントはなぜか左上が原点(注意!)</li>
+</ul>
+
+<table>
+<tbody>
+<tr>
+<td>��た、デフォルトで表示されるウィンドウサイズ�</td>
+</tr>
+
+<tr>
+<td>PC版</td>
+<td>640 x 480</td>
+</tr>
+
+<tr>
+<td>Android版</td>
+<td>物理画面サイズ</td>
+</tr>
+
+<tr>
+<td>Html版</td>
+<td>480 x 320</td>
+</tr>
+
+<tr>
+<td>��なります�</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+数値の根拠は以下のソースになります。
+<li>https://github.com/libgdx/libgdx/blob/master/backends/gdx-backend-lwjgl/src/com/badlogic/gdx/backends/lwjgl/LwjglApplicationConfiguration.java</li>
+<li>https://github.com/libgdx/libgdx/blob/master/backends/gdx-backend-android/src/com/badlogic/gdx/backends/android/AndroidApplicationConfiguration.java</li>
+<li><code>/dev/libgdxtest/html/src/com/zarudama/libgdxtest/client/HtmlLauncher.java</code> </li>
+</ul>
+
+<h1 id="画像を動かす">画像を動かす</h1>
+
+<p>画像の表示ができたのでさっそく動かしてみます。</p>
+
+<pre><code class="language-sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index 5ab4749..e97625e 100644
+--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
++++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+@@ -2,18 +2,20 @@ package com.zarudama.libgdxtest;
+
+ import com.badlogic.gdx.ApplicationAdapter;
+ import com.badlogic.gdx.Gdx;
++import com.badlogic.gdx.Input;
+ import com.badlogic.gdx.graphics.GL20;
+ import com.badlogic.gdx.graphics.Texture;
+ import com.badlogic.gdx.graphics.g2d.BitmapFont;
+ import com.badlogic.gdx.graphics.g2d.Sprite;
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
++import com.badlogic.gdx.math.Vector2;
+
+ public class LibGdxSample extends ApplicationAdapter {
+     SpriteBatch batch;
+     BitmapFont font;
+     Texture img;
+     Sprite sprite;
++    Vector2 pos;
+
+     @Override
+    public void create () {
+@@ -21,14 +23,30 @@ public class LibGdxSample extends ApplicationAdapter {
+         font = new BitmapFont();
+         img = new Texture(&quot;badlogic.jpg&quot;);
+         sprite = new Sprite(img);
++        pos = new Vector2();
+     }
+
+    @Override
+    public void render () {
++       if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
++           pos.x -= 1;
++       }
++       if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
++           pos.x += 1;
++       }
++       if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
++           pos.y += 1;
++       }
++       if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
++           pos.y -= 1;
++       }
++       String info = String.format(&quot;pos(%f,%f)&quot;, pos.x, pos.y);
++
++       sprite.setPosition(pos.x, pos.y);
++
+        dx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        sprite.draw(batch);
+        batch.draw(sprite, 0, 0);
+        font.draw(batch, info, 0, 420);
+        font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
+        batch.end();
+    }
+
+    @Override
+    public void dispose() {
+        font.dispose();
+        batch.dispose();
+        img.dispose();
+    }
+
+</code></pre>
+
+<p>座標を扱うのはベクトルクラスが便利なので、posフィールドを追加しています。</p>
+
+<p>また、今自分がいる場所も把握したいので、info変数にposフィールドの値を設定して描画しています。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/sample3.png" title="http://mikio.github.io/img/libgdx-beginner/sample3.png">http://mikio.github.io/img/libgdx-beginner/sample3.png</a></p>
+
+<ul>
+キーボードの入力を得るには、Gdx.input.isKeyPressedメソッドを利用します。
+どのキーかどうかは、Input.Keysの定数で判定できます。
+<li>http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/Input.Keys.html</li>
+</ul>
+
+<p>今回は、キーボードだけの例ですが、Androidで入力を扱うには、タッチされた座標を取得する必要があります。
+タッチ処理は少し複雑なのでここでは割愛します。</p>
+
+<h1 id="効果音を鳴らす">効果音を鳴らす</h1>
+
+<ul>
+下記のサイトで適当に音を作りました。
+<li>http://www.bfxr.net/</li>
+次からダウンロードできます。
+<li>http://mikio.github.com/demo/sound/jump.wav</li>
+ダウンロードしたファイルを下記に追加してください。
+</ul>
+
+<p>~/dev/libgdxtest/android/assets</p>
+
+<pre><code class="language-sh">
+</code></pre>
+
+<p>下記のように変更します。</p>
+
+<pre><code class="language-sh"> mikio@gnudam:~/dev/libgdxtest$ git diff
+diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.j
+ava
+index 5ab4749..cf11ba1 100644
+--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
++++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+@@ -2,18 +2,22 @@ package com.zarudama.libgdxtest;
+
+ import com.badlogic.gdx.ApplicationAdapter;
+ import com.badlogic.gdx.Gdx;
+ import com.badlogic.gdx.Input;
++import com.badlogic.gdx.audio.Sound;
+ import com.badlogic.gdx.graphics.GL20;
+ import com.badlogic.gdx.graphics.Texture;
+ import com.badlogic.gdx.graphics.g2d.BitmapFont;
+ import com.badlogic.gdx.graphics.g2d.Sprite;
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
++import com.badlogic.gdx.math.Vector2;
+
+ public class LibGdxSample extends ApplicationAdapter {
+     SpriteBatch batch;
+     BitmapFont font;
+     Texture img;
+     Sprite sprite;
+     Vector2 pos;
++    Sound sound;
+
+     @Override
+     public void create () {
+@@ -21,14 +25,35 @@ public class LibGdxSample extends ApplicationAdapter {
+         font = new BitmapFont();
+                img = new Texture(&quot;badlogic.jpg&quot;);
+         sprite = new Sprite(img);
+         pos = new Vector2();
++        sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
+     }
+
+     @Override
+     public void render () {
+         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+             pos.x -= 1;
+         }
+         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+             pos.x += 1;
+         }
+         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+             pos.y += 1;
+         }
+         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+             pos.y -= 1;
+         }
+         String info = String.format(&quot;pos(%f,%f)&quot;, pos.x, pos.y);
+
++        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
++            sound.play();
++        }
+
+         Gdx.gl.glClearColor(1, 0, 0, 1);
+         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+         batch.begin();
+         batch.draw(sprite, pos.x, pos.y);
+         font.draw(batch, info, 0, 420);
+         font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
+         batch.end();
+     }
+
+     @Override
+     public void dispose() {
+         font.dispose();
++        sound.dispose();
+         batch.dispose();
+         img.dispose();
+     }
+</code></pre>
+
+<p>soundクラスを使いして、playメソッドを呼ぶだけです。
+スペースキー押下でジャンプしたような効果音が鳴ります。
+最後にリソースを解放するのを忘れずに。</p>
+
+<h1 id="bgmを鳴らす">BGMを鳴らす</h1>
+
+<ul>
+下記のサイトで適当に曲を作りました。
+<li>http://soundation.com/</li>
+次からダウンロードできます。
+<li>http://mikio.github.com/demo/sound/mixdown.mp3</li>
+ダウンロードしたファイルを下記に追加してください。
+</ul>
+
+<p>~/dev/libgdxtest/android/assets</p>
+
+<pre><code class="language-sh">
+</code></pre>
+
+<p>下記のように変更します。</p>
+
+<pre><code class="language-sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index 5ab4749..c345ac8 100644
+--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
++++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+@@ -2,18 +2,24 @@ package com.zarudama.libgdxtest;
+
+ import com.badlogic.gdx.ApplicationAdapter;
+ import com.badlogic.gdx.Gdx;
+ import com.badlogic.gdx.Input;
++import com.badlogic.gdx.audio.Music;
+ import com.badlogic.gdx.audio.Sound;
+ import com.badlogic.gdx.graphics.GL20;
+ import com.badlogic.gdx.graphics.Texture;
+ import com.badlogic.gdx.graphics.g2d.BitmapFont;
+ import com.badlogic.gdx.graphics.g2d.Sprite;
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+ import com.badlogic.gdx.math.Vector2;
+
+ public class LibGdxSample extends ApplicationAdapter {
+     SpriteBatch batch;
+     BitmapFont font;
+     Texture img;
+     Sprite sprite;
+     Vector2 pos;
+     Sound sound;
++    Music music;
+
+     @Override
+    public void create () {
+@@ -21,15 +27,48 @@ public class LibGdxSample extends ApplicationAdapter {
+         font = new BitmapFont();
+        img = new Texture(&quot;badlogic.jpg&quot;);
+         sprite = new Sprite(img);
+         pos = new Vector2();
+         sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
++        music = Gdx.audio.newMusic(Gdx.files.internal(&quot;mixdown.mp3&quot;));
++        music.setLooping(true);
++        music.setVolume(0.5f);
++        music.play();
+     }
+
+
+     @Override
+     public void dispose() {
+         font.dispose();
+         sound.dispose();
++        music.dispose();
+         batch.dispose();
+         img.dispose();
+     }
+ }
+</code></pre>
+
+<p>これもMusicクラスを使用して、playメソッドを呼ぶだけです。
+ただしBGMなので、ループフラグを有効にし、ボリュームを控えめにしています。
+簡単ですね。最後にリソースを解放するのを忘れずに。</p>
+
+<h1 id="画像を拡大-縮小-回転してみる">画像を拡大・縮小・回転してみる</h1>
+
+<p>最後に、せっかくスプライトクラスを使っているので、拡縮を試してみます。</p>
+
+<p>下記のように変更してください。</p>
+
+<pre><code class="language-shmikio">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index e52752e..1c12907 100644
+--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
++++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+@@ -20,6 +20,7 @@ public class LibGdxSample extends ApplicationAdapter {
+     Vector2 pos;
+     Sound sound;
+     Music music;
++    float angle;
+
+     @Override
+     public void create () {
+@@ -55,11 +56,15 @@ public class LibGdxSample extends ApplicationAdapter {
+         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+             sound.play();
+         }
+         sprite.setPosition(pos.x, pos.y);
++        sprite.setScale((float) Math.sin(angle));
++        angle += 0.04;
+
+         Gdx.gl.glClearColor(1, 0, 0, 1);
+         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+         batch.begin();
+         sprite.draw(batch);
+         font.draw(batch, info, 0, 420);
+         font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
+         batch.end();
+</code></pre>
+
+<p><code>angle</code> フィールドを追加し、 <code>Sprite#setScale</code> メソッドで拡縮しています。
+sclae値としてマイナスを与えると、画像が反転するようです。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/sample4.png" title="http://mikio.github.io/img/libgdx-beginner/sample4.png">http://mikio.github.io/img/libgdx-beginner/sample4.png</a></p>
+
+<p>ついでに回転させてみます。</p>
+
+<pre><code class="language-shmikio">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index 1c12907..696c158 100644
+--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
++++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+@@ -17,6 +17,7 @@ public class LibGdxSample extends ApplicationAdapter {
+     BitmapFont font;
+     Texture img;
+     Sprite sprite;
++    Sprite sprite2;
+     Vector2 pos;
+     Sound sound;
+     Music music;
+@@ -28,6 +29,7 @@ public class LibGdxSample extends ApplicationAdapter {
+         font = new BitmapFont();
+         img = new Texture(&quot;badlogic.jpg&quot;);
+         sprite = new Sprite(img);
++        sprite2 = new Sprite(img);
+         pos = new Vector2();
+         sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
+         music = Gdx.audio.newMusic(Gdx.files.internal(&quot;mixdown.mp3&quot;));
+@@ -60,11 +62,14 @@ public class LibGdxSample extends ApplicationAdapter {
+         sprite.setScale((float) Math.sin(angle));
+         angle += 0.04;
+
++        sprite2.setPosition(200, 300);
++        sprite2.setRotation(angle);
++
+         Gdx.gl.glClearColor(1, 0, 0, 1);
+         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+         batch.begin();
+         sprite.draw(batch);
++        sprite2.draw(batch);
+         font.draw(batch, info, 0, 420);
+         font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
+         batch.end();
+</code></pre>
+
+<p>効果がわかりにくいので、sprite2フィールドを追加し、
+スプライトを2つにしました。
+このようにスプライトを追加しても画像は共有できます。
+回転は、Sprite#setRotationメソッドで実施しています。</p>
+
+<p><a href="http://mikio.github.io/img/libgdx-beginner/sample5.png" title="http://mikio.github.io/img/libgdx-beginner/sample5.png">http://mikio.github.io/img/libgdx-beginner/sample5.png</a></p>
+
+<h1 id="ソース">ソース</h1>
+
+<ul>
+これ以上の詳しいSpriteクラスの操作は下記のAPIマニュアルを参照してください。
+<li>http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/g2d/Sprite.html</li>
+最後にソースの全体を載せておきます。
+</ul>
+
+<p>package com.zarudama.libgdxtest</p>
+
+<pre><code class="language-java">import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+
+public class LibGdxSample extends ApplicationAdapter {
+    SpriteBatch batch;
+    BitmapFont font;
+    Texture img;
+    Sprite sprite;
+    Sprite sprite2;
+    Vector2 pos;
+    Sound sound;
+    Music music;
+    float angle;
+
+    @Override
+    public void create () {
+        batch = new SpriteBatch();
+        font = new BitmapFont();
+        img = new Texture(&quot;badlogic.jpg&quot;);
+        sprite = new Sprite(img);
+        sprite2 = new Sprite(img);
+        pos = new Vector2();
+        sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
+        music = Gdx.audio.newMusic(Gdx.files.internal(&quot;mixdown.mp3&quot;));
+        music.setLooping(true);
+        music.setVolume(0.5f);
+        music.play();
+    }
+
+    @Override
+    public void render () {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            pos.x -= 1;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            pos.x += 1;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            pos.y += 1;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            pos.y -= 1;
+        }
+        //String info = String.format(&quot;pos(%f,%f)&quot;, pos.x, pos.y);
+        String info = &quot;&quot;; //html版ではコンパイルできない。
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            sound.play();
+        }
+        sprite.setPosition(pos.x, pos.y);
+        sprite.setScale((float) Math.sin(angle));
+        angle += 0.04;
+
+        sprite2.setPosition(200, 300);
+        sprite2.setRotation(angle);
+
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        sprite.draw(batch);
+        sprite2.draw(batch);
+        font.draw(batch, info, 0, 420);
+        font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
+        batch.end();
+    }
+
+    @Override
+    public void dispose() {
+        sound.dispose();
+        music.dispose();
+        batch.dispose();
+        font.dispose();
+        img.dispose();
+    }
+}
+</code></pre>
+
+<h1 id="おわりに">おわりに</h1>
+
+<ul>
+この記事ではゲームプログラミングに最低限必要な以下の方法を学びました。
+<li>画像の表示</li>
+<li>キーボードの入力</li>
+<li>サウンド・BGMの再生</li>
+これで一応ゲームは開発できるはずです。
+でもこれは最低限の方法なので、まだまだいろいろ考慮しなくてはなりません。
+例えば、
+<li>タッチ処理</li>
+<li>アニメーション</li>
+<li>物理画面に依存しない画面表示</li>
+<li>画面遷移</li>
+などなどです。
+<a href="http://mikio.github.io/article/2014/06/02_libgdx-beginner2.html" title="次回">次回</a> は、これらの処理を学んでいきます。
+</ul>
+
+<h1 id="参考書籍">参考書籍</h1>
+
+<pre><code>&lt;p&gt;
+&lt;div class=&quot;figure&quot; style=&quot;float:left&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&quot;http://www.amazon.co.jp/gp/product/4844331132/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4844331132&amp;linkCode=as2&amp;tag=ocha04-22&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4844331132&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4844331132&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+
+</code></pre>
+
+<p>libGDXの作者が書いた本。Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
+libGDXの解説ではないけれど、その思想は当然libGDXにも引き継がれています。もちろんlibGDXの理解もしやすくなります。
+また、Androidの本ではありますが、スマホに特化したわけでもなく、
+どんなゲーム開発にも通用しそうな内容ばかりです。
+実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。
+そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと思います。
+ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。
+それでもlibGDXをやるなら読んでいて損はないと思います。</p>
+
+<pre><code>&lt;p&gt;
+&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+</code></pre>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

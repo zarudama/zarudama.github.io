@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>misaki on My New Hugo Site</title>
+    <link>http://example.org/tags/misaki/</link>
+    <description>Recent content in misaki on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/tags/misaki/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</title>
+      <link>http://example.org/posts/misaki/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/misaki/</guid>
+      <description>年末から地味につくっていた Misaki のプラグインですが、 ひととおり欲しい機能の実装を終えたので、github公開しました。 Emacs org-mode で記事を書けるBlogジェネレータです。
+ https://github.com/mikio/misaki-orgmode デモ - org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います (Misaki-orgmodeは、Blogに特化しているわけではないので、 静的サイトジェネレータとしても使えます)。  Misaki をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。 実装にあたっては、misaki-markdown を参考にしました(というかほぼまるパクリですが…)。 Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。 デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、 シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。 また、このブログ自体、Misaki-orgmodeで生成しており、こちらは Pure というCSSフレームワークを使用しています。
+本ブログ「ざるだましい」はもともと o-blog というツールを使用していました。 このツールは大変使いやすかったのですが、1ファイルでの運用を強制されるのと、 Clojureプログラミングをしたいという理由からMisakiに乗り換えました。
+ 現状では、Emacsによるインターフェースがないので 記事ファイルが増えた場合は管理が大変ですが、 ゆくゆくは下記で紹介されている org-octopress のようなツールを作りたいと思っています。 http://quickhack.net/nom/blog/2013-05-01-org-octopress.html  org-modeをブログに利用していみたいかたは一考してみてください。
+参考  ざるだましいのロゴに使用しているフォント http://www.hogera.com/pcb/font/catalog/  </description>
+    </item>
+    
+    <item>
+      <title>Misakiにnrepl-serverを埋め込む</title>
+      <link>http://example.org/posts/misaki2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/misaki2/</guid>
+      <description>misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
+mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore +++ b/.gitignore @@ -7,6 +7,8 @@ /.lein-failures /checkouts /.lein-deps-sum +misaki/src/misaki/ +/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj +++ b/project.clj @@ -13,7 +13,9 @@ [cuma &amp;quot;0.0.4&amp;quot;] [clj-gntp &amp;quot;0.0.1&amp;quot;] ; cljs compiler - [org.clojure/clojurescript &amp;quot;0.0-1586&amp;quot;]] + [org.clojure/clojurescript &amp;quot;0.0-1586&amp;quot;] + [org.clojure/tools.nrepl &amp;quot;0.2.3&amp;quot;] + ] :plugins [[codox &amp;quot;0.6.4&amp;quot;] [lein-cloverage &amp;quot;1.0.2&amp;quot;] diff --git a/samples/blog/_config.clj b/samples/blog/_config.</description>
+    </item>
+    
+  </channel>
+</rss>

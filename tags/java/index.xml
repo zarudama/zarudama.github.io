@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java on My New Hugo Site</title>
+    <link>http://example.org/tags/java/</link>
+    <description>Recent content in java on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GCの発生頻度などの調査</title>
+      <link>http://example.org/posts/jvm_gcutil/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/jvm_gcutil/</guid>
+      <description>GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
+まずはプロセスIDを調べる。例としてtomcatの場合。
+$ sudo -u tomcat jps -v  tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
+javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
+$ pgrep -lf java  PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
+jstat -gcutil -t 123456 3000  意味は以下のとおり。
+jstat &amp;lt;出力オプション&amp;gt; &amp;lt;プロセスID&amp;gt; &amp;lt;データ取得間隔(ms)&amp;gt; -t タイムスタンプを出力 -gcutil GCの統計情報   jstatのマニュアルは以下。 http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
+Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出しは以下のルールになる
+   S* Suviver    E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間     GCについては、下記が詳しい。 http://www.</description>
+    </item>
+    
+    <item>
+      <title>JVMのヒープサイズと変更方法</title>
+      <link>http://example.org/posts/jvm_mem/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/jvm_mem/</guid>
+      <description>稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
+JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、 初期割り当てのヒープサイズが異なる。
+サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
+$ java -version java version &amp;quot;*****&amp;quot; Java(TM) SE Runtime Environment (build ******) Java HotSpot(TM) Server VM (build ******)  Severモードの場合は、 Server の表記があるはず。
+ サーバーモード | 初期ヒープサイズ | マシンの物理メモリーの 1/64 か、妥当な最小サイズかの大きい方。 | | 最大ヒープサイズ | 物理メモリーの 1/4 か、1GB かの小さい方。 | http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html  JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
+$ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.0 137152.0 0.</description>
+    </item>
+    
+  </channel>
+</rss>

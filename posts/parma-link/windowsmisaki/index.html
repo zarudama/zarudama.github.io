@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title Windowsでmisakiのデモが動かない -->
+<!-- @date 2013-5-4  -->
+<!-- @tag misaki  -->
+
+<p>Clojureで書かれたブログジェネレータの <a href="https://github.com/liquidz/misaki" title="misaki">misaki</a> ですが、そのままではWindows上ではサンプルが動作しません。</p>
+
+<pre><code class="language-sh">C:\Users\miki\dev\misaki&gt;lein run samples/blog
+ * Compiling [1mall templates[22m
+ * Compiling [1matom.xml.clj[22m
+
+[4mjava.io.FileNotFoundException: samples\blog\public\samples\blog\template\ato
+m.xml (?w?????p?X?????????????B)[24m
+   at misaki.util.file$write_file / [1minvoke[22m ([31mfile.clj[0m:[31m[1m
+152[22m[0m)
+   at misaki.compiler.default.core$compile_STAR_ / [1minvoke[22m ([31mcore.cl
+j[0m:[31m[1m237[22m[0m)
+   at misaki.compiler.default.core$compile_template / [1minvoke[22m ([31mcore
+.clj[0m:[31m[1m256[22m[0m)
+   at misaki.compiler.default.core$_compile$fn__1874 / [1minvoke[22m ([31mcor
+e.clj[0m:[31m[1m70[22m[0m)
+   at misaki.compiler.default.core$_compile / [1minvoke[22m ([31mcore.clj[0m
+:[31m[1m58[22m[0m)
+   at misaki.core$call_compiler_fn / [1mdoInvoke[22m ([31mcore.clj[0m:[31m
+[1m55[22m[0m)
+   at misaki.core$compile_STAR_$fn__1112 / [1minvoke[22m ([31mcore.clj[0m:[
+31m[1m160[22m[0m)
+   at misaki.util.sequence$some_with_default_value / [1minvoke[22m ([31mseque
+nce.clj[0m:[31m[1m44[22m[0m)
+   at misaki.core$compile_STAR_ / [1minvoke[22m ([31mcore.clj[0m:[31m[1m16
+7[22m[0m)
+   at misaki.core$call_all_compile / [1minvoke[22m ([31mcore.clj[0m:[31m[1
+m185[22m[0m)
+   at misaki.server$do_all_compile / [1minvoke[22m ([31mserver.clj[0m:[31m
+[1m52[22m[0m)
+   at misaki.server$_main / [1mdoInvoke[22m ([31mserver.clj[0m:[31m[1m91[
+22m[0m)
+   [31mFAIL in 0.500 sec[0m
+ * Finish Compiling
+ * starting server:  [36mhttp://localhost:8080/[0m
+2013-05-04 01:01:50.673:INFO:oejs.Server:jetty-7.6.1.v20120215
+2013-05-04 01:01:53.766:INFO:oejs.AbstractConnector:Started SelectChannelConnect
+or@0.0.0.0:8080
+</code></pre>
+
+<p>Cygwinで動作させても同様です
+(ただし、Windows版のOracleJavaなのでOpenJDKをCygwin上で動かせばもしかしたら動くかもです)。</p>
+
+<pre><code class="language-sh">miki@miki-PC ~/dev/misaki
+$ lein-cyg run samples/blog
+ * Compiling all templates
+ * Compiling atom.xml.clj
+
+java.io.FileNotFoundException: samples\blog\public\samples\blog\template\atom.xml (指定されたパスが見つかりません。)
+   at misaki.util.file$write_file / invoke (file.clj:152)
+   at misaki.compiler.default.core$compile_STAR_ / invoke (core.clj:237)
+   at misaki.compiler.default.core$compile_template / invoke (core.clj:256)
+   at misaki.compiler.default.core$_compile$fn__1874 / invoke (core.clj:70)
+   at misaki.compiler.default.core$_compile / invoke (core.clj:58)
+   at misaki.core$call_compiler_fn / doInvoke (core.clj:55)
+   at misaki.core$compile_STAR_$fn__1112 / invoke (core.clj:160)
+   at misaki.util.sequence$some_with_default_value / invoke (sequence.clj:44)
+   at misaki.core$compile_STAR_ / invoke (core.clj:167)
+   at misaki.core$call_all_compile / invoke (core.clj:185)
+   at misaki.server$do_all_compile / invoke (server.clj:52)
+   at misaki.server$_main / doInvoke (server.clj:91)
+   FAIL in 0.300 sec
+ * Finish Compiling
+ * starting server:  http://localhost:8080/
+2013-05-04 01:17:16.365:INFO:oejs.Server:jetty-7.6.1.v20120215
+2013-05-04 01:17:16.411:INFO:oejs.AbstractConnector:Started SelectChannelConnector@0.0.0.0:8080
+</code></pre>
+
+<p>付焼き刃な対処ですが、下記の修正でひとまず動作します。</p>
+
+<pre><code class="language-sh">$ git diff
+diff --git a/src/misaki/config.clj b/src/misaki/config.clj
+index 9d4b69e..7dcd9c7 100644
+--- a/src/misaki/config.clj
++++ b/src/misaki/config.clj
+@@ -137,7 +137,7 @@
+   &quot;Check whether file is post file or not.&quot;
+   [#^File file]
+   {:pre [(file? file)]}
+-  (and (:post-dir *config*) (str-contains? (.getAbsolutePath file)
++  (and (:post-dir *config*) (str-contains? (str/replace (.getAbsolutePath file) #&quot;\\&quot; &quot;/&quot;)
+                                            (:post-dir *config*))))
+
+ ; =index-file?
+@@ -209,7 +209,7 @@
+ (defn- make-regular-output-filename
+   &quot;Make regular output filename from java.io.File.&quot;
+   [#^File file]
+-  (let [path (.getPath file)
++  (let [path (str/replace (.getPath file) #&quot;\\&quot; &quot;/&quot;)
+         len  (count (:template-dir *config*))]
+     (if (.startsWith path (:template-dir *config*))
+       (.substring path len)
+</code></pre>
+
+<p>JavaはWrite Once Run Anywhereを謳ってはいるものの、
+このようにパスまわりのトラブルが結構あっていつも悩まさせてくれます。。。
+この問題は結構影響範囲が大きそうなので、修正される可能性は低いかもしれません。</p>
+
+<p>本当はこの不具合は結構前に気づいていたのですが、
+PullRequestの方法を良く知らないのと、
+もうちょっと内容を調査したり整理してからのほうがいいかなと思っていたら
+<a href="https://github.com/liquidz/misaki/issues/37" title="Issue">Issue</a> に登録されていたのでブログでまとめてみた次第です。</p>
+
+<h1 id="動作環境">動作環境</h1>
+
+<p>OS</p>
+
+<pre><code class="language-sh">Windows 7 Professional 64bit
+</code></pre>
+
+<p>Java</p>
+
+<pre><code class="language-sh">C:\Users\miki\dev\misaki&gt;java -version
+java version &quot;1.7.0_09&quot;
+Java(TM) SE Runtime Environment (build 1.7.0_09-b05)
+Java HotSpot(TM) 64-Bit Server VM (build 23.5-b02, mixed mode)
+</code></pre>
+
+<p>leiningen</p>
+
+<pre><code class="language-sh">C:\Users\miki\dev\misaki&gt;lein -v
+Leiningen 2.1.3 on Java 1.7.0_09 Java HotSpot(TM) 64-Bit Server VM
+</code></pre>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">ちょい足しawkの基本</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <h1 id="基本">基本</h1>
+
+<p>コンマンドラインでちょい足し的に使うときのカンペ。</p>
+
+<pre><code class="language-sh">$ awk '[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]'
+</code></pre>
+
+<ul>
+<li>BEGIEN, END, パターンは省略できる("[]"でくくったもの)</li>
+<li>例は以下。アクセスログのステータスコードが200のものを出力</li>
+</ul>
+
+<pre><code>awk '$4 == &quot;200&quot; {print $4,$5}'# $4が200のとき、$4,$5を表示
+awk '$4 != &quot;200&quot; { print }'   # $4が200でないとき、1行まるごと表示
+awk '$4 ~ /200/ { print }'    # $4が200のとき、1行まるごと表示(正規表現)
+awk '$1 ~ /^a/ { print}'      # $1が&quot;a&quot;で始まるとき、表示(正規表現)
+awk '$1 !~ /^a/{ print}'      # $1が&quot;a&quot;以外で始まるとき、表示(正規表現)
+</code></pre>
+
+<p>(例)</p>
+
+<pre><code class="language-sh">$ cat access.log | awk '$4 = &quot;200&quot; {print $5$6}' | sed 's/\&quot;//g'
+</code></pre>
+
+<h1 id="デリミタを変更するには">デリミタを変更するには</h1>
+
+<p>Fオプションを使用する。カンマの場合は以下のとおり。</p>
+
+<pre><code class="language-sh">cat access.log | awk -F , '$4 = &quot;200&quot; {print $5$6}' | sed 's/\&quot;//g'
+</code></pre>
+
+<h1 id="マッチした文字列だけを表示">マッチした文字列だけを表示</h1>
+
+<p>文字列の中から数字部分を取りだす場合は以下のとおり。</p>
+
+<pre><code class="language-sh">$ gawk '{print gensub(/(.*)([0-9]+)(.*)/,&quot;\\2&quot;,&quot;&quot;)}'
+</code></pre>
+
+<ul>
+<li>gensubのgenは汎用からきている。</li>
+<li>第1引数：正規表現</li>
+<li>第2引数：置換文字列。ここでは後方参照の2番目として「\\2」を指定している。</li>
+<li>第3引数：g/Gを指定した場合、マッチするすべてを置換する。それ以外の場合は最初だけ置換する。</li>
+</ul>
+
+<p>マッチしたい部分とさせたくない部分を正規表現でグルーピングし、
+マッチしたグループだけで後方参照で置換することで、
+マッチさせた文字列だけを表示できる。</p>
+
+<h1 id="タブを出力する例">タブを出力する例</h1>
+
+<p>整形する際、区切り文字としてタブを出力したい場合の例。</p>
+
+<pre><code class="language-sh">$ cat hoge.txt |awk '{print $1&quot;\t&quot;$2}'
+</code></pre>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>http://d.hatena.ne.jp/Rocco/20071120/p6</li>
+<li>http://www.kt.rim.or.jp/~kbk/gawk-30/gawk_13.html</li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

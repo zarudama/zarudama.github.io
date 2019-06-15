@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">JVMのヒープサイズと変更方法</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
+
+<h1 id="jvmの初期ヒープサイズ">JVMの初期ヒープサイズ</h1>
+
+<p>JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、
+初期割り当てのヒープサイズが異なる。</p>
+
+<p>サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。</p>
+
+<pre><code class="language-sh">$ java -version
+java version &quot;*****&quot;
+Java(TM) SE Runtime Environment (build ******)
+Java HotSpot(TM) Server VM (build ******)
+</code></pre>
+
+<p>Severモードの場合は、 <code>Server</code> の表記があるはず。</p>
+
+<ul>
+サーバーモード
+| 初期ヒープサイズ | マシンの物理メモリーの 1/64 か、妥当な最小サイズかの大きい方。 |
+| 最大ヒープサイズ | 物理メモリーの 1/4 か、1GB かの小さい方。                      |
+<li>http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html</li>
+</ul>
+
+<h1 id="jvmの稼動時のヒープサイズ">JVMの稼動時のヒープサイズ</h1>
+
+<p>JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。</p>
+
+<pre><code class="language-sh">$ sudo jstat -gc 28905
+ S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT
+127552.0 137152.0  0.0   68410.3 224000.0 107742.6  996736.0   113947.3  61440.0 61324.8      7    1.323   1      0.045    1.368
+</code></pre>
+
+<p>割りあてられた容量を見るには、*Cのサイフィックス、使用量を見るには、*Uのサフィックスに着目する(単位はKb)。</p>
+
+<table>
+<tbody>
+<tr>
+<td>S0C</td>
+<td>S1C</td>
+<td>S0U</td>
+<td>S1U</td>
+<td>EC</td>
+<td>EU</td>
+<td>OC</td>
+<td>OU</td>
+<td>PC</td>
+<td>PU</td>
+<td>YGC</td>
+<td>YGCT</td>
+<td>FGC</td>
+<td>FGCT</td>
+<td>GCT</td>
+</tr>
+
+<tr>
+<td>127,552.0</td>
+<td>137,152.0</td>
+<td>0.0</td>
+<td>68,410.3</td>
+<td>224,000.0</td>
+<td>107,742.6</td>
+<td>996,736.0</td>
+<td>113,947.3</td>
+<td>61,440.0</td>
+<td>61,324.8</td>
+<td>7</td>
+<td>1.323</td>
+<td>1</td>
+<td>0.045</td>
+<td>1.368</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>容量(概算)
+S0C + S1C + EC + OC + PC = 127 + 137 + 224 + 996
+</code></pre>
+
+<p>この場合、ヒープ領域の合計は、約1,484MBとなる。</p>
+
+<p>ここで注意が必要なのは、ヒープ領域はnew演算子で割りあてられる領域であるということ。</p>
+
+<p>プログラムがロードされる領域であるPermanent領域は、
+ヒープ領域とは別に管理される場所なので注意が必要。
+上記の場合、Permanent領域は、PCの61MBとなる。
+(Permanent領域のデフォルトサイズは、64MB)</p>
+
+<h1 id="ヒープサイズの変更方法">ヒープサイズの変更方法</h1>
+
+<p>ヒープ領域は、次のオプションで変更できる。</p>
+
+<p>例)</p>
+
+<pre><code class="language-sh">-Xms1024m -Xmx1024m
+</code></pre>
+
+<p>上記オプションには、プログラム格納用の領域のPermanet領域は割り当てられないので注意が必要である。
+Permanet領域はデフォルトで64MBのようなので、プログラムサイズが足りないときは増やす必要がある。
+この値は、次のオプションで変更できる。</p>
+
+<p>例)</p>
+
+<pre><code class="language-sh">-XX:MaxPermSize=128m
+</code></pre>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</li>
+<li>http://www.hitachi.co.jp/Prod/comp/soft1/manual/cosmi/v0900/03Y0401D/EY040134.HTM#ID00610</li>
+<li>http://nori3tsu.hatenablog.com/entry/2014/01/11/144927</li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">OracleJava 1.5以降のはなし <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

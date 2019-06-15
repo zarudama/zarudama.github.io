@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on My New Hugo Site</title>
+    <link>http://example.org/tags/</link>
+    <description>Recent content in Tags on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jul 2014 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>clojure</title>
+      <link>http://example.org/tags/clojure/</link>
+      <pubDate>Sun, 27 Jul 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/clojure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emacs</title>
+      <link>http://example.org/tags/emacs/</link>
+      <pubDate>Mon, 07 Jul 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tmux</title>
+      <link>http://example.org/tags/tmux/</link>
+      <pubDate>Sat, 21 Jun 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/tmux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cygwin</title>
+      <link>http://example.org/tags/cygwin/</link>
+      <pubDate>Fri, 20 Jun 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/cygwin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
+      <link>http://example.org/tags/windows/</link>
+      <pubDate>Wed, 16 Apr 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>http://example.org/tags/vim/</link>
+      <pubDate>Fri, 04 Apr 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>awk</title>
+      <link>http://example.org/tags/awk/</link>
+      <pubDate>Tue, 25 Mar 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/awk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>http://example.org/tags/linux/</link>
+      <pubDate>Tue, 25 Mar 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>http://example.org/tags/ssh/</link>
+      <pubDate>Sat, 22 Dec 2012 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gamedev</title>
+      <link>http://example.org/tags/gamedev/</link>
+      <pubDate>Wed, 09 Nov 2011 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hamari</title>
+      <link>http://example.org/tags/hamari/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/hamari/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>http://example.org/tags/java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jvm</title>
+      <link>http://example.org/tags/jvm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/jvm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>libGDX</title>
+      <link>http://example.org/tags/libgdx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/libgdx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>libGDX入門</title>
+      <link>http://example.org/tags/libgdx%E5%85%A5%E9%96%80/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/libgdx%E5%85%A5%E9%96%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>misaki</title>
+      <link>http://example.org/tags/misaki/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/misaki/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>skk ubuntu</title>
+      <link>http://example.org/tags/skk-ubuntu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/skk-ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thinkpad</title>
+      <link>http://example.org/tags/thinkpad/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/thinkpad/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

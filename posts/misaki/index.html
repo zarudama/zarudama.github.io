@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <p>年末から地味につくっていた <a href="https://github.com/liquidz/misaki" title="Misaki">Misaki</a> のプラグインですが、
+ひととおり欲しい機能の実装を終えたので、github公開しました。
+Emacs <a href="http://orgmode.org/ja/" title="org-mode">org-mode</a> で記事を書けるBlogジェネレータです。</p>
+
+<ul>
+<li>https://github.com/mikio/misaki-orgmode</li>
+<li><a href="http://mikio.github.io/misaki-orgmode/" title="デモ">デモ</a></li>
+- 
+org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います
+(Misaki-orgmodeは、Blogに特化しているわけではないので、
+静的サイトジェネレータとしても使えます)。
+</ul>
+
+<p><a href="https://github.com/liquidz/misaki" title="Misaki">Misaki</a> をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。
+実装にあたっては、<a href="https://github.com/liquidz/misaki-markdown" title="misaki-markdown">misaki-markdown</a> を参考にしました(というかほぼまるパクリですが…)。
+Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。
+デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、
+シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。
+また、このブログ自体、Misaki-orgmodeで生成しており、こちらは <a href="http://purecss.io/" title="Pure">Pure</a> というCSSフレームワークを使用しています。</p>
+
+<p>本ブログ「ざるだましい」はもともと <a href="https://github.com/renard/o-blog" title="o-blog">o-blog</a> というツールを使用していました。
+このツールは大変使いやすかったのですが、1ファイルでの運用を強制されるのと、
+Clojureプログラミングをしたいという理由からMisakiに乗り換えました。</p>
+
+<ul>
+現状では、Emacsによるインターフェースがないので
+記事ファイルが増えた場合は管理が大変ですが、
+ゆくゆくは下記で紹介されている <code>org-octopress</code> のようなツールを作りたいと思っています。
+<li>http://quickhack.net/nom/blog/2013-05-01-org-octopress.html</li>
+</ul>
+
+<p>org-modeをブログに利用していみたいかたは一考してみてください。</p>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+ざるだましいのロゴに使用しているフォント
+<li>http://www.hogera.com/pcb/font/catalog/</li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cygwin on My New Hugo Site</title>
+    <link>http://example.org/tags/cygwin/</link>
+    <description>Recent content in cygwin on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Jun 2014 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/cygwin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>apt-cygがうまくいかなくなった。</title>
+      <link>http://example.org/posts/apt-cyg-bug/</link>
+      <pubDate>Fri, 20 Jun 2014 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/apt-cyg-bug/</guid>
+      <description>はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。 これは、ubuntuでいう apt-get のようなものです。標準のsetup.exeはGUIベースで 操作が面倒なので、apt-cygを導入すると非常に捗ります。
+2014/06/23 追記 ここから
+最新のapt-cygでは、下記の問題は全て解決されています。 古いapt-cygを利用してる方は、最新のapt-cygをチェックしてください。 (間違った内容の記事を載せてしまいました。申し訳ありません)
+2014/06/23 追記 ここまで
+そんなapt-cygですが、最近は更新が滞ってるらしく、最新のCygwinではうまく動きません。
+ 2013/08にリポジトリパスの変更があった それに伴い、apt-cygが動かなくなった。 さらに2013/10時点で、リポジトリ内のアーカイブ内のフォーマットの変更もあった模様 tar.bz2から、tar.xzなどに変更になった模様。詳細は不明。 インストールできるパッケージとできないパッケージが発生。 上記変更点をサポートするapt-cygは以下(本家はメンテされていない。。。) https://github.com/zship/apt-cyg  といった感じです。
+対応方法 2014/06/23 追記
+対応方法は、本家最新版を利用すれば問題ありませんので、削除しました。</description>
+    </item>
+    
+    <item>
+      <title>cygwinでssh接続できない</title>
+      <link>http://example.org/posts/parma-link/cygwinssh/</link>
+      <pubDate>Sat, 22 Dec 2012 14:01:39 +0900</pubDate>
+      
+      <guid>http://example.org/posts/parma-link/cygwinssh/</guid>
+      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定し てる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成でき ないと怒られてしまう。
+$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &#39;/home/mikio/.ssh&#39;.   この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。 http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
+debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try.</description>
+    </item>
+    
+    <item>
+      <title>cygwinでsvn upgradeに失敗する。</title>
+      <link>http://example.org/posts/parma-link/cygwinsvn-upgrade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/parma-link/cygwinsvn-upgrade/</guid>
+      <description>本格的にcygwinをputty代替として使っていく気になったので、Subversionに関 してもTortoiseSVNからcygwin版のSubversionを使用することにした。
+apt-cyg install subversion  インストール後、今まで使用していたリポジトリで svn status を実行したら、upgradeしろと言われたので してみたところ、下記のエラーが。
+$ svn upgrade svn: E200029: Couldn&#39;t perform atomic initialization svn: E200030: SQLite compiled for 3.7.13, but running with 3.7.3  ぐぐってみたところ、TortoiseSVNがSQLite3を使用しているのが原因のようだっ たので、TortoiseSVNを削除してらリトライ。でも変化せず。
+$ sqlite3 SQLite header and source version mismatch 2010-10-08 02:34:02 2677848087c9c090efb17c1893e77d6136a9111d 2012-06-11 02:05:22 f5b5a13f7394dc143aa136f1d4faba6839eaa6dc  ソースと実行ファイルでバージョンの不一致がおこっている模様。でもソース からビルドした記憶はないんだけどなぜだろう。 よくわからないので、 apt-cyg find sqlite3 して関連するパッケージを調べて全て削除した。
+$ apt-cyg remove libsqlite3-devel libsqlite3_0 odbc-sqlite3 sqlite3 sqlite3-debuginfo Removing libsqlite3-devel Package libsqlite3-devel removed Removing libsqlite3_0 Package libsqlite3_0 removed Package odbc-sqlite3 is not installed, skipping Removing sqlite3 Package sqlite3 removed  そして、再インストール。</description>
+    </item>
+    
+    <item>
+      <title>cygwin経由で表示したtmuxの分割罫線が表示崩れする</title>
+      <link>http://example.org/posts/parma-link/cygwintmux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/parma-link/cygwintmux/</guid>
+      <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善 せず、ならばとtmuxのバージョンを最新にしても直らず、結局cyg-terminalの オプションでTextの設定を下記のように変更したら、表示崩れが解消した。
+変更前 Locale:JA_jp CharacterSet:UTF-8 変更後 Locale:C CharacterSet:UTF-8  </description>
+    </item>
+    
+  </channel>
+</rss>

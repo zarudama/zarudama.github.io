@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title ファイルオープン数が上限値に達した -->
+<!-- @date 2013-3-2  -->
+<!-- @tag linux -->
+<!-- @output /article/2013/03/02_.html -->
+<!-- これの検証も必要 -->
+<!-- cat /proc/`pgrep httpd | head -1`/limits | grep 'open files' -->
+
+<p>CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。</p>
+
+<ul>
+下記を参考にした。
+<li>http://thinkit.co.jp/free/tech/23/5</li>
+<li>http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html</li>
+</ul>
+
+<h1 id="確認方法">確認方法</h1>
+
+<p>ファイル上限値の確認コマンドは以下。</p>
+
+<pre><code class="language-sh">$ cat /proc/sys/fs/file-nr
+1792    0       566699
+</code></pre>
+
+<ul>
+左から順に
+<li>今までにオープンしたことのあるファイルの最大数</li>
+<li>現在オープンしているファイルの総数</li>
+<li>オープン可能なファイル数の上限</li>
+となる。
+</ul>
+
+<h1 id="一時的な設定方法">一時的な設定方法</h1>
+
+<h2 id="システム全体">システム全体</h2>
+
+<p>現状のファイルディスクリプタの上限値を確認</p>
+
+<pre><code class="language-sh">$ cat /proc/sys/fs/file-nr
+1792    0       566699
+</code></pre>
+
+<p>一時的にファイルディスクリプタの上限値を変更する。</p>
+
+<pre><code class="language-sh">$ /sbin/sysctl -w fs.file-max = 1234567
+</code></pre>
+
+<p>設定値の確認</p>
+
+<pre><code class="language-sh">$ cat /proc/sys/fs/file-nr
+1216    0       1234567
+</code></pre>
+
+<h2 id="ユーザ毎-カレントユーザ">ユーザ毎(カレントユーザ)</h2>
+
+<p>現在のセッション(自分が起動したプロセス)に対して、
+ファイルディスクリプタ上限値を設定するには、 <code>ulimit</code> を使用する。</p>
+
+<p>ulimitはユーザに対していろいろな制限を設定するコマンド。
+ulimit -a で全ての設定値を確認できる。</p>
+
+<pre><code class="language-sh">$ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 114688
+max locked memory       (kbytes, -l) 32
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 10240
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 114688
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+</code></pre>
+
+<p>ファイルディスクリプタの上限値を設定するには、 <code>ulimit -n N</code> でファイルディスクリプタ上限をN個に変更できる。</p>
+
+<p>まず現状のファイルディスクリプタの上限値を確認する。</p>
+
+<pre><code class="language-sh"># (open filesが該当)
+$ ulimit -n
+1024
+</code></pre>
+
+<p>下記は、Nを2048個にする例。</p>
+
+<pre><code class="language-sh">$ ulimit -n 2048
+-bash: ulimit: open files: cannot modify limit: 許可されていない操作です
+$ sudo ulimit -n 2048
+sudo: ulimit: command not found
+</code></pre>
+
+<p>残念ながら一般ユーザ実行すると失敗する(sudoでも実行できない)。
+rootユーザで実行しなくてはならない。</p>
+
+<pre><code class="language-sh">$ sudo su
+# ulimit -n 2048
+$ ulimit -n
+2048
+</code></pre>
+
+<p>ただし直接rootになることは禁止されている環境も多いため、実質この方法は実施できない。</p>
+
+<h1 id="恒久的な設定方法">恒久的な設定方法</h1>
+
+<p>一時的な方法では、OSを再起動すると初期値に戻ってしまう。
+これを防ぐためには、設定ファイルに直接記述する。</p>
+
+<dl>
+設定対象のファイルは以下のとおり。
+<dt>/etc/sysctl.conf</dt>
+<dd>システム全体のファイルオープン数</dd>
+<dt>/etc/security/limits.conf</dt>
+<dd>アカウント毎のファイルオープン数</dd>
+</dl>
+
+<p>設定前にバックアップしておく。</p>
+
+<pre><code class="language-sh">sudo cp /etc/security/limits.conf /etc/security/limits.conf.orig
+sudo cp /etc/sysctl.conf /etc/sysctl.conf.orig
+</code></pre>
+
+<h3 id="sysctl-conf">sysctl.conf</h3>
+
+<p>まず現在値を確認。</p>
+
+<pre><code class="language-sh">$ cat /proc/sys/fs/file-nr
+1792    0       566699
+</code></pre>
+
+<p>sysctl.confを編集。</p>
+
+<pre><code class="language-sh">$ sudo vi /etc/sysctl.conf
+fs.file-max = 1232457
+# FORMAT
+# fs.file-max = N :システム全体のファイルディスクリプタの上限
+# kernel.threads-max = N :システム全体のプロセス数の上限
+</code></pre>
+
+<p>設定ファイルの内容を反映させる。</p>
+
+<pre><code class="language-sh">$ sudo /sbin/sysctl -p
+</code></pre>
+
+<p>変更を確認。</p>
+
+<pre><code class="language-sh">$ cat /proc/sys/fs/file-nr
+1792    0       1234567
+</code></pre>
+
+<p>ちなみに上限値は下記でも確認できる。</p>
+
+<pre><code class="language-sh">$ /sbin/sysctl fs.file-max
+fs.file-max = 593544
+</code></pre>
+
+<h3 id="limits-conf">limits.conf</h3>
+
+<ul>
+注意点として、limits.confに設定した値は、ログインしないdameonプロセスには効かないとのこと。
+<li>http://yumewaza.yumemi.co.jp/2010/07/limitsconf.html</li>
+/etc/init.d/配下から起動する場合は、その起動スクリプト内に ulimit -n <num> を記述する必要がある。
+</ul>
+
+<p>limits.confは設定値は、ログインしたユーザのセッション内で有効になる。</p>
+
+<pre><code class="language-sh">$ sudo vi /etc/security/limits.conf
+mikio soft nofile 2048
+mikio hard nofile 2048
+# FORMAT
+# &lt;USER&gt; &lt;soft|hard&gt; &lt;nofile|noproc&gt; &lt;設定数&gt;
+# soft:一般ユーザが設定可能な上限値(ulimit -nのことかな？)
+# hard:ルートユーザが設定可能な上限値
+# nofile: ファイルディスクリプタの上限値
+# noproc: プロセス(スレッド)の上限値
+</code></pre>
+
+<p>すぐに反映させるには、一度ログアウトして、そこから対象プロセス(tomcatやapache)を再起動する。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

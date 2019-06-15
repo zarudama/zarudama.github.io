@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title"></h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <!-- @layout post -->
+<!-- @title howm-modeとorg-modeを同時に使ってみたい。 -->
+<!-- @date 2012-9-28  -->
+<!-- @tag emacs -->
+
+<p>しばらくメモ管理は、org-modeのみで運用してきた。
+ブログの下書きも blog.orgという1ファイルのみで運用している
+(これはo-blogというelispが1ファ イルのみのサポートなため。
+複数ファイルでの運用方法もあるかもしれないが未確認。
+結果、ポケットひとつの原則に従うことになりすごくやりやすい)。</p>
+
+<p>しかしさすがに内容が増えてくると管理がきつくなってくるし、
+将来的には Clojure版JykyllのMisakiに移行したいと考えているので、
+そろそろhowmにも手を出してみようかなと。</p>
+
+<p>howmにもリンク機能やTODO機能があるが、
+これらはorg-modeにもあるのでそのまま継続するとして、
+howmに任せたいのはファイル管理。
+ファイル自体を意識せずにどんどんメモが取れる環境が理想。</p>
+
+<h1 id="やること">やること</h1>
+
+<ul>
+<li>拡張子は.howmと.orgどちらにするか。</li>
+<li>→howmの機能は主にファイル管理に使用する予定なのと、改宗したときに.howmだと面倒なので.orgでいく。</li>
+<li>→howmディレクトリをつくってその配下のファイルはすべてhome-modeにしたほうがいいのかも。</li>
+<li>→.elも.txtも.orgもすべてhowmで管理。だけどタイトルの仕切りは？</li>
+<li>日報をhowmでうまいこと管理したい。</li>
+<li>→repotディレクトリとか作る？</li>
+<li>orgのtagによるマッチ機能があれば、howmを使う必要もないかも？</li>
+</ul>
+
+<h1 id="影響されたサイト">影響されたサイト</h1>
+
+<ul>
+<li><a href="http://yamadawindsurf.blogspot.jp/" title="Evernote vs Emacs+howm+org+Dropbox">Evernote vs Emacs+howm+org+Dropbox</a></li>
+<li>完全同意です。evernoteは流行り始めたころは使ってましたが、</li>
+   emacsとの連携がしづらいのでいつのまにか使わなくなってしまいました。
+</ul>
+
+<ul>
+<li><a href="http://techwave.jp/archives/51465161.html" title="emacsだけで書上げた書籍…翔泳社「ツイッター情報収集術」のつくり方(2) 執筆環境編【増田(maskin)真樹】">emacsだけで書上げた書籍…翔泳社「ツイッター情報収集術」のつくり方(2) 執筆環境編【増田(maskin)真樹】</a></li>
+<li>すごいですね。この方のノウハウをぜひ聞いてみたいです。</li>
+</ul>
+
+<ul>
+<li><a href="http://kinjo.github.com/hago16-emacs/" title="My life on Emacs">My life on Emacs</a></li>
+<li>org-modeとhowmを同時に使用するというのはこの方の資料を拝見して初めて気づきました。</li>
+   howmをサンプルプログラムと日報に活用ってところが詳しくしりたいです。
+</ul>
+
+<ul>
+<li><a href="http://yono05.wordpress.com/2011/11/23/emacs-org-mode-howm-mobileorg-dropbox-%E3%81%A7%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%81%9F/" title="Emacs + Org-mode + howm + MobileOrg + Dropbox でテキスト管理環境を構築した">Emacs + Org-mode + howm + MobileOrg + Dropbox でテキスト管理環境を構築した</a></li>
+<li>MobileOrgもぜひ活用したいと思っているのですが、まだできてないですね。。。</li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

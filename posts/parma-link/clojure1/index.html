@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        <ul class="pure-menu-list">
+            
+            
+                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
+            
+            
+            
+                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
+            
+            
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">Clojureでゲームプログラミングその1 実験編</h1>
+  <div>
+      
+  </div>
+  <div>
+        <article id="content">
+           <h1 id="はじめに">はじめに</h1>
+
+<p>LispでGAMEつくろうかなと。
+最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに
+後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。</p>
+
+<ul>
+とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
+<li>ウィンドウ表示</li>
+<li>画像表示</li>
+<li>メインループの実現</li>
+<li>画像移動</li>
+</ul>
+
+<p>もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。
+ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。
+しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。</p>
+
+<h1 id="ウィンドウ表示">ウィンドウ表示</h1>
+
+<p>ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。</p>
+
+<p>(import (javax.swing JFrame))
+(def frame (JFrame. "Clojure SampleGame")) 
+(doto frame
+(.setSize 640 480)
+  (.setVisible true))</p>
+
+<p>でた。簡単すぎる！結構感動します。</p>
+
+<p><a href="http://mikio.github.io/img/clojure-game01/01.png" title="http://mikio.github.io/img/clojure-game01/01.png">http://mikio.github.io/img/clojure-game01/01.png</a></p>
+
+<p>次は画像を表示してみる。</p>
+
+<h1 id="画像表示">画像表示</h1>
+
+<p>まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。</p>
+
+<p>java.awt.image.BufferedImage bimage;
+image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
+
+<p>下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。</p>
+
+<p><a href="http://mikio.github.io/img/clojure-game01/gai.png" title="http://mikio.github.io/img/clojure-game01/gai.png">http://mikio.github.io/img/clojure-game01/gai.png</a></p>
+
+<p>画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。
+外部ファイルはプロジェクトルートからの相対パスでOKのようである。</p>
+
+<p>(import (java.awt.image BufferedImage))
+(import (javax.imageio ImageIO))
+(import (java.io File))
+(def image (ImageIO/read (File. "gai.png")))</p>
+
+<p>とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。</p>
+
+<p>(import (java.awt Graphics))
+(def graphics (.. frame (getGraphics)))
+(doto graphics
+  (.drawImage image 0 0 frame))</p>
+
+<p>でた！</p>
+
+<p><a href="http://mikio.github.io/img/clojure-game01/02.png" title="http://mikio.github.io/img/clojure-game01/02.png">http://mikio.github.io/img/clojure-game01/02.png</a></p>
+
+<p>線もかけたよ。</p>
+
+<p>(.. graphics (drawLine 0 0 640 480))</p>
+
+<p><a href="http://mikio.github.io/img/clojure-game01/03.png" title="http://mikio.github.io/img/clojure-game01/03.png">http://mikio.github.io/img/clojure-game01/03.png</a></p>
+
+<p>ところでこれまでの画像表示はタイトルバーにめり込んでしまっている。
+これは描画命令の座標原点が、ウィンドウそのもの左上を原点としているためである。
+これを回避するには、Graphics#translateを呼び出す。</p>
+
+<h1 id="位置調整">位置調整</h1>
+
+<p>ずれの原因であるタイトルバーや枠お情報は、java.awt.Insetsとういクラスに格納されている。
+これはJframe#getInsetsメソッドで取得でいるので、束縛しておく。</p>
+
+<p>(def insets (.. frame getInsets))</p>
+
+<p>確認。それっぽい値が入っている。</p>
+
+<p>user> insets
+#<Insets java.awt.Insets[top=24,left=1,bottom=5,right=1]></p>
+
+<p>では、このinsetsを使って描画用原点をずらしてみる。</p>
+
+<p>(.. frame (setVisible true))
+(.. graphics (translate (.. insets left) (.. insets top)))
+(.. graphics (clearRect 0 0 640 480))
+(.. graphics (drawImage image 0 0 frame))</p>
+
+<p><a href="http://mikio.github.io/img/clojure-game01/04.png" title="http://mikio.github.io/img/clojure-game01/04.png">http://mikio.github.io/img/clojure-game01/04.png</a></p>
+
+<p>これで左上原点が、ずれていい具合に表示された。</p>
+
+<p>insentsを利用したついでに説明。
+実はウィンドウサイズで640x480を指定しているけれども、
+タイトルバーや枠のサイズがあるため、描画領域は640x480よりもちょっと小さい。
+なので、例えば640x480ちょうどのサイズの画像を表示しようとしても少し切れてしまったりする。
+ということで、insentsを利用して描画領域が純粋に640x480似なるように調整する。</p>
+
+<p>(doto frame
+    (.setSize (+ 640 (.. insets left) (.. insets right)) (+ 480 (.. insets top) (.. insets bottom)))
+    (.setVisible true))</p>
+
+<p>以上で描画領域の細かい調整が完了した。</p>
+
+<h1 id="画像の一部を表示したい">画像の一部を表示したい</h1>
+
+<p>ところで、現状だとアニメパターンがすべて表示されていてみっともないので
+一部だけを表示したい。
+この要件を満たすには、Graphics#DrawImageで下記のように引数を指定すれば良い。</p>
+
+<p>(.drawImage
+ 	image   ;; 描画画像
+	0 0     ;; 転送先の左上座標
+	32 32   ;; 転送先の右下座標
+	0 0     ;; 画像元の左上座標
+	32 32   ;; 画像元の右下座標
+ 	frame)  ;; 描画対象</p>
+
+<p>(import java.awt.Color)
+(def clear-color (Color. 0 0 127))</p>
+
+<p>(let [g (.. frame (getGraphics))]
+  (doto g
+    (.translate (.. insets left) (.. insets top))
+    (.setColor clear-color)
+    (.fillRect 0 0 640 480)
+    (.drawImage image
+                0 0 32 32
+                0 0 32 32
+                frame)
+    (.dispose)))</p>
+
+<p><a href="http://mikio.github.io/img/clojure-game01/05.png" title="http://mikio.github.io/img/clojure-game01/05.png">http://mikio.github.io/img/clojure-game01/05.png</a></p>
+
+<p>なんども描画してると、前の画像が残って確認しづらいので
+描画前にクリアカラーで塗りつぶしている。
+ついでにグラフィックオブジェクトもその都度破棄するようにした。</p>
+
+<h1 id="メインループの実現">メインループの実現</h1>
+
+<p>つぎはゲームのかなめ、メインループを実現してみる。
+メインループの実現方法にはにはいろいろあけれども
+とりあえず動かすことが目的なので、
+実装が簡単そうなjava.util.TimerTaskを使用してみる。</p>
+
+<p>Clojureで継承が必要なJavaクラスを使うには、proxyを使う。
+以下のようにTimerTaskを継承したクラスをつくる。</p>
+
+<p>(import (java.util Timer TimerTask))
+(import (java.util TimerTask))
+(def mainloop
+  (proxy [TimerTask] []
+    (run []
+      (println "呼びだされた"))
+    ))</p>
+
+<p>テストしてみる。</p>
+
+<p>user> (.. mainloop run) 
+呼びだされた
+nil</p>
+
+<p>うまくいっているようである。</p>
+
+<p>続いてTimeクラスにmainloopを渡してみる。これがはまった。</p>
+
+<p>user> (.. (Timer.) schedule mainloop 0 500)</p>
+
+<p>Malformed member expression
+  [Thrown class java.lang.IllegalArgumentException]</p>
+
+<p>Restarts:
+ 0: [QUIT] Quit to the SLIME top level</p>
+
+<p>Backtrace:
+  0: clojure.lang.Compiler$HostExpr$Parser.parse(Compiler.java:825)
+  1: clojure.lang.Compiler.analyzeSeq(Compiler.java:5369)</p>
+
+<p>「Malformed member expression」の原因がわからなくてかなりはまった。
+ぐぐった結果、javaのlong型を引数として渡すときは、long関数を呼び出す必要があることがわかった。</p>
+
+<p>user> (.. (Timer.) schedule mainloop (long 0) (long 500))
+No matching field found: schedule for class java.util.Timer
+  [Thrown class java.lang.IllegalArgumentException]</p>
+
+<p>Restarts:
+ 0: [QUIT] Quit to the SLIME top level</p>
+
+<p>Backtrace:
+  0: clojure.lang.Reflector.getInstanceField(Reflector.java:245)
+  1: clojure.lang.Reflector.invokeNoArgInstanceMember(Reflector.java:267)</p>
+
+<p>とここでまたエラー。でまたぐぐった結果、メソッドの呼び出し方が間違っていたorz。
+scheduleをカッコでくくらないと駄目らしい。</p>
+
+<p>user> (.. (Timer.) (schedule mainloop (long 0) (long 500)))
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+呼びだされた
+nil</p>
+
+<p>ということでやっとTimerクラスにTimerタスクで作ったメインループを渡すことができた。ふぅ。
+次は画像を動かしてみる。</p>
+
+<h1 id="画像の移動">画像の移動</h1>
+
+<p>いよいよ画像に魂を与えるw。その為には状態を管理しなければならない。座標だ。
+Clojureはデフォルトでは値を更新できない。これを変更するためには特別な定義が必要。
+スレッドを使う予定は今のところ無いので、扱いの簡単そうなatomを使用してみる。</p>
+
+<p>;; プレイヤー定義
+(def player (atom {:pos [0 0]}))</p>
+
+<p>こんな感じで参照できる。</p>
+
+<p>user> (@player :pos)
+[0 0]
+user></p>
+
+<p>x座標は配列の0番目</p>
+
+<p>user> (nth (@player :pos) 0) 
+0</p>
+
+<p>y座標は配列の1番目</p>
+
+<p>user> (nth (@player :pos) 1) 
+0</p>
+
+<p>playerの座標を更新してみる。</p>
+
+<p>user> player
+#<Atom@2a134eca: {:pos [0 0]}></p>
+
+<p>;; 変更
+user> (swap! player assoc :pos [0 1])
+{:pos [0 1]}</p>
+
+<p>;; たしかに更新された
+user> player
+#<Atom@2a134eca: {:pos [0 1]}></p>
+
+<p>x座標を更新させる</p>
+
+<p>user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+{:pos [1 1]}
+user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+{:pos [2 1]}
+user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+{:pos [3 1]}
+user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+{:pos [4 1]}</p>
+
+<p>ではここまでの移動処理を組み込む。</p>
+
+<p>(def mainloop
+  (proxy [TimerTask] []
+    (run []
+      (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1]) ;; 座標更新
+      (if (< 640 (nth (@player :pos) 0))
+             (swap! player assoc :pos [0 0]))</p>
+
+<p>(let [g (.. frame (getGraphics))
+            player-x (nth (@player :pos) 0)
+            player-y (nth (@player :pos) 1)]</p>
+
+<p>(doto g
+          (.translate (.. insets left) (.. insets top))
+          (.setColor clear-color)
+          (.fillRect 0 0 640 480)
+          (.drawImage image
+                      player-x player-y
+                      (+ player-x 32) (+ player-y 32)
+                      0 0 32 32
+                      frame)
+          (.dispose))))))</p>
+
+<p>定義したメインループを20ms間隔で呼び出す。</p>
+
+<p>(.. (Timer.) (schedule mainloop (long 0) (long 20)))</p>
+
+<p><div class="youtube">
+<iframe src="http://www.youtube.com/embed/T4LLkAqETLQ?hl=ja&fs=1" frameborder="0" allowfullscreen></iframe>
+</div></p>
+
+<p>画面がちらつきというか、画像が点滅していて話にならない。
+次はこのチラツキを抑えるために java.awt.image.BufferStrategyを使ってみる。</p>
+
+<h1 id="ちらつき防止対策">ちらつき防止対策</h1>
+
+<p>下記のようにJFrame#setIgnoreRepaint, JFrame#createBufferStrategyを呼び出しバッファの準備をする。
+この時注意すべきは、JFrame#createBufferStrategyはJFrame#setVisibleのあとに呼び出さなければならないこと。</p>
+
+<p>(doto frame
+    (.setSize (+ 640 (.. insets left) (.. insets right)) (+ 480 (.. insets top) (.. insets bottom)))
+    (.setVisible true)
+    (.setIgnoreRepaint true) ;; ウィンドウの再描画を無効に(BufferStrategyを使うので)
+    (.createBufferStrategy 2) ;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる
+    )
+;; バッファ作成
+(def buffer (.. frame (getBufferStrategy)))</p>
+
+<p>bufferを使って以下のように呼び出し。TimerTaskクラスオブジェクトは都度生成できるように関数化しておいた。</p>
+
+<p>(defn create-mainloop
+  []
+  (proxy [TimerTask] []
+    (run []
+      (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1]) ;; 座標更新
+      (if (< 640 (nth (@player :pos) 0))
+             (swap! player assoc :pos [0 0]))</p>
+
+<p>(if (not (.. buffer (contentsLost)))
+        (let [g (.. buffer (getDrawGraphics))
+              player-x (nth (@player :pos) 0)
+              player-y (nth (@player :pos) 1)]
+          (doto g
+            (.translate (.. insets left) (.. insets top))
+            (.setColor clear-color)
+            (.fillRect 0 0 640 480)
+            (.translate (.. insets left) (.. insets top))
+            (.drawImage image
+                        player-x player-y
+                        (+ player-x 32) (+ player-y 32)
+                        0 0 32 32
+                        frame)
+            (.dispose))
+          (.. buffer (show))
+          )))))</p>
+
+<p><div class="youtube">
+<iframe src="http://www.youtube.com/embed/3mO4EUh9cl0?hl=ja&fs=1" frameborder="0" allowfullscreen></iframe>
+</div></p>
+
+<p>最終的なコード。</p>
+
+<p>(ns hello-cube.core)</p>
+
+<p>(import (javax.swing JFrame))
+(import (java.util Timer TimerTask))
+(import (java.awt Graphics Color))
+(import (java.awt.image BufferedImage))
+(import (javax.imageio ImageIO))
+(import (java.io File))</p>
+
+<p>(def clear-color (Color. 0 0 127))
+(def frame (JFrame. "Clojure Sample Game")) 
+(def image (ImageIO/read (File. "gai.png"))) ;; 画像読み込み
+(def player (atom {:pos [0 0]}))</p>
+
+<p>;; 枠を考慮してサイズ指定
+(doto frame
+    (.setVisible true)
+    (.setIgnoreRepaint true) ;; ウィンドウの再描画を無効に(BufferStrategyを使うので)
+    (.createBufferStrategy 2) ;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる
+    )</p>
+
+<p>;; バッファ作成
+(def buffer (.. frame (getBufferStrategy)))
+(def insets (.. frame getInsets))  ;; ウィンドウを表示してから出ないと値が入らない。</p>
+
+<p>(doto frame
+    (.setSize (+ 640 (.. insets left) (.. insets right)) (+ 480 (.. insets top) (.. insets bottom))))</p>
+
+<p>(defn create-mainloop
+  []
+  (proxy [TimerTask] []
+    (run []
+      (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1]) ;; 座標更新
+      (if (< 640 (nth (@player :pos) 0))
+             (swap! player assoc :pos [0 0]))</p>
+
+<p>(if (not (.. buffer (contentsLost)))
+        (let [g (.. buffer (getDrawGraphics))
+              player-x (nth (@player :pos) 0)
+              player-y (nth (@player :pos) 1)]
+          (doto g
+            (.translate (.. insets left) (.. insets top))
+            (.setColor clear-color)
+            (.fillRect 0 0 640 480)
+            (.translate (.. insets left) (.. insets top))
+            (.drawImage image
+                        player-x player-y
+                        (+ player-x 32) (+ player-y 32)
+                        0 0 32 32
+                        frame)
+            (.dispose))
+          (.. buffer (show))
+          )))))</p>
+
+<p>(def timer (Timer.))
+(.. timer (schedule (create-mainloop) (long 0) (long 20)))</p>
+
+<h1 id="所感">所感</h1>
+
+<p>ほとんどJavaのメソッドしか使ってないけどもSLIMEの良さは体感できた。
+コードが即時反映されて画像が動くのは楽しい。
+理想はSLIME上からGameObjectをリアルタイムに操作することだけど、これを実現するにはatomでは無理かも。
+あとはスレッドとSLIMEの関係がよくわかってない。TimerTaskを使いにくく感じたのでメインループは別の方法で実現したい。</p>
+
+<p>次回はもうちょっとコードのリファクタリングを施しつつ、
+アニメーションとキーボード操作をできるようにしてみる。</p>
+
+<h1 id="参考書籍">参考書籍</h1>
+
+<p><ul class="thumbnails amazon">
+<li class="span2">
+<a href="http://www.amazon.co.jp/gp/product/4274067890/ref=as_li_tf_il?ie=UTF8&amp;tag=ocha04-22&amp;linkCode=as2&amp;camp=247&amp;creative=1211&amp;creativeASIN=4274067890"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;Format=_SL160_&amp;ASIN=4274067890&amp;MarketPlace=JP&amp;ID=AsinImage&amp;WS=1&amp;tag=ocha04-22&amp;ServiceVersion=20070822"></a><img width="1" height="1" border="0" style="border:none !important; margin:0px !important;" alt="" src="http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4274067890">
+</li>
+<li class="span2">
+<a href="http://www.amazon.co.jp/gp/product/4899772319/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;tag=ocha04-22&amp;linkCode=as2&amp;camp=247&amp;creative=1211&amp;creativeASIN=4899772319"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;Format=_SL160_&amp;ASIN=4899772319&amp;MarketPlace=JP&amp;ID=AsinImage&amp;WS=1&amp;tag=ocha04-22&amp;ServiceVersion=20070822"></a><img width="1" height="1" border="0" style="border:none !important; margin:0px !important;" alt="" src="http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4899772319">
+</li>
+</ul></p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>
