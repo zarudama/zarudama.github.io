@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>clojure on My New Hugo Site</title>
-    <link>http://example.org/tags/clojure/</link>
-    <description>Recent content in clojure on My New Hugo Site</description>
+    <title>clojure on ざる魂</title>
+    <link>https://zarudama.github.io/tags/clojure/</link>
+    <description>Recent content in clojure on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-jp</language>
     <lastBuildDate>Sun, 27 Jul 2014 14:01:39 +0900</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zarudama.github.io/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Clojureでxmlを読みこむ方法</title>
-      <link>http://example.org/posts/clojure-xml/</link>
+      <link>https://zarudama.github.io/posts/clojure-xml/</link>
       <pubDate>Sun, 27 Jul 2014 14:01:39 +0900</pubDate>
       
-      <guid>http://example.org/posts/clojure-xml/</guid>
+      <guid>https://zarudama.github.io/posts/clojure-xml/</guid>
       <description>基本 clojureでxmlを処理する方法のメモ。随時更新予定。
 下記のxmlをtest.xmlとしてプロジェクト直下に保存。
 &amp;lt;parent&amp;gt; &amp;lt;child&amp;gt; hello &amp;lt;/child&amp;gt; &amp;lt;/parent&amp;gt;  clojure.xml/parse関数を使うとmapデータに変換できる。
@@ -27,10 +27,10 @@ user&amp;gt; (def xml-doc &amp;quot;&amp;lt;parent&amp;gt; &amp;lt;child&amp;gt;
     
     <item>
       <title>vimのclojure実装であるaviを試してみた。</title>
-      <link>http://example.org/posts/avi/</link>
+      <link>https://zarudama.github.io/posts/avi/</link>
       <pubDate>Fri, 04 Apr 2014 14:01:39 +0900</pubDate>
       
-      <guid>http://example.org/posts/avi/</guid>
+      <guid>https://zarudama.github.io/posts/avi/</guid>
       <description>vimをclojureで実装したらしい avi を試してみることにした。 確認環境は、ubuntu13.04。
 $ git clone https://github.com/maitria/avi.git $ cd avi  READMEによると、avi本体を /usr/local 配下にインストールするとのこと。 あとでアンインストールができなくなると困るので paco を使うことにした。
 $ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install  LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
@@ -42,57 +42,72 @@ $ avi  で見慣れたvimの画面が表示された。
     </item>
     
     <item>
+      <title>swank-clojureの後継モジュールのnREPLを試してみた</title>
+      <link>https://zarudama.github.io/posts/parma-link/swank-clojurenrepl/</link>
+      <pubDate>Fri, 07 Sep 2012 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/parma-link/swank-clojurenrepl/</guid>
+      <description>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
+ https://github.com/technomancy/swank-clojure  This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit.  超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。 もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
+ということで、el-getでレシピに下記を追加して nrepl.el をインストール。
+(:name nrepl :type github :pkgname &amp;quot;kingtim/nrepl.el&amp;quot; )  で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。
+ :dependencies [[org.clojure/clojure &amp;quot;1.4.0&amp;quot;] [org.clojure/tools.nrepl &amp;quot;0.2.0-beta9&amp;quot; ]]  最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。
+キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
+ シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)  ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、</description>
+    </item>
+    
+    <item>
       <title>Clojureでゲームプログラミングその1 実験編</title>
-      <link>http://example.org/posts/parma-link/clojure1/</link>
+      <link>https://zarudama.github.io/posts/parma-link/clojure1/</link>
       <pubDate>Wed, 09 Nov 2011 14:01:39 +0900</pubDate>
       
-      <guid>http://example.org/posts/parma-link/clojure1/</guid>
+      <guid>https://zarudama.github.io/posts/parma-link/clojure1/</guid>
       <description>はじめに LispでGAMEつくろうかなと。 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
- とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。 ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
+とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
+ ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
 ウィンドウ表示 ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。
-(import (javax.swing JFrame)) (def frame (JFrame. &#34;Clojure SampleGame&#34;)) (doto frame (.setSize 640 480) (.setVisible true))
-でた。簡単すぎる！結構感動します。
-http://mikio.github.io/img/clojure-game01/01.png
-次は画像を表示してみる。
+(import (javax.swing JFrame)) (def frame (JFrame. &amp;quot;Clojure SampleGame&amp;quot;)) (doto frame (.setSize 640 480) (.setVisible true))  でた。簡単すぎる！結構感動します。
+ 初めてのウィンドウ表示!   次は画像を表示してみる。
 画像表示 まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。
-java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&#34;hoge.png&#34;));
-下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
+java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&amp;quot;hoge.png&amp;quot;));  下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
 http://mikio.github.io/img/clojure-game01/gai.png
 画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
-(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;)))
-とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
-(import (java.awt Graphics)) (def graphics (.. frame (getGraphics))) (doto graphics (.</description>
+(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &amp;quot;gai.png&amp;quot;)))  とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
+(import (java.awt Graphics)) (def graphics (.</description>
     </item>
     
     <item>
       <title>Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</title>
-      <link>http://example.org/posts/misaki/</link>
+      <link>https://zarudama.github.io/posts/misaki/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/misaki/</guid>
+      <guid>https://zarudama.github.io/posts/misaki/</guid>
       <description>年末から地味につくっていた Misaki のプラグインですが、 ひととおり欲しい機能の実装を終えたので、github公開しました。 Emacs org-mode で記事を書けるBlogジェネレータです。
- https://github.com/mikio/misaki-orgmode デモ - org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います (Misaki-orgmodeは、Blogに特化しているわけではないので、 静的サイトジェネレータとしても使えます)。  Misaki をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。 実装にあたっては、misaki-markdown を参考にしました(というかほぼまるパクリですが…)。 Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。 デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、 シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。 また、このブログ自体、Misaki-orgmodeで生成しており、こちらは Pure というCSSフレームワークを使用しています。
+ https://github.com/mikio/misaki-orgmode デモ  org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います (Misaki-orgmodeは、Blogに特化しているわけではないので、 静的サイトジェネレータとしても使えます)。
+Misaki をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。 実装にあたっては、misaki-markdown を参考にしました(というかほぼまるパクリですが…)。 Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。 デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、 シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。 また、このブログ自体、Misaki-orgmodeで生成しており、こちらは Pure というCSSフレームワークを使用しています。
 本ブログ「ざるだましい」はもともと o-blog というツールを使用していました。 このツールは大変使いやすかったのですが、1ファイルでの運用を強制されるのと、 Clojureプログラミングをしたいという理由からMisakiに乗り換えました。
- 現状では、Emacsによるインターフェースがないので 記事ファイルが増えた場合は管理が大変ですが、 ゆくゆくは下記で紹介されている org-octopress のようなツールを作りたいと思っています。 http://quickhack.net/nom/blog/2013-05-01-org-octopress.html  org-modeをブログに利用していみたいかたは一考してみてください。
-参考  ざるだましいのロゴに使用しているフォント http://www.hogera.com/pcb/font/catalog/  </description>
+現状では、Emacsによるインターフェースがないので 記事ファイルが増えた場合は管理が大変ですが、 ゆくゆくは下記で紹介されている org-octopress のようなツールを作りたいと思っています。
+ http://quickhack.net/nom/blog/2013-05-01-org-octopress.html  org-modeをブログに利用していみたいかたは一考してみてください。
+参考 ざるだましいのロゴに使用しているフォント
+ http://www.hogera.com/pcb/font/catalog/  </description>
     </item>
     
     <item>
       <title>Misakiにnrepl-serverを埋め込む</title>
-      <link>http://example.org/posts/misaki2/</link>
+      <link>https://zarudama.github.io/posts/misaki2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/misaki2/</guid>
+      <guid>https://zarudama.github.io/posts/misaki2/</guid>
       <description>misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
 mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore +++ b/.gitignore @@ -7,6 +7,8 @@ /.lein-failures /checkouts /.lein-deps-sum +misaki/src/misaki/ +/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj +++ b/project.clj @@ -13,7 +13,9 @@ [cuma &amp;quot;0.0.4&amp;quot;] [clj-gntp &amp;quot;0.0.1&amp;quot;] ; cljs compiler - [org.clojure/clojurescript &amp;quot;0.0-1586&amp;quot;]] + [org.clojure/clojurescript &amp;quot;0.0-1586&amp;quot;] + [org.clojure/tools.nrepl &amp;quot;0.2.3&amp;quot;] + ] :plugins [[codox &amp;quot;0.6.4&amp;quot;] [lein-cloverage &amp;quot;1.0.2&amp;quot;] diff --git a/samples/blog/_config.clj b/samples/blog/_config.</description>
     </item>
     
     <item>
       <title>tokyo.clj#19に参加してきた。</title>
-      <link>http://example.org/posts/tokyoclj19/</link>
+      <link>https://zarudama.github.io/posts/tokyoclj19/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/tokyoclj19/</guid>
+      <guid>https://zarudama.github.io/posts/tokyoclj19/</guid>
       <description>鉄は熱いうちに打てということで、帰宅直後のいまのうちに書いておきます。
 3年ぶりにtokyo.cljに参加してきました。 その前の日にはsaitama.cljにも参加してきました。 この2日間で得られた知見をメモしておきます。
  引数は、なんでもmapにするのがおすすめらしい。 変数がないからといってletを使ってはいけないことはない。 むしろ自己説明的なコードとしてどんどん使うべき。 Luminus は結構よさげ(とある洋書 で推されてるとのこと) noirとLightTableとkormaとVisualStudioは全部おなじ作者 ベテランのすごいエンジニアからも注目されているClojure(どんな人かはここでは言えませんが) 会社経営者からも注目されているClojure(技術に強い会社をつくりたいとのこと) asyncを使った Dots というスマホゲームのClojureScriptの移植版があるらしい。 ゲームをつくるときの状態管理のひとつの実装例として、ゲーム内のすべての状態をひとつのatomで定義しておく。 4clojure は良い でも全部解く必要はない Clojureをつかって機能拡張したいからエディタ作ってますというemacserが二人もいたこと! 自分もClojureでemacs的なエディタをぼんやりと作りたいなーと思ってた。 WebViewを使ったエディタが最近のトレンド？(Atom, LightTable, ねこはる氏の自作エディタなどなど) 以外とClojureでゲームをつくりたいという需要があること やっぱりみんな英語が得意、少なくとも情報を得るために海外サイトは見ている。 Clojureをおしゃれな言語にして女子受けをよくして、ゆくゆくは アイドル を生みだそう! 5月下旬にはClojureの入門本がでる 次回のtokyo.cljはサイン会!(重要)  勘ちがいとかあるかもしれまんせんがこんな感じ。 ライトニングトークの内容はあとで追いかけおようと思います。

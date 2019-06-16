@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>libGDX入門 on My New Hugo Site</title>
-    <link>http://example.org/tags/libgdx%E5%85%A5%E9%96%80/</link>
-    <description>Recent content in libGDX入門 on My New Hugo Site</description>
+    <title>libGDX入門 on ざる魂</title>
+    <link>https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/</link>
+    <description>Recent content in libGDX入門 on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-jp</language>
     
-	<atom:link href="http://example.org/tags/libgdx%E5%85%A5%E9%96%80/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>libGDX入門 その01 画像を表示したり音を鳴らしたり</title>
-      <link>http://example.org/posts/libgdx-beginner1/</link>
+      <link>https://zarudama.github.io/posts/libgdx-beginner1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/libgdx-beginner1/</guid>
+      <guid>https://zarudama.github.io/posts/libgdx-beginner1/</guid>
       <description>はじめに libGDX は、Javaでゲームを作るためのライブラリです。 マルチプラットフォーム対応で、PC(Windows,Linux,Mac), Android, iOS, HTMLに対応しています。
 libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。 実際、ググってみると、英語のドキュメントは沢山みかけますが、日本語のドキュメントはまだまだ少数です。
  また、公式ドキュメントも大変充実しています(英語のみ)。 https://github.com/libgdx/libgdx/wiki 実のところこのドキュメントを読めば大抵の事は解決します。  ただ、私もそうなんですが、日本語情報がないってだけで、 重い腰が上がらないって人も多いと思います。 そんな人向けに(というより自分の勉強ついでに)、 そして少しでもlibGDXを使用する人が増えることを願い、 少しずつ記事を書いていこうと思います。
@@ -28,10 +28,10 @@ $ java -jar gdx-setup.jar Usage: GdxSetup --dir &amp;lt;dir-name&amp;gt; --name 
     
     <item>
       <title>libGDX入門 その02 カメラとビューポート</title>
-      <link>http://example.org/posts/libgdx-beginner2/</link>
+      <link>https://zarudama.github.io/posts/libgdx-beginner2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/libgdx-beginner2/</guid>
+      <guid>https://zarudama.github.io/posts/libgdx-beginner2/</guid>
       <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。
 前回 は、プロジェクトを作って、以下のことを学びました。
  画像の表示 キーボードによる操作 BGMの再生 効果音の再生  今回は次のことを学びます。
@@ -53,10 +53,10 @@ http://mikio.github.io/img/libgdx-beginner/2/screen3.png
     
     <item>
       <title>libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</title>
-      <link>http://example.org/posts/libgdx-beginner3/</link>
+      <link>https://zarudama.github.io/posts/libgdx-beginner3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/libgdx-beginner3/</guid>
+      <guid>https://zarudama.github.io/posts/libgdx-beginner3/</guid>
       <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 3回目です。
 前回 は、以下のことを学びました。
  カメラとビューポート タッチ処理  今回は次のことを学びます。
@@ -73,10 +73,10 @@ GameScreen: my informative message  こうするとログ出力にクラス名�
     
     <item>
       <title>libGDX入門 その04 画面遷移</title>
-      <link>http://example.org/posts/libgdx-beginner4/</link>
+      <link>https://zarudama.github.io/posts/libgdx-beginner4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/libgdx-beginner4/</guid>
+      <guid>https://zarudama.github.io/posts/libgdx-beginner4/</guid>
       <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。
 前回 は、以下のことを学びました。
  ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。
@@ -94,10 +94,10 @@ http://mikio.github.io/img/libgdx-beginner/4/class.png</description>
     
     <item>
       <title>libGDX入門 その05 ゲームデータの保存</title>
-      <link>http://example.org/posts/libgdx-beginner5/</link>
+      <link>https://zarudama.github.io/posts/libgdx-beginner5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/libgdx-beginner5/</guid>
+      <guid>https://zarudama.github.io/posts/libgdx-beginner5/</guid>
       <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。
 前回 は、以下のことを学びました。
  Screenインタフェイスを使った画面遷移  今回は、前回作ったゲームに以下の機能を追加します。

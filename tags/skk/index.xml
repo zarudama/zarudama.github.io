@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>skk on ざる魂</title>
+    <link>https://zarudama.github.io/tags/skk/</link>
+    <description>Recent content in skk on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    
+	<atom:link href="https://zarudama.github.io/tags/skk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SKKを導入してみる(WindowsXP)</title>
+      <link>https://zarudama.github.io/posts/parma-link/skkwindowsxp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/parma-link/skkwindowsxp/</guid>
+      <description>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、 ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのに クライアントが増えてます!。。。ということでいくつか検証してみて 最終的に下記の組み合わせを使用することにしました。快適!快適ー!
+ corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー)  ということで以下に調べた内容をメモしておきます。
+corvus-SKK  最近できたらしいWindows用のFEP 辞書が独自形式 取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。  「;」によるStickyShiftを実現する方法  設定画面で[位置] タブで下記の設定を施す。  開始：; 代替：なし 送り：なし
+SKK日本語入力FEP  軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。  wceSKKServ  wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。 linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。  google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
+また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、 このサーバを使えば、その問題も解決します。 スバラシス!
+xp環境でのインストール gemを入れてから下記でインストールする。
+dos gem install google-ime-skk dos gem install json</description>
+    </item>
+    
+  </channel>
+</rss>

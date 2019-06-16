@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zenbook on ざる魂</title>
+    <link>https://zarudama.github.io/tags/zenbook/</link>
+    <description>Recent content in zenbook on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    
+	<atom:link href="https://zarudama.github.io/tags/zenbook/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu 12.04 LTS On ZENBOOK UX21E</title>
+      <link>https://zarudama.github.io/posts/parma-link/ubuntu-1204-lts-on-zenbook-ux21e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/parma-link/ubuntu-1204-lts-on-zenbook-ux21e/</guid>
+      <description>メインで使用していたノートが3年になるのでZENBOOKを買った。 次期モデルの噂も出始めてはいるが、いつになるかもわからないし、欲しいときが買いどきということで購入。
+ubuntuもほとんどそのままの状態で大体の機能が使えている。
+http://mikio.github.io/img/ubuntu-ux21e-640-480.jpg
+ 以下を参考にした。 https://help.ubuntu.com/community/AsusZenbook  インストール後の設定は別エントリにまとめている。
+事前に2chや価格comで情報収集していたが、感想としてはやはりキーボードの打ちにくさが一番気になった。 他のキーボードを使わずに、このノートだけを使いつづければ、多分慣れてし まって、なんとも思わなくなるんだろう。 けれども自分の場合、会社ではロジクールの打ちやすいキーボードを使用して いるので凄く気になってしまう。。。
+つぎにヒンジ。自分が丁度いいと思う角度で止めようと思っても、 自重でトルクがかかってパカっと最大まで開いてしまう。 普段大きな問題となることないが、地味に痛い。ただし固体差もあるだろうか ら大丈夫な人もいるかと思う。
+トラックパッドについては言われていたほど誤タッチもなく割と快適。キーボー ドメインの操作のときはF9を押下すればオフにできるしね。
+液晶については、視野角が狭く見づらいという意見があったが、自分は特に気にならない。 動画鑑賞メインとかビジュアル系の用途には多分よわいだろう。自分の場合は プログラミングなので大丈夫かと。
+バッテリーのもちに関してはまだ計測したわではないのでわからないがあまり 期待できないだろう。もって3時間てところか？
+不満が多いエントリになってしまったが、全般としては、かなり満足している。 とても静かだし、薄くて軽い。なによりさくさく動く。
+次期モデルは、オプションとしてIPSと高解像度化が図られるとのことだが それに加えてキーボードとヒンジの問題が改善されればかなり使いやすくなると思う。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>skk ubuntu on My New Hugo Site</title>
-    <link>http://example.org/tags/skk-ubuntu/</link>
-    <description>Recent content in skk ubuntu on My New Hugo Site</description>
+    <title>skk ubuntu on ざる魂</title>
+    <link>https://zarudama.github.io/tags/skk-ubuntu/</link>
+    <description>Recent content in skk ubuntu on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-jp</language>
     
-	<atom:link href="http://example.org/tags/skk-ubuntu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zarudama.github.io/tags/skk-ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>uim-skkでsticky-shiftを実現する</title>
-      <link>http://example.org/posts/uim-skk/</link>
+      <link>https://zarudama.github.io/posts/uim-skk/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/uim-skk/</guid>
+      <guid>https://zarudama.github.io/posts/uim-skk/</guid>
       <description>Ubuntuを13.04から14.04にアップグレードしました。 Ubuntu界隈では、IMEがIBus1.5になり使いにくいと大荒れのようです。 IBus1.5では、IMEを切り替えるとキーボードの配置まで変わるらしく、 特に英語キーボードを使ってたりするとストレスが半端ないようです。
 私は、幸いにもuim-skkを使用していたので、この騒ぎを体験せずにすみました。 やっぱりskkはおすすめですね。
 そんな我が道をいくuim-skkですが、ひとつ問題がありました。 それは、sticky-shiftの設定ができないとうことです。

@@ -40,25 +40,21 @@
 <div id="main" class="markdown-body">
 <div class="content">
 <section id="main">
-  <h1 id="title"></h1>
+  <h1 id="title">swank-clojureの後継モジュールのnREPLを試してみた</h1>
   <div>
       
   </div>
   <div>
         <article id="content">
-           <!-- @layout post -->
-<!-- @title swank-clojureの後継モジュールのnREPLを試してみた -->
-<!-- @date 2012-9-7  -->
-<!-- @tag clojure nrepl -->
+           <p>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。</p>
 
 <ul>
-いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
 <li>https://github.com/technomancy/swank-clojure</li>
 </ul>
 
-<p>This project is no longer under active development</p>
+<pre><code>This project is no longer under active development.
 
-<pre><code>New users are strongly encouraged to try out nrepl.el instead. If you
+New users are strongly encouraged to try out nrepl.el instead. If you
 need an advanced debugger, Ritz might be a better fit.
 </code></pre>
 
@@ -81,22 +77,25 @@ need an advanced debugger, Ritz might be a better fit.
 
 <p>最後に <code>M-x nrepl-jack-in</code> すると、nREPL-Server が起動して、nREPLが起動する。</p>
 
+<p>キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。</p>
+
 <ul>
-キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
 <li>シンボルの補完(TABで補完できる)</li>
 <li>関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)</li>
 </ul>
 
+<p>ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。
+たとえば、</p>
+
 <ul>
-ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。
-たとえば、
 <li>REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ)</li>
 <li>nREPLとは直接関係ないけど、auto-complte.elに対応するモジュール(ac-slime)がない。</li>
 <li>HyperSpecのようなドキュメントシステムは？(doc関数ががあるからいらないか)</li>
 </ul>
 
+<p>ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。</p>
+
 <ul>
-ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。
 <li>http://technomancy.us/163</li>
 </ul>
 

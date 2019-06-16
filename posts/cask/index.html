@@ -60,8 +60,9 @@ ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩�
 
 <h1 id="caskの導入">Caskの導入</h1>
 
+<p>インストールは非常に簡単です。</p>
+
 <ul>
-インストールは非常に簡単です。
 <li>https://github.com/cask/cask</li>
 </ul>
 
@@ -122,10 +123,12 @@ $ uname -r
 
 <h1 id="emacs設定ファイルの書き方">Emacs設定ファイルの書き方</h1>
 
+<p>.emacsの整理にあたっては、下記の方やりかたを全面採用しました。</p>
+
 <ul>
-.emacsの整理にあたっては、下記の方やりかたを全面採用しました。
 <li>http://unknownplace.org/memo/2013/01/21/1/</li>
 <li>https://github.com/emacs-jp/emacs-jp.github.com/issues/15#issuecomment-13706554</li>
+- 
 このやり方を採用すれば
 </ul>
 
@@ -143,18 +146,17 @@ $ uname -r
 
 <h1 id="私の-emacsのインストール方法">私の.emacsのインストール方法</h1>
 
+<p>私のemacs環境は下記の方法でどなたでも試すことができます(ただしまだテストしてません)。</p>
+
 <ul>
-私のemacs環境は下記の方法でどなたでも試すことができます(ただしまだテストしてません)。
 <li>https://github.com/mikio/.emacs.d</li>
 </ul>
 
-<p>$ cd ~
+<pre><code class="language-sh">$ cd ~
 $ git clone https://github.com/mikio/.emacs.d.git
 $ cd .emacs.d
 $ cask
-$ emacs -q -l init.e</p>
-
-<pre><code class="language-sh">
+$ emacs -q -l init.el
 </code></pre>
 
 <p>ちなみに、手動インストールが必要なddskkやJDEEなどはインストールできません(当然)。</p>

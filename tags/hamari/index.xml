@@ -1,23 +1,66 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hamari on My New Hugo Site</title>
-    <link>http://example.org/tags/hamari/</link>
-    <description>Recent content in hamari on My New Hugo Site</description>
+    <title>hamari on ざる魂</title>
+    <link>https://zarudama.github.io/tags/hamari/</link>
+    <description>Recent content in hamari on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 30 Dec 2012 14:01:39 +0900</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/hamari/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zarudama.github.io/tags/hamari/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Ubuntu Server インストール時に前回作ったLVMが削除できなかった。</title>
+      <link>https://zarudama.github.io/posts/parma-link/ubuntu-server-lvm/</link>
+      <pubDate>Sun, 30 Dec 2012 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/parma-link/ubuntu-server-lvm/</guid>
+      <description>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら VGやLVMが削除できなくて先に進めなくなった。
+この状態を回避するには、 まず ALT+F2 でコンソールを切り替える。 Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 ALT + F1 - F4 で切り替えられるのだ。
+まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。
+$ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ}  で削除できる。 この時、swap領域に割り当てたものが削除できない場合があるが その時は、いったんインストール作業を中断してやり直せばよい。</description>
+    </item>
+    
+    <item>
+      <title>eshell上でリダイレクトした結果が文字化け</title>
+      <link>https://zarudama.github.io/posts/parma-link/eshell/</link>
+      <pubDate>Sun, 30 Dec 2012 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/parma-link/eshell/</guid>
+      <description>$ git diff &amp;gt; hoge.patch  hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
+^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m  るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。
+$ b git diff &amp;gt; hoge.patch  </description>
+    </item>
+    
+    <item>
       <title>cygwin経由で表示したtmuxの分割罫線が表示崩れする</title>
-      <link>http://example.org/posts/parma-link/cygwintmux/</link>
+      <link>https://zarudama.github.io/posts/parma-link/cygwintmux/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/parma-link/cygwintmux/</guid>
+      <guid>https://zarudama.github.io/posts/parma-link/cygwintmux/</guid>
       <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善 せず、ならばとtmuxのバージョンを最新にしても直らず、結局cyg-terminalの オプションでTextの設定を下記のように変更したら、表示崩れが解消した。
 変更前 Locale:JA_jp CharacterSet:UTF-8 変更後 Locale:C CharacterSet:UTF-8  </description>
+    </item>
+    
+    <item>
+      <title>org-modeの段落の改行を削除したい</title>
+      <link>https://zarudama.github.io/posts/parma-link/paragrah-html/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/parma-link/paragrah-html/</guid>
+      <description>当ブログは、o-blog で運営していて、org-modeで原稿を書いています。 その際、頻繁に fill-paragraph(M-q) を使用するのですが、 これが org-export-as-html すると都合が悪いのです。
+どう都合が悪いかというと、段落の文のなかに半角スペースが紛れこんでしまうのです。
+例をあげると
+今日はいい 天気ですね!  これは、HTMLエクスポートすると
+&amp;lt;p&amp;gt;今日はいい 天気ですね!&amp;lt;/p&amp;gt;  となるので、ブラウザ上では
+今日はいい 天気ですね!  となり、文の途中に空白文字が挿入されてしまいます。
+これはHTMLの仕様なので、変更するのはムズかしそうです。 cssなりorg-modeなりで「pタグの改行は空白にしない」オプションがあればいいのですが、 ざっと見たかぎり見つかりませんでした。1
+まあしょうがないので、これからは fill-paragraph(M-q) を使用せず、 1行ごとに改行することにします。
+今日はいい天気ですね! そうですね。  これはこうなる。
+今日はいい天気ですね!そうですね。  2わかち書きが基本の英語圈でできた仕様だからしかたないのだろうけど、 日本語の文章を書くときは不便だなあ。
+ DEFINITION NOT FOUND [return] DEFINITION NOT FOUND [return]   </description>
     </item>
     
   </channel>

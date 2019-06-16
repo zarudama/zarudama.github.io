@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on ざる魂</title>
+    <link>https://zarudama.github.io/tags/javascript/</link>
+    <description>Recent content in javascript on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 10 May 2012 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="https://zarudama.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる</title>
+      <link>https://zarudama.github.io/posts/parma-link/emacs-slime-nodejs-swank-js-emacsjavascript/</link>
+      <pubDate>Thu, 10 May 2012 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/parma-link/emacs-slime-nodejs-swank-js-emacsjavascript/</guid>
+      <description>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。 その後、npmでsocket.ioをインストール。
+dos&amp;gt; npm install socket.io  あとは、swank-jsをインストールする。
+下記を参考にWindowsXP環境にインストールした。
+ http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html  上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。 もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
+ https://github.com/swank-js/swank-js  インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。 回避方法としてswank-js.elはMarmaladeからインストールした。
+M-x packagea-list-packages  下記を選択してixでインスール。
+slime-js 0.0.1 installed Slime extension for swank-js.  あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
+M-x slime-connect 127.0.0.1 4005  その後、repl上で接続したいURLを指定する。
+,target-url  次にブラウザ上で下記にアクセスする。
+ http://localhost:8009/  その後、repl上で接続する。
+,select-remote  あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
+alert (&amp;quot;hoge&amp;quot;)  </description>
+    </item>
+    
+  </channel>
+</rss>

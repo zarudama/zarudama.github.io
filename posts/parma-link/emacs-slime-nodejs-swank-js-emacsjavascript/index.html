@@ -40,64 +40,69 @@
 <div id="main" class="markdown-body">
 <div class="content">
 <section id="main">
-  <h1 id="title"></h1>
+  <h1 id="title">emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる</h1>
   <div>
       
   </div>
   <div>
         <article id="content">
-           <!-- @layout post -->
-<!-- @title emacs + SLIME + node.js + swank-js でemacsからブラウザ上のjavascriptを実行してみる -->
-<!-- @date 2012-5-10  -->
-<!-- @tag emacs javascript -->
-
-<p>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。
+           <p>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。
 その後、npmでsocket.ioをインストール。</p>
 
-<p>dos> npm install socket.io</p>
+<pre><code class="language-sh">dos&gt; npm install socket.io
+</code></pre>
 
 <p>あとは、swank-jsをインストールする。</p>
 
+<p>下記を参考にWindowsXP環境にインストールした。</p>
+
 <ul>
-下記を参考にWindowsXP環境にインストールした。
 <li>http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html</li>
 </ul>
 
+<p>上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。
+もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。</p>
+
 <ul>
-上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。
-もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
 <li>https://github.com/swank-js/swank-js</li>
 </ul>
 
 <p>インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。
 回避方法としてswank-js.elはMarmaladeからインストールした。</p>
 
-<p>M-x packagea-list-packages</p>
+<pre><code class="language-sh">M-x packagea-list-packages
+</code></pre>
 
 <p>下記を選択してixでインスール。</p>
 
-<p>slime-js          0.0.1       installed  Slime extension for swank-js.</p>
+<pre><code class="language-sh">slime-js          0.0.1       installed  Slime extension for swank-js.
+</code></pre>
 
 <p>あとは裏でnode swank.jsを走らせて、SLIMEに接続する。</p>
 
-<p>M-x slime-connect 127.0.0.1 4005</p>
+<pre><code class="language-sh">M-x slime-connect 127.0.0.1 4005
+</code></pre>
 
 <p>その後、repl上で接続したいURLを指定する。</p>
 
-<p>,target-url</p>
+<pre><code class="language-sh">,target-url
+</code></pre>
+
+<p>次にブラウザ上で下記にアクセスする。</p>
 
 <ul>
-次にブラウザ上で下記にアクセスする。
 <li>http://localhost:8009/</li>
 </ul>
 
 <p>その後、repl上で接続する。</p>
 
-<p>,select-remote</p>
+<pre><code class="language-sh">,select-remote
+</code></pre>
 
 <p>あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。</p>
 
-<p>alert ("hoge")</p>
+<pre><code class="language-sh">alert (&quot;hoge&quot;)
+</code></pre>
 
         </article>
   </div>

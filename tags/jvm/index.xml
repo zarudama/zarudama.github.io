@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>jvm on My New Hugo Site</title>
-    <link>http://example.org/tags/jvm/</link>
-    <description>Recent content in jvm on My New Hugo Site</description>
+    <title>jvm on ざる魂</title>
+    <link>https://zarudama.github.io/tags/jvm/</link>
+    <description>Recent content in jvm on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-jp</language>
     
-	<atom:link href="http://example.org/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zarudama.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>GCの発生頻度などの調査</title>
-      <link>http://example.org/posts/jvm_gcutil/</link>
+      <link>https://zarudama.github.io/posts/jvm_gcutil/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/jvm_gcutil/</guid>
+      <guid>https://zarudama.github.io/posts/jvm_gcutil/</guid>
       <description>GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
 まずはプロセスIDを調べる。例としてtomcatの場合。
 $ sudo -u tomcat jps -v  tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
 javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
 $ pgrep -lf java  PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
 jstat -gcutil -t 123456 3000  意味は以下のとおり。
-jstat &amp;lt;出力オプション&amp;gt; &amp;lt;プロセスID&amp;gt; &amp;lt;データ取得間隔(ms)&amp;gt; -t タイムスタンプを出力 -gcutil GCの統計情報   jstatのマニュアルは以下。 http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
+jstat &amp;lt;出力オプション&amp;gt; &amp;lt;プロセスID&amp;gt; &amp;lt;データ取得間隔(ms)&amp;gt; -t タイムスタンプを出力 -gcutil GCの統計情報  jstatのマニュアルは以下。
+ http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
 Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出しは以下のルールになる
-   S* Suviver    E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間     GCについては、下記が詳しい。 http://www.</description>
+   S* Suviver    E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間    GCについては、下記が詳しい。</description>
     </item>
     
     <item>
       <title>JVMのヒープサイズと変更方法</title>
-      <link>http://example.org/posts/jvm_mem/</link>
+      <link>https://zarudama.github.io/posts/jvm_mem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/jvm_mem/</guid>
+      <guid>https://zarudama.github.io/posts/jvm_mem/</guid>
       <description>稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
 JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、 初期割り当てのヒープサイズが異なる。
 サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。

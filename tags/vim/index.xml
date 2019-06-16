@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>vim on My New Hugo Site</title>
-    <link>http://example.org/tags/vim/</link>
-    <description>Recent content in vim on My New Hugo Site</description>
+    <title>vim on ざる魂</title>
+    <link>https://zarudama.github.io/tags/vim/</link>
+    <description>Recent content in vim on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-jp</language>
     <lastBuildDate>Fri, 04 Apr 2014 14:01:39 +0900</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zarudama.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>vimのclojure実装であるaviを試してみた。</title>
-      <link>http://example.org/posts/avi/</link>
+      <link>https://zarudama.github.io/posts/avi/</link>
       <pubDate>Fri, 04 Apr 2014 14:01:39 +0900</pubDate>
       
-      <guid>http://example.org/posts/avi/</guid>
+      <guid>https://zarudama.github.io/posts/avi/</guid>
       <description>vimをclojureで実装したらしい avi を試してみることにした。 確認環境は、ubuntu13.04。
 $ git clone https://github.com/maitria/avi.git $ cd avi  READMEによると、avi本体を /usr/local 配下にインストールするとのこと。 あとでアンインストールができなくなると困るので paco を使うことにした。
 $ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install  LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。

@@ -52,8 +52,9 @@
 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに
 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。</p>
 
+<p>とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。</p>
+
 <ul>
-とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
 <li>ウィンドウ表示</li>
 <li>画像表示</li>
 <li>メインループの実現</li>
@@ -68,15 +69,21 @@
 
 <p>ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。</p>
 
-<p>(import (javax.swing JFrame))
-(def frame (JFrame. "Clojure SampleGame")) 
+<pre><code class="language-Clojure">(import (javax.swing JFrame))
+(def frame (JFrame. &quot;Clojure SampleGame&quot;)) 
 (doto frame
 (.setSize 640 480)
-  (.setVisible true))</p>
+  (.setVisible true))
+</code></pre>
 
 <p>でた。簡単すぎる！結構感動します。</p>
 
-<p><a href="http://mikio.github.io/img/clojure-game01/01.png" title="http://mikio.github.io/img/clojure-game01/01.png">http://mikio.github.io/img/clojure-game01/01.png</a></p>
+<figure class="center">
+    <img src="/img/clojure-game01/01.png"/> <figcaption>
+            <h4>初めてのウィンドウ表示!</h4>
+        </figcaption>
+</figure>
+
 
 <p>次は画像を表示してみる。</p>
 
@@ -84,8 +91,9 @@
 
 <p>まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。</p>
 
-<p>java.awt.image.BufferedImage bimage;
-image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
+<pre><code class="language-clojure">java.awt.image.BufferedImage bimage;
+image = javax.imageio.ImageIO.read(new java.io.File(&quot;hoge.png&quot;));
+</code></pre>
 
 <p>下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。</p>
 
@@ -94,17 +102,19 @@ image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
 <p>画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。
 外部ファイルはプロジェクトルートからの相対パスでOKのようである。</p>
 
-<p>(import (java.awt.image BufferedImage))
+<pre><code class="language-clojure">(import (java.awt.image BufferedImage))
 (import (javax.imageio ImageIO))
 (import (java.io File))
-(def image (ImageIO/read (File. "gai.png")))</p>
+(def image (ImageIO/read (File. &quot;gai.png&quot;))) 
+</code></pre>
 
 <p>とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。</p>
 
-<p>(import (java.awt Graphics))
+<pre><code class="language-clojure">(import (java.awt Graphics))
 (def graphics (.. frame (getGraphics)))
 (doto graphics
-  (.drawImage image 0 0 frame))</p>
+  (.drawImage image 0 0 frame))
+</code></pre>
 
 <p>でた！</p>
 
@@ -112,7 +122,8 @@ image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
 
 <p>線もかけたよ。</p>
 
-<p>(.. graphics (drawLine 0 0 640 480))</p>
+<pre><code class="language-clojure">(.. graphics (drawLine 0 0 640 480))
+</code></pre>
 
 <p><a href="http://mikio.github.io/img/clojure-game01/03.png" title="http://mikio.github.io/img/clojure-game01/03.png">http://mikio.github.io/img/clojure-game01/03.png</a></p>
 
@@ -125,19 +136,22 @@ image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
 <p>ずれの原因であるタイトルバーや枠お情報は、java.awt.Insetsとういクラスに格納されている。
 これはJframe#getInsetsメソッドで取得でいるので、束縛しておく。</p>
 
-<p>(def insets (.. frame getInsets))</p>
+<pre><code class="language-clojure">(def insets (.. frame getInsets)) 
+</code></pre>
 
 <p>確認。それっぽい値が入っている。</p>
 
-<p>user> insets
-#<Insets java.awt.Insets[top=24,left=1,bottom=5,right=1]></p>
+<pre><code class="language-clojure">user&gt; insets
+#&lt;Insets java.awt.Insets[top=24,left=1,bottom=5,right=1]&gt;
+</code></pre>
 
 <p>では、このinsetsを使って描画用原点をずらしてみる。</p>
 
-<p>(.. frame (setVisible true))
+<pre><code class="language-clojure">(.. frame (setVisible true))
 (.. graphics (translate (.. insets left) (.. insets top)))
 (.. graphics (clearRect 0 0 640 480))
-(.. graphics (drawImage image 0 0 frame))</p>
+(.. graphics (drawImage image 0 0 frame))
+</code></pre>
 
 <p><a href="http://mikio.github.io/img/clojure-game01/04.png" title="http://mikio.github.io/img/clojure-game01/04.png">http://mikio.github.io/img/clojure-game01/04.png</a></p>
 
@@ -149,9 +163,10 @@ image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
 なので、例えば640x480ちょうどのサイズの画像を表示しようとしても少し切れてしまったりする。
 ということで、insentsを利用して描画領域が純粋に640x480似なるように調整する。</p>
 
-<p>(doto frame
+<pre><code class="language-clojure">(doto frame
     (.setSize (+ 640 (.. insets left) (.. insets right)) (+ 480 (.. insets top) (.. insets bottom)))
-    (.setVisible true))</p>
+    (.setVisible true))
+</code></pre>
 
 <p>以上で描画領域の細かい調整が完了した。</p>
 
@@ -161,18 +176,19 @@ image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
 一部だけを表示したい。
 この要件を満たすには、Graphics#DrawImageで下記のように引数を指定すれば良い。</p>
 
-<p>(.drawImage
+<pre><code class="language-clojure">(.drawImage
  	image   ;; 描画画像
 	0 0     ;; 転送先の左上座標
 	32 32   ;; 転送先の右下座標
 	0 0     ;; 画像元の左上座標
 	32 32   ;; 画像元の右下座標
- 	frame)  ;; 描画対象</p>
+ 	frame)  ;; 描画対象
+</code></pre>
 
-<p>(import java.awt.Color)
-(def clear-color (Color. 0 0 127))</p>
+<pre><code class="language-cojure">(import java.awt.Color)
+(def clear-color (Color. 0 0 127))
 
-<p>(let [g (.. frame (getGraphics))]
+(let [g (.. frame (getGraphics))]
   (doto g
     (.translate (.. insets left) (.. insets top))
     (.setColor clear-color)
@@ -181,7 +197,8 @@ image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
                 0 0 32 32
                 0 0 32 32
                 frame)
-    (.dispose)))</p>
+    (.dispose)))
+</code></pre>
 
 <p><a href="http://mikio.github.io/img/clojure-game01/05.png" title="http://mikio.github.io/img/clojure-game01/05.png">http://mikio.github.io/img/clojure-game01/05.png</a></p>
 
@@ -199,54 +216,59 @@ image = javax.imageio.ImageIO.read(new java.io.File("hoge.png"));</p>
 <p>Clojureで継承が必要なJavaクラスを使うには、proxyを使う。
 以下のようにTimerTaskを継承したクラスをつくる。</p>
 
-<p>(import (java.util Timer TimerTask))
+<pre><code class="language-clojure">(import (java.util Timer TimerTask))
 (import (java.util TimerTask))
 (def mainloop
   (proxy [TimerTask] []
     (run []
-      (println "呼びだされた"))
-    ))</p>
+      (println &quot;呼びだされた&quot;))
+    )) 
+</code></pre>
 
 <p>テストしてみる。</p>
 
-<p>user> (.. mainloop run) 
+<pre><code class="language-clojure">user&gt; (.. mainloop run) 
 呼びだされた
-nil</p>
+nil
+</code></pre>
 
 <p>うまくいっているようである。</p>
 
 <p>続いてTimeクラスにmainloopを渡してみる。これがはまった。</p>
 
-<p>user> (.. (Timer.) schedule mainloop 0 500)</p>
+<pre><code class="language-clojure">user&gt; (.. (Timer.) schedule mainloop 0 500)
 
-<p>Malformed member expression
-  [Thrown class java.lang.IllegalArgumentException]</p>
+Malformed member expression
+  [Thrown class java.lang.IllegalArgumentException]
 
-<p>Restarts:
- 0: [QUIT] Quit to the SLIME top level</p>
+Restarts:
+ 0: [QUIT] Quit to the SLIME top level
 
-<p>Backtrace:
+Backtrace:
   0: clojure.lang.Compiler$HostExpr$Parser.parse(Compiler.java:825)
-  1: clojure.lang.Compiler.analyzeSeq(Compiler.java:5369)</p>
+  1: clojure.lang.Compiler.analyzeSeq(Compiler.java:5369)
+
+</code></pre>
 
 <p>「Malformed member expression」の原因がわからなくてかなりはまった。
 ぐぐった結果、javaのlong型を引数として渡すときは、long関数を呼び出す必要があることがわかった。</p>
 
-<p>user> (.. (Timer.) schedule mainloop (long 0) (long 500))
+<pre><code class="language-clojure">user&gt; (.. (Timer.) schedule mainloop (long 0) (long 500))
 No matching field found: schedule for class java.util.Timer
-  [Thrown class java.lang.IllegalArgumentException]</p>
+  [Thrown class java.lang.IllegalArgumentException]
 
-<p>Restarts:
- 0: [QUIT] Quit to the SLIME top level</p>
+Restarts:
+ 0: [QUIT] Quit to the SLIME top level
 
-<p>Backtrace:
+Backtrace:
   0: clojure.lang.Reflector.getInstanceField(Reflector.java:245)
-  1: clojure.lang.Reflector.invokeNoArgInstanceMember(Reflector.java:267)</p>
+  1: clojure.lang.Reflector.invokeNoArgInstanceMember(Reflector.java:267)
+</code></pre>
 
 <p>とここでまたエラー。でまたぐぐった結果、メソッドの呼び出し方が間違っていたorz。
 scheduleをカッコでくくらないと駄目らしい。</p>
 
-<p>user> (.. (Timer.) (schedule mainloop (long 0) (long 500)))
+<pre><code class="language-clojure">user&gt; (.. (Timer.) (schedule mainloop (long 0) (long 500)))
 呼びだされた
 呼びだされた
 呼びだされた
@@ -262,7 +284,8 @@ scheduleをカッコでくくらないと駄目らしい。</p>
 呼びだされた
 呼びだされた
 呼びだされた
-nil</p>
+nil
+</code></pre>
 
 <p>ということでやっとTimerクラスにTimerタスクで作ったメインループを渡すことができた。ふぅ。
 次は画像を動かしてみる。</p>
@@ -273,63 +296,69 @@ nil</p>
 Clojureはデフォルトでは値を更新できない。これを変更するためには特別な定義が必要。
 スレッドを使う予定は今のところ無いので、扱いの簡単そうなatomを使用してみる。</p>
 
-<p>;; プレイヤー定義
-(def player (atom {:pos [0 0]}))</p>
+<pre><code class="language-clojure">;; プレイヤー定義
+(def player (atom {:pos [0 0]}))
+</code></pre>
 
 <p>こんな感じで参照できる。</p>
 
-<p>user> (@player :pos)
+<pre><code class="language-clojure">user&gt; (@player :pos)
 [0 0]
-user></p>
+user&gt; 
+</code></pre>
 
 <p>x座標は配列の0番目</p>
 
-<p>user> (nth (@player :pos) 0) 
-0</p>
+<pre><code class="language-clojure">user&gt; (nth (@player :pos) 0) 
+0
+</code></pre>
 
 <p>y座標は配列の1番目</p>
 
-<p>user> (nth (@player :pos) 1) 
-0</p>
+<pre><code class="language-clojure">user&gt; (nth (@player :pos) 1) 
+0
+</code></pre>
 
 <p>playerの座標を更新してみる。</p>
 
-<p>user> player
-#<Atom@2a134eca: {:pos [0 0]}></p>
+<pre><code class="language-clojure">user&gt; player
+#&lt;Atom@2a134eca: {:pos [0 0]}&gt;
 
-<p>;; 変更
-user> (swap! player assoc :pos [0 1])
-{:pos [0 1]}</p>
+;; 変更
+user&gt; (swap! player assoc :pos [0 1])
+{:pos [0 1]}
 
-<p>;; たしかに更新された
-user> player
-#<Atom@2a134eca: {:pos [0 1]}></p>
+;; たしかに更新された
+user&gt; player
+#&lt;Atom@2a134eca: {:pos [0 1]}&gt;
+</code></pre>
 
 <p>x座標を更新させる</p>
 
-<p>user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+<pre><code class="language-clojure">user&gt; (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
 {:pos [1 1]}
-user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+user&gt; (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
 {:pos [2 1]}
-user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+user&gt; (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
 {:pos [3 1]}
-user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
-{:pos [4 1]}</p>
+user&gt; (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
+{:pos [4 1]}
+</code></pre>
 
 <p>ではここまでの移動処理を組み込む。</p>
 
-<p>(def mainloop
+<pre><code class="language-clojure">(def mainloop
   (proxy [TimerTask] []
     (run []
       (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1]) ;; 座標更新
-      (if (< 640 (nth (@player :pos) 0))
-             (swap! player assoc :pos [0 0]))</p>
+      (if (&lt; 640 (nth (@player :pos) 0))
+             (swap! player assoc :pos [0 0]))
 
-<p>(let [g (.. frame (getGraphics))
+      (let [g (.. frame (getGraphics))
             player-x (nth (@player :pos) 0)
-            player-y (nth (@player :pos) 1)]</p>
+            player-y (nth (@player :pos) 1)]
 
-<p>(doto g
+        (doto g
           (.translate (.. insets left) (.. insets top))
           (.setColor clear-color)
           (.fillRect 0 0 640 480)
@@ -338,11 +367,13 @@ user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
                       (+ player-x 32) (+ player-y 32)
                       0 0 32 32
                       frame)
-          (.dispose))))))</p>
+          (.dispose))))))
+</code></pre>
 
 <p>定義したメインループを20ms間隔で呼び出す。</p>
 
-<p>(.. (Timer.) (schedule mainloop (long 0) (long 20)))</p>
+<pre><code class="language-clojure">(.. (Timer.) (schedule mainloop (long 0) (long 20)))
+</code></pre>
 
 <p><div class="youtube">
 <iframe src="http://www.youtube.com/embed/T4LLkAqETLQ?hl=ja&fs=1" frameborder="0" allowfullscreen></iframe>
@@ -356,26 +387,27 @@ user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
 <p>下記のようにJFrame#setIgnoreRepaint, JFrame#createBufferStrategyを呼び出しバッファの準備をする。
 この時注意すべきは、JFrame#createBufferStrategyはJFrame#setVisibleのあとに呼び出さなければならないこと。</p>
 
-<p>(doto frame
+<pre><code class="language-clojure">(doto frame
     (.setSize (+ 640 (.. insets left) (.. insets right)) (+ 480 (.. insets top) (.. insets bottom)))
     (.setVisible true)
     (.setIgnoreRepaint true) ;; ウィンドウの再描画を無効に(BufferStrategyを使うので)
     (.createBufferStrategy 2) ;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる
     )
 ;; バッファ作成
-(def buffer (.. frame (getBufferStrategy)))</p>
+(def buffer (.. frame (getBufferStrategy)))
+</code></pre>
 
 <p>bufferを使って以下のように呼び出し。TimerTaskクラスオブジェクトは都度生成できるように関数化しておいた。</p>
 
-<p>(defn create-mainloop
+<pre><code class="language-clojure">(defn create-mainloop
   []
   (proxy [TimerTask] []
     (run []
       (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1]) ;; 座標更新
-      (if (< 640 (nth (@player :pos) 0))
-             (swap! player assoc :pos [0 0]))</p>
+      (if (&lt; 640 (nth (@player :pos) 0))
+             (swap! player assoc :pos [0 0]))
 
-<p>(if (not (.. buffer (contentsLost)))
+      (if (not (.. buffer (contentsLost)))
         (let [g (.. buffer (getDrawGraphics))
               player-x (nth (@player :pos) 0)
               player-y (nth (@player :pos) 1)]
@@ -391,7 +423,8 @@ user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
                         frame)
             (.dispose))
           (.. buffer (show))
-          )))))</p>
+          )))))
+</code></pre>
 
 <p><div class="youtube">
 <iframe src="http://www.youtube.com/embed/3mO4EUh9cl0?hl=ja&fs=1" frameborder="0" allowfullscreen></iframe>
@@ -399,43 +432,44 @@ user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
 
 <p>最終的なコード。</p>
 
-<p>(ns hello-cube.core)</p>
+<pre><code class="language-clojure">(ns hello-cube.core)
 
-<p>(import (javax.swing JFrame))
+(import (javax.swing JFrame))
 (import (java.util Timer TimerTask))
 (import (java.awt Graphics Color))
 (import (java.awt.image BufferedImage))
 (import (javax.imageio ImageIO))
-(import (java.io File))</p>
+(import (java.io File))
 
-<p>(def clear-color (Color. 0 0 127))
-(def frame (JFrame. "Clojure Sample Game")) 
-(def image (ImageIO/read (File. "gai.png"))) ;; 画像読み込み
-(def player (atom {:pos [0 0]}))</p>
+(def clear-color (Color. 0 0 127))
+(def frame (JFrame. &quot;Clojure Sample Game&quot;)) 
+(def image (ImageIO/read (File. &quot;gai.png&quot;))) ;; 画像読み込み
+(def player (atom {:pos [0 0]}))
 
-<p>;; 枠を考慮してサイズ指定
+;; 枠を考慮してサイズ指定
 (doto frame
     (.setVisible true)
     (.setIgnoreRepaint true) ;; ウィンドウの再描画を無効に(BufferStrategyを使うので)
     (.createBufferStrategy 2) ;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる
-    )</p>
+    )
 
-<p>;; バッファ作成
+;; バッファ作成
 (def buffer (.. frame (getBufferStrategy)))
-(def insets (.. frame getInsets))  ;; ウィンドウを表示してから出ないと値が入らない。</p>
+(def insets (.. frame getInsets))  ;; ウィンドウを表示してから出ないと値が入らない。
 
-<p>(doto frame
-    (.setSize (+ 640 (.. insets left) (.. insets right)) (+ 480 (.. insets top) (.. insets bottom))))</p>
+(doto frame
+    (.setSize (+ 640 (.. insets left) (.. insets right)) (+ 480 (.. insets top) (.. insets bottom))))
 
-<p>(defn create-mainloop
+
+(defn create-mainloop
   []
   (proxy [TimerTask] []
     (run []
       (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1]) ;; 座標更新
-      (if (< 640 (nth (@player :pos) 0))
-             (swap! player assoc :pos [0 0]))</p>
+      (if (&lt; 640 (nth (@player :pos) 0))
+             (swap! player assoc :pos [0 0]))
 
-<p>(if (not (.. buffer (contentsLost)))
+      (if (not (.. buffer (contentsLost)))
         (let [g (.. buffer (getDrawGraphics))
               player-x (nth (@player :pos) 0)
               player-y (nth (@player :pos) 1)]
@@ -451,10 +485,11 @@ user> (swap! player assoc :pos [(+ 1 (nth (@player :pos) 0)) 1])
                         frame)
             (.dispose))
           (.. buffer (show))
-          )))))</p>
+          )))))
 
-<p>(def timer (Timer.))
-(.. timer (schedule (create-mainloop) (long 0) (long 20)))</p>
+(def timer (Timer.))
+(.. timer (schedule (create-mainloop) (long 0) (long 20)))
+</code></pre>
 
 <h1 id="所感">所感</h1>
 
