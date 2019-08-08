@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ざる魂</title>
-    <link>https://zarudama.github.io/</link>
-    <description>Recent content on ざる魂</description>
+    <title>Posts on ざる魂</title>
+    <link>https://zarudama.github.io/post/</link>
+    <description>Recent content in Posts on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Mon, 17 Dec 2018 00:00:00 +0900</lastBuildDate>
     
-	<atom:link href="https://zarudama.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zarudama.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -56,15 +56,6 @@ $ java -jar gdx-setup.jar Usage: GdxSetup --dir &amp;lt;dir-name&amp;gt; --name 
   ビューポートは、ディスプレイサイズと一致しているわけではないことに注意してください。ゲームのサンプルなどだと一致していることが多いですが、今回のように様々なディスプレイサイズに対応させる場合は、一致しなくなることの方が多くなるはずです。また、他の使い方としては、カメラを2つ用意して一方はゲーム画面、一方は小さな枠で別のシーンを表示するなんてこともできるかもしれません(やったことないですが)。
 カメラを使うことにより、カメラとして定義した論理空間でゲームを制御できます。この空間でやりとりすれば、あとはlibGDXがよろしく画面に表示してくれるわけです。カメラでできることを列挙してみます。
  物理的な画面サイズを気にせず、自分の定義した画面サイズでゲームを構築できる ズームイン、ズームアウト、画面を回転させたり、揺らしたりなど、画面全体にかかるエフェクトが簡単にできる カメラを動かすことで、スクロール処理が簡単に実装できる  カメラを導入することでこのような自由が手に入るわけですが、その代償として操作が複雑になってしまうのも事実です。コーディング中は、今自分がどこの座標系で何を操作しているかを常に意識する必要があります。ちょっと大袈裟ですが、慣れれば大したことありません。またこの考えはそのまま3Dプログラミングにも繋がります。</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://zarudama.github.io/search/data.js</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/search/data.js</guid>
-      <description></description>
     </item>
     
   </channel>
