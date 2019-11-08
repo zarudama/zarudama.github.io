@@ -17,8 +17,7 @@
       <pubDate>Fri, 08 Nov 2019 20:31:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/emacs_window_image_disp/</guid>
-      <description>  &amp;#30446;&amp;#27425;  参考   
-Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
+      <description> Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
  F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。  自分の場合pngが表示されなかったので
  libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。  http://www.gtk.org/download/win32.php  emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。  あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
 emacs(Windows版)で画像を表示している様子 w3mでakb48を検索してみた。 参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  </description>
@@ -30,17 +29,13 @@ emacs(Windows版)で画像を表示している様子 w3mでakb48を検索して
       <pubDate>Fri, 08 Nov 2019 20:25:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
-      <description>&amp;#30446;&amp;#27425;  processing のおすすめポイント  processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、androidモードがある。 emacsでprocessing xmonadでprocessing    
-最近Processingをいじり始めました。
+      <description>最近Processingをいじり始めました。
   &amp;#22259;1: Ubuntu上のXmonadでemacs使ってProcessingしてるところ
   上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
 ちょろっと作った
- テストプログラム
-
+テストプログラム
 Javascriptモードで出力しました。こんなのが簡単に作れます。
 日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。最大のきっかけとなったのは下記の本を手にしたからです。
- &amp;rdquo;&amp;gt;&amp;rdquo; &amp;gt;&amp;rdquo; /&amp;gt;
-
 この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
 初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
 特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、この本はデータ作成にも多くのページを割いて解説しています。また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
@@ -51,7 +46,11 @@ Processingをイメージで簡単に説明すると、「Processingという巨
 HTMLモード、androidモードがある。 昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。
 結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
 emacsでprocessing emacsからもProcessingを使えます。下記を参考にしました。
- http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</description>
+ http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。
+xmonadでprocessing 最後にXmonadでProcessingする方法を書いておきます。
+Xmonad上では、JavaのSwingがまともに動かないみたいなので、 Processingするにはxmonadの設定ファイルを修正する必要があります。
+~/.xmonad/xmonad.hs ファイルのlogHookを下記のように XMonad.Hooks.ICCCMFocus をインポートして、 logHook の右辺を takeTopFocus に置き換えます。
+import XMonad.Hooks.ICCCMFocus : main = do : xmonad $ defaultConfig : , logHook = takeTopFocus : 意味はわかってません。。。下記のURLを参考にしました。</description>
     </item>
     
     <item>
@@ -78,8 +77,7 @@ emacsでprocessing emacsからもProcessingを使えます。下記を参考に�
       <pubDate>Fri, 08 Nov 2019 20:00:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/emacs_howm_org/</guid>
-      <description>  &amp;#30446;&amp;#27425;  やること 影響されたサイト   
-しばらくメモ管理は、org-modeのみで運用してきた。ブログの下書きも blog.orgという1ファイルのみで運用している (これはo-blogというelispが1ファ イルのみのサポートなため。複数ファイルでの運用方法もあるかもしれないが未確認。結果、ポケットひとつの原則に従うことになりすごくやりやすい)。
+      <description> しばらくメモ管理は、org-modeのみで運用してきた。ブログの下書きも blog.orgという1ファイルのみで運用している (これはo-blogというelispが1ファ イルのみのサポートなため。複数ファイルでの運用方法もあるかもしれないが未確認。結果、ポケットひとつの原則に従うことになりすごくやりやすい)。
 しかしさすがに内容が増えてくると管理がきつくなってくるし、将来的には Clojure版JykyllのMisakiに移行したいと考えているので、そろそろhowmにも手を出してみようかなと。
 howmにもリンク機能やTODO機能があるが、これらはorg-modeにもあるのでそのまま継続するとして、 howmに任せたいのはファイル管理。ファイル自体を意識せずにどんどんメモが取れる環境が理想。
 やること  拡張子は.howmと.orgどちらにするか。  →howmの機能は主にファイル管理に使用する予定なのと、改宗したときに.howmだと面倒なので.orgでいく。 →howmディレクトリをつくってその配下のファイルはすべてhome-modeにしたほうがいいのかも。 →.elも.txtも.orgもすべてhowmで管理。だけどタイトルの仕切りは？  日報をhowmでうまいこと管理したい。  →repotディレクトリとか作る？  orgのtagによるマッチ機能があれば、howmを使う必要もないかも？  影響されたサイト  Evernote vs Emacs+howm+org+Dropbox
@@ -99,6 +97,17 @@ howmにもリンク機能やTODO機能があるが、これらはorg-modeにも�
 自分の場合、helm-git.elを使用しているが、同じリポジトリに同名ファイルが複数あるため、ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。これでは困るので調査したところ、ファイル表示部分は、helm本体の helm-files.el の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
 (defcustom helm-ff-transformer-show-only-basename t &amp;#34;Show only basename of candidates in `helm-find-files&amp;#39;. This can be toggled at anytime from `helm-find-files&amp;#39;with \ \\&amp;lt;helm-find-files-map&amp;gt;\\[helm-ff-run-toggle-basename].&amp;#34; :type &amp;#39;boolean :group &amp;#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
 (setq helm-ff-transformer-show-only-basename nil)</description>
+    </item>
+    
+    <item>
+      <title>eshell上でリダイレクトした結果が文字化け</title>
+      <link>https://zarudama.github.io/post/2012/12/emacs_eshell_stack/</link>
+      <pubDate>Fri, 08 Nov 2019 19:47:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2012/12/emacs_eshell_stack/</guid>
+      <description>$ git diff &amp;gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
+^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。
+$ b git diff &amp;gt; hoge.</description>
     </item>
     
     <item>
@@ -141,8 +150,7 @@ package.el ならば標準装備ですし、サイトリポジトリに各所の
       <pubDate>Fri, 08 Nov 2019 18:01:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/12/cyginw_tmux_stack/</guid>
-      <description>&amp;#30446;&amp;#27425;  追記(2013/08/01) はじめに 必要なもの JDEEのビルド .emacsの設定 サンプルプロジェクトの準備 動作確認してみる  BeanShell 依存ライブラリのダウンロード ビルドエラー importの自動挿入とビルド APIドキュメントの参照 メソッド補完 メソッド補完(Helm版)  操作方法まとめ 所感 参考URL 更新履歴   
-この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
+      <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
 追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。これによりJDEEの導入がグッっと簡単になりました。
 そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
 また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。今後に期待しましょう。

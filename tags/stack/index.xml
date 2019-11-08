@@ -17,9 +17,8 @@
       <pubDate>Fri, 08 Nov 2019 20:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</guid>
-      <description>&amp;#30446;&amp;#27425;  動作環境   
-Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。
-C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m [4mjava.io.FileNotFoundException: samples\blog\public\samples\blog\template\ato m.xml (?w?????p?X?????????????B)[24m at misaki.util.file$write_file / [1minvoke[22m ([31mfile.clj[0m:[31m[1m 152[22m[0m) at misaki.compiler.default.core$compile_STAR_ / [1minvoke[22m ([31mcore.cl j[0m:[31m[1m237[22m[0m) at misaki.compiler.default.core$compile_template / [1minvoke[22m ([31mcore .clj[0m:[31m[1m256[22m[0m) at misaki.compiler.default.core$_compile$fn__1874 / [1minvoke[22m ([31mcor e.clj[0m:[31m[1m70[22m[0m) at misaki.compiler.default.core$_compile / [1minvoke[22m ([31mcore.clj[0m :[31m[1m58[22m[0m) at misaki.core$call_compiler_fn / [1mdoInvoke[22m ([31mcore.clj[0m:[31m [1m55[22m[0m) at misaki.core$compile_STAR_$fn__1112 / [1minvoke[22m ([31mcore.clj[0m:[ 31m[1m160[22m[0m) at misaki.util.sequence$some_with_default_value / [1minvoke[22m ([31mseque nce.</description>
+      <description>Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。
+C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m [4mjava.io.FileNotFoundException: samples\blog\public\samples\blog\template\ato m.xml (?w?????p?X?????????????B)[24m at misaki.util.file$write_file / [1minvoke[22m ([31mfile.clj[0m:[31m[1m 152[22m[0m) at misaki.compiler.default.core$compile_STAR_ / [1minvoke[22m ([31mcore.cl j[0m:[31m[1m237[22m[0m) at misaki.compiler.default.core$compile_template / [1minvoke[22m ([31mcore .clj[0m:[31m[1m256[22m[0m) at misaki.compiler.default.core$_compile$fn__1874 / [1minvoke[22m ([31mcor e.clj[0m:[31m[1m70[22m[0m) at misaki.compiler.default.core$_compile / [1minvoke[22m ([31mcore.clj[0m :[31m[1m58[22m[0m) at misaki.core$call_compiler_fn / [1mdoInvoke[22m ([31mcore.clj[0m:[31m [1m55[22m[0m) at misaki.core$compile_STAR_$fn__1112 / [1minvoke[22m ([31mcore.clj[0m:[ 31m[1m160[22m[0m) at misaki.util.sequence$some_with_default_value / [1minvoke[22m ([31mseque nce.clj[0m:[31m[1m44[22m[0m) at misaki.core$compile_STAR_ / [1minvoke[22m ([31mcore.</description>
     </item>
     
     <item>
@@ -122,11 +121,10 @@ $ apt-cyg remove libsqlite3-devel libsqlite3_0 odbc-sqlite3 sqlite3 sqlite3-debu
       <pubDate>Fri, 08 Nov 2019 17:32:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/12/cyginw_ssh_stack/</guid>
-      <description>&amp;#30446;&amp;#27425;  まとめ   
-/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定してる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成できないと怒られてしまう。
+      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定してる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成できないと怒られてしまう。
 $ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &amp;#39;/home/mikio/.ssh&amp;#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
  http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
-debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try.</description>
+debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try. Permission denied (publickey).</description>
     </item>
     
     <item>

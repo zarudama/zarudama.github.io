@@ -17,8 +17,7 @@
       <pubDate>Fri, 08 Nov 2019 20:38:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/xmonad_use/</guid>
-      <description>&amp;#30446;&amp;#27425;  インストールメモ xinitrc 参考サイト   
-CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれてみました。
+      <description>CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれてみました。
  http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124  タイル型のウィンドウマネージャです。常にウィンドウ全てが一覧されるやつです。インストールしてみて実感しましたがタイル型はとーっても快適です。普段からemacsでキーボード操作メインのユーザだったらすぐに気にいるかと思います。とくにウィンドウ切り替えが Mod+j/k でできるのがイイ! (それに比べて WindowsのALT+tabは左手の手首が死ぬ。。。)
 今回、Xmonadというのをインストールしましたが、老舗のawesomeというのも人気があるそうです。ただXmonadの方が後発である分いろいろブラッシュアップされてるような印象でした。問題は設定ファイルがHaskellってことですかね。できれば覚えたくないですよね。いやHaskellは勉強して動かしたことはありますが、今はLisp系言語を覚え中なので他の言語はできるだけ気にせず脳の負担を増やしたくないのです。そういう意味で気になるのは、設定フィアルがCommonLispであるstumpwm。そのうち試したいと思います。
 しかしタイル型使ってると、UnityとかgnomuShellの動向がどうでもよくなりますな。
@@ -32,17 +31,13 @@ CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた�
       <pubDate>Fri, 08 Nov 2019 20:25:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
-      <description>&amp;#30446;&amp;#27425;  processing のおすすめポイント  processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、androidモードがある。 emacsでprocessing xmonadでprocessing    
-最近Processingをいじり始めました。
+      <description>最近Processingをいじり始めました。
   &amp;#22259;1: Ubuntu上のXmonadでemacs使ってProcessingしてるところ
   上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
 ちょろっと作った
- テストプログラム
-
+テストプログラム
 Javascriptモードで出力しました。こんなのが簡単に作れます。
 日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。最大のきっかけとなったのは下記の本を手にしたからです。
- &amp;rdquo;&amp;gt;&amp;rdquo; &amp;gt;&amp;rdquo; /&amp;gt;
-
 この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
 初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
 特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、この本はデータ作成にも多くのページを割いて解説しています。また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
@@ -53,7 +48,11 @@ Processingをイメージで簡単に説明すると、「Processingという巨
 HTMLモード、androidモードがある。 昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。
 結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
 emacsでprocessing emacsからもProcessingを使えます。下記を参考にしました。
- http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</description>
+ http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。
+xmonadでprocessing 最後にXmonadでProcessingする方法を書いておきます。
+Xmonad上では、JavaのSwingがまともに動かないみたいなので、 Processingするにはxmonadの設定ファイルを修正する必要があります。
+~/.xmonad/xmonad.hs ファイルのlogHookを下記のように XMonad.Hooks.ICCCMFocus をインポートして、 logHook の右辺を takeTopFocus に置き換えます。
+import XMonad.Hooks.ICCCMFocus : main = do : xmonad $ defaultConfig : , logHook = takeTopFocus : 意味はわかってません。。。下記のURLを参考にしました。</description>
     </item>
     
     <item>
@@ -66,6 +65,25 @@ emacsでprocessing emacsからもProcessingを使えます。下記を参考に�
 この状態を回避するには、 まず ALT+F2 でコンソールを切り替える。 Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 ALT + F1 - F4 で切り替えられるのだ。
 まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。
 $ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ} で削除できる。この時、swap領域に割り当てたものが削除できない場合があるがその時は、いったんインストール作業を中断してやり直せばよい。</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 12.04 LTS On ZENBOOK UX21E</title>
+      <link>https://zarudama.github.io/post/2012/05/ubuntu_zenbook/</link>
+      <pubDate>Fri, 08 Nov 2019 20:21:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2012/05/ubuntu_zenbook/</guid>
+      <description>メインで使用していたノートが3年になるのでZENBOOKを買った。次期モデルの噂も出始めてはいるが、いつになるかもわからないし、欲しいときが買いどきということで購入。
+ubuntuもほとんどそのままの状態で大体の機能が使えている。
+  以下を参考にした。
+ https://help.ubuntu.com/community/AsusZenbook  インストール後の設定は別エントリにまとめている。
+事前に2chや価格comで情報収集していたが、感想としてはやはりキーボードの打ちにくさが一番気になった。他のキーボードを使わずに、このノートだけを使いつづければ、多分慣れてしまって、なんとも思わなくなるんだろう。けれども自分の場合、会社ではロジクールの打ちやすいキーボードを使用しているので凄く気になってしまう。。。
+つぎにヒンジ。自分が丁度いいと思う角度で止めようと思っても、自重でトルクがかかってパカっと最大まで開いてしまう。普段大きな問題となることないが、地味に痛い。ただし固体差もあるだろうから大丈夫な人もいるかと思う。
+トラックパッドについては言われていたほど誤タッチもなく割と快適。キーボードメインの操作のときはF9を押下すればオフにできるしね。
+液晶については、視野角が狭く見づらいという意見があったが、自分は特に気にならない。動画鑑賞メインとかビジュアル系の用途には多分よわいだろう。自分の場合はプログラミングなので大丈夫かと。
+バッテリーのもちに関してはまだ計測したわではないのでわからないがあまり期待できないだろう。もって3時間てところか？
+不満が多いエントリになってしまったが、全般としては、かなり満足している。とても静かだし、薄くて軽い。なによりさくさく動く。
+次期モデルは、オプションとしてIPSと高解像度化が図られるとのことだがそれに加えてキーボードとヒンジの問題が改善されればかなり使いやすくなると思う。</description>
     </item>
     
   </channel>

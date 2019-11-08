@@ -93,6 +93,11 @@
   </url>
   
   <url>
+    <loc>https://zarudama.github.io/post/2012/05/ubuntu_zenbook/</loc>
+    <lastmod>2019-11-08T20:21:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zarudama.github.io/tags/tmux/</loc>
     <lastmod>2019-11-08T20:18:00+09:00</lastmod>
     <priority>0</priority>
@@ -212,6 +217,12 @@
   </url>
   
   <url>
+    <loc>https://zarudama.github.io/tags/firefox/</loc>
+    <lastmod>2019-11-08T19:54:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zarudama.github.io/post/2013/05/firefox_sync_error/</loc>
     <lastmod>2019-11-08T19:54:00+09:00</lastmod>
   </url>
@@ -219,12 +230,6 @@
   <url>
     <loc>https://zarudama.github.io/post/2012/09/firefox_focus_ignore/</loc>
     <lastmod>2019-11-08T19:52:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/tags/firefox/</loc>
-    <lastmod>2019-11-08T19:52:00+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -364,6 +369,12 @@
   </url>
   
   <url>
+    <loc>https://zarudama.github.io/tags/org/</loc>
+    <lastmod>2019-11-08T16:58:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zarudama.github.io/post/2014/07/emacs_org/</loc>
     <lastmod>2019-11-08T16:58:00+09:00</lastmod>
   </url>
@@ -413,6 +424,12 @@
   <url>
     <loc>https://zarudama.github.io/tags/libgdx/</loc>
     <lastmod>2019-11-08T16:32:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/</loc>
+    <lastmod>2019-11-08T16:24:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   

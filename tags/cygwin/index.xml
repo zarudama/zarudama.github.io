@@ -27,19 +27,54 @@ $ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A
     </item>
     
     <item>
+      <title>cygwin経由で表示したtmuxの分割罫線が表示崩れする</title>
+      <link>https://zarudama.github.io/post/2013/01/cyginw_tmux_stack/</link>
+      <pubDate>Fri, 08 Nov 2019 17:38:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2013/01/cyginw_tmux_stack/</guid>
+      <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善せず、ならばとtmuxのバージョンを最新にしても直らず、結局cyg-terminalのオプションでTextの設定を下記のように変更したら、表示崩れが解消した。
+変更前 Locale:JA_jp CharacterSet:UTF-8 変更後 Locale:C CharacterSet:UTF-8</description>
+    </item>
+    
+    <item>
+      <title>cygwinでsvn upgradeに失敗する。</title>
+      <link>https://zarudama.github.io/post/2012/08/cyginw_svn_stack/</link>
+      <pubDate>Fri, 08 Nov 2019 17:34:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2012/08/cyginw_svn_stack/</guid>
+      <description>本格的にcygwinをputty代替として使っていく気になったので、Subversionに関してもTortoiseSVNからcygwin版のSubversionを使用することにした。
+apt-cyg install subversion インストール後、今まで使用していたリポジトリで svn status を実行したら、upgradeしろと言われたのでしてみたところ、下記のエラーが。
+$ svn upgrade svn: E200029: Couldn&amp;#39;t perform atomic initialization svn: E200030: SQLite compiled for 3.7.13, but running with 3.7.3 ぐぐってみたところ、TortoiseSVNがSQLite3を使用しているのが原因のようだったので、TortoiseSVNを削除してらリトライ。でも変化せず。
+$ sqlite3 SQLite header and source version mismatch 2010-10-08 02:34:02 2677848087c9c090efb17c1893e77d6136a9111d 2012-06-11 02:05:22 f5b5a13f7394dc143aa136f1d4faba6839eaa6dc ソースと実行ファイルでバージョンの不一致がおこっている模様。でもソースからビルドした記憶はないんだけどなぜだろう。よくわからないので、 apt-cyg find sqlite3 して関連するパッケージを調べて全て削除した。
+$ apt-cyg remove libsqlite3-devel libsqlite3_0 odbc-sqlite3 sqlite3 sqlite3-debuginfo Removing libsqlite3-devel Package libsqlite3-devel removed Removing libsqlite3_0 Package libsqlite3_0 removed Package odbc-sqlite3 is not installed, skipping Removing sqlite3 Package sqlite3 removed そして、再インストール。</description>
+    </item>
+    
+    <item>
+      <title>cygwinでssh接続できない</title>
+      <link>https://zarudama.github.io/post/2012/12/cyginw_ssh_stack/</link>
+      <pubDate>Fri, 08 Nov 2019 17:32:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2012/12/cyginw_ssh_stack/</guid>
+      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定してる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成できないと怒られてしまう。
+$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &amp;#39;/home/mikio/.ssh&amp;#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
+ http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
+debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try. Permission denied (publickey).</description>
+    </item>
+    
+    <item>
       <title>cygwinにtmuxを導入</title>
       <link>https://zarudama.github.io/post/2014/06/cygwin_tmux/</link>
       <pubDate>Fri, 08 Nov 2019 17:01:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/cygwin_tmux/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに インストール方法 翌日、なぜか起動しなくなった。   
-はじめに Cygwinでは、長らくtmuxが使えなかったのですが、最近tmuxが正式にCygwinをサポートしたようです。
+      <description>はじめに Cygwinでは、長らくtmuxが使えなかったのですが、最近tmuxが正式にCygwinをサポートしたようです。
 コンパイルしてインストールするため、依存するライブラリが必要です。
 インストール方法 apt-cygで事前に必要なパッケージをインストールしておく。
 $ apt-cyg install ncurses $ apt-cyg install libncurses-devel $ apt-cyg install libevent-devel $ apt-cyg install pkg-config autoconf automake $ apt-cyg install make gcc-core あとは参考サイトにあるとおりでオッケー。
 $ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code $ cd tmux-tmux-code/ $ ./autogen.sh $ CFLAGS=&amp;#34;-I/usr/include/ncurses&amp;#34; ./configure --prefix=/usr $ make &amp;amp;&amp;amp; make install 参考
  http://atdxfe.hatenablog.com/entry/2013/11/27/031058 http://java.ociweb.com/mark/programming/tmuxInCygwin.html  翌日、なぜか起動しなくなった。 後日、起動時に下記のエラーが発生
-$ tmux failed to connect to server: No error .</description>
+$ tmux failed to connect to server: No error .bashrc に下記を追記することで治った。
+alias tmux=&amp;#39;rm -rf /tmp/tmux* &amp;amp;&amp;amp; tmux&amp;#39; 参考</description>
     </item>
     
     <item>

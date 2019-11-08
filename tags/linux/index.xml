@@ -17,8 +17,7 @@
       <pubDate>Fri, 08 Nov 2019 20:16:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/03/sudo_env_variable/</guid>
-      <description>  &amp;#30446;&amp;#27425;  方法 経過 別解   
-sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。
+      <description> sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。
 方法 -Eオプションを追加する。
 sudo -E ls -la $HOME -Eは実行したいコマンドの直前に置く。
 経過 sudo -u hogeなどで実行すると、sudoを実行したユーザの環境変数が引き継がれない。昔は、こんなこと考えずに引き継がれてた気がするが、どうやらsudoのバージョンが上がって仕様変更されたらしい。
@@ -28,6 +27,24 @@ sudo -E ls -la $HOME -Eは実行したいコマンドの直前に置く。
 manの最後にver1.6.6とあるのでマニュアルが古いと思われる。 sudo[Enter]で表示されるUsageにはEオプションは存在するので。
 別解 -u オプションを使用して別ユーザーとしてsudoを実行したい場合、そのユーザーの .bashrc や /etc/profile に定義してある設定を使用したい場合がある。そんなときは、-i オプションを使用すれば良い。
 sudo -u taro -i env</description>
+    </item>
+    
+    <item>
+      <title>ファイルオープン数が上限値に達した</title>
+      <link>https://zarudama.github.io/post/2013/03/file_open/</link>
+      <pubDate>Fri, 08 Nov 2019 19:51:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2013/03/file_open/</guid>
+      <description>&amp;#30446;&amp;#27425;  確認方法 一時的な設定方法  システム全体 ユーザ毎(カレントユーザ)  恒久的な設定方法 - sysctl.conf - limits.conf - メモ   
+CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。
+下記を参考にした。
+ http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html  確認方法 ファイル上限値の確認コマンドは以下。
+$ cat /proc/sys/fs/file-nr 1792 0 566699 左から順に
+ 今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限  となる。
+一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
+$ cat /proc/sys/fs/file-nr 1792 0 566699 一時的にファイルディスクリプタの上限値を変更する。
+$ /sbin/sysctl -w fs.file-max = 1234567 設定値の確認
+$ cat /proc/sys/fs/file-nr 1216 0 1234567 ユーザ毎(カレントユーザ) 現在のセッション(自分が起動したプロセス)に対して、ファイルディスクリプタ上限値を設定するには、 ulimit を使用する。</description>
     </item>
     
     <item>

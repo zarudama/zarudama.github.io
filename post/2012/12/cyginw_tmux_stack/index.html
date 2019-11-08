@@ -29,26 +29,28 @@
             <li><a href="/tags/android">android</a> (1)
             <li><a href="/tags/awk">awk</a> (1)
             <li><a href="/tags/clojure">clojure</a> (6)
-            <li><a href="/tags/cygwin">cygwin</a> (3)
-            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/cygwin">cygwin</a> (6)
+            <li><a href="/tags/emacs">emacs</a> (13)
             <li><a href="/tags/evil">evil</a> (1)
             <li><a href="/tags/find">find</a> (1)
-            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (2)
             <li><a href="/tags/game">game</a> (1)
             <li><a href="/tags/git">git</a> (1)
             <li><a href="/tags/java">java</a> (4)
             <li><a href="/tags/jvm">jvm</a> (2)
             <li><a href="/tags/keyboard">keyboard</a> (1)
             <li><a href="/tags/libgdx">libgdx</a> (6)
-            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/libgdx%E5%85%A5%E9%96%80">libgdx入門</a> (5)
+            <li><a href="/tags/linux">linux</a> (3)
             <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/org">org</a> (1)
             <li><a href="/tags/processing">processing</a> (1)
             <li><a href="/tags/skk">skk</a> (2)
             <li><a href="/tags/stack">stack</a> (10)
             <li><a href="/tags/sudo">sudo</a> (1)
             <li><a href="/tags/thinkpad">thinkpad</a> (1)
             <li><a href="/tags/tmux">tmux</a> (2)
-            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/ubuntu">ubuntu</a> (4)
             <li><a href="/tags/vim">vim</a> (1)
             <li><a href="/tags/windows">windows</a> (4)
             <li><a href="/tags/xmonad">xmonad</a> (2)
@@ -63,38 +65,6 @@
   <div>
         <article id="content">
            
-
-<div class="ox-hugo-toc toc">
-<div></div>
-
-<div class="heading">&#30446;&#27425;</div>
-
-<ul>
-<li><a href="#追記--2013-08-01">追記(2013/08/01)</a></li>
-<li><a href="#はじめに">はじめに</a></li>
-<li><a href="#必要なもの">必要なもの</a></li>
-<li><a href="#jdeeのビルド">JDEEのビルド</a></li>
-<li><a href="#dot-emacsの設定">.emacsの設定</a></li>
-<li><a href="#サンプルプロジェクトの準備">サンプルプロジェクトの準備</a></li>
-<li><a href="#動作確認してみる">動作確認してみる</a>
-
-<ul>
-<li><a href="#beanshell">BeanShell</a></li>
-<li><a href="#依存ライブラリのダウンロード">依存ライブラリのダウンロード</a></li>
-<li><a href="#ビルドエラー">ビルドエラー</a></li>
-<li><a href="#importの自動挿入とビルド">importの自動挿入とビルド</a></li>
-<li><a href="#apiドキュメントの参照">APIドキュメントの参照</a></li>
-<li><a href="#メソッド補完">メソッド補完</a></li>
-<li><a href="#メソッド補完--helm版">メソッド補完(Helm版)</a></li>
-</ul></li>
-<li><a href="#操作方法まとめ">操作方法まとめ</a></li>
-<li><a href="#所感">所感</a></li>
-<li><a href="#参考url">参考URL</a></li>
-<li><a href="#更新履歴">更新履歴</a></li>
-</ul>
-
-<p></div>
-<!--endtoc--></p>
 
 <p>この投稿は <a href="http://qiita.com/advent-calendar/2012/emacs">Emacs Advent Calendar 2012</a> の23日目の記事です。</p>
 
@@ -245,7 +215,7 @@ build.bin.emacs<span style="color:#555">=</span>c:/Users/mikio/apps/emacs-24.3/b
 <h2 id="サンプルプロジェクトの準備">サンプルプロジェクトの準備</h2>
 
 <p>ここまで作業できたら、動作確認してみましょう。
-JDEEの動作確認用に <a href="https://github.com/mikio/sample-java-project">Javaプロジェクト</a> を準備しました。といっても私の作ったものではなくて、
+JDEEの動作確認用に <a href="https://github.com/zarudama/sample-java-project">Javaプロジェクト</a> を準備しました。といっても私の作ったものではなくて、
 <a href="https://github.com/skeeto/emacs-java">java-mode-plus</a> を作成してるskeetoさんの <a href="https://github.com/skeeto/sample-java-project">プロジェクト</a> をforkしていくつか追加したものです。
 fork前のプロジェクトは、アノテーションを活用してすごくシンプルに書かれた、すばらしいプロジェクトなのですが、JDEEがアノテーションをサポートしていないため、わざわざ改悪？して古いライブラリを使用して書きなおしています。あくまでJDEEの動作確認用のものなので、そのまま使用するときは注意してください。</p>
 
@@ -260,7 +230,7 @@ Mavenのリポジトリを利用して必要なjarをダウンロードするモ
  を <code>~/.ant/lib/</code> に配置したらインストール完了です。</p>
 
 <p>ivyのインストールが終わったら、サンプルプロジェクトを下記のようにgithubから落してください。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/mikio/sample-java-project.git</code></pre></div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/zarudama/sample-java-project.git</code></pre></div>
 <p>続いてprj.elを自分の環境に合わせて編集します。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#033">jde-project-file-version</span> <span style="color:#c30">&#34;1.0&#34;</span>)
 (<span style="color:#033">jde-set-variables</span>
@@ -422,7 +392,7 @@ emacserなら当然w3mですよね？ローカルにダウンロードしたAPI�
 <p>ミニバッファでメソッドを補完する機能は確かに便利ですが、今となってはこのインターフェイスは古くさいですね。そこでこの機能をHelmで実現してみました。</p>
 
 <ul>
-<li><a href="https://github.com/mikio/emacs-helm-jdee-method">helm-jdee-method.el</a>&nbsp;<sup class="footnote-ref" id="fnref:fn-2"><a href="#fn:fn-2">2</a></sup></li>
+<li><a href="https://github.com/zarudama/emacs-helm-jdee-method">helm-jdee-method.el</a>&nbsp;<sup class="footnote-ref" id="fnref:fn-2"><a href="#fn:fn-2">2</a></sup></li>
 </ul>
 
 <p>今回は時間がなかったので手動インストールですが、そのうちMELPAに登録します。</p>
