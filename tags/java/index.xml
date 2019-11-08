@@ -6,7 +6,7 @@
     <description>Recent content in java on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 20:03:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 20:03:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,60 +14,37 @@
     <item>
       <title>javapコマンドを使ってみた。</title>
       <link>https://zarudama.github.io/post/2012/06/javap_use/</link>
-      <pubDate>Fri, 08 Nov 2019 20:03:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:03:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/06/javap_use/</guid>
-      <description>Javaは *.java から *.class を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。これをエディタで閲覧できる状態にするには、jdkに標準搭載されているjavapコマンドを使用しすれば良い。
-例えばhogeというパッケージにあるFuga.javaがあるとする。
-package hoge; public class Fuga { public static void main(String[] args) { System.out.println(&amp;#34;Hello Javap!&amp;#34;); } } これをコンパイルした結果をjavapで見たい時は、以下のようなコマンドを叩けばいい。このときhoge.Fugaクラスはhoge/Fuga.lcassというディレクトリ構造になければならない。
-javap -c hoge.Fuga &amp;gt; Fuga.code Fuga.codeは以下のようになる。
-Compiled from &amp;#34;Fuga.java&amp;#34; public class hoge.Fuga { public hoge.Fuga(); Code: 0: aload_0 1: invokespecial #1 // Method java/lang/Object.&amp;#34;&amp;lt;init&amp;gt;&amp;#34;:()V  4: return public static void main(java.lang.String[]); Code: 0: getstatic #2 // Field java/lang/System.out:Ljava/io/PrintStream;  3: ldc #3 // String Hello Javap!  5: invokevirtual #4 // Method java/io/PrintStream.</description>
+      <description>Javaは *.java から *.class を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。これをエディタで閲覧できる状態にするには、jdkに標</description>
     </item>
     
     <item>
       <title>Javaでカンマ区切りの数字を出力する。</title>
       <link>https://zarudama.github.io/post/2012/05/java_comma_print/</link>
-      <pubDate>Fri, 08 Nov 2019 20:01:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:01:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/05/java_comma_print/</guid>
-      <description>下記のとおり。
-int value = 99999999; String.format(&amp;#34;%1$,3d円&amp;#34;, value); // =&amp;gt; 99,999,999円; この場合「%1$,3d」が書式になる。
- %は書式の開始を示す。 1$は引数のインデックスを示す。ひとつの引数を使い回すときなどに必要。今回の場合はひとつなので無くても良い。 ,は区切りたい文字 3 は区切りたい桁 d は引数が数字(デシマル)を示す。  </description>
+      <description>下記のとおり。 int value = 99999999; String.format(&amp;#34;%1$,3d円&amp;#34;, value); // =&amp;gt; 99,999,999円; この場合「%1$,3d」</description>
     </item>
     
     <item>
       <title>JVMのヒープサイズと変更方法</title>
       <link>https://zarudama.github.io/post/2014/03/java_jvm_heap/</link>
-      <pubDate>Fri, 08 Nov 2019 17:12:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:12:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_jvm_heap/</guid>
-      <description>&amp;#30446;&amp;#27425;  JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考   
-稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
-JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、初期割り当てのヒープサイズが異なる。
-サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
-$ java -version java version &amp;#34;*****&amp;#34; Java(TM) SE Runtime Environment (build ******) Java HotSpot(TM) Server VM (build ******) Severモードの場合は、 Server の表記があるはず。
-サーバーモード
-   初期ヒープサイズ マシンの物理メモリーの 1&amp;frasl;64 か、妥当な最小サイズかの大きい方。     最大ヒープサイズ 物理メモリーの 1&amp;frasl;4 か、1GB かの小さい方。     http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html  JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
-$ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.</description>
+      <description>&amp;#30446;&amp;#27425; JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考 稼動中のJVMのヒープサイズを知りたくなることは良くあるので</description>
     </item>
     
     <item>
       <title>GCの発生頻度などの調査</title>
       <link>https://zarudama.github.io/post/2014/03/java_gc/</link>
-      <pubDate>Fri, 08 Nov 2019 17:10:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:10:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_gc/</guid>
-      <description>&amp;#30446;&amp;#27425;  メモリ使用量を確認したいとき   
-GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
-まずはプロセスIDを調べる。例としてtomcatの場合。
-$ sudo -u tomcat jps -v tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
-javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
-$ pgrep -lf java PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
-jstat -gcutil -t 123456 3000 意味は以下のとおり。
-jstat &amp;lt;出力オプション&amp;gt; &amp;lt;プロセスID&amp;gt; &amp;lt;データ取得間隔(ms)&amp;gt; -t タイムスタンプを出力 -gcutil GCの統計情報 jstatのマニュアルは以下。
- http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
-Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT gcutilの見出しは以下のルールになる
-   S* Suviver      E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間    GCについては、下記が詳しい。</description>
+      <description>&amp;#30446;&amp;#27425; メモリ使用量を確認したいとき GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。 まずはプロセスIDを調べる。例</description>
     </item>
     
   </channel>

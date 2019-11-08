@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Libgdx_basics on ざる魂</title>
+    <link>https://zarudama.github.io/libgdx_basic/</link>
+    <description>Recent content in Libgdx_basics on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sat, 09 Nov 2019 01:02:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://zarudama.github.io/libgdx_basic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>libGDX入門 その01 画像を表示したり音を鳴らしたり</title>
+      <link>https://zarudama.github.io/libgdx_basic/libgdx01/</link>
+      <pubDate>Sat, 09 Nov 2019 01:02:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/libgdx_basic/libgdx01/</guid>
+      <description>&amp;#30446;&amp;#27425; はじめに プロジェクトを作る 注意点 IntelliJで使う プロジェクトのインポート PC版を動かす Android版を動かす HTML版を動かす Ec</description>
+    </item>
+    
+    <item>
+      <title>libGDX入門 その02 カメラとビューポート</title>
+      <link>https://zarudama.github.io/libgdx_basic/libgdx02/</link>
+      <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/libgdx_basic/libgdx02/</guid>
+      <description>&amp;#30446;&amp;#27425; はじめに 物理画面に依存しない画面表示 カメラとビューポート 実際のコーディング カメラの導入 ビューポートの導入 背景の追加 カメラの位置調整 ワールド</description>
+    </item>
+    
+    <item>
+      <title>libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</title>
+      <link>https://zarudama.github.io/libgdx_basic/libgdx03/</link>
+      <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/libgdx_basic/libgdx03/</guid>
+      <description>&amp;#30446;&amp;#27425; はじめに ログの出しかた スプライトアニメーション バーチャルパッド テクスチャラップ ソースコード 今回の記事のアセット一覧 テクスチャ 背景 BGM おわりに</description>
+    </item>
+    
+    <item>
+      <title>libGDX入門 その04 画面遷移</title>
+      <link>https://zarudama.github.io/libgdx_basic/libgdx04/</link>
+      <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/libgdx_basic/libgdx04/</guid>
+      <description>&amp;#30446;&amp;#27425; はじめに ライフサイクルについて 画面遷移 Screenインタフェイス show()とhide() dispose() dispose()の方法 その1 hide() で解放する その</description>
+    </item>
+    
+    <item>
+      <title>libGDX入門 その05 ゲームデータの保存</title>
+      <link>https://zarudama.github.io/libgdx_basic/libgdx05/</link>
+      <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/libgdx_basic/libgdx05/</guid>
+      <description>&amp;#30446;&amp;#27425; はじめに 注意 インスタンスの取得方法 値の書込みと読込み データを保存するタイミング 保存される場所 実際の実装例 ソースコード おわりに 参考書籍 注釈 は</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,7 @@
     <description>Recent content in awk on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 16:54:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 16:54:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,12 +14,10 @@
     <item>
       <title>ちょい足しawkの基本</title>
       <link>https://zarudama.github.io/post/2014/03/awk_basic/</link>
-      <pubDate>Fri, 08 Nov 2019 16:54:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/awk_basic/</guid>
-      <description>&amp;#30446;&amp;#27425;  基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考   
-基本 コンマンドラインでちょい足し的に使うときのカンペ。
-$ awk &amp;#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&amp;#39;  BEGIEN, END, パターンは省略できる(&amp;rdquo;[]&amp;ldquo;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力   awk &amp;#39;$4 == &amp;#34;200&amp;#34; {print $4,$5}&amp;#39;# $4が200のとき、$4,$5を表示 awk &amp;#39;$4 != &amp;#34;200&amp;#34; { print }&amp;#39; # $4が200でないとき、1行まるごと表示 awk &amp;#39;$4 ~ /200/ { print }&amp;#39; # $4が200のとき、1行まるごと表示(正規表現) awk &amp;#39;$1 ~ /^a/ { print}&amp;#39; # $1が&amp;#34;a&amp;#34;で始まるとき、表示(正規表現) awk &amp;#39;$1 !~ /^a/{ print}&amp;#39; # $1が&amp;#34;a&amp;#34;以外で始まるとき、表示(正規表現) (例)</description>
+      <description>&amp;#30446;&amp;#27425; 基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考 基本 コンマンドラインでちょい足し的に使うときのカンペ。 $ awk &amp;#39;[BEGIN {各行</description>
     </item>
     
   </channel>

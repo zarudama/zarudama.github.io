@@ -6,7 +6,7 @@
     <description>Recent content in Posts on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 20:38:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 22:50:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,878 +14,433 @@
     <item>
       <title>xmonadを試す</title>
       <link>https://zarudama.github.io/post/2012/09/xmonad_use/</link>
-      <pubDate>Fri, 08 Nov 2019 20:38:00 +0900</pubDate>
+      <pubDate>Fri, 08 Nov 2019 22:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/xmonad_use/</guid>
-      <description>CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれてみました。
- http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124  タイル型のウィンドウマネージャです。常にウィンドウ全てが一覧されるやつです。インストールしてみて実感しましたがタイル型はとーっても快適です。普段からemacsでキーボード操作メインのユーザだったらすぐに気にいるかと思います。とくにウィンドウ切り替えが Mod+j/k でできるのがイイ! (それに比べて WindowsのALT+tabは左手の手首が死ぬ。。。)
-今回、Xmonadというのをインストールしましたが、老舗のawesomeというのも人気があるそうです。ただXmonadの方が後発である分いろいろブラッシュアップされてるような印象でした。問題は設定ファイルがHaskellってことですかね。できれば覚えたくないですよね。いやHaskellは勉強して動かしたことはありますが、今はLisp系言語を覚え中なので他の言語はできるだけ気にせず脳の負担を増やしたくないのです。そういう意味で気になるのは、設定フィアルがCommonLispであるstumpwm。そのうち試したいと思います。
-しかしタイル型使ってると、UnityとかgnomuShellの動向がどうでもよくなりますな。
-インストールメモ $ sudo apt-get install xmonad $ sudo apt-get install dmenu # キーボードランチャー $ sudo apt-get install xmobar # ステータスバー xmorbar用の設定ファイル( ~/.xmobarrc )を作成する。
--- -*- mode:haskell -*- Config { font = &amp;#34;xft:Sans-9:bold&amp;#34; , bgColor = &amp;#34;black&amp;#34; , fgColor = &amp;#34;grey&amp;#34; , position = Top , lowerOnStart = False , commands = [ Run Network &amp;#34;eth0&amp;#34; [&amp;#34;-L&amp;#34;,&amp;#34;0&amp;#34;,&amp;#34;-H&amp;#34;,&amp;#34;32&amp;#34;,&amp;#34;--normal&amp;#34;,&amp;#34;green&amp;#34;,&amp;#34;--high&amp;#34;,&amp;#34;red&amp;#34;] 10 , Run Cpu [&amp;#34;-L&amp;#34;,&amp;#34;3&amp;#34;,&amp;#34;-H&amp;#34;,&amp;#34;50&amp;#34;,&amp;#34;--normal&amp;#34;,&amp;#34;green&amp;#34;,&amp;#34;--high&amp;#34;,&amp;#34;red&amp;#34;] 10 , Run Memory [&amp;#34;-t&amp;#34;,&amp;#34;Mem: &amp;lt;usedratio&amp;gt;%&amp;#34;] 10 , Run Swap [] 10 , Run Battery [] 600 , Run Com &amp;#34;lsb_release&amp;#34; [&amp;#34;-s&amp;#34;,&amp;#34;-d&amp;#34;] &amp;#34;&amp;#34; 36000 , Run Date &amp;#34;%Y %b %_d(%a) %H:%M:%S&amp;#34; &amp;#34;date&amp;#34; 10 ] , sepChar = &amp;#34;%&amp;#34; , alignSep = &amp;#34;}{&amp;#34; , template = &amp;#34;&amp;lt;fc=#ee9a00&amp;gt;%lsb_release%&amp;lt;/fc&amp;gt; | %cpu% | %memory% %swap% | %eth0% | %battery% }{ %date%&amp;#34; } ~/.</description>
-    </item>
-    
-    <item>
-      <title>(超個人的)Windowsインストール後にやることまとめ</title>
-      <link>https://zarudama.github.io/post/2011/04/windows_install/</link>
-      <pubDate>Fri, 08 Nov 2019 20:36:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2011/04/windows_install/</guid>
-      <description>ソフトのインストールポリシー  インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;amp;/opt/下に展開する。  コントロールキーの設定 xp  xkeyemacsをつかってcapsキーをctrsキーにする。  win7  Changekeyを使用する(右クリメニューで管理者として実行すること)。  chgkey.exe Dropboxに保存してある。  GUIのキーボードが表示されるので変更する  Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift  再起動  Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。
-一番最初にインストール  Launcy Firefox Emacs ExpLzh  環境変数の設定  HOME
- XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE%
- HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。
- HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。
- ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。
-  MAVEN_HOME %HOME%\opt\
- XYZZYHOME
- XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin;  下記は.</description>
+      <description>&amp;#30446;&amp;#27425; インストールメモ xinitrc 参考サイト CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれ</description>
     </item>
     
     <item>
       <title>Windowsでmisakiのデモが動かない</title>
       <link>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 20:34:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</guid>
-      <description>Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。
-C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m [4mjava.io.FileNotFoundException: samples\blog\public\samples\blog\template\ato m.xml (?w?????p?X?????????????B)[24m at misaki.util.file$write_file / [1minvoke[22m ([31mfile.clj[0m:[31m[1m 152[22m[0m) at misaki.compiler.default.core$compile_STAR_ / [1minvoke[22m ([31mcore.cl j[0m:[31m[1m237[22m[0m) at misaki.compiler.default.core$compile_template / [1minvoke[22m ([31mcore .clj[0m:[31m[1m256[22m[0m) at misaki.compiler.default.core$_compile$fn__1874 / [1minvoke[22m ([31mcor e.clj[0m:[31m[1m70[22m[0m) at misaki.compiler.default.core$_compile / [1minvoke[22m ([31mcore.clj[0m :[31m[1m58[22m[0m) at misaki.core$call_compiler_fn / [1mdoInvoke[22m ([31mcore.clj[0m:[31m [1m55[22m[0m) at misaki.core$compile_STAR_$fn__1112 / [1minvoke[22m ([31mcore.clj[0m:[ 31m[1m160[22m[0m) at misaki.util.sequence$some_with_default_value / [1minvoke[22m ([31mseque nce.clj[0m:[31m[1m44[22m[0m) at misaki.core$compile_STAR_ / [1minvoke[22m ([31mcore.</description>
+      <description>&amp;#30446;&amp;#27425; 動作環境 Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。 C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m</description>
     </item>
     
     <item>
       <title>windows版emacs24.3で画像を表示する。</title>
       <link>https://zarudama.github.io/post/2013/05/emacs_window_image_disp/</link>
-      <pubDate>Fri, 08 Nov 2019 20:31:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:31:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/emacs_window_image_disp/</guid>
-      <description> Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
- F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。  自分の場合pngが表示されなかったので
- libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。  http://www.gtk.org/download/win32.php  emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。  あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
-emacs(Windows版)で画像を表示している様子 w3mでakb48を検索してみた。 参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  </description>
+      <description>&amp;#30446;&amp;#27425; 参考 Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを</description>
     </item>
     
     <item>
       <title>ubuntuでxmonadして、emacsでProcessingしてます</title>
       <link>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</link>
-      <pubDate>Fri, 08 Nov 2019 20:25:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:25:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
-      <description>最近Processingをいじり始めました。
-  &amp;#22259;1: Ubuntu上のXmonadでemacs使ってProcessingしてるところ
-  上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
-ちょろっと作った
-テストプログラム
-Javascriptモードで出力しました。こんなのが簡単に作れます。
-日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。最大のきっかけとなったのは下記の本を手にしたからです。
-この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
-初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
-特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、この本はデータ作成にも多くのページを割いて解説しています。また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
-processing のおすすめポイント processingは実はjavaである。 文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。
-Processingをイメージで簡単に説明すると、「Processingという巨大なクラスがあって、このメソッドがグローバルな関数に見立てたAPIとなっていて、PDEという独自IDEによってあたかもグローバル関数や変数を簡単に定義できるようになっている。 PDEのおかげで、javaのパスとかメインクラスの作成とか面倒なことを考えずすぐに再生ボタンで実行できる環境」ってことになります (間違ってたらすみません)。なのでJavaを実際に始める前にProcessingから入るというのは非常に有効な手段かと思います。
-インストールが超簡単。 ダウンロードして展開するだけです。Java実行環境は同梱されてるので別途インストールする必要がありません。
-複数のプラットホームに対応している。 作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。
-HTMLモード、androidモードがある。 昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。
-結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
-emacsでprocessing emacsからもProcessingを使えます。下記を参考にしました。
- http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。
-xmonadでprocessing 最後にXmonadでProcessingする方法を書いておきます。
-Xmonad上では、JavaのSwingがまともに動かないみたいなので、 Processingするにはxmonadの設定ファイルを修正する必要があります。
-~/.xmonad/xmonad.hs ファイルのlogHookを下記のように XMonad.Hooks.ICCCMFocus をインポートして、 logHook の右辺を takeTopFocus に置き換えます。
-import XMonad.Hooks.ICCCMFocus : main = do : xmonad $ defaultConfig : , logHook = takeTopFocus : 意味はわかってません。。。下記のURLを参考にしました。</description>
+      <description>&amp;#30446;&amp;#27425; processing のおすすめポイント processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、a</description>
     </item>
     
     <item>
       <title>Ubuntu Server インストール時に前回作ったLVMが削除できなかった。</title>
       <link>https://zarudama.github.io/post/2012/05/ubuntu_install/</link>
-      <pubDate>Fri, 08 Nov 2019 20:23:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:23:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/05/ubuntu_install/</guid>
-      <description>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら VGやLVMが削除できなくて先に進めなくなった。
-この状態を回避するには、 まず ALT+F2 でコンソールを切り替える。 Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 ALT + F1 - F4 で切り替えられるのだ。
-まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。
-$ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ} で削除できる。この時、swap領域に割り当てたものが削除できない場合があるがその時は、いったんインストール作業を中断してやり直せばよい。</description>
+      <description>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら VGやLVMが削除できなくて先に進めなくなった。 この状態を回</description>
     </item>
     
     <item>
       <title>Ubuntu 12.04 LTS On ZENBOOK UX21E</title>
       <link>https://zarudama.github.io/post/2012/05/ubuntu_zenbook/</link>
-      <pubDate>Fri, 08 Nov 2019 20:21:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:21:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/05/ubuntu_zenbook/</guid>
-      <description>メインで使用していたノートが3年になるのでZENBOOKを買った。次期モデルの噂も出始めてはいるが、いつになるかもわからないし、欲しいときが買いどきということで購入。
-ubuntuもほとんどそのままの状態で大体の機能が使えている。
-  以下を参考にした。
- https://help.ubuntu.com/community/AsusZenbook  インストール後の設定は別エントリにまとめている。
-事前に2chや価格comで情報収集していたが、感想としてはやはりキーボードの打ちにくさが一番気になった。他のキーボードを使わずに、このノートだけを使いつづければ、多分慣れてしまって、なんとも思わなくなるんだろう。けれども自分の場合、会社ではロジクールの打ちやすいキーボードを使用しているので凄く気になってしまう。。。
-つぎにヒンジ。自分が丁度いいと思う角度で止めようと思っても、自重でトルクがかかってパカっと最大まで開いてしまう。普段大きな問題となることないが、地味に痛い。ただし固体差もあるだろうから大丈夫な人もいるかと思う。
-トラックパッドについては言われていたほど誤タッチもなく割と快適。キーボードメインの操作のときはF9を押下すればオフにできるしね。
-液晶については、視野角が狭く見づらいという意見があったが、自分は特に気にならない。動画鑑賞メインとかビジュアル系の用途には多分よわいだろう。自分の場合はプログラミングなので大丈夫かと。
-バッテリーのもちに関してはまだ計測したわではないのでわからないがあまり期待できないだろう。もって3時間てところか？
-不満が多いエントリになってしまったが、全般としては、かなり満足している。とても静かだし、薄くて軽い。なによりさくさく動く。
-次期モデルは、オプションとしてIPSと高解像度化が図られるとのことだがそれに加えてキーボードとヒンジの問題が改善されればかなり使いやすくなると思う。</description>
+      <description>メインで使用していたノートが3年になるのでZENBOOKを買った。次期モデルの噂も出始めてはいるが、いつになるかもわからないし、欲しいときが</description>
     </item>
     
     <item>
       <title>tmux セッションの保存方法</title>
       <link>https://zarudama.github.io/post/2012/02/tmux_session/</link>
-      <pubDate>Fri, 08 Nov 2019 20:18:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:18:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/02/tmux_session/</guid>
-      <description>下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。
- http://www.gcd.org/blog/2006/09/100/   agent=&amp;#34;$HOME/tmp/ssh-agent-$USER&amp;#34; if [ -S &amp;#34;$SSH_AUTH_SOCK&amp;#34; ]; then case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*) ln -snf &amp;#34;$SSH_AUTH_SOCK&amp;#34; $agent &amp;amp;&amp;amp; export SSH_AUTH_SOCK=$agent esac elif [ -S $agent ]; then export SSH_AUTH_SOCK=$agent else echo &amp;#34;no ssh-agent&amp;#34; fi testコマンドのSオプションは以下のとおり。
--S FILE FILE exists and is a socket やっていることは、直接参照する$SSH_AUTH_SOCKは固定のパスにしてしまい、ログインごとに変わるUNIXドメインソケットはシンボリックリンクで指し示すようにしている。
-その他参考にしたもの  http://hibari.2ch.net/test/read.cgi/unix/1268778432/   84 ：名無しさん＠お腹いっぱい。：2010/11/02(火) 15:34:12 screenと違って、アタッチ時に環境変数SSH_AUTH_SOCKを新しい値に更新してくれるのは 嬉しいんだけど、それが実際シェルに反映されるのは、新しいシェルを追加した時だけだよね？ デタッチ前から動いてるシェルのSSH_AUTH_SOCKを自動的に更新する事って出来る？ 87 ：名無しさん＠お腹いっぱい。：2010/11/21(日) 07:31:25 &amp;gt;&amp;gt;84 シェル側の適当なフックで、親プロセスの環境変数を調べるとか。 88 ：名無しさん＠お腹いっぱい。：2010/11/24(水) 16:56:11 &amp;gt;&amp;gt;84 こんなのしてる： sc() { if [ -n &amp;#34;$TMUX&amp;#34; ]; then unset $(tmux show-env | sed -n &amp;#39;s/^-//p&amp;#39;) eval export $(tmux show-env | sed -n &amp;#39;s/$/&amp;#34;/; s/=/=&amp;#34;/p&amp;#39;) else tmux -u start \; attach \; $@; fi } これでとにかくscって打てばアタッチするし、アタッチ済なら アタッチ前シェルの環境を取り込んでくる。 show-envはshow-environmentのエイリアスで、-で始まる環境変数はシステムから削除されたものらしい。</description>
+      <description>&amp;#30446;&amp;#27425; その他参考にしたもの 下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。 http://www.gcd.org/blog/2006/09/100/ agent=&amp;#34;$HOME/tmp/ssh-agent-$USER&amp;#34; if [ -S &amp;#34;$SSH_AUTH_SOCK&amp;#34; ]; then case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*) ln -snf &amp;#34;$SSH_AUTH_SOCK&amp;#34; $agent &amp;amp;&amp;amp; export</description>
     </item>
     
     <item>
       <title>swank-clojureの後継モジュールのnREPLを試してみた</title>
       <link>https://zarudama.github.io/post/2012/09/clojure_swank_repl/</link>
-      <pubDate>Fri, 08 Nov 2019 20:17:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:17:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/clojure_swank_repl/</guid>
-      <description>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
- https://github.com/technomancy/swank-clojure   This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit. 超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
-ということで、el-getでレシピに下記を追加して nrepl.el をインストール。
-(:name nrepl :type github :pkgname &amp;#34;kingtim/nrepl.el&amp;#34; ) で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。
-:dependencies [[org.clojure/clojure &amp;#34;1.4.0&amp;#34;] [org.clojure/tools.nrepl &amp;#34;0.2.0-beta9&amp;#34; ]] 最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。
-キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
- シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)  ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。たとえば、
- REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ) nREPLとは直接関係ないけど、auto-complte.</description>
+      <description>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。 https://github.com/technomancy/swank-clojure This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If</description>
     </item>
     
     <item>
       <title>sudoで環境変数を引き継ぎたい</title>
       <link>https://zarudama.github.io/post/2012/03/sudo_env_variable/</link>
-      <pubDate>Fri, 08 Nov 2019 20:16:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:16:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/03/sudo_env_variable/</guid>
-      <description> sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。
-方法 -Eオプションを追加する。
-sudo -E ls -la $HOME -Eは実行したいコマンドの直前に置く。
-経過 sudo -u hogeなどで実行すると、sudoを実行したユーザの環境変数が引き継がれない。昔は、こんなこと考えずに引き継がれてた気がするが、どうやらsudoのバージョンが上がって仕様変更されたらしい。
- http://arika.org/2009/04/24/sudo-and-env  環境変数を引き継ぐためにはvisudoを使ってsudoersファイルに環境変数を記述するのが定石のようだが、/etc配下はできるだけ触りたくない。
-そこで下記の方法を見つけた。-Eをつけるだけで良いらしい。
- http://d.hatena.ne.jp/Yudoufu/20110326/1301129885  ただし、man sudo しても-Eオプションは何故か載っていなかった。（manにないだけで実際には使用できる。)
-manの最後にver1.6.6とあるのでマニュアルが古いと思われる。 sudo[Enter]で表示されるUsageにはEオプションは存在するので。
-別解 -u オプションを使用して別ユーザーとしてsudoを実行したい場合、そのユーザーの .bashrc や /etc/profile に定義してある設定を使用したい場合がある。そんなときは、-i オプションを使用すれば良い。
-sudo -u taro -i env</description>
+      <description>&amp;#30446;&amp;#27425; 方法 経過 別解 sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。 方法 -Eオプションを追加する。 sudo -E ls -la $HOME</description>
     </item>
     
     <item>
       <title>SKKを導入してみる(WindowsXP)</title>
       <link>https://zarudama.github.io/post/2012/03/skk_windows/</link>
-      <pubDate>Fri, 08 Nov 2019 20:14:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:14:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/03/skk_windows/</guid>
-      <description>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのにクライアントが増えてます!。。。ということでいくつか検証してみて最終的に下記の組み合わせを使用することにしました。快適!快適ー!
- corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー)  ということで以下に調べた内容をメモしておきます。
-corvus-SKK  最近できたらしいWindows用のFEP 辞書が独自形式  取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。  サーバーがひとつしか使えない  wceSKKServであれば、複数の辞書を扱えるので問題なし  トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。  「;」によるStickyShiftを実現する方法  設定画面で[位置] タブで下記の設定を施す。   開始：; 代替：なし 送り：なし SKK日本語入力FEP  軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。  wceSKKServ  wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。  linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。   google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
-また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、このサーバを使えば、その問題も解決します。スバラシス!
-xp環境でのインストール gemを入れてから下記でインストールする。
-dos&amp;gt; gem install google-ime-skk dos&amp;gt; gem install json 下記のようなバッチファイルを作ってスタートアップに登録しておく。「gskk.</description>
+      <description>&amp;#30446;&amp;#27425; corvus-SKK 「;」によるStickyShiftを実現する方法 SKK日本語入力FEP wceSKKServ google-ime-skk xp環境でのインストール 去年からemacs上の日本語入力にはD</description>
     </item>
     
     <item>
       <title>python window tiler を試す</title>
       <link>https://zarudama.github.io/post/2013/01/python_window_tiler_use/</link>
-      <pubDate>Fri, 08 Nov 2019 20:12:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:12:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/01/python_window_tiler_use/</guid>
-      <description>この記事 にxmonadがでてきたので、自分が普段使っているWindowsでもタイル型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納得のいくものがなかったので、使っていなかったのだ。でもその時から大分時間も経ってるので、最近は何かないかなと調べたところPythonで実装されたその名もずばり「Python-windows-tiler」というものを見つけた。
- https://github.com/Tzbob/python-windows-tiler http://d.hatena.ne.jp/uhiaha888/20121125/1353824257  使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日本語を含むとエラーになるのでルートに解凍するのが良いと思う。
-キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て winにしてPWT.exeを再起動した。
-これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめでたし、と思ったのだが、Win+Lキーでウィンドウの横幅を広げようとしたらロック画面になってしまう。。。
-てことでWin+Lを無効化する方法を模索したけど、結局どれもうまくいかなかったので横幅操作は封印することにした。てか、Winを使用するコンビネーションキーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win キー経由でタイル操作はとても使いやすい。多様する操作はこれ。
-   Win+SPC ウィンドウレイアウトの変更     Win+j, Win+k ALT+TABの代りになる   Win+S+Ent プライマリの切替   Win+数字キー 仮想デスクトップの切替   Win+S+数字キー カレントアプリを仮想デスクトップへ移動    特にWin+j,kがイイ!
-自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみのあるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの emacsでは windows.el を使用し、端末ではtmuxを使用してるので、タイル型ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱するのだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分にはAwesome系の操作体系のほうが向いているような気がした。
-ということで、Ubuntuではxmonadをもう一度使ってみようと思う。</description>
+      <description>この記事 にxmonadがでてきたので、自分が普段使っているWindowsでもタイル型マネージャを使いたくなった。実は以前にも何度か試したこと</description>
     </item>
     
     <item>
       <title>puttyをやめて、cygwin Terminalにする</title>
       <link>https://zarudama.github.io/post/2012/08/putty_cygwin_terminal/</link>
-      <pubDate>Fri, 08 Nov 2019 20:10:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:10:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/08/putty_cygwin_terminal/</guid>
-      <description>puttyベースのminntyがいつのまにcygwinに完全統合されて、 Cygwin Terminal というアプリになっていたので「putty + pagent」の組み合わせをやめて、 Cygwin Terminal と ssh-agent を組みあわせてCygwinだけで SSH接続を実現することにした。
-その際、screenを導入することにした。screenを導入することによって、起動の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の設定をする必要がなくなるからだ。
-導入は簡単。
-$ apt-cyg install screen 次に設定ファイル。
-defencoding utf8 escape ^z^z startup_message off vbell off hardstatus alwayslastline &amp;#34;%w&amp;#34; で端末を利用するときは次の手順で。
-$ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A HOST ssh-agentを起動してから、screenすることで毎回ssh-agent とssh-addをする必要がなくなる。
-あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 Cygwin Terminal で疑似マルチターミナルが実現できた!</description>
+      <description>puttyベースのminntyがいつのまにcygwinに完全統合されて、 Cygwin Terminal というアプリになっていたので「putty + pagent」の組み合</description>
     </item>
     
     <item>
       <title>org-modeの段落の改行を削除したい</title>
       <link>https://zarudama.github.io/post/2013/02/emacs_org_paragraph/</link>
-      <pubDate>Fri, 08 Nov 2019 20:07:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:07:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/02/emacs_org_paragraph/</guid>
-      <description>当ブログは、o-blog で運営していて、org-modeで原稿を書いています。その際、頻繁に fill-paragraph(M-q) を使用するのですが、これが org-export-as-html すると都合が悪いのです。
-どう都合が悪いかというと、段落の文のなかに半角スペースが紛れこんでしまうのです。
-例をあげると
-今日はいい 天気ですね! これは、HTMLエクスポートすると
-&amp;lt;p&amp;gt;今日はいい 天気ですね!&amp;lt;/p&amp;gt; となるので、ブラウザ上では
-今日はいい 天気ですね! となり、文の途中に空白文字が挿入されてしまいます。
-これはHTMLの仕様なので、変更するのはムズかしそうです。 cssなりorg-modeなりで「pタグの改行は空白にしない」オプションがあればいいのですが、ざっと見たかぎり見つかりませんでした。1
-まあしょうがないので、これからは fill-paragraph(M-q) を使用せず、 1行ごとに改行することにします。
-今日はいい天気ですね! そうですね。 これはこうなる。
-今日はいい天気ですね!そうですね。 わかち書きが基本の英語圈でできた仕様だからしかたないのだろうけど、日本語の文章を書くときは不便だなあ。[return]   </description>
+      <description>当ブログは、o-blog で運営していて、org-modeで原稿を書いています。その際、頻繁に fill-paragraph(M-q) を使用するのですが、これが org-export-as-html すると都合が悪いの</description>
     </item>
     
     <item>
       <title>Nexus7(2013)にBUNKER RINGを装着する!</title>
       <link>https://zarudama.github.io/post/2013/09/nexus7/</link>
-      <pubDate>Fri, 08 Nov 2019 20:04:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:04:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/09/nexus7/</guid>
-      <description>主に電子書籍の閲覧に利用していたNexus7ですが、先日新型のNexus7(2013)を購入しました。正常進化したこのモデル、「これはすごい!」という驚きは少ないですが、サクサク動きますし、画面も綺麗で快適です。快適さが自然すぎて逆に感動が少ないって感じです。もう旧式には戻れません。
-さてタブレットを使っていく上で大抵の人は、なんらかのカバーを装着すると思います。裸のままだとまず持ちずらいですし、何より落したときの衝撃が怖いですよね。ただしカバーを装着するとすごくかさばります。もともと薄くて軽いNexus7ですが重くて厚いカバーなどを装着したらせっかくのスリムな本体が台無しです。
-ですからできるだけかさばらずに本体落下のリスクを抑えるアイテムが欲しい。できることならカバーなしでなんとかしたい。一見矛盾しているこの欲求を満してくれるのがBUNKER RINGです。
- 指輪のようなリングを直接本体に貼り付けて使います。旧式ではこれを購入して利用していました。
-カバーなしなので、落したときの衝撃が怖いのですが BUNKER RINGのおかげでまず落しませんし、かさばって毎日いらいらするのに比べたらこのスッキリ感は手放せません。
-で、当然Nexus7(2013)でもBUKER RING を同時購入して装着したのですがこれがうまくいかない。
-新型は、裏面が旧型に比べてツルツルしていて、一見旧型より吸いつきが良いように見えるのですが、なぜか簡単にはがれてしまうのです。旧型はそんなことなかったのに! なので裸運用は諦めて、カバーごしにBUNKER RINGを装着することにしました。
-できるだけ薄くて本体デザインに影響がでないやつがいい。そこでamazonで良さそうなものを物色して手にいれたのがこれ!
- 本体に直接貼りつけてたときは、簡単に剥がれてしまったBUNKER RING ですが、このカバーに対しては、なんども貼り直したにも関わらず、がっちり貼り付きました。
-  新型は重量が軽くなったせいか、スタンドとして使っても割と安定しています。
-  ぶらぶらさせても全然平気です。
-    写真ではぶら下げているだけですが、両手を使ってかなり強く引っ張っても剥れる気がしませんでした。
-うすーいカバーですので本体落下の衝撃には全く役立ちませんが、 BUNKER RING を貼り付けるためだけに利用するなら逆にこの薄さは利点になります。 BUNKER RING を貼りつけるのに困っているかたはどうぞ。お勧めです!</description>
+      <description>主に電子書籍の閲覧に利用していたNexus7ですが、先日新型のNexus7(2013)を購入しました。正常進化したこのモデル、「これはすごい</description>
     </item>
     
     <item>
       <title>javapコマンドを使ってみた。</title>
       <link>https://zarudama.github.io/post/2012/06/javap_use/</link>
-      <pubDate>Fri, 08 Nov 2019 20:03:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:03:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/06/javap_use/</guid>
-      <description>Javaは *.java から *.class を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。これをエディタで閲覧できる状態にするには、jdkに標準搭載されているjavapコマンドを使用しすれば良い。
-例えばhogeというパッケージにあるFuga.javaがあるとする。
-package hoge; public class Fuga { public static void main(String[] args) { System.out.println(&amp;#34;Hello Javap!&amp;#34;); } } これをコンパイルした結果をjavapで見たい時は、以下のようなコマンドを叩けばいい。このときhoge.Fugaクラスはhoge/Fuga.lcassというディレクトリ構造になければならない。
-javap -c hoge.Fuga &amp;gt; Fuga.code Fuga.codeは以下のようになる。
-Compiled from &amp;#34;Fuga.java&amp;#34; public class hoge.Fuga { public hoge.Fuga(); Code: 0: aload_0 1: invokespecial #1 // Method java/lang/Object.&amp;#34;&amp;lt;init&amp;gt;&amp;#34;:()V  4: return public static void main(java.lang.String[]); Code: 0: getstatic #2 // Field java/lang/System.out:Ljava/io/PrintStream;  3: ldc #3 // String Hello Javap!  5: invokevirtual #4 // Method java/io/PrintStream.</description>
+      <description>Javaは *.java から *.class を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。これをエディタで閲覧できる状態にするには、jdkに標</description>
     </item>
     
     <item>
       <title>Javaでカンマ区切りの数字を出力する。</title>
       <link>https://zarudama.github.io/post/2012/05/java_comma_print/</link>
-      <pubDate>Fri, 08 Nov 2019 20:01:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:01:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/05/java_comma_print/</guid>
-      <description>下記のとおり。
-int value = 99999999; String.format(&amp;#34;%1$,3d円&amp;#34;, value); // =&amp;gt; 99,999,999円; この場合「%1$,3d」が書式になる。
- %は書式の開始を示す。 1$は引数のインデックスを示す。ひとつの引数を使い回すときなどに必要。今回の場合はひとつなので無くても良い。 ,は区切りたい文字 3 は区切りたい桁 d は引数が数字(デシマル)を示す。  </description>
+      <description>下記のとおり。 int value = 99999999; String.format(&amp;#34;%1$,3d円&amp;#34;, value); // =&amp;gt; 99,999,999円; この場合「%1$,3d」</description>
     </item>
     
     <item>
       <title>howm-modeとorg-modeを同時に使ってみたい。</title>
       <link>https://zarudama.github.io/post/2012/09/emacs_howm_org/</link>
-      <pubDate>Fri, 08 Nov 2019 20:00:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:00:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/emacs_howm_org/</guid>
-      <description> しばらくメモ管理は、org-modeのみで運用してきた。ブログの下書きも blog.orgという1ファイルのみで運用している (これはo-blogというelispが1ファ イルのみのサポートなため。複数ファイルでの運用方法もあるかもしれないが未確認。結果、ポケットひとつの原則に従うことになりすごくやりやすい)。
-しかしさすがに内容が増えてくると管理がきつくなってくるし、将来的には Clojure版JykyllのMisakiに移行したいと考えているので、そろそろhowmにも手を出してみようかなと。
-howmにもリンク機能やTODO機能があるが、これらはorg-modeにもあるのでそのまま継続するとして、 howmに任せたいのはファイル管理。ファイル自体を意識せずにどんどんメモが取れる環境が理想。
-やること  拡張子は.howmと.orgどちらにするか。  →howmの機能は主にファイル管理に使用する予定なのと、改宗したときに.howmだと面倒なので.orgでいく。 →howmディレクトリをつくってその配下のファイルはすべてhome-modeにしたほうがいいのかも。 →.elも.txtも.orgもすべてhowmで管理。だけどタイトルの仕切りは？  日報をhowmでうまいこと管理したい。  →repotディレクトリとか作る？  orgのtagによるマッチ機能があれば、howmを使う必要もないかも？  影響されたサイト  Evernote vs Emacs+howm+org+Dropbox
- 完全同意です。evernoteは流行り始めたころは使ってましたが、 emacsとの連携がしづらいのでいつのまにか使わなくなってしまいました。  emacsだけで書上げた書籍…翔泳社「ツイッター情報収集術」のつくり方(2) 執筆環境編【増田(maskin)真樹】
- すごいですね。この方のノウハウをぜひ聞いてみたいです。  My life on Emacs
- org-modeとhowmを同時に使用するというのはこの方の資料を拝見して初めて気づきました。 howmをサンプルプログラムと日報に活用ってところが詳しくしりたいです。  Emacs + Org-mode + howm + MobileOrg + Dropbox でテキスト管理環境を構築した
- MobileOrgもぜひ活用したいと思っているのですが、まだできてないですね。。。   </description>
+      <description>しばらくメモ管理は、org-modeのみで運用してきた。ブログの下書きも blog.orgという1ファイルのみで運用している (これはo-blo</description>
     </item>
     
     <item>
       <title>helmのファイル一覧でパスを表示する</title>
       <link>https://zarudama.github.io/post/2013/06/emacs_helm_file_list/</link>
-      <pubDate>Fri, 08 Nov 2019 19:58:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:58:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/06/emacs_helm_file_list/</guid>
-      <description>helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、パス部分が表示されなくなってしまった。デフォルトの挙動が変更されたようである。
-自分の場合、helm-git.elを使用しているが、同じリポジトリに同名ファイルが複数あるため、ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。これでは困るので調査したところ、ファイル表示部分は、helm本体の helm-files.el の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
-(defcustom helm-ff-transformer-show-only-basename t &amp;#34;Show only basename of candidates in `helm-find-files&amp;#39;. This can be toggled at anytime from `helm-find-files&amp;#39;with \ \\&amp;lt;helm-find-files-map&amp;gt;\\[helm-ff-run-toggle-basename].&amp;#34; :type &amp;#39;boolean :group &amp;#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
-(setq helm-ff-transformer-show-only-basename nil)</description>
+      <description>helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、パス部分が表示されなくなってしまった。デフォルトの挙動が変更され</description>
     </item>
     
     <item>
       <title>削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。</title>
       <link>https://zarudama.github.io/post/2012/08/git_remote_branch_error/</link>
-      <pubDate>Fri, 08 Nov 2019 19:56:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:56:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/08/git_remote_branch_error/</guid>
-      <description>サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。
- http://blog.s21g.com/articles/992  なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジトリから見ると生きのこってたりする。 git remote show origin で確認できる。
-$ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &amp;#39;git remote prune&amp;#39; to remove) refs/remotes/origin/fuga-branch stale (use &amp;#39;git remote prune&amp;#39; to remove) : この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
-まず、確認。
-$ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。
-$ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。</description>
+      <description>サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。 http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモ</description>
     </item>
     
     <item>
       <title>firefox の同期不具合</title>
       <link>https://zarudama.github.io/post/2013/05/firefox_sync_error/</link>
-      <pubDate>Fri, 08 Nov 2019 19:54:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/firefox_sync_error/</guid>
-      <description>&amp;#30446;&amp;#27425;  追記 参考   
-下記のエラーが頻繁に表示される。
-「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は、
- 「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」  で、もとに戻るはず。
-追記 結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、 syncエラーの原因が読めることがわかった。
-about:sync-log 今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、このログをみれば詳細な情報が手にはいるので大助かり。
-自分の場合、ログをみたところ、bookmark同期に原因があった模様。
-1368414694893 Sync.Engine.Bookmarks DEBUG First sync, uploading all items 1368414694893 Sync.Engine.Bookmarks INFO 2 outgoing items pre-reconciliation 1368414695441 Sync.Engine.Bookmarks WARN Got exception &amp;#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &amp;lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &amp;lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &amp;lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &amp;lt; _reconcile()@resource://services-sync/engines.js:1120 &amp;lt; resource://services-sync/engines.js:903 &amp;lt; resource://gre/modules/services-sync/record.js:625 &amp;lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &amp;lt; &amp;lt;file:unknown&amp;gt;&amp;#34; building GUID map.</description>
+      <description>&amp;#30446;&amp;#27425; 追記 参考 下記のエラーが頻繁に表示される。 「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は</description>
     </item>
     
     <item>
       <title>Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。</title>
       <link>https://zarudama.github.io/post/2012/09/firefox_focus_ignore/</link>
-      <pubDate>Fri, 08 Nov 2019 19:52:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:52:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/firefox_focus_ignore/</guid>
-      <description>Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカスが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとしている自分にとっては不便極まりない。
-ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。
-代わりにGireaseMonkey1を使った代替方法が見つかったのでそのスクリプトを使用することにした。
- http://javascripter.hatenablog.com/entry/20080620/1213923411  GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。
-新規ユーザスクリプトを追加する手順は以下。
- [メニュー]-&amp;gt;[ツール]-&amp;gt;[GreasMonkey]-&amp;gt;[新規ユーザースクリプト]   // ==UserScript== // @name no-focus // @namespace no-focus // @version 1 // @include http* // ==/UserScript= window.addEventListener(&amp;#39;load&amp;#39;, function() { document.activeElement.blur(); this.removeEventListener(&amp;#39;load&amp;#39;, arguments.callee, false); }, false);  コードの意味はよくわかってないから、問題があるかもしれないが、その場合はその時考えよう。
- Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。[return]   </description>
+      <description>Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカスが移動して入力待ち状態になる。この挙動は多くの普通の</description>
     </item>
     
     <item>
       <title>ファイルオープン数が上限値に達した</title>
       <link>https://zarudama.github.io/post/2013/03/file_open/</link>
-      <pubDate>Fri, 08 Nov 2019 19:51:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:51:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/03/file_open/</guid>
-      <description>&amp;#30446;&amp;#27425;  確認方法 一時的な設定方法  システム全体 ユーザ毎(カレントユーザ)  恒久的な設定方法 - sysctl.conf - limits.conf - メモ   
-CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。
-下記を参考にした。
- http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html  確認方法 ファイル上限値の確認コマンドは以下。
-$ cat /proc/sys/fs/file-nr 1792 0 566699 左から順に
- 今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限  となる。
-一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
-$ cat /proc/sys/fs/file-nr 1792 0 566699 一時的にファイルディスクリプタの上限値を変更する。
-$ /sbin/sysctl -w fs.file-max = 1234567 設定値の確認
-$ cat /proc/sys/fs/file-nr 1216 0 1234567 ユーザ毎(カレントユーザ) 現在のセッション(自分が起動したプロセス)に対して、ファイルディスクリプタ上限値を設定するには、 ulimit を使用する。</description>
+      <description>&amp;#30446;&amp;#27425; 確認方法 一時的な設定方法 システム全体 ユーザ毎(カレントユーザ) 恒久的な設定方法 - sysctl.conf - limits.conf - メモ CentOSで「too many files」なるエラー</description>
     </item>
     
     <item>
       <title>eshell上でリダイレクトした結果が文字化け</title>
       <link>https://zarudama.github.io/post/2012/12/emacs_eshell_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 19:47:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:47:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/12/emacs_eshell_stack/</guid>
-      <description>$ git diff &amp;gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
-^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。
-$ b git diff &amp;gt; hoge.</description>
+      <description>$ git diff &amp;gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。 ^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m るびきちさんのメルマ</description>
     </item>
     
     <item>
       <title>emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる</title>
       <link>https://zarudama.github.io/post/2012/05/emacs_swank_javascript/</link>
-      <pubDate>Fri, 08 Nov 2019 19:44:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:44:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/05/emacs_swank_javascript/</guid>
-      <description>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。その後、npmでsocket.ioをインストール。
-dos&amp;gt; npm install socket.io あとは、swank-jsをインストールする。
-下記を参考にWindowsXP環境にインストールした。
- http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html  上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
- https://github.com/swank-js/swank-js  インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。回避方法としてswank-js.elはMarmaladeからインストールした。
-M-x packagea-list-packages 下記を選択してixでインスール。
-slime-js 0.0.1 installed Slime extension for swank-js. あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
-M-x slime-connect 127.0.0.1 4005 その後、repl上で接続したいURLを指定する。
-,target-url 次にブラウザ上で下記にアクセスする。
- http://localhost:8009/  その後、repl上で接続する。
-,select-remote あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
-alert (&amp;#34;hoge&amp;#34;)</description>
+      <description>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。その後、npmでsocket.ioをインストール。 dos&amp;gt; npm</description>
     </item>
     
     <item>
       <title>.emacsに必要なpackage を指定して自動で各種elispをインストールする</title>
       <link>https://zarudama.github.io/post/2013/01/emacs_package_elisp/</link>
-      <pubDate>Fri, 08 Nov 2019 19:15:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:15:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/01/emacs_package_elisp/</guid>
-      <description>&amp;#30446;&amp;#27425;  2013/05/13 追記1: 2013/05/13 追記2: 2013/05/13 追記3:   
-今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、インストール後のビルド工程が失敗したりで、なかなか難儀していたので、 el-getを辞めemacs標準の package.el をメインにすることにしました。
-package.el ならば標準装備ですし、サイトリポジトリに各所のelispがダウンロードされた状態なので httpですべてインストールできるので大抵の環境でうまく動きます。
-パッケージのリポジトリサイトとしては、昔はMarmaladeが更新が盛んだったのですが、最近ではMELPAがメインになってきてるようです。なので私は、MELPAメインで使用してます。 Marmaladeは無効にしています。理由は同じパッケージが同時に表示されてしまうからです。
-以下は私の設定です。
-(require &amp;#39;mikio-util) (when (require &amp;#39;package nil t) ;; Marmalade ;; (add-to-list &amp;#39;package-archives ;; &amp;#39;(&amp;#34;marmalade&amp;#34; . &amp;#34;http://marmalade-repo.org/packages/&amp;#34;)) ;; MELPA ;; (add-to-list &amp;#39;package-archives ;; &amp;#39;(&amp;#34;melpa&amp;#34; . &amp;#34;http://melpa.milkbox.net/packages/&amp;#34;) t) ;; MELPAのみにする。 (setq package-archives (list &amp;#39;(&amp;#34;melpa&amp;#34; . &amp;#34;http://melpa.milkbox.net/packages/&amp;#34;))) ;;インストールするディレクトリを指定 (setq my-package-directory (mikio/elisp-home &amp;#34;package&amp;#34;)) (mikio/make-directory my-package-directory) (setq package-user-dir (concat my-package-directory &amp;#34;/&amp;#34;)) ;; (package-initialize) (setq my-packages &amp;#39;(undo-tree helm auto-complete popwin smartrep color-moccur yasnippet helm-git helm-gtags helm-c-moccur helm-c-yasnippet paredit ruby-mode php-mode js2-mode web-mode nrepl nrepl-ritz ac-nrepl ;;ac-slime magit jaunte rainbow-delimiters ;; window manager by kiwanami window-layout e2wm twittering-mode ;;o-blog evil )) (require &amp;#39;cl) (mapcar (lambda (x) (when (not (package-installed-p x)) (package-install x))) my-packages) ) (provide &amp;#39;mikio-package) githubはこちら。</description>
+      <description>&amp;#30446;&amp;#27425; 2013/05/13 追記1: 2013/05/13 追記2: 2013/05/13 追記3: 今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、</description>
     </item>
     
     <item>
       <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築</title>
       <link>https://zarudama.github.io/post/2012/12/cyginw_tmux_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 18:01:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 18:01:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/12/cyginw_tmux_stack/</guid>
-      <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
-追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。これによりJDEEの導入がグッっと簡単になりました。
-そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
-また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。今後に期待しましょう。
- http://sourceforge.net/mailarchive/message.php?msg%5Fid=30783951  はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
-ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。
-で、やっぱりJDEEがいいということで、苦労の末、最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。
-今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。
-   インポート文の自動生成 JDEE     Javadoc表示 JDEE + w3m   ビルド JDEE + ant   デバッガ JDEE + jdb   REPLぽいもの JDEE(BeanShell)   コードスニペット Yasnippet   タグジャンプ gtags(global)   メソッド補完 helm-jdee-method(拙作)    まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。メソッド補完については、Helmで補完するelispを自作しました。</description>
+      <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。 追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs</description>
     </item>
     
     <item>
       <title>cygwin経由で表示したtmuxの分割罫線が表示崩れする</title>
       <link>https://zarudama.github.io/post/2013/01/cyginw_tmux_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 17:38:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:38:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/01/cyginw_tmux_stack/</guid>
-      <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善せず、ならばとtmuxのバージョンを最新にしても直らず、結局cyg-terminalのオプションでTextの設定を下記のように変更したら、表示崩れが解消した。
-変更前 Locale:JA_jp CharacterSet:UTF-8 変更後 Locale:C CharacterSet:UTF-8</description>
+      <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善せず、ならばとtmuxのバージョンを最新にしても直らず、結局cy</description>
     </item>
     
     <item>
       <title>cygwinでsvn upgradeに失敗する。</title>
       <link>https://zarudama.github.io/post/2012/08/cyginw_svn_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 17:34:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/08/cyginw_svn_stack/</guid>
-      <description>本格的にcygwinをputty代替として使っていく気になったので、Subversionに関してもTortoiseSVNからcygwin版のSubversionを使用することにした。
-apt-cyg install subversion インストール後、今まで使用していたリポジトリで svn status を実行したら、upgradeしろと言われたのでしてみたところ、下記のエラーが。
-$ svn upgrade svn: E200029: Couldn&amp;#39;t perform atomic initialization svn: E200030: SQLite compiled for 3.7.13, but running with 3.7.3 ぐぐってみたところ、TortoiseSVNがSQLite3を使用しているのが原因のようだったので、TortoiseSVNを削除してらリトライ。でも変化せず。
-$ sqlite3 SQLite header and source version mismatch 2010-10-08 02:34:02 2677848087c9c090efb17c1893e77d6136a9111d 2012-06-11 02:05:22 f5b5a13f7394dc143aa136f1d4faba6839eaa6dc ソースと実行ファイルでバージョンの不一致がおこっている模様。でもソースからビルドした記憶はないんだけどなぜだろう。よくわからないので、 apt-cyg find sqlite3 して関連するパッケージを調べて全て削除した。
-$ apt-cyg remove libsqlite3-devel libsqlite3_0 odbc-sqlite3 sqlite3 sqlite3-debuginfo Removing libsqlite3-devel Package libsqlite3-devel removed Removing libsqlite3_0 Package libsqlite3_0 removed Package odbc-sqlite3 is not installed, skipping Removing sqlite3 Package sqlite3 removed そして、再インストール。</description>
+      <description>本格的にcygwinをputty代替として使っていく気になったので、Subversionに関してもTortoiseSVNからcygwin版の</description>
     </item>
     
     <item>
       <title>cygwinでssh接続できない</title>
       <link>https://zarudama.github.io/post/2012/12/cyginw_ssh_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 17:32:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:32:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/12/cyginw_ssh_stack/</guid>
-      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定してる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成できないと怒られてしまう。
-$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &amp;#39;/home/mikio/.ssh&amp;#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
- http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
-debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try. Permission denied (publickey).</description>
+      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定してる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成できないと怒られてしまう。</description>
     </item>
     
     <item>
       <title>Clojureでゲームプログラミングその1 実験編</title>
       <link>https://zarudama.github.io/post/2011/11/clojure_game/</link>
-      <pubDate>Fri, 08 Nov 2019 17:26:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:26:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2011/11/clojure_game/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍   
-はじめに LispでGAMEつくろうかなと。最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
-とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
- ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
-ウィンドウ表示 ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。
-(import (javax.swing JFrame)) (def frame (JFrame. &amp;#34;Clojure SampleGame&amp;#34;)) (doto frame (.setSize 640 480) (.setVisible true)) でた。簡単すぎる！結構感動します。
-  &amp;#22259;1: 初めてのウィンドウ表示!
-  次は画像を表示してみる。
-画像表示 まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。
-java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&amp;#34;hoge.png&amp;#34;)); 下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
-  &amp;#22259;2: スプライトパターン
-  画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。外部ファイルはプロジェクトルートからの相対パスでOKのようである。
-(import (java.awt.image BufferedImage)) (import (javax.</description>
+      <description>&amp;#30446;&amp;#27425; はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍 はじめに LispでGA</description>
     </item>
     
     <item>
       <title>uim-skkでsticky-shiftを実現する</title>
       <link>https://zarudama.github.io/post/2014/05/uim_skk/</link>
-      <pubDate>Fri, 08 Nov 2019 17:23:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:23:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/05/uim_skk/</guid>
-      <description>Ubuntuを13.04から14.04にアップグレードしました。 Ubuntu界隈では、IMEがIBus1.5になり使いにくいと大荒れのようです。 IBus1.5では、IMEを切り替えるとキーボードの配置まで変わるらしく、特に英語キーボードを使ってたりするとストレスが半端ないようです。
-私は、幸いにもuim-skkを使用していたので、この騒ぎを体験せずにすみました。やっぱりskkはおすすめですね。
-そんな我が道をいくuim-skkですが、ひとつ問題がありました。それは、sticky-shiftの設定ができないとうことです。
-私は、EmacsとWindowsのSKKFEPでは、セミコロンをSticky-Shiftとして設定しています。しかし、uim-skkには、設定ダイアログにそのような項目が見当たりません。公式ドキュメントには、対応したとはあるのですが、具体的な設定方法が見当りません。
- https://code.google.com/p/uim-doc-ja/wiki/RequestUimSolved#sticky%5Fshift%E3%82%92%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84  2chに質問したりもしたのですが、特に反応もなく放置されたままでした。
- http://anago.2ch.net/test/read.cgi/software/1328329402/197  それでもやはりなんとかしたいと思い、 改めてドキュメントを読んでみると、 ~/.uim という設定ファイルの詳しい記述方法がありました。最初からもっと読んでおくべきでしたね。。。
- https://code.google.com/p/uim-doc-ja/wiki/CustomizeUim  そこで、そこの説明に載っているソース( /usr/share/uim/ )をgrepしてみると、それらしきカスタム変数が定義されていたのです。さっそく見よう見まねで ~/.uim を定義してみました。
-(require-module &amp;#34;skk&amp;#34;) (define-key skk-sticky-key? &amp;#39;(&amp;#34;;&amp;#34;)) これでバッチリセミコロンでSticky-Shiftできました! uim-skkを使用している人はぜひ試してみてください。快適さが全然ちがいますよ。
-以下わかったことをまとめておきます。
- 基本は、GUIの設定ダイアログで設定する。 それで設定できないものは、 ~/.uim にSchemeで設定ファイルを記述する。 ダイアログとかぶる設定は、 ~/.uim が優先される。 端末を開き、uim-shを打ち込めば、uimのschemeのREPLが起動する。 (exit)で終了。    &amp;#22259;1: uim-shを起動したところ
-  Schemeで設定できる UIM ってやっぱカッコいいな。</description>
+      <description>Ubuntuを13.04から14.04にアップグレードしました。 Ubuntu界隈では、IMEがIBus1.5になり使いにくいと大荒れのようで</description>
     </item>
     
     <item>
       <title>tokyo.clj#19に参加してきた。</title>
       <link>https://zarudama.github.io/post/2014/03/tokyo_clojure/</link>
-      <pubDate>Fri, 08 Nov 2019 17:21:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:21:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/tokyo_clojure/</guid>
-      <description>鉄は熱いうちに打てということで、帰宅直後のいまのうちに書いておきます。
-3年ぶりにtokyo.cljに参加してきました。その前の日にはsaitama.cljにも参加してきました。この2日間で得られた知見をメモしておきます。
- 引数は、なんでもmapにするのがおすすめらしい。 変数がないからといってletを使ってはいけないことはない。  むしろ自己説明的なコードとしてどんどん使うべき。  Luminus は結構よさげ(とある洋書 で推されてるとのこと) noirとLightTableとkormaとVisualStudioは全部おなじ作者 ベテランのすごいエンジニアからも注目されているClojure(どんな人かはここでは言えませんが) 会社経営者からも注目されているClojure(技術に強い会社をつくりたいとのこと) asyncを使った Dots というスマホゲームのClojureScriptの移植版があるらしい。 ゲームをつくるときの状態管理のひとつの実装例として、ゲーム内のすべての状態をひとつのatomで定義しておく。 4clojure は良い  でも全部解く必要はない  Clojureをつかって機能拡張したいからエディタ作ってますというemacserが二人もいたこと!  自分もClojureでemacs的なエディタをぼんやりと作りたいなーと思ってた。  WebViewを使ったエディタが最近のトレンド？(Atom, LightTable, ねこはる氏の自作エディタなどなど) 以外とClojureでゲームをつくりたいという需要があること やっぱりみんな英語が得意、少なくとも情報を得るために海外サイトは見ている。 Clojureをおしゃれな言語にして女子受けをよくして、ゆくゆくは アイドル を生みだそう! 5月下旬にはClojureの入門本がでる 次回のtokyo.cljはサイン会!(重要)  勘ちがいとかあるかもしれまんせんがこんな感じ。ライトニングトークの内容はあとで追いかけおようと思います。
-やはり勉強会は懇親会が重要なんだなと思った次第です。なにより普段ひとりでClojureコード書くので実際にリアルでClojureの話をできたのはよかったですね。
-自分は長らく初級者だと思ってたんですが、今日いざコードを書いてみようとおもったら普通に括弧mapとか括弧ifとか打ってて、「あれ、これはもう初級者じゃなくね？」と思ったのでした。あ、でもこれは、EmacsLispの影響かもしれません。というか、Clojureのスキルはほとんどないです。それでもこのブログは、Clojure製のブログジェネレータ で書いてます。なにが言いたいかというと、みんなClojureやりましょうです。LightTable とかおすすめです。
-最後に、勉強会を開催主導してくれたスタッフの皆様、お疲れさまでした。</description>
+      <description>鉄は熱いうちに打てということで、帰宅直後のいまのうちに書いておきます。 3年ぶりにtokyo.cljに参加してきました。その前の日にはsait</description>
     </item>
     
     <item>
       <title>キーボードについて</title>
       <link>https://zarudama.github.io/post/2014/01/keyboard/</link>
-      <pubDate>Fri, 08 Nov 2019 17:19:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:19:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/01/keyboard/</guid>
-      <description>自分はまだThinkpadを持っていないんですが、将来的にThinkPad(X1Carbon)を使いたいと思っていました。そこでここ数ヶ月は、会社のデスクトップで Thinkpadのトラックポイントキーボード を使用していました。
-しかし先日ThinkpadX1Carbonが5列配列になった と知り、大変衝撃を受けました。ファンクションキーは、オフィス系アプリで頻繁に使いますし、ブラウザや開発ツールなどでもよく使用する利用頻度の高いキーです。これを外すなんてありえません。1
-さらに下記の不満が日頃から溜まっていました。
- HOME、ENDと矢印キーが離れすぎていて使いずらい(このストレスが一番大きい)。 F5とF4,F12の後ろなどに隙間がないため、ファンクションキーが押しにくい。 ドリフト現象(指が触れていないのに勝手にカーソルが動いていしまう)が頻繁おきる。 トラックポイントを使ったスクロールがうまくいかないアプリがたまにある。 トラックポイントによるスクロールを一番良く使うChromeでスクロールができなくなった(Chrome更新による不具合)。 結構ドライバ依存なところがあり、ubuntuできちんと動いてくれるか不安  などです。
-トラックポイント自体は非常に使いやすいのですが、上に挙げた不満を帳消しにするほどの利点ではないということで、結局いつものキーボードに戻りました。
-今回の件でわかったことは、自分は、HOME,ENDと矢印キーの配置が非常に重要で、この配置以外は受けいれられないんだなということでした。
-  &amp;#22259;1: この配置じゃないと指が受けつけない。
-  たぶんこの配置を満たしているノートPCはなくて、そういう意味ではどんなノートでもいいのかもしれません。
-次期ノートからは、Thinkpadは選択肢から外し、 VAIO Proあたりを検討しようと思います。
- 昔、HappyHakkingキーボードを使ってましたが、ファンクションキーがないのが馴染めませんでした。[return]   </description>
+      <description>自分はまだThinkpadを持っていないんですが、将来的にThinkPad(X1Carbon)を使いたいと思っていました。そこでここ数ヶ月は</description>
     </item>
     
     <item>
       <title>Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</title>
       <link>https://zarudama.github.io/post/2014/01/misaki_clojure_2/</link>
-      <pubDate>Fri, 08 Nov 2019 17:16:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:16:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/01/misaki_clojure_2/</guid>
-      <description> 年末から地味につくっていた Misaki のプラグインですが、ひととおり欲しい機能の実装を終えたので、github公開しました。 Emacs org-mode で記事を書けるBlogジェネレータです。
- https://github.com/zarudama/misaki-orgmode デモ  org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います (Misaki-orgmodeは、Blogに特化しているわけではないので、静的サイトジェネレータとしても使えます)。
-Misaki をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。実装にあたっては、misaki-markdown を参考にしました(というかほぼまるパクリですが…)。 Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。また、このブログ自体、Misaki-orgmodeで生成しており、こちらは Pure というCSSフレームワークを使用しています。
-本ブログ「ざるだましい」はもともと o-blog というツールを使用していました。このツールは大変使いやすかったのですが、1ファイルでの運用を強制されるのと、 Clojureプログラミングをしたいという理由からMisakiに乗り換えました。
-現状では、Emacsによるインターフェースがないので記事ファイルが増えた場合は管理が大変ですが、ゆくゆくは下記で紹介されている org-octopress のようなツールを作りたいと思っています。
- http://quickhack.net/nom/blog/2013-05-01-org-octopress.html  org-modeをブログに利用していみたいかたは一考してみてください。
-参考 ざるだましいのロゴに使用しているフォント
- http://www.hogera.com/pcb/font/catalog/  </description>
+      <description>年末から地味につくっていた Misaki のプラグインですが、ひととおり欲しい機能の実装を終えたので、github公開しました。 Emacs org-mode で記事を書けるBlog</description>
     </item>
     
     <item>
       <title>JVMのヒープサイズと変更方法</title>
       <link>https://zarudama.github.io/post/2014/03/java_jvm_heap/</link>
-      <pubDate>Fri, 08 Nov 2019 17:12:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:12:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_jvm_heap/</guid>
-      <description>&amp;#30446;&amp;#27425;  JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考   
-稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
-JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、初期割り当てのヒープサイズが異なる。
-サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
-$ java -version java version &amp;#34;*****&amp;#34; Java(TM) SE Runtime Environment (build ******) Java HotSpot(TM) Server VM (build ******) Severモードの場合は、 Server の表記があるはず。
-サーバーモード
-   初期ヒープサイズ マシンの物理メモリーの 1&amp;frasl;64 か、妥当な最小サイズかの大きい方。     最大ヒープサイズ 物理メモリーの 1&amp;frasl;4 か、1GB かの小さい方。     http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html  JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
-$ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.</description>
+      <description>&amp;#30446;&amp;#27425; JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考 稼動中のJVMのヒープサイズを知りたくなることは良くあるので</description>
     </item>
     
     <item>
       <title>GCの発生頻度などの調査</title>
       <link>https://zarudama.github.io/post/2014/03/java_gc/</link>
-      <pubDate>Fri, 08 Nov 2019 17:10:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:10:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_gc/</guid>
-      <description>&amp;#30446;&amp;#27425;  メモリ使用量を確認したいとき   
-GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
-まずはプロセスIDを調べる。例としてtomcatの場合。
-$ sudo -u tomcat jps -v tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
-javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
-$ pgrep -lf java PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
-jstat -gcutil -t 123456 3000 意味は以下のとおり。
-jstat &amp;lt;出力オプション&amp;gt; &amp;lt;プロセスID&amp;gt; &amp;lt;データ取得間隔(ms)&amp;gt; -t タイムスタンプを出力 -gcutil GCの統計情報 jstatのマニュアルは以下。
- http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
-Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT gcutilの見出しは以下のルールになる
-   S* Suviver      E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間    GCについては、下記が詳しい。</description>
+      <description>&amp;#30446;&amp;#27425; メモリ使用量を確認したいとき GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。 まずはプロセスIDを調べる。例</description>
     </item>
     
     <item>
       <title>特定の日付より古いファイルを削除する方法</title>
       <link>https://zarudama.github.io/post/2014/03/linux_find/</link>
-      <pubDate>Fri, 08 Nov 2019 17:08:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:08:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/linux_find/</guid>
-      <description>&amp;#30446;&amp;#27425;  答え 解説 ついでに日数指定の復習  timeの意味 TODO 日数の指定  参考   
-例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。
-  findがすぐに思いつくが、findには日付指定のオプションが見あたらない。
-答え touchでダミーファイルを作って、findのnewerオプションと否定演算子を使い、xargsとrmで削除する。
-$ touch -t 201303030000 /tmp/hoge $ find /usr/local/apache/logs \! -newer /tmp/hoge|sort|less 中身を確認して問題なさそうなら
-$ find /usr/local/apache/logs \! -newer /tmp/hoge|xargs rm 解説 普通に考えると find を使って -mtime などで日数を指定する。
-$ find /usr/local/apache/logs -mtime +180|wc -l 554 $ find /usr/local/apache/logs -mtime +90|wc -l 757 でも今回の要件の場合日数を計算するのが面倒なので日付を直接指定して削除したい。しかし man find してもそんなオプションはない。だが良くみるとファイルのタイムスタンプを基準にするオプション newer ならある。このオプションを使えばなんとかなりそうである。
-まず下記のようにダミーのファイルを作成する。
-$ touch -t 201303030000 /tmp/hoge tオプションの意味は YYYYMMDDhhmm 。詳細は man touch 参照。</description>
+      <description>&amp;#30446;&amp;#27425; 答え 解説 ついでに日数指定の復習 timeの意味 TODO 日数の指定 参考 例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。 f</description>
     </item>
     
     <item>
       <title>第3のエディタEvilのすすめ</title>
       <link>https://zarudama.github.io/post/2014/12/emacs_evil/</link>
-      <pubDate>Fri, 08 Nov 2019 17:05:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:05:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/12/emacs_evil/</guid>
-      <description>&amp;#30446;&amp;#27425;  EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操作性とEmacsの拡張性を両方手に入れる! 迷ったらEvil(Emacs)。 最後に Evilを使う気になった人へのちょっとしたメモ  Emacserじゃない人向け Emacser向け    
-Evil Advent Calendar 2014 の8日目の記事になります。 Evil の使用人口が少なすぎるのでEvilを使う理由などを述べて人口が増えるのを目論みます。 Evilを薦めてるのかEmacsを薦めてるのかよくわからないまとまりのない記事になってしまいました。
-EmacsとVim そこそこ経験のあるEmacserは大抵、viの操作もマスターしています。 Emacsがインストールされてない環境も多いのでそんなときはviを使ってささっと編集するのです。 hjklはもちろん、yy,dd,u,cw,yw,dw,もマスターしている人も多いのではないでしょうか？自分はそのたびに感じていました。
-「ああ、viはなんて編集が楽なんだろ。指が全然痛くならねぇ。」
-Emacsのカーソル移動「 C-p, C-n, C-f, C-b 」は、言葉の意味に関連付けているので覚えやすいです。だから一見viに比べるととっつきやすんです。でも疲れるんですよ。指が圧倒的に！
-これには理由があってホームポジションで状態を持たずに沢山の操作を実現するには修飾キーや２段ストロークキーを使うしかないのです。なので、ほぼほぼ全ての動作に小指コントーロールがつきまといます。
-それに比べてviはどうでしょうか？まずホームポジションから指を一切動かさずに右手だけでカーソル移動できます。文字的には意味のないhjklですが、指の配置的には理にかなっています。モードがあるおかげで修飾キーを使わずともいろいろと操作できます。そして一番好きなのは
-{count}{operater}{motion} というシンプルだけど覚えやすいコマンド体系。 viを使うたびに私は思っていました。
-「viはなんて操作しやすいのだろう」
-と。
-それでもEmacsを選ぶ理由 「そんなにviを賛美してEmacsをDisるんならとっととVimmerになれや」との声が聞こえてきそうですが、 Vimへ宗旨替えしようと思ってもできない自分がいるのです。
-その最大の理由は「Lisp」。「ハッカーと画家」を読んだ方ならわかると思いますが「Lisp」は魅力的です。プログラマならみんな憧れがあるのではないでしょうか？ LispプログラマにはEmacserが多いですし1、Lispの開発環境といえばEmacsのSLIMEが定番です。なのでEmacsから離れたくないのです。
-最近のVimは昔に比べてEmacsのような環境化が進んでいますし、拡張がしやすいという理由でEmacsを選ぶ理由は薄いかもしれません。ただしLispを勉強したいというなら別です。CommonLispにしろSchemeにしろCLojureにしろ、やはりEmacsが一番サポートが厚い気がします。なによりEmacs自身がLispで書かれているのでEmacsを選ぶイコール毎日Lispと戯れることになるのです。
-以上のような理由でviのコマンド体系でLispで拡張できるエディタがあったらなぁと思っていたのでした。
-Evilとは、Vimの操作性を備えたelisp実行環境である。 そんな時Evilに出会ったのです。EmacsなのにVim。「俺の求めていたのはこれだー」と思いました。なんせEmacsLispで書かれたVimなので「Lispで拡張できる最高やん」と思ったのです。 EvilはEmacsでもあるのでもちろんEmacsの沢山の魅力的な拡張がそのまま動かせます。
- org-mode これがないと生きていけない dired 同じく！ anything,helm ライフチェンジング！これなしでは(ry auto-complate いまどきのIDEぽく eshell Editor上でShellを動かす快適さ、シェル上でS式評価できる便利さ！ gnus メールが読めちゃうよ！ skk Emacsとの相性バツグンIME! navi2ch これで仕事中2chしててもばれない twittering-mode これで仕事中Twitterしてても(ry magit ベンリング！ slime CommonLisp 最高の開発環境！ cider Clojureといったらこれ！  こんなにあります(自分がよく使う拡張を挙げてみました)。他にもはじめからEvil用に書かれたプラグインもあったりして積極的にVimの機能がEvilに 移植 されています。</description>
+      <description>&amp;#30446;&amp;#27425; EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操</description>
     </item>
     
     <item>
       <title>Windows7でemacsのアイコンが2重に表示されるのを防ぐ</title>
       <link>https://zarudama.github.io/post/2014/04/windows7_emacs/</link>
-      <pubDate>Fri, 08 Nov 2019 17:04:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:04:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/04/windows7_emacs/</guid>
-      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。
-でもこれ、Windows版emacsだとうまくいきません。
-runemacs.exe を起動してタスクバーに登録しても、起動時にDos窓が開いてアイコンが2つ表示されてしまいます。これでは不便なのでなんとかします。
-この問題については、下記で解説されてるので一読をおすすめします。
- http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html  ただしこのサイトで公開されているツールはもうないようなので、下記から代替ツールをダウンロードして適当なところに配置します。
- https://code.google.com/p/win7appid/  runemacs.exe のショートカットを作成して、先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。
-さきほどダウンロードしたWin7AppId1.exeを、登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。
-DOS&amp;gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を選択すれば準備オッケーです。
-これで、タスクバーのアイコンをランチャーとして登録し、かつ余計なDos窓が開くこともなくなります。</description>
+      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。 でもこれ、Windows版em</description>
     </item>
     
     <item>
       <title>cygwinにtmuxを導入</title>
       <link>https://zarudama.github.io/post/2014/06/cygwin_tmux/</link>
-      <pubDate>Fri, 08 Nov 2019 17:01:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:01:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/cygwin_tmux/</guid>
-      <description>はじめに Cygwinでは、長らくtmuxが使えなかったのですが、最近tmuxが正式にCygwinをサポートしたようです。
-コンパイルしてインストールするため、依存するライブラリが必要です。
-インストール方法 apt-cygで事前に必要なパッケージをインストールしておく。
-$ apt-cyg install ncurses $ apt-cyg install libncurses-devel $ apt-cyg install libevent-devel $ apt-cyg install pkg-config autoconf automake $ apt-cyg install make gcc-core あとは参考サイトにあるとおりでオッケー。
-$ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code $ cd tmux-tmux-code/ $ ./autogen.sh $ CFLAGS=&amp;#34;-I/usr/include/ncurses&amp;#34; ./configure --prefix=/usr $ make &amp;amp;&amp;amp; make install 参考
- http://atdxfe.hatenablog.com/entry/2013/11/27/031058 http://java.ociweb.com/mark/programming/tmuxInCygwin.html  翌日、なぜか起動しなくなった。 後日、起動時に下記のエラーが発生
-$ tmux failed to connect to server: No error .bashrc に下記を追記することで治った。
-alias tmux=&amp;#39;rm -rf /tmp/tmux* &amp;amp;&amp;amp; tmux&amp;#39; 参考</description>
+      <description>はじめに Cygwinでは、長らくtmuxが使えなかったのですが、最近tmuxが正式にCygwinをサポートしたようです。 コンパイルしてインス</description>
     </item>
     
     <item>
       <title>Clojureでxmlを読みこむ方法</title>
       <link>https://zarudama.github.io/post/2014/04/clojure_xml/</link>
-      <pubDate>Fri, 08 Nov 2019 16:59:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:59:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/04/clojure_xml/</guid>
-      <description>&amp;#30446;&amp;#27425;  基本 xml-seq xml-zip XPATH 参考   
-clojureでxmlを処理する方法のメモ。随時更新予定。
-基本 下記のxmlをtest.xmlとしてプロジェクト直下に保存。
-&amp;lt;parent&amp;gt; &amp;lt;child&amp;gt; hello &amp;lt;/child&amp;gt; &amp;lt;/parent&amp;gt; clojure.xml/parse関数を使うとmapデータに変換できる。
-user&amp;gt; (require &amp;#39;[clojure.xml :as xml]) user&amp;gt; (xml/parse (slurp &amp;#34;test.xml&amp;#34;)) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&amp;#34;\n\t\thello\n\t&amp;#34;]}]} ここでは、slurp関数を使ってXMLファイルを直接読んで処理したが、 slurp以外の関数で読み込んだxmlを扱いたいときなどは、xmlは既に文字列になっていることが多い。 clojure.xml/parse関数は文字列を直接パースできないので下記のようなラッパー関数を用意する。
-(defn xml-parse [s] (xml/parse (java.io.ByteArrayInputStream. (.getBytes s)))) これで文字列としてのxmlもパースできるようになった。
-user&amp;gt; (def xml-doc &amp;#34;&amp;lt;parent&amp;gt; &amp;lt;child&amp;gt; hello &amp;lt;/child&amp;gt; &amp;lt;/parent&amp;gt;&amp;#34;) #&amp;#39;user/xml-doc user&amp;gt; (xml-parse xml-doc) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&amp;#34; hello &amp;#34;]}]} xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、そんな時はC-c M-o でバッファクリアすると良い感じ。</description>
+      <description>&amp;#30446;&amp;#27425; 基本 xml-seq xml-zip XPATH 参考 clojureでxmlを処理する方法のメモ。随時更新予定。 基本 下記のxmlをtest.xmlとしてプロジェクト直下に保存。 &amp;lt;parent&amp;gt;</description>
     </item>
     
     <item>
       <title>org-mode でファイルを開くとエラーが発生</title>
       <link>https://zarudama.github.io/post/2014/07/emacs_org/</link>
-      <pubDate>Fri, 08 Nov 2019 16:58:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:58:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/07/emacs_org/</guid>
-      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、そのファイルが更新された状態になってしまう。
-Invalid function: org-with-silent-modifications 似たような症状が下記にも報告されている。
- http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html  上記スレッドでは、
-...Emacs -q and reinstalling from elpa... としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
-かわりにcask管理のorgを取得しなおした。こんな感じ。
-$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask その際、バージョンをひとつ前の2.8.6に変更
-(source org) (depends-on &amp;#34;org-plus-contrib&amp;#34; &amp;#34;2.8.6&amp;#34;) これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。なのでバージョン指定は不要かもしれない。
-Caskの指定方法が間違っていたのだろうか？</description>
+      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに</description>
     </item>
     
     <item>
       <title>Caskの導入と設定ファイルの棚卸し</title>
       <link>https://zarudama.github.io/post/2014/06/emacs_cask/</link>
-      <pubDate>Fri, 08 Nov 2019 16:55:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:55:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/emacs_cask/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに Caskの導入 Emacs設定ファイルの書き方 私の.emacsのインストール方法 私の.emacsのディレクトリ配置 私の.emacsの分割のポリシー   
-はじめに 最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。 ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。良いです。
-そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。
-Caskの導入 インストールは非常に簡単です。
- https://github.com/cask/cask  公式にあるとおり下記コマンドを実施するだけです。
-$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python すると、 ~/.cask にcask自身がインストールされます。あとは、PATHに下記を追加しておきます。
-export PATH=$PATH:~/.cask/bin これで準備オッケーです。
-Caskファイルを編集して自分の欲しいパッケージを羅列してきます。
-$ vim ~/.emacs.d/Cask で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが ~/.emacs.d/.cask というディレクトリに保存されていきます。
-$ cd ~/.emacs.d $ cask 簡単ですなー。
-そしてこれらを利用するにはロードパスを通しておきます。
-(require &amp;#39;cask &amp;#34;~/.cask/cask.el&amp;#34;) (cask-initialize) あとはいつもどおりの自分の設定を書けばオッケー。
-ちなみにWindowsでは導入できないとの情報を見ましたが自分の環境では問題ありませんでした。環境は下記のとおりです。
-# PC Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz 2.50GHz RAM 4.00 GB # Windows Windows7 Professional Service Pack 1 32bit # emacs GNU Emacs 24.</description>
+      <description>&amp;#30446;&amp;#27425; はじめに Caskの導入 Emacs設定ファイルの書き方 私の.emacsのインストール方法 私の.emacsのディレクトリ配置 私の.emacsの</description>
     </item>
     
     <item>
       <title>ちょい足しawkの基本</title>
       <link>https://zarudama.github.io/post/2014/03/awk_basic/</link>
-      <pubDate>Fri, 08 Nov 2019 16:54:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/awk_basic/</guid>
-      <description>&amp;#30446;&amp;#27425;  基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考   
-基本 コンマンドラインでちょい足し的に使うときのカンペ。
-$ awk &amp;#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&amp;#39;  BEGIEN, END, パターンは省略できる(&amp;rdquo;[]&amp;ldquo;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力   awk &amp;#39;$4 == &amp;#34;200&amp;#34; {print $4,$5}&amp;#39;# $4が200のとき、$4,$5を表示 awk &amp;#39;$4 != &amp;#34;200&amp;#34; { print }&amp;#39; # $4が200でないとき、1行まるごと表示 awk &amp;#39;$4 ~ /200/ { print }&amp;#39; # $4が200のとき、1行まるごと表示(正規表現) awk &amp;#39;$1 ~ /^a/ { print}&amp;#39; # $1が&amp;#34;a&amp;#34;で始まるとき、表示(正規表現) awk &amp;#39;$1 !~ /^a/{ print}&amp;#39; # $1が&amp;#34;a&amp;#34;以外で始まるとき、表示(正規表現) (例)</description>
+      <description>&amp;#30446;&amp;#27425; 基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考 基本 コンマンドラインでちょい足し的に使うときのカンペ。 $ awk &amp;#39;[BEGIN {各行</description>
     </item>
     
     <item>
       <title>vimのclojure実装であるaviを試してみた。</title>
       <link>https://zarudama.github.io/post/2014/04/cygwin_apt_cyg/</link>
-      <pubDate>Fri, 08 Nov 2019 16:50:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/04/cygwin_apt_cyg/</guid>
-      <description>vimをclojureで実装したらしい avi を試してみることにした。確認環境は、ubuntu13.04。
-$ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、avi本体を /usr/local 配下にインストールするとのこと。あとでアンインストールができなくなると困るので paco を使うことにした。
-$ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
-インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。ダウンロードとインストールが終ったらコマンドが返るのでおもむろに
-$ avi で見慣れたvimの画面が表示された。
-  &amp;#22259;1: 起動したところ
-  JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
-肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
-ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。</description>
+      <description>vimをclojureで実装したらしい avi を試してみることにした。確認環境は、ubuntu13.04。 $ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、av</description>
     </item>
     
     <item>
       <title>apt-cygがうまくいかなくなった。</title>
       <link>https://zarudama.github.io/post/2014/06/cygwin_apt_cyg/</link>
-      <pubDate>Fri, 08 Nov 2019 16:47:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:47:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/cygwin_apt_cyg/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに 対応方法   
-はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。これは、ubuntuでいう apt-get のようなものです。標準のsetup.exeはGUIベースで操作が面倒なので、apt-cygを導入すると非常に捗ります。
-2014/06/23 追記 ここから
-最新のapt-cygでは、下記の問題は全て解決されています。古いapt-cygを利用してる方は、最新のapt-cygをチェックしてください。 (間違った内容の記事を載せてしまいました。申し訳ありません)
-2014/06/23 追記 ここまで
-そんなapt-cygですが、最近は更新が滞ってるらしく、最新のCygwinではうまく動きません。
- 2013/08にリポジトリパスの変更があった それに伴い、apt-cygが動かなくなった。 さらに2013/10時点で、リポジトリ内のアーカイブ内のフォーマットの変更もあった模様 tar.bz2から、tar.xzなどに変更になった模様。詳細は不明。 インストールできるパッケージとできないパッケージが発生。 上記変更点をサポートするapt-cygは以下(本家はメンテされていない。。。)  https://github.com/zship/apt-cyg   といった感じです。
-対応方法 2014/06/23 追記
-対応方法は、本家最新版を利用すれば問題ありませんので、削除しました。</description>
+      <description>&amp;#30446;&amp;#27425; はじめに 対応方法 はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。これは、ubuntuでいう apt-get のよ</description>
     </item>
     
     <item>
       <title>4clojureを解いていく記事</title>
       <link>https://zarudama.github.io/post/2014/01/clojure_problem/</link>
-      <pubDate>Fri, 08 Nov 2019 16:43:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:43:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/01/clojure_problem/</guid>
-      <description>&amp;#30446;&amp;#27425;  A nil key【難しい】 For the win 【forの使いかた】 Logical falsity and truth【真偽について】 Subset and Superset【重量】 Map Defaults Lists: conj【重要】 Intro to Vectors【重要】 Vectors :conj【重要】 Intro to Sets【重要】 Sets: conj【重要】 Intro to Maps Maps: conj Intro to Sequences Sequences: rest Intro to Functions【重要】 Double Down Hello World Sequences: map【重要】 Sequences: filter【重要】 #35 Local bindings #37 Regular Expressions #64 Intro to Reduce #57 Simple Recursion【難しい】 S#71 Rearranging Code: -&amp;gt;【重要】 #68 Recurring Theme S#72 Rearranging Code: -&amp;gt;&amp;gt;【重要】 Last Element【難しい】 #20 Penultimate Element【難しい】 #21 Nth Element【難しい】</description>
+      <description>&amp;#30446;&amp;#27425; A nil key【難しい】 For the win 【forの使いかた】 Logical falsity and truth【真偽について】 Subset and Superset【重量】 Map Defaults Lists: conj【重要】 Intro to Vec</description>
     </item>
     
     <item>
       <title>Emacs JDEE でlibGDXプログラミング!</title>
       <link>https://zarudama.github.io/post/2014/05/libgdx_emacs/</link>
-      <pubDate>Fri, 08 Nov 2019 16:32:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:32:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/05/libgdx_emacs/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに gradleプロジェクトをJDEEでも使えるようにする   
-はじめに libGDX でゲームプログラミングを始めています。
-最初は、Eclipseでコーディングしていました。
-でも重すぎるので、軽いと評判のIntelliJ IDEAに乘りかえました。
-確かに快適でした。Eclipseよりは。しかしそれでもいろいろ不満がつのる。。。
-…結局、Emacsに戻ってきました。やはり最後はいつもの場所へ。悲しい性ですね。
-ということで、EmacsでJavaやるなら JDEE です。
-gradleプロジェクトをJDEEでも使えるようにする JDEEはgradleをサポートしてません。でもやっぱりいるんですねー。すばらしき先人が。 GradleプロジェクトをJDEEの plj.el に変換するスクリプトを発見しました。
- http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html  上記で紹介されている jdee.gradle を、libGDXのプロジェクトルートに配置します。そのままだと、testディレクトリがないと怒られるので、testを含む行をコメントアウトします。
-更に build.gradle を編集し、 apply from:... を追加します。
-} } +apply from:&amp;#39;jdee.gradle&amp;#39; allprojects { apply plugin: &amp;#34;eclipse&amp;#34; apply plugin: &amp;#34;idea&amp;#34; あとは、プロジェクトルートで下記コマンドを実行します。
-$ ./gradlew jdee すると各サブプロジェクト内で、 prj.el が作成されます。
-最後に下記の plj.el をプロジェクトルートに配置します。
-(jde-project-file-version &amp;#34;1.0&amp;#34;) (jde-set-variables &amp;#39;(jde-jdk (quote (&amp;#34;1.7&amp;#34;))) &amp;#39;(jde-jdk-registry (quote ( ;;(&amp;#34;1.7&amp;#34; . &amp;#34;c:/Program Files/Java/jdk1.</description>
-    </item>
-    
-    <item>
-      <title>libGDX入門 その01 画像を表示したり音を鳴らしたり</title>
-      <link>https://zarudama.github.io/post/2014/05/libgdx01/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2014/05/libgdx01/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに プロジェクトを作る  注意点  IntelliJで使う  プロジェクトのインポート PC版を動かす Android版を動かす HTML版を動かす  Eclipseで使う  Gradleプラグインのインストール プロジェクトのインポート PC版を動かす Android版を動かす HTML版を動かす  コマンドラインで使う  PC版を動かす Android版を動かす HTML版を動かす  基本的なクラスについて 文字表示 スプライトクラスを使用する。 座標系 画像を動かす 効果音を鳴らす BGMを鳴らす 画像を拡大・縮小・回転してみる ソース おわりに 参考書籍   
-はじめに libGDX は、Javaでゲームを作るためのライブラリです。マルチプラットフォーム対応で、PC(Windows/Linux/Mac), Android, iOS, HTMLに対応しています。
-libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。実際、ググってみると、英語のドキュメントは沢山みかけますが、日本語のドキュメントはまだまだ少数です。ただし、公式ドキュメントは大変充実しています(英語のみ)。
- https://github.com/libgdx/libgdx/wiki  実のところこのドキュメントを読めば大抵の事は解決します。
-ただ、私もそうなんですが、日本語情報がないってだけで、重い腰が上がらないって人も多いと思います。そんな人向けに(というより自分の勉強ついでに)、そして少しでもlibGDXを使用する人が増えることを願い、少しずつ記事を書いていこうと思います。
-この記事が、libGDXを学ぶためのきっかけになって頂ければ幸いです。
-その2は こちら。
-このシリーズの目次は こちら 。
-プロジェクトを作る libGDXでは、専用のプロジェクト生成アプリが用意されています。マルチプラットフォームの性質上、プロジェクトの構成が複雑なので素直にこのアプリを使用したほうが良いかと思います。
- http://libgdx.badlogicgames.com/download.html  起動は、以下のような感じです。Windowsならばダブルクリックで起動できるでしょう。
-$ java -jar gdx-setup.</description>
-    </item>
-    
-    <item>
-      <title>libGDX入門 その02 カメラとビューポート</title>
-      <link>https://zarudama.github.io/post/2014/06/libgdx02/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2014/06/libgdx02/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに 物理画面に依存しない画面表示 カメラとビューポート 実際のコーディング  カメラの導入 ビューポートの導入  背景の追加 カメラの位置調整  ワールド軸の描画 setToOrthメソッド  カメラを動かす UI用カメラの導入  Windowサイズの変更  タッチ処理 ソース おわりに 参考URL 参考書籍 変更履歴   
-はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。
-前回 は、プロジェクトを作って、以下のことを学びました。
- 画像の表示 キーボードによる操作 BGMの再生 効果音の再生  今回は次のことを学びます。
- 物理画面に依存しない画面表示 タッチ処理  物理画面に依存しない画面表示 物理画面とは何でしょうか？ここでは次のように定義します。
- スマホやタブレット画面解像度 デスクトップのウィンドウサイズ  Androidには様々な画面サイズがありますし、 iPhoneもモデルチェンジ毎に画面サイズが変化しています。これら様々な画面サイズのことを考慮しないと、意図した通りの画面が表示できません。
-ゲームを作るときの基本として、物理画面でプログラムしないというのがあります。物理的なディスプレイのサイズに依存した座標管理をすると、移植性が下がり仕様変更に弱くなったり、端末毎の画面サイズの違いを吸収できないプログラムになってしまいます。
-例えば横スクロールアクションを作ったときに、 Aさんの画面は小さいから敵の動きがところ狭しとなるところが、 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、なんてことが発生します。端末によって難易度が変わってくるのです。
-  &amp;#22259;1: 端末の小さいAさんは、端末の大きいBさんより不利になる
-  実は既にこの問題は、私の手元で発生しています。下記は、Nexus7(2013)で表示したサンプルの画面です。
-  &amp;#22259;2: nexus7の画面</description>
-    </item>
-    
-    <item>
-      <title>libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</title>
-      <link>https://zarudama.github.io/post/2014/06/libgdx03/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2014/06/libgdx03/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに ログの出しかた スプライトアニメーション バーチャルパッド テクスチャラップ ソースコード 今回の記事のアセット一覧  テクスチャ 背景 BGM  おわりに 参考書籍 変更履歴  2014/6/21  注釈   
-はじめに tag libGDX libGDX入門 libGDX を勉強するついでに解説記事を書く シリーズ 3回目です。
-前回 は、以下のことを学びました。
- カメラとビューポート タッチ処理  今回は次のことを学びます。
- ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  前回までは、最初の雛形コードに徐々にコードを継ぎたして完成させるというチュートリアル形式でしたが、実際にコードを入力しながら実行していくのは少ないんじゃないかという疑問と(自分も含めて)、記事を書くのが大変なので(手抜き)、最初に一気に解説し、最後にコードを載せるスタイルにします。
-ログの出しかた プログラムの動作を追うとき、ログ出力はとても重宝しますよね。デバッガもいいですが、私は昔ながらのデバッグプリントで追うのが好きです。
-ということで、ログ出力の方法を解説します。
-公式から引用します。
-Gdx.app.log(&amp;#34;MyTag&amp;#34;, &amp;#34;my informative message&amp;#34;); Gdx.app.error(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;, exception); Gdx.app.debug(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;); log メソッドは普通に情報を出力したい場合、 error メソッドは、例外を共なうようなエラー出力(第3引数にはException型)をしたい場合、 debug メソッドは開発時のみ出力したい場合に使用します。</description>
-    </item>
-    
-    <item>
-      <title>libGDX入門 その04 画面遷移</title>
-      <link>https://zarudama.github.io/post/2014/06/libgdx04/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2014/06/libgdx04/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに ライフサイクルについて 画面遷移 Screenインタフェイス  show()とhide() dispose()  dispose()の方法  その1 hide() で解放する その2 Game#dispose() で全て解放する その3 Game クラスを拡張する  ゲームっぽい何か  ソースコードについて アセットの管理について  ゲーム中のフォントについて おわりに 参考書籍   
-はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。
-前回 は、以下のことを学びました。
- ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。
-ライフサイクルについて 今まであえて説明を避けてきたのですが(面倒そうなので←)、 Screenインタフェイスを扱うにあたり避けられそうもなかったので調査しました。
-libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。
-  &amp;#22259;1: libgdxのライフサイクル
-  メソッドは、 ApplicationListener のものです。
-注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。
-   create() アプリケーションが新しく生成された時に呼ばれます。     resize() アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。   pause() スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。   resume() 待機状態から、ウィンドウがアクティブになった時に呼ばれます。   dispose() アプリケーションが破棄される時に呼ばれます。    ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。</description>
-    </item>
-    
-    <item>
-      <title>libGDX入門 その05 ゲームデータの保存</title>
-      <link>https://zarudama.github.io/post/2014/07/libgdx05/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2014/07/libgdx05/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに 注意 インスタンスの取得方法 値の書込みと読込み データを保存するタイミング 保存される場所 実際の実装例 ソースコード おわりに 参考書籍 注釈   
-はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。
-前回 は、以下のことを学びました。
- Screenインタフェイスを使った画面遷移  今回は、前回作ったゲームに以下の機能を追加します。
- BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示  これらの情報は、ゲームを再開したときも保持していて欲しいですね。
-そこで今回は、これら3つの情報を com.badlogic.gdx.Preferences というクラスを利用して保存していきます。
-公式情報は下記にあります。
- https://github.com/libgdx/libgdx/wiki/Preferences http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/Preferences.html  注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、扱えるのはごく小さなデータのみです1。また、データはテキストとして保存されるので、ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
-さらに、ゲーム中の複雑なデータを扱う場合は、データをシリアライズしたりして保存する必要があるかと思います。これらについては、今回は扱いません。
-インスタンスの取得方法 下記で取得できます(公式からの引用)。
-Preferences prefs = Gdx.app.getPreferences(&amp;#34;My Preferences&amp;#34;); 文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。個人的にこの名前は、javaのパッケージ名が良いかと思います。 (ただしそれがユニークであるという保証がある場合のみ)
-というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。今回の例でいうと下記の名前になります。
-Preferences prefs = Gdx.app.getPreferences(&amp;#34;com.zarudama.fishcatch&amp;#34;); この辺の考察は下記が詳しいので、一読をおすすめします。
- doc.tir.ne.jp/devel/clan/libgdx preferencesについて  値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.</description>
+      <description>&amp;#30446;&amp;#27425; はじめに gradleプロジェクトをJDEEでも使えるようにする はじめに libGDX でゲームプログラミングを始めています。 最初は、Eclipseでコー</description>
     </item>
     
   </channel>

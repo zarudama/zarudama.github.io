@@ -6,7 +6,7 @@
     <description>Recent content in game on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 17:26:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 17:26:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/game/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,22 +14,10 @@
     <item>
       <title>Clojureでゲームプログラミングその1 実験編</title>
       <link>https://zarudama.github.io/post/2011/11/clojure_game/</link>
-      <pubDate>Fri, 08 Nov 2019 17:26:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:26:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2011/11/clojure_game/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍   
-はじめに LispでGAMEつくろうかなと。最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
-とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
- ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
-ウィンドウ表示 ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。
-(import (javax.swing JFrame)) (def frame (JFrame. &amp;#34;Clojure SampleGame&amp;#34;)) (doto frame (.setSize 640 480) (.setVisible true)) でた。簡単すぎる！結構感動します。
-  &amp;#22259;1: 初めてのウィンドウ表示!
-  次は画像を表示してみる。
-画像表示 まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。
-java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&amp;#34;hoge.png&amp;#34;)); 下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
-  &amp;#22259;2: スプライトパターン
-  画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。外部ファイルはプロジェクトルートからの相対パスでOKのようである。
-(import (java.awt.image BufferedImage)) (import (javax.</description>
+      <description>&amp;#30446;&amp;#27425; はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍 はじめに LispでGA</description>
     </item>
     
   </channel>

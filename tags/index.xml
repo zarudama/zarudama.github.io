@@ -6,15 +6,24 @@
     <description>Recent content in Tags on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 20:38:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 09 Nov 2019 01:02:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>libgdx</title>
+      <link>https://zarudama.github.io/tags/libgdx/</link>
+      <pubDate>Sat, 09 Nov 2019 01:02:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/tags/libgdx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>ubuntu</title>
       <link>https://zarudama.github.io/tags/ubuntu/</link>
-      <pubDate>Fri, 08 Nov 2019 20:38:00 +0900</pubDate>
+      <pubDate>Fri, 08 Nov 2019 22:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/ubuntu/</guid>
       <description></description>
@@ -23,7 +32,7 @@
     <item>
       <title>xmonad</title>
       <link>https://zarudama.github.io/tags/xmonad/</link>
-      <pubDate>Fri, 08 Nov 2019 20:38:00 +0900</pubDate>
+      <pubDate>Fri, 08 Nov 2019 22:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/xmonad/</guid>
       <description></description>
@@ -32,7 +41,7 @@
     <item>
       <title>windows</title>
       <link>https://zarudama.github.io/tags/windows/</link>
-      <pubDate>Fri, 08 Nov 2019 20:36:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:36:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/windows/</guid>
       <description></description>
@@ -41,7 +50,7 @@
     <item>
       <title>misaki</title>
       <link>https://zarudama.github.io/tags/misaki/</link>
-      <pubDate>Fri, 08 Nov 2019 20:34:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/misaki/</guid>
       <description></description>
@@ -50,7 +59,7 @@
     <item>
       <title>stack</title>
       <link>https://zarudama.github.io/tags/stack/</link>
-      <pubDate>Fri, 08 Nov 2019 20:34:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/stack/</guid>
       <description></description>
@@ -59,7 +68,7 @@
     <item>
       <title>emacs</title>
       <link>https://zarudama.github.io/tags/emacs/</link>
-      <pubDate>Fri, 08 Nov 2019 20:31:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:31:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/emacs/</guid>
       <description></description>
@@ -68,7 +77,7 @@
     <item>
       <title>processing</title>
       <link>https://zarudama.github.io/tags/processing/</link>
-      <pubDate>Fri, 08 Nov 2019 20:25:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:25:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/processing/</guid>
       <description></description>
@@ -77,7 +86,7 @@
     <item>
       <title>tmux</title>
       <link>https://zarudama.github.io/tags/tmux/</link>
-      <pubDate>Fri, 08 Nov 2019 20:18:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:18:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/tmux/</guid>
       <description></description>
@@ -86,7 +95,7 @@
     <item>
       <title>clojure</title>
       <link>https://zarudama.github.io/tags/clojure/</link>
-      <pubDate>Fri, 08 Nov 2019 20:17:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:17:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/clojure/</guid>
       <description></description>
@@ -95,7 +104,7 @@
     <item>
       <title>linux</title>
       <link>https://zarudama.github.io/tags/linux/</link>
-      <pubDate>Fri, 08 Nov 2019 20:16:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:16:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/linux/</guid>
       <description></description>
@@ -104,7 +113,7 @@
     <item>
       <title>sudo</title>
       <link>https://zarudama.github.io/tags/sudo/</link>
-      <pubDate>Fri, 08 Nov 2019 20:16:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:16:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/sudo/</guid>
       <description></description>
@@ -113,7 +122,7 @@
     <item>
       <title>skk</title>
       <link>https://zarudama.github.io/tags/skk/</link>
-      <pubDate>Fri, 08 Nov 2019 20:14:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:14:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/skk/</guid>
       <description></description>
@@ -122,7 +131,7 @@
     <item>
       <title>cygwin</title>
       <link>https://zarudama.github.io/tags/cygwin/</link>
-      <pubDate>Fri, 08 Nov 2019 20:10:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:10:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/cygwin/</guid>
       <description></description>
@@ -131,7 +140,7 @@
     <item>
       <title>android</title>
       <link>https://zarudama.github.io/tags/android/</link>
-      <pubDate>Fri, 08 Nov 2019 20:04:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:04:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/android/</guid>
       <description></description>
@@ -140,7 +149,7 @@
     <item>
       <title>java</title>
       <link>https://zarudama.github.io/tags/java/</link>
-      <pubDate>Fri, 08 Nov 2019 20:03:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:03:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/java/</guid>
       <description></description>
@@ -149,7 +158,7 @@
     <item>
       <title>git</title>
       <link>https://zarudama.github.io/tags/git/</link>
-      <pubDate>Fri, 08 Nov 2019 19:56:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:56:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/git/</guid>
       <description></description>
@@ -158,7 +167,7 @@
     <item>
       <title>firefox</title>
       <link>https://zarudama.github.io/tags/firefox/</link>
-      <pubDate>Fri, 08 Nov 2019 19:54:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/firefox/</guid>
       <description></description>
@@ -167,7 +176,7 @@
     <item>
       <title>game</title>
       <link>https://zarudama.github.io/tags/game/</link>
-      <pubDate>Fri, 08 Nov 2019 17:26:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:26:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/game/</guid>
       <description></description>
@@ -176,7 +185,7 @@
     <item>
       <title>keyboard</title>
       <link>https://zarudama.github.io/tags/keyboard/</link>
-      <pubDate>Fri, 08 Nov 2019 17:19:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:19:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/keyboard/</guid>
       <description></description>
@@ -185,7 +194,7 @@
     <item>
       <title>thinkpad</title>
       <link>https://zarudama.github.io/tags/thinkpad/</link>
-      <pubDate>Fri, 08 Nov 2019 17:19:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:19:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/thinkpad/</guid>
       <description></description>
@@ -194,7 +203,7 @@
     <item>
       <title>jvm</title>
       <link>https://zarudama.github.io/tags/jvm/</link>
-      <pubDate>Fri, 08 Nov 2019 17:12:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:12:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/jvm/</guid>
       <description></description>
@@ -203,7 +212,7 @@
     <item>
       <title>find</title>
       <link>https://zarudama.github.io/tags/find/</link>
-      <pubDate>Fri, 08 Nov 2019 17:08:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:08:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/find/</guid>
       <description></description>
@@ -212,7 +221,7 @@
     <item>
       <title>evil</title>
       <link>https://zarudama.github.io/tags/evil/</link>
-      <pubDate>Fri, 08 Nov 2019 17:05:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:05:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/evil/</guid>
       <description></description>
@@ -221,7 +230,7 @@
     <item>
       <title>org</title>
       <link>https://zarudama.github.io/tags/org/</link>
-      <pubDate>Fri, 08 Nov 2019 16:58:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:58:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/org/</guid>
       <description></description>
@@ -230,7 +239,7 @@
     <item>
       <title>awk</title>
       <link>https://zarudama.github.io/tags/awk/</link>
-      <pubDate>Fri, 08 Nov 2019 16:54:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/awk/</guid>
       <description></description>
@@ -239,27 +248,9 @@
     <item>
       <title>vim</title>
       <link>https://zarudama.github.io/tags/vim/</link>
-      <pubDate>Fri, 08 Nov 2019 16:50:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/tags/vim/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>libgdx</title>
-      <link>https://zarudama.github.io/tags/libgdx/</link>
-      <pubDate>Fri, 08 Nov 2019 16:32:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/tags/libgdx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>libGDX入門</title>
-      <link>https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/</guid>
       <description></description>
     </item>
     

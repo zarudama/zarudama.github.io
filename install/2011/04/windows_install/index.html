@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+<h4>タグ</h4>
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (6)
+            <li><a href="/tags/emacs">emacs</a> (13)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (2)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (3)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/org">org</a> (1)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (5)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+<h4>セクション</h4>
+<ul>
+  
+    <li><a href="/libgdx_basic/">Libgdx_basics</a>
+  
+    <li><a href="/post/">Posts</a>
+  
+    <li><a href="/install/">Installs</a>
+  
+    <li><a href="/search/">Searches</a>
+  
+</ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">(超個人的)Windowsインストール後にやることまとめ</h1>
+
+<aside id="meta">
+    <div>
+    <section>
+      <h5 id="date">作成日: 2011-04-28 </h5>
+      <h5 id="date">最終更新日: 2019-11-09 </h5>
+      <h5 id="wordcount"> 2236 文字 </h5>
+    </section>
+    
+    <h5>tags</h5>
+  <ul class="tags"><li><a href="/tags/windows">windows</a></ul>
+
+</div>
+</aside>
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#ソフトのインストールポリシー">ソフトのインストールポリシー</a></li>
+<li><a href="#コントロールキーの設定">コントロールキーの設定</a>
+    - <a href="#xp">xp</a>
+    - <a href="#win7">win7</a></li>
+<li><a href="#usersディレクトリの作成--xpのみ">Usersディレクトリの作成(XPのみ)</a></li>
+<li><a href="#一番最初にインストール">一番最初にインストール</a></li>
+<li><a href="#環境変数の設定">環境変数の設定</a></li>
+<li><a href="#キーボードの入力速度を早める">キーボードの入力速度を早める</a></li>
+<li><a href="#アンチエイリアスの設定">アンチエイリアスの設定</a></li>
+<li><a href="#入れるソフト">入れるソフト</a>
+
+<ul>
+<li><a href="#インストーラ系ソフトのインストール">インストーラ系ソフトのインストール</a></li>
+<li><a href="#解凍系">解凍系</a></li>
+<li><a href="#スタートアップの設定">スタートアップの設定</a></li>
+</ul></li>
+<li><a href="#mysql">MySQL</a></li>
+<li><a href="#php">php</a></li>
+<li><a href="#別pcに移行する場合">別PCに移行する場合</a>
+
+<ul>
+<li><a href="#ファイル共有の設定">ファイル共有の設定</a></li>
+<li><a href="#ローカルpcのadminユーザのパスワードを設定">ローカルPCのAdminユーザのパスワードを設定</a></li>
+<li><a href="#設定ファイルのコピー">設定ファイルのコピー</a></li>
+<li><a href="#移行用ソフト">移行用ソフト</a></li>
+</ul></li>
+<li><a href="#faithの自作マシンでのドライバインストール">Faithの自作マシンでのドライバインストール</a></li>
+<li><a href="#fathのbtoパソコン">FathのBTOパソコン</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<h2 id="ソフトのインストールポリシー">ソフトのインストールポリシー</h2>
+
+<ul>
+<li>インストーラのないツールは基本的に%HOME%/apps下に展開する。</li>
+<li>インストーラものはデフォルト値でインストール</li>
+<li>%HOME%/shortcutsにショートカットをおいてlauncyで管理</li>
+<li>UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;/opt/下に展開する。</li>
+</ul>
+
+<h2 id="コントロールキーの設定">コントロールキーの設定</h2>
+
+<h4 id="xp">xp</h4>
+
+<ul>
+<li>xkeyemacsをつかってcapsキーをctrsキーにする。</li>
+</ul>
+
+<h4 id="win7">win7</h4>
+
+<ul>
+<li>Changekeyを使用する(右クリメニューで管理者として実行すること)。
+
+<ul>
+<li>chgkey.exe</li>
+<li>Dropboxに保存してある。</li>
+</ul></li>
+<li>GUIのキーボードが表示されるので変更する
+
+<ul>
+<li>Caps → Ctrl</li>
+<li>無変換 → Ctrl</li>
+<li>変換 → Ctrl</li>
+<li>ひらがな → Shift</li>
+</ul></li>
+<li>再起動</li>
+</ul>
+
+<h2 id="usersディレクトリの作成--xpのみ">Usersディレクトリの作成(XPのみ)</h2>
+
+<p>「Link Shell Extension」をインストールして「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。これにより
+c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。</p>
+
+<h2 id="一番最初にインストール">一番最初にインストール</h2>
+
+<ul>
+<li>Launcy</li>
+<li>Firefox</li>
+<li>Emacs</li>
+<li>ExpLzh</li>
+</ul>
+
+<h2 id="環境変数の設定">環境変数の設定</h2>
+
+<ul>
+<li><p>HOME</p>
+
+<ul>
+<li>XPの場合:HOME=c:\Users\mikio</li>
+
+<li><p>Windows7の場合:HOME=%USERPROFILE%</p></li>
+
+<li><p>HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。</p></li>
+
+<li><p>HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。</p></li>
+
+<li><p>※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。</p></li>
+</ul></li>
+
+<li><p>MAVEN_HOME
+%HOME%\opt\</p></li>
+
+<li><p>XYZZYHOME</p>
+
+<ul>
+<li>XYZZYHOME=%HOME%\aps\xyzzy</li>
+<li>PATH
+c:\cygwin\bin;</li>
+</ul></li>
+
+<li><p>下記は.bashrc側に置くので設定しなくて良い。
+JAVA_HOME=%HOME%\opt<br />
+ANT_HOME=</p></li>
+
+<li><p>PATH</p></li>
+</ul>
+
+<p>%PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86</p>
+
+<ul>
+<li>TERM
+xternm(CYGWIN用)</li>
+<li>CYGWIN
+tty(screenのデタッチ用)</li>
+</ul>
+
+<h2 id="キーボードの入力速度を早める">キーボードの入力速度を早める</h2>
+
+<ul>
+<li>(Win7) [コンパネ] -&gt; [コンピュータの簡単操作] -&gt; [キーボード動作の変更] -&gt; [キーボードの設定]</li>
+</ul>
+
+<h2 id="アンチエイリアスの設定">アンチエイリアスの設定</h2>
+
+<ul>
+<li>MacTypeをインストールする。</li>
+<li>fontは「Mig 1M」を使用する。MigMix1M 行間が広いので注意。</li>
+</ul>
+
+<h2 id="入れるソフト">入れるソフト</h2>
+
+<h3 id="インストーラ系ソフトのインストール">インストーラ系ソフトのインストール</h3>
+
+<ul>
+<li>Spybot Searcy &amp; Directory</li>
+<li>Link Shell Extension
+
+<ul>
+<li><a href="http://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html">http://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html</a></li>
+</ul></li>
+<li>AdujustClock</li>
+<li>WinSCP</li>
+<li>Jing</li>
+<li>Chrome</li>
+<li>Bullzip PDF Printer</li>
+<li>Java JRE</li>
+<li>MediaMonkey(音楽管理ソフト)</li>
+<li>Switcher(MacのExpose)</li>
+<li>JDK, JRE</li>
+</ul>
+
+<h3 id="解凍系">解凍系</h3>
+
+<ul>
+<li><p>cygwinのインストール</p></li>
+
+<li><p>putty、ごった煮にさらに機能追加版</p>
+
+<ul>
+<li><a href="http://ice.hotmint.com/putty/">http://ice.hotmint.com/putty/</a></li>
+</ul>
+
+<p>※オリジナルのごった煮版は、コマンドラインからのplinkがうまく使えなかったので使用しない。</p></li>
+
+<li><p>Jane sytle</p></li>
+
+<li><p>eclip</p></li>
+
+<li><p>Eclipse</p></li>
+
+<li><p>WinDeskWide(仮想デスクトップ)</p></li>
+
+<li><p>TClock Light (for Windows XP)</p></li>
+
+<li><p>tclocklight-kt100204(for WIndows7)
+タスクバーを左たてに表示する場合、tclock.iniを書きに書きかえる。
+Format=&ldquo;yy/mm/dd\nddd\nhh:nn:ss&rdquo;</p></li>
+
+<li><p>AdjustClock
+windows7の場合、OSに自動同期機能があるのでいらない。</p></li>
+</ul>
+
+<h3 id="スタートアップの設定">スタートアップの設定</h3>
+
+<ul>
+<li>タートアップフォルダの開き方
+
+<ul>
+<li>[スタート] -&gt; [すべてのプログラム] -&gt; []</li>
+<li>スタートアップを右クリック - 開く</li>
+</ul></li>
+</ul>
+
+<p>下記を登録する。</p>
+
+<ul>
+<li>tclock</li>
+<li>eclip</li>
+<li>pagent</li>
+</ul>
+
+<h2 id="mysql">MySQL</h2>
+
+<p>MySQLのHPにてCommunityServerをインストールする。
+HPの上の方にある大きなバナーのやつだと余計な製品がたくさん入ってわけわからんので注意。</p>
+
+<h2 id="php">php</h2>
+
+<ul>
+<li><a href="http://windows.php.net/download/#php-5.3-ts-VC9-x86">http://windows.php.net/download/#php-5.3-ts-VC9-x86</a></li>
+</ul>
+
+<p>windows版のバイナリ(*.zip)をダウンロードして展開する。</p>
+
+<ul>
+<li>展開場所の例</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#033">$HOME</span>/opt/php</code></pre></div>
+<h2 id="別pcに移行する場合">別PCに移行する場合</h2>
+
+<h3 id="ファイル共有の設定">ファイル共有の設定</h3>
+
+<ul>
+<li>コンパネ　-　Windowsファイアウォール - 例外</li>
+<li>「ファイルとプリンタの共有」をチェックする。</li>
+</ul>
+
+<h3 id="ローカルpcのadminユーザのパスワードを設定">ローカルPCのAdminユーザのパスワードを設定</h3>
+
+<ul>
+<li>コントロールパネル - ユーザアカウント</li>
+<li>Administratorを選択し、[パスワードのリセット]をクリックし、新しいパスワードを入力する。</li>
+</ul>
+
+<h3 id="設定ファイルのコピー">設定ファイルのコピー</h3>
+
+<ul>
+<li>エクスプローラを立ち上げ、旧端末のCドライブに接続する。
+&ndash; \\旧端末のコンピュータ名\C$</li>
+<li>旧端末の必要な情報をコピーする(FireCopyを使用する。)。
+&ndash; c:\miki</li>
+</ul>
+
+<h3 id="移行用ソフト">移行用ソフト</h3>
+
+<ul>
+<li>FireFile Copy :高速ファイルツール。上書き確認とかいろいろ。エクスプローラだときつい。</li>
+</ul>
+
+<h2 id="faithの自作マシンでのドライバインストール">Faithの自作マシンでのドライバインストール</h2>
+
+<p>windows7を入れた最初の状態では、ネットワークアダプタのドライバがないためネットにつながらない。そこで、ドライバをインストールする。ネットワークアダプター以外にもいくつかドライバがないものがあるのでついでにインストールしておく</p>
+
+<ul>
+<li><p>ユニバーサルシリアルバスや</p></li>
+
+<li><p>マザーボードのCD-ROMを用意する(P8Z68V-PRO)。</p></li>
+
+<li><p>[コントロールパネル] - [ハードウェアとサウンド]-[デバイスマネージャ]</p></li>
+
+<li><p>ほかのデバイスを選択し、びっくりマークのついている機器を右クリック</p></li>
+
+<li><p>[ドライバーソフトウェアの更新]－[コンピュータを参照してドライバーソフトウェアを検索します]</p></li>
+</ul>
+
+<h2 id="fathのbtoパソコン">FathのBTOパソコン</h2>
+
+<ul>
+<li>電源PC</li>
+</ul>
+
+<p>GOURIKI3 700A
+対応規格：ATX/EPS 電源容量：700W 80PLUS認証：Bronze サイズ：150x155x86mm 剛力3 GOURIKI3-700Aのスペック・仕様</p>
+
+        </article>
+  </div>
+  <hr>
+    <div>
+        
+          <a class="previous" href="https://zarudama.github.io/install/2012/05/ubuntu_install/"> (超個人的)Ubuntuインストール後にやることまとめ</a>
+        
+        
+    </div>
+</section>
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

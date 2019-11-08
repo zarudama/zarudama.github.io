@@ -6,7 +6,7 @@
     <description>Recent content in stack on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 20:34:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 20:34:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/stack/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,133 +14,91 @@
     <item>
       <title>Windowsでmisakiのデモが動かない</title>
       <link>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 20:34:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</guid>
-      <description>Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。
-C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m [4mjava.io.FileNotFoundException: samples\blog\public\samples\blog\template\ato m.xml (?w?????p?X?????????????B)[24m at misaki.util.file$write_file / [1minvoke[22m ([31mfile.clj[0m:[31m[1m 152[22m[0m) at misaki.compiler.default.core$compile_STAR_ / [1minvoke[22m ([31mcore.cl j[0m:[31m[1m237[22m[0m) at misaki.compiler.default.core$compile_template / [1minvoke[22m ([31mcore .clj[0m:[31m[1m256[22m[0m) at misaki.compiler.default.core$_compile$fn__1874 / [1minvoke[22m ([31mcor e.clj[0m:[31m[1m70[22m[0m) at misaki.compiler.default.core$_compile / [1minvoke[22m ([31mcore.clj[0m :[31m[1m58[22m[0m) at misaki.core$call_compiler_fn / [1mdoInvoke[22m ([31mcore.clj[0m:[31m [1m55[22m[0m) at misaki.core$compile_STAR_$fn__1112 / [1minvoke[22m ([31mcore.clj[0m:[ 31m[1m160[22m[0m) at misaki.util.sequence$some_with_default_value / [1minvoke[22m ([31mseque nce.clj[0m:[31m[1m44[22m[0m) at misaki.core$compile_STAR_ / [1minvoke[22m ([31mcore.</description>
+      <description>&amp;#30446;&amp;#27425; 動作環境 Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。 C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m</description>
     </item>
     
     <item>
       <title>Ubuntu Server インストール時に前回作ったLVMが削除できなかった。</title>
       <link>https://zarudama.github.io/post/2012/05/ubuntu_install/</link>
-      <pubDate>Fri, 08 Nov 2019 20:23:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:23:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/05/ubuntu_install/</guid>
-      <description>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら VGやLVMが削除できなくて先に進めなくなった。
-この状態を回避するには、 まず ALT+F2 でコンソールを切り替える。 Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 ALT + F1 - F4 で切り替えられるのだ。
-まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。
-$ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ} で削除できる。この時、swap領域に割り当てたものが削除できない場合があるがその時は、いったんインストール作業を中断してやり直せばよい。</description>
+      <description>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら VGやLVMが削除できなくて先に進めなくなった。 この状態を回</description>
     </item>
     
     <item>
       <title>削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。</title>
       <link>https://zarudama.github.io/post/2012/08/git_remote_branch_error/</link>
-      <pubDate>Fri, 08 Nov 2019 19:56:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:56:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/08/git_remote_branch_error/</guid>
-      <description>サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。
- http://blog.s21g.com/articles/992  なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジトリから見ると生きのこってたりする。 git remote show origin で確認できる。
-$ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &amp;#39;git remote prune&amp;#39; to remove) refs/remotes/origin/fuga-branch stale (use &amp;#39;git remote prune&amp;#39; to remove) : この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
-まず、確認。
-$ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。
-$ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。</description>
+      <description>サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。 http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモ</description>
     </item>
     
     <item>
       <title>firefox の同期不具合</title>
       <link>https://zarudama.github.io/post/2013/05/firefox_sync_error/</link>
-      <pubDate>Fri, 08 Nov 2019 19:54:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/firefox_sync_error/</guid>
-      <description>&amp;#30446;&amp;#27425;  追記 参考   
-下記のエラーが頻繁に表示される。
-「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は、
- 「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」  で、もとに戻るはず。
-追記 結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、 syncエラーの原因が読めることがわかった。
-about:sync-log 今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、このログをみれば詳細な情報が手にはいるので大助かり。
-自分の場合、ログをみたところ、bookmark同期に原因があった模様。
-1368414694893 Sync.Engine.Bookmarks DEBUG First sync, uploading all items 1368414694893 Sync.Engine.Bookmarks INFO 2 outgoing items pre-reconciliation 1368414695441 Sync.Engine.Bookmarks WARN Got exception &amp;#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &amp;lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &amp;lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &amp;lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &amp;lt; _reconcile()@resource://services-sync/engines.js:1120 &amp;lt; resource://services-sync/engines.js:903 &amp;lt; resource://gre/modules/services-sync/record.js:625 &amp;lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &amp;lt; &amp;lt;file:unknown&amp;gt;&amp;#34; building GUID map.</description>
+      <description>&amp;#30446;&amp;#27425; 追記 参考 下記のエラーが頻繁に表示される。 「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は</description>
     </item>
     
     <item>
       <title>ファイルオープン数が上限値に達した</title>
       <link>https://zarudama.github.io/post/2013/03/file_open/</link>
-      <pubDate>Fri, 08 Nov 2019 19:51:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:51:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/03/file_open/</guid>
-      <description>&amp;#30446;&amp;#27425;  確認方法 一時的な設定方法  システム全体 ユーザ毎(カレントユーザ)  恒久的な設定方法 - sysctl.conf - limits.conf - メモ   
-CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。
-下記を参考にした。
- http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html  確認方法 ファイル上限値の確認コマンドは以下。
-$ cat /proc/sys/fs/file-nr 1792 0 566699 左から順に
- 今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限  となる。
-一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
-$ cat /proc/sys/fs/file-nr 1792 0 566699 一時的にファイルディスクリプタの上限値を変更する。
-$ /sbin/sysctl -w fs.file-max = 1234567 設定値の確認
-$ cat /proc/sys/fs/file-nr 1216 0 1234567 ユーザ毎(カレントユーザ) 現在のセッション(自分が起動したプロセス)に対して、ファイルディスクリプタ上限値を設定するには、 ulimit を使用する。</description>
+      <description>&amp;#30446;&amp;#27425; 確認方法 一時的な設定方法 システム全体 ユーザ毎(カレントユーザ) 恒久的な設定方法 - sysctl.conf - limits.conf - メモ CentOSで「too many files」なるエラー</description>
     </item>
     
     <item>
       <title>eshell上でリダイレクトした結果が文字化け</title>
       <link>https://zarudama.github.io/post/2012/12/emacs_eshell_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 19:47:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 19:47:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/12/emacs_eshell_stack/</guid>
-      <description>$ git diff &amp;gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
-^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。
-$ b git diff &amp;gt; hoge.</description>
+      <description>$ git diff &amp;gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。 ^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m るびきちさんのメルマ</description>
     </item>
     
     <item>
       <title>cygwin経由で表示したtmuxの分割罫線が表示崩れする</title>
       <link>https://zarudama.github.io/post/2013/01/cyginw_tmux_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 17:38:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:38:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/01/cyginw_tmux_stack/</guid>
-      <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善せず、ならばとtmuxのバージョンを最新にしても直らず、結局cyg-terminalのオプションでTextの設定を下記のように変更したら、表示崩れが解消した。
-変更前 Locale:JA_jp CharacterSet:UTF-8 変更後 Locale:C CharacterSet:UTF-8</description>
+      <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善せず、ならばとtmuxのバージョンを最新にしても直らず、結局cy</description>
     </item>
     
     <item>
       <title>cygwinでsvn upgradeに失敗する。</title>
       <link>https://zarudama.github.io/post/2012/08/cyginw_svn_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 17:34:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/08/cyginw_svn_stack/</guid>
-      <description>本格的にcygwinをputty代替として使っていく気になったので、Subversionに関してもTortoiseSVNからcygwin版のSubversionを使用することにした。
-apt-cyg install subversion インストール後、今まで使用していたリポジトリで svn status を実行したら、upgradeしろと言われたのでしてみたところ、下記のエラーが。
-$ svn upgrade svn: E200029: Couldn&amp;#39;t perform atomic initialization svn: E200030: SQLite compiled for 3.7.13, but running with 3.7.3 ぐぐってみたところ、TortoiseSVNがSQLite3を使用しているのが原因のようだったので、TortoiseSVNを削除してらリトライ。でも変化せず。
-$ sqlite3 SQLite header and source version mismatch 2010-10-08 02:34:02 2677848087c9c090efb17c1893e77d6136a9111d 2012-06-11 02:05:22 f5b5a13f7394dc143aa136f1d4faba6839eaa6dc ソースと実行ファイルでバージョンの不一致がおこっている模様。でもソースからビルドした記憶はないんだけどなぜだろう。よくわからないので、 apt-cyg find sqlite3 して関連するパッケージを調べて全て削除した。
-$ apt-cyg remove libsqlite3-devel libsqlite3_0 odbc-sqlite3 sqlite3 sqlite3-debuginfo Removing libsqlite3-devel Package libsqlite3-devel removed Removing libsqlite3_0 Package libsqlite3_0 removed Package odbc-sqlite3 is not installed, skipping Removing sqlite3 Package sqlite3 removed そして、再インストール。</description>
+      <description>本格的にcygwinをputty代替として使っていく気になったので、Subversionに関してもTortoiseSVNからcygwin版の</description>
     </item>
     
     <item>
       <title>cygwinでssh接続できない</title>
       <link>https://zarudama.github.io/post/2012/12/cyginw_ssh_stack/</link>
-      <pubDate>Fri, 08 Nov 2019 17:32:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:32:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/12/cyginw_ssh_stack/</guid>
-      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定してる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成できないと怒られてしまう。
-$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &amp;#39;/home/mikio/.ssh&amp;#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
- http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
-debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try. Permission denied (publickey).</description>
+      <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定してる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成できないと怒られてしまう。</description>
     </item>
     
     <item>
       <title>org-mode でファイルを開くとエラーが発生</title>
       <link>https://zarudama.github.io/post/2014/07/emacs_org/</link>
-      <pubDate>Fri, 08 Nov 2019 16:58:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:58:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/07/emacs_org/</guid>
-      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、そのファイルが更新された状態になってしまう。
-Invalid function: org-with-silent-modifications 似たような症状が下記にも報告されている。
- http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html  上記スレッドでは、
-...Emacs -q and reinstalling from elpa... としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
-かわりにcask管理のorgを取得しなおした。こんな感じ。
-$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask その際、バージョンをひとつ前の2.8.6に変更
-(source org) (depends-on &amp;#34;org-plus-contrib&amp;#34; &amp;#34;2.8.6&amp;#34;) これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。なのでバージョン指定は不要かもしれない。
-Caskの指定方法が間違っていたのだろうか？</description>
+      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに</description>
     </item>
     
   </channel>

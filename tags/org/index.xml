@@ -6,7 +6,7 @@
     <description>Recent content in org on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 16:58:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 16:58:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/org/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,17 +14,10 @@
     <item>
       <title>org-mode でファイルを開くとエラーが発生</title>
       <link>https://zarudama.github.io/post/2014/07/emacs_org/</link>
-      <pubDate>Fri, 08 Nov 2019 16:58:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:58:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/07/emacs_org/</guid>
-      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、そのファイルが更新された状態になってしまう。
-Invalid function: org-with-silent-modifications 似たような症状が下記にも報告されている。
- http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html  上記スレッドでは、
-...Emacs -q and reinstalling from elpa... としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
-かわりにcask管理のorgを取得しなおした。こんな感じ。
-$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask その際、バージョンをひとつ前の2.8.6に変更
-(source org) (depends-on &amp;#34;org-plus-contrib&amp;#34; &amp;#34;2.8.6&amp;#34;) これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。なのでバージョン指定は不要かもしれない。
-Caskの指定方法が間違っていたのだろうか？</description>
+      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに</description>
     </item>
     
   </channel>

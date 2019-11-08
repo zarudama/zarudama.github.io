@@ -6,7 +6,7 @@
     <description>Recent content in vim on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 16:50:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 16:50:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,18 +14,10 @@
     <item>
       <title>vimのclojure実装であるaviを試してみた。</title>
       <link>https://zarudama.github.io/post/2014/04/cygwin_apt_cyg/</link>
-      <pubDate>Fri, 08 Nov 2019 16:50:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 16:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/04/cygwin_apt_cyg/</guid>
-      <description>vimをclojureで実装したらしい avi を試してみることにした。確認環境は、ubuntu13.04。
-$ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、avi本体を /usr/local 配下にインストールするとのこと。あとでアンインストールができなくなると困るので paco を使うことにした。
-$ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
-インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。ダウンロードとインストールが終ったらコマンドが返るのでおもむろに
-$ avi で見慣れたvimの画面が表示された。
-  &amp;#22259;1: 起動したところ
-  JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
-肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
-ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。</description>
+      <description>vimをclojureで実装したらしい avi を試してみることにした。確認環境は、ubuntu13.04。 $ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、av</description>
     </item>
     
   </channel>

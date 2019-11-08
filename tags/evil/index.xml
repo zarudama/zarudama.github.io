@@ -6,7 +6,7 @@
     <description>Recent content in evil on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 17:05:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 17:05:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/evil/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,25 +14,10 @@
     <item>
       <title>第3のエディタEvilのすすめ</title>
       <link>https://zarudama.github.io/post/2014/12/emacs_evil/</link>
-      <pubDate>Fri, 08 Nov 2019 17:05:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:05:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/12/emacs_evil/</guid>
-      <description>&amp;#30446;&amp;#27425;  EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操作性とEmacsの拡張性を両方手に入れる! 迷ったらEvil(Emacs)。 最後に Evilを使う気になった人へのちょっとしたメモ  Emacserじゃない人向け Emacser向け    
-Evil Advent Calendar 2014 の8日目の記事になります。 Evil の使用人口が少なすぎるのでEvilを使う理由などを述べて人口が増えるのを目論みます。 Evilを薦めてるのかEmacsを薦めてるのかよくわからないまとまりのない記事になってしまいました。
-EmacsとVim そこそこ経験のあるEmacserは大抵、viの操作もマスターしています。 Emacsがインストールされてない環境も多いのでそんなときはviを使ってささっと編集するのです。 hjklはもちろん、yy,dd,u,cw,yw,dw,もマスターしている人も多いのではないでしょうか？自分はそのたびに感じていました。
-「ああ、viはなんて編集が楽なんだろ。指が全然痛くならねぇ。」
-Emacsのカーソル移動「 C-p, C-n, C-f, C-b 」は、言葉の意味に関連付けているので覚えやすいです。だから一見viに比べるととっつきやすんです。でも疲れるんですよ。指が圧倒的に！
-これには理由があってホームポジションで状態を持たずに沢山の操作を実現するには修飾キーや２段ストロークキーを使うしかないのです。なので、ほぼほぼ全ての動作に小指コントーロールがつきまといます。
-それに比べてviはどうでしょうか？まずホームポジションから指を一切動かさずに右手だけでカーソル移動できます。文字的には意味のないhjklですが、指の配置的には理にかなっています。モードがあるおかげで修飾キーを使わずともいろいろと操作できます。そして一番好きなのは
-{count}{operater}{motion} というシンプルだけど覚えやすいコマンド体系。 viを使うたびに私は思っていました。
-「viはなんて操作しやすいのだろう」
-と。
-それでもEmacsを選ぶ理由 「そんなにviを賛美してEmacsをDisるんならとっととVimmerになれや」との声が聞こえてきそうですが、 Vimへ宗旨替えしようと思ってもできない自分がいるのです。
-その最大の理由は「Lisp」。「ハッカーと画家」を読んだ方ならわかると思いますが「Lisp」は魅力的です。プログラマならみんな憧れがあるのではないでしょうか？ LispプログラマにはEmacserが多いですし1、Lispの開発環境といえばEmacsのSLIMEが定番です。なのでEmacsから離れたくないのです。
-最近のVimは昔に比べてEmacsのような環境化が進んでいますし、拡張がしやすいという理由でEmacsを選ぶ理由は薄いかもしれません。ただしLispを勉強したいというなら別です。CommonLispにしろSchemeにしろCLojureにしろ、やはりEmacsが一番サポートが厚い気がします。なによりEmacs自身がLispで書かれているのでEmacsを選ぶイコール毎日Lispと戯れることになるのです。
-以上のような理由でviのコマンド体系でLispで拡張できるエディタがあったらなぁと思っていたのでした。
-Evilとは、Vimの操作性を備えたelisp実行環境である。 そんな時Evilに出会ったのです。EmacsなのにVim。「俺の求めていたのはこれだー」と思いました。なんせEmacsLispで書かれたVimなので「Lispで拡張できる最高やん」と思ったのです。 EvilはEmacsでもあるのでもちろんEmacsの沢山の魅力的な拡張がそのまま動かせます。
- org-mode これがないと生きていけない dired 同じく！ anything,helm ライフチェンジング！これなしでは(ry auto-complate いまどきのIDEぽく eshell Editor上でShellを動かす快適さ、シェル上でS式評価できる便利さ！ gnus メールが読めちゃうよ！ skk Emacsとの相性バツグンIME! navi2ch これで仕事中2chしててもばれない twittering-mode これで仕事中Twitterしてても(ry magit ベンリング！ slime CommonLisp 最高の開発環境！ cider Clojureといったらこれ！  こんなにあります(自分がよく使う拡張を挙げてみました)。他にもはじめからEvil用に書かれたプラグインもあったりして積極的にVimの機能がEvilに 移植 されています。</description>
+      <description>&amp;#30446;&amp;#27425; EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操</description>
     </item>
     
   </channel>

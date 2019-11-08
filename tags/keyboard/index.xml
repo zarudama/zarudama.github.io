@@ -6,7 +6,7 @@
     <description>Recent content in keyboard on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 17:19:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 17:19:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/keyboard/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,19 +14,10 @@
     <item>
       <title>キーボードについて</title>
       <link>https://zarudama.github.io/post/2014/01/keyboard/</link>
-      <pubDate>Fri, 08 Nov 2019 17:19:00 +0900</pubDate>
+      <pubDate>Sun, 03 Nov 2019 17:19:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/01/keyboard/</guid>
-      <description>自分はまだThinkpadを持っていないんですが、将来的にThinkPad(X1Carbon)を使いたいと思っていました。そこでここ数ヶ月は、会社のデスクトップで Thinkpadのトラックポイントキーボード を使用していました。
-しかし先日ThinkpadX1Carbonが5列配列になった と知り、大変衝撃を受けました。ファンクションキーは、オフィス系アプリで頻繁に使いますし、ブラウザや開発ツールなどでもよく使用する利用頻度の高いキーです。これを外すなんてありえません。1
-さらに下記の不満が日頃から溜まっていました。
- HOME、ENDと矢印キーが離れすぎていて使いずらい(このストレスが一番大きい)。 F5とF4,F12の後ろなどに隙間がないため、ファンクションキーが押しにくい。 ドリフト現象(指が触れていないのに勝手にカーソルが動いていしまう)が頻繁おきる。 トラックポイントを使ったスクロールがうまくいかないアプリがたまにある。 トラックポイントによるスクロールを一番良く使うChromeでスクロールができなくなった(Chrome更新による不具合)。 結構ドライバ依存なところがあり、ubuntuできちんと動いてくれるか不安  などです。
-トラックポイント自体は非常に使いやすいのですが、上に挙げた不満を帳消しにするほどの利点ではないということで、結局いつものキーボードに戻りました。
-今回の件でわかったことは、自分は、HOME,ENDと矢印キーの配置が非常に重要で、この配置以外は受けいれられないんだなということでした。
-  &amp;#22259;1: この配置じゃないと指が受けつけない。
-  たぶんこの配置を満たしているノートPCはなくて、そういう意味ではどんなノートでもいいのかもしれません。
-次期ノートからは、Thinkpadは選択肢から外し、 VAIO Proあたりを検討しようと思います。
- 昔、HappyHakkingキーボードを使ってましたが、ファンクションキーがないのが馴染めませんでした。[return]   </description>
+      <description>自分はまだThinkpadを持っていないんですが、将来的にThinkPad(X1Carbon)を使いたいと思っていました。そこでここ数ヶ月は</description>
     </item>
     
   </channel>

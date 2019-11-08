@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installs on ざる魂</title>
+    <link>https://zarudama.github.io/install/</link>
+    <description>Recent content in Installs on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 03 Nov 2019 20:36:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://zarudama.github.io/install/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>(超個人的)Windowsインストール後にやることまとめ</title>
+      <link>https://zarudama.github.io/install/2011/04/windows_install/</link>
+      <pubDate>Sun, 03 Nov 2019 20:36:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/install/2011/04/windows_install/</guid>
+      <description>&amp;#30446;&amp;#27425; ソフトのインストールポリシー コントロールキーの設定 - xp - win7 Usersディレクトリの作成(XPのみ) 一番最初にインストール 環境変数の設定 キー</description>
+    </item>
+    
+    <item>
+      <title>(超個人的)Ubuntuインストール後にやることまとめ</title>
+      <link>https://zarudama.github.io/install/2012/05/ubuntu_install/</link>
+      <pubDate>Sun, 03 Nov 2019 20:22:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/install/2012/05/ubuntu_install/</guid>
+      <description>&amp;#30446;&amp;#27425; 最初にやること ホーム配下のディレクトリリネーム update 端末の設定 IME起動ショートカットの変更 xmodmapによるキーマッピング Dropbox firefox Mig 1M VLゴシ</description>
+    </item>
+    
+  </channel>
+</rss>
