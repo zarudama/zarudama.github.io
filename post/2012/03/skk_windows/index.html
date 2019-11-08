@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">SKKを導入してみる(WindowsXP)</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#corvus-skk">corvus-SKK</a>
+
+<ul>
+<li><a href="#によるstickyshiftを実現する方法">「;」によるStickyShiftを実現する方法</a></li>
+</ul></li>
+<li><a href="#skk日本語入力fep">SKK日本語入力FEP</a></li>
+<li><a href="#wceskkserv">wceSKKServ</a></li>
+<li><a href="#google-ime-skk">google-ime-skk</a>
+
+<ul>
+<li><a href="#xp環境でのインストール">xp環境でのインストール</a></li>
+</ul></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、
+emacsの外の世界ではgooglIME(or MOZC)を使用していました。滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、ふと最近のWindwosSKK界隈を調べてみると、今まで<a href="http://homepage3.nifty.com/monjya/skkime.jis.html">skkime</a> 一択だったのにクライアントが増えてます!。。。ということでいくつか検証してみて最終的に下記の組み合わせを使用することにしました。快適!快適ー!</p>
+
+<ul>
+<li><a href="http://code.google.com/p/corvus-skk/">corvus-SKK(IME)</a></li>
+<li><a href="http://www.megadriver.info/~fumi/wceskkserv/">wceSKKServ(辞書サーバー)</a></li>
+<li><a href="http://d.hatena.ne.jp/hitode909/20110421/1303274561">google-ime-skk(辞書サーバー)</a></li>
+</ul>
+
+<p>ということで以下に調べた内容をメモしておきます。</p>
+
+<h2 id="corvus-skk">corvus-SKK</h2>
+
+<ul>
+<li>最近できたらしいWindows用のFEP</li>
+<li>辞書が独自形式
+
+<ul>
+<li>取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。</li>
+<li>emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。</li>
+</ul></li>
+<li>サーバーがひとつしか使えない
+
+<ul>
+<li>wceSKKServであれば、複数の辞書を扱えるので問題なし</li>
+</ul></li>
+<li>トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない</li>
+<li>独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。</li>
+<li>StickyShiftが使える!</li>
+<li>Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
+</ul>
+
+<h3 id="によるstickyshiftを実現する方法">「;」によるStickyShiftを実現する方法</h3>
+
+<ul>
+<li>設定画面で[位置] タブで下記の設定を施す。</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">    開始：;
+    代替：なし
+    送り：なし</code></pre></div>
+<h2 id="skk日本語入力fep"><a href="http://coexe.web.fc2.com/skkfep.html">SKK日本語入力FEP</a></h2>
+
+<ul>
+<li>軽快な動作を目的とした比較的新しいWindows版SKK。</li>
+<li>Windowsアプリを使いやすくするための独自機能が特徴。</li>
+<li><a href="http://coexe.web.fc2.com/programs.html#skkime">SKK-IME1.5改</a> と同じ作者であり基本理念が引き継がれている。</li>
+<li>WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
+<li>WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。</li>
+</ul>
+
+<h2 id="wceskkserv">wceSKKServ</h2>
+
+<ul>
+<li>wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。</li>
+<li>wceSKKServで使用する辞書は、euc-jpしか受付ない模様。</li>
+<li>サーバにはユーザ辞書は指定できない。</li>
+<li>従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。</li>
+<li>どうしてもしたい場合は、コピーしたものを使う。</li>
+<li>例えばスタートアップでユーザー辞書をコピーするとか。</li>
+<li>サーバを使うメリットとしては、以下がある。
+
+<ul>
+<li>linux環境において辞書を共用することでメモリの節約</li>
+<li>予めサーバーとして立ちあげておくことで、起動がスムーズになる</li>
+<li>サーバー側に複数の辞書を登録することで、クライアント側では、そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。</li>
+</ul></li>
+</ul>
+
+<h2 id="google-ime-skk">google-ime-skk</h2>
+
+<p>最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、
+Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。</p>
+
+<p>また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、このサーバを使えば、その問題も解決します。スバラシス!</p>
+
+<h3 id="xp環境でのインストール">xp環境でのインストール</h3>
+
+<p>gemを入れてから下記でインストールする。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">dos&gt; gem install google-ime-skk
+dos&gt; gem install json</code></pre></div>
+<p>下記のようなバッチファイルを作ってスタートアップに登録しておく。「gskk.bat」</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">google-ime-skk.bat</code></pre></div>
+<p>あとは下記に接続すればok。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">localhost:55100</code></pre></div>
+<p>コンソールが表示されるのが嫌という向きもあるだろうが自分の場合は、あとでログが見れたほうが嬉しいことが多いのでそのままにしている。</p>
+
+<p>また、バーチャルデスクトップ(WinDeskwide)を使っているので不要なウィンドウは全部そっちに集めてスッキリできるので問題ない。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

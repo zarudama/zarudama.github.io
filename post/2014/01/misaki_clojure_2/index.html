@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#参考">参考</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>年末から地味につくっていた <a href="https://github.com/liquidz/misaki">Misaki</a> のプラグインですが、ひととおり欲しい機能の実装を終えたので、github公開しました。
+Emacs <a href="http://orgmode.org/ja/">org-mode</a> で記事を書けるBlogジェネレータです。</p>
+
+<ul>
+<li><a href="https://github.com/mikio/misaki-orgmode">https://github.com/mikio/misaki-orgmode</a></li>
+<li><a href="http://mikio.github.io/misaki-orgmode/">デモ</a></li>
+</ul>
+
+<p>org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います
+(Misaki-orgmodeは、Blogに特化しているわけではないので、静的サイトジェネレータとしても使えます)。</p>
+
+<p><a href="https://github.com/liquidz/misaki">Misaki</a> をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。実装にあたっては、<a href="https://github.com/liquidz/misaki-markdown">misaki-markdown</a> を参考にしました(というかほぼまるパクリですが…)。
+Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。また、このブログ自体、Misaki-orgmodeで生成しており、こちらは <a href="http://purecss.io/">Pure</a> というCSSフレームワークを使用しています。</p>
+
+<p>本ブログ「ざるだましい」はもともと <a href="https://github.com/renard/o-blog">o-blog</a> というツールを使用していました。このツールは大変使いやすかったのですが、1ファイルでの運用を強制されるのと、
+Clojureプログラミングをしたいという理由からMisakiに乗り換えました。</p>
+
+<p>現状では、Emacsによるインターフェースがないので記事ファイルが増えた場合は管理が大変ですが、ゆくゆくは下記で紹介されている <code>org-octopress</code> のようなツールを作りたいと思っています。</p>
+
+<ul>
+<li><a href="http://quickhack.net/nom/blog/2013-05-01-org-octopress.html">http://quickhack.net/nom/blog/2013-05-01-org-octopress.html</a></li>
+</ul>
+
+<p>org-modeをブログに利用していみたいかたは一考してみてください。</p>
+
+<h2 id="参考">参考</h2>
+
+<p>ざるだましいのロゴに使用しているフォント</p>
+
+<ul>
+<li><a href="http://www.hogera.com/pcb/font/catalog/">http://www.hogera.com/pcb/font/catalog/</a></li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

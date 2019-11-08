@@ -6,114 +6,101 @@
     <description>Recent content in clojure on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 27 Jul 2014 14:01:39 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 20:17:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Clojureでxmlを読みこむ方法</title>
-      <link>https://zarudama.github.io/posts/clojure-xml/</link>
-      <pubDate>Sun, 27 Jul 2014 14:01:39 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/clojure-xml/</guid>
-      <description>基本 clojureでxmlを処理する方法のメモ。随時更新予定。
-下記のxmlをtest.xmlとしてプロジェクト直下に保存。
-&amp;lt;parent&amp;gt; &amp;lt;child&amp;gt; hello &amp;lt;/child&amp;gt; &amp;lt;/parent&amp;gt;  clojure.xml/parse関数を使うとmapデータに変換できる。
-user&amp;gt; (require &#39;[clojure.xml :as xml]) user&amp;gt; (xml/parse (slurp &amp;quot;test.xml&amp;quot;)) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&amp;quot;\n\t\thello\n\t&amp;quot;]}]}  ここでは、slurp関数を使ってXMLファイルを直接読んで処理したが、 slurp以外の関数で読み込んだxmlを扱いたいときなどは、xmlは既に文字列になっていることが多い。 clojure.xml/parse関数は文字列を直接パースできないので下記のようなラッパー関数を用意する。
-(defn xml-parse [s] (xml/parse (java.io.ByteArrayInputStream. (.getBytes s))))  これで文字列としてのxmlもパースできるようになった。
-user&amp;gt; (def xml-doc &amp;quot;&amp;lt;parent&amp;gt; &amp;lt;child&amp;gt; hello &amp;lt;/child&amp;gt; &amp;lt;/parent&amp;gt;&amp;quot;) #&#39;user/xml-doc user&amp;gt; (xml-parse xml-doc) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&amp;quot; hello &amp;quot;]}]}  xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、 そんな時はC-c M-o でバッファクリアすると良い感じ。</description>
-    </item>
-    
-    <item>
-      <title>vimのclojure実装であるaviを試してみた。</title>
-      <link>https://zarudama.github.io/posts/avi/</link>
-      <pubDate>Fri, 04 Apr 2014 14:01:39 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/avi/</guid>
-      <description>vimをclojureで実装したらしい avi を試してみることにした。 確認環境は、ubuntu13.04。
-$ git clone https://github.com/maitria/avi.git $ cd avi  READMEによると、avi本体を /usr/local 配下にインストールするとのこと。 あとでアンインストールができなくなると困るので paco を使うことにした。
-$ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install  LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
-インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。 ダウンロードとインストールが終ったらコマンドが返るのでおもむろに
-$ avi  で見慣れたvimの画面が表示された。
- 起動したところ   JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。 どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
-肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。 唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
-ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。</description>
-    </item>
-    
-    <item>
       <title>swank-clojureの後継モジュールのnREPLを試してみた</title>
-      <link>https://zarudama.github.io/posts/parma-link/swank-clojurenrepl/</link>
-      <pubDate>Fri, 07 Sep 2012 14:01:39 +0900</pubDate>
+      <link>https://zarudama.github.io/post/2012/09/clojure_swank_repl/</link>
+      <pubDate>Fri, 08 Nov 2019 20:17:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/swank-clojurenrepl/</guid>
+      <guid>https://zarudama.github.io/post/2012/09/clojure_swank_repl/</guid>
       <description>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
- https://github.com/technomancy/swank-clojure  This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit.  超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。 もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
+ https://github.com/technomancy/swank-clojure   This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit. 超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
 ということで、el-getでレシピに下記を追加して nrepl.el をインストール。
-(:name nrepl :type github :pkgname &amp;quot;kingtim/nrepl.el&amp;quot; )  で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。
- :dependencies [[org.clojure/clojure &amp;quot;1.4.0&amp;quot;] [org.clojure/tools.nrepl &amp;quot;0.2.0-beta9&amp;quot; ]]  最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。
+(:name nrepl :type github :pkgname &amp;#34;kingtim/nrepl.el&amp;#34; ) で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。
+:dependencies [[org.clojure/clojure &amp;#34;1.4.0&amp;#34;] [org.clojure/tools.nrepl &amp;#34;0.2.0-beta9&amp;#34; ]] 最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。
 キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
- シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)  ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、</description>
+ シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)  ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。たとえば、
+ REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ) nREPLとは直接関係ないけど、auto-complte.</description>
     </item>
     
     <item>
       <title>Clojureでゲームプログラミングその1 実験編</title>
-      <link>https://zarudama.github.io/posts/parma-link/clojure1/</link>
-      <pubDate>Wed, 09 Nov 2011 14:01:39 +0900</pubDate>
+      <link>https://zarudama.github.io/post/2011/11/clojure_game/</link>
+      <pubDate>Fri, 08 Nov 2019 17:26:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/clojure1/</guid>
-      <description>はじめに LispでGAMEつくろうかなと。 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
+      <guid>https://zarudama.github.io/post/2011/11/clojure_game/</guid>
+      <description>&amp;#30446;&amp;#27425;  はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍   
+はじめに LispでGAMEつくろうかなと。最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
 とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
- ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
+ ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
 ウィンドウ表示 ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。
-(import (javax.swing JFrame)) (def frame (JFrame. &amp;quot;Clojure SampleGame&amp;quot;)) (doto frame (.setSize 640 480) (.setVisible true))  でた。簡単すぎる！結構感動します。
- 初めてのウィンドウ表示!   次は画像を表示してみる。
+(import (javax.swing JFrame)) (def frame (JFrame. &amp;#34;Clojure SampleGame&amp;#34;)) (doto frame (.setSize 640 480) (.setVisible true)) でた。簡単すぎる！結構感動します。
+  &amp;#22259;1: 初めてのウィンドウ表示!
+  次は画像を表示してみる。
 画像表示 まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。
-java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&amp;quot;hoge.png&amp;quot;));  下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
-http://mikio.github.io/img/clojure-game01/gai.png
-画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
-(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &amp;quot;gai.png&amp;quot;)))  とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
-(import (java.awt Graphics)) (def graphics (.</description>
-    </item>
-    
-    <item>
-      <title>Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</title>
-      <link>https://zarudama.github.io/posts/misaki/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/misaki/</guid>
-      <description>年末から地味につくっていた Misaki のプラグインですが、 ひととおり欲しい機能の実装を終えたので、github公開しました。 Emacs org-mode で記事を書けるBlogジェネレータです。
- https://github.com/mikio/misaki-orgmode デモ  org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います (Misaki-orgmodeは、Blogに特化しているわけではないので、 静的サイトジェネレータとしても使えます)。
-Misaki をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。 実装にあたっては、misaki-markdown を参考にしました(というかほぼまるパクリですが…)。 Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。 デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、 シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。 また、このブログ自体、Misaki-orgmodeで生成しており、こちらは Pure というCSSフレームワークを使用しています。
-本ブログ「ざるだましい」はもともと o-blog というツールを使用していました。 このツールは大変使いやすかったのですが、1ファイルでの運用を強制されるのと、 Clojureプログラミングをしたいという理由からMisakiに乗り換えました。
-現状では、Emacsによるインターフェースがないので 記事ファイルが増えた場合は管理が大変ですが、 ゆくゆくは下記で紹介されている org-octopress のようなツールを作りたいと思っています。
- http://quickhack.net/nom/blog/2013-05-01-org-octopress.html  org-modeをブログに利用していみたいかたは一考してみてください。
-参考 ざるだましいのロゴに使用しているフォント
- http://www.hogera.com/pcb/font/catalog/  </description>
-    </item>
-    
-    <item>
-      <title>Misakiにnrepl-serverを埋め込む</title>
-      <link>https://zarudama.github.io/posts/misaki2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/misaki2/</guid>
-      <description>misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
-mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore +++ b/.gitignore @@ -7,6 +7,8 @@ /.lein-failures /checkouts /.lein-deps-sum +misaki/src/misaki/ +/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj +++ b/project.clj @@ -13,7 +13,9 @@ [cuma &amp;quot;0.0.4&amp;quot;] [clj-gntp &amp;quot;0.0.1&amp;quot;] ; cljs compiler - [org.clojure/clojurescript &amp;quot;0.0-1586&amp;quot;]] + [org.clojure/clojurescript &amp;quot;0.0-1586&amp;quot;] + [org.clojure/tools.nrepl &amp;quot;0.2.3&amp;quot;] + ] :plugins [[codox &amp;quot;0.6.4&amp;quot;] [lein-cloverage &amp;quot;1.0.2&amp;quot;] diff --git a/samples/blog/_config.clj b/samples/blog/_config.</description>
+java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&amp;#34;hoge.png&amp;#34;)); 下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
+  &amp;#22259;2: スプライトパターン
+  画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。外部ファイルはプロジェクトルートからの相対パスでOKのようである。
+(import (java.awt.image BufferedImage)) (import (javax.</description>
     </item>
     
     <item>
       <title>tokyo.clj#19に参加してきた。</title>
-      <link>https://zarudama.github.io/posts/tokyoclj19/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://zarudama.github.io/post/2014/03/tokyo_clojure/</link>
+      <pubDate>Fri, 08 Nov 2019 17:21:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/tokyoclj19/</guid>
+      <guid>https://zarudama.github.io/post/2014/03/tokyo_clojure/</guid>
       <description>鉄は熱いうちに打てということで、帰宅直後のいまのうちに書いておきます。
-3年ぶりにtokyo.cljに参加してきました。 その前の日にはsaitama.cljにも参加してきました。 この2日間で得られた知見をメモしておきます。
- 引数は、なんでもmapにするのがおすすめらしい。 変数がないからといってletを使ってはいけないことはない。 むしろ自己説明的なコードとしてどんどん使うべき。 Luminus は結構よさげ(とある洋書 で推されてるとのこと) noirとLightTableとkormaとVisualStudioは全部おなじ作者 ベテランのすごいエンジニアからも注目されているClojure(どんな人かはここでは言えませんが) 会社経営者からも注目されているClojure(技術に強い会社をつくりたいとのこと) asyncを使った Dots というスマホゲームのClojureScriptの移植版があるらしい。 ゲームをつくるときの状態管理のひとつの実装例として、ゲーム内のすべての状態をひとつのatomで定義しておく。 4clojure は良い でも全部解く必要はない Clojureをつかって機能拡張したいからエディタ作ってますというemacserが二人もいたこと! 自分もClojureでemacs的なエディタをぼんやりと作りたいなーと思ってた。 WebViewを使ったエディタが最近のトレンド？(Atom, LightTable, ねこはる氏の自作エディタなどなど) 以外とClojureでゲームをつくりたいという需要があること やっぱりみんな英語が得意、少なくとも情報を得るために海外サイトは見ている。 Clojureをおしゃれな言語にして女子受けをよくして、ゆくゆくは アイドル を生みだそう! 5月下旬にはClojureの入門本がでる 次回のtokyo.cljはサイン会!(重要)  勘ちがいとかあるかもしれまんせんがこんな感じ。 ライトニングトークの内容はあとで追いかけおようと思います。
-やはり勉強会は懇親会が重要なんだなと思った次第です。 なにより普段ひとりでClojureコード書くので実際にリアルでClojureの話をできたのはよかったですね。
-自分は長らく初級者だと思ってたんですが、 今日いざコードを書いてみようとおもったら普通に括弧mapとか括弧ifとか打ってて、 「あれ、これはもう初級者じゃなくね？」と思ったのでした。あ、でもこれは、EmacsLispの影響かもしれません。 というか、Clojureのスキルはほとんどないです。 それでもこのブログは、Clojure製のブログジェネレータ で書いてます。 なにが言いたいかというと、みんなClojureやりましょうです。LightTable とかおすすめです。
+3年ぶりにtokyo.cljに参加してきました。その前の日にはsaitama.cljにも参加してきました。この2日間で得られた知見をメモしておきます。
+ 引数は、なんでもmapにするのがおすすめらしい。 変数がないからといってletを使ってはいけないことはない。  むしろ自己説明的なコードとしてどんどん使うべき。  Luminus は結構よさげ(とある洋書 で推されてるとのこと) noirとLightTableとkormaとVisualStudioは全部おなじ作者 ベテランのすごいエンジニアからも注目されているClojure(どんな人かはここでは言えませんが) 会社経営者からも注目されているClojure(技術に強い会社をつくりたいとのこと) asyncを使った Dots というスマホゲームのClojureScriptの移植版があるらしい。 ゲームをつくるときの状態管理のひとつの実装例として、ゲーム内のすべての状態をひとつのatomで定義しておく。 4clojure は良い  でも全部解く必要はない  Clojureをつかって機能拡張したいからエディタ作ってますというemacserが二人もいたこと!  自分もClojureでemacs的なエディタをぼんやりと作りたいなーと思ってた。  WebViewを使ったエディタが最近のトレンド？(Atom, LightTable, ねこはる氏の自作エディタなどなど) 以外とClojureでゲームをつくりたいという需要があること やっぱりみんな英語が得意、少なくとも情報を得るために海外サイトは見ている。 Clojureをおしゃれな言語にして女子受けをよくして、ゆくゆくは アイドル を生みだそう! 5月下旬にはClojureの入門本がでる 次回のtokyo.cljはサイン会!(重要)  勘ちがいとかあるかもしれまんせんがこんな感じ。ライトニングトークの内容はあとで追いかけおようと思います。
+やはり勉強会は懇親会が重要なんだなと思った次第です。なにより普段ひとりでClojureコード書くので実際にリアルでClojureの話をできたのはよかったですね。
+自分は長らく初級者だと思ってたんですが、今日いざコードを書いてみようとおもったら普通に括弧mapとか括弧ifとか打ってて、「あれ、これはもう初級者じゃなくね？」と思ったのでした。あ、でもこれは、EmacsLispの影響かもしれません。というか、Clojureのスキルはほとんどないです。それでもこのブログは、Clojure製のブログジェネレータ で書いてます。なにが言いたいかというと、みんなClojureやりましょうです。LightTable とかおすすめです。
 最後に、勉強会を開催主導してくれたスタッフの皆様、お疲れさまでした。</description>
+    </item>
+    
+    <item>
+      <title>Clojureでxmlを読みこむ方法</title>
+      <link>https://zarudama.github.io/post/2014/04/clojure_xml/</link>
+      <pubDate>Fri, 08 Nov 2019 16:59:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/04/clojure_xml/</guid>
+      <description>&amp;#30446;&amp;#27425;  基本 xml-seq xml-zip XPATH 参考   
+clojureでxmlを処理する方法のメモ。随時更新予定。
+基本 下記のxmlをtest.xmlとしてプロジェクト直下に保存。
+&amp;lt;parent&amp;gt; &amp;lt;child&amp;gt; hello &amp;lt;/child&amp;gt; &amp;lt;/parent&amp;gt; clojure.xml/parse関数を使うとmapデータに変換できる。
+user&amp;gt; (require &amp;#39;[clojure.xml :as xml]) user&amp;gt; (xml/parse (slurp &amp;#34;test.xml&amp;#34;)) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&amp;#34;\n\t\thello\n\t&amp;#34;]}]} ここでは、slurp関数を使ってXMLファイルを直接読んで処理したが、 slurp以外の関数で読み込んだxmlを扱いたいときなどは、xmlは既に文字列になっていることが多い。 clojure.xml/parse関数は文字列を直接パースできないので下記のようなラッパー関数を用意する。
+(defn xml-parse [s] (xml/parse (java.io.ByteArrayInputStream. (.getBytes s)))) これで文字列としてのxmlもパースできるようになった。
+user&amp;gt; (def xml-doc &amp;#34;&amp;lt;parent&amp;gt; &amp;lt;child&amp;gt; hello &amp;lt;/child&amp;gt; &amp;lt;/parent&amp;gt;&amp;#34;) #&amp;#39;user/xml-doc user&amp;gt; (xml-parse xml-doc) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&amp;#34; hello &amp;#34;]}]} xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、そんな時はC-c M-o でバッファクリアすると良い感じ。</description>
+    </item>
+    
+    <item>
+      <title>vimのclojure実装であるaviを試してみた。</title>
+      <link>https://zarudama.github.io/post/2014/04/cygwin_apt_cyg/</link>
+      <pubDate>Fri, 08 Nov 2019 16:50:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/04/cygwin_apt_cyg/</guid>
+      <description>vimをclojureで実装したらしい avi を試してみることにした。確認環境は、ubuntu13.04。
+$ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、avi本体を /usr/local 配下にインストールするとのこと。あとでアンインストールができなくなると困るので paco を使うことにした。
+$ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
+インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。ダウンロードとインストールが終ったらコマンドが返るのでおもむろに
+$ avi で見慣れたvimの画面が表示された。
+  &amp;#22259;1: 起動したところ
+  JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
+肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
+ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。</description>
+    </item>
+    
+    <item>
+      <title>4clojureを解いていく記事</title>
+      <link>https://zarudama.github.io/post/2014/01/clojure_problem/</link>
+      <pubDate>Fri, 08 Nov 2019 16:43:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/01/clojure_problem/</guid>
+      <description>&amp;#30446;&amp;#27425;  A nil key【難しい】 For the win 【forの使いかた】 Logical falsity and truth【真偽について】 Subset and Superset【重量】 Map Defaults Lists: conj【重要】 Intro to Vectors【重要】 Vectors :conj【重要】 Intro to Sets【重要】 Sets: conj【重要】 Intro to Maps Maps: conj Intro to Sequences Sequences: rest Intro to Functions【重要】 Double Down Hello World Sequences: map【重要】 Sequences: filter【重要】 #35 Local bindings #37 Regular Expressions #64 Intro to Reduce #57 Simple Recursion【難しい】 S#71 Rearranging Code: -&amp;gt;【重要】 #68 Recurring Theme S#72 Rearranging Code: -&amp;gt;&amp;gt;【重要】 Last Element【難しい】 #20 Penultimate Element【難しい】 #21 Nth Element【難しい】</description>
     </item>
     
   </channel>

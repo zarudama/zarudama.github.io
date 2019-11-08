@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">.emacsに必要なpackage を指定して自動で各種elispをインストールする</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#2013-05-13-追記1">2013/05/13 追記1:</a></li>
+<li><a href="#2013-05-13-追記2">2013/05/13 追記2:</a></li>
+<li><a href="#2013-05-13-追記3">2013/05/13 追記3:</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>今までパッケージ管理には <code>el-get</code> を使用してきたのですが、
+Windows環境がメインだと <code>git clone</code> がうまくいかなかったり、インストール後のビルド工程が失敗したりで、なかなか難儀していたので、
+el-getを辞めemacs標準の <code>package.el</code> をメインにすることにしました。</p>
+
+<p><code>package.el</code> ならば標準装備ですし、サイトリポジトリに各所のelispがダウンロードされた状態なので
+httpですべてインストールできるので大抵の環境でうまく動きます。</p>
+
+<p>パッケージのリポジトリサイトとしては、昔はMarmaladeが更新が盛んだったのですが、最近ではMELPAがメインになってきてるようです。なので私は、MELPAメインで使用してます。
+Marmaladeは無効にしています。理由は同じパッケージが同時に表示されてしまうからです。</p>
+
+<p>以下は私の設定です。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">require</span> <span style="color:#fc3">&#39;mikio-util</span>)
+
+(<span style="color:#366">when</span> (<span style="color:#366">require</span> <span style="color:#fc3">&#39;package</span> <span style="color:#360">nil</span> <span style="color:#360">t</span>)
+
+  <span style="color:#09f;font-style:italic">;; Marmalade</span>
+  <span style="color:#09f;font-style:italic">;; (add-to-list &#39;package-archives</span>
+  <span style="color:#09f;font-style:italic">;;              &#39;(&#34;marmalade&#34; . &#34;http://marmalade-repo.org/packages/&#34;))</span>
+
+  <span style="color:#09f;font-style:italic">;; MELPA</span>
+  <span style="color:#09f;font-style:italic">;; (add-to-list &#39;package-archives</span>
+  <span style="color:#09f;font-style:italic">;;              &#39;(&#34;melpa&#34; . &#34;http://melpa.milkbox.net/packages/&#34;) t)</span>
+
+  <span style="color:#09f;font-style:italic">;; MELPAのみにする。</span>
+  (<span style="color:#366">setq</span> <span style="color:#033">package-archives</span> (<span style="color:#c0f">list</span> <span style="color:#555">&#39;</span>(<span style="color:#c30">&#34;melpa&#34;</span> <span style="color:#555">.</span> <span style="color:#c30">&#34;http://melpa.milkbox.net/packages/&#34;</span>)))
+
+
+
+  <span style="color:#09f;font-style:italic">;;インストールするディレクトリを指定</span>
+  (<span style="color:#366">setq</span> <span style="color:#033">my-package-directory</span> (<span style="color:#033">mikio/elisp-home</span> <span style="color:#c30">&#34;package&#34;</span>))
+  (<span style="color:#033">mikio/make-directory</span> <span style="color:#033">my-package-directory</span>)
+  (<span style="color:#366">setq</span> <span style="color:#033">package-user-dir</span> (<span style="color:#c0f">concat</span> <span style="color:#033">my-package-directory</span> <span style="color:#c30">&#34;/&#34;</span>))
+
+  <span style="color:#09f;font-style:italic">;;</span>
+  (<span style="color:#033">package-initialize</span>)
+
+  (<span style="color:#366">setq</span> <span style="color:#033">my-packages</span>
+        <span style="color:#555">&#39;</span>(<span style="color:#033">undo-tree</span>
+          <span style="color:#033">helm</span>
+          <span style="color:#033">auto-complete</span>
+          <span style="color:#033">popwin</span>
+          <span style="color:#033">smartrep</span>
+          <span style="color:#033">color-moccur</span>
+          <span style="color:#033">yasnippet</span>
+
+          <span style="color:#033">helm-git</span>
+          <span style="color:#033">helm-gtags</span>
+          <span style="color:#033">helm-c-moccur</span>
+          <span style="color:#033">helm-c-yasnippet</span>
+
+          <span style="color:#033">paredit</span>
+          <span style="color:#033">ruby-mode</span>
+          <span style="color:#033">php-mode</span>
+          <span style="color:#033">js2-mode</span>
+          <span style="color:#033">web-mode</span>
+
+          <span style="color:#033">nrepl</span>
+          <span style="color:#033">nrepl-ritz</span>
+          <span style="color:#033">ac-nrepl</span>
+          <span style="color:#09f;font-style:italic">;;ac-slime</span>
+          <span style="color:#033">magit</span>
+
+          <span style="color:#033">jaunte</span>
+          <span style="color:#033">rainbow-delimiters</span>
+
+          <span style="color:#09f;font-style:italic">;; window manager by kiwanami</span>
+          <span style="color:#033">window-layout</span>
+          <span style="color:#033">e2wm</span>
+
+          <span style="color:#033">twittering-mode</span>
+          <span style="color:#09f;font-style:italic">;;o-blog</span>
+
+          <span style="color:#033">evil</span>
+          ))
+
+  (<span style="color:#366">require</span> <span style="color:#fc3">&#39;cl</span>)
+  (<span style="color:#c0f">mapcar</span> (<span style="color:#366">lambda</span> (<span style="color:#033">x</span>)
+            (<span style="color:#366">when</span> (<span style="color:#033">not</span> (<span style="color:#033">package-installed-p</span> <span style="color:#033">x</span>))
+              (<span style="color:#033">package-install</span> <span style="color:#033">x</span>)))
+          <span style="color:#033">my-packages</span>)
+)
+
+(<span style="color:#366">provide</span> <span style="color:#fc3">&#39;mikio-package</span>)</code></pre></div>
+<p>githubはこちら。</p>
+
+<ul>
+<li><p><a href="https://github.com/mikio/dotfiles/blob/master/emacs/mikio/mikio-package.el">https://github.com/mikio/dotfiles/blob/master/emacs/mikio/mikio-package.el</a></p>
+
+<p><code>my-packages</code> に自分の必要なパッケージをまとめて定義しています。</p></li>
+</ul>
+
+<p>こうすることによって、環境が変わってもemacs起動時に自動的にインストールしてくれるので楽チンです。</p>
+
+<h2 id="2013-05-13-追記1">2013/05/13 追記1:</h2>
+
+<p>MELPAリポジトリは、常に最新のパッケージを取得してしまうためアップグレードする際は注意が必要です。
+Uコマンドなどで間違ってアップグレードしてしまっても多分もとに戻せません。一方Marmaladeリポジトリの場合、 自分のローカルPCに過去のバージョンの履歴が残っている可能性があるので、ダウングレードする道があります(手順は知りませんが)。</p>
+
+<ul>
+<li><a href="https://github.com/emacs-jp/emacs-jp.github.com/issues/31">https://github.com/emacs-jp/emacs-jp.github.com/issues/31</a></li>
+</ul>
+
+<h2 id="2013-05-13-追記2">2013/05/13 追記2:</h2>
+
+<p>本文では、gitプロトコルでel-getが失敗すると書きましたが、下記の方法を試せば問題ないかもしれません(未検証)。</p>
+
+<ul>
+<li><a href="http://mikio.github.io/article/2013/05/03%5Fgit.html">http://mikio.github.io/article/2013/05/03%5Fgit.html</a></li>
+</ul>
+
+<h2 id="2013-05-13-追記3">2013/05/13 追記3:</h2>
+
+<p>el-getも全く使用していないというわけではなく、EmacsWikiなどhttp通信するものに関しては使用しています。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

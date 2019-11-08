@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">cygwinにtmuxを導入</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#はじめに">はじめに</a></li>
+<li><a href="#インストール方法">インストール方法</a></li>
+<li><a href="#翌日-なぜか起動しなくなった">翌日、なぜか起動しなくなった。</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>Cygwinでは、長らくtmuxが使えなかったのですが、最近tmuxが正式にCygwinをサポートしたようです。</p>
+
+<p>コンパイルしてインストールするため、依存するライブラリが必要です。</p>
+
+<h2 id="インストール方法">インストール方法</h2>
+
+<p>apt-cygで事前に必要なパッケージをインストールしておく。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install ncurses
+$ apt-cyg install libncurses-devel
+$ apt-cyg install libevent-devel
+$ apt-cyg install pkg-config autoconf automake
+$ apt-cyg install make gcc-core</code></pre></div>
+<p>あとは参考サイトにあるとおりでオッケー。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code
+$ <span style="color:#366">cd</span> tmux-tmux-code/
+$ ./autogen.sh
+$ <span style="color:#033">CFLAGS</span><span style="color:#555">=</span><span style="color:#c30">&#34;-I/usr/include/ncurses&#34;</span> ./configure --prefix<span style="color:#555">=</span>/usr
+$ make <span style="color:#555">&amp;&amp;</span> make install</code></pre></div>
+<p>参考</p>
+
+<ul>
+<li><a href="http://atdxfe.hatenablog.com/entry/2013/11/27/031058">http://atdxfe.hatenablog.com/entry/2013/11/27/031058</a></li>
+<li><a href="http://java.ociweb.com/mark/programming/tmuxInCygwin.html">http://java.ociweb.com/mark/programming/tmuxInCygwin.html</a></li>
+</ul>
+
+<h2 id="翌日-なぜか起動しなくなった">翌日、なぜか起動しなくなった。</h2>
+
+<p>後日、起動時に下記のエラーが発生</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ tmux
+failed to connect to server: No error</code></pre></div>
+<p><code>.bashrc</code> に下記を追記することで治った。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">alias</span> <span style="color:#033">tmux</span><span style="color:#555">=</span><span style="color:#c30">&#39;rm -rf /tmp/tmux* &amp;&amp; tmux&#39;</span></code></pre></div>
+<p>参考</p>
+
+<ul>
+<li><a href="http://superuser.com/questions/760503/cygwin-tmux-failed-to-connect-to-server-no-error">http://superuser.com/questions/760503/cygwin-tmux-failed-to-connect-to-server-no-error</a></li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

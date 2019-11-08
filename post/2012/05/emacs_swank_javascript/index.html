@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる</h1>
+  
+  <div>
+        <article id="content">
+           <p>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。その後、npmでsocket.ioをインストール。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">dos&gt; npm install socket.io</code></pre></div>
+<p>あとは、swank-jsをインストールする。</p>
+
+<p>下記を参考にWindowsXP環境にインストールした。</p>
+
+<ul>
+<li><a href="http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html">http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html</a></li>
+</ul>
+
+<p>上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。</p>
+
+<ul>
+<li><a href="https://github.com/swank-js/swank-js">https://github.com/swank-js/swank-js</a></li>
+</ul>
+
+<p>インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。回避方法としてswank-js.elはMarmaladeからインストールした。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">M-x packagea-list-packages</code></pre></div>
+<p>下記を選択してixでインスール。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">slime-js          <span style="color:#f60">0</span>.0.1       installed  Slime extension <span style="color:#069;font-weight:bold">for</span> swank-js.</code></pre></div>
+<p>あとは裏でnode swank.jsを走らせて、SLIMEに接続する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">M-x slime-connect <span style="color:#f60">127</span>.0.0.1 <span style="color:#f60">4005</span></code></pre></div>
+<p>その後、repl上で接続したいURLを指定する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">,target-url</code></pre></div>
+<p>次にブラウザ上で下記にアクセスする。</p>
+
+<ul>
+<li><a href="http://localhost:8009/">http://localhost:8009/</a></li>
+</ul>
+
+<p>その後、repl上で接続する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">,select-remote</code></pre></div>
+<p>あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">alert <span style="color:#555">(</span><span style="color:#c30">&#34;hoge&#34;</span><span style="color:#555">)</span></code></pre></div>
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

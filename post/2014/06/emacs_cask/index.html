@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">Caskの導入と設定ファイルの棚卸し</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#はじめに">はじめに</a></li>
+<li><a href="#caskの導入">Caskの導入</a></li>
+<li><a href="#emacs設定ファイルの書き方">Emacs設定ファイルの書き方</a></li>
+<li><a href="#私の-dot-emacsのインストール方法">私の.emacsのインストール方法</a></li>
+<li><a href="#私の-dot-emacsのディレクトリ配置">私の.emacsのディレクトリ配置</a></li>
+<li><a href="#私の-dot-emacsの分割のポリシー">私の.emacsの分割のポリシー</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。
+ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。良いです。</p>
+
+<p>そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。</p>
+
+<h2 id="caskの導入">Caskの導入</h2>
+
+<p>インストールは非常に簡単です。</p>
+
+<ul>
+<li><a href="https://github.com/cask/cask">https://github.com/cask/cask</a></li>
+</ul>
+
+<p>公式にあるとおり下記コマンドを実施するだけです。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python</code></pre></div>
+<p>すると、 <code>~/.cask</code> にcask自身がインストールされます。あとは、PATHに下記を追加しておきます。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:~/.cask/bin</code></pre></div>
+<p>これで準備オッケーです。</p>
+
+<p>Caskファイルを編集して自分の欲しいパッケージを羅列してきます。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ vim ~/.emacs.d/Cask</code></pre></div>
+<p>で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが
+<code>~/.emacs.d/.cask</code> というディレクトリに保存されていきます。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~/.emacs.d
+$ cask</code></pre></div>
+<p>簡単ですなー。</p>
+
+<p>そしてこれらを利用するにはロードパスを通しておきます。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">require</span> <span style="color:#fc3">&#39;cask</span> <span style="color:#c30">&#34;~/.cask/cask.el&#34;</span>)
+(<span style="color:#033">cask-initialize</span>)</code></pre></div>
+<p>あとはいつもどおりの自分の設定を書けばオッケー。</p>
+
+<p>ちなみにWindowsでは導入できないとの情報を見ましたが自分の環境では問題ありませんでした。環境は下記のとおりです。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"># PC
+Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz 2.50GHz
+RAM 4.00 GB
+
+# Windows
+Windows7 Professional
+Service Pack 1
+32bit
+
+# emacs
+GNU Emacs 24.3.1 (i386-mingw-nt6.1.7601) of 2013-03-18 on MARVIN
+
+# Cygwin
+$ uname -r
+1.7.30(0.272/5/3)</code></pre></div>
+<h2 id="emacs設定ファイルの書き方">Emacs設定ファイルの書き方</h2>
+
+<p>.emacsの整理にあたっては、下記の方やりかたを全面採用しました。</p>
+
+<ul>
+<li><a href="http://unknownplace.org/memo/2013/01/21/1/">http://unknownplace.org/memo/2013/01/21/1/</a></li>
+<li><a href="https://github.com/emacs-jp/emacs-jp.github.com/issues/15#issuecomment-13706554">https://github.com/emacs-jp/emacs-jp.github.com/issues/15#issuecomment-13706554</a></li>
+</ul>
+
+<p>このやり方を採用すれば</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ emacs -q -l init.el</code></pre></div>
+<p>とするだけで自分の環境が閉じた状態で簡単に再現できます。設定ファイルを公開している方は、みんなこの方法を採用したほうがいいんじゃないかなーと思います。</p>
+
+<p>ちなみに、初期化ファイルは、init-loaderを使用するのが定番のようですが、自分には合いませんでした。ファイル名をいじって読み込む順番や読み込みの有無を指定するのが苦手で。それよりはコードを直接いじったりコメントアウトするほうが楽でした。</p>
+
+<h2 id="私の-dot-emacsのインストール方法">私の.emacsのインストール方法</h2>
+
+<p>私のemacs環境は下記の方法でどなたでも試すことができます(ただしまだテストしてません)。</p>
+
+<ul>
+<li><a href="https://github.com/mikio/.emacs.d">https://github.com/mikio/.emacs.d</a></li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~
+$ git clone https://github.com/mikio/.emacs.d.git
+$ <span style="color:#366">cd</span> .emacs.d
+$ cask
+$ emacs -q -l init.el</code></pre></div>
+<p>ちなみに、手動インストールが必要なddskkやJDEEなどはインストールできません(当然)。</p>
+
+<p>やりかたを公開しているのは別にオレオレemacsをみんなに使って欲しいのではなくて自分がどこでも環境を再構築できるようにしたいためです。念の為。</p>
+
+<h2 id="私の-dot-emacsのディレクトリ配置">私の.emacsのディレクトリ配置</h2>
+
+<p>ディレクトリ構成は下記のようになってます。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$HOME
+  + Dropbox/site-lisp/ # 手動でインストールしたlisp
+  + .cask/             # Cask自身のインストール場所
+  + .skk/ # ddskkのプライベート辞書の場所
+      + jisyo
+  + .emacs.d/
+      init.el # ブート的な起動ファイル
+      .cask/  # Caskによりインストールされたパッケージ群の保存場所
+      conf/  # 各パッケージの初期化ファイル群</code></pre></div>
+<h2 id="私の-dot-emacsの分割のポリシー">私の.emacsの分割のポリシー</h2>
+
+<p>最後に設定ファイル分割のポリシーをメモしておきます。</p>
+
+<ul>
+<li>requireが必要ない設定(キーバインドとか、単純な設定など)
+
+<ul>
+<li>conf/init.elにまとめる</li>
+</ul></li>
+<li>標準取り込み済みだけどrequireが必要な設定
+
+<ul>
+<li>conf/extend.elにまとめる</li>
+</ul></li>
+<li>caskで取り込んだ外部パッケージ
+
+<ul>
+<li>適当な単位で処理を分ける</li>
+</ul></li>
+
+<li><p>完全に手でインストールしなければならないもの</p>
+
+<ul>
+<li>JDEE</li>
+<li>ddskk</li>
+<li>sdic</li>
+<li>w3m</li>
+<li>navi2ch</li>
+<li>これらは、個別に設定ファイルを準備</li>
+</ul></li>
+
+<li><p>全体として、elispが存在しなければ無視するように気を使う</p></li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

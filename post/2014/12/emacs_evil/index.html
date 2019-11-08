@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">第3のエディタEvilのすすめ</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#emacsとvim">EmacsとVim</a></li>
+<li><a href="#それでもemacsを選ぶ理由">それでもEmacsを選ぶ理由</a></li>
+<li><a href="#evilとは-vimの操作性を備えたelisp実行環境である">Evilとは、Vimの操作性を備えたelisp実行環境である。</a></li>
+<li><a href="#evil-modeでvimの操作性とemacsの拡張性を両方手に入れる">Evil-modeでVimの操作性とEmacsの拡張性を両方手に入れる!</a></li>
+<li><a href="#迷ったらevil--emacs">迷ったらEvil(Emacs)。</a></li>
+<li><a href="#最後に">最後に</a></li>
+<li><a href="#evilを使う気になった人へのちょっとしたメモ">Evilを使う気になった人へのちょっとしたメモ</a>
+
+<ul>
+<li><a href="#emacserじゃない人向け">Emacserじゃない人向け</a></li>
+<li><a href="#emacser向け">Emacser向け</a></li>
+</ul></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p><a href="http://qiita.com/advent-calendar/2014/evil">Evil Advent Calendar 2014</a> の8日目の記事になります。
+Evil の使用人口が少なすぎるのでEvilを使う理由などを述べて人口が増えるのを目論みます。
+Evilを薦めてるのかEmacsを薦めてるのかよくわからないまとまりのない記事になってしまいました。</p>
+
+<h2 id="emacsとvim">EmacsとVim</h2>
+
+<p>そこそこ経験のあるEmacserは大抵、viの操作もマスターしています。
+Emacsがインストールされてない環境も多いのでそんなときはviを使ってささっと編集するのです。
+hjklはもちろん、yy,dd,u,cw,yw,dw,もマスターしている人も多いのではないでしょうか？自分はそのたびに感じていました。</p>
+
+<p>「ああ、viはなんて編集が楽なんだろ。指が全然痛くならねぇ。」</p>
+
+<p>Emacsのカーソル移動「 <code>C-p</code>, <code>C-n</code>, <code>C-f</code>, <code>C-b</code> 」は、言葉の意味に関連付けているので覚えやすいです。だから一見viに比べるととっつきやすんです。でも疲れるんですよ。指が圧倒的に！</p>
+
+<p>これには理由があってホームポジションで状態を持たずに沢山の操作を実現するには修飾キーや２段ストロークキーを使うしかないのです。なので、ほぼほぼ全ての動作に小指コントーロールがつきまといます。</p>
+
+<p>それに比べてviはどうでしょうか？まずホームポジションから指を一切動かさずに右手だけでカーソル移動できます。文字的には意味のないhjklですが、指の配置的には理にかなっています。モードがあるおかげで修飾キーを使わずともいろいろと操作できます。そして一番好きなのは</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{count}{operater}{motion}</code></pre></div>
+<p>というシンプルだけど覚えやすいコマンド体系。
+viを使うたびに私は思っていました。</p>
+
+<p>「viはなんて操作しやすいのだろう」</p>
+
+<p>と。</p>
+
+<h2 id="それでもemacsを選ぶ理由">それでもEmacsを選ぶ理由</h2>
+
+<p>「そんなにviを賛美してEmacsをDisるんならとっととVimmerになれや」との声が聞こえてきそうですが、
+Vimへ宗旨替えしようと思ってもできない自分がいるのです。</p>
+
+<p>その最大の理由は「Lisp」。「ハッカーと画家」を読んだ方ならわかると思いますが「Lisp」は魅力的です。プログラマならみんな憧れがあるのではないでしょうか？
+LispプログラマにはEmacserが多いですし<sup class="footnote-ref" id="fnref:fn-1"><a href="#fn:fn-1">1</a></sup>、Lispの開発環境といえばEmacsのSLIMEが定番です。なのでEmacsから離れたくないのです。</p>
+
+<p>最近のVimは昔に比べてEmacsのような環境化が進んでいますし、拡張がしやすいという理由でEmacsを選ぶ理由は薄いかもしれません。ただしLispを勉強したいというなら別です。CommonLispにしろSchemeにしろCLojureにしろ、やはりEmacsが一番サポートが厚い気がします。なによりEmacs自身がLispで書かれているのでEmacsを選ぶイコール毎日Lispと戯れることになるのです。</p>
+
+<p>以上のような理由でviのコマンド体系でLispで拡張できるエディタがあったらなぁと思っていたのでした。</p>
+
+<h2 id="evilとは-vimの操作性を備えたelisp実行環境である">Evilとは、Vimの操作性を備えたelisp実行環境である。</h2>
+
+<p>そんな時Evilに出会ったのです。EmacsなのにVim。「俺の求めていたのはこれだー」と思いました。なんせEmacsLispで書かれたVimなので「Lispで拡張できる最高やん」と思ったのです。
+EvilはEmacsでもあるのでもちろんEmacsの沢山の魅力的な拡張がそのまま動かせます。</p>
+
+<dl>
+<dt>org-mode</dt>
+<dd>これがないと生きていけない</dd>
+<dt>dired</dt>
+<dd>同じく！</dd>
+<dt>anything,helm</dt>
+<dd>ライフチェンジング！これなしでは(ry</dd>
+<dt>auto-complate</dt>
+<dd>いまどきのIDEぽく</dd>
+<dt>eshell</dt>
+<dd>Editor上でShellを動かす快適さ、シェル上でS式評価できる便利さ！</dd>
+<dt>gnus</dt>
+<dd>メールが読めちゃうよ！</dd>
+<dt>skk</dt>
+<dd>Emacsとの相性バツグンIME!</dd>
+<dt>navi2ch</dt>
+<dd>これで仕事中2chしててもばれない</dd>
+<dt>twittering-mode</dt>
+<dd>これで仕事中Twitterしてても(ry</dd>
+<dt>magit</dt>
+<dd>ベンリング！</dd>
+<dt>slime</dt>
+<dd>CommonLisp 最高の開発環境！</dd>
+<dt>cider</dt>
+<dd>Clojureといったらこれ！</dd>
+</dl>
+
+<p>こんなにあります(自分がよく使う拡張を挙げてみました)。他にもはじめからEvil用に書かれたプラグインもあったりして積極的にVimの機能がEvilに <a href="http://qiita.com/yukihr/items/a3841ba904979a366fb3">移植</a> されています。</p>
+
+<p>Emacsの豊富な資産を継承しつつも、Vimの操作性を高い再現度で手にいれることができる、それがEvilなのです。
+EmcasLispという実行環境の上にEmacsLispで書かれたVimを模倣したエディタが動く。もうこれは、EmacsでもVim でもなく第３のエディタとっいってもいいのではないでしょうか？</p>
+
+<h2 id="evil-modeでvimの操作性とemacsの拡張性を両方手に入れる">Evil-modeでVimの操作性とEmacsの拡張性を両方手に入れる!</h2>
+
+<p>Evilの魅力をちょっとまとめてみます。</p>
+
+<ul>
+<li>Evilは、vimの基本的な操作は大体通用する。</li>
+<li>Evil(vim)は、(達人になれば)呪文をとなえるように編集ができる。それが気持ちよさにつながる。</li>
+<li>Evil(vim)は、小指への負担が少ない(重要)。</li>
+<li>Evilは、EmacsだからEditorなのに画像が表示できる。その気になれば <a href="http://d.hatena.ne.jp/kiwanami/20110413/1302709536">3Dゲーム</a> もつくれるぜ!</li>
+<li>Evilは、日本語編集にも強いVimとして使用できる。
+
+<ul>
+<li>skkが簡単に使える。</li>
+<li>ちょっと工夫すれば、モード間のskkの状態遷移がスムーズにできる。よって日本語入力がVimなのに快適!</li>
+</ul></li>
+<li>Evilとは、Vimの効率的なテキスト編集能力と、lisp子孫の機能拡張言語を備えた第3のエディタである。
+
+<ul>
+<li>EmacslispはまがりなりにもLispの子孫。言語自体にパワーある。</li>
+</ul></li>
+</ul>
+
+<h2 id="迷ったらevil--emacs">迷ったらEvil(Emacs)。</h2>
+
+<p>EmacsとVimどちらを使えばいいのか迷っている場合、私はEmacsを進めます。
+Emacs使いは、結局必要に迫られてviを操作することが多いです。それに比べてvi使いがEmacsの操作もできることは少ない気がします。
+viやvimの人がわざわざEmacsを操作する機会がないからですね。であれば、Emacserのほうが両方の操作を覚えられるという点でお得です(面倒と考えずポジティブにいきましょう)。
+Evilは、VimとEmacs両方の操作能力を求められので、EmacsもVimも全く知らない人がいきなりEvilから始めるのはあまりお勧めできません。ある程度両方の操作をマスターしてからのほうがいいでしょう。そしてその順序は上述のとおりEmacsからのほうが良いと思います。</p>
+
+<h2 id="最後に">最後に</h2>
+
+<p>どうでしょうか？ちょっとはEvilに興味を持っていただけたしょうか？面倒くさそうだなって思う人のほうが多そうな気もすごくするのですが、少しでも試してみようと思うかたが増えたら幸いです(この記事自体、既にEvilを使ってる人しか読まなそうでけどね)。</p>
+
+<h2 id="evilを使う気になった人へのちょっとしたメモ">Evilを使う気になった人へのちょっとしたメモ</h2>
+
+<p>EmacsとVimはコマンド体系が喧嘩しまくる感じです。なのでちょっとした基本は最初に知っておいたほうがいいです。とりあえずすぐに思いついたものだけ。</p>
+
+<h3 id="emacserじゃない人向け">Emacserじゃない人向け</h3>
+
+<ul>
+<li><code>C-g</code> は Vim の ESC みたいなもの。困ったらこれを連打。</li>
+<li><code>C-c</code> は メジャーモードのプリフィックス。そのメジャーモードで何かするときは <code>C-c</code> してからコマンドを続けることが多い。</li>
+<li><code>C-c C-c</code> は何かを実行とか決定するときによく使う。</li>
+<li><code>C-u</code> は、反対の意味的なプリフィックス。普段使ってるコマンドを <code>C-u</code> を使って実行するとオルタナティブなコマンドになる。</li>
+</ul>
+
+<h3 id="emacser向け">Emacser向け</h3>
+
+<ul>
+<li>迷ったら <code>C-z</code> これでEmacsキーバインドになる。</li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:fn-1">「ハッカーと画家」の作者は「vi」な人らしいです（Vimではないっぽいところが重要）。
+ <a class="footnote-return" href="#fnref:fn-1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

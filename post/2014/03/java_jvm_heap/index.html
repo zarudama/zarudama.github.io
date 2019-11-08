@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">JVMのヒープサイズと変更方法</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#jvmの初期ヒープサイズ">JVMの初期ヒープサイズ</a></li>
+<li><a href="#jvmの稼動時のヒープサイズ">JVMの稼動時のヒープサイズ</a></li>
+<li><a href="#ヒープサイズの変更方法">ヒープサイズの変更方法</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。<sup class="footnote-ref" id="fnref:fn-1"><a href="#fn:fn-1">1</a></sup></p>
+
+<h2 id="jvmの初期ヒープサイズ">JVMの初期ヒープサイズ</h2>
+
+<p>JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、初期割り当てのヒープサイズが異なる。</p>
+
+<p>サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ java -version
+java version <span style="color:#c30">&#34;*****&#34;</span>
+Java<span style="color:#555">(</span>TM<span style="color:#555">)</span> SE Runtime Environment <span style="color:#555">(</span>build ******<span style="color:#555">)</span>
+Java HotSpot<span style="color:#555">(</span>TM<span style="color:#555">)</span> Server VM <span style="color:#555">(</span>build ******<span style="color:#555">)</span></code></pre></div>
+<p>Severモードの場合は、 <code>Server</code> の表記があるはず。</p>
+
+<p>サーバーモード</p>
+
+<table>
+<thead>
+<tr>
+<th>初期ヒープサイズ</th>
+<th>マシンの物理メモリーの <sup>1</sup>&frasl;<sub>64</sub> か、妥当な最小サイズかの大きい方。</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>最大ヒープサイズ</td>
+<td>物理メモリーの <sup>1</sup>&frasl;<sub>4</sub> か、1GB かの小さい方。</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html">http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html</a></li>
+</ul>
+
+<h2 id="jvmの稼動時のヒープサイズ">JVMの稼動時のヒープサイズ</h2>
+
+<p>JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo jstat -gc <span style="color:#f60">28905</span>
+ S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT
+<span style="color:#f60">127552</span>.0 <span style="color:#f60">137152</span>.0  <span style="color:#f60">0</span>.0   <span style="color:#f60">68410</span>.3 <span style="color:#f60">224000</span>.0 <span style="color:#f60">107742</span>.6  <span style="color:#f60">996736</span>.0   <span style="color:#f60">113947</span>.3  <span style="color:#f60">61440</span>.0 <span style="color:#f60">61324</span>.8      <span style="color:#f60">7</span>    <span style="color:#f60">1</span>.323   <span style="color:#f60">1</span>      <span style="color:#f60">0</span>.045    <span style="color:#f60">1</span>.368</code></pre></div>
+<p>割りあてられた容量を見るには、*Cのサイフィックス、使用量を見るには、*Uのサフィックスに着目する(単位はKb)。</p>
+
+<table>
+<thead>
+<tr>
+<th>S0C</th>
+<th>S1C</th>
+<th>S0U</th>
+<th>S1U</th>
+<th>EC</th>
+<th>EU</th>
+<th>OC</th>
+<th>OU</th>
+<th>PC</th>
+<th>PU</th>
+<th>YGC</th>
+<th>YGCT</th>
+<th>FGC</th>
+<th>FGCT</th>
+<th>GCT</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>127,552.0</td>
+<td>137,152.0</td>
+<td>0.0</td>
+<td>68,410.3</td>
+<td>224,000.0</td>
+<td>107,742.6</td>
+<td>996,736.0</td>
+<td>113,947.3</td>
+<td>61,440.0</td>
+<td>61,324.8</td>
+<td>7</td>
+<td>1.323</td>
+<td>1</td>
+<td>0.045</td>
+<td>1.368</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">容量(概算)
+S0C + S1C + EC + OC + PC = 127 + 137 + 224 + 996</code></pre></div>
+<p>この場合、ヒープ領域の合計は、約1,484MBとなる。</p>
+
+<p>ここで注意が必要なのは、ヒープ領域はnew演算子で割りあてられる領域であるということ。</p>
+
+<p>プログラムがロードされる領域であるPermanent領域は、ヒープ領域とは別に管理される場所なので注意が必要。上記の場合、Permanent領域は、PCの61MBとなる。
+(Permanent領域のデフォルトサイズは、64MB)</p>
+
+<h2 id="ヒープサイズの変更方法">ヒープサイズの変更方法</h2>
+
+<p>ヒープ領域は、次のオプションで変更できる。</p>
+
+<p>例)</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">-Xms1024m -Xmx1024m</code></pre></div>
+<p>上記オプションには、プログラム格納用の領域のPermanet領域は割り当てられないので注意が必要である。
+Permanet領域はデフォルトで64MBのようなので、プログラムサイズが足りないときは増やす必要がある。この値は、次のオプションで変更できる。</p>
+
+<p>例)</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">-XX:MaxPermSize<span style="color:#555">=</span>128m</code></pre></div>
+<h2 id="参考">参考</h2>
+
+<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</a></li>
+<li><a href="http://www.hitachi.co.jp/Prod/comp/soft1/manual/cosmi/v0900/03Y0401D/EY040134.HTM#ID00610">http://www.hitachi.co.jp/Prod/comp/soft1/manual/cosmi/v0900/03Y0401D/EY040134.HTM#ID00610</a></li>
+<li><a href="http://nori3tsu.hatenablog.com/entry/2014/01/11/144927">http://nori3tsu.hatenablog.com/entry/2014/01/11/144927</a></li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:fn-1">OracleJava 1.5以降のはなし
+ <a class="footnote-return" href="#fnref:fn-1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

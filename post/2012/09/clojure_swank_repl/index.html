@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">swank-clojureの後継モジュールのnREPLを試してみた</h1>
+  
+  <div>
+        <article id="content">
+           <p>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。</p>
+
+<ul>
+<li><a href="https://github.com/technomancy/swank-clojure">https://github.com/technomancy/swank-clojure</a></li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">This project is no longer under active development.
+
+New users are strongly encouraged to try out nrepl.el instead. If you
+need an advanced debugger, Ritz might be a better fit.</code></pre></div>
+<p>超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。もしイケテるデバッガが欲しいならRitzがいいかもYO!。」</p>
+
+<p>ということで、el-getでレシピに下記を追加して <code>nrepl.el</code> をインストール。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">:name</span> <span style="color:#033">nrepl</span>
+ <span style="color:#366">:type</span> <span style="color:#033">github</span>
+ <span style="color:#366">:pkgname</span> <span style="color:#c30">&#34;kingtim/nrepl.el&#34;</span>
+)</code></pre></div>
+<p>で <code>lein2.0</code> で適当にプロジェクトをつくって、 <code>project.clj</code> に下記を追加。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">:dependencies [[org.clojure/clojure &#34;1.4.0&#34;]
+               [org.clojure/tools.nrepl &#34;0.2.0-beta9&#34; ]]</code></pre></div>
+<p>最後に <code>M-x nrepl-jack-in</code> すると、nREPL-Server が起動して、nREPLが起動する。</p>
+
+<p>キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。</p>
+
+<ul>
+<li>シンボルの補完(TABで補完できる)</li>
+<li>関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)</li>
+</ul>
+
+<p>ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。たとえば、</p>
+
+<ul>
+<li>REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ)</li>
+<li>nREPLとは直接関係ないけど、auto-complte.elに対応するモジュール(ac-slime)がない。</li>
+<li>HyperSpecのようなドキュメントシステムは？(doc関数ががあるからいらないか)</li>
+</ul>
+
+<p>ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。</p>
+
+<ul>
+<li><a href="http://technomancy.us/163">http://technomancy.us/163</a></li>
+</ul>
+
+<p>clojureでSLIMEを使用する場合、最新のバージョンだと動かなかったりするので、環境構築に苦労したけど、専用のSLIME代替モジュールができたおかげで環境構築が楽になりますな。</p>
+
+<p>nREPLは、まだまだできたばかりのプロジェクトだけれども、
+SLIMEの呪縛から解き放たれた期待のプロジェクト。積極的に使っていきたい。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

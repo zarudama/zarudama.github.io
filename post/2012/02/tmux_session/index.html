@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">tmux セッションの保存方法</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#その他参考にしたもの">その他参考にしたもの</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。</p>
+
+<ul>
+<li><a href="http://www.gcd.org/blog/2006/09/100/">http://www.gcd.org/blog/2006/09/100/</a></li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#033">agent</span><span style="color:#555">=</span><span style="color:#c30">&#34;</span><span style="color:#033">$HOME</span><span style="color:#c30">/tmp/ssh-agent-</span><span style="color:#033">$USER</span><span style="color:#c30">&#34;</span>
+<span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> -S <span style="color:#c30">&#34;</span><span style="color:#033">$SSH_AUTH_SOCK</span><span style="color:#c30">&#34;</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+        <span style="color:#069;font-weight:bold">case</span> <span style="color:#033">$SSH_AUTH_SOCK</span> in
+        /tmp/*/agent.<span style="color:#555">[</span><span style="color:#f60">0</span>-9<span style="color:#555">]</span>*<span style="color:#555">)</span>
+                ln -snf <span style="color:#c30">&#34;</span><span style="color:#033">$SSH_AUTH_SOCK</span><span style="color:#c30">&#34;</span> <span style="color:#033">$agent</span> <span style="color:#555">&amp;&amp;</span> <span style="color:#366">export</span> <span style="color:#033">SSH_AUTH_SOCK</span><span style="color:#555">=</span><span style="color:#033">$agent</span>
+        <span style="color:#069;font-weight:bold">esac</span>
+<span style="color:#069;font-weight:bold">elif</span> <span style="color:#555">[</span> -S <span style="color:#033">$agent</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+        <span style="color:#366">export</span> <span style="color:#033">SSH_AUTH_SOCK</span><span style="color:#555">=</span><span style="color:#033">$agent</span>
+<span style="color:#069;font-weight:bold">else</span>
+        <span style="color:#366">echo</span> <span style="color:#c30">&#34;no ssh-agent&#34;</span>
+<span style="color:#069;font-weight:bold">fi</span></code></pre></div>
+<p>testコマンドのSオプションは以下のとおり。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-S FILE
+  FILE exists and is a socket</code></pre></div>
+<p>やっていることは、直接参照する$SSH_AUTH_SOCKは固定のパスにしてしまい、ログインごとに変わるUNIXドメインソケットはシンボリックリンクで指し示すようにしている。</p>
+
+<h2 id="その他参考にしたもの">その他参考にしたもの</h2>
+
+<ul>
+<li><a href="http://hibari.2ch.net/test/read.cgi/unix/1268778432/">http://hibari.2ch.net/test/read.cgi/unix/1268778432/</a></li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">84 ：名無しさん＠お腹いっぱい。：2010/11/02(火) 15:34:12
+    screenと違って、アタッチ時に環境変数SSH_AUTH_SOCKを新しい値に更新してくれるのは
+    嬉しいんだけど、それが実際シェルに反映されるのは、新しいシェルを追加した時だけだよね？
+
+    デタッチ前から動いてるシェルのSSH_AUTH_SOCKを自動的に更新する事って出来る？
+
+87 ：名無しさん＠お腹いっぱい。：2010/11/21(日) 07:31:25
+    &gt;&gt;84
+    シェル側の適当なフックで、親プロセスの環境変数を調べるとか。
+
+88 ：名無しさん＠お腹いっぱい。：2010/11/24(水) 16:56:11
+    &gt;&gt;84
+    こんなのしてる：
+    sc() {
+    　if [ -n &#34;$TMUX&#34; ]; then
+    　　unset $(tmux show-env | sed -n &#39;s/^-//p&#39;)
+    　　eval export $(tmux show-env | sed -n &#39;s/$/&#34;/; s/=/=&#34;/p&#39;)
+    　else
+    　　tmux -u start \; attach \; $@;
+    　fi
+    }
+    これでとにかくscって打てばアタッチするし、アタッチ済なら
+    アタッチ前シェルの環境を取り込んでくる。</code></pre></div>
+<p>show-envはshow-environmentのエイリアスで、-で始まる環境変数はシステムから削除されたものらしい。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># &#34;-&#34;のついている（tmuxにより削除された環境変数）をクリア</span>
+<span style="color:#366">unset</span> <span style="color:#069;font-weight:bold">$(</span>tmux show-env | sed -n <span style="color:#c30">&#39;s/^-//p&#39;</span><span style="color:#069;font-weight:bold">)</span>
+
+<span style="color:#09f;font-style:italic"># 環境変数の再定義</span>
+<span style="color:#366">eval</span> <span style="color:#366">export</span> <span style="color:#069;font-weight:bold">$(</span>tmux show-env | sed -n <span style="color:#c30">&#39;s/$/&#34;/; s/=/=&#34;/p&#39;</span><span style="color:#069;font-weight:bold">)</span></code></pre></div>
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

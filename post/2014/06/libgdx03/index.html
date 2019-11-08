@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#はじめに">はじめに</a></li>
+<li><a href="#ログの出しかた">ログの出しかた</a></li>
+<li><a href="#スプライトアニメーション">スプライトアニメーション</a></li>
+<li><a href="#バーチャルパッド">バーチャルパッド</a></li>
+<li><a href="#テクスチャラップ">テクスチャラップ</a></li>
+<li><a href="#ソースコード">ソースコード</a></li>
+<li><a href="#今回の記事のアセット一覧">今回の記事のアセット一覧</a>
+
+<ul>
+<li><a href="#テクスチャ">テクスチャ</a></li>
+<li><a href="#背景">背景</a></li>
+<li><a href="#bgm">BGM</a></li>
+</ul></li>
+<li><a href="#おわりに">おわりに</a></li>
+<li><a href="#参考書籍">参考書籍</a></li>
+<li><a href="#変更履歴">変更履歴</a>
+
+<ul>
+<li><a href="#2014-6-21">2014/6/21</a></li>
+</ul></li>
+<li><a href="#注釈">注釈</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>tag libGDX libGDX入門
+<a href="http://libgdx.badlogicgames.com/">libGDX</a> を勉強するついでに解説記事を書く <a href="http://mikio.github.io/tag/libGDX%E5%85%A5%E9%96%80.html">シリーズ</a> 3回目です。</p>
+
+<p><a href="http://mikio.github.io/article/2014/06/02%5Flibgdx-beginner2.html">前回</a> は、以下のことを学びました。</p>
+
+<ul>
+<li>カメラとビューポート</li>
+<li>タッチ処理</li>
+</ul>
+
+<p>今回は次のことを学びます。</p>
+
+<ul>
+<li>ログ出力</li>
+<li>スプライト表示のアニメーション</li>
+<li>テクスチャラップ</li>
+<li>バーチャルパッド</li>
+</ul>
+
+<p>前回までは、最初の雛形コードに徐々にコードを継ぎたして完成させるというチュートリアル形式でしたが、実際にコードを入力しながら実行していくのは少ないんじゃないかという疑問と(自分も含めて)、記事を書くのが大変なので(手抜き)、最初に一気に解説し、最後にコードを載せるスタイルにします。</p>
+
+<h2 id="ログの出しかた">ログの出しかた</h2>
+
+<p>プログラムの動作を追うとき、ログ出力はとても重宝しますよね。デバッガもいいですが、私は昔ながらのデバッグプリントで追うのが好きです。</p>
+
+<p>ということで、ログ出力の方法を解説します。</p>
+
+<p>公式から引用します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">log</span><span style="color:#555">(</span><span style="color:#c30">&#34;MyTag&#34;</span><span style="color:#555">,</span> <span style="color:#c30">&#34;my informative message&#34;</span><span style="color:#555">);</span>
+Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">error</span><span style="color:#555">(</span><span style="color:#c30">&#34;MyTag&#34;</span><span style="color:#555">,</span> <span style="color:#c30">&#34;my error message&#34;</span><span style="color:#555">,</span> exception<span style="color:#555">);</span>
+Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">debug</span><span style="color:#555">(</span><span style="color:#c30">&#34;MyTag&#34;</span><span style="color:#555">,</span> <span style="color:#c30">&#34;my error message&#34;</span><span style="color:#555">);</span></code></pre></div>
+<p><code>log</code> メソッドは普通に情報を出力したい場合、
+<code>error</code> メソッドは、例外を共なうようなエラー出力(第3引数にはException型)をしたい場合、
+<code>debug</code> メソッドは開発時のみ出力したい場合に使用します。</p>
+
+<p>第一引数の <code>MyTag</code> は識別子ですね。一般的にはにはクラス名などが多いようです。自分は下記のようにクラスフィールドを定義しておき、この <code>LOG_TAG</code> を使用します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> String LOG_TAG <span style="color:#555">=</span> GameScreen<span style="color:#555">.</span><span style="color:#309">class</span><span style="color:#555">.</span><span style="color:#309">getSimpleName</span><span style="color:#555">();</span></code></pre></div>
+<p>こんな感じです。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">log</span><span style="color:#555">(</span>LOG_TAG<span style="color:#555">,</span> <span style="color:#c30">&#34;my informative message&#34;</span><span style="color:#555">);</span></code></pre></div>
+<p>次のように表示されます。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">GameScreen: my informative message</code></pre></div>
+<p>こうするとログ出力にクラス名も一緒に表示されるので、どこで出力したメッセージか一目でわかるので便利です。</p>
+
+<p>これらのログ出力は、ログのレベルを指定することでメッセージの出力範囲を制御できます。</p>
+
+<p>下記のように指定します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Gdx.app.setLogLevel<span style="color:#555">(</span>Application.LOG_DEBUG<span style="color:#555">)</span>;</code></pre></div>
+<p>上はデバッグレベルを指定しています。</p>
+
+<p>ログレベルには下記の4種類あります。</p>
+
+<table>
+<thead>
+<tr>
+<th>Application.LOG_NONE</th>
+<th>全てのログを無効にします。</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Application.LOG_DEBUG</td>
+<td>全てのログを出力します。</td>
+</tr>
+
+<tr>
+<td>Application.LOG_ERROR</td>
+<td>errorメソッドのログだけ出力します。</td>
+</tr>
+
+<tr>
+<td>Application.LOG_INFO</td>
+<td>logとerrorメソッドのログを出力します。</td>
+</tr>
+</tbody>
+</table>
+
+<p>開発時は、DEBUGレベル、リリース時は、NONEレベルですかね。パフォーマンス重視の場合は、ログメソッドはリリース時に全て削除したほうがいいです。</p>
+
+<p>公式情報は下記にあります。</p>
+
+<ul>
+<li><a href="https://github.com/libgdx/libgdx/wiki/Logging">https://github.com/libgdx/libgdx/wiki/Logging</a></li>
+</ul>
+
+<h2 id="スプライトアニメーション">スプライトアニメーション</h2>
+
+<p>前回までは静止画を拡縮機能で伸び縮みさせただけでした。今回は、パターンをつくってアニメーションさせて見ます。アニメーションさせるとグっとゲーム感が増します。</p>
+
+<p>完成したプログラムのスクリーンショットです。</p>
+
+<figure>
+    <img src="/img/libgdx-beginner/3/000.png"
+         alt="&amp;#22259;1:  完成したプログラム"/> <figcaption>
+            <p>&#22259;1:  完成したプログラム</p>
+        </figcaption>
+</figure>
+
+
+<p>仕様としては、</p>
+
+<ul>
+<li>ターゲット解像度はファミコンライク(16:9の256 x 144ドット)</li>
+<li>16x16ドットの猫のキャラを表示</li>
+<li>待機モーションあり</li>
+<li>走りモーションあり</li>
+<li>左右に移動</li>
+<li>バーチャルパッド</li>
+</ul>
+
+<p>って感じにしました。</p>
+
+<p>そして作ったのがこれ。</p>
+
+<figure>
+    <img src="/img/libgdx-beginner/3/neko.png"
+         alt="&amp;#22259;2:  ねこの画像"/> <figcaption>
+            <p>&#22259;2:  ねこの画像</p>
+        </figcaption>
+</figure>
+
+
+<p>左から</p>
+
+<ul>
+<li>待機1, 待機2, 走り1, 走り2, 走り3</li>
+</ul>
+
+<p>と計5コマのスプライトアニメとなっております。猫の画像の下には、左右に動かすためのボタンがあります。</p>
+
+<p>画像のサイズは、256x256にしてあります。使用している画像サイズを考えると大きすぎますが、一般的には、画像のサイズは512x512,1024x1024あたりがVRAMへの転送効率が良いと言われており、今回は、単に512だと大きすぎて作業しずらかったので512の半分の256にしました。画像サイズは2のn乗でないと効率的に扱えないことが多いので、512あたりのサイズが無難です。</p>
+
+<p>また、画像の単位を16x16ドットのセル単位で描くようにしています。こうすることによりコード内での単位が統一されプログラミングしやすくなります。</p>
+
+<p>スプライトをアニメーションさせるには、 <code>Animation</code> クラスを使用します。今回は、走りモーションと待機モーションが2種類あり、左右分用意するため、合計4種類のアニメーションが必要になります。</p>
+
+<p>下記のフィールドを準備します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">private</span> Animation animLeft<span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">private</span> Animation animRight<span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">private</span> Animation animIdleLeft<span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">private</span> Animation animIdleRight<span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">float</span> stateTime <span style="color:#555">=</span> 0<span style="color:#555">;</span></code></pre></div>
+<p>アニメーションの具体的なコードは下記になります。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">TextureRegion<span style="color:#555">[]</span> split <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> TextureRegion<span style="color:#555">(</span>img<span style="color:#555">).</span><span style="color:#309">split</span><span style="color:#555">(</span>16<span style="color:#555">,</span> 16<span style="color:#555">)[</span>0<span style="color:#555">];</span>  <span style="color:#09f;font-style:italic">// #1
+</span><span style="color:#09f;font-style:italic"></span>TextureRegion<span style="color:#555">[]</span> mirror <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> TextureRegion<span style="color:#555">(</span>img<span style="color:#555">).</span><span style="color:#309">split</span><span style="color:#555">(</span>16<span style="color:#555">,</span> 16<span style="color:#555">)[</span>0<span style="color:#555">];</span> <span style="color:#09f;font-style:italic">// #2
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">for</span> <span style="color:#555">(</span>TextureRegion region <span style="color:#555">:</span> mirror<span style="color:#555">)</span> <span style="color:#09f;font-style:italic">// #3
+</span><span style="color:#09f;font-style:italic"></span>    region<span style="color:#555">.</span><span style="color:#309">flip</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">true</span><span style="color:#555">,</span> <span style="color:#069;font-weight:bold">false</span><span style="color:#555">);</span>
+animRight <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">1f</span><span style="color:#555">,</span> split<span style="color:#555">[</span>2<span style="color:#555">],</span> split<span style="color:#555">[</span>3<span style="color:#555">],</span> split<span style="color:#555">[</span>4<span style="color:#555">]);</span> <span style="color:#09f;font-style:italic">// #4
+</span><span style="color:#09f;font-style:italic"></span>animLeft <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">1f</span><span style="color:#555">,</span>  mirror<span style="color:#555">[</span>2<span style="color:#555">],</span> mirror<span style="color:#555">[</span>3<span style="color:#555">],</span> mirror<span style="color:#555">[</span>4<span style="color:#555">]);</span>
+animIdleRight <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">5f</span><span style="color:#555">,</span> split<span style="color:#555">[</span>0<span style="color:#555">],</span> split<span style="color:#555">[</span>1<span style="color:#555">]);</span>
+animIdleLeft <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">5f</span><span style="color:#555">,</span> mirror<span style="color:#555">[</span>0<span style="color:#555">],</span> mirror<span style="color:#555">[</span>1<span style="color:#555">]);</span>
+stateTime <span style="color:#555">=</span> 0<span style="color:#555">;</span> <span style="color:#555">//</span> <span style="color:#a00;background-color:#faa">#</span>5</code></pre></div>
+<p><code>TextureRegion</code> クラスは、ある一枚のテクスチャの一部の矩形情報をもったオブジェクトです。テクスチャにひとつの画像しかない場合は、 <code>Texutre</code> オブジェクトをそのまま利用しますが、今回のように1枚の画像にいろいろな画像を詰めこんである場合は、 <code>TexutreRegion</code> オブジェクトを利用します。
+<code>TextureRegion</code> にアニメーションの1コマ1コマを格納し、その <code>TextureRegion</code> を描画することでアニメーションさせます。</p>
+
+<p><code>#1</code> では、 <code>TextureRegion#split()</code> メソッドで <code>img</code> テクスチャを16x16(単位はピクセル)のセルで分割し、
+TextureRegion の2次元配列を取得します。同時にその2次元配列の1行目を取得することで、テクスチャの最初の行の画像(猫のアニメーションパターン)を取得しています。
+(今回は、1行目だけが必要なので、0固定です)。</p>
+
+<p><code>#2</code> では、 <code>#1</code> と同様ですが、左向きのデータを得るために、 <code>#3</code> でデータを左右反転しています。
+ <code>TexutreRegion#flip()</code> メソッドの第一引数は、x軸、第二引数は、Y軸の反転指定になります。この場合はX軸のみ指定しています。これで左向きのアニメーションパターンを手に入れることができました。</p>
+
+<p><code>Animeation</code> クラスは、アニメーション情報を保持するオブジェクトです。アニメーション情報とは、どのコマ(画像)を、何秒間表示させるか、といった情報です。コンストラクタの第一引数に各コマの秒数、第二引数以降には、そのアニメーションを構成する <code>TextureRegin</code> オブジェクトを可変引数として渡します。
+<code>#4</code> の場合は、3コマを0.1秒ごとに切り替えるアニメで、先に生成したsplitからそれぞれのコマを指定します。</p>
+
+<p><code>stateTime</code> は、アニメーションの進行に必要な経過時間を保持します。</p>
+
+<p>以上で準備できました。あとは、猫の状態に応じて(右を向いてるのか左を向いてるのか、止っているのか、走っているのかなど)、適切な <code>Animation</code> オブジェクトを選択し、そのAnimationオブジェクトが指し示す <code>TextureRegion</code> オブジェクトを描画します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+bg<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+
+<span style="color:#078;font-weight:bold">boolean</span> loop <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">true</span><span style="color:#555">;</span>
+<span style="color:#078;font-weight:bold">float</span> width <span style="color:#555">=</span> 16<span style="color:#555">;</span>
+<span style="color:#078;font-weight:bold">float</span> height <span style="color:#555">=</span> 16<span style="color:#555">;</span>
+Animation nekoAnim <span style="color:#555">=</span> currentAnim<span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// #1
+</span><span style="color:#09f;font-style:italic"></span>batch<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>nekoAnim<span style="color:#555">.</span><span style="color:#309">getKeyFrame</span><span style="color:#555">(</span>stateTime<span style="color:#555">,</span> loop<span style="color:#555">),</span> <span style="color:#09f;font-style:italic">// #2
+</span><span style="color:#09f;font-style:italic"></span>           pos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> pos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">,</span>   <span style="color:#09f;font-style:italic">// #3
+</span><span style="color:#09f;font-style:italic"></span>           width<span style="color:#555">,</span> height<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #4
+</span><span style="color:#09f;font-style:italic"></span>
+batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+stateTime <span style="color:#555">+=</span> Gdx<span style="color:#555">.</span><span style="color:#309">graphics</span><span style="color:#555">.</span><span style="color:#309">getDeltaTime</span><span style="color:#555">();</span> <span style="color:#555">//</span> <span style="color:#a00;background-color:#faa">#</span>5</code></pre></div>
+<p><code>#1</code> では、 <code>currentAnim()</code> メソッド(自前メソッド、後述)から、現在のアニメーションを取得します。
+ <code>#2</code> では、 <code>Animation#getKeyFrame()</code> メソッドの第一引数へ現在の経過時間を渡し、適切な <code>TexutreRegion</code> オブジェクトを取得します。第二引数では、アニメーションをループするかどうかを指定します。
+ <code>#3</code> 、 <code>#4</code> で描画先の座標と、描画の幅と高さを指定します。
+ <code>#5</code> では、 <code>Gdx.graphics.getDeltaTime()</code> メソッドを使って、前回のフレームからの経過時間を取得しています(単位は秒)。
+<code>stateTime</code> の値を増加させることでアニメーションのコマを進めることができます。</p>
+
+<p>さて、このプログラムでは次のように直行する2つの状態を扱って、アニメーションを切り替えています。</p>
+
+<figure>
+    <img src="/img/libgdx-beginner/3/state.png"
+         alt="&amp;#22259;3:  アニメーションの状態"/> <figcaption>
+            <p>&#22259;3:  アニメーションの状態</p>
+        </figcaption>
+</figure>
+
+
+<p>この状態をプログラムしたのが上述の <code>currentAnim()</code> メソッドです。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">private</span> Animation <span style="color:#c0f">currentAnim</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+    Animation anim <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">null</span><span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>state <span style="color:#555">==</span> STATE_MOVE<span style="color:#555">)</span> <span style="color:#555">{</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>dir <span style="color:#555">==</span> DIR_LEFT<span style="color:#555">)</span> <span style="color:#555">{</span>
+            anim <span style="color:#555">=</span> animLeft<span style="color:#555">;</span>
+        <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#555">{</span>
+            anim <span style="color:#555">=</span> animRight<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+    <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#555">{</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>dir <span style="color:#555">==</span> DIR_LEFT<span style="color:#555">)</span> <span style="color:#555">{</span>
+            anim <span style="color:#555">=</span> animIdleLeft<span style="color:#555">;</span>
+        <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#555">{</span>
+            anim <span style="color:#555">=</span> animIdleRight<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+    <span style="color:#555">}</span>
+    <span style="color:#069;font-weight:bold">return</span> anim<span style="color:#555">;</span>
+<span style="color:#555">}</span></code></pre></div>
+<p><code>state</code> は移動状態、 <code>dir</code> は向きの状態です。中身は、クラスフィールドで定義しておきます。
+libGDXには直接関係ありませんが、わかりづらいところかもしれないので解説しました。</p>
+
+<p>ここまでの情報でアニメーションをどう表示させるかがわかったと思います。しかし、どう動かすかはまだ決めていません。</p>
+
+<p>前回までにタッチ処理の方法はわかったので、今回はスプライトでボタンもどきを作ってそのボタンをタッチしている間、左右に動かすようにしてみます。</p>
+
+<h2 id="バーチャルパッド">バーチャルパッド</h2>
+
+<p>仕組みは簡単です。左と右を表わすボタンスプライトを用意し、タッチ座標がそのスプライトの矩形に入っているかどうかを判定します。矩形に入っていれば、そのボタンの明度を下げて押されているように見せかけます。</p>
+
+<p>まずスプライトの準備です。次のフィールドを用意します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">private</span> Sprite leftButton<span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">private</span> Sprite rightButton<span style="color:#555">;</span></code></pre></div>
+<p>初期化は以下のような感じ。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">leftButton <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">,</span> 0<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">,</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">);</span>
+rightButton <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">,</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">,</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">);</span>
+leftButton<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>8<span style="color:#555">,</span> 0<span style="color:#555">);</span>
+rightButton<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>8 <span style="color:#555">+</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 0<span style="color:#555">);</span></code></pre></div>
+<p>左下に表示させるべく、16ドットを1マスとして計算しています。</p>
+
+<p>そしてボタンがタッチされたかどうかの判定です。これはこのプログラムの一番重要なところかもしれません。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">leftButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">WHITE</span><span style="color:#555">);</span>  <span style="color:#09f;font-style:italic">// #1
+</span><span style="color:#09f;font-style:italic"></span>rightButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">WHITE</span><span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #2
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isTouched</span><span style="color:#555">())</span> <span style="color:#555">{</span> <span style="color:#09f;font-style:italic">// #3
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">float</span> x <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getX</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// #4
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">float</span> y <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getY</span><span style="color:#555">();</span>
+    uiViewport<span style="color:#555">.</span><span style="color:#309">unproject</span><span style="color:#555">(</span>touchPoint<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>x<span style="color:#555">,</span> y<span style="color:#555">,</span> 0<span style="color:#555">));</span> <span style="color:#09f;font-style:italic">// #5
+</span><span style="color:#09f;font-style:italic"></span>    Rectangle leftBounds <span style="color:#555">=</span> leftButton<span style="color:#555">.</span><span style="color:#309">getBoundingRectangle</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// #6
+</span><span style="color:#09f;font-style:italic"></span>    Rectangle rightBounds <span style="color:#555">=</span> rightButton<span style="color:#555">.</span><span style="color:#309">getBoundingRectangle</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// #7
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>leftBounds<span style="color:#555">.</span><span style="color:#309">contains</span><span style="color:#555">(</span>touchPoint<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPoint<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">))</span> <span style="color:#555">{</span> <span style="color:#09f;font-style:italic">// #8
+</span><span style="color:#09f;font-style:italic"></span>        leftButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">GRAY</span><span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #9
+</span><span style="color:#09f;font-style:italic"></span>        left<span style="color:#555">();</span>
+    <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>rightBounds<span style="color:#555">.</span><span style="color:#309">contains</span><span style="color:#555">(</span>touchPoint<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPoint<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">))</span> <span style="color:#555">{</span> <span style="color:#09f;font-style:italic">// #10
+</span><span style="color:#09f;font-style:italic"></span>        rightButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">GRAY</span><span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #11
+</span><span style="color:#09f;font-style:italic"></span>        right<span style="color:#555">();</span>
+    <span style="color:#555">}</span>
+<span style="color:#555">}</span></code></pre></div>
+<p><code>#1</code> 、 <code>#2</code> では、ボタンスプライトの明度を初期化しています。カラーをホワイトにすることにより、通常のスプライトのテクスチャのカラーをそのまま表示することになります。</p>
+
+<p><code>#3</code> は、前回解説しました。タッチさたかどうかを判定するメソッドです。画面をタッチしつづける限り真が返ってきます。</p>
+
+<p><code>#4</code> は、タッチされた座標を取得します。この座標は左上を原点とするスクリーン座標が返ってくるのでそのままでは使えません。</p>
+
+<p><code>#5</code> の <code>uiViewPort.unproject()</code> メソッドで、
+ <code>#6</code> で取得したタッチ座標をビューポート座標経由でワールド座標に変換します。前回の記事でここの解説に誤りがありました( m(_ _)m )。前回の記事では、 <code>Viewport#unproject</code> ではなく、
+ <code>Camera#unproject</code> メソッドを使用していました。これだとビューポートを考慮しないので、正しい座標が返ってきません。
+ <code>Viewport</code> クラスを使用している場合は、 <code>Viewport#unproject</code> メソッドを使用してください。</p>
+
+<p><code>#6</code> 、 <code>#7</code> では、ボタンスプライトの矩形情報を <code>Rectangle</code> クラスに格納します。
+<code>Rectangle</code> クラスは、矩形の左下の位置と、幅と高さの情報を持つクラスです。</p>
+
+<p><code>#8</code> 、 <code>#10</code> では、 <code>Rectangle#contains()</code> メソッドにより、タッチ座標が矩形内にあるかどうかを判定します。真であれば、ボタンをタッチしたことになるので、移動処理(right,leftメソッド)を実行します。</p>
+
+<p><code>#9</code> 、 <code>#11</code> では、 ボタンが押されていることを視覚的にわからせるために、スプライトの明度を下げています。
+<code>Color.GRAY</code> を指定することで、半分位の暗さになり、丁度いい感じになります。</p>
+
+<h2 id="テクスチャラップ">テクスチャラップ</h2>
+
+<p>今回、背景には、空の画像を使用していますが、これには「テクスチャラップ」というOpenGLの機能を使用しています。</p>
+
+<p>通常テクスチャの座標を指定するには、テクスチャ座標系を使用します。</p>
+
+<p>テクスチャ座標系とは、左上を原点とし、U軸は右方向、
+V軸は下方向に伸びる軸を持つ座標系のことです。<sup class="footnote-ref" id="fnref:fn-1"><a href="#fn:fn-1">1</a></sup></p>
+
+<figure>
+    <img src="/img/libgdx-beginner/3/texture-wrap.png"
+         alt="&amp;#22259;4:  テクスチャ座標"/> <figcaption>
+            <p>&#22259;4:  テクスチャ座標</p>
+        </figcaption>
+</figure>
+
+
+<p>テクスチャ座標系では、ピクセル座標ではなく、1.0を最大値とした正規化した座標を指定します。正規化した座標とは、画像のサイズを1.0に丸めたものです。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">正規化座標 = ピクセル座標 ÷ テクスチャサイズ</code></pre></div>
+<p>で求まります。</p>
+
+<p>例えば、512x512のテクスチャサイズの(256,256)のUV座標を得る場合は、
+ <code>256/512=0.5</code> となり、正規化座標は、0.5となります。</p>
+
+<p>通常は、この1.0内のなかで座標を指定すれば良いのですが、
+1.0より大きい値を指定することもできます。ただしその場合は、1.0を超えたときの挙動を予め指定しておく必要があります。</p>
+
+<p>今回は、背景の画像に対して、1.0以上の値を指定し、その挙動として、テクスチャの画像を繰り返す指定をしました。</p>
+
+<p>テクスチャラップのコードは以下になります。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">bgImg<span style="color:#555">.</span><span style="color:#309">setWrap</span><span style="color:#555">(</span>TextureWrap<span style="color:#555">.</span><span style="color:#309">Repeat</span><span style="color:#555">,</span> TextureWrap<span style="color:#555">.</span><span style="color:#309">Repeat</span><span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #1
+</span><span style="color:#09f;font-style:italic"></span>bg <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>bgImg<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> LOGICAL_WIDTH<span style="color:#555">,</span> LOGICAL_HEIGHT<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #2
+</span><span style="color:#09f;font-style:italic"></span>bg<span style="color:#555">.</span><span style="color:#309">setU</span><span style="color:#555">(</span>0<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #3
+</span><span style="color:#09f;font-style:italic"></span>bg<span style="color:#555">.</span><span style="color:#309">setU2</span><span style="color:#555">(</span>5<span style="color:#555">);</span>
+bg<span style="color:#555">.</span><span style="color:#309">setV</span><span style="color:#555">(</span>0<span style="color:#555">);</span>
+bg<span style="color:#555">.</span><span style="color:#309">setV2</span><span style="color:#555">(</span>5<span style="color:#555">);</span></code></pre></div>
+<p><code>#1</code> で、1.0を超えたUV指定をしたとき、テクスチャを繰り返す指定をしています。
+<code>#2</code> で、背景のスプライトサイズを指定しています。これはターゲット解像度と同じ大きさにしています。
+<code>#3</code> で、UV座標として、0.0 〜 5.0 の値を指定しています。
+<code>setU(), setV()</code> が左上の座標、 <code>setU2(), setV2()</code> が右下の座標になります。</p>
+
+<p>あとは、実際の描画ですが、今回の背景の場合、画面に固定で表示したかったため
+UIカメラを使って描画しています。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">draw</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+    <span style="color:#09f;font-style:italic">// BGカメラセットアップ
+</span><span style="color:#09f;font-style:italic"></span>    uiCamera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span>
+    batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>uiCamera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+    batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+    bg<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+    batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+
+    <span style="color:#555">:</span>
+<span style="color:#555">}</span></code></pre></div>
+<p>背景として描画するため、drawメソッドの開始直後に描画しています。</p>
+
+<p>今回は詳しく解説しませんが、UV座標を毎フレームずらすことでスクロール処理することができます。</p>
+
+<p>これを一般的にUVスクロールといいます。</p>
+
+<p>一昔まえのゲームのタイトルやプレーヤーセレクト画面などで多様されていました。
+<code>update</code> メソッドの最後にコメントアウトしておきましたので、興味のある人は、コメントを外してみてください。おもしろい効果だと思いますのでおすすめです。</p>
+
+<p>以上で、今回の肝となる部分の解説を終えました。ぜひ、次章のソースコードをコピペし、アセット一覧をダウンロードしてプログラムを実行してみてください。生意気げなクロネコがリズムを取りながら待機し、ボタンを押すことで走りまわります。</p>
+
+<p>隠れデバッグ機能として、Rキーでネコの位置をリセットします。</p>
+
+<h2 id="ソースコード">ソースコード</h2>
+
+<p>今回解説したプログラムの全ソースです。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">package</span> <span style="color:#0cf;font-weight:bold">com.zarudama.libgdxtest</span><span style="color:#555">;</span>
+
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Application</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.ApplicationAdapter</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Gdx</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Input</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.audio.Music</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Color</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.GL20</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.OrthographicCamera</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Camera</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Texture</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Texture.TextureWrap</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.Animation</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.BitmapFont</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.Sprite</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.SpriteBatch</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.TextureRegion</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.math.Rectangle</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.math.Vector2</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.math.Vector3</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.FitViewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.Viewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.glutils.ShapeRenderer</span><span style="color:#555">;</span>
+
+<span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">LibGdxSample</span> <span style="color:#069;font-weight:bold">extends</span> ApplicationAdapter <span style="color:#555">{</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> String LOG_TAG <span style="color:#555">=</span> LibGdxSample<span style="color:#555">.</span><span style="color:#309">class</span><span style="color:#555">.</span><span style="color:#309">getSimpleName</span><span style="color:#555">();</span>
+
+    <span style="color:#09f;font-style:italic">// 16:9
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span> LOGICAL_WIDTH <span style="color:#555">=</span> 256<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span> LOGICAL_HEIGHT <span style="color:#555">=</span> 144<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 1秒間に16x3ドット進む
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">float</span> MOVE_SPEED <span style="color:#555">=</span> 16<span style="color:#555">*</span>3<span style="color:#555">.</span><span style="color:#309">0f</span><span style="color:#555">/</span>60<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 移動状態
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">int</span> STATE_IDLE <span style="color:#555">=</span> 0<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">int</span> STATE_MOVE <span style="color:#555">=</span> 1<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 向き状態
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">int</span> DIR_RIGHT <span style="color:#555">=</span> 1<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">int</span> DIR_LEFT <span style="color:#555">=</span> 2<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// ゲームに使用するテクスチャ
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> Texture img<span style="color:#555">;</span>
+
+    <span style="color:#069;font-weight:bold">private</span> SpriteBatch batch<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// BGM
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> Music music<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 画面フォント用
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> BitmapFont font<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// ゲームカメラとビュポート
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> OrthographicCamera camera<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> Viewport viewport<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// UIカメラとビュポート
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> OrthographicCamera uiCamera<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> Viewport uiViewport<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// タッチ座標変換用ウケザラ
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> Vector3 touchPoint<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 左右のボタン
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> Sprite leftButton<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> Sprite rightButton<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 背景用
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> Texture bgImg<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> Sprite bg<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// デバッグ用ワールド座標軸
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> ShapeRenderer shapeRenderer<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// ねこアニメーション
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> Animation animLeft<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> Animation animRight<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> Animation animIdleLeft<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> Animation animIdleRight<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">float</span> stateTime <span style="color:#555">=</span> 0<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 猫座標
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> Vector2 pos<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// 状態
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">int</span> state<span style="color:#555">;</span>
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">int</span> dir<span style="color:#555">;</span>
+
+    <span style="color:#09f;font-style:italic">// UVスクロール用
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">float</span> scrollCounter<span style="color:#555">;</span>
+
+
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        touchPoint <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector3<span style="color:#555">();</span>
+        batch <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> SpriteBatch<span style="color:#555">();</span>
+        font <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> BitmapFont<span style="color:#555">();</span>
+        img <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Texture<span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">files</span><span style="color:#555">.</span><span style="color:#309">internal</span><span style="color:#555">(</span><span style="color:#c30">&#34;neko.png&#34;</span><span style="color:#555">));</span>
+        pos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector2<span style="color:#555">();</span>
+        music <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">audio</span><span style="color:#555">.</span><span style="color:#309">newMusic</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">files</span><span style="color:#555">.</span><span style="color:#309">internal</span><span style="color:#555">(</span><span style="color:#c30">&#34;mixdown.mp3&#34;</span><span style="color:#555">));</span>
+        music<span style="color:#555">.</span><span style="color:#309">setLooping</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">true</span><span style="color:#555">);</span>
+        music<span style="color:#555">.</span><span style="color:#309">setVolume</span><span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">3f</span><span style="color:#555">);</span>
+        music<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
+
+        bgImg <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Texture<span style="color:#555">(</span><span style="color:#c30">&#34;bg.png&#34;</span><span style="color:#555">);</span>
+        bgImg<span style="color:#555">.</span><span style="color:#309">setWrap</span><span style="color:#555">(</span>TextureWrap<span style="color:#555">.</span><span style="color:#309">Repeat</span><span style="color:#555">,</span> TextureWrap<span style="color:#555">.</span><span style="color:#309">Repeat</span><span style="color:#555">);</span>
+        bg <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>bgImg<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> LOGICAL_WIDTH<span style="color:#555">,</span> LOGICAL_HEIGHT<span style="color:#555">);</span>
+        bg<span style="color:#555">.</span><span style="color:#309">setU</span><span style="color:#555">(</span>0<span style="color:#555">);</span>
+        bg<span style="color:#555">.</span><span style="color:#309">setU2</span><span style="color:#555">(</span>5<span style="color:#555">);</span>
+        bg<span style="color:#555">.</span><span style="color:#309">setV</span><span style="color:#555">(</span>0<span style="color:#555">);</span>
+        bg<span style="color:#555">.</span><span style="color:#309">setV2</span><span style="color:#555">(</span>5<span style="color:#555">);</span>
+        scrollCounter <span style="color:#555">=</span> 0<span style="color:#555">.</span><span style="color:#309">0f</span><span style="color:#555">;</span>
+
+        camera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">();</span>
+        camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">=</span> 0<span style="color:#555">;</span>
+        camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">=</span> LOGICAL_HEIGHT<span style="color:#555">/</span>2 <span style="color:#555">-</span> 16<span style="color:#555">*</span>2<span style="color:#555">;</span>
+        viewport <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> FitViewport<span style="color:#555">(</span>LOGICAL_WIDTH<span style="color:#555">,</span> LOGICAL_HEIGHT<span style="color:#555">,</span> camera<span style="color:#555">);</span>
+
+        uiCamera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">();</span>
+        uiCamera<span style="color:#555">.</span><span style="color:#309">setToOrtho</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">false</span><span style="color:#555">,</span> LOGICAL_WIDTH<span style="color:#555">,</span> LOGICAL_HEIGHT<span style="color:#555">);</span>
+        uiViewport <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> FitViewport<span style="color:#555">(</span>LOGICAL_WIDTH<span style="color:#555">,</span> LOGICAL_HEIGHT<span style="color:#555">,</span> uiCamera<span style="color:#555">);</span>
+
+        shapeRenderer <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> ShapeRenderer<span style="color:#555">();</span>
+
+        <span style="color:#09f;font-style:italic">// アニメーション情報構築
+</span><span style="color:#09f;font-style:italic"></span>        TextureRegion<span style="color:#555">[]</span> split <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> TextureRegion<span style="color:#555">(</span>img<span style="color:#555">).</span><span style="color:#309">split</span><span style="color:#555">(</span>16<span style="color:#555">,</span> 16<span style="color:#555">)[</span>0<span style="color:#555">];</span>
+        TextureRegion<span style="color:#555">[]</span> mirror <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> TextureRegion<span style="color:#555">(</span>img<span style="color:#555">).</span><span style="color:#309">split</span><span style="color:#555">(</span>16<span style="color:#555">,</span> 16<span style="color:#555">)[</span>0<span style="color:#555">];</span>
+        <span style="color:#069;font-weight:bold">for</span> <span style="color:#555">(</span>TextureRegion region <span style="color:#555">:</span> mirror<span style="color:#555">)</span>
+            region<span style="color:#555">.</span><span style="color:#309">flip</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">true</span><span style="color:#555">,</span> <span style="color:#069;font-weight:bold">false</span><span style="color:#555">);</span>
+        animRight <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">1f</span><span style="color:#555">,</span> split<span style="color:#555">[</span>2<span style="color:#555">],</span> split<span style="color:#555">[</span>3<span style="color:#555">],</span> split<span style="color:#555">[</span>4<span style="color:#555">]);</span>
+        animLeft <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">1f</span><span style="color:#555">,</span>  mirror<span style="color:#555">[</span>2<span style="color:#555">],</span> mirror<span style="color:#555">[</span>3<span style="color:#555">],</span> mirror<span style="color:#555">[</span>4<span style="color:#555">]);</span>
+        animIdleRight <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">5f</span><span style="color:#555">,</span> split<span style="color:#555">[</span>0<span style="color:#555">],</span> split<span style="color:#555">[</span>1<span style="color:#555">]);</span>
+        animIdleLeft <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Animation<span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">5f</span><span style="color:#555">,</span> mirror<span style="color:#555">[</span>0<span style="color:#555">],</span> mirror<span style="color:#555">[</span>1<span style="color:#555">]);</span>
+        stateTime <span style="color:#555">=</span> 0<span style="color:#555">;</span>
+
+        <span style="color:#09f;font-style:italic">// 移動ボタン
+</span><span style="color:#09f;font-style:italic"></span>        leftButton <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">,</span> 0<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">,</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">);</span>
+        rightButton <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">,</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">,</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 16<span style="color:#555">*</span>2<span style="color:#555">);</span>
+        leftButton<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>8<span style="color:#555">,</span> 0<span style="color:#555">);</span>
+        rightButton<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>8 <span style="color:#555">+</span> 16<span style="color:#555">*</span>3<span style="color:#555">,</span> 0<span style="color:#555">);</span>
+
+        <span style="color:#09f;font-style:italic">// ログ情報取得
+</span><span style="color:#09f;font-style:italic"></span>        Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">setLogLevel</span><span style="color:#555">(</span>Application<span style="color:#555">.</span><span style="color:#309">LOG_DEBUG</span><span style="color:#555">);</span>
+    <span style="color:#555">}</span>
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">resize</span><span style="color:#555">(</span><span style="color:#078;font-weight:bold">int</span> width<span style="color:#555">,</span> <span style="color:#078;font-weight:bold">int</span> height<span style="color:#555">)</span> <span style="color:#555">{</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">log</span><span style="color:#555">(</span>LOG_TAG<span style="color:#555">,</span> <span style="color:#c30">&#34;risize&#34;</span><span style="color:#555">);</span>
+        viewport<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">(</span>width<span style="color:#555">,</span> height<span style="color:#555">);</span>
+        uiViewport<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">(</span>width<span style="color:#555">,</span> height<span style="color:#555">);</span>
+    <span style="color:#555">}</span>
+
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">reset</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        pos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>0<span style="color:#555">,</span> 0<span style="color:#555">);</span>
+    <span style="color:#555">}</span>
+
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">left</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        dir <span style="color:#555">=</span> DIR_LEFT<span style="color:#555">;</span>
+        state <span style="color:#555">=</span> STATE_MOVE<span style="color:#555">;</span>
+        pos<span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">-=</span> MOVE_SPEED<span style="color:#555">;</span>
+    <span style="color:#555">}</span>
+
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">right</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        dir <span style="color:#555">=</span> DIR_RIGHT<span style="color:#555">;</span>
+        state <span style="color:#555">=</span> STATE_MOVE<span style="color:#555">;</span>
+        pos<span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">+=</span> MOVE_SPEED<span style="color:#555">;</span>
+    <span style="color:#555">}</span>
+
+    <span style="color:#069;font-weight:bold">private</span> Animation <span style="color:#c0f">currentAnim</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        Animation anim <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">null</span><span style="color:#555">;</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>state <span style="color:#555">==</span> STATE_MOVE<span style="color:#555">)</span> <span style="color:#555">{</span>
+            <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>dir <span style="color:#555">==</span> DIR_LEFT<span style="color:#555">)</span> <span style="color:#555">{</span>
+                anim <span style="color:#555">=</span> animLeft<span style="color:#555">;</span>
+            <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#555">{</span>
+                anim <span style="color:#555">=</span> animRight<span style="color:#555">;</span>
+            <span style="color:#555">}</span>
+        <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#555">{</span>
+            <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>dir <span style="color:#555">==</span> DIR_LEFT<span style="color:#555">)</span> <span style="color:#555">{</span>
+                anim <span style="color:#555">=</span> animIdleLeft<span style="color:#555">;</span>
+            <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#555">{</span>
+                anim <span style="color:#555">=</span> animIdleRight<span style="color:#555">;</span>
+            <span style="color:#555">}</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">return</span> anim<span style="color:#555">;</span>
+    <span style="color:#555">}</span>
+
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">update</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        <span style="color:#078;font-weight:bold">float</span> deltaTime <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">graphics</span><span style="color:#555">.</span><span style="color:#309">getDeltaTime</span><span style="color:#555">();</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">R</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            reset<span style="color:#555">();</span>
+        <span style="color:#555">}</span>
+        state <span style="color:#555">=</span> STATE_IDLE<span style="color:#555">;</span>
+        leftButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">WHITE</span><span style="color:#555">);</span>
+        rightButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">WHITE</span><span style="color:#555">);</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isTouched</span><span style="color:#555">())</span> <span style="color:#555">{</span>
+            <span style="color:#078;font-weight:bold">float</span> x <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getX</span><span style="color:#555">();</span>
+            <span style="color:#078;font-weight:bold">float</span> y <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getY</span><span style="color:#555">();</span>
+            uiViewport<span style="color:#555">.</span><span style="color:#309">unproject</span><span style="color:#555">(</span>touchPoint<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>x<span style="color:#555">,</span> y<span style="color:#555">,</span> 0<span style="color:#555">));</span>
+            Rectangle leftBounds <span style="color:#555">=</span> leftButton<span style="color:#555">.</span><span style="color:#309">getBoundingRectangle</span><span style="color:#555">();</span>
+            Rectangle rightBounds <span style="color:#555">=</span> rightButton<span style="color:#555">.</span><span style="color:#309">getBoundingRectangle</span><span style="color:#555">();</span>
+
+            <span style="color:#09f;font-style:italic">// コメントを外せば、ボタンの矩形情報、タッチ座標などが得られる。
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// String s0 = String.format(&#34;rawTouch(%f,%f)&#34;, x, y );
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// String s1 = String.format(&#34;leftBoudns(%f,%f,%f,%f)&#34;,
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">//                           leftBounds.x,
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">//                           leftBounds.y,
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">//                           leftBounds.width,
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">//                           leftBounds.height);
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// Gdx.app.log(LOG_TAG, s0);
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// Gdx.app.log(LOG_TAG, s1);
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// Gdx.app.log(LOG_TAG, &#34;touchPoint(&#34; + touchPoint.x + &#34;,&#34; + touchPoint.y + &#34;)&#34;);
+</span><span style="color:#09f;font-style:italic"></span>
+            <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>leftBounds<span style="color:#555">.</span><span style="color:#309">contains</span><span style="color:#555">(</span>touchPoint<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPoint<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+                left<span style="color:#555">();</span>
+                <span style="color:#09f;font-style:italic">//Gdx.app.log(LOG_TAG, &#34;left!&#34;);
+</span><span style="color:#09f;font-style:italic"></span>                leftButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">GRAY</span><span style="color:#555">);</span>
+            <span style="color:#555">}</span> <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>rightBounds<span style="color:#555">.</span><span style="color:#309">contains</span><span style="color:#555">(</span>touchPoint<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPoint<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+                right<span style="color:#555">();</span>
+                <span style="color:#09f;font-style:italic">//Gdx.app.log(LOG_TAG, &#34;right!&#34;);
+</span><span style="color:#09f;font-style:italic"></span>                rightButton<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>Color<span style="color:#555">.</span><span style="color:#309">GRAY</span><span style="color:#555">);</span>
+            <span style="color:#555">}</span>
+        <span style="color:#555">}</span>
+        <span style="color:#09f;font-style:italic">//String info = String.format(&#34;fish pos(%f,%f)&#34;, fishpos.x, fishpos.y);
+</span><span style="color:#09f;font-style:italic"></span>
+        stateTime <span style="color:#555">+=</span> deltaTime<span style="color:#555">;</span>
+
+        <span style="color:#09f;font-style:italic">// コメントを外すと、UVスクロールが見れる。
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// bg.setU(scrollCounter);
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// bg.setV(scrollCounter);
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// bg.setU2(scrollCounter + 5.0f);
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// bg.setV2(scrollCounter + 5.0f);
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// scrollCounter += 0.05f;
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// if (scrollCounter &gt; 5.0f)
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">//     scrollCounter = 0.0f;
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#555">}</span>
+
+    <span style="color:#069;font-weight:bold">private</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">draw</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClearColor</span><span style="color:#555">(</span>0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClear</span><span style="color:#555">(</span>GL20<span style="color:#555">.</span><span style="color:#309">GL_COLOR_BUFFER_BIT</span><span style="color:#555">);</span>
+
+        <span style="color:#09f;font-style:italic">// BGカメラセットアップ
+</span><span style="color:#09f;font-style:italic"></span>        uiCamera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>uiCamera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+        bg<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+
+        <span style="color:#09f;font-style:italic">// ゲームカメラセットアップ
+</span><span style="color:#09f;font-style:italic"></span>        camera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+
+        batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+
+        <span style="color:#09f;font-style:italic">// ネコの描画
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#078;font-weight:bold">boolean</span> loop <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">true</span><span style="color:#555">;</span>
+        <span style="color:#078;font-weight:bold">float</span> width <span style="color:#555">=</span> 16<span style="color:#555">;</span>
+        <span style="color:#078;font-weight:bold">float</span> height <span style="color:#555">=</span> 16<span style="color:#555">;</span>
+        Animation nekoAnim <span style="color:#555">=</span> currentAnim<span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>nekoAnim<span style="color:#555">.</span><span style="color:#309">getKeyFrame</span><span style="color:#555">(</span>stateTime<span style="color:#555">,</span> loop<span style="color:#555">),</span>
+                   pos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> pos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">,</span>
+                   width<span style="color:#555">,</span> height<span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+
+        <span style="color:#09f;font-style:italic">// ワールド座標軸を描画する。
+</span><span style="color:#09f;font-style:italic"></span>        shapeRenderer<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">(</span>ShapeRenderer<span style="color:#555">.</span><span style="color:#309">ShapeType</span><span style="color:#555">.</span><span style="color:#309">Line</span><span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">line</span><span style="color:#555">(-</span>1024<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1024<span style="color:#555">,</span> 0<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>0<span style="color:#555">,</span> 1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">line</span><span style="color:#555">(</span>0<span style="color:#555">,</span> <span style="color:#555">-</span>1024<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1024<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+
+        <span style="color:#09f;font-style:italic">// UIカメラセットアップ
+</span><span style="color:#09f;font-style:italic"></span>        uiCamera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>uiCamera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+
+        <span style="color:#09f;font-style:italic">// UIの描画
+</span><span style="color:#09f;font-style:italic"></span>        batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+        leftButton<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        rightButton<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        <span style="color:#09f;font-style:italic">//font.draw(batch, info, 0, 40);
+</span><span style="color:#09f;font-style:italic"></span>
+        batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
+
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+        update<span style="color:#555">();</span>
+        draw<span style="color:#555">();</span>
+    <span style="color:#555">}</span>
+
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">dispose</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        music<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        font<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        img<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        bgImg<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
+<span style="color:#555">}</span></code></pre></div>
+<h2 id="今回の記事のアセット一覧">今回の記事のアセット一覧</h2>
+
+<p>プログラムを動かす前に、テクスチャやBGMをダウンロードして、下記に配置してください。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#a00">${</span><span style="color:#033">PROJECT_ROOT</span><span style="color:#a00">}</span>/android/assets/</code></pre></div>
+<h3 id="テクスチャ">テクスチャ</h3>
+
+<figure>
+    <img src="/img/libgdx-beginner/3/neko.png"
+         alt="&amp;#22259;5:  ねこの画像"/> <figcaption>
+            <p>&#22259;5:  ねこの画像</p>
+        </figcaption>
+</figure>
+
+
+<h3 id="背景">背景</h3>
+
+<figure>
+    <img src="/img/libgdx-beginner/3/bg.png"
+         alt="&amp;#22259;6:  背景"/> <figcaption>
+            <p>&#22259;6:  背景</p>
+        </figcaption>
+</figure>
+
+
+<h3 id="bgm">BGM</h3>
+
+<ul>
+<li><a href="http://mikio.github.com/demo/sound/mixdown.mp3">http://mikio.github.com/demo/sound/mixdown.mp3</a></li>
+</ul>
+
+<h2 id="おわりに">おわりに</h2>
+
+<p>今回は、「 ログ出力」と「スプライトアニメーション」、そして「バーチャルパッドの作り方」を学びました。
+<a href="http://mikio.github.io/article/2014/06/29%5Flibgdx-beginner4.html">次回</a> は、画面遷移について解説します。もしかしたら、ゲームっぽいものに仕上げるかも知れないです。</p>
+
+<h2 id="参考書籍">参考書籍</h2>
+
+<div class="HTML">
+  <div></div>
+
+<div class="figure" style="float:left">
+<a href="<http://www.amazon.co.jp/gp/product/4844331132/ref=as%5Fli%5Fqf%5Fsp%5Fasin%5Fil?ie=UTF8&camp=247&creative=1211&creativeASIN=4844331132&linkCode=as2&tag=ocha04-22>"><img border="0" src="<http://ws-fe.amazon-adsystem.com/widgets/q?%5Fencoding=UTF8&ASIN=4844331132&Format=%5FSL250%5F&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=ocha04-22>" ></a><img src="<http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&l=as2&o=9&a=4844331132>" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+<p></div></p>
+
+<p>libGDXの作者が書いた本です。Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
+libGDXの解説ではないけれど、その思想は当然libGDXにも引き継がれています。もちろんlibGDXの理解もしやすくなります。また、Androidの本ではありますが、スマホに特化した内容ばかりではなく、どんなゲーム開発にも通用しそうな内容ばかりです。実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと思います。ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。それでもlibGDXをやるなら読んでいて損はないと思います。</p>
+
+<div class="HTML">
+  <div></div>
+
+<div style="clear:both;"></div>
+
+<p></div></p>
+
+<h2 id="変更履歴">変更履歴</h2>
+
+<h3 id="2014-6-21">2014/6/21</h3>
+
+<ul>
+<li>ターゲット解像度を変更(256x192 =&gt; 256x144)</li>
+<li>背景の画像を変更し、テクスチャラップ導入</li>
+<li>ボタンの画像を変更し、よりボタンらしい挙動をするようにした</li>
+</ul>
+
+<h2 id="注釈">注釈</h2>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:fn-1">libGDXが使用しているOpenGLでは、すべての2次元座標系は左下が原点となるのが原則のようです。 libGDXが左下が原点なのものこの仕様に影響されているものと思われます。 UVも実は左下が原点なのですが、VRAMへ転送する際に上下が反転されるらしく、結果的に左上が原点となるようです。
+ <a class="footnote-return" href="#fnref:fn-1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

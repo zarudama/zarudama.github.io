@@ -6,226 +6,236 @@
     <description>Recent content in emacs on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 07 Jul 2014 14:01:39 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 20:31:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>org-mode でファイルを開くとエラーが発生</title>
-      <link>https://zarudama.github.io/posts/cask-org/</link>
-      <pubDate>Mon, 07 Jul 2014 14:01:39 +0900</pubDate>
+      <title>windows版emacs24.3で画像を表示する。</title>
+      <link>https://zarudama.github.io/post/2013/05/emacs_window_image_disp/</link>
+      <pubDate>Fri, 08 Nov 2019 20:31:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/cask-org/</guid>
-      <description>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、 そのファイルが更新された状態になってしまう。
-Invalid function: org-with-silent-modifications  似たような症状が下記にも報告されている。
- http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html  上記スレッドでは、
- ...Emacs -q and reinstalling from elpa...  としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
-かわりにcask管理のorgを取得しなおした。こんな感じ。
-$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask  その際、バージョンをひとつ前の2.8.6に変更
-(source org) (depends-on &amp;quot;org-plus-contrib&amp;quot; &amp;quot;2.8.6&amp;quot;)  これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
-Caskの指定方法が間違っていたのだろうか？</description>
-    </item>
-    
-    <item>
-      <title>Caskの導入と設定ファイルの棚卸し</title>
-      <link>https://zarudama.github.io/posts/cask/</link>
-      <pubDate>Sun, 01 Jun 2014 14:01:39 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/cask/</guid>
-      <description>はじめに 最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？ って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。 ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。 良いです。
-そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。 これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。 毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。 自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。
-Caskの導入 インストールは非常に簡単です。
- https://github.com/cask/cask  公式にあるとおり下記コマンドを実施するだけです。
-$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python  すると、 ~/.cask にcask自身がインストールされます。 あとは、PATHに下記を追加しておきます。
-export PATH=$PATH:~/.cask/bin  これで準備オッケーです。
-Caskファイルを編集して自分の欲しいパッケージを羅列してきます。
-$ vim ~/.emacs.d/Cask  で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが =~/.emacs.d/.cask= というディレクトリに保存されていきます。
-$ cd ~/.emacs.d $ cask  簡単ですなー。
-そしてこれらを利用するにはロードパスを通しておきます。
-(require &#39;cask &amp;quot;~/.cask/cask.el&amp;quot;) (cask-initialize)  あとはいつもどおりの自分の設定を書けばオッケー。
-ちなみにWindowsでは導入できないとの情報を見ましたが 自分の環境では問題ありませんでした。環境は下記のとおりです。
-# PC Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz 2.50GHz RAM 4.00 GB # Windows Windows7 Professional Service Pack 1 32bit # emacs GNU Emacs 24.</description>
-    </item>
-    
-    <item>
-      <title>Windows7でemacsのアイコンが2重に表示されるのを防ぐ</title>
-      <link>https://zarudama.github.io/posts/emacs-win-taskbar/</link>
-      <pubDate>Wed, 16 Apr 2014 14:01:39 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/emacs-win-taskbar/</guid>
-      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。
-でもこれ、Windows版emacsだとうまくいきません。
-runemacs.exe を起動してタスクバーに登録しても、 起動時にDos窓が開いてアイコンが2つ表示されてしまいます。 これでは不便なのでなんとかします。
-この問題については、下記で解説されてるので一読をおすすめします。
- http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html  ただしこのサイトで公開されているツールはもうないようなので、 下記から代替ツールをダウンロードして適当なところに配置します。
- https://code.google.com/p/win7appid/  runemacs.exe のショートカットを作成して、 先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。
-さきほどダウンロードしたWin7AppId1.exeを、 登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。
-DOS&amp;gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs  runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を 選択すれば準備オッケーです。
-これで、タスクバーのアイコンをランチャーとして登録し、 かつ余計なDos窓が開くこともなくなります。</description>
+      <guid>https://zarudama.github.io/post/2013/05/emacs_window_image_disp/</guid>
+      <description>  &amp;#30446;&amp;#27425;  参考   
+Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
+ F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。  自分の場合pngが表示されなかったので
+ libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。  http://www.gtk.org/download/win32.php  emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。  あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
+emacs(Windows版)で画像を表示している様子 w3mでakb48を検索してみた。 参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  </description>
     </item>
     
     <item>
       <title>ubuntuでxmonadして、emacsでProcessingしてます</title>
-      <link>https://zarudama.github.io/posts/parma-link/ubuntuxmonademacsprocessing/</link>
-      <pubDate>Wed, 07 Aug 2013 14:01:39 +0900</pubDate>
+      <link>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</link>
+      <pubDate>Fri, 08 Nov 2019 20:25:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/ubuntuxmonademacsprocessing/</guid>
-      <description>最近Processingをいじり始めました。
-http://mikio.github.io/img/processing/xmonad.png
-上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
+      <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
+      <description>&amp;#30446;&amp;#27425;  processing のおすすめポイント  processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、androidモードがある。 emacsでprocessing xmonadでprocessing    
+最近Processingをいじり始めました。
+  &amp;#22259;1: Ubuntu上のXmonadでemacs使ってProcessingしてるところ
+  上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
 ちょろっと作った
-&amp;lt;p&amp;gt; &amp;lt;a href=&amp;quot;/processings/hello/&amp;quot;&amp;gt;テストプログラム&amp;lt;/a&amp;gt; &amp;lt;/p&amp;gt;  Javascriptモードで出力しました。こんなのが簡単に作れます。
-日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。 最大のきっかけとなったのは下記の本を手にしたからです。
-&amp;lt;p&amp;gt; &amp;lt;a href=&amp;quot;http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=4798038644&amp;amp;linkCode=as2&amp;amp;tag=ocha04-22&amp;quot;&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=4798038644&amp;amp;Format=_SL160_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=JP&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=ocha04-22&amp;quot; &amp;gt;&amp;lt;/a&amp;gt;&amp;lt;img src=&amp;quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;amp;l=as2&amp;amp;o=9&amp;amp;a=4798038644&amp;quot; width=&amp;quot;1&amp;quot; height=&amp;quot;1&amp;quot; border=&amp;quot;0&amp;quot; alt=&amp;quot;&amp;quot; style=&amp;quot;border:none !important; margin:0px !important;&amp;quot; /&amp;gt; &amp;lt;/p&amp;gt;  この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。 事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。 実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
-初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、 データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。 自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
-特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。 プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、 この本はデータ作成にも多くのページを割いて解説しています。 また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
-processing のおすすめポイント processingは実はjavaである。 文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。 でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。 実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。
-Processingをイメージで簡単に説明すると、「Processingという巨大なクラスがあって、 このメソッドがグローバルな関数に見立てたAPIとなっていて、PDEという独自IDEによってあたかもグローバル関数や変数を簡単に定義できるようになっている。 PDEのおかげで、javaのパスとかメインクラスの作成とか面倒なことを考えずすぐに再生ボタンで実行できる環境」ってことになります (間違ってたらすみません)。 なのでJavaを実際に始める前にProcessingから入るというのは非常に有効な手段かと思います。
+ テストプログラム
+
+Javascriptモードで出力しました。こんなのが簡単に作れます。
+日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。最大のきっかけとなったのは下記の本を手にしたからです。
+ &amp;rdquo;&amp;gt;&amp;rdquo; &amp;gt;&amp;rdquo; /&amp;gt;
+
+この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
+初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
+特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、この本はデータ作成にも多くのページを割いて解説しています。また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
+processing のおすすめポイント processingは実はjavaである。 文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。
+Processingをイメージで簡単に説明すると、「Processingという巨大なクラスがあって、このメソッドがグローバルな関数に見立てたAPIとなっていて、PDEという独自IDEによってあたかもグローバル関数や変数を簡単に定義できるようになっている。 PDEのおかげで、javaのパスとかメインクラスの作成とか面倒なことを考えずすぐに再生ボタンで実行できる環境」ってことになります (間違ってたらすみません)。なのでJavaを実際に始める前にProcessingから入るというのは非常に有効な手段かと思います。
 インストールが超簡単。 ダウンロードして展開するだけです。Java実行環境は同梱されてるので別途インストールする必要がありません。
-複数のプラットホームに対応している。 作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。 出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。
+複数のプラットホームに対応している。 作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。
 HTMLモード、androidモードがある。 昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。
-emacsでprocessing  結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。 問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。 emacsからもProcessingを使えます。下記を参考にしました。 http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、 エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</description>
+結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
+emacsでprocessing emacsからもProcessingを使えます。下記を参考にしました。
+ http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</description>
     </item>
     
     <item>
-      <title>.emacsに必要なpackage を指定して自動で各種elispをインストールする</title>
-      <link>https://zarudama.github.io/posts/parma-link/emacspackage-elisp/</link>
-      <pubDate>Sun, 06 Jan 2013 14:01:39 +0900</pubDate>
+      <title>org-modeの段落の改行を削除したい</title>
+      <link>https://zarudama.github.io/post/2013/02/emacs_org_paragraph/</link>
+      <pubDate>Fri, 08 Nov 2019 20:07:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/emacspackage-elisp/</guid>
-      <description>今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、 インストール後のビルド工程が失敗したりで、なかなか難儀していたので、 el-getを辞めemacs標準の package.el をメインにすることにしました。
-package.el ならば標準装備ですし、サイトリポジトリに各所のelispがダウンロードされた状態なので httpですべてインストールできるので大抵の環境でうまく動きます。
-パッケージのリポジトリサイトとしては、昔はMarmaladeが更新が盛んだったのですが、 最近ではMELPAがメインになってきてるようです。なので私は、MELPAメインで使用してます。 Marmaladeは無効にしています。理由は同じパッケージが同時に表示されてしまうからです。
-以下は私の設定です。
-(require &#39;mikio-util) (when (require &#39;package nil t) ;; Marmalade ;; (add-to-list &#39;package-archives ;; &#39;(&amp;quot;marmalade&amp;quot; . &amp;quot;http://marmalade-repo.org/packages/&amp;quot;)) ;; MELPA ;; (add-to-list &#39;package-archives ;; &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;) t) ;; MELPAのみにする。 (setq package-archives (list &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;))) ;;インストールするディレクトリを指定 (setq my-package-directory (mikio/elisp-home &amp;quot;package&amp;quot;)) (mikio/make-directory my-package-directory) (setq package-user-dir (concat my-package-directory &amp;quot;/&amp;quot;)) ;; (package-initialize) (setq my-packages &#39;(undo-tree helm auto-complete popwin smartrep color-moccur yasnippet helm-git helm-gtags helm-c-moccur helm-c-yasnippet paredit ruby-mode php-mode js2-mode web-mode nrepl nrepl-ritz ac-nrepl ;;ac-slime magit jaunte rainbow-delimiters ;; window manager by kiwanami window-layout e2wm twittering-mode ;;o-blog evil )) (require &#39;cl) (mapcar (lambda (x) (when (not (package-installed-p x)) (package-install x))) my-packages) ) (provide &#39;mikio-package)   githubはこちら。 https://github.</description>
+      <guid>https://zarudama.github.io/post/2013/02/emacs_org_paragraph/</guid>
+      <description>当ブログは、o-blog で運営していて、org-modeで原稿を書いています。その際、頻繁に fill-paragraph(M-q) を使用するのですが、これが org-export-as-html すると都合が悪いのです。
+どう都合が悪いかというと、段落の文のなかに半角スペースが紛れこんでしまうのです。
+例をあげると
+今日はいい 天気ですね! これは、HTMLエクスポートすると
+&amp;lt;p&amp;gt;今日はいい 天気ですね!&amp;lt;/p&amp;gt; となるので、ブラウザ上では
+今日はいい 天気ですね! となり、文の途中に空白文字が挿入されてしまいます。
+これはHTMLの仕様なので、変更するのはムズかしそうです。 cssなりorg-modeなりで「pタグの改行は空白にしない」オプションがあればいいのですが、ざっと見たかぎり見つかりませんでした。1
+まあしょうがないので、これからは fill-paragraph(M-q) を使用せず、 1行ごとに改行することにします。
+今日はいい天気ですね! そうですね。 これはこうなる。
+今日はいい天気ですね!そうですね。 わかち書きが基本の英語圈でできた仕様だからしかたないのだろうけど、日本語の文章を書くときは不便だなあ。[return]   </description>
     </item>
     
     <item>
-      <title>eshell上でリダイレクトした結果が文字化け</title>
-      <link>https://zarudama.github.io/posts/parma-link/eshell/</link>
-      <pubDate>Sun, 30 Dec 2012 14:01:39 +0900</pubDate>
+      <title>howm-modeとorg-modeを同時に使ってみたい。</title>
+      <link>https://zarudama.github.io/post/2012/09/emacs_howm_org/</link>
+      <pubDate>Fri, 08 Nov 2019 20:00:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/eshell/</guid>
-      <description>$ git diff &amp;gt; hoge.patch  hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
-^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m  るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。
-$ b git diff &amp;gt; hoge.patch  </description>
+      <guid>https://zarudama.github.io/post/2012/09/emacs_howm_org/</guid>
+      <description>  &amp;#30446;&amp;#27425;  やること 影響されたサイト   
+しばらくメモ管理は、org-modeのみで運用してきた。ブログの下書きも blog.orgという1ファイルのみで運用している (これはo-blogというelispが1ファ イルのみのサポートなため。複数ファイルでの運用方法もあるかもしれないが未確認。結果、ポケットひとつの原則に従うことになりすごくやりやすい)。
+しかしさすがに内容が増えてくると管理がきつくなってくるし、将来的には Clojure版JykyllのMisakiに移行したいと考えているので、そろそろhowmにも手を出してみようかなと。
+howmにもリンク機能やTODO機能があるが、これらはorg-modeにもあるのでそのまま継続するとして、 howmに任せたいのはファイル管理。ファイル自体を意識せずにどんどんメモが取れる環境が理想。
+やること  拡張子は.howmと.orgどちらにするか。  →howmの機能は主にファイル管理に使用する予定なのと、改宗したときに.howmだと面倒なので.orgでいく。 →howmディレクトリをつくってその配下のファイルはすべてhome-modeにしたほうがいいのかも。 →.elも.txtも.orgもすべてhowmで管理。だけどタイトルの仕切りは？  日報をhowmでうまいこと管理したい。  →repotディレクトリとか作る？  orgのtagによるマッチ機能があれば、howmを使う必要もないかも？  影響されたサイト  Evernote vs Emacs+howm+org+Dropbox
+ 完全同意です。evernoteは流行り始めたころは使ってましたが、 emacsとの連携がしづらいのでいつのまにか使わなくなってしまいました。  emacsだけで書上げた書籍…翔泳社「ツイッター情報収集術」のつくり方(2) 執筆環境編【増田(maskin)真樹】
+ すごいですね。この方のノウハウをぜひ聞いてみたいです。  My life on Emacs
+ org-modeとhowmを同時に使用するというのはこの方の資料を拝見して初めて気づきました。 howmをサンプルプログラムと日報に活用ってところが詳しくしりたいです。  Emacs + Org-mode + howm + MobileOrg + Dropbox でテキスト管理環境を構築した
+ MobileOrgもぜひ活用したいと思っているのですが、まだできてないですね。。。   </description>
     </item>
     
     <item>
-      <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築</title>
-      <link>https://zarudama.github.io/posts/parma-link/emacsjdeejava/</link>
-      <pubDate>Sun, 23 Dec 2012 14:01:39 +0900</pubDate>
+      <title>helmのファイル一覧でパスを表示する</title>
+      <link>https://zarudama.github.io/post/2013/06/emacs_helm_file_list/</link>
+      <pubDate>Fri, 08 Nov 2019 19:58:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/emacsjdeejava/</guid>
-      <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
-追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
-そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
- また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。 http://sourceforge.net/mailarchive/message.php?msg_id=30783951  はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
-ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、 なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。
-で、やっぱりJDEEがいいということで、苦労の末、 最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。
-今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。 今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。
-   インポート文の自動生成 JDEE   Javadoc表示 JDEE + w3m   ビルド JDEE + ant   デバッガ JDEE + jdb   REPLぽいもの JDEE(BeanShell)   コードスニペット Yasnippet   タグジャンプ gtags(global)   メソッド補完 helm-jdee-method(拙作)    まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、 「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。</description>
+      <guid>https://zarudama.github.io/post/2013/06/emacs_helm_file_list/</guid>
+      <description>helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、パス部分が表示されなくなってしまった。デフォルトの挙動が変更されたようである。
+自分の場合、helm-git.elを使用しているが、同じリポジトリに同名ファイルが複数あるため、ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。これでは困るので調査したところ、ファイル表示部分は、helm本体の helm-files.el の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
+(defcustom helm-ff-transformer-show-only-basename t &amp;#34;Show only basename of candidates in `helm-find-files&amp;#39;. This can be toggled at anytime from `helm-find-files&amp;#39;with \ \\&amp;lt;helm-find-files-map&amp;gt;\\[helm-ff-run-toggle-basename].&amp;#34; :type &amp;#39;boolean :group &amp;#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
+(setq helm-ff-transformer-show-only-basename nil)</description>
     </item>
     
     <item>
       <title>emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる</title>
-      <link>https://zarudama.github.io/posts/parma-link/emacs-slime-nodejs-swank-js-emacsjavascript/</link>
-      <pubDate>Thu, 10 May 2012 14:01:39 +0900</pubDate>
+      <link>https://zarudama.github.io/post/2012/05/emacs_swank_javascript/</link>
+      <pubDate>Fri, 08 Nov 2019 19:44:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/emacs-slime-nodejs-swank-js-emacsjavascript/</guid>
-      <description>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。 その後、npmでsocket.ioをインストール。
-dos&amp;gt; npm install socket.io  あとは、swank-jsをインストールする。
+      <guid>https://zarudama.github.io/post/2012/05/emacs_swank_javascript/</guid>
+      <description>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。その後、npmでsocket.ioをインストール。
+dos&amp;gt; npm install socket.io あとは、swank-jsをインストールする。
 下記を参考にWindowsXP環境にインストールした。
- http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html  上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。 もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
- https://github.com/swank-js/swank-js  インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。 回避方法としてswank-js.elはMarmaladeからインストールした。
-M-x packagea-list-packages  下記を選択してixでインスール。
-slime-js 0.0.1 installed Slime extension for swank-js.  あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
-M-x slime-connect 127.0.0.1 4005  その後、repl上で接続したいURLを指定する。
-,target-url  次にブラウザ上で下記にアクセスする。
+ http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html  上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
+ https://github.com/swank-js/swank-js  インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。回避方法としてswank-js.elはMarmaladeからインストールした。
+M-x packagea-list-packages 下記を選択してixでインスール。
+slime-js 0.0.1 installed Slime extension for swank-js. あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
+M-x slime-connect 127.0.0.1 4005 その後、repl上で接続したいURLを指定する。
+,target-url 次にブラウザ上で下記にアクセスする。
  http://localhost:8009/  その後、repl上で接続する。
-,select-remote  あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
-alert (&amp;quot;hoge&amp;quot;)  </description>
+,select-remote あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
+alert (&amp;#34;hoge&amp;#34;)</description>
+    </item>
+    
+    <item>
+      <title>.emacsに必要なpackage を指定して自動で各種elispをインストールする</title>
+      <link>https://zarudama.github.io/post/2013/01/emacs_package_elisp/</link>
+      <pubDate>Fri, 08 Nov 2019 19:15:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2013/01/emacs_package_elisp/</guid>
+      <description>&amp;#30446;&amp;#27425;  2013/05/13 追記1: 2013/05/13 追記2: 2013/05/13 追記3:   
+今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、インストール後のビルド工程が失敗したりで、なかなか難儀していたので、 el-getを辞めemacs標準の package.el をメインにすることにしました。
+package.el ならば標準装備ですし、サイトリポジトリに各所のelispがダウンロードされた状態なので httpですべてインストールできるので大抵の環境でうまく動きます。
+パッケージのリポジトリサイトとしては、昔はMarmaladeが更新が盛んだったのですが、最近ではMELPAがメインになってきてるようです。なので私は、MELPAメインで使用してます。 Marmaladeは無効にしています。理由は同じパッケージが同時に表示されてしまうからです。
+以下は私の設定です。
+(require &amp;#39;mikio-util) (when (require &amp;#39;package nil t) ;; Marmalade ;; (add-to-list &amp;#39;package-archives ;; &amp;#39;(&amp;#34;marmalade&amp;#34; . &amp;#34;http://marmalade-repo.org/packages/&amp;#34;)) ;; MELPA ;; (add-to-list &amp;#39;package-archives ;; &amp;#39;(&amp;#34;melpa&amp;#34; . &amp;#34;http://melpa.milkbox.net/packages/&amp;#34;) t) ;; MELPAのみにする。 (setq package-archives (list &amp;#39;(&amp;#34;melpa&amp;#34; . &amp;#34;http://melpa.milkbox.net/packages/&amp;#34;))) ;;インストールするディレクトリを指定 (setq my-package-directory (mikio/elisp-home &amp;#34;package&amp;#34;)) (mikio/make-directory my-package-directory) (setq package-user-dir (concat my-package-directory &amp;#34;/&amp;#34;)) ;; (package-initialize) (setq my-packages &amp;#39;(undo-tree helm auto-complete popwin smartrep color-moccur yasnippet helm-git helm-gtags helm-c-moccur helm-c-yasnippet paredit ruby-mode php-mode js2-mode web-mode nrepl nrepl-ritz ac-nrepl ;;ac-slime magit jaunte rainbow-delimiters ;; window manager by kiwanami window-layout e2wm twittering-mode ;;o-blog evil )) (require &amp;#39;cl) (mapcar (lambda (x) (when (not (package-installed-p x)) (package-install x))) my-packages) ) (provide &amp;#39;mikio-package) githubはこちら。</description>
+    </item>
+    
+    <item>
+      <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築</title>
+      <link>https://zarudama.github.io/post/2012/12/cyginw_tmux_stack/</link>
+      <pubDate>Fri, 08 Nov 2019 18:01:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2012/12/cyginw_tmux_stack/</guid>
+      <description>&amp;#30446;&amp;#27425;  追記(2013/08/01) はじめに 必要なもの JDEEのビルド .emacsの設定 サンプルプロジェクトの準備 動作確認してみる  BeanShell 依存ライブラリのダウンロード ビルドエラー importの自動挿入とビルド APIドキュメントの参照 メソッド補完 メソッド補完(Helm版)  操作方法まとめ 所感 参考URL 更新履歴   
+この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
+追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。これによりJDEEの導入がグッっと簡単になりました。
+そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
+また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。今後に期待しましょう。
+ http://sourceforge.net/mailarchive/message.php?msg%5Fid=30783951  はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
+ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。
+で、やっぱりJDEEがいいということで、苦労の末、最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。
+今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。
+   インポート文の自動生成 JDEE     Javadoc表示 JDEE + w3m   ビルド JDEE + ant   デバッガ JDEE + jdb   REPLぽいもの JDEE(BeanShell)   コードスニペット Yasnippet   タグジャンプ gtags(global)   メソッド補完 helm-jdee-method(拙作)    まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。メソッド補完については、Helmで補完するelispを自作しました。</description>
+    </item>
+    
+    <item>
+      <title>第3のエディタEvilのすすめ</title>
+      <link>https://zarudama.github.io/post/2014/12/emacs_evil/</link>
+      <pubDate>Fri, 08 Nov 2019 17:05:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/12/emacs_evil/</guid>
+      <description>&amp;#30446;&amp;#27425;  EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操作性とEmacsの拡張性を両方手に入れる! 迷ったらEvil(Emacs)。 最後に Evilを使う気になった人へのちょっとしたメモ  Emacserじゃない人向け Emacser向け    
+Evil Advent Calendar 2014 の8日目の記事になります。 Evil の使用人口が少なすぎるのでEvilを使う理由などを述べて人口が増えるのを目論みます。 Evilを薦めてるのかEmacsを薦めてるのかよくわからないまとまりのない記事になってしまいました。
+EmacsとVim そこそこ経験のあるEmacserは大抵、viの操作もマスターしています。 Emacsがインストールされてない環境も多いのでそんなときはviを使ってささっと編集するのです。 hjklはもちろん、yy,dd,u,cw,yw,dw,もマスターしている人も多いのではないでしょうか？自分はそのたびに感じていました。
+「ああ、viはなんて編集が楽なんだろ。指が全然痛くならねぇ。」
+Emacsのカーソル移動「 C-p, C-n, C-f, C-b 」は、言葉の意味に関連付けているので覚えやすいです。だから一見viに比べるととっつきやすんです。でも疲れるんですよ。指が圧倒的に！
+これには理由があってホームポジションで状態を持たずに沢山の操作を実現するには修飾キーや２段ストロークキーを使うしかないのです。なので、ほぼほぼ全ての動作に小指コントーロールがつきまといます。
+それに比べてviはどうでしょうか？まずホームポジションから指を一切動かさずに右手だけでカーソル移動できます。文字的には意味のないhjklですが、指の配置的には理にかなっています。モードがあるおかげで修飾キーを使わずともいろいろと操作できます。そして一番好きなのは
+{count}{operater}{motion} というシンプルだけど覚えやすいコマンド体系。 viを使うたびに私は思っていました。
+「viはなんて操作しやすいのだろう」
+と。
+それでもEmacsを選ぶ理由 「そんなにviを賛美してEmacsをDisるんならとっととVimmerになれや」との声が聞こえてきそうですが、 Vimへ宗旨替えしようと思ってもできない自分がいるのです。
+その最大の理由は「Lisp」。「ハッカーと画家」を読んだ方ならわかると思いますが「Lisp」は魅力的です。プログラマならみんな憧れがあるのではないでしょうか？ LispプログラマにはEmacserが多いですし1、Lispの開発環境といえばEmacsのSLIMEが定番です。なのでEmacsから離れたくないのです。
+最近のVimは昔に比べてEmacsのような環境化が進んでいますし、拡張がしやすいという理由でEmacsを選ぶ理由は薄いかもしれません。ただしLispを勉強したいというなら別です。CommonLispにしろSchemeにしろCLojureにしろ、やはりEmacsが一番サポートが厚い気がします。なによりEmacs自身がLispで書かれているのでEmacsを選ぶイコール毎日Lispと戯れることになるのです。
+以上のような理由でviのコマンド体系でLispで拡張できるエディタがあったらなぁと思っていたのでした。
+Evilとは、Vimの操作性を備えたelisp実行環境である。 そんな時Evilに出会ったのです。EmacsなのにVim。「俺の求めていたのはこれだー」と思いました。なんせEmacsLispで書かれたVimなので「Lispで拡張できる最高やん」と思ったのです。 EvilはEmacsでもあるのでもちろんEmacsの沢山の魅力的な拡張がそのまま動かせます。
+ org-mode これがないと生きていけない dired 同じく！ anything,helm ライフチェンジング！これなしでは(ry auto-complate いまどきのIDEぽく eshell Editor上でShellを動かす快適さ、シェル上でS式評価できる便利さ！ gnus メールが読めちゃうよ！ skk Emacsとの相性バツグンIME! navi2ch これで仕事中2chしててもばれない twittering-mode これで仕事中Twitterしてても(ry magit ベンリング！ slime CommonLisp 最高の開発環境！ cider Clojureといったらこれ！  こんなにあります(自分がよく使う拡張を挙げてみました)。他にもはじめからEvil用に書かれたプラグインもあったりして積極的にVimの機能がEvilに 移植 されています。</description>
+    </item>
+    
+    <item>
+      <title>Windows7でemacsのアイコンが2重に表示されるのを防ぐ</title>
+      <link>https://zarudama.github.io/post/2014/04/windows7_emacs/</link>
+      <pubDate>Fri, 08 Nov 2019 17:04:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/04/windows7_emacs/</guid>
+      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。
+でもこれ、Windows版emacsだとうまくいきません。
+runemacs.exe を起動してタスクバーに登録しても、起動時にDos窓が開いてアイコンが2つ表示されてしまいます。これでは不便なのでなんとかします。
+この問題については、下記で解説されてるので一読をおすすめします。
+ http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html  ただしこのサイトで公開されているツールはもうないようなので、下記から代替ツールをダウンロードして適当なところに配置します。
+ https://code.google.com/p/win7appid/  runemacs.exe のショートカットを作成して、先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。
+さきほどダウンロードしたWin7AppId1.exeを、登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。
+DOS&amp;gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を選択すれば準備オッケーです。
+これで、タスクバーのアイコンをランチャーとして登録し、かつ余計なDos窓が開くこともなくなります。</description>
+    </item>
+    
+    <item>
+      <title>Caskの導入と設定ファイルの棚卸し</title>
+      <link>https://zarudama.github.io/post/2014/06/emacs_cask/</link>
+      <pubDate>Fri, 08 Nov 2019 16:55:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/06/emacs_cask/</guid>
+      <description>&amp;#30446;&amp;#27425;  はじめに Caskの導入 Emacs設定ファイルの書き方 私の.emacsのインストール方法 私の.emacsのディレクトリ配置 私の.emacsの分割のポリシー   
+はじめに 最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。 ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。良いです。
+そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。
+Caskの導入 インストールは非常に簡単です。
+ https://github.com/cask/cask  公式にあるとおり下記コマンドを実施するだけです。
+$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python すると、 ~/.cask にcask自身がインストールされます。あとは、PATHに下記を追加しておきます。
+export PATH=$PATH:~/.cask/bin これで準備オッケーです。
+Caskファイルを編集して自分の欲しいパッケージを羅列してきます。
+$ vim ~/.emacs.d/Cask で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが ~/.emacs.d/.cask というディレクトリに保存されていきます。
+$ cd ~/.emacs.d $ cask 簡単ですなー。
+そしてこれらを利用するにはロードパスを通しておきます。
+(require &amp;#39;cask &amp;#34;~/.cask/cask.el&amp;#34;) (cask-initialize) あとはいつもどおりの自分の設定を書けばオッケー。
+ちなみにWindowsでは導入できないとの情報を見ましたが自分の環境では問題ありませんでした。環境は下記のとおりです。
+# PC Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz 2.50GHz RAM 4.00 GB # Windows Windows7 Professional Service Pack 1 32bit # emacs GNU Emacs 24.</description>
     </item>
     
     <item>
       <title>Emacs JDEE でlibGDXプログラミング!</title>
-      <link>https://zarudama.github.io/posts/libgdx-jdee/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://zarudama.github.io/post/2014/05/libgdx_emacs/</link>
+      <pubDate>Fri, 08 Nov 2019 16:32:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/libgdx-jdee/</guid>
-      <description>はじめに libGDX でゲームプログラミングを始めています。
+      <guid>https://zarudama.github.io/post/2014/05/libgdx_emacs/</guid>
+      <description>&amp;#30446;&amp;#27425;  はじめに gradleプロジェクトをJDEEでも使えるようにする   
+はじめに libGDX でゲームプログラミングを始めています。
 最初は、Eclipseでコーディングしていました。
 でも重すぎるので、軽いと評判のIntelliJ IDEAに乘りかえました。
 確かに快適でした。Eclipseよりは。しかしそれでもいろいろ不満がつのる。。。
 …結局、Emacsに戻ってきました。やはり最後はいつもの場所へ。悲しい性ですね。
 ということで、EmacsでJavaやるなら JDEE です。
-gradleプロジェクトをJDEEでも使えるようにする JDEEはgradleをサポートしてません。 でもやっぱりいるんですねー。すばらしき先人が。 GradleプロジェクトをJDEEの plj.el に変換するスクリプトを発見しました。
- http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html  上記で紹介されている jdee.gradle を、libGDXのプロジェクトルートに配置します。 そのままだと、testディレクトリがないと怒られるので、testを含む行をコメントアウトします。
+gradleプロジェクトをJDEEでも使えるようにする JDEEはgradleをサポートしてません。でもやっぱりいるんですねー。すばらしき先人が。 GradleプロジェクトをJDEEの plj.el に変換するスクリプトを発見しました。
+ http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html  上記で紹介されている jdee.gradle を、libGDXのプロジェクトルートに配置します。そのままだと、testディレクトリがないと怒られるので、testを含む行をコメントアウトします。
 更に build.gradle を編集し、 apply from:... を追加します。
-} } +apply from:&#39;jdee.gradle&#39; allprojects { apply plugin: &amp;quot;eclipse&amp;quot; apply plugin: &amp;quot;idea&amp;quot;  あとは、プロジェクトルートで下記コマンドを実行します。
-$ ./gradlew jdee  すると各サブプロジェクト内で、 prj.el が作成されます。
+} } +apply from:&amp;#39;jdee.gradle&amp;#39; allprojects { apply plugin: &amp;#34;eclipse&amp;#34; apply plugin: &amp;#34;idea&amp;#34; あとは、プロジェクトルートで下記コマンドを実行します。
+$ ./gradlew jdee すると各サブプロジェクト内で、 prj.el が作成されます。
 最後に下記の plj.el をプロジェクトルートに配置します。
-(jde-project-file-version &amp;quot;1.0&amp;quot;) (jde-set-variables &#39;(jde-jdk (quote (&amp;quot;1.7&amp;quot;))) &#39;(jde-jdk-registry (quote ( ;;(&amp;quot;1.7&amp;quot; . &amp;quot;c:/Program Files/Java/jdk1.7.0_09/&amp;quot;) (&amp;quot;1.7&amp;quot; . &amp;quot;/usr/lib/jvm/jdk1.7.0/&amp;quot;) ))) &#39;(jde-jdk-doc-url &amp;quot;http://docs.</description>
-    </item>
-    
-    <item>
-      <title>helmのファイル一覧でパスを表示する</title>
-      <link>https://zarudama.github.io/posts/parma-link/helm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/parma-link/helm/</guid>
-      <description>helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、 パス部分が表示されなくなってしまった。 デフォルトの挙動が変更されたようである。
-自分の場合、helm-git.elを使用しているが、 同じリポジトリに同名ファイルが複数あるため、 ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。 これでは困るので調査したところ、ファイル表示部分は、helm本体の =helm-files.el= の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
-(defcustom helm-ff-transformer-show-only-basename t &amp;quot;Show only basename of candidates in `helm-find-files&#39;. This can be toggled at anytime from `helm-find-files&#39; with \ \\&amp;lt;helm-find-files-map&amp;gt;\\[helm-ff-run-toggle-basename].&amp;quot; :type &#39;boolean :group &#39;helm-files)  .emacsに下記の定義をすることで無事解決できた。
-(setq helm-ff-transformer-show-only-basename nil)  </description>
-    </item>
-    
-    <item>
-      <title>howm-modeとorg-modeを同時に使ってみたい。</title>
-      <link>https://zarudama.github.io/posts/parma-link/howm-modeorg-mode/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/parma-link/howm-modeorg-mode/</guid>
-      <description>しばらくメモ管理は、org-modeのみで運用してきた。 ブログの下書きも blog.orgという1ファイルのみで運用している (これはo-blogというelispが1ファ イルのみのサポートなため。 複数ファイルでの運用方法もあるかもしれないが未確認。 結果、ポケットひとつの原則に従うことになりすごくやりやすい)。
-しかしさすがに内容が増えてくると管理がきつくなってくるし、 将来的には Clojure版JykyllのMisakiに移行したいと考えているので、 そろそろhowmにも手を出してみようかなと。
-howmにもリンク機能やTODO機能があるが、 これらはorg-modeにもあるのでそのまま継続するとして、 howmに任せたいのはファイル管理。 ファイル自体を意識せずにどんどんメモが取れる環境が理想。
-やること  拡張子は.howmと.orgどちらにするか。 →howmの機能は主にファイル管理に使用する予定なのと、改宗したときに.howmだと面倒なので.orgでいく。 →howmディレクトリをつくってその配下のファイルはすべてhome-modeにしたほうがいいのかも。 →.elも.txtも.orgもすべてhowmで管理。だけどタイトルの仕切りは？ 日報をhowmでうまいこと管理したい。 →repotディレクトリとか作る？ orgのtagによるマッチ機能があれば、howmを使う必要もないかも？  影響されたサイト  Evernote vs Emacs+howm+org+Dropbox 完全同意です。evernoteは流行り始めたころは使ってましたが、 emacsとの連携がしづらいのでいつのまにか使わなくなってしまいました。   emacsだけで書上げた書籍…翔泳社「ツイッター情報収集術」のつくり方(2) 執筆環境編【増田(maskin)真樹】 すごいですね。この方のノウハウをぜひ聞いてみたいです。   My life on Emacs org-modeとhowmを同時に使用するというのはこの方の資料を拝見して初めて気づきました。 howmをサンプルプログラムと日報に活用ってところが詳しくしりたいです。   Emacs + Org-mode + howm + MobileOrg + Dropbox でテキスト管理環境を構築した MobileOrgもぜひ活用したいと思っているのですが、まだできてないですね。。。  </description>
-    </item>
-    
-    <item>
-      <title>windows版emacs24.3で画像を表示する。</title>
-      <link>https://zarudama.github.io/posts/parma-link/windowsemacs243/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/parma-link/windowsemacs243/</guid>
-      <description> Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。   自分の場合pngが表示されなかったので libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。 http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。  emacs(Windows版)で画像を表示している様子 http://mikio.github.io/img/image-dired/image-dired.png
-w3mでakb48を検索してみた。 http://mikio.github.io/img/image-dired/w3m.png
-参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  </description>
-    </item>
-    
-    <item>
-      <title>第3のエディタEvilのすすめ</title>
-      <link>https://zarudama.github.io/posts/evil_adventcalendar_2014/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/evil_adventcalendar_2014/</guid>
-      <description>Evil Advent Calendar 2014 の8日目の記事になります。 Evil の使用人口が少なすぎるのでEvilを使う理由などを述べて人口が増えるのを目論みます。 Evilを薦めてるのかEmacsを薦めてるのかよくわからないまとまりのない記事になってしまいました。
-EmacsとVim そこそこ経験のあるEmacserは大抵、viの操作もマスターしています。 Emacsがインストールされてない環境も多いのでそんなときはviを使ってささっと編集するのです。 hjklはもちろん、yy,dd,u,cw,yw,dw,もマスターしている人も多いのではないでしょうか？ 自分はそのたびに感じていました。
-「ああ、viはなんて編集が楽なんだろ。指が全然痛くならねぇ。」
-Emacsのカーソル移動「 C-p, C-n, C-f, C-b 」は、言葉の意味に関連付けているので覚えやすいです。 だから一見viに比べるととっつきやすんです。でも疲れるんですよ。指が圧倒的に！
-これには理由があってホームポジションで状態を持たずに沢山の操作を実現するには 修飾キーや２段ストロークキーを使うしかないのです。 なので、ほぼほぼ全ての動作に小指コントーロールがつきまといます。
-それに比べてviはどうでしょうか？ まずホームポジションから指を一切動かさずに右手だけでカーソル移動できます。 文字的には意味のないhjklですが、指の配置的には理にかなっています。 モードがあるおかげで修飾キーを使わずともいろいろと操作できます。 そして一番好きなのは
-{count}{operater}{motion}  というシンプルだけど覚えやすいコマンド体系。 viを使うたびに私は思っていました。
-「viはなんて操作しやすいのだろう」
-と。
-それでもEmacsを選ぶ理由 「そんなにviを賛美してEmacsをDisるんならとっととVimmerになれや」との声が聞こえてきそうですが、 Vimへ宗旨替えしようと思ってもできない自分がいるのです。
-その最大の理由は「Lisp」。「ハッカーと画家」を読んだ方ならわかると思いますが「Lisp」は魅力的です。 プログラマならみんな憧れがあるのではないでしょうか？ LispプログラマにはEmacserが多いですし1、Lispの開発環境といえばEmacsのSLIMEが定番です。 なのでEmacsから離れたくないのです。
-最近のVimは昔に比べてEmacsのような環境化が進んでいますし、 拡張がしやすいという理由でEmacsを選ぶ理由は薄いかもしれません。 ただしLispを勉強したいというなら別です。CommonLispにしろSchemeにしろCLojureにしろ、 やはりEmacsが一番サポートが厚い気がします。 なによりEmacs自身がLispで書かれているのでEmacsを選ぶイコール毎日Lispと戯れることになるのです。
-以上のような理由でviのコマンド体系でLispで拡張できるエディタがあったらなぁと思っていたのでした。
-2「ハッカーと画家」の作者は「vi」な人らしいです（Vimではないっぽいところが重要）。
-Evilとは、Vimの操作性を備えたelisp実行環境である。 そんな時Evilに出会ったのです。EmacsなのにVim。「俺の求めていたのはこれだー」と思いました。 なんせEmacsLispで書かれたVimなので「Lispで拡張できる最高やん」と思ったのです。 EvilはEmacsでもあるのでもちろんEmacsの沢山の魅力的な拡張がそのまま動かせます。
- org-mode これがないと生きていけない dired 同じく！ anything,helm ライフチェンジング！これなしでは(ry auto-complate いまどきのIDEぽく eshell Editor上でShellを動かす快適さ、シェル上でS式評価できる便利さ！ gnus メールが読めちゃうよ！ skk Emacsとの相性バツグンIME!  navi2ch これで仕事中2chしててもばれない twittering-mode これで仕事中Twitterしてても(ry magit ベンリング！ slime CommonLisp 最高の開発環境！ cider Clojureといったらこれ！  こんなにあります(自分がよく使う拡張を挙げてみました)。 他にもはじめからEvil用に書かれたプラグインもあったりして 積極的にVimの機能がEvilに 移植 されています。</description>
+(jde-project-file-version &amp;#34;1.0&amp;#34;) (jde-set-variables &amp;#39;(jde-jdk (quote (&amp;#34;1.7&amp;#34;))) &amp;#39;(jde-jdk-registry (quote ( ;;(&amp;#34;1.7&amp;#34; . &amp;#34;c:/Program Files/Java/jdk1.</description>
     </item>
     
   </channel>

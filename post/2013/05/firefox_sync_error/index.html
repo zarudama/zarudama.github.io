@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">firefox の同期不具合</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#追記">追記</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>下記のエラーが頻繁に表示される。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」</code></pre></div>
+<p>これの対処方法は、</p>
+
+<ul>
+<li>「メニュー」→「ツール」→「オプション」→「Syncタブ」</li>
+<li>「アカウントを管理ボタン」→「Syncをリセット」</li>
+</ul>
+
+<p>で、もとに戻るはず。</p>
+
+<h2 id="追記">追記</h2>
+
+<p>結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、
+syncエラーの原因が読めることがわかった。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">about:sync-log</code></pre></div>
+<p>今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、このログをみれば詳細な情報が手にはいるので大助かり。</p>
+
+<p>自分の場合、ログをみたところ、bookmark同期に原因があった模様。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f60">1368414694893</span>   Sync.Engine.Bookmarks   DEBUG   First sync, uploading all items
+<span style="color:#f60">1368414694893</span>   Sync.Engine.Bookmarks   INFO    <span style="color:#f60">2</span> outgoing items pre-reconciliation
+<span style="color:#f60">1368414695441</span>   Sync.Engine.Bookmarks   WARN    Got exception <span style="color:#c30">&#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34;</span> building GUID map. Skipping all other incoming items.
+<span style="color:#f60">1368414695441</span>   Sync.Engine.Bookmarks   WARN    Reconciliation failed: aborting incoming processing.</code></pre></div>
+<p>そこで「ツール」→「オプション」→「Sync」→「同期するデータ」から、ブックマークを外して再度同期したところ、エラーが表示されなくなった。</p>
+
+<p>しかしこのままではブックマークの同期ができないのでなんとかしなくてはならない。そこで、下記の手順をとることにした。</p>
+
+<ul>
+<li><a href="https://account.services.mozilla.com">https://account.services.mozilla.com</a> にアクセス</li>
+<li>左ペインの <code>Clear Your Sync data</code> をクリック</li>
+<li><code>Clear My Sync Data</code> をクリックしてサーバー上のデータを削除</li>
+<li>上述した方法でアカウントをリセット。そのとき、「他のすべてのデバイスのブラウザデータを、このパソコンのデータと置き換える」を選択する。</li>
+</ul>
+
+<p>ただしこの方法は、同期もとにするPCのデータに異常がない場合に有効。</p>
+
+<p>以上で同期が復活するはず。</p>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+<li><a href="https://account.services.mozilla.com/sync/request%5Fquota">https://account.services.mozilla.com/sync/request%5Fquota</a></li>
+<li><a href="http://coffeecupman.blog28.fc2.com/blog-entry-25.html">http://coffeecupman.blog28.fc2.com/blog-entry-25.html</a></li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

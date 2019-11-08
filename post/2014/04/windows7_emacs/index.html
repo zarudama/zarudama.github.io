@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">Windows7でemacsのアイコンが2重に表示されるのを防ぐ</h1>
+  
+  <div>
+        <article id="content">
+           <p>Windows7には、タスクバーにアイコンを登録しておくと、
+Win+数字キーで起動できる便利な機能があります。</p>
+
+<p>でもこれ、Windows版emacsだとうまくいきません。</p>
+
+<p><code>runemacs.exe</code> を起動してタスクバーに登録しても、起動時にDos窓が開いてアイコンが2つ表示されてしまいます。これでは不便なのでなんとかします。</p>
+
+<p>この問題については、下記で解説されてるので一読をおすすめします。</p>
+
+<ul>
+<li><a href="http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html">http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html</a></li>
+</ul>
+
+<p>ただしこのサイトで公開されているツールはもうないようなので、下記から代替ツールをダウンロードして適当なところに配置します。</p>
+
+<ul>
+<li><a href="https://code.google.com/p/win7appid/">https://code.google.com/p/win7appid/</a></li>
+</ul>
+
+<p><code>runemacs.exe</code> のショートカットを作成して、先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。</p>
+
+<p>さきほどダウンロードしたWin7AppId1.exeを、登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">DOS&gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs</code></pre></div>
+<p>runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を選択すれば準備オッケーです。</p>
+
+<p>これで、タスクバーのアイコンをランチャーとして登録し、かつ余計なDos窓が開くこともなくなります。</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

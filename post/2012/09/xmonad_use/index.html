@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">xmonadを試す</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#インストールメモ">インストールメモ</a></li>
+<li><a href="#xinitrc">xinitrc</a></li>
+<li><a href="#参考サイト">参考サイト</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれてみました。</p>
+
+<ul>
+<li><a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124">http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124</a></li>
+</ul>
+
+<p>タイル型のウィンドウマネージャです。常にウィンドウ全てが一覧されるやつです。インストールしてみて実感しましたがタイル型はとーっても快適です。普段からemacsでキーボード操作メインのユーザだったらすぐに気にいるかと思います。とくにウィンドウ切り替えが <code>Mod+j/k</code> でできるのがイイ!
+(それに比べて WindowsのALT+tabは左手の手首が死ぬ。。。)</p>
+
+<p>今回、Xmonadというのをインストールしましたが、老舗のawesomeというのも人気があるそうです。ただXmonadの方が後発である分いろいろブラッシュアップされてるような印象でした。問題は設定ファイルがHaskellってことですかね。できれば覚えたくないですよね。いやHaskellは勉強して動かしたことはありますが、今はLisp系言語を覚え中なので他の言語はできるだけ気にせず脳の負担を増やしたくないのです。そういう意味で気になるのは、設定フィアルがCommonLispであるstumpwm。そのうち試したいと思います。</p>
+
+<p>しかしタイル型使ってると、UnityとかgnomuShellの動向がどうでもよくなりますな。</p>
+
+<h2 id="インストールメモ">インストールメモ</h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo apt-get install xmonad
+$ sudo apt-get install dmenu  <span style="color:#09f;font-style:italic"># キーボードランチャー</span>
+$ sudo apt-get install xmobar <span style="color:#09f;font-style:italic"># ステータスバー</span></code></pre></div>
+<p>xmorbar用の設定ファイル( <code>~/.xmobarrc</code> )を作成する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#09f;font-style:italic">-- -*- mode:haskell -*-</span>
+<span style="color:#078;font-weight:bold">Config</span> { <span style="color:#c0f">font</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c30">&#34;xft:Sans-9:bold&#34;</span>
+       , <span style="color:#c0f">bgColor</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c30">&#34;black&#34;</span>
+       , <span style="color:#c0f">fgColor</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c30">&#34;grey&#34;</span>
+       , <span style="color:#c0f">position</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#078;font-weight:bold">Top</span>
+       , <span style="color:#c0f">lowerOnStart</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#078;font-weight:bold">False</span>
+       , <span style="color:#c0f">commands</span> <span style="color:#000;font-weight:bold">=</span> [ <span style="color:#078;font-weight:bold">Run</span> <span style="color:#078;font-weight:bold">Network</span> <span style="color:#c30">&#34;eth0&#34;</span> [<span style="color:#c30">&#34;-L&#34;</span>,<span style="color:#c30">&#34;0&#34;</span>,<span style="color:#c30">&#34;-H&#34;</span>,<span style="color:#c30">&#34;32&#34;</span>,<span style="color:#c30">&#34;--normal&#34;</span>,<span style="color:#c30">&#34;green&#34;</span>,<span style="color:#c30">&#34;--high&#34;</span>,<span style="color:#c30">&#34;red&#34;</span>] <span style="color:#f60">10</span>
+                    , <span style="color:#078;font-weight:bold">Run</span> <span style="color:#078;font-weight:bold">Cpu</span> [<span style="color:#c30">&#34;-L&#34;</span>,<span style="color:#c30">&#34;3&#34;</span>,<span style="color:#c30">&#34;-H&#34;</span>,<span style="color:#c30">&#34;50&#34;</span>,<span style="color:#c30">&#34;--normal&#34;</span>,<span style="color:#c30">&#34;green&#34;</span>,<span style="color:#c30">&#34;--high&#34;</span>,<span style="color:#c30">&#34;red&#34;</span>] <span style="color:#f60">10</span>
+                    , <span style="color:#078;font-weight:bold">Run</span> <span style="color:#078;font-weight:bold">Memory</span> [<span style="color:#c30">&#34;-t&#34;</span>,<span style="color:#c30">&#34;Mem: &lt;usedratio&gt;%&#34;</span>] <span style="color:#f60">10</span>
+                    , <span style="color:#078;font-weight:bold">Run</span> <span style="color:#078;font-weight:bold">Swap</span> <span style="color:#078;font-weight:bold">[]</span> <span style="color:#f60">10</span>
+                    , <span style="color:#078;font-weight:bold">Run</span> <span style="color:#078;font-weight:bold">Battery</span> <span style="color:#078;font-weight:bold">[]</span> <span style="color:#f60">600</span>
+                    , <span style="color:#078;font-weight:bold">Run</span> <span style="color:#078;font-weight:bold">Com</span> <span style="color:#c30">&#34;lsb_release&#34;</span> [<span style="color:#c30">&#34;-s&#34;</span>,<span style="color:#c30">&#34;-d&#34;</span>] <span style="color:#c30">&#34;&#34;</span> <span style="color:#f60">36000</span>
+                    , <span style="color:#078;font-weight:bold">Run</span> <span style="color:#078;font-weight:bold">Date</span> <span style="color:#c30">&#34;%Y %b %_d(%a) %H:%M:%S&#34;</span> <span style="color:#c30">&#34;date&#34;</span> <span style="color:#f60">10</span>
+                    ]
+       , <span style="color:#c0f">sepChar</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c30">&#34;%&#34;</span>
+       , <span style="color:#c0f">alignSep</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c30">&#34;}{&#34;</span>
+       , <span style="color:#c0f">template</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c30">&#34;&lt;fc=#ee9a00&gt;%lsb_release%&lt;/fc&gt; | %cpu% | %memory% %swap% | %eth0% | %battery% }{ %date%&#34;</span>
+       }</code></pre></div>
+<p><code>~/.xmonad/xmonad.hs</code> を作成する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">XMonad</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">XMonad.Hooks.DynamicLog</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">XMonad.Hooks.ManageDocks</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">XMonad.Util.Run</span>(<span style="color:#c0f">spawnPipe</span>)
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">XMonad.Util.EZConfig</span>(<span style="color:#c0f">additionalKeys</span>)
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">System.IO</span>
+
+<span style="color:#c0f">main</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#069;font-weight:bold">do</span>
+        <span style="color:#c0f">xmproc</span> <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#c0f">spawnPipe</span> <span style="color:#c30">&#34;/usr/bin/xmobar /home/mikio/.xmobarrc&#34;</span>  <span style="color:#09f;font-style:italic">-- .xmoabrrcのパスを記述しておく</span>
+        <span style="color:#c0f">xmonad</span> <span style="color:#555">$</span> <span style="color:#c0f">defaultConfig</span>
+             { <span style="color:#c0f">manageHook</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">manageDocks</span> <span style="color:#555">&lt;+&gt;</span> <span style="color:#c0f">manageHook</span> <span style="color:#c0f">defaultConfig</span>
+             , <span style="color:#c0f">layoutHook</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">avoidStruts</span>  <span style="color:#555">$</span>  <span style="color:#c0f">layoutHook</span> <span style="color:#c0f">defaultConfig</span>
+             , <span style="color:#c0f">logHook</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">dynamicLogWithPP</span> <span style="color:#555">$</span> <span style="color:#c0f">xmobarPP</span>
+             { <span style="color:#c0f">ppOutput</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">hPutStrLn</span> <span style="color:#c0f">xmproc</span>
+             , <span style="color:#c0f">ppTitle</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">xmobarColor</span> <span style="color:#c30">&#34;green&#34;</span> <span style="color:#c30">&#34;&#34;</span> <span style="color:#555">.</span> <span style="color:#c0f">shorten</span> <span style="color:#f60">50</span>
+              }
+             , <span style="color:#c0f">modMask</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">mod4Mask</span>     <span style="color:#09f;font-style:italic">-- WindowsキーをModキーとしてバインドする</span>
+          } `<span style="color:#c0f">additionalKeys</span>`
+          [ ((<span style="color:#c0f">mod4Mask</span> <span style="color:#555">.|.</span> <span style="color:#c0f">shiftMask</span>, <span style="color:#c0f">xK_z</span>), <span style="color:#c0f">spawn</span> <span style="color:#c30">&#34;xscreensaver-command -lock&#34;</span>)
+          , ((<span style="color:#c0f">controlMask</span>, <span style="color:#c0f">xK_Print</span>), <span style="color:#c0f">spawn</span> <span style="color:#c30">&#34;sleep 0.2; scrot -s&#34;</span>)
+          , ((<span style="color:#f60">0</span>, <span style="color:#c0f">xK_Print</span>), <span style="color:#c0f">spawn</span> <span style="color:#c30">&#34;scrot&#34;</span>)
+          ]</code></pre></div>
+<p>最低限のコマンド</p>
+
+<table>
+<thead>
+<tr>
+<th>Mod-S-q</th>
+<th>ログアウト</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Mod-S-c</td>
+<td>ウィンドウクローズ</td>
+</tr>
+
+<tr>
+<td>Mod-S-RET</td>
+<td>端末起動</td>
+</tr>
+
+<tr>
+<td>Mod-p</td>
+<td>キーワードランチャー起動</td>
+</tr>
+
+<tr>
+<td>Mod-q</td>
+<td>設定ファイルの再読込</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="xinitrc">xinitrc</h2>
+
+<p>xmodmapの設定とdropboxの読み込みを設定しています。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#555">(</span>sleep <span style="color:#f60">3</span>; xmodmap ~/.xmodmap<span style="color:#555">)</span> &amp;
+~/.dropbox-dist/dropboxd &amp;
+<span style="color:#366">exec</span> xmonad</code></pre></div>
+<h2 id="参考サイト">参考サイト</h2>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/uhiaha888/20110113/1294885816">http://d.hatena.ne.jp/uhiaha888/20110113/1294885816</a></li>
+</ul>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">org-mode でファイルを開くとエラーが発生</h1>
+  
+  <div>
+        <article id="content">
+           <p>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。
+*.orgファイルを開くと、下記のようなエラーが <code>*Message*</code> バッファに表示され、そのファイルが更新された状態になってしまう。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Invalid <span style="color:#069;font-weight:bold">function</span>: org-with-silent-modifications</code></pre></div>
+<p>似たような症状が下記にも報告されている。</p>
+
+<ul>
+<li><a href="http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html">http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html</a></li>
+</ul>
+
+<p>上記スレッドでは、</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">...Emacs -q and reinstalling from elpa...</code></pre></div>
+<p>としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。</p>
+
+<p>かわりにcask管理のorgを取得しなおした。こんな感じ。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/
+$ <span style="color:#366">cd</span> ~/.emacs.d/
+$ cask</code></pre></div>
+<p>その際、バージョンをひとつ前の2.8.6に変更</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#033">source</span> <span style="color:#033">org</span>)
+(<span style="color:#033">depends-on</span> <span style="color:#c30">&#34;org-plus-contrib&#34;</span> <span style="color:#c30">&#34;2.8.6&#34;</span>)</code></pre></div>
+<p>これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。なのでバージョン指定は不要かもしれない。</p>
+
+<p>Caskの指定方法が間違っていたのだろうか？</p>
+
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

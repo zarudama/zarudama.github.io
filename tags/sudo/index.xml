@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sudo on ざる魂</title>
+    <link>https://zarudama.github.io/tags/sudo/</link>
+    <description>Recent content in sudo on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Fri, 08 Nov 2019 20:16:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://zarudama.github.io/tags/sudo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>sudoで環境変数を引き継ぎたい</title>
+      <link>https://zarudama.github.io/post/2012/03/sudo_env_variable/</link>
+      <pubDate>Fri, 08 Nov 2019 20:16:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2012/03/sudo_env_variable/</guid>
+      <description>  &amp;#30446;&amp;#27425;  方法 経過 別解   
+sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。
+方法 -Eオプションを追加する。
+sudo -E ls -la $HOME -Eは実行したいコマンドの直前に置く。
+経過 sudo -u hogeなどで実行すると、sudoを実行したユーザの環境変数が引き継がれない。昔は、こんなこと考えずに引き継がれてた気がするが、どうやらsudoのバージョンが上がって仕様変更されたらしい。
+ http://arika.org/2009/04/24/sudo-and-env  環境変数を引き継ぐためにはvisudoを使ってsudoersファイルに環境変数を記述するのが定石のようだが、/etc配下はできるだけ触りたくない。
+そこで下記の方法を見つけた。-Eをつけるだけで良いらしい。
+ http://d.hatena.ne.jp/Yudoufu/20110326/1301129885  ただし、man sudo しても-Eオプションは何故か載っていなかった。（manにないだけで実際には使用できる。)
+manの最後にver1.6.6とあるのでマニュアルが古いと思われる。 sudo[Enter]で表示されるUsageにはEオプションは存在するので。
+別解 -u オプションを使用して別ユーザーとしてsudoを実行したい場合、そのユーザーの .bashrc や /etc/profile に定義してある設定を使用したい場合がある。そんなときは、-i オプションを使用すれば良い。
+sudo -u taro -i env</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,81 +6,68 @@
     <description>Recent content in java on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 23 Dec 2012 14:01:39 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 20:03:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築</title>
-      <link>https://zarudama.github.io/posts/parma-link/emacsjdeejava/</link>
-      <pubDate>Sun, 23 Dec 2012 14:01:39 +0900</pubDate>
+      <title>javapコマンドを使ってみた。</title>
+      <link>https://zarudama.github.io/post/2012/06/javap_use/</link>
+      <pubDate>Fri, 08 Nov 2019 20:03:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/emacsjdeejava/</guid>
-      <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
-追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
-そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
- また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。 http://sourceforge.net/mailarchive/message.php?msg_id=30783951  はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
-ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、 なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。
-で、やっぱりJDEEがいいということで、苦労の末、 最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。
-今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。 今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。
-   インポート文の自動生成 JDEE   Javadoc表示 JDEE + w3m   ビルド JDEE + ant   デバッガ JDEE + jdb   REPLぽいもの JDEE(BeanShell)   コードスニペット Yasnippet   タグジャンプ gtags(global)   メソッド補完 helm-jdee-method(拙作)    まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、 「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。</description>
-    </item>
-    
-    <item>
-      <title>GCの発生頻度などの調査</title>
-      <link>https://zarudama.github.io/posts/jvm_gcutil/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/jvm_gcutil/</guid>
-      <description>GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
-まずはプロセスIDを調べる。例としてtomcatの場合。
-$ sudo -u tomcat jps -v  tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
-javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
-$ pgrep -lf java  PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
-jstat -gcutil -t 123456 3000  意味は以下のとおり。
-jstat &amp;lt;出力オプション&amp;gt; &amp;lt;プロセスID&amp;gt; &amp;lt;データ取得間隔(ms)&amp;gt; -t タイムスタンプを出力 -gcutil GCの統計情報  jstatのマニュアルは以下。
- http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
-Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出しは以下のルールになる
-   S* Suviver    E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間    GCについては、下記が詳しい。</description>
-    </item>
-    
-    <item>
-      <title>JVMのヒープサイズと変更方法</title>
-      <link>https://zarudama.github.io/posts/jvm_mem/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/jvm_mem/</guid>
-      <description>稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
-JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、 初期割り当てのヒープサイズが異なる。
-サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
-$ java -version java version &amp;quot;*****&amp;quot; Java(TM) SE Runtime Environment (build ******) Java HotSpot(TM) Server VM (build ******)  Severモードの場合は、 Server の表記があるはず。
- サーバーモード | 初期ヒープサイズ | マシンの物理メモリーの 1/64 か、妥当な最小サイズかの大きい方。 | | 最大ヒープサイズ | 物理メモリーの 1/4 か、1GB かの小さい方。 | http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html  JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
-$ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.0 137152.0 0.</description>
+      <guid>https://zarudama.github.io/post/2012/06/javap_use/</guid>
+      <description>Javaは *.java から *.class を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。これをエディタで閲覧できる状態にするには、jdkに標準搭載されているjavapコマンドを使用しすれば良い。
+例えばhogeというパッケージにあるFuga.javaがあるとする。
+package hoge; public class Fuga { public static void main(String[] args) { System.out.println(&amp;#34;Hello Javap!&amp;#34;); } } これをコンパイルした結果をjavapで見たい時は、以下のようなコマンドを叩けばいい。このときhoge.Fugaクラスはhoge/Fuga.lcassというディレクトリ構造になければならない。
+javap -c hoge.Fuga &amp;gt; Fuga.code Fuga.codeは以下のようになる。
+Compiled from &amp;#34;Fuga.java&amp;#34; public class hoge.Fuga { public hoge.Fuga(); Code: 0: aload_0 1: invokespecial #1 // Method java/lang/Object.&amp;#34;&amp;lt;init&amp;gt;&amp;#34;:()V  4: return public static void main(java.lang.String[]); Code: 0: getstatic #2 // Field java/lang/System.out:Ljava/io/PrintStream;  3: ldc #3 // String Hello Javap!  5: invokevirtual #4 // Method java/io/PrintStream.</description>
     </item>
     
     <item>
       <title>Javaでカンマ区切りの数字を出力する。</title>
-      <link>https://zarudama.github.io/posts/parma-link/java/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://zarudama.github.io/post/2012/05/java_comma_print/</link>
+      <pubDate>Fri, 08 Nov 2019 20:01:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/java/</guid>
+      <guid>https://zarudama.github.io/post/2012/05/java_comma_print/</guid>
       <description>下記のとおり。
-int value = 99999999; String.format(&#34;%1$,3d円&#34;, value); // = 99,999,999円;
- この場合「%1$,3d」が書式になる。 %は書式の開始を示す。 1$は引数のインデックスを示す。ひとつの引数を使い回すときなどに必要。今回の場合はひとつなので無くても良い。 ,は区切りたい文字 3 は区切りたい桁 d は引数が数字(デシマル)を示す。  </description>
+int value = 99999999; String.format(&amp;#34;%1$,3d円&amp;#34;, value); // =&amp;gt; 99,999,999円; この場合「%1$,3d」が書式になる。
+ %は書式の開始を示す。 1$は引数のインデックスを示す。ひとつの引数を使い回すときなどに必要。今回の場合はひとつなので無くても良い。 ,は区切りたい文字 3 は区切りたい桁 d は引数が数字(デシマル)を示す。  </description>
     </item>
     
     <item>
-      <title>avapコマンドを使ってみた。</title>
-      <link>https://zarudama.github.io/posts/parma-link/javap/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>JVMのヒープサイズと変更方法</title>
+      <link>https://zarudama.github.io/post/2014/03/java_jvm_heap/</link>
+      <pubDate>Fri, 08 Nov 2019 17:12:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/javap/</guid>
-      <description>Javaは *.java から *.class を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。 これをエディタで閲覧できる状態にするには、jdkに標準搭載されているjavapコマンドを使用しすれば良い。
-例えばhogeというパッケージにあるFuga.javaがあるとする。
-package hoge; public class Fuga { public static void main(String[] args) { System.out.println(&amp;quot;Hello Javap!&amp;quot;); } }  これをコンパイルした結果をjavapで見たい時は、以下のようなコマンドを叩けばいい。 このときhoge.Fugaクラスはhoge/Fuga.lcassというディレクトリ構造になければならない。
-javap -c hoge.Fuga &amp;gt; Fuga.code  Fuga.codeは以下のようになる。
-Compiled from &amp;quot;Fuga.java&amp;quot; public class hoge.Fuga { public hoge.Fuga(); Code: 0: aload_0 1: invokespecial #1 // Method java/lang/Object.&amp;quot;&amp;lt;init&amp;gt;&amp;quot;:()V 4: return public static void main(java.lang.String[]); Code: 0: getstatic #2 // Field java/lang/System.out:Ljava/io/PrintStream; 3: ldc #3 // String Hello Javap!</description>
+      <guid>https://zarudama.github.io/post/2014/03/java_jvm_heap/</guid>
+      <description>&amp;#30446;&amp;#27425;  JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考   
+稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
+JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、初期割り当てのヒープサイズが異なる。
+サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
+$ java -version java version &amp;#34;*****&amp;#34; Java(TM) SE Runtime Environment (build ******) Java HotSpot(TM) Server VM (build ******) Severモードの場合は、 Server の表記があるはず。
+サーバーモード
+   初期ヒープサイズ マシンの物理メモリーの 1&amp;frasl;64 か、妥当な最小サイズかの大きい方。     最大ヒープサイズ 物理メモリーの 1&amp;frasl;4 か、1GB かの小さい方。     http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html  JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
+$ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.</description>
+    </item>
+    
+    <item>
+      <title>GCの発生頻度などの調査</title>
+      <link>https://zarudama.github.io/post/2014/03/java_gc/</link>
+      <pubDate>Fri, 08 Nov 2019 17:10:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/03/java_gc/</guid>
+      <description>&amp;#30446;&amp;#27425;  メモリ使用量を確認したいとき   
+GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
+まずはプロセスIDを調べる。例としてtomcatの場合。
+$ sudo -u tomcat jps -v tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
+javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
+$ pgrep -lf java PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
+jstat -gcutil -t 123456 3000 意味は以下のとおり。
+jstat &amp;lt;出力オプション&amp;gt; &amp;lt;プロセスID&amp;gt; &amp;lt;データ取得間隔(ms)&amp;gt; -t タイムスタンプを出力 -gcutil GCの統計情報 jstatのマニュアルは以下。
+ http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
+Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT gcutilの見出しは以下のルールになる
+   S* Suviver      E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間    GCについては、下記が詳しい。</description>
     </item>
     
   </channel>

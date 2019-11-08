@@ -6,98 +6,66 @@
     <description>Recent content in ubuntu on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 07 Aug 2013 14:01:39 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 20:38:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>ubuntuでxmonadして、emacsでProcessingしてます</title>
-      <link>https://zarudama.github.io/posts/parma-link/ubuntuxmonademacsprocessing/</link>
-      <pubDate>Wed, 07 Aug 2013 14:01:39 +0900</pubDate>
+      <title>xmonadを試す</title>
+      <link>https://zarudama.github.io/post/2012/09/xmonad_use/</link>
+      <pubDate>Fri, 08 Nov 2019 20:38:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/ubuntuxmonademacsprocessing/</guid>
-      <description>最近Processingをいじり始めました。
-http://mikio.github.io/img/processing/xmonad.png
-上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
+      <guid>https://zarudama.github.io/post/2012/09/xmonad_use/</guid>
+      <description>&amp;#30446;&amp;#27425;  インストールメモ xinitrc 参考サイト   
+CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれてみました。
+ http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124  タイル型のウィンドウマネージャです。常にウィンドウ全てが一覧されるやつです。インストールしてみて実感しましたがタイル型はとーっても快適です。普段からemacsでキーボード操作メインのユーザだったらすぐに気にいるかと思います。とくにウィンドウ切り替えが Mod+j/k でできるのがイイ! (それに比べて WindowsのALT+tabは左手の手首が死ぬ。。。)
+今回、Xmonadというのをインストールしましたが、老舗のawesomeというのも人気があるそうです。ただXmonadの方が後発である分いろいろブラッシュアップされてるような印象でした。問題は設定ファイルがHaskellってことですかね。できれば覚えたくないですよね。いやHaskellは勉強して動かしたことはありますが、今はLisp系言語を覚え中なので他の言語はできるだけ気にせず脳の負担を増やしたくないのです。そういう意味で気になるのは、設定フィアルがCommonLispであるstumpwm。そのうち試したいと思います。
+しかしタイル型使ってると、UnityとかgnomuShellの動向がどうでもよくなりますな。
+インストールメモ $ sudo apt-get install xmonad $ sudo apt-get install dmenu # キーボードランチャー $ sudo apt-get install xmobar # ステータスバー xmorbar用の設定ファイル( ~/.xmobarrc )を作成する。
+-- -*- mode:haskell -*- Config { font = &amp;#34;xft:Sans-9:bold&amp;#34; , bgColor = &amp;#34;black&amp;#34; , fgColor = &amp;#34;grey&amp;#34; , position = Top , lowerOnStart = False , commands = [ Run Network &amp;#34;eth0&amp;#34; [&amp;#34;-L&amp;#34;,&amp;#34;0&amp;#34;,&amp;#34;-H&amp;#34;,&amp;#34;32&amp;#34;,&amp;#34;--normal&amp;#34;,&amp;#34;green&amp;#34;,&amp;#34;--high&amp;#34;,&amp;#34;red&amp;#34;] 10 , Run Cpu [&amp;#34;-L&amp;#34;,&amp;#34;3&amp;#34;,&amp;#34;-H&amp;#34;,&amp;#34;50&amp;#34;,&amp;#34;--normal&amp;#34;,&amp;#34;green&amp;#34;,&amp;#34;--high&amp;#34;,&amp;#34;red&amp;#34;] 10 , Run Memory [&amp;#34;-t&amp;#34;,&amp;#34;Mem: &amp;lt;usedratio&amp;gt;%&amp;#34;] 10 , Run Swap [] 10 , Run Battery [] 600 , Run Com &amp;#34;lsb_release&amp;#34; [&amp;#34;-s&amp;#34;,&amp;#34;-d&amp;#34;] &amp;#34;&amp;#34; 36000 , Run Date &amp;#34;%Y %b %_d(%a) %H:%M:%S&amp;#34; &amp;#34;date&amp;#34; 10 ] , sepChar = &amp;#34;%&amp;#34; , alignSep = &amp;#34;}{&amp;#34; , template = &amp;#34;&amp;lt;fc=#ee9a00&amp;gt;%lsb_release%&amp;lt;/fc&amp;gt; | %cpu% | %memory% %swap% | %eth0% | %battery% }{ %date%&amp;#34; } ~/.</description>
+    </item>
+    
+    <item>
+      <title>ubuntuでxmonadして、emacsでProcessingしてます</title>
+      <link>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</link>
+      <pubDate>Fri, 08 Nov 2019 20:25:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
+      <description>&amp;#30446;&amp;#27425;  processing のおすすめポイント  processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、androidモードがある。 emacsでprocessing xmonadでprocessing    
+最近Processingをいじり始めました。
+  &amp;#22259;1: Ubuntu上のXmonadでemacs使ってProcessingしてるところ
+  上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
 ちょろっと作った
-&amp;lt;p&amp;gt; &amp;lt;a href=&amp;quot;/processings/hello/&amp;quot;&amp;gt;テストプログラム&amp;lt;/a&amp;gt; &amp;lt;/p&amp;gt;  Javascriptモードで出力しました。こんなのが簡単に作れます。
-日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。 最大のきっかけとなったのは下記の本を手にしたからです。
-&amp;lt;p&amp;gt; &amp;lt;a href=&amp;quot;http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=4798038644&amp;amp;linkCode=as2&amp;amp;tag=ocha04-22&amp;quot;&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=4798038644&amp;amp;Format=_SL160_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=JP&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=ocha04-22&amp;quot; &amp;gt;&amp;lt;/a&amp;gt;&amp;lt;img src=&amp;quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;amp;l=as2&amp;amp;o=9&amp;amp;a=4798038644&amp;quot; width=&amp;quot;1&amp;quot; height=&amp;quot;1&amp;quot; border=&amp;quot;0&amp;quot; alt=&amp;quot;&amp;quot; style=&amp;quot;border:none !important; margin:0px !important;&amp;quot; /&amp;gt; &amp;lt;/p&amp;gt;  この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。 事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。 実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
-初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、 データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。 自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
-特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。 プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、 この本はデータ作成にも多くのページを割いて解説しています。 また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
-processing のおすすめポイント processingは実はjavaである。 文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。 でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。 実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。
-Processingをイメージで簡単に説明すると、「Processingという巨大なクラスがあって、 このメソッドがグローバルな関数に見立てたAPIとなっていて、PDEという独自IDEによってあたかもグローバル関数や変数を簡単に定義できるようになっている。 PDEのおかげで、javaのパスとかメインクラスの作成とか面倒なことを考えずすぐに再生ボタンで実行できる環境」ってことになります (間違ってたらすみません)。 なのでJavaを実際に始める前にProcessingから入るというのは非常に有効な手段かと思います。
+ テストプログラム
+
+Javascriptモードで出力しました。こんなのが簡単に作れます。
+日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。最大のきっかけとなったのは下記の本を手にしたからです。
+ &amp;rdquo;&amp;gt;&amp;rdquo; &amp;gt;&amp;rdquo; /&amp;gt;
+
+この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
+初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
+特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、この本はデータ作成にも多くのページを割いて解説しています。また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
+processing のおすすめポイント processingは実はjavaである。 文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。
+Processingをイメージで簡単に説明すると、「Processingという巨大なクラスがあって、このメソッドがグローバルな関数に見立てたAPIとなっていて、PDEという独自IDEによってあたかもグローバル関数や変数を簡単に定義できるようになっている。 PDEのおかげで、javaのパスとかメインクラスの作成とか面倒なことを考えずすぐに再生ボタンで実行できる環境」ってことになります (間違ってたらすみません)。なのでJavaを実際に始める前にProcessingから入るというのは非常に有効な手段かと思います。
 インストールが超簡単。 ダウンロードして展開するだけです。Java実行環境は同梱されてるので別途インストールする必要がありません。
-複数のプラットホームに対応している。 作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。 出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。
+複数のプラットホームに対応している。 作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。
 HTMLモード、androidモードがある。 昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。
-emacsでprocessing  結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。 問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。 emacsからもProcessingを使えます。下記を参考にしました。 http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、 エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</description>
+結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
+emacsでprocessing emacsからもProcessingを使えます。下記を参考にしました。
+ http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</description>
     </item>
     
     <item>
       <title>Ubuntu Server インストール時に前回作ったLVMが削除できなかった。</title>
-      <link>https://zarudama.github.io/posts/parma-link/ubuntu-server-lvm/</link>
-      <pubDate>Sun, 30 Dec 2012 14:01:39 +0900</pubDate>
+      <link>https://zarudama.github.io/post/2012/05/ubuntu_install/</link>
+      <pubDate>Fri, 08 Nov 2019 20:23:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/ubuntu-server-lvm/</guid>
+      <guid>https://zarudama.github.io/post/2012/05/ubuntu_install/</guid>
       <description>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら VGやLVMが削除できなくて先に進めなくなった。
 この状態を回避するには、 まず ALT+F2 でコンソールを切り替える。 Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 ALT + F1 - F4 で切り替えられるのだ。
 まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。
-$ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ}  で削除できる。 この時、swap領域に割り当てたものが削除できない場合があるが その時は、いったんインストール作業を中断してやり直せばよい。</description>
-    </item>
-    
-    <item>
-      <title>(超個人的)Ubuntuインストール後にやることまとめ</title>
-      <link>https://zarudama.github.io/posts/parma-link/ubuntu/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/parma-link/ubuntu/</guid>
-      <description>Ubuntu12.04LTS版です。
-最初にやること ホーム配下のディレクトリリネーム ホーム配下のディレクトリが日本語になっているので早々に英語化する。
-LANG=C xdg-user-dirs-gtk-update
-update 最初は、メニューがところどころ日本語になっていなかったりする。 なにはともあれアップデートマネージャで最新にアップデートする。
-端末の設定 IME起動ショートカットの変更  [Windwoskキー] - [gnome-terminal] [メニュー] - [編集] - [キーボードショートカット]  すべてチェックを外しておく [右上のパネル（キーボード）] - [設定] - [一般] タブ [キーボードショットカット] - [切り替え]  [Zenkaku_Hankaku]だけにする  xmodmapによるキーマッピング 下記を参考にした。 http://d.hatena.ne.jp/kenbeese/20120214/title
-~/.Xmodmapを作成する。
-keycode 102 = Control_L keycode 100 = Control_L keycode 101 = Shift_L
-keycode 66 = Control_L NoSymbol Control_L clear Lock
-add Control = Control_L
-反映
-xmodmap ~/.xmodmap
-これにより下記の割り当てになる。
-無変換(102)→ctrl 変換(keycode 100)→ctrl カタカナひらがな(101)→shift</description>
-    </item>
-    
-    <item>
-      <title>Ubuntu 12.04 LTS On ZENBOOK UX21E</title>
-      <link>https://zarudama.github.io/posts/parma-link/ubuntu-1204-lts-on-zenbook-ux21e/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/parma-link/ubuntu-1204-lts-on-zenbook-ux21e/</guid>
-      <description>メインで使用していたノートが3年になるのでZENBOOKを買った。 次期モデルの噂も出始めてはいるが、いつになるかもわからないし、欲しいときが買いどきということで購入。
-ubuntuもほとんどそのままの状態で大体の機能が使えている。
-http://mikio.github.io/img/ubuntu-ux21e-640-480.jpg
- 以下を参考にした。 https://help.ubuntu.com/community/AsusZenbook  インストール後の設定は別エントリにまとめている。
-事前に2chや価格comで情報収集していたが、感想としてはやはりキーボードの打ちにくさが一番気になった。 他のキーボードを使わずに、このノートだけを使いつづければ、多分慣れてし まって、なんとも思わなくなるんだろう。 けれども自分の場合、会社ではロジクールの打ちやすいキーボードを使用して いるので凄く気になってしまう。。。
-つぎにヒンジ。自分が丁度いいと思う角度で止めようと思っても、 自重でトルクがかかってパカっと最大まで開いてしまう。 普段大きな問題となることないが、地味に痛い。ただし固体差もあるだろうか ら大丈夫な人もいるかと思う。
-トラックパッドについては言われていたほど誤タッチもなく割と快適。キーボー ドメインの操作のときはF9を押下すればオフにできるしね。
-液晶については、視野角が狭く見づらいという意見があったが、自分は特に気にならない。 動画鑑賞メインとかビジュアル系の用途には多分よわいだろう。自分の場合は プログラミングなので大丈夫かと。
-バッテリーのもちに関してはまだ計測したわではないのでわからないがあまり 期待できないだろう。もって3時間てところか？
-不満が多いエントリになってしまったが、全般としては、かなり満足している。 とても静かだし、薄くて軽い。なによりさくさく動く。
-次期モデルは、オプションとしてIPSと高解像度化が図られるとのことだが それに加えてキーボードとヒンジの問題が改善されればかなり使いやすくなると思う。</description>
-    </item>
-    
-    <item>
-      <title>xmonadを試す</title>
-      <link>https://zarudama.github.io/posts/parma-link/xmonad/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/parma-link/xmonad/</guid>
-      <description>CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、 自宅のUbuntuにXmonadをいれてみました。
- http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124  タイル型のウィンドウマネージャです。常にウィンドウ全てが一覧されるやつです。 インストールしてみて実感しましたがタイル型はとーっても快適です。 普段からemacsでキーボード操作メインのユーザだったらすぐに気にいるかと思います。 とくにウィンドウ切り替えが Mod+j/k でできるのがイイ! (それに比べて WindowsのALT+tabは左手の手首が死ぬ。。。)
-今回、Xmonadというのをインストールしましたが、老舗のawesomeというのも人気があるそうです。 ただXmonadの方が後発である分いろいろブラッシュアップされてるような印象でした。 問題は設定ファイルがHaskellってことですかね。できれば覚えたくないですよね。 いやHaskellは勉強して動かしたことはありますが、 今はLisp系言語を覚え中なので他の言語はできるだけ気にせず脳の負担を増やしたくないのです。 そういう意味で気になるのは、設定フィアルがCommonLispであるstumpwm。そのうち試したいと思います。
-しかしタイル型使ってると、UnityとかgnomuShellの動向がどうでもよくなりますな。
-インストールメモ $ sudo apt-get install xmonad $ sudo apt-get install dmenu # キーボードランチャー $ sudo apt-get install xmobar # ステータスバー  xmorbar用の設定ファイル( ~/.xmobarrc )を作成する。
--- -*- mode:haskell -*- Config { font = &amp;quot;xft:Sans-9:bold&amp;quot; , bgColor = &amp;quot;black&amp;quot; , fgColor = &amp;quot;grey&amp;quot; , position = Top , lowerOnStart = False , commands = [ Run Network &amp;quot;eth0&amp;quot; [&amp;quot;-L&amp;quot;,&amp;quot;0&amp;quot;,&amp;quot;-H&amp;quot;,&amp;quot;32&amp;quot;,&amp;quot;--normal&amp;quot;,&amp;quot;green&amp;quot;,&amp;quot;--high&amp;quot;,&amp;quot;red&amp;quot;] 10 , Run Cpu [&amp;quot;-L&amp;quot;,&amp;quot;3&amp;quot;,&amp;quot;-H&amp;quot;,&amp;quot;50&amp;quot;,&amp;quot;--normal&amp;quot;,&amp;quot;green&amp;quot;,&amp;quot;--high&amp;quot;,&amp;quot;red&amp;quot;] 10 , Run Memory [&amp;quot;-t&amp;quot;,&amp;quot;Mem: &amp;lt;usedratio&amp;gt;%&amp;quot;] 10 , Run Swap [] 10 , Run Battery [] 600 , Run Com &amp;quot;lsb_release&amp;quot; [&amp;quot;-s&amp;quot;,&amp;quot;-d&amp;quot;] &amp;quot;&amp;quot; 36000 , Run Date &amp;quot;%Y %b %_d(%a) %H:%M:%S&amp;quot; &amp;quot;date&amp;quot; 10 ] , sepChar = &amp;quot;%&amp;quot; , alignSep = &amp;quot;}{&amp;quot; , template = &amp;quot;&amp;lt;fc=#ee9a00&amp;gt;%lsb_release%&amp;lt;/fc&amp;gt; | %cpu% | %memory% %swap% | %eth0% | %battery% }{ %date%&amp;quot; }  ~/.</description>
+$ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ} で削除できる。この時、swap領域に割り当てたものが削除できない場合があるがその時は、いったんインストール作業を中断してやり直せばよい。</description>
     </item>
     
   </channel>

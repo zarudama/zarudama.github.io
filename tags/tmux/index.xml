@@ -6,53 +6,38 @@
     <description>Recent content in tmux on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 21 Jun 2014 14:01:39 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 20:18:00 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/tmux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>tmux セッションの保存方法</title>
+      <link>https://zarudama.github.io/post/2012/02/tmux_session/</link>
+      <pubDate>Fri, 08 Nov 2019 20:18:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2012/02/tmux_session/</guid>
+      <description>&amp;#30446;&amp;#27425;  その他参考にしたもの   
+下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。
+ http://www.gcd.org/blog/2006/09/100/   agent=&amp;#34;$HOME/tmp/ssh-agent-$USER&amp;#34; if [ -S &amp;#34;$SSH_AUTH_SOCK&amp;#34; ]; then case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*) ln -snf &amp;#34;$SSH_AUTH_SOCK&amp;#34; $agent &amp;amp;&amp;amp; export SSH_AUTH_SOCK=$agent esac elif [ -S $agent ]; then export SSH_AUTH_SOCK=$agent else echo &amp;#34;no ssh-agent&amp;#34; fi testコマンドのSオプションは以下のとおり。
+-S FILE FILE exists and is a socket やっていることは、直接参照する$SSH_AUTH_SOCKは固定のパスにしてしまい、ログインごとに変わるUNIXドメインソケットはシンボリックリンクで指し示すようにしている。
+その他参考にしたもの  http://hibari.2ch.net/test/read.cgi/unix/1268778432/   84 ：名無しさん＠お腹いっぱい。：2010/11/02(火) 15:34:12 screenと違って、アタッチ時に環境変数SSH_AUTH_SOCKを新しい値に更新してくれるのは 嬉しいんだけど、それが実際シェルに反映されるのは、新しいシェルを追加した時だけだよね？ デタッチ前から動いてるシェルのSSH_AUTH_SOCKを自動的に更新する事って出来る？ 87 ：名無しさん＠お腹いっぱい。：2010/11/21(日) 07:31:25 &amp;gt;&amp;gt;84 シェル側の適当なフックで、親プロセスの環境変数を調べるとか。 88 ：名無しさん＠お腹いっぱい。：2010/11/24(水) 16:56:11 &amp;gt;&amp;gt;84 こんなのしてる： sc() { if [ -n &amp;#34;$TMUX&amp;#34; ]; then unset $(tmux show-env | sed -n &amp;#39;s/^-//p&amp;#39;) eval export $(tmux show-env | sed -n &amp;#39;s/$/&amp;#34;/; s/=/=&amp;#34;/p&amp;#39;) else tmux -u start \; attach \; $@; fi } これでとにかくscって打てばアタッチするし、アタッチ済なら アタッチ前シェルの環境を取り込んでくる。 show-envはshow-environmentのエイリアスで、-で始まる環境変数はシステムから削除されたものらしい。</description>
+    </item>
+    
+    <item>
       <title>cygwinにtmuxを導入</title>
-      <link>https://zarudama.github.io/posts/cygwin-tmux/</link>
-      <pubDate>Sat, 21 Jun 2014 14:01:39 +0900</pubDate>
+      <link>https://zarudama.github.io/post/2014/06/cygwin_tmux/</link>
+      <pubDate>Fri, 08 Nov 2019 17:01:00 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/cygwin-tmux/</guid>
-      <description>はじめに Cygwinでは、長らくtmuxが使えなかったのですが、 最近tmuxが正式にCygwinをサポートしたようです。
+      <guid>https://zarudama.github.io/post/2014/06/cygwin_tmux/</guid>
+      <description>&amp;#30446;&amp;#27425;  はじめに インストール方法 翌日、なぜか起動しなくなった。   
+はじめに Cygwinでは、長らくtmuxが使えなかったのですが、最近tmuxが正式にCygwinをサポートしたようです。
 コンパイルしてインストールするため、依存するライブラリが必要です。
-2014/06/23 追記
-apt-cyg は、最新版を利用すれば問題ありません。
-apt-cygを事前にイストールしておけば簡単ですが、+ +最新のCygwinでは、apt-cygがすんなり動きません。
 インストール方法 apt-cygで事前に必要なパッケージをインストールしておく。
-$ apt-cyg install ncurses $ apt-cyg install libncurses-devel $ apt-cyg install libevent-devel $ apt-cyg install pkg-config autoconf automake $ apt-cyg install make gcc-core  あとは参考サイトにあるとおりでオッケー。
-$ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code $ cd tmux-tmux-code/ $ ./autogen.sh $ CFLAGS=&amp;quot;-I/usr/include/ncurses&amp;quot; ./configure --prefix=/usr $ make &amp;amp;&amp;amp; make install  参考
+$ apt-cyg install ncurses $ apt-cyg install libncurses-devel $ apt-cyg install libevent-devel $ apt-cyg install pkg-config autoconf automake $ apt-cyg install make gcc-core あとは参考サイトにあるとおりでオッケー。
+$ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code $ cd tmux-tmux-code/ $ ./autogen.sh $ CFLAGS=&amp;#34;-I/usr/include/ncurses&amp;#34; ./configure --prefix=/usr $ make &amp;amp;&amp;amp; make install 参考
  http://atdxfe.hatenablog.com/entry/2013/11/27/031058 http://java.ociweb.com/mark/programming/tmuxInCygwin.html  翌日、なぜか起動しなくなった。 後日、起動時に下記のエラーが発生
-$ tmux failed to connect to server: No error  .</description>
-    </item>
-    
-    <item>
-      <title>apt-cygがうまくいかなくなった。</title>
-      <link>https://zarudama.github.io/posts/apt-cyg-bug/</link>
-      <pubDate>Fri, 20 Jun 2014 14:01:39 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/apt-cyg-bug/</guid>
-      <description>はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。 これは、ubuntuでいう apt-get のようなものです。標準のsetup.exeはGUIベースで 操作が面倒なので、apt-cygを導入すると非常に捗ります。
-2014/06/23 追記 ここから
-最新のapt-cygでは、下記の問題は全て解決されています。 古いapt-cygを利用してる方は、最新のapt-cygをチェックしてください。 (間違った内容の記事を載せてしまいました。申し訳ありません)
-2014/06/23 追記 ここまで
-そんなapt-cygですが、最近は更新が滞ってるらしく、最新のCygwinではうまく動きません。
- 2013/08にリポジトリパスの変更があった それに伴い、apt-cygが動かなくなった。 さらに2013/10時点で、リポジトリ内のアーカイブ内のフォーマットの変更もあった模様 tar.bz2から、tar.xzなどに変更になった模様。詳細は不明。 インストールできるパッケージとできないパッケージが発生。 上記変更点をサポートするapt-cygは以下(本家はメンテされていない。。。) https://github.com/zship/apt-cyg  といった感じです。
-対応方法 2014/06/23 追記
-対応方法は、本家最新版を利用すれば問題ありませんので、削除しました。</description>
-    </item>
-    
-    <item>
-      <title>cygwin経由で表示したtmuxの分割罫線が表示崩れする</title>
-      <link>https://zarudama.github.io/posts/parma-link/cygwintmux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://zarudama.github.io/posts/parma-link/cygwintmux/</guid>
-      <description>最初Cygwinのバージョンが古いからかなと思ってバージョンアップしても改善 せず、ならばとtmuxのバージョンを最新にしても直らず、結局cyg-terminalの オプションでTextの設定を下記のように変更したら、表示崩れが解消した。
-変更前 Locale:JA_jp CharacterSet:UTF-8 変更後 Locale:C CharacterSet:UTF-8  </description>
+$ tmux failed to connect to server: No error .</description>
     </item>
     
   </channel>

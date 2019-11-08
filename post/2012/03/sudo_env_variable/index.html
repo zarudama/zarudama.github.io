@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>ざる魂</title>
+
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+
+
+
+
+     <link rel="stylesheet" href="/css/layouts/side-menu.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<body>
+        <div id="layout">
+<a href="#menu" id="menuLink" class="menu-link">
+    
+    <span></span>
+</a>
+
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="/">ホーム</a>
+        <a class="pure-menu-heading" href="/search">全文検索</a>
+        
+        <ul>
+            <li><a href="/tags/android">android</a> (1)
+            <li><a href="/tags/awk">awk</a> (1)
+            <li><a href="/tags/clojure">clojure</a> (6)
+            <li><a href="/tags/cygwin">cygwin</a> (3)
+            <li><a href="/tags/emacs">emacs</a> (12)
+            <li><a href="/tags/evil">evil</a> (1)
+            <li><a href="/tags/find">find</a> (1)
+            <li><a href="/tags/firefox">firefox</a> (1)
+            <li><a href="/tags/game">game</a> (1)
+            <li><a href="/tags/git">git</a> (1)
+            <li><a href="/tags/java">java</a> (4)
+            <li><a href="/tags/jvm">jvm</a> (2)
+            <li><a href="/tags/keyboard">keyboard</a> (1)
+            <li><a href="/tags/libgdx">libgdx</a> (6)
+            <li><a href="/tags/linux">linux</a> (2)
+            <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/processing">processing</a> (1)
+            <li><a href="/tags/skk">skk</a> (2)
+            <li><a href="/tags/stack">stack</a> (10)
+            <li><a href="/tags/sudo">sudo</a> (1)
+            <li><a href="/tags/thinkpad">thinkpad</a> (1)
+            <li><a href="/tags/tmux">tmux</a> (2)
+            <li><a href="/tags/ubuntu">ubuntu</a> (3)
+            <li><a href="/tags/vim">vim</a> (1)
+            <li><a href="/tags/windows">windows</a> (4)
+            <li><a href="/tags/xmonad">xmonad</a> (2)
+        </ul>
+    </div>
+</div>
+<div id="main" class="markdown-body">
+<div class="content">
+<section id="main">
+  <h1 id="title">sudoで環境変数を引き継ぎたい</h1>
+  
+  <div>
+        <article id="content">
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
+<ul>
+<li><a href="#方法">方法</a></li>
+<li><a href="#経過">経過</a></li>
+<li><a href="#別解">別解</a></li>
+</ul>
+
+<p></div>
+<!--endtoc--></p>
+
+<p>sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。</p>
+
+<h2 id="方法">方法</h2>
+
+<p>-Eオプションを追加する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo -E ls -la <span style="color:#033">$HOME</span></code></pre></div>
+<p>-Eは実行したいコマンドの直前に置く。</p>
+
+<h2 id="経過">経過</h2>
+
+<p>sudo -u hogeなどで実行すると、sudoを実行したユーザの環境変数が引き継がれない。昔は、こんなこと考えずに引き継がれてた気がするが、どうやらsudoのバージョンが上がって仕様変更されたらしい。</p>
+
+<ul>
+<li><a href="http://arika.org/2009/04/24/sudo-and-env">http://arika.org/2009/04/24/sudo-and-env</a></li>
+</ul>
+
+<p>環境変数を引き継ぐためにはvisudoを使ってsudoersファイルに環境変数を記述するのが定石のようだが、/etc配下はできるだけ触りたくない。</p>
+
+<p>そこで下記の方法を見つけた。-Eをつけるだけで良いらしい。</p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/Yudoufu/20110326/1301129885">http://d.hatena.ne.jp/Yudoufu/20110326/1301129885</a></li>
+</ul>
+
+<p>ただし、man sudo しても-Eオプションは何故か載っていなかった。（manにないだけで実際には使用できる。)</p>
+
+<p>manの最後にver1.6.6とあるのでマニュアルが古いと思われる。
+sudo[Enter]で表示されるUsageにはEオプションは存在するので。</p>
+
+<h2 id="別解">別解</h2>
+
+<p>-u オプションを使用して別ユーザーとしてsudoを実行したい場合、そのユーザーの <code>.bashrc</code> や <code>/etc/profile</code> に定義してある設定を使用したい場合がある。そんなときは、-i オプションを使用すれば良い。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo -u taro -i env</code></pre></div>
+        </article>
+  </div>
+</section>
+
+
+                </div>
+            </div></div>
+        <script src="/js/ui.js"></script>
+    </body>
+</html>

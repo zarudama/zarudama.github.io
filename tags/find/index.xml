@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>find on ざる魂</title>
+    <link>https://zarudama.github.io/tags/find/</link>
+    <description>Recent content in find on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Fri, 08 Nov 2019 17:08:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://zarudama.github.io/tags/find/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>特定の日付より古いファイルを削除する方法</title>
+      <link>https://zarudama.github.io/post/2014/03/linux_find/</link>
+      <pubDate>Fri, 08 Nov 2019 17:08:00 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/post/2014/03/linux_find/</guid>
+      <description>&amp;#30446;&amp;#27425;  答え 解説 ついでに日数指定の復習  timeの意味 TODO 日数の指定  参考   
+例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。
+  findがすぐに思いつくが、findには日付指定のオプションが見あたらない。
+答え touchでダミーファイルを作って、findのnewerオプションと否定演算子を使い、xargsとrmで削除する。
+$ touch -t 201303030000 /tmp/hoge $ find /usr/local/apache/logs \! -newer /tmp/hoge|sort|less 中身を確認して問題なさそうなら
+$ find /usr/local/apache/logs \! -newer /tmp/hoge|xargs rm 解説 普通に考えると find を使って -mtime などで日数を指定する。
+$ find /usr/local/apache/logs -mtime +180|wc -l 554 $ find /usr/local/apache/logs -mtime +90|wc -l 757 でも今回の要件の場合日数を計算するのが面倒なので日付を直接指定して削除したい。しかし man find してもそんなオプションはない。だが良くみるとファイルのタイムスタンプを基準にするオプション newer ならある。このオプションを使えばなんとかなりそうである。
+まず下記のようにダミーのファイルを作成する。
+$ touch -t 201303030000 /tmp/hoge tオプションの意味は YYYYMMDDhhmm 。詳細は man touch 参照。</description>
+    </item>
+    
+  </channel>
+</rss>
