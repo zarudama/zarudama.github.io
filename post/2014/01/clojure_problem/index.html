@@ -43,6 +43,7 @@
             <li><a href="/tags/libgdx">libgdx</a> (6)
             <li><a href="/tags/linux">linux</a> (3)
             <li><a href="/tags/misaki">misaki</a> (2)
+            <li><a href="/tags/moji">moji</a> (1)
             <li><a href="/tags/org">org</a> (1)
             <li><a href="/tags/processing">processing</a> (1)
             <li><a href="/tags/skk">skk</a> (2)
@@ -58,9 +59,9 @@
 <h4>セクション</h4>
 <ul>
   
-    <li><a href="/libgdx_basic/">Libgdx_basics</a>
-  
     <li><a href="/post/">Posts</a>
+  
+    <li><a href="/libgdx_basic/">Libgdx_basics</a>
   
     <li><a href="/install/">Installs</a>
   
@@ -78,7 +79,7 @@
     <div>
     <section>
       <h5 id="date">作成日: 2014-01-14 </h5>
-      <h5 id="date">最終更新日: 2019-11-09 </h5>
+      <h5 id="date">最終更新日: 2019-12-12 </h5>
       <h5 id="wordcount"> 4173 文字 </h5>
     </section>
     
@@ -206,8 +207,8 @@ contains an entry with that key and its value is nil.
 <span style="color:#033">false</span></code></pre></div>
 <h2 id="for-the-win-forの使いかた">For the win 【forの使いかた】</h2>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#145
-Difficulty: Elementary
-Topics: core-functions seqs
+Difficulty:	Elementary
+Topics:	core-functions seqs
 
 Clojure&#39;s for macro is a tremendously versatile mechanism
 for producing a sequence based on some other sequence(s).
@@ -254,8 +255,8 @@ how each of them produces the same result.</code></pre></div><div class="highlig
 (<span style="color:#f60">1</span> <span style="color:#f60">5</span> <span style="color:#f60">9</span> <span style="color:#f60">13</span> <span style="color:#f60">17</span> <span style="color:#f60">21</span> <span style="color:#f60">25</span> <span style="color:#f60">29</span> <span style="color:#f60">33</span> <span style="color:#f60">37</span>)</code></pre></div>
 <h2 id="logical-falsity-and-truth-真偽について">Logical falsity and truth【真偽について】</h2>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#152
-Difficulty: Elementary
-Topics: logic
+Difficulty:	Elementary
+Topics:	logic
 
 In Clojure, only nil and false represent the values
  of logical falsity in conditional tests -
@@ -273,8 +274,8 @@ clojureでは、falseとnilだけが偽。それ以外は全て真。</p>
 
 <h2 id="subset-and-superset-重量">Subset and Superset【重量】</h2>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#162
-Difficulty: Elementary
-Topics: set-theory
+Difficulty:	Elementary
+Topics:	set-theory
 
 Set A is a subset of set B, or equivalently B is a superset of A,
  if A is &#34;contained&#34; inside B. A and B may coincide.</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#033">clojure.set/superset?</span> <span style="color:#033">__</span> <span style="color:#555">#</span>{<span style="color:#f60">2</span>})
@@ -304,8 +305,8 @@ BがAのsupersetとなり、AはBのsubsetとなる。</p>
 | +-+     |
 +---------</code></pre></div>
 <h2 id="map-defaults">Map Defaults</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Difficulty: Elementary
-Topics: seqs
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Difficulty:	Elementary
+Topics:	seqs
 #156
 
 When retrieving values from a map,
@@ -326,7 +327,7 @@ However, what if you want the map itself to contain
 
 <h2 id="lists-conj-重要">Lists: conj【重要】</h2>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#5
-Difficulty: Elementary
+Difficulty:	Elementary
 Topics:
 
 When operating on a list, the conj function will return
@@ -354,7 +355,7 @@ test not run
 <h2 id="intro-to-vectors-重要">Intro to Vectors【重要】</h2>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#6
 Intro to VectorsSolutions
-Difficulty: Elementary
+Difficulty:	Elementary
 Topics:
 Vectors can be constructed several ways. You can compare them with lists.
 test not run</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">= </span>[<span style="color:#033">__</span>]
@@ -472,8 +473,8 @@ partial関数ってなに？初見だ。</p>
 
 (<span style="color:#366">= </span><span style="color:#033">__</span> (<span style="color:#366">filter </span><span style="color:#555">#</span>(<span style="color:#366">&gt; </span><span style="color:#033">%</span> <span style="color:#f60">5</span>) <span style="color:#555">&#39;</span>(<span style="color:#f60">3</span> <span style="color:#f60">4</span> <span style="color:#f60">5</span> <span style="color:#f60">6</span> <span style="color:#f60">7</span>)))</code></pre></div>
 <h2 id="35-local-bindings">#35 Local bindings</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Elementary</span>
-<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">syntax</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Elementary</span>
+<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">syntax</span>
 
 
 <span style="color:#033">Clojure</span> <span style="color:#033">lets</span> <span style="color:#033">you</span> <span style="color:#033">give</span> <span style="color:#033">local</span> <span style="color:#033">names</span> <span style="color:#033">to</span> <span style="color:#033">values</span> <span style="color:#033">using</span> <span style="color:#033">the</span> <span style="color:#033">special</span> <span style="color:#033">let-form.</span>
@@ -484,16 +485,16 @@ partial関数ってなに？初見だ。</p>
 <span style="color:#366">test not </span><span style="color:#033">run</span>
 (<span style="color:#366">= </span><span style="color:#033">__</span> (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">x</span> <span style="color:#f60">21</span>] (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">y</span> <span style="color:#f60">3</span>] (<span style="color:#366">/ </span><span style="color:#033">x</span> <span style="color:#033">y</span>))))</code></pre></div>
 <h2 id="37-regular-expressions">#37 Regular Expressions</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Elementary</span>
-<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">regex</span> <span style="color:#033">syntax</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Elementary</span>
+<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">regex</span> <span style="color:#033">syntax</span>
 
 <span style="color:#033">Regex</span> <span style="color:#033">patterns</span> <span style="color:#033">are</span> <span style="color:#033">supported</span> <span style="color:#033">with</span> <span style="color:#033">a</span> <span style="color:#033">special</span> <span style="color:#033">reader</span> <span style="color:#033">macro.</span>
 <span style="color:#366">test not </span><span style="color:#033">run</span>
 (<span style="color:#366">= </span><span style="color:#033">__</span> (<span style="color:#366">apply str </span>(<span style="color:#366">re-seq </span><span style="color:#555">#</span><span style="color:#c30">&#34;[A-Z]+&#34;</span> <span style="color:#c30">&#34;bA1B3Ce &#34;</span>)))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">= </span><span style="color:#c30">&#34;ABC&#34;</span> (<span style="color:#366">apply str </span>(<span style="color:#366">re-seq </span><span style="color:#555">#</span><span style="color:#c30">&#34;[A-Z]+&#34;</span> <span style="color:#c30">&#34;bA1B3Ce &#34;</span>)))
 <span style="color:#033">true</span></code></pre></div>
 <h2 id="64-intro-to-reduce">#64 Intro to Reduce</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Elementary</span>
-<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">seqs</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Elementary</span>
+<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">seqs</span>
 
 <span style="color:#033">Reduce</span> <span style="color:#033">takes</span> <span style="color:#033">a</span> <span style="color:#f60">2</span> <span style="color:#033">argument</span> <span style="color:#033">function</span> <span style="color:#366">and </span><span style="color:#033">an</span> <span style="color:#033">optional</span> <span style="color:#033">starting</span> <span style="color:#033">value.</span>
 <span style="color:#033">It</span> <span style="color:#033">then</span> <span style="color:#033">applies</span> <span style="color:#033">the</span> <span style="color:#033">function</span> <span style="color:#033">to</span> <span style="color:#033">the</span> <span style="color:#366">first </span><span style="color:#f60">2</span> <span style="color:#033">items</span> <span style="color:#033">in</span> <span style="color:#033">the</span> <span style="color:#033">sequence</span>
@@ -507,8 +508,8 @@ partial関数ってなに？初見だ。</p>
 (<span style="color:#366">= </span> <span style="color:#f60">6</span> (<span style="color:#366">reduce </span><span style="color:#033">__</span> <span style="color:#f60">1</span> [<span style="color:#f60">2</span> <span style="color:#f60">3</span>]))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">= </span><span style="color:#f60">15</span> (<span style="color:#366">reduce + </span>[<span style="color:#f60">1</span> <span style="color:#f60">2</span> <span style="color:#f60">3</span> <span style="color:#f60">4</span> <span style="color:#f60">5</span>]))
 <span style="color:#033">true</span></code></pre></div>
 <h2 id="57-simple-recursion-難しい">#57 Simple Recursion【難しい】</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Elementary</span>
-<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">recursion</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Elementary</span>
+<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">recursion</span>
 
 <span style="color:#033">A</span> <span style="color:#033">recursive</span> <span style="color:#033">function</span> <span style="color:#033">is</span> <span style="color:#033">a</span> <span style="color:#033">function</span> <span style="color:#033">which</span> <span style="color:#033">calls</span> <span style="color:#033">itself.</span>
 <span style="color:#033">This</span> <span style="color:#033">is</span> <span style="color:#033">one</span> <span style="color:#033">of</span> <span style="color:#033">the</span> <span style="color:#033">fundamental</span> <span style="color:#033">techniques</span> <span style="color:#033">used</span> <span style="color:#033">in</span> <span style="color:#033">functional</span> <span style="color:#033">programming.</span>
@@ -519,7 +520,7 @@ partial関数ってなに？初見だ。</p>
     <span style="color:#f60">5</span>))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">= </span><span style="color:#555">&#39;</span>(<span style="color:#f60">5</span> <span style="color:#f60">4</span> <span style="color:#f60">3</span> <span style="color:#f60">2</span> <span style="color:#f60">1</span>) ((<span style="color:#069;font-weight:bold">fn </span><span style="color:#033">foo</span> [<span style="color:#033">x</span>] (<span style="color:#366">when </span>(<span style="color:#366">&gt; </span><span style="color:#033">x</span> <span style="color:#f60">0</span>) (<span style="color:#366">conj </span>(<span style="color:#033">foo</span> (<span style="color:#366">dec </span><span style="color:#033">x</span>)) <span style="color:#033">x</span>))) <span style="color:#f60">5</span>))
 <span style="color:#033">true</span></code></pre></div>
 <h2 id="s-71-rearranging-code-重要">S#71 Rearranging Code: -&gt;【重要】</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Elementary</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Elementary</span>
 <span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>
 
 <span style="color:#033">The</span> <span style="color:#366">-&gt; </span><span style="color:#033">macro</span> <span style="color:#033">threads</span> <span style="color:#033">an</span> <span style="color:#033">expression</span> <span style="color:#033">x</span> <span style="color:#033">through</span> <span style="color:#033">a</span> <span style="color:#033">variable</span> <span style="color:#033">number</span> <span style="color:#033">of</span> <span style="color:#033">forms.</span>
@@ -536,8 +537,8 @@ partial関数ってなに？初見だ。</p>
    (<span style="color:#366">-&gt; </span>[<span style="color:#f60">2</span> <span style="color:#f60">5</span> <span style="color:#f60">4</span> <span style="color:#f60">1</span> <span style="color:#f60">3</span> <span style="color:#f60">6</span>] <span style="color:#366">reverse rest sort </span><span style="color:#033">last</span>)
    <span style="color:#f60">5</span>)</code></pre></div>
 <h2 id="68-recurring-theme">#68 Recurring Theme</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Elementary</span>
-<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">recursion</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Elementary</span>
+<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">recursion</span>
 
 <span style="color:#033">Clojure</span> <span style="color:#033">only</span> <span style="color:#033">has</span> <span style="color:#033">one</span> <span style="color:#033">non-stack-consuming</span> <span style="color:#033">looping</span> <span style="color:#033">construct</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">recur.</span>
 <span style="color:#033">Either</span> <span style="color:#033">a</span> <span style="color:#033">function</span> <span style="color:#366">or </span><span style="color:#033">a</span> <span style="color:#069;font-weight:bold">loop </span><span style="color:#033">can</span> <span style="color:#033">be</span> <span style="color:#033">used</span> <span style="color:#033">as</span> <span style="color:#033">the</span> <span style="color:#033">recursion</span> <span style="color:#033">point.</span>
@@ -551,7 +552,7 @@ partial関数ってなに？初見だ。</p>
       (<span style="color:#033">recur</span> (<span style="color:#366">dec </span><span style="color:#033">x</span>) (<span style="color:#366">conj </span><span style="color:#033">result</span> (<span style="color:#366">+ </span><span style="color:#f60">2</span> <span style="color:#033">x</span>)))
       <span style="color:#033">result</span>)))</code></pre></div>
 <h2 id="s-72-rearranging-code-重要">S#72 Rearranging Code: -&gt;&gt;【重要】</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Elementary</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Elementary</span>
 <span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>
 
 
@@ -565,8 +566,8 @@ partial関数ってなに？初見だ。</p>
    (<span style="color:#033">-&gt;&gt;</span> [<span style="color:#f60">2</span> <span style="color:#f60">5</span> <span style="color:#f60">4</span> <span style="color:#f60">1</span> <span style="color:#f60">3</span> <span style="color:#f60">6</span>] (<span style="color:#366">drop </span><span style="color:#f60">2</span>) (<span style="color:#366">take </span><span style="color:#f60">3</span>) (<span style="color:#366">map </span><span style="color:#033">inc</span>) (<span style="color:#366">apply </span><span style="color:#033">+</span>))
    <span style="color:#f60">11</span>)</code></pre></div>
 <h2 id="last-element-難しい">Last Element【難しい】</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Easy</span>
-<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">seqs</span> <span style="color:#033">core-functions</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Easy</span>
+<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">seqs</span> <span style="color:#033">core-functions</span>
 
 <span style="color:#033">Write</span> <span style="color:#033">a</span> <span style="color:#033">function</span> <span style="color:#033">which</span> <span style="color:#033">returns</span> <span style="color:#033">the</span> <span style="color:#366">last </span><span style="color:#033">element</span> <span style="color:#033">in</span> <span style="color:#033">a</span> <span style="color:#033">sequence.</span>
 (<span style="color:#366">= </span>(<span style="color:#033">__</span> [<span style="color:#f60">1</span> <span style="color:#f60">2</span> <span style="color:#f60">3</span> <span style="color:#f60">4</span> <span style="color:#f60">5</span>]) <span style="color:#f60">5</span>)
@@ -581,8 +582,8 @@ partial関数ってなに？初見だ。</p>
 <p>無名関数を使い、さらに即時呼出するとか。絶対おもいつかん。。。</p>
 
 <h2 id="20-penultimate-element-難しい">#20 Penultimate Element【難しい】</h2>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">Easy</span>
-<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">seqs</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">Difficulty</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">Easy</span>
+<span style="color:#033">Topics</span><span style="color:#a00;background-color:#faa">:</span>	<span style="color:#033">seqs</span>
 
 <span style="color:#033">Write</span> <span style="color:#033">a</span> <span style="color:#033">function</span> <span style="color:#033">which</span> <span style="color:#033">returns</span> <span style="color:#033">the</span> <span style="color:#366">second </span><span style="color:#033">to</span> <span style="color:#366">last </span><span style="color:#033">element</span> <span style="color:#033">from</span> <span style="color:#033">a</span> <span style="color:#033">sequence.</span>
 
