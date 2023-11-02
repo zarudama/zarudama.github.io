@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tmux on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 20:18:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/02/tmux_session/</guid>
-      <description>&amp;#30446;&amp;#27425; その他参考にしたもの 下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。 http://www.gcd.org/blog/2006/09/100/ agent=&amp;#34;$HOME/tmp/ssh-agent-$USER&amp;#34; if [ -S &amp;#34;$SSH_AUTH_SOCK&amp;#34; ]; then case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*) ln -snf &amp;#34;$SSH_AUTH_SOCK&amp;#34; $agent &amp;amp;&amp;amp; export</description>
+      <description>その他参考にしたもの 下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。 http://www.gcd.org/blog/2006/09/100/ agent=&amp;#34;$HOME/tmp/ssh-agent-$USER&amp;#34; if [ -S &amp;#34;$SSH_AUTH_SOCK&amp;#34; ]; then case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*) ln -snf &amp;#34;$SSH_AUTH_SOCK&amp;#34; $agent &amp;amp;&amp;amp; export SSH_AUTH_SOCK=$agent</description>
     </item>
     
     <item>

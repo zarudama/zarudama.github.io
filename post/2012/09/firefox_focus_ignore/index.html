@@ -91,24 +91,17 @@
   <div>
         <article id="content">
            <p>Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカスが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとしている自分にとっては不便極まりない。</p>
-
 <p>ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。</p>
-
-<p>代わりにGireaseMonkey<sup class="footnote-ref" id="fnref:fn-1"><a href="#fn:fn-1">1</a></sup>を使った代替方法が見つかったのでそのスクリプトを使用することにした。</p>
-
+<p>代わりにGireaseMonkey<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>を使った代替方法が見つかったのでそのスクリプトを使用することにした。</p>
 <ul>
 <li><a href="http://javascripter.hatenablog.com/entry/20080620/1213923411">http://javascripter.hatenablog.com/entry/20080620/1213923411</a></li>
 </ul>
-
 <p>GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。</p>
-
 <p>新規ユーザスクリプトを追加する手順は以下。</p>
-
 <ul>
 <li>[メニュー]-&gt;[ツール]-&gt;[GreasMonkey]-&gt;[新規ユーザースクリプト]</li>
 </ul>
-
-<!--listend-->
+<!-- raw HTML omitted -->
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#09f;font-style:italic">// ==UserScript==
 </span><span style="color:#09f;font-style:italic">// @name        no-focus
 </span><span style="color:#09f;font-style:italic">// @namespace   no-focus
@@ -121,17 +114,15 @@
   <span style="color:#069;font-weight:bold">this</span>.removeEventListener(<span style="color:#c30">&#39;load&#39;</span>, arguments.callee, <span style="color:#069;font-weight:bold">false</span>);
 },
 <span style="color:#069;font-weight:bold">false</span>);
-</code></pre></div>
-<p>コードの意味はよくわかってないから、問題があるかもしれないが、その場合はその時考えよう。</p>
-<div class="footnotes">
-
-<hr />
-
+</code></pre></div><p>コードの意味はよくわかってないから、問題があるかもしれないが、その場合はその時考えよう。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:fn-1">Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。
- <a class="footnote-return" href="#fnref:fn-1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
         </article>
   </div>

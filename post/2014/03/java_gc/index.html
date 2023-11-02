@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2014-03-25 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 486 文字 </h5>
+      <h5 id="wordcount"> 485 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,44 +90,31 @@
 </aside>
   <div>
         <article id="content">
-           
-
-<div class="ox-hugo-toc toc">
-<div></div>
-
-<div class="heading">&#30446;&#27425;</div>
-
+           <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#メモリ使用量を確認したいとき">メモリ使用量を確認したいとき</a></li>
+<li><a href="#%E3%83%A1%E3%83%A2%E3%83%AA%E4%BD%BF%E7%94%A8%E9%87%8F%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%9F%E3%81%84%E3%81%A8%E3%81%8D">メモリ使用量を確認したいとき</a></li>
 </ul>
-
-<p></div>
-<!--endtoc--></p>
-
+<!-- raw HTML omitted -->
 <p>GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。</p>
-
 <p>まずはプロセスIDを調べる。例としてtomcatの場合。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo -u tomcat jps -v</code></pre></div>
-<p>tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。</p>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo -u tomcat jps -v
+</code></pre></div><p>tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。</p>
 <p>javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pgrep -lf java</code></pre></div>
-<p>PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">jstat -gcutil -t <span style="color:#f60">123456</span> <span style="color:#f60">3000</span></code></pre></div>
-<p>意味は以下のとおり。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pgrep -lf java
+</code></pre></div><p>PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">jstat -gcutil -t <span style="color:#f60">123456</span> <span style="color:#f60">3000</span>
+</code></pre></div><p>意味は以下のとおり。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt;
 -t タイムスタンプを出力
--gcutil GCの統計情報</code></pre></div>
-<p>jstatのマニュアルは以下。</p>
-
+-gcutil GCの統計情報
+</code></pre></div><p>jstatのマニュアルは以下。</p>
 <ul>
 <li><a href="http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html">http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html</a></li>
 </ul>
-
 <p>gcutilの見出し</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT</code></pre></div>
-<p>gcutilの見出しは以下のルールになる</p>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT
+</code></pre></div><p>gcutilの見出しは以下のルールになる</p>
 <table>
 <thead>
 <tr>
@@ -136,56 +123,47 @@
 <th></th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>E*</td>
 <td>Eden</td>
 <td></td>
 </tr>
-
 <tr>
 <td>Y</td>
 <td>Young</td>
 <td></td>
 </tr>
-
 <tr>
 <td>O*</td>
 <td>Old</td>
 <td></td>
 </tr>
-
 <tr>
 <td>P*</td>
 <td>Permenet</td>
 <td>Permanent領域は、JVMにロードされたクラスの置き場所</td>
 </tr>
-
 <tr>
 <td>F*</td>
 <td>Full</td>
 <td></td>
 </tr>
-
 <tr>
 <td>*C</td>
 <td>comitted</td>
 <td>javaが確保したメモリサイズ</td>
 </tr>
-
 <tr>
 <td>*U</td>
 <td>used</td>
 <td>使用済みメモリ</td>
 </tr>
-
 <tr>
 <td>*GC</td>
 <td></td>
 <td>GCの回数</td>
 </tr>
-
 <tr>
 <td>*GCT</td>
 <td></td>
@@ -193,18 +171,15 @@
 </tr>
 </tbody>
 </table>
-
 <p>GCについては、下記が詳しい。</p>
-
 <ul>
 <li><a href="http://www.atmarkit.co.jp/ait/articles/0404/02/news079.html">http://www.atmarkit.co.jp/ait/articles/0404/02/news079.html</a></li>
 <li><a href="http://www.atmarkit.co.jp/ait/articles/0211/30/news002.html">http://www.atmarkit.co.jp/ait/articles/0211/30/news002.html</a></li>
 </ul>
-
 <h2 id="メモリ使用量を確認したいとき">メモリ使用量を確認したいとき</h2>
-
 <p>gcオプションを使えばよい。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo jstat -gc -t <span style="color:#f60">12345</span> <span style="color:#f60">3000</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo jstat -gc -t <span style="color:#f60">12345</span> <span style="color:#f60">3000</span>
+</code></pre></div>
         </article>
   </div>
   <hr>

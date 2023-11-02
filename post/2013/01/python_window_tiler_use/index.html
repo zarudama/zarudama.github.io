@@ -91,23 +91,17 @@
   <div>
         <article id="content">
            <p><a href="http://www.lifehacker.jp/2013/01/130120mykids%5Fcommand%5Fline.html">この記事</a> にxmonadがでてきたので、自分が普段使っているWindowsでもタイル型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納得のいくものがなかったので、使っていなかったのだ。でもその時から大分時間も経ってるので、最近は何かないかなと調べたところPythonで実装されたその名もずばり「Python-windows-tiler」というものを見つけた。</p>
-
 <ul>
 <li><a href="https://github.com/Tzbob/python-windows-tiler">https://github.com/Tzbob/python-windows-tiler</a></li>
 <li><a href="http://d.hatena.ne.jp/uhiaha888/20121125/1353824257">http://d.hatena.ne.jp/uhiaha888/20121125/1353824257</a></li>
 </ul>
-
 <p>使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日本語を含むとエラーになるのでルートに解凍するのが良いと思う。</p>
-
 <p>キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので
 Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て
 winにしてPWT.exeを再起動した。</p>
-
 <p>これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめでたし、と思ったのだが、Win+Lキーでウィンドウの横幅を広げようとしたらロック画面になってしまう。。。</p>
-
 <p>てことでWin+Lを無効化する方法を模索したけど、結局どれもうまくいかなかったので横幅操作は封印することにした。てか、Winを使用するコンビネーションキーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win
 キー経由でタイル操作はとても使いやすい。多様する操作はこれ。</p>
-
 <table>
 <thead>
 <tr>
@@ -115,36 +109,29 @@ winにしてPWT.exeを再起動した。</p>
 <th>ウィンドウレイアウトの変更</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Win+j, Win+k</td>
 <td>ALT+TABの代りになる</td>
 </tr>
-
 <tr>
 <td>Win+S+Ent</td>
 <td>プライマリの切替</td>
 </tr>
-
 <tr>
 <td>Win+数字キー</td>
 <td>仮想デスクトップの切替</td>
 </tr>
-
 <tr>
 <td>Win+S+数字キー</td>
 <td>カレントアプリを仮想デスクトップへ移動</td>
 </tr>
 </tbody>
 </table>
-
 <p>特にWin+j,kがイイ!</p>
-
 <p>自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみのあるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの
 emacsでは <code>windows.el</code> を使用し、端末ではtmuxを使用してるので、タイル型ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱するのだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので
 Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分にはAwesome系の操作体系のほうが向いているような気がした。</p>
-
 <p>ということで、Ubuntuではxmonadをもう一度使ってみようと思う。</p>
 
         </article>

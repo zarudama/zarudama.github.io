@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>emacs on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 20:31:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/emacs_window_image_disp/</guid>
-      <description>&amp;#30446;&amp;#27425; 参考 Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを</description>
+      <description>参考 Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 03 Nov 2019 20:25:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
-      <description>&amp;#30446;&amp;#27425; processing のおすすめポイント processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、a</description>
+      <description>processing のおすすめポイント processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、an</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Sun, 03 Nov 2019 19:15:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/01/emacs_package_elisp/</guid>
-      <description>&amp;#30446;&amp;#27425; 2013/05/13 追記1: 2013/05/13 追記2: 2013/05/13 追記3: 今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、</description>
+      <description>2013/05/13 追記1: 2013/05/13 追記2: 2013/05/13 追記3: 今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、イ</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Sun, 03 Nov 2019 17:05:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/12/emacs_evil/</guid>
-      <description>&amp;#30446;&amp;#27425; EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操</description>
+      <description>EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操作</description>
     </item>
     
     <item>
@@ -116,7 +116,7 @@
       <pubDate>Sun, 03 Nov 2019 16:55:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/emacs_cask/</guid>
-      <description>&amp;#30446;&amp;#27425; はじめに Caskの導入 Emacs設定ファイルの書き方 私の.emacsのインストール方法 私の.emacsのディレクトリ配置 私の.emacsの</description>
+      <description>はじめに Caskの導入 Emacs設定ファイルの書き方 私の.emacsのインストール方法 私の.emacsのディレクトリ配置 私の.emacsの分</description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@
       <pubDate>Sun, 03 Nov 2019 16:32:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/05/libgdx_emacs/</guid>
-      <description>&amp;#30446;&amp;#27425; はじめに gradleプロジェクトをJDEEでも使えるようにする はじめに libGDX でゲームプログラミングを始めています。 最初は、Eclipseでコー</description>
+      <description>はじめに gradleプロジェクトをJDEEでも使えるようにする はじめに libGDX でゲームプログラミングを始めています。 最初は、Eclipseでコーデ</description>
     </item>
     
   </channel>

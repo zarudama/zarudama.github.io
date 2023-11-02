@@ -91,17 +91,17 @@
   <div>
         <article id="content">
            <p>本格的にcygwinをputty代替として使っていく気になったので、Subversionに関してもTortoiseSVNからcygwin版のSubversionを使用することにした。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">apt-cyg install subversion</code></pre></div>
-<p>インストール後、今まで使用していたリポジトリで <code>svn status</code> を実行したら、upgradeしろと言われたのでしてみたところ、下記のエラーが。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">apt-cyg install subversion
+</code></pre></div><p>インストール後、今まで使用していたリポジトリで <code>svn status</code> を実行したら、upgradeしろと言われたのでしてみたところ、下記のエラーが。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ svn upgrade
 svn: E200029: Couldn<span style="color:#a00;background-color:#faa">&#39;</span>t perform atomic initialization
-svn: E200030: SQLite compiled <span style="color:#069;font-weight:bold">for</span> <span style="color:#f60">3</span>.7.13, but running with <span style="color:#f60">3</span>.7.3</code></pre></div>
-<p>ぐぐってみたところ、TortoiseSVNがSQLite3を使用しているのが原因のようだったので、TortoiseSVNを削除してらリトライ。でも変化せず。</p>
+svn: E200030: SQLite compiled <span style="color:#069;font-weight:bold">for</span> 3.7.13, but running with 3.7.3
+</code></pre></div><p>ぐぐってみたところ、TortoiseSVNがSQLite3を使用しているのが原因のようだったので、TortoiseSVNを削除してらリトライ。でも変化せず。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sqlite3
 SQLite header and <span style="color:#366">source</span> version mismatch
-<span style="color:#f60">2010</span>-10-08 <span style="color:#f60">02</span>:34:02 2677848087c9c090efb17c1893e77d6136a9111d
-<span style="color:#f60">2012</span>-06-11 <span style="color:#f60">02</span>:05:22 f5b5a13f7394dc143aa136f1d4faba6839eaa6dc</code></pre></div>
-<p>ソースと実行ファイルでバージョンの不一致がおこっている模様。でもソースからビルドした記憶はないんだけどなぜだろう。よくわからないので、 <code>apt-cyg find sqlite3</code> して関連するパッケージを調べて全て削除した。</p>
+2010-10-08 02:34:02 2677848087c9c090efb17c1893e77d6136a9111d
+2012-06-11 02:05:22 f5b5a13f7394dc143aa136f1d4faba6839eaa6dc
+</code></pre></div><p>ソースと実行ファイルでバージョンの不一致がおこっている模様。でもソースからビルドした記憶はないんだけどなぜだろう。よくわからないので、 <code>apt-cyg find sqlite3</code> して関連するパッケージを調べて全て削除した。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg remove libsqlite3-devel libsqlite3_0 odbc-sqlite3 sqlite3 sqlite3-debuginfo
 Removing libsqlite3-devel
 Package libsqlite3-devel removed
@@ -109,14 +109,15 @@ Removing libsqlite3_0
 Package libsqlite3_0 removed
 Package odbc-sqlite3 is not installed, skipping
 Removing sqlite3
-Package sqlite3 removed</code></pre></div>
-<p>そして、再インストール。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install sqlite3</code></pre></div>
-<p>今度はうまくいった。</p>
+Package sqlite3 removed
+</code></pre></div><p>そして、再インストール。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install sqlite3
+</code></pre></div><p>今度はうまくいった。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ svn upgrade
 Upgraded <span style="color:#c30">&#39;*************&#39;</span>
 Upgraded <span style="color:#c30">&#39;*************&#39;</span>
- ：</code></pre></div>
+ ：
+</code></pre></div>
         </article>
   </div>
   <hr>

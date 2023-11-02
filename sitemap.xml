@@ -1,29 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zarudama.github.io/tags/moji/</loc>
+    <lastmod>2019-12-12T23:26:29+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zarudama.github.io/post/</loc>
     <lastmod>2019-12-12T23:26:29+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zarudama.github.io/tags/</loc>
     <lastmod>2019-12-12T23:26:29+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/tags/moji/</loc>
-    <lastmod>2019-12-12T23:26:29+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zarudama.github.io/</loc>
     <lastmod>2019-12-12T23:26:29+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -32,9 +28,13 @@
   </url>
   
   <url>
+    <loc>https://zarudama.github.io/tags/libgdx/</loc>
+    <lastmod>2019-12-12T23:25:36+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zarudama.github.io/libgdx_basic/</loc>
     <lastmod>2019-12-12T23:25:36+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -43,21 +43,13 @@
   </url>
   
   <url>
-    <loc>https://zarudama.github.io/tags/libgdx/</loc>
-    <lastmod>2019-12-12T23:25:36+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zarudama.github.io/tags/ubuntu/</loc>
     <lastmod>2019-12-12T23:25:36+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zarudama.github.io/tags/xmonad/</loc>
     <lastmod>2019-12-12T23:25:32+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -73,13 +65,21 @@
   <url>
     <loc>https://zarudama.github.io/install/</loc>
     <lastmod>2019-12-12T23:25:36+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zarudama.github.io/tags/windows/</loc>
     <lastmod>2019-12-12T23:25:36+09:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zarudama.github.io/tags/misaki/</loc>
+    <lastmod>2019-12-12T23:25:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zarudama.github.io/tags/stack/</loc>
+    <lastmod>2019-12-12T23:25:34+09:00</lastmod>
   </url>
   
   <url>
@@ -88,21 +88,8 @@
   </url>
   
   <url>
-    <loc>https://zarudama.github.io/tags/misaki/</loc>
-    <lastmod>2019-12-12T23:25:34+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/tags/stack/</loc>
-    <lastmod>2019-12-12T23:25:34+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zarudama.github.io/tags/emacs/</loc>
     <lastmod>2019-12-12T23:25:33+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -113,7 +100,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/processing/</loc>
     <lastmod>2019-12-12T23:25:32+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -139,7 +125,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/tmux/</loc>
     <lastmod>2019-12-12T23:25:31+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -150,7 +135,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/clojure/</loc>
     <lastmod>2019-12-12T23:25:31+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -161,13 +145,11 @@
   <url>
     <loc>https://zarudama.github.io/tags/linux/</loc>
     <lastmod>2019-12-12T23:25:33+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zarudama.github.io/tags/sudo/</loc>
     <lastmod>2019-12-12T23:25:31+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -176,14 +158,13 @@
   </url>
   
   <url>
-    <loc>https://zarudama.github.io/post/2012/03/skk_windows/</loc>
+    <loc>https://zarudama.github.io/tags/skk/</loc>
     <lastmod>2019-12-12T23:25:31+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zarudama.github.io/tags/skk/</loc>
+    <loc>https://zarudama.github.io/post/2012/03/skk_windows/</loc>
     <lastmod>2019-12-12T23:25:31+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -194,7 +175,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/cygwin/</loc>
     <lastmod>2019-12-12T23:25:33+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -208,20 +188,18 @@
   </url>
   
   <url>
+    <loc>https://zarudama.github.io/tags/android/</loc>
+    <lastmod>2019-12-12T23:25:30+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zarudama.github.io/post/2013/09/nexus7/</loc>
     <lastmod>2019-12-12T23:25:30+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zarudama.github.io/tags/android/</loc>
-    <lastmod>2019-12-12T23:25:30+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zarudama.github.io/tags/java/</loc>
     <lastmod>2019-12-12T23:25:30+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -247,7 +225,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/git/</loc>
     <lastmod>2019-12-12T23:25:34+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -258,7 +235,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/firefox/</loc>
     <lastmod>2019-12-12T23:25:33+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -319,7 +295,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/game/</loc>
     <lastmod>2019-12-12T23:25:28+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -335,13 +310,11 @@
   <url>
     <loc>https://zarudama.github.io/tags/keyboard/</loc>
     <lastmod>2019-12-12T23:25:28+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zarudama.github.io/tags/thinkpad/</loc>
     <lastmod>2019-12-12T23:25:28+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -355,14 +328,13 @@
   </url>
   
   <url>
-    <loc>https://zarudama.github.io/post/2014/03/java_jvm_heap/</loc>
+    <loc>https://zarudama.github.io/tags/jvm/</loc>
     <lastmod>2019-12-12T23:25:27+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zarudama.github.io/tags/jvm/</loc>
+    <loc>https://zarudama.github.io/post/2014/03/java_jvm_heap/</loc>
     <lastmod>2019-12-12T23:25:27+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -373,7 +345,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/find/</loc>
     <lastmod>2019-12-12T23:25:27+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -384,7 +355,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/evil/</loc>
     <lastmod>2019-12-12T23:25:27+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -410,7 +380,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/org/</loc>
     <lastmod>2019-12-12T23:25:32+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -426,7 +395,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/awk/</loc>
     <lastmod>2019-12-12T23:25:26+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -437,7 +405,6 @@
   <url>
     <loc>https://zarudama.github.io/tags/vim/</loc>
     <lastmod>2019-12-12T23:25:26+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -486,12 +453,10 @@
   
   <url>
     <loc>https://zarudama.github.io/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zarudama.github.io/search/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

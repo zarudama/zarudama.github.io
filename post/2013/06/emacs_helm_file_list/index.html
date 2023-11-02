@@ -91,7 +91,6 @@
   <div>
         <article id="content">
            <p>helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、パス部分が表示されなくなってしまった。デフォルトの挙動が変更されたようである。</p>
-
 <p>自分の場合、helm-git.elを使用しているが、同じリポジトリに同名ファイルが複数あるため、ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。これでは困るので調査したところ、ファイル表示部分は、helm本体の <code>helm-files.el</code>
 の機能を流用しており、下記のカスタム変数を定義すればよさそうである。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">defcustom</span> <span style="color:#033">helm-ff-transformer-show-only-basename</span> <span style="color:#360">t</span>
@@ -99,9 +98,10 @@
 </span><span style="color:#c30">This can be toggled at anytime from </span><span style="color:#fc3">`helm-find-files&#39;</span><span style="color:#c30"> with \
 </span><span style="color:#c30">\\&lt;helm-find-files-map&gt;\\[helm-ff-run-toggle-basename].&#34;</span>
   <span style="color:#366">:type</span> <span style="color:#fc3">&#39;boolean</span>
-  <span style="color:#366">:group</span> <span style="color:#fc3">&#39;helm-files</span>)</code></pre></div>
-<p>.emacsに下記の定義をすることで無事解決できた。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">setq</span> <span style="color:#033">helm-ff-transformer-show-only-basename</span> <span style="color:#360">nil</span>)</code></pre></div>
+  <span style="color:#366">:group</span> <span style="color:#fc3">&#39;helm-files</span>)
+</code></pre></div><p>.emacsに下記の定義をすることで無事解決できた。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">setq</span> <span style="color:#033">helm-ff-transformer-show-only-basename</span> <span style="color:#360">nil</span>)
+</code></pre></div>
         </article>
   </div>
   <hr>

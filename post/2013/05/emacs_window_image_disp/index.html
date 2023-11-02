@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2013-05-03 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 324 文字 </h5>
+      <h5 id="wordcount"> 323 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,50 +90,34 @@
 </aside>
   <div>
         <article id="content">
-           
-
-<div class="ox-hugo-toc toc">
-<div></div>
-
-<div class="heading">&#30446;&#27425;</div>
-
+           <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#参考">参考</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
 </ul>
-
-<p></div>
-<!--endtoc--></p>
-
+<!-- raw HTML omitted -->
 <p>Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。</p>
-
 <ul>
 <li><code>F1 v dynamic-library-alist</code> で必要なdllを調べる。</li>
 <li>表示されたdllをググッてダウンロードする。</li>
 <li>PATHの通った場所へdllを置く。</li>
 </ul>
-
 <p>自分の場合pngが表示されなかったので</p>
-
 <ul>
 <li><code>libpng14-14.dll</code> が表示されたのでこれをググり、下記サイトからダウンロードした。
-
 <ul>
 <li><a href="http://www.gtk.org/download/win32.php">http://www.gtk.org/download/win32.php</a></li>
-</ul></li>
+</ul>
+</li>
 <li>emacsを再起動後、 <code>zlib1.dll</code> がないと怒られたので、これもダウンロードして配置。</li>
 <li>emacsを再起動し、 <code>M-x image-dired</code> でpng画像を開いたところ無事表示できた。</li>
 </ul>
-
 <p>あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。</p>
-
 <p>emacs(Windows版)で画像を表示している様子
-<img src="/img/image-dired/image-dired.png" alt="" /></p>
-
+<img src="/img/image-dired/image-dired.png" alt=""></p>
 <p>w3mでakb48を検索してみた。
-<img src="/img/image-dired/w3m.png" alt="" /></p>
-
+<img src="/img/image-dired/w3m.png" alt=""></p>
 <h2 id="参考">参考</h2>
-
 <ul>
 <li><a href="http://qiita.com/items/dc621c568a294004f5a2">http://qiita.com/items/dc621c568a294004f5a2</a></li>
 <li><a href="http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files">http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files</a></li>

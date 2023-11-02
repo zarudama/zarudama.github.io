@@ -90,29 +90,25 @@
 </aside>
   <div>
         <article id="content">
-           <p>puttyベースのminntyがいつのまにcygwinに完全統合されて、 <code>Cygwin
-Terminal</code> というアプリになっていたので「putty + pagent」の組み合わせをやめて、 <code>Cygwin Terminal</code> と <code>ssh-agent</code> を組みあわせてCygwinだけで
+           <p>puttyベースのminntyがいつのまにcygwinに完全統合されて、 <code>Cygwin Terminal</code> というアプリになっていたので「putty + pagent」の組み合わせをやめて、 <code>Cygwin Terminal</code> と <code>ssh-agent</code> を組みあわせてCygwinだけで
 SSH接続を実現することにした。</p>
-
 <p>その際、screenを導入することにした。screenを導入することによって、起動の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の設定をする必要がなくなるからだ。</p>
-
 <p>導入は簡単。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install screen</code></pre></div>
-<p>次に設定ファイル。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install screen
+</code></pre></div><p>次に設定ファイル。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">defencoding utf8
 escape ^z^z
 startup_message off
 vbell off
-hardstatus alwayslastline <span style="color:#c30">&#34;%w&#34;</span></code></pre></div>
-<p>で端末を利用するときは次の手順で。</p>
+hardstatus alwayslastline <span style="color:#c30">&#34;%w&#34;</span>
+</code></pre></div><p>で端末を利用するときは次の手順で。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh-agent bash
 $ ssh-add ~/.ssh/id_dsa
 $ ssh-add -l <span style="color:#09f;font-style:italic"># 確認</span>
 $ screen
-$ ssh -A HOST</code></pre></div>
-<p>ssh-agentを起動してから、screenすることで毎回ssh-agent
+$ ssh -A HOST
+</code></pre></div><p>ssh-agentを起動してから、screenすることで毎回ssh-agent
 とssh-addをする必要がなくなる。</p>
-
 <p>あとは必要に応じて、 <code>C-z c</code> で仮想端末を追加すれば良い。これで、
 <code>Cygwin Terminal</code> で疑似マルチターミナルが実現できた!</p>
 

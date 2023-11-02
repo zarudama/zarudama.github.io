@@ -1,0 +1,57 @@
+<html>
+  <head>
+  </head>
+<body>
+<p>
+    <button id="button_1">Case 1 (Immediate Open)</button>
+    <button id="button_2">Case 2 (Open in 6 Seconds)</button>
+    <button id="button_3">Case 3 (Open in 3 Seconds)</button>
+</p>
+
+<h2>Output goes here:</h2>
+<pre id="log"></pre>
+
+<script>
+
+const log = (text) => {
+    document.getElementById('log').textContent += text + '\n';
+};
+
+const sleep = (waitSeconds) => new Promise((resolve) => {
+    setTimeout(resolve, waitSeconds * 1000);
+});
+
+const immediate = () => {
+    log('A window is about to open.');
+    const win = window.open('https://www.google.co.jp/');
+    if (win) {
+        log('The window is opened.');
+    } else {
+        log('Opening window failed.');
+    }
+    const win2 = window.open('https://www.yahoo.co.jp/');
+    if (win2) {
+        log('The window2 is opened.');
+    } else {
+        log('Opening window2 failed.');
+    }
+};
+
+const deferred = async (waitSeconds = 6) => {
+    log(`A window will open in ${waitSeconds} seconds.`);
+    await sleep(waitSeconds);
+    log('A window is about to open.');
+    const win = window.open('https://www.google.co.jp');
+    if (win) {
+        log('The window is opened.');
+    } else {
+        log('Opening window failed.');
+    }
+};
+
+document.getElementById('button_1').addEventListener('click', immediate);
+document.getElementById('button_2').addEventListener('click', () => deferred(6));
+document.getElementById('button_3').addEventListener('click', () => deferred(3));
+</script>
+</body>
+</html>

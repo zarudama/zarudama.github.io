@@ -90,11 +90,12 @@
 </aside>
   <div>
         <article id="content">
-           <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git diff &gt; hoge.patch</code></pre></div>
-<p>hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">^<span style="color:#555">[[</span>0m^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32march^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32mcut^<span style="color:#555">[[</span>0m                   ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32mdoexec^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32mgettext^<span style="color:#555">[[</span>0m   ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;36mksh^<span style="color:#555">[[</span>0m</code></pre></div>
-<p>るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ b git diff &gt; hoge.patch</code></pre></div>
+           <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git diff &gt; hoge.patch
+</code></pre></div><p>hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">^<span style="color:#555">[[</span>0m^<span style="color:#555">[[</span>01;32march^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span>01;32mcut^<span style="color:#555">[[</span>0m                   ^<span style="color:#555">[[</span>01;32mdoexec^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span>01;32mgettext^<span style="color:#555">[[</span>0m   ^<span style="color:#555">[[</span>01;36mksh^<span style="color:#555">[[</span>0m
+</code></pre></div><p>るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ b git diff &gt; hoge.patch
+</code></pre></div>
         </article>
   </div>
   <hr>
