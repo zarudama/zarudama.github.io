@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>libgdx on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sat, 09 Nov 2019 01:02:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/libgdx_basic/libgdx01/</guid>
-      <description>はじめに プロジェクトを作る 注意点 IntelliJで使う プロジェクトのインポート PC版を動かす Android版を動かす HTML版を動かす Ecl</description>
+      <description>&amp;#30446;&amp;#27425; はじめに プロジェクトを作る 注意点 IntelliJで使う プロジェクトのインポート PC版を動かす Android版を動かす HTML版を動かす Ec</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 03 Nov 2019 16:32:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/05/libgdx_emacs/</guid>
-      <description>はじめに gradleプロジェクトをJDEEでも使えるようにする はじめに libGDX でゲームプログラミングを始めています。 最初は、Eclipseでコーデ</description>
+      <description>&amp;#30446;&amp;#27425; はじめに gradleプロジェクトをJDEEでも使えるようにする はじめに libGDX でゲームプログラミングを始めています。 最初は、Eclipseでコー</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/libgdx_basic/libgdx02/</guid>
-      <description>はじめに 物理画面に依存しない画面表示 カメラとビューポート 実際のコーディング カメラの導入 ビューポートの導入 背景の追加 カメラの位置調整 ワールド軸</description>
+      <description>&amp;#30446;&amp;#27425; はじめに 物理画面に依存しない画面表示 カメラとビューポート 実際のコーディング カメラの導入 ビューポートの導入 背景の追加 カメラの位置調整 ワールド</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/libgdx_basic/libgdx03/</guid>
-      <description>はじめに ログの出しかた スプライトアニメーション バーチャルパッド テクスチャラップ ソースコード 今回の記事のアセット一覧 テクスチャ 背景 BGM おわりに 参</description>
+      <description>&amp;#30446;&amp;#27425; はじめに ログの出しかた スプライトアニメーション バーチャルパッド テクスチャラップ ソースコード 今回の記事のアセット一覧 テクスチャ 背景 BGM おわりに</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/libgdx_basic/libgdx04/</guid>
-      <description>はじめに ライフサイクルについて 画面遷移 Screenインタフェイス show()とhide() dispose() dispose()の方法 その1 hide() で解放する その2</description>
+      <description>&amp;#30446;&amp;#27425; はじめに ライフサイクルについて 画面遷移 Screenインタフェイス show()とhide() dispose() dispose()の方法 その1 hide() で解放する その</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Sun, 03 Nov 2019 16:24:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/libgdx_basic/libgdx05/</guid>
-      <description>はじめに 注意 インスタンスの取得方法 値の書込みと読込み データを保存するタイミング 保存される場所 実際の実装例 ソースコード おわりに 参考書籍 注釈 はじ</description>
+      <description>&amp;#30446;&amp;#27425; はじめに 注意 インスタンスの取得方法 値の書込みと読込み データを保存するタイミング 保存される場所 実際の実装例 ソースコード おわりに 参考書籍 注釈 は</description>
     </item>
     
   </channel>

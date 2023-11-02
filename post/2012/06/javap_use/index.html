@@ -91,32 +91,32 @@
   <div>
         <article id="content">
            <p>Javaは <code>*.java</code> から <code>*.class</code> を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。これをエディタで閲覧できる状態にするには、jdkに標準搭載されているjavapコマンドを使用しすれば良い。</p>
+
 <p>例えばhogeというパッケージにあるFuga.javaがあるとする。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">package hoge;
 public class Fuga {
     public <span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> main(String[] args) {
         System.out.println(<span style="color:#c30">&#34;Hello Javap!&#34;</span>);
     }
-}
-</code></pre></div><p>これをコンパイルした結果をjavapで見たい時は、以下のようなコマンドを叩けばいい。このときhoge.Fugaクラスはhoge/Fuga.lcassというディレクトリ構造になければならない。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">javap -c hoge.Fuga &gt; Fuga.code
-</code></pre></div><p>Fuga.codeは以下のようになる。</p>
+}</code></pre></div>
+<p>これをコンパイルした結果をjavapで見たい時は、以下のようなコマンドを叩けばいい。このときhoge.Fugaクラスはhoge/Fuga.lcassというディレクトリ構造になければならない。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">javap -c hoge.Fuga &gt; Fuga.code</code></pre></div>
+<p>Fuga.codeは以下のようになる。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">Compiled from <span style="color:#c30">&#34;Fuga.java&#34;</span>
 public class hoge.Fuga {
   public hoge.Fuga();
     <span style="color:#99f">Code</span>:
        <span style="color:#f60">0</span><span style="color:#555">:</span> aload_0
-       <span style="color:#f60">1</span><span style="color:#555">:</span> invokespecial <span style="color:#a00;background-color:#faa">#</span><span style="color:#f60">1</span>                  <span style="color:#09f;font-style:italic">// Method java/lang/Object.&#34;&lt;init&gt;&#34;:()V
+       <span style="color:#f60">1</span><span style="color:#555">:</span> invokespecial <span style="color:#099">#1                  </span><span style="color:#09f;font-style:italic">// Method java/lang/Object.&#34;&lt;init&gt;&#34;:()V
 </span><span style="color:#09f;font-style:italic"></span>       <span style="color:#f60">4</span><span style="color:#555">:</span> <span style="color:#069;font-weight:bold">return</span>
 
   public <span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> main(java.lang.String[]);
     <span style="color:#99f">Code</span>:
-       <span style="color:#f60">0</span><span style="color:#555">:</span> getstatic     <span style="color:#a00;background-color:#faa">#</span><span style="color:#f60">2</span>                  <span style="color:#09f;font-style:italic">// Field java/lang/System.out:Ljava/io/PrintStream;
-</span><span style="color:#09f;font-style:italic"></span>       <span style="color:#f60">3</span><span style="color:#555">:</span> ldc           <span style="color:#a00;background-color:#faa">#</span><span style="color:#f60">3</span>                  <span style="color:#09f;font-style:italic">// String Hello Javap!
-</span><span style="color:#09f;font-style:italic"></span>       <span style="color:#f60">5</span><span style="color:#555">:</span> invokevirtual <span style="color:#a00;background-color:#faa">#</span><span style="color:#f60">4</span>                  <span style="color:#09f;font-style:italic">// Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       <span style="color:#f60">0</span><span style="color:#555">:</span> getstatic     <span style="color:#099">#2                  </span><span style="color:#09f;font-style:italic">// Field java/lang/System.out:Ljava/io/PrintStream;
+</span><span style="color:#09f;font-style:italic"></span>       <span style="color:#f60">3</span><span style="color:#555">:</span> ldc           <span style="color:#099">#3                  </span><span style="color:#09f;font-style:italic">// String Hello Javap!
+</span><span style="color:#09f;font-style:italic"></span>       <span style="color:#f60">5</span><span style="color:#555">:</span> invokevirtual <span style="color:#099">#4                  </span><span style="color:#09f;font-style:italic">// Method java/io/PrintStream.println:(Ljava/lang/String;)V
 </span><span style="color:#09f;font-style:italic"></span>       <span style="color:#f60">8</span><span style="color:#555">:</span> <span style="color:#069;font-weight:bold">return</span>
-}
-</code></pre></div>
+}</code></pre></div>
         </article>
   </div>
   <hr>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>evil on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 17:05:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/12/emacs_evil/</guid>
-      <description>EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操作</description>
+      <description>&amp;#30446;&amp;#27425; EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操</description>
     </item>
     
   </channel>

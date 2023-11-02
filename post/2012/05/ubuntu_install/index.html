@@ -92,12 +92,14 @@
         <article id="content">
            <p>Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら
 VGやLVMが削除できなくて先に進めなくなった。</p>
+
 <p>この状態を回避するには、 まず <code>ALT+F2</code> でコンソールを切り替える。
 Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 <code>ALT + F1 - F4</code> で切り替えられるのだ。</p>
+
 <p>まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ lvremove /dev/<span style="color:#555">{</span>ボリュームグループ<span style="color:#555">}</span>/<span style="color:#555">{</span>論理ボリューム<span style="color:#555">}</span>
-$ vgremove /dev/<span style="color:#555">{</span>ボリュームグループ<span style="color:#555">}</span>
-</code></pre></div><p>で削除できる。この時、swap領域に割り当てたものが削除できない場合があるがその時は、いったんインストール作業を中断してやり直せばよい。</p>
+$ vgremove /dev/<span style="color:#555">{</span>ボリュームグループ<span style="color:#555">}</span></code></pre></div>
+<p>で削除できる。この時、swap領域に割り当てたものが削除できない場合があるがその時は、いったんインストール作業を中断してやり直せばよい。</p>
 
         </article>
   </div>

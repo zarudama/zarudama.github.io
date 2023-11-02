@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sudo on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 20:16:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/03/sudo_env_variable/</guid>
-      <description>方法 経過 別解 sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。 方法 -Eオプションを追加する。 sudo -E ls -la $HOME -</description>
+      <description>&amp;#30446;&amp;#27425; 方法 経過 別解 sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。 方法 -Eオプションを追加する。 sudo -E ls -la $HOME</description>
     </item>
     
   </channel>

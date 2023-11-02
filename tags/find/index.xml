@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>find on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 17:08:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/linux_find/</guid>
-      <description>答え 解説 ついでに日数指定の復習 timeの意味 TODO日数の指定 参考 例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合</description>
+      <description>&amp;#30446;&amp;#27425; 答え 解説 ついでに日数指定の復習 timeの意味 TODO 日数の指定 参考 例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。 f</description>
     </item>
     
   </channel>

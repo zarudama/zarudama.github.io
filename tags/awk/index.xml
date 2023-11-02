@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>awk on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 16:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/awk_basic/</guid>
-      <description>基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考 基本 コンマンドラインでちょい足し的に使うときのカンペ。 $ awk &amp;#39;[BEGIN {各行を</description>
+      <description>&amp;#30446;&amp;#27425; 基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考 基本 コンマンドラインでちょい足し的に使うときのカンペ。 $ awk &amp;#39;[BEGIN {各行</description>
     </item>
     
   </channel>

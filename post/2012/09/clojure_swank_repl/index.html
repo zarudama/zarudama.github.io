@@ -91,40 +91,51 @@
   <div>
         <article id="content">
            <p>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。</p>
+
 <ul>
 <li><a href="https://github.com/technomancy/swank-clojure">https://github.com/technomancy/swank-clojure</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<!--listend-->
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">This project is no longer under active development.
 
 New users are strongly encouraged to try out nrepl.el instead. If you
-need an advanced debugger, Ritz might be a better fit.
-</code></pre></div><p>超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。もしイケテるデバッガが欲しいならRitzがいいかもYO!。」</p>
+need an advanced debugger, Ritz might be a better fit.</code></pre></div>
+<p>超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。もしイケテるデバッガが欲しいならRitzがいいかもYO!。」</p>
+
 <p>ということで、el-getでレシピに下記を追加して <code>nrepl.el</code> をインストール。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">:name</span> <span style="color:#033">nrepl</span>
  <span style="color:#366">:type</span> <span style="color:#033">github</span>
  <span style="color:#366">:pkgname</span> <span style="color:#c30">&#34;kingtim/nrepl.el&#34;</span>
-)
-</code></pre></div><p>で <code>lein2.0</code> で適当にプロジェクトをつくって、 <code>project.clj</code> に下記を追加。</p>
+)</code></pre></div>
+<p>で <code>lein2.0</code> で適当にプロジェクトをつくって、 <code>project.clj</code> に下記を追加。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">:dependencies [[org.clojure/clojure &#34;1.4.0&#34;]
-               [org.clojure/tools.nrepl &#34;0.2.0-beta9&#34; ]]
-</code></pre></div><p>最後に <code>M-x nrepl-jack-in</code> すると、nREPL-Server が起動して、nREPLが起動する。</p>
+               [org.clojure/tools.nrepl &#34;0.2.0-beta9&#34; ]]</code></pre></div>
+<p>最後に <code>M-x nrepl-jack-in</code> すると、nREPL-Server が起動して、nREPLが起動する。</p>
+
 <p>キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。</p>
+
 <ul>
 <li>シンボルの補完(TABで補完できる)</li>
 <li>関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)</li>
 </ul>
+
 <p>ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。たとえば、</p>
+
 <ul>
 <li>REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ)</li>
 <li>nREPLとは直接関係ないけど、auto-complte.elに対応するモジュール(ac-slime)がない。</li>
 <li>HyperSpecのようなドキュメントシステムは？(doc関数ががあるからいらないか)</li>
 </ul>
+
 <p>ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。</p>
+
 <ul>
 <li><a href="http://technomancy.us/163">http://technomancy.us/163</a></li>
 </ul>
+
 <p>clojureでSLIMEを使用する場合、最新のバージョンだと動かなかったりするので、環境構築に苦労したけど、専用のSLIME代替モジュールができたおかげで環境構築が楽になりますな。</p>
+
 <p>nREPLは、まだまだできたばかりのプロジェクトだけれども、
 SLIMEの呪縛から解き放たれた期待のプロジェクト。積極的に使っていきたい。</p>
 

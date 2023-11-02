@@ -91,9 +91,10 @@
   <div>
         <article id="content">
            <p>下記のとおり。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">int <span style="color:#033">value</span> <span style="color:#555">=</span> 99999999;
-String.format<span style="color:#555">(</span><span style="color:#c30">&#34;%1</span>$<span style="color:#c30">,3d円&#34;</span>, value<span style="color:#555">)</span>; // <span style="color:#555">=</span>&gt; 99,999,999円;
-</code></pre></div><p>この場合「%1$,3d」が書式になる。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">int <span style="color:#033">value</span> <span style="color:#555">=</span> <span style="color:#f60">99999999</span>;
+String.format<span style="color:#555">(</span><span style="color:#c30">&#34;%1</span>$<span style="color:#c30">,3d円&#34;</span>, value<span style="color:#555">)</span>; // <span style="color:#555">=</span>&gt; <span style="color:#f60">99</span>,999,999円;</code></pre></div>
+<p>この場合「%1$,3d」が書式になる。</p>
+
 <ul>
 <li>%は書式の開始を示す。</li>
 <li>1$は引数のインデックスを示す。ひとつの引数を使い回すときなどに必要。今回の場合はひとつなので無くても良い。</li>

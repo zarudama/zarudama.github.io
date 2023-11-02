@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2012-03-10 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 507 文字 </h5>
+      <h5 id="wordcount"> 508 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,36 +90,55 @@
 </aside>
   <div>
         <article id="content">
-           <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
 <ul>
-<li><a href="#%E6%96%B9%E6%B3%95">方法</a></li>
-<li><a href="#%E7%B5%8C%E9%81%8E">経過</a></li>
-<li><a href="#%E5%88%A5%E8%A7%A3">別解</a></li>
+<li><a href="#方法">方法</a></li>
+<li><a href="#経過">経過</a></li>
+<li><a href="#別解">別解</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p></div>
+<!--endtoc--></p>
+
 <p>sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。</p>
+
 <h2 id="方法">方法</h2>
+
 <p>-Eオプションを追加する。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo -E ls -la <span style="color:#033">$HOME</span>
-</code></pre></div><p>-Eは実行したいコマンドの直前に置く。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo -E ls -la <span style="color:#033">$HOME</span></code></pre></div>
+<p>-Eは実行したいコマンドの直前に置く。</p>
+
 <h2 id="経過">経過</h2>
+
 <p>sudo -u hogeなどで実行すると、sudoを実行したユーザの環境変数が引き継がれない。昔は、こんなこと考えずに引き継がれてた気がするが、どうやらsudoのバージョンが上がって仕様変更されたらしい。</p>
+
 <ul>
 <li><a href="http://arika.org/2009/04/24/sudo-and-env">http://arika.org/2009/04/24/sudo-and-env</a></li>
 </ul>
+
 <p>環境変数を引き継ぐためにはvisudoを使ってsudoersファイルに環境変数を記述するのが定石のようだが、/etc配下はできるだけ触りたくない。</p>
+
 <p>そこで下記の方法を見つけた。-Eをつけるだけで良いらしい。</p>
+
 <ul>
 <li><a href="http://d.hatena.ne.jp/Yudoufu/20110326/1301129885">http://d.hatena.ne.jp/Yudoufu/20110326/1301129885</a></li>
 </ul>
+
 <p>ただし、man sudo しても-Eオプションは何故か載っていなかった。（manにないだけで実際には使用できる。)</p>
+
 <p>manの最後にver1.6.6とあるのでマニュアルが古いと思われる。
 sudo[Enter]で表示されるUsageにはEオプションは存在するので。</p>
+
 <h2 id="別解">別解</h2>
+
 <p>-u オプションを使用して別ユーザーとしてsudoを実行したい場合、そのユーザーの <code>.bashrc</code> や <code>/etc/profile</code> に定義してある設定を使用したい場合がある。そんなときは、-i オプションを使用すれば良い。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo -u taro -i env
-</code></pre></div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo -u taro -i env</code></pre></div>
         </article>
   </div>
   <hr>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 12 Dec 2019 23:21:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2019/12/moji_code/</guid>
-      <description>DONE文字とは 符号化文字集合の種類 ASCII ISO/IEC 646 JIS X 201 ISO/IEC 2022 JIS X 208 EUC-JP, Shift_JIS ISO/IEC 8859(ISO-8859-1, Latin-1) ISO/IEC 10646(Unicode) JIS X 0212 JIS X 0213 符号化方式 区点番号 問題のある文字 JIS X 208 の改定により区点が</description>
+      <description>&amp;#30446;&amp;#27425; DONE 文字とは 符号化文字集合の種類 ASCII ISO/IEC 646 JIS X 201 ISO/IEC 2022 JIS X 208 EUC-JP, Shift_JIS ISO/IEC 8859(ISO-8859-1, Latin-1) ISO/IEC 10646(Unicode) JIS X 0212 JIS X 0213 符号化方式 区点番号 問題のある文字 JIS X 208 の改定により区点が変わ</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 08 Nov 2019 22:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/xmonad_use/</guid>
-      <description>インストールメモ xinitrc 参考サイト CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれて</description>
+      <description>&amp;#30446;&amp;#27425; インストールメモ xinitrc 参考サイト CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれ</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sun, 03 Nov 2019 20:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</guid>
-      <description>動作環境 Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。 C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m [4mjava.io.FileNotFoundException:</description>
+      <description>&amp;#30446;&amp;#27425; 動作環境 Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。 C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Sun, 03 Nov 2019 20:31:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/emacs_window_image_disp/</guid>
-      <description>参考 Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調</description>
+      <description>&amp;#30446;&amp;#27425; 参考 Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Sun, 03 Nov 2019 20:25:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
-      <description>processing のおすすめポイント processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、an</description>
+      <description>&amp;#30446;&amp;#27425; processing のおすすめポイント processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、a</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Sun, 03 Nov 2019 20:18:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/02/tmux_session/</guid>
-      <description>その他参考にしたもの 下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。 http://www.gcd.org/blog/2006/09/100/ agent=&amp;#34;$HOME/tmp/ssh-agent-$USER&amp;#34; if [ -S &amp;#34;$SSH_AUTH_SOCK&amp;#34; ]; then case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*) ln -snf &amp;#34;$SSH_AUTH_SOCK&amp;#34; $agent &amp;amp;&amp;amp; export SSH_AUTH_SOCK=$agent</description>
+      <description>&amp;#30446;&amp;#27425; その他参考にしたもの 下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。 http://www.gcd.org/blog/2006/09/100/ agent=&amp;#34;$HOME/tmp/ssh-agent-$USER&amp;#34; if [ -S &amp;#34;$SSH_AUTH_SOCK&amp;#34; ]; then case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*) ln -snf &amp;#34;$SSH_AUTH_SOCK&amp;#34; $agent &amp;amp;&amp;amp; export</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Sun, 03 Nov 2019 20:16:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/03/sudo_env_variable/</guid>
-      <description>方法 経過 別解 sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。 方法 -Eオプションを追加する。 sudo -E ls -la $HOME -</description>
+      <description>&amp;#30446;&amp;#27425; 方法 経過 別解 sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。 方法 -Eオプションを追加する。 sudo -E ls -la $HOME</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@
       <pubDate>Sun, 03 Nov 2019 20:14:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/03/skk_windows/</guid>
-      <description>corvus-SKK 「;」によるStickyShiftを実現する方法 SKK日本語入力FEP wceSKKServ google-ime-skk xp環境でのインストール 去年からemacs上の日本語入力にはDD</description>
+      <description>&amp;#30446;&amp;#27425; corvus-SKK 「;」によるStickyShiftを実現する方法 SKK日本語入力FEP wceSKKServ google-ime-skk xp環境でのインストール 去年からemacs上の日本語入力にはD</description>
     </item>
     
     <item>
@@ -197,7 +197,7 @@
       <pubDate>Sun, 03 Nov 2019 19:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/firefox_sync_error/</guid>
-      <description>追記 参考 下記のエラーが頻繁に表示される。 「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は、</description>
+      <description>&amp;#30446;&amp;#27425; 追記 参考 下記のエラーが頻繁に表示される。 「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は</description>
     </item>
     
     <item>
@@ -215,7 +215,7 @@
       <pubDate>Sun, 03 Nov 2019 19:51:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/03/file_open/</guid>
-      <description>確認方法 一時的な設定方法 システム全体 ユーザ毎(カレントユーザ) 恒久的な設定方法 - sysctl.conf - limits.conf - メモ CentOSで「too many files」なるエラーが</description>
+      <description>&amp;#30446;&amp;#27425; 確認方法 一時的な設定方法 システム全体 ユーザ毎(カレントユーザ) 恒久的な設定方法 - sysctl.conf - limits.conf - メモ CentOSで「too many files」なるエラー</description>
     </item>
     
     <item>
@@ -242,7 +242,7 @@
       <pubDate>Sun, 03 Nov 2019 19:15:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/01/emacs_package_elisp/</guid>
-      <description>2013/05/13 追記1: 2013/05/13 追記2: 2013/05/13 追記3: 今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、イ</description>
+      <description>&amp;#30446;&amp;#27425; 2013/05/13 追記1: 2013/05/13 追記2: 2013/05/13 追記3: 今までパッケージ管理には el-get を使用してきたのですが、 Windows環境がメインだと git clone がうまくいかなかったり、</description>
     </item>
     
     <item>
@@ -287,7 +287,7 @@
       <pubDate>Sun, 03 Nov 2019 17:26:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2011/11/clojure_game/</guid>
-      <description>はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍 はじめに LispでGAM</description>
+      <description>&amp;#30446;&amp;#27425; はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍 はじめに LispでGA</description>
     </item>
     
     <item>
@@ -332,7 +332,7 @@
       <pubDate>Sun, 03 Nov 2019 17:12:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_jvm_heap/</guid>
-      <description>JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考 稼動中のJVMのヒープサイズを知りたくなることは良くあるのでそ</description>
+      <description>&amp;#30446;&amp;#27425; JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考 稼動中のJVMのヒープサイズを知りたくなることは良くあるので</description>
     </item>
     
     <item>
@@ -341,7 +341,7 @@
       <pubDate>Sun, 03 Nov 2019 17:10:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_gc/</guid>
-      <description>メモリ使用量を確認したいとき GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。 まずはプロセスIDを調べる。例と</description>
+      <description>&amp;#30446;&amp;#27425; メモリ使用量を確認したいとき GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。 まずはプロセスIDを調べる。例</description>
     </item>
     
     <item>
@@ -350,7 +350,7 @@
       <pubDate>Sun, 03 Nov 2019 17:08:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/linux_find/</guid>
-      <description>答え 解説 ついでに日数指定の復習 timeの意味 TODO日数の指定 参考 例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合</description>
+      <description>&amp;#30446;&amp;#27425; 答え 解説 ついでに日数指定の復習 timeの意味 TODO 日数の指定 参考 例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。 f</description>
     </item>
     
     <item>
@@ -359,7 +359,7 @@
       <pubDate>Sun, 03 Nov 2019 17:05:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/12/emacs_evil/</guid>
-      <description>EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操作</description>
+      <description>&amp;#30446;&amp;#27425; EmacsとVim それでもEmacsを選ぶ理由 Evilとは、Vimの操作性を備えたelisp実行環境である。 Evil-modeでVimの操</description>
     </item>
     
     <item>
@@ -386,7 +386,7 @@
       <pubDate>Sun, 03 Nov 2019 16:59:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/04/clojure_xml/</guid>
-      <description>基本 xml-seq xml-zip XPATH 参考 clojureでxmlを処理する方法のメモ。随時更新予定。 基本 下記のxmlをtest.xmlとしてプロジェクト直下に保存。 &amp;lt;parent&amp;gt; &amp;lt;child&amp;gt;</description>
+      <description>&amp;#30446;&amp;#27425; 基本 xml-seq xml-zip XPATH 参考 clojureでxmlを処理する方法のメモ。随時更新予定。 基本 下記のxmlをtest.xmlとしてプロジェクト直下に保存。 &amp;lt;parent&amp;gt;</description>
     </item>
     
     <item>
@@ -404,7 +404,7 @@
       <pubDate>Sun, 03 Nov 2019 16:55:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/emacs_cask/</guid>
-      <description>はじめに Caskの導入 Emacs設定ファイルの書き方 私の.emacsのインストール方法 私の.emacsのディレクトリ配置 私の.emacsの分</description>
+      <description>&amp;#30446;&amp;#27425; はじめに Caskの導入 Emacs設定ファイルの書き方 私の.emacsのインストール方法 私の.emacsのディレクトリ配置 私の.emacsの</description>
     </item>
     
     <item>
@@ -413,7 +413,7 @@
       <pubDate>Sun, 03 Nov 2019 16:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/awk_basic/</guid>
-      <description>基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考 基本 コンマンドラインでちょい足し的に使うときのカンペ。 $ awk &amp;#39;[BEGIN {各行を</description>
+      <description>&amp;#30446;&amp;#27425; 基本 デリミタを変更するには マッチした文字列だけを表示 タブを出力する例 参考 基本 コンマンドラインでちょい足し的に使うときのカンペ。 $ awk &amp;#39;[BEGIN {各行</description>
     </item>
     
     <item>
@@ -431,7 +431,7 @@
       <pubDate>Sun, 03 Nov 2019 16:47:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/cygwin_apt_cyg/</guid>
-      <description>はじめに 対応方法 はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。これは、ubuntuでいう apt-get のよう</description>
+      <description>&amp;#30446;&amp;#27425; はじめに 対応方法 はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。これは、ubuntuでいう apt-get のよ</description>
     </item>
     
     <item>
@@ -440,7 +440,7 @@
       <pubDate>Sun, 03 Nov 2019 16:43:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/01/clojure_problem/</guid>
-      <description>A nil key【難しい】 For the win 【forの使いかた】 Logical falsity and truth【真偽について】 Subset and Superset【重量】 Map Defaults Lists: conj【重要】 Intro to Vect</description>
+      <description>&amp;#30446;&amp;#27425; A nil key【難しい】 For the win 【forの使いかた】 Logical falsity and truth【真偽について】 Subset and Superset【重量】 Map Defaults Lists: conj【重要】 Intro to Vec</description>
     </item>
     
     <item>
@@ -449,7 +449,7 @@
       <pubDate>Sun, 03 Nov 2019 16:32:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/05/libgdx_emacs/</guid>
-      <description>はじめに gradleプロジェクトをJDEEでも使えるようにする はじめに libGDX でゲームプログラミングを始めています。 最初は、Eclipseでコーデ</description>
+      <description>&amp;#30446;&amp;#27425; はじめに gradleプロジェクトをJDEEでも使えるようにする はじめに libGDX でゲームプログラミングを始めています。 最初は、Eclipseでコー</description>
     </item>
     
   </channel>

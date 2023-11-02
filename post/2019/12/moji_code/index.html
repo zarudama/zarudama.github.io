@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2019-12-12 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 1239 文字 </h5>
+      <h5 id="wordcount"> 1236 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,11 +90,17 @@
 </aside>
   <div>
         <article id="content">
-           <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
 <ul>
-<li><a href="#%E6%96%87%E5%AD%97%E3%81%A8%E3%81%AF"><!-- raw HTML omitted -->DONE<!-- raw HTML omitted --> 文字とは</a></li>
-<li><a href="#%E7%AC%A6%E5%8F%B7%E5%8C%96%E6%96%87%E5%AD%97%E9%9B%86%E5%90%88%E3%81%AE%E7%A8%AE%E9%A1%9E">符号化文字集合の種類</a>
+<li><a href="#文字とは"><span class="org-todo done DONE">DONE</span> 文字とは</a></li>
+<li><a href="#符号化文字集合の種類">符号化文字集合の種類</a>
+
 <ul>
 <li><a href="#ascii">ASCII</a></li>
 <li><a href="#iso-iec-646">ISO/IEC 646</a></li>
@@ -106,72 +112,90 @@
 <li><a href="#iso-iec-10646--unicode">ISO/IEC 10646(Unicode)</a></li>
 <li><a href="#jis-x-0212">JIS X 0212</a></li>
 <li><a href="#jis-x-0213">JIS X 0213</a></li>
-</ul>
-</li>
-<li><a href="#%E7%AC%A6%E5%8F%B7%E5%8C%96%E6%96%B9%E5%BC%8F">符号化方式</a></li>
-<li><a href="#%E5%8C%BA%E7%82%B9%E7%95%AA%E5%8F%B7">区点番号</a></li>
-<li><a href="#%E5%95%8F%E9%A1%8C%E3%81%AE%E3%81%82%E3%82%8B%E6%96%87%E5%AD%97">問題のある文字</a>
+</ul></li>
+<li><a href="#符号化方式">符号化方式</a></li>
+<li><a href="#区点番号">区点番号</a></li>
+<li><a href="#問題のある文字">問題のある文字</a>
+
 <ul>
-<li><a href="#jis-x-208-%E3%81%AE%E6%94%B9%E5%AE%9A%E3%81%AB%E3%82%88%E3%82%8A%E5%8C%BA%E7%82%B9%E3%81%8C%E5%A4%89%E3%82%8F%E3%81%A3%E3%81%9F%E6%96%87%E5%AD%97">JIS X 208 の改定により区点が変わった文字</a></li>
-<li><a href="#%E6%A9%9F%E7%A8%AE%E4%BE%9D%E5%AD%98%E6%96%87%E5%AD%97">機種依存文字</a></li>
+<li><a href="#jis-x-208-の改定により区点が変わった文字">JIS X 208 の改定により区点が変わった文字</a></li>
+<li><a href="#機種依存文字">機種依存文字</a></li>
+</ul></li>
+<li><a href="#参考url">参考URL</a></li>
 </ul>
-</li>
-<li><a href="#%E5%8F%82%E8%80%83url">参考URL</a></li>
-</ul>
-<!-- raw HTML omitted -->
-<h2 id="文字とは"><!-- raw HTML omitted -->DONE<!-- raw HTML omitted --> 文字とは</h2>
+
+<p></div>
+<!--endtoc--></p>
+
+<h2 id="文字とは"><span class="org-todo done DONE">DONE</span> 文字とは</h2>
+
 <ul>
 <li>文字の集合</li>
 <li>符号化文字集合: 文字の集合に数字を割り当てたもの</li>
 <li>文字コード: 文字に割り当てた数字</li>
 <li>コードポイント: 符号化文字集合の表の位置のこと</li>
 </ul>
+
 <h2 id="符号化文字集合の種類">符号化文字集合の種類</h2>
+
 <h3 id="ascii">ASCII</h3>
+
 <ul>
 <li>7bit</li>
 <li>アメリカの文字を表す。</li>
 </ul>
+
 <h3 id="iso-iec-646">ISO/IEC 646</h3>
+
 <ul>
 <li>7bit</li>
 <li>ASCIIをもとに国ごとに書き換えて良い文字を定義したもの</li>
 <li>国ごとにある</li>
 </ul>
+
 <h3 id="jis-x-201">JIS X 201</h3>
+
 <ul>
 <li>7bit</li>
 <li>ISO/IEC 646 をもとにした日本の規格</li>
 <li>バックスラッシュが円記号、チルダがアッパーバーになっている</li>
 </ul>
+
 <h3 id="iso-iec-2022">ISO/IEC 2022</h3>
+
 <ul>
 <li>8bit / 2byte</li>
 <li>ISO/IEC 646では国ひとつしか定義できないので複数の国の文字を混在できるようにした</li>
 <li>8bitの場合、符号表が下記のように分類される
+
 <ul>
 <li>CL領域(ControlLeft) 左側の制御文字</li>
 <li>GL領域(GraphicLeft) 左側の図形文字</li>
 <li>CR領域(ControlRight) 右側の制御文字</li>
 <li>GR領域(GraphicRight) 右側の図形文字</li>
-</ul>
-</li>
+</ul></li>
 <li>図形文字とは通常の文字のこと</li>
 <li>1byteでは漢字などを表現しきれない</li>
 <li>2byte以上使うことでその欠点を解消</li>
 <li>1byteで94文字使うことができる。2byte使うと 94x94 文字使うことができる。</li>
 </ul>
+
 <h3 id="jis-x-208">JIS X 208</h3>
+
 <ul>
 <li>2byte</li>
 <li>ISO/IEC 2022をモトにした日本の規格</li>
 <li>8836文字扱える(常用漢字は2136文字なので十分)</li>
 </ul>
+
 <h3 id="euc-jp-shift-jis">EUC-JP, Shift_JIS</h3>
+
 <ul>
 <li>ASCIIとJIS X 208 の漢字を組み合わせたもの</li>
 </ul>
+
 <h3 id="iso-iec-8859--iso-8859-1-latin-1">ISO/IEC 8859(ISO-8859-1, Latin-1)</h3>
+
 <ul>
 <li>8bit</li>
 <li>ヨーロッパで普及している</li>
@@ -180,71 +204,88 @@
 <li>GRに各国の固有の文字集合</li>
 <li>ISO/IEC 8859-1は通称 Latin-1とも呼ばれ欧米を中心に使用されている。</li>
 </ul>
+
 <h3 id="iso-iec-10646--unicode">ISO/IEC 10646(Unicode)</h3>
+
 <ul>
 <li>ISO/IEC 10646: ISOが規格したもの</li>
 <li>Unicode: 企業が規格したもの</li>
 <li>両者は統合される</li>
 <li>当初16bitで表現する規格だったが、文字が足りなくなり4byteになった</li>
 <li>Unicodeでは、文字の問題は解決しなかった</li>
-<li>結果古い規格は現在も維持メンテナンスされている</li>
-<li></li>
+<li>結果古い規格は現在も維持メンテナンスされている
+-</li>
 </ul>
+
 <h3 id="jis-x-0212">JIS X 0212</h3>
+
 <ul>
 <li>補助漢字</li>
 <li>JIS X 208にない漢字を足したもの</li>
 <li>JIS X 208と一緒に使う事が前提</li>
 <li>EUC-JPでは採用されているものの、Shift_JISでは使用されていない
+
 <ul>
 <li>Shift_JISがISO/IEC 2022に準拠していないため使うことができなかった</li>
-</ul>
-</li>
+</ul></li>
 <li>最も普及しているShift_JISで作用されなかったためあまり普及していない</li>
 </ul>
+
 <h3 id="jis-x-0213">JIS X 0213</h3>
+
 <ul>
 <li>JIS X 208 に足りない文字を足したもの</li>
 <li>JIS X 208 のスーパセットであるため、ISO/IEC 2022 に準拠してるかどうかは関係ない</li>
 <li>JIS X 0212 の失敗の反省から再度規格されたもの</li>
 <li>したがって JIS X 0212と文字がかなり被っている</li>
 </ul>
+
 <h2 id="符号化方式">符号化方式</h2>
+
 <ul>
 <li>符号化文字集合をどのようにコンピュータで表すかを定義したもの</li>
 <li>JISX 0208
+
 <ul>
 <li>EUC-JP</li>
 <li>ISO-2022-JP</li>
 <li>Shift_JIS</li>
-</ul>
-</li>
+</ul></li>
 <li>Unicode
+
 <ul>
 <li>UTF-16</li>
 <li>UTF-32</li>
-<li>UTF-8</li>
-<li></li>
+<li>UTF-8
+-</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2 id="区点番号">区点番号</h2>
+
 <ul>
 <li>JIS規格のコードポイントを表す</li>
 <li>区は行、点は列を表す</li>
 <li>たとえば16行目6列目は、区番号16、点番号6、すなわち16区6点となる</li>
 </ul>
+
 <h2 id="問題のある文字">問題のある文字</h2>
+
 <h3 id="jis-x-208-の改定により区点が変わった文字">JIS X 208 の改定により区点が変わった文字</h3>
+
 <ul>
 <li>森鴎外の 鴎など</li>
 <li>はしご亭</li>
 </ul>
+
 <h3 id="機種依存文字">機種依存文字</h3>
+
 <ul>
 <li>草なぎの彅</li>
 </ul>
+
 <h2 id="参考url">参考URL</h2>
+
 <ul>
 <li><a href="https://tmtms.hatenablog.com/entry/201805/mysql-sjis-cp932">https://tmtms.hatenablog.com/entry/201805/mysql-sjis-cp932</a></li>
 </ul>

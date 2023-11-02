@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2012-02-12 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 687 文字 </h5>
+      <h5 id="wordcount"> 688 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,37 +90,50 @@
 </aside>
   <div>
         <article id="content">
-           <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
 <ul>
-<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E5%8F%82%E8%80%83%E3%81%AB%E3%81%97%E3%81%9F%E3%82%82%E3%81%AE">その他参考にしたもの</a></li>
+<li><a href="#その他参考にしたもの">その他参考にしたもの</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p></div>
+<!--endtoc--></p>
+
 <p>下記を参考に.bashrcにSSH_AUTH_SOCKを固定にする方法で解決した。</p>
+
 <ul>
 <li><a href="http://www.gcd.org/blog/2006/09/100/">http://www.gcd.org/blog/2006/09/100/</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<!--listend-->
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#033">agent</span><span style="color:#555">=</span><span style="color:#c30">&#34;</span><span style="color:#033">$HOME</span><span style="color:#c30">/tmp/ssh-agent-</span><span style="color:#033">$USER</span><span style="color:#c30">&#34;</span>
 <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> -S <span style="color:#c30">&#34;</span><span style="color:#033">$SSH_AUTH_SOCK</span><span style="color:#c30">&#34;</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
         <span style="color:#069;font-weight:bold">case</span> <span style="color:#033">$SSH_AUTH_SOCK</span> in
-        /tmp/*/agent.<span style="color:#555">[</span>0-9<span style="color:#555">]</span>*<span style="color:#555">)</span>
+        /tmp/*/agent.<span style="color:#555">[</span><span style="color:#f60">0</span>-9<span style="color:#555">]</span>*<span style="color:#555">)</span>
                 ln -snf <span style="color:#c30">&#34;</span><span style="color:#033">$SSH_AUTH_SOCK</span><span style="color:#c30">&#34;</span> <span style="color:#033">$agent</span> <span style="color:#555">&amp;&amp;</span> <span style="color:#366">export</span> <span style="color:#033">SSH_AUTH_SOCK</span><span style="color:#555">=</span><span style="color:#033">$agent</span>
         <span style="color:#069;font-weight:bold">esac</span>
 <span style="color:#069;font-weight:bold">elif</span> <span style="color:#555">[</span> -S <span style="color:#033">$agent</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
         <span style="color:#366">export</span> <span style="color:#033">SSH_AUTH_SOCK</span><span style="color:#555">=</span><span style="color:#033">$agent</span>
 <span style="color:#069;font-weight:bold">else</span>
         <span style="color:#366">echo</span> <span style="color:#c30">&#34;no ssh-agent&#34;</span>
-<span style="color:#069;font-weight:bold">fi</span>
-</code></pre></div><p>testコマンドのSオプションは以下のとおり。</p>
+<span style="color:#069;font-weight:bold">fi</span></code></pre></div>
+<p>testコマンドのSオプションは以下のとおり。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-S FILE
-  FILE exists and is a socket
-</code></pre></div><p>やっていることは、直接参照する$SSH_AUTH_SOCKは固定のパスにしてしまい、ログインごとに変わるUNIXドメインソケットはシンボリックリンクで指し示すようにしている。</p>
+  FILE exists and is a socket</code></pre></div>
+<p>やっていることは、直接参照する$SSH_AUTH_SOCKは固定のパスにしてしまい、ログインごとに変わるUNIXドメインソケットはシンボリックリンクで指し示すようにしている。</p>
+
 <h2 id="その他参考にしたもの">その他参考にしたもの</h2>
+
 <ul>
 <li><a href="http://hibari.2ch.net/test/read.cgi/unix/1268778432/">http://hibari.2ch.net/test/read.cgi/unix/1268778432/</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<!--listend-->
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">84 ：名無しさん＠お腹いっぱい。：2010/11/02(火) 15:34:12
     screenと違って、アタッチ時に環境変数SSH_AUTH_SOCKを新しい値に更新してくれるのは
     嬉しいんだけど、それが実際シェルに反映されるのは、新しいシェルを追加した時だけだよね？
@@ -143,14 +156,13 @@
     　fi
     }
     これでとにかくscって打てばアタッチするし、アタッチ済なら
-    アタッチ前シェルの環境を取り込んでくる。
-</code></pre></div><p>show-envはshow-environmentのエイリアスで、-で始まる環境変数はシステムから削除されたものらしい。</p>
+    アタッチ前シェルの環境を取り込んでくる。</code></pre></div>
+<p>show-envはshow-environmentのエイリアスで、-で始まる環境変数はシステムから削除されたものらしい。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># &#34;-&#34;のついている（tmuxにより削除された環境変数）をクリア</span>
 <span style="color:#366">unset</span> <span style="color:#069;font-weight:bold">$(</span>tmux show-env | sed -n <span style="color:#c30">&#39;s/^-//p&#39;</span><span style="color:#069;font-weight:bold">)</span>
 
 <span style="color:#09f;font-style:italic"># 環境変数の再定義</span>
-<span style="color:#366">eval</span> <span style="color:#366">export</span> <span style="color:#069;font-weight:bold">$(</span>tmux show-env | sed -n <span style="color:#c30">&#39;s/$/&#34;/; s/=/=&#34;/p&#39;</span><span style="color:#069;font-weight:bold">)</span>
-</code></pre></div>
+<span style="color:#366">eval</span> <span style="color:#366">export</span> <span style="color:#069;font-weight:bold">$(</span>tmux show-env | sed -n <span style="color:#c30">&#39;s/$/&#34;/; s/=/=&#34;/p&#39;</span><span style="color:#069;font-weight:bold">)</span></code></pre></div>
         </article>
   </div>
   <hr>

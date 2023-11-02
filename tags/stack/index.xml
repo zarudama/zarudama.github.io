@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>stack on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 20:34:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</guid>
-      <description>動作環境 Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。 C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m [4mjava.io.FileNotFoundException:</description>
+      <description>&amp;#30446;&amp;#27425; 動作環境 Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。 C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Sun, 03 Nov 2019 19:54:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/05/firefox_sync_error/</guid>
-      <description>追記 参考 下記のエラーが頻繁に表示される。 「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は、</description>
+      <description>&amp;#30446;&amp;#27425; 追記 参考 下記のエラーが頻繁に表示される。 「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Sun, 03 Nov 2019 19:51:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/03/file_open/</guid>
-      <description>確認方法 一時的な設定方法 システム全体 ユーザ毎(カレントユーザ) 恒久的な設定方法 - sysctl.conf - limits.conf - メモ CentOSで「too many files」なるエラーが</description>
+      <description>&amp;#30446;&amp;#27425; 確認方法 一時的な設定方法 システム全体 ユーザ毎(カレントユーザ) 恒久的な設定方法 - sysctl.conf - limits.conf - メモ CentOSで「too many files」なるエラー</description>
     </item>
     
     <item>

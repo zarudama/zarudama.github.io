@@ -90,43 +90,55 @@
 </aside>
   <div>
         <article id="content">
-           <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
 <ul>
-<li><a href="#%E5%9F%BA%E6%9C%AC">基本</a></li>
+<li><a href="#基本">基本</a></li>
 <li><a href="#xml-seq">xml-seq</a></li>
 <li><a href="#xml-zip">xml-zip</a></li>
 <li><a href="#xpath">XPATH</a></li>
-<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+<li><a href="#参考">参考</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p></div>
+<!--endtoc--></p>
+
 <p>clojureでxmlを処理する方法のメモ。随時更新予定。</p>
+
 <h2 id="基本">基本</h2>
+
 <p>下記のxmlをtest.xmlとしてプロジェクト直下に保存。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">&lt;parent&gt;
     &lt;child&gt;
         hello
     &lt;/child&gt;
-&lt;/parent&gt;
-</code></pre></div><p>clojure.xml/parse関数を使うとmapデータに変換できる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Clojure" data-lang="Clojure"><span style="color:#033">user&gt;</span> (<span style="color:#c0f">require</span> <span style="color:#555">&#39;</span>[<span style="color:#033">clojure.xml</span> <span style="color:#fc3">:as</span> <span style="color:#033">xml</span>])
-<span style="color:#033">user&gt;</span> (<span style="color:#c0f">xml/parse</span> (<span style="color:#366">slurp </span><span style="color:#c30">&#34;test.xml&#34;</span>))
-{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:parent</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:child</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [<span style="color:#c30">&#34;\n\t\thello\n\t&#34;</span>]}]}
-</code></pre></div><p>ここでは、slurp関数を使ってXMLファイルを直接読んで処理したが、
+&lt;/parent&gt;</code></pre></div>
+<p>clojure.xml/parse関数を使うとmapデータに変換できる。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Clojure" data-lang="Clojure"><span style="color:#033">user&gt;</span> (<span style="color:#033">require</span> <span style="color:#555">&#39;</span>[<span style="color:#033">clojure.xml</span> <span style="color:#fc3">:as</span> <span style="color:#033">xml</span>])
+<span style="color:#033">user&gt;</span> (<span style="color:#033">xml/parse</span> (<span style="color:#366">slurp </span><span style="color:#c30">&#34;test.xml&#34;</span>))
+{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:parent</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:child</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [<span style="color:#c30">&#34;\n\t\thello\n\t&#34;</span>]}]}</code></pre></div>
+<p>ここでは、slurp関数を使ってXMLファイルを直接読んで処理したが、
 slurp以外の関数で読み込んだxmlを扱いたいときなどは、xmlは既に文字列になっていることが多い。
 clojure.xml/parse関数は文字列を直接パースできないので下記のようなラッパー関数を用意する。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#069;font-weight:bold">defn </span><span style="color:#033">xml-parse</span> [<span style="color:#033">s</span>]
-  (<span style="color:#c0f">xml/parse</span> (<span style="color:#c0f">java.io.ByteArrayInputStream.</span> (<span style="color:#c0f">.getBytes</span> <span style="color:#033">s</span>))))
-</code></pre></div><p>これで文字列としてのxmlもパースできるようになった。</p>
+  (<span style="color:#033">xml/parse</span> (<span style="color:#033">java.io.ByteArrayInputStream.</span> (<span style="color:#033">.getBytes</span> <span style="color:#033">s</span>))))</code></pre></div>
+<p>これで文字列としてのxmlもパースできるようになった。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Clojure" data-lang="Clojure"><span style="color:#033">user&gt;</span> (<span style="color:#069;font-weight:bold">def </span><span style="color:#033">xml-doc</span> <span style="color:#c30">&#34;&lt;parent&gt; &lt;child&gt; hello &lt;/child&gt; &lt;/parent&gt;&#34;</span>)
 <span style="color:#555">#</span><span style="color:#fc3">&#39;user/xml-doc</span>
-<span style="color:#033">user&gt;</span> (<span style="color:#c0f">xml-parse</span> <span style="color:#033">xml-doc</span>)
-{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:parent</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:child</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [<span style="color:#c30">&#34; hello &#34;</span>]}]}
-</code></pre></div><p>xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、そんな時はC-c M-o でバッファクリアすると良い感じ。</p>
+<span style="color:#033">user&gt;</span> (<span style="color:#033">xml-parse</span> <span style="color:#033">xml-doc</span>)
+{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:parent</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:child</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [<span style="color:#c30">&#34; hello &#34;</span>]}]}</code></pre></div>
+<p>xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、そんな時はC-c M-o でバッファクリアすると良い感じ。</p>
+
 <h2 id="xml-seq">xml-seq</h2>
+
 <p>xmlをmapデータにしただけだと、各要素へのアクセスが大変なので
 <code>xml-seq</code> を使用して、各要素をトラバースした状態のシーケンスを用意することができる。この関数を使用すると、それぞれのタグが先頭になった状態シーケンスが得られる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">xml-seq </span>(<span style="color:#c0f">xml-parse</span> <span style="color:#033">xml-doc</span>))
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">xml-seq </span>(<span style="color:#033">xml-parse</span> <span style="color:#033">xml-doc</span>))
 ({<span style="color:#fc3">:tag</span> <span style="color:#fc3">:parent</span>, <span style="color:#09f;font-style:italic">;; 最初のparentタグが先頭</span>
   <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>,
   <span style="color:#fc3">:content</span> [{<span style="color:#fc3">:tag</span> <span style="color:#fc3">:child</span>, <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>, <span style="color:#fc3">:content</span> [<span style="color:#c30">&#34; hello &#34;</span>]}]}
@@ -134,20 +146,20 @@ clojure.xml/parse関数は文字列を直接パースできないので下記の
    <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>,
    <span style="color:#fc3">:content</span> [<span style="color:#c30">&#34; hello &#34;</span>]}
   <span style="color:#c30">&#34; hello &#34;</span>     <span style="color:#09f;font-style:italic">;; 一番最後の要素</span>
- )
-</code></pre></div><p>こうすることで、ツリー構造なXMLデータがフラットなシーケンスデータになる。つまり <code>for</code> などの従来のシーケンス関数がそのまま使用できるようになる。</p>
+ )</code></pre></div>
+<p>こうすることで、ツリー構造なXMLデータがフラットなシーケンスデータになる。つまり <code>for</code> などの従来のシーケンス関数がそのまま使用できるようになる。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">&lt;parent&gt;
     &lt;child <span style="color:#033">name</span><span style="color:#555">=</span><span style="color:#c30">&#34;taro&#34;</span>&gt;hello&lt;/child&gt;
     &lt;child <span style="color:#033">name</span><span style="color:#555">=</span><span style="color:#c30">&#34;hanako&#34;</span>&gt;wao&lt;/child&gt;
-&lt;/parent&gt;
-</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span>  (<span style="color:#069;font-weight:bold">def </span><span style="color:#033">xml-doc2</span> <span style="color:#c30">&#34; &lt;parent&gt; &lt;child name=\&#34;taro\&#34;&gt;hello&lt;/child&gt; &lt;child name=\&#34;hanako\&#34;&gt;hi&lt;/child&gt; &lt;/parent&gt;&#34;</span>)
+&lt;/parent&gt;</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span>  (<span style="color:#069;font-weight:bold">def </span><span style="color:#033">xml-doc2</span> <span style="color:#c30">&#34; &lt;parent&gt; &lt;child name=\&#34;taro\&#34;&gt;hello&lt;/child&gt; &lt;child name=\&#34;hanako\&#34;&gt;hi&lt;/child&gt; &lt;/parent&gt;&#34;</span>)
 <span style="color:#555">#</span><span style="color:#fc3">&#39;user/xml-doc2</span>
-<span style="color:#033">user&gt;</span> (<span style="color:#366">for </span>[<span style="color:#033">x</span> (<span style="color:#366">xml-seq </span>(<span style="color:#c0f">xml-parse</span> <span style="color:#033">xml-doc2</span>)) <span style="color:#fc3">:when</span> (<span style="color:#366">= </span><span style="color:#fc3">:child</span> (<span style="color:#fc3">:tag</span> <span style="color:#033">x</span>))] (<span style="color:#fc3">:name</span> (<span style="color:#fc3">:attrs</span> <span style="color:#033">x</span>)))
-(<span style="color:#c30">&#34;taro&#34;</span> <span style="color:#c30">&#34;hanako&#34;</span>)
-</code></pre></div><h2 id="xml-zip">xml-zip</h2>
+<span style="color:#033">user&gt;</span> (<span style="color:#366">for </span>[<span style="color:#033">x</span> (<span style="color:#366">xml-seq </span>(<span style="color:#033">xml-parse</span> <span style="color:#033">xml-doc2</span>)) <span style="color:#fc3">:when</span> (<span style="color:#366">= </span><span style="color:#fc3">:child</span> (<span style="color:#fc3">:tag</span> <span style="color:#033">x</span>))] (<span style="color:#fc3">:name</span> (<span style="color:#fc3">:attrs</span> <span style="color:#033">x</span>)))
+(<span style="color:#c30">&#34;taro&#34;</span> <span style="color:#c30">&#34;hanako&#34;</span>)</code></pre></div>
+<h2 id="xml-zip">xml-zip</h2>
+
 <p><code>xml-seq</code> でxmlデータをシーケンスにできるのは良いが、正直使いづらい。そこでもうちょっと直感的に扱える <code>clojure.zip/xml-zip</code> 関数を使用してみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#c0f">require</span> <span style="color:#555">&#39;</span>[<span style="color:#033">clojure.zip</span> <span style="color:#fc3">:as</span> <span style="color:#033">zip</span>])
-<span style="color:#033">user&gt;</span> (<span style="color:#c0f">zip/xml-zip</span> (<span style="color:#366">xml-seq </span>(<span style="color:#c0f">xml-parse</span> <span style="color:#033">xml-doc</span>)))
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#033">require</span> <span style="color:#555">&#39;</span>[<span style="color:#033">clojure.zip</span> <span style="color:#fc3">:as</span> <span style="color:#033">zip</span>])
+<span style="color:#033">user&gt;</span> (<span style="color:#033">zip/xml-zip</span> (<span style="color:#366">xml-seq </span>(<span style="color:#033">xml-parse</span> <span style="color:#033">xml-doc</span>)))
 [({<span style="color:#fc3">:tag</span> <span style="color:#fc3">:parent</span>,
    <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>,
    <span style="color:#fc3">:content</span> [
@@ -159,14 +171,19 @@ clojure.xml/parse関数は文字列を直接パースできないので下記の
    <span style="color:#fc3">:attrs</span> <span style="color:#033">nil</span>,
    <span style="color:#fc3">:content</span> [
        <span style="color:#c30">&#34; hello &#34;</span>]}
- <span style="color:#c30">&#34; hello &#34;</span>) <span style="color:#033">nil</span>]
-</code></pre></div><p>zipperとは、ツリー構造を扱うためのライブラリっぽい。</p>
+ <span style="color:#c30">&#34; hello &#34;</span>) <span style="color:#033">nil</span>]</code></pre></div>
+<p>zipperとは、ツリー構造を扱うためのライブラリっぽい。</p>
+
 <ul>
 <li><a href="http://en.wikibooks.org/wiki/Clojure%5FProgramming/Examples/API%5FExamples/Advanced%5FData%5FStructures#Zippers">http://en.wikibooks.org/wiki/Clojure%5FProgramming/Examples/API%5FExamples/Advanced%5FData%5FStructures#Zippers</a></li>
 </ul>
+
 <h2 id="xpath">XPATH</h2>
+
 <p><code>clj-xpath</code> というライブラリを使用すれば、xpathを使うことができる。しかし、XPATHは正規表現のようなミニ言語であり、それなりに学習コストがかかる。また、要素を指定する部分が文字列になるため、実行時エラーの可能性と、コンパイルで時間がかかる可能性などがあるため、現時点では使用しない。</p>
+
 <h2 id="参考">参考</h2>
+
 <ul>
 <li><a href="http://d.hatena.ne.jp/sy-2010/20110405/1301992585">http://d.hatena.ne.jp/sy-2010/20110405/1301992585</a></li>
 <li><a href="https://gist.github.com/bouzuya/4648350">https://gist.github.com/bouzuya/4648350</a></li>

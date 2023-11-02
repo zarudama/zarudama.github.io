@@ -92,20 +92,29 @@
         <article id="content">
            <p>Windows7には、タスクバーにアイコンを登録しておくと、
 Win+数字キーで起動できる便利な機能があります。</p>
+
 <p>でもこれ、Windows版emacsだとうまくいきません。</p>
+
 <p><code>runemacs.exe</code> を起動してタスクバーに登録しても、起動時にDos窓が開いてアイコンが2つ表示されてしまいます。これでは不便なのでなんとかします。</p>
+
 <p>この問題については、下記で解説されてるので一読をおすすめします。</p>
+
 <ul>
 <li><a href="http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html">http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html</a></li>
 </ul>
+
 <p>ただしこのサイトで公開されているツールはもうないようなので、下記から代替ツールをダウンロードして適当なところに配置します。</p>
+
 <ul>
 <li><a href="https://code.google.com/p/win7appid/">https://code.google.com/p/win7appid/</a></li>
 </ul>
+
 <p><code>runemacs.exe</code> のショートカットを作成して、先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。</p>
+
 <p>さきほどダウンロードしたWin7AppId1.exeを、登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">DOS&gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs
-</code></pre></div><p>runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を選択すれば準備オッケーです。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">DOS&gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs</code></pre></div>
+<p>runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を選択すれば準備オッケーです。</p>
+
 <p>これで、タスクバーのアイコンをランチャーとして登録し、かつ余計なDos窓が開くこともなくなります。</p>
 
         </article>

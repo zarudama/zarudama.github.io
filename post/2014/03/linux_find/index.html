@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2014-03-15 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 848 文字 </h5>
+      <h5 id="wordcount"> 843 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,68 +90,90 @@
 </aside>
   <div>
         <article id="content">
-           <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
 <ul>
-<li><a href="#%E7%AD%94%E3%81%88">答え</a></li>
-<li><a href="#%E8%A7%A3%E8%AA%AC">解説</a></li>
-<li><a href="#%E3%81%A4%E3%81%84%E3%81%A7%E3%81%AB%E6%97%A5%E6%95%B0%E6%8C%87%E5%AE%9A%E3%81%AE%E5%BE%A9%E7%BF%92">ついでに日数指定の復習</a>
+<li><a href="#答え">答え</a></li>
+<li><a href="#解説">解説</a></li>
+<li><a href="#ついでに日数指定の復習">ついでに日数指定の復習</a>
+
 <ul>
-<li><a href="#time%E3%81%AE%E6%84%8F%E5%91%B3">timeの意味</a></li>
-<li><a href="#%E6%97%A5%E6%95%B0%E3%81%AE%E6%8C%87%E5%AE%9A"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 日数の指定</a></li>
+<li><a href="#timeの意味">timeの意味</a></li>
+<li><a href="#日数の指定"><span class="org-todo todo TODO">TODO</span> 日数の指定</a></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
 </ul>
-</li>
-<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
-</ul>
-<!-- raw HTML omitted -->
+
+<p></div>
+<!--endtoc--></p>
+
 <p>例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。</p>
+
 <figure>
     <img src="/img/find-del/find1.png" width="400px"/> 
 </figure>
 
+
 <p>findがすぐに思いつくが、findには日付指定のオプションが見あたらない。</p>
+
 <h2 id="答え">答え</h2>
+
 <p>touchでダミーファイルを作って、findのnewerオプションと否定演算子を使い、xargsとrmで削除する。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ touch -t <span style="color:#f60">201303030000</span> /tmp/hoge
-$ find /usr/local/apache/logs <span style="color:#c30;font-weight:bold">\!</span> -newer /tmp/hoge|sort|less
-</code></pre></div><p>中身を確認して問題なさそうなら</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ find /usr/local/apache/logs <span style="color:#c30;font-weight:bold">\!</span> -newer /tmp/hoge|xargs rm
-</code></pre></div><h2 id="解説">解説</h2>
+$ find /usr/local/apache/logs <span style="color:#c30;font-weight:bold">\!</span> -newer /tmp/hoge|sort|less</code></pre></div>
+<p>中身を確認して問題なさそうなら</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ find /usr/local/apache/logs <span style="color:#c30;font-weight:bold">\!</span> -newer /tmp/hoge|xargs rm</code></pre></div>
+<h2 id="解説">解説</h2>
+
 <p>普通に考えると <code>find</code> を使って <code>-mtime</code> などで日数を指定する。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ find /usr/local/apache/logs -mtime +180|wc -l
 <span style="color:#f60">554</span>
 $ find /usr/local/apache/logs -mtime +90|wc -l
-<span style="color:#f60">757</span>
-</code></pre></div><p>でも今回の要件の場合日数を計算するのが面倒なので日付を直接指定して削除したい。しかし <code>man find</code> してもそんなオプションはない。だが良くみるとファイルのタイムスタンプを基準にするオプション <code>newer</code> ならある。このオプションを使えばなんとかなりそうである。</p>
+<span style="color:#f60">757</span></code></pre></div>
+<p>でも今回の要件の場合日数を計算するのが面倒なので日付を直接指定して削除したい。しかし <code>man find</code> してもそんなオプションはない。だが良くみるとファイルのタイムスタンプを基準にするオプション <code>newer</code> ならある。このオプションを使えばなんとかなりそうである。</p>
+
 <p>まず下記のようにダミーのファイルを作成する。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ touch -t <span style="color:#f60">201303030000</span> /tmp/hoge
-</code></pre></div><p>tオプションの意味は <code>YYYYMMDDhhmm</code> 。詳細は <code>man touch</code> 参照。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ touch -t <span style="color:#f60">201303030000</span> /tmp/hoge</code></pre></div>
+<p>tオプションの意味は <code>YYYYMMDDhhmm</code> 。詳細は <code>man touch</code> 参照。</p>
+
 <p>で、このファイルのタイムスタンプを基準に <code>newer</code> を使えばよい。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ find /usr/local/apache/logs -newer hoge|sort|less
-</code></pre></div><p>これで2013年3月3日以降に変更されたファイルを抽出できる。だが今回の場合は「指定日以前」のファイルを抽出したいのでこれでは駄目だ。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ find /usr/local/apache/logs -newer hoge|sort|less</code></pre></div>
+<p>これで2013年3月3日以降に変更されたファイルを抽出できる。だが今回の場合は「指定日以前」のファイルを抽出したいのでこれでは駄目だ。</p>
+
 <p><code>newer</code> があるなら <code>older</code> オプションがありそうだが残念ながらなかった。ではどうすればいいんだと小一時間考えた結果、否定オプション <code>!</code> を使えば良いことがわかった。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ find /usr/local/apache/logs <span style="color:#c30;font-weight:bold">\!</span> -newer hoge|sort|less
-</code></pre></div><p>否定オプションにはエスケープが必要である。
-<code>newer</code> は指定した日を含む「以降」であり、その否定なので「以前」ではなく「前」になることに注意(当日は含まない)。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ find /usr/local/apache/logs <span style="color:#c30;font-weight:bold">\!</span> -newer hoge|sort|less</code></pre></div>
+<p>否定オプションにはエスケープが必要である。
+ <code>newer</code> は指定した日を含む「以降」であり、その否定なので「以前」ではなく「前」になることに注意(当日は含まない)。</p>
+
 <figure>
     <img src="/img/find-del/find2.png" width="400px"/> 
 </figure>
 
+
 <p>あとはこの抽出したファイルにxargsを使って適当なコマンドをあてれば良い。今回の場合は削除のrmコマンドを使った。</p>
+
 <h2 id="ついでに日数指定の復習">ついでに日数指定の復習</h2>
+
 <h3 id="timeの意味">timeの意味</h3>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">atime:アクセス日(access)
 ctime:ステータス変更日(chenge)
-mtime:ファイルを修正した日(modify)。普通はこれを使用する。
-</code></pre></div><h3 id="日数の指定"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> 日数の指定</h3>
+mtime:ファイルを修正した日(modify)。普通はこれを使用する。</code></pre></div>
+<h3 id="日数の指定"><span class="org-todo todo TODO">TODO</span> 日数の指定</h3>
+
 <figure>
     <img src="/img/find-del/find3.png" width="70%"/> 
 </figure>
 
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-mtime 4: ちょうど4日前
 -mtime +4: 5日以前
--mtime -4: 3日以内
-</code></pre></div><h2 id="参考">参考</h2>
+-mtime -4: 3日以内</code></pre></div>
+<h2 id="参考">参考</h2>
+
 <ul>
 <li><a href="http://futuremix.org/2011/01/find-newer-file-timestamp">http://futuremix.org/2011/01/find-newer-file-timestamp</a></li>
 <li><a href="http://www.sixnine.net/roadside/find.html">http://www.sixnine.net/roadside/find.html</a></li>

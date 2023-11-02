@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2014-05-15 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 790 文字 </h5>
+      <h5 id="wordcount"> 789 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,27 +90,46 @@
 </aside>
   <div>
         <article id="content">
-           <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
 <ul>
-<li><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">はじめに</a></li>
-<li><a href="#gradle%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92jdee%E3%81%A7%E3%82%82%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B">gradleプロジェクトをJDEEでも使えるようにする</a></li>
+<li><a href="#はじめに">はじめに</a></li>
+<li><a href="#gradleプロジェクトをjdeeでも使えるようにする">gradleプロジェクトをJDEEでも使えるようにする</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p></div>
+<!--endtoc--></p>
+
 <h2 id="はじめに">はじめに</h2>
+
 <p><a href="/tags/libgdx%E5%85%A5%E9%96%80/">libGDX</a> でゲームプログラミングを始めています。</p>
+
 <p>最初は、Eclipseでコーディングしていました。</p>
+
 <p>でも重すぎるので、軽いと評判のIntelliJ IDEAに乘りかえました。</p>
+
 <p>確かに快適でした。Eclipseよりは。しかしそれでもいろいろ不満がつのる。。。</p>
+
 <p>…結局、Emacsに戻ってきました。やはり最後はいつもの場所へ。悲しい性ですね。</p>
+
 <p>ということで、EmacsでJavaやるなら <a href="/post/2012/12/emacs_jdee/">JDEE</a> です。</p>
+
 <h2 id="gradleプロジェクトをjdeeでも使えるようにする">gradleプロジェクトをJDEEでも使えるようにする</h2>
+
 <p>JDEEはgradleをサポートしてません。でもやっぱりいるんですねー。すばらしき先人が。
 GradleプロジェクトをJDEEの <code>plj.el</code> に変換するスクリプトを発見しました。</p>
+
 <ul>
 <li><a href="http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html">http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html</a></li>
 </ul>
+
 <p>上記で紹介されている <code>jdee.gradle</code> を、libGDXのプロジェクトルートに配置します。そのままだと、testディレクトリがないと怒られるので、testを含む行をコメントアウトします。</p>
+
 <p>更に <code>build.gradle</code> を編集し、 <code>apply from:...</code> を追加します。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">     <span style="color:#555">}</span>
  <span style="color:#555">}</span>
@@ -119,10 +138,11 @@ GradleプロジェクトをJDEEの <code>plj.el</code> に変換するスクリ�
 
  allprojects <span style="color:#555">{</span>
      apply plugin: <span style="color:#c30">&#34;eclipse&#34;</span>
-     apply plugin: <span style="color:#c30">&#34;idea&#34;</span>
-</code></pre></div><p>あとは、プロジェクトルートで下記コマンドを実行します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ./gradlew jdee
-</code></pre></div><p>すると各サブプロジェクト内で、 <code>prj.el</code> が作成されます。</p>
+     apply plugin: <span style="color:#c30">&#34;idea&#34;</span></code></pre></div>
+<p>あとは、プロジェクトルートで下記コマンドを実行します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ./gradlew jdee</code></pre></div>
+<p>すると各サブプロジェクト内で、 <code>prj.el</code> が作成されます。</p>
+
 <p>最後に下記の <code>plj.el</code> をプロジェクトルートに配置します。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#033">jde-project-file-version</span> <span style="color:#c30">&#34;1.0&#34;</span>)
 (<span style="color:#033">jde-set-variables</span>
@@ -139,16 +159,19 @@ GradleプロジェクトをJDEEの <code>plj.el</code> に変換するスクリ�
  <span style="color:#555">&#39;</span>(<span style="color:#033">jde-help-use-frames</span> <span style="color:#360">nil</span>)
 
  )
- (<span style="color:#366">setq</span> <span style="color:#033">jde-import-auto-sort</span> <span style="color:#360">t</span>) <span style="color:#09f;font-style:italic">;; import文挿入時に自動でソート</span>
-</code></pre></div><p>パスは各自の環境に合せて適宜変更してください。</p>
+ (<span style="color:#366">setq</span> <span style="color:#033">jde-import-auto-sort</span> <span style="color:#360">t</span>) <span style="color:#09f;font-style:italic">;; import文挿入時に自動でソート</span></code></pre></div>
+<p>パスは各自の環境に合せて適宜変更してください。</p>
+
 <p>これで、libGDXのインポートの自動生成やメソッド補完ができます。
 <code>C-c C-v C-w</code> でコンテキストヘルプ(JavaDoc)も引けます。ただしビルドはコンソールから実行する必要があります。でもメッソッド補完とクラスインポートが使えれば十分。</p>
+
 <figure>
     <img src="/img/libgdx-jdee/001.png"
-         alt="図1:  Helmメソッド補完 &#43; YASnippetで快適快適ー"/> <figcaption>
-            <p>図1:  Helmメソッド補完 + YASnippetで快適快適ー</p>
+         alt="&amp;#22259;1:  Helmメソッド補完 &#43; YASnippetで快適快適ー"/> <figcaption>
+            <p>&#22259;1:  Helmメソッド補完 + YASnippetで快適快適ー</p>
         </figcaption>
 </figure>
+
 
 <p>いやしかしこんな奇特な人間、世界でも数人しかいないんだろうなぁー。</p>
 

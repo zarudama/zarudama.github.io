@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>java on ざる魂</title>
@@ -35,7 +35,7 @@
       <pubDate>Sun, 03 Nov 2019 17:12:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_jvm_heap/</guid>
-      <description>JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考 稼動中のJVMのヒープサイズを知りたくなることは良くあるのでそ</description>
+      <description>&amp;#30446;&amp;#27425; JVMの初期ヒープサイズ JVMの稼動時のヒープサイズ ヒープサイズの変更方法 参考 稼動中のJVMのヒープサイズを知りたくなることは良くあるので</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Sun, 03 Nov 2019 17:10:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/03/java_gc/</guid>
-      <description>メモリ使用量を確認したいとき GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。 まずはプロセスIDを調べる。例と</description>
+      <description>&amp;#30446;&amp;#27425; メモリ使用量を確認したいとき GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。 まずはプロセスIDを調べる。例</description>
     </item>
     
   </channel>

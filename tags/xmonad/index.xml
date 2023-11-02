@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>xmonad on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Fri, 08 Nov 2019 22:50:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2012/09/xmonad_use/</guid>
-      <description>インストールメモ xinitrc 参考サイト CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれて</description>
+      <description>&amp;#30446;&amp;#27425; インストールメモ xinitrc 参考サイト CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、自宅のUbuntuにXmonadをいれ</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 03 Nov 2019 20:25:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2013/08/ubuntu_xmonad_emacs_processing/</guid>
-      <description>processing のおすすめポイント processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、an</description>
+      <description>&amp;#30446;&amp;#27425; processing のおすすめポイント processingは実はjavaである。 インストールが超簡単。 複数のプラットホームに対応している。 HTMLモード、a</description>
     </item>
     
   </channel>

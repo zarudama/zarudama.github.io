@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>game on ざる魂</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Nov 2019 17:26:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2011/11/clojure_game/</guid>
-      <description>はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍 はじめに LispでGAM</description>
+      <description>&amp;#30446;&amp;#27425; はじめに ウィンドウ表示 画像表示 位置調整 画像の一部を表示したい メインループの実現 画像の移動 ちらつき防止対策 所感 参考書籍 はじめに LispでGA</description>
     </item>
     
   </channel>

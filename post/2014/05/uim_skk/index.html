@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2014-05-11 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 852 文字 </h5>
+      <h5 id="wordcount"> 850 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -93,27 +93,38 @@
            <p>Ubuntuを13.04から14.04にアップグレードしました。
 Ubuntu界隈では、IMEがIBus1.5になり使いにくいと大荒れのようです。
 IBus1.5では、IMEを切り替えるとキーボードの配置まで変わるらしく、特に英語キーボードを使ってたりするとストレスが半端ないようです。</p>
+
 <p>私は、幸いにもuim-skkを使用していたので、この騒ぎを体験せずにすみました。やっぱりskkはおすすめですね。</p>
+
 <p>そんな我が道をいくuim-skkですが、ひとつ問題がありました。それは、sticky-shiftの設定ができないとうことです。</p>
+
 <p>私は、EmacsとWindowsのSKKFEPでは、セミコロンをSticky-Shiftとして設定しています。しかし、uim-skkには、設定ダイアログにそのような項目が見当たりません。公式ドキュメントには、対応したとはあるのですが、具体的な設定方法が見当りません。</p>
+
 <ul>
 <li><a href="https://code.google.com/p/uim-doc-ja/wiki/RequestUimSolved#sticky%5Fshift%E3%82%92%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84">https://code.google.com/p/uim-doc-ja/wiki/RequestUimSolved#sticky%5Fshift%E3%82%92%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84</a></li>
 </ul>
+
 <p>2chに質問したりもしたのですが、特に反応もなく放置されたままでした。</p>
+
 <ul>
 <li><a href="http://anago.2ch.net/test/read.cgi/software/1328329402/197">http://anago.2ch.net/test/read.cgi/software/1328329402/197</a></li>
 </ul>
+
 <p>それでもやはりなんとかしたいと思い、 改めてドキュメントを読んでみると、
-<code>~/.uim</code> という設定ファイルの詳しい記述方法がありました。最初からもっと読んでおくべきでしたね。。。</p>
+ <code>~/.uim</code> という設定ファイルの詳しい記述方法がありました。最初からもっと読んでおくべきでしたね。。。</p>
+
 <ul>
 <li><a href="https://code.google.com/p/uim-doc-ja/wiki/CustomizeUim">https://code.google.com/p/uim-doc-ja/wiki/CustomizeUim</a></li>
 </ul>
+
 <p>そこで、そこの説明に載っているソース( <code>/usr/share/uim/</code> )をgrepしてみると、それらしきカスタム変数が定義されていたのです。さっそく見よう見まねで <code>~/.uim</code> を定義してみました。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#033">require-module</span> <span style="color:#c30">&#34;skk&#34;</span>)
-(<span style="color:#033">define-key</span> <span style="color:#033">skk-sticky-key?</span> <span style="color:#555">&#39;</span>(<span style="color:#c30">&#34;;&#34;</span>))
-</code></pre></div><p>これでバッチリセミコロンでSticky-Shiftできました!
+(<span style="color:#033">define-key</span> <span style="color:#033">skk-sticky-key?</span> <span style="color:#555">&#39;</span>(<span style="color:#c30">&#34;;&#34;</span>))</code></pre></div>
+<p>これでバッチリセミコロンでSticky-Shiftできました!
 uim-skkを使用している人はぜひ試してみてください。快適さが全然ちがいますよ。</p>
+
 <p>以下わかったことをまとめておきます。</p>
+
 <ul>
 <li>基本は、GUIの設定ダイアログで設定する。</li>
 <li>それで設定できないものは、 <code>~/.uim</code> にSchemeで設定ファイルを記述する。</li>
@@ -121,12 +132,14 @@ uim-skkを使用している人はぜひ試してみてください。快適さ�
 <li>端末を開き、uim-shを打ち込めば、uimのschemeのREPLが起動する。</li>
 <li>(exit)で終了。</li>
 </ul>
+
 <figure>
     <img src="/img/uim/uim.png"
-         alt="図1:  uim-shを起動したところ"/> <figcaption>
-            <p>図1:  uim-shを起動したところ</p>
+         alt="&amp;#22259;1:  uim-shを起動したところ"/> <figcaption>
+            <p>&#22259;1:  uim-shを起動したところ</p>
         </figcaption>
 </figure>
+
 
 <p>Schemeで設定できる UIM ってやっぱカッコいいな。</p>
 

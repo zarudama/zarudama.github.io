@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>cygwin on ざる魂</title>
@@ -62,7 +62,7 @@
       <pubDate>Sun, 03 Nov 2019 16:47:00 +0900</pubDate>
       
       <guid>https://zarudama.github.io/post/2014/06/cygwin_apt_cyg/</guid>
-      <description>はじめに 対応方法 はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。これは、ubuntuでいう apt-get のよう</description>
+      <description>&amp;#30446;&amp;#27425; はじめに 対応方法 はじめに Cygwinには、非公式で、apt-cygというパッケージ管理システムがあります。これは、ubuntuでいう apt-get のよ</description>
     </item>
     
   </channel>

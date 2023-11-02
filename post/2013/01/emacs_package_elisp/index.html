@@ -80,7 +80,7 @@
     <section>
       <h5 id="date">作成日: 2013-01-06 </h5>
       <h5 id="date">最終更新日: 2019-12-12 </h5>
-      <h5 id="wordcount"> 883 文字 </h5>
+      <h5 id="wordcount"> 884 文字 </h5>
     </section>
     
     <h5>tags</h5>
@@ -90,21 +90,32 @@
 </aside>
   <div>
         <article id="content">
-           <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+           
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">&#30446;&#27425;</div>
+
 <ul>
-<li><a href="#2013-05-13-%E8%BF%BD%E8%A8%981">2013/05/13 追記1:</a></li>
-<li><a href="#2013-05-13-%E8%BF%BD%E8%A8%982">2013/05/13 追記2:</a></li>
-<li><a href="#2013-05-13-%E8%BF%BD%E8%A8%983">2013/05/13 追記3:</a></li>
+<li><a href="#2013-05-13-追記1">2013/05/13 追記1:</a></li>
+<li><a href="#2013-05-13-追記2">2013/05/13 追記2:</a></li>
+<li><a href="#2013-05-13-追記3">2013/05/13 追記3:</a></li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p></div>
+<!--endtoc--></p>
+
 <p>今までパッケージ管理には <code>el-get</code> を使用してきたのですが、
 Windows環境がメインだと <code>git clone</code> がうまくいかなかったり、インストール後のビルド工程が失敗したりで、なかなか難儀していたので、
 el-getを辞めemacs標準の <code>package.el</code> をメインにすることにしました。</p>
+
 <p><code>package.el</code> ならば標準装備ですし、サイトリポジトリに各所のelispがダウンロードされた状態なので
 httpですべてインストールできるので大抵の環境でうまく動きます。</p>
+
 <p>パッケージのリポジトリサイトとしては、昔はMarmaladeが更新が盛んだったのですが、最近ではMELPAがメインになってきてるようです。なので私は、MELPAメインで使用してます。
 Marmaladeは無効にしています。理由は同じパッケージが同時に表示されてしまうからです。</p>
+
 <p>以下は私の設定です。</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">require</span> <span style="color:#fc3">&#39;mikio-util</span>)
 
@@ -177,27 +188,36 @@ Marmaladeは無効にしています。理由は同じパッケージが同時�
           <span style="color:#033">my-packages</span>)
 )
 
-(<span style="color:#366">provide</span> <span style="color:#fc3">&#39;mikio-package</span>)
-</code></pre></div><p>githubはこちら。</p>
+(<span style="color:#366">provide</span> <span style="color:#fc3">&#39;mikio-package</span>)</code></pre></div>
+<p>githubはこちら。</p>
+
 <ul>
-<li>
-<p><a href="https://github.com/zarudama/dotfiles/blob/master/emacs/mikio/mikio-package.el">https://github.com/zarudama/dotfiles/blob/master/emacs/mikio/mikio-package.el</a></p>
-<p><code>my-packages</code> に自分の必要なパッケージをまとめて定義しています。</p>
-</li>
+<li><p><a href="https://github.com/zarudama/dotfiles/blob/master/emacs/mikio/mikio-package.el">https://github.com/zarudama/dotfiles/blob/master/emacs/mikio/mikio-package.el</a></p>
+
+<p><code>my-packages</code> に自分の必要なパッケージをまとめて定義しています。</p></li>
 </ul>
+
 <p>こうすることによって、環境が変わってもemacs起動時に自動的にインストールしてくれるので楽チンです。</p>
+
 <h2 id="2013-05-13-追記1">2013/05/13 追記1:</h2>
+
 <p>MELPAリポジトリは、常に最新のパッケージを取得してしまうためアップグレードする際は注意が必要です。
 Uコマンドなどで間違ってアップグレードしてしまっても多分もとに戻せません。一方Marmaladeリポジトリの場合、 自分のローカルPCに過去のバージョンの履歴が残っている可能性があるので、ダウングレードする道があります(手順は知りませんが)。</p>
+
 <ul>
 <li><a href="https://github.com/emacs-jp/emacs-jp.github.com/issues/31">https://github.com/emacs-jp/emacs-jp.github.com/issues/31</a></li>
 </ul>
+
 <h2 id="2013-05-13-追記2">2013/05/13 追記2:</h2>
+
 <p>本文では、gitプロトコルでel-getが失敗すると書きましたが、下記の方法を試せば問題ないかもしれません(未検証)。</p>
+
 <ul>
 <li>/post/2013/05/03_git.html</li>
 </ul>
+
 <h2 id="2013-05-13-追記3">2013/05/13 追記3:</h2>
+
 <p>el-getも全く使用していないというわけではなく、EmacsWikiなどhttp通信するものに関しては使用しています。</p>
 
         </article>
