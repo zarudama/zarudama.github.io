@@ -15,12 +15,13 @@ java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java
 (import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;))) とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
 (import (java.awt Graphics)) (def graphics (.. frame (getGraphics))) (doto graphics (." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/clojure1/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/clojure1/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2011-11-09T14:01:39+09:00" />
 <meta property="article:modified_time" content="2011-11-09T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Clojureでゲームプログラミングその1 実験編"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="Clojureでゲームプログラミングその1 実験編"/>
 <meta name="twitter:description" content="はじめに LispでGAMEつくろうかなと。 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(&#43;Java)を比較したときに 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
 とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
 ウィンドウ表示 画像表示 メインループの実現 画像移動 もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
@@ -32,6 +33,7 @@ java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java
 スプライトパターン 画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
 (import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;))) とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
 (import (java.awt Graphics)) (def graphics (.. frame (getGraphics))) (doto graphics (."/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>Clojureでゲームプログラミングその1 実験編 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

@@ -12,12 +12,13 @@ $ avi で見慣れたvimの画面が表示された。
 肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。 唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
 ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/avi/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/avi/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-04-04T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-04-04T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="vimのclojure実装であるaviを試してみた。"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="vimのclojure実装であるaviを試してみた。"/>
 <meta name="twitter:description" content="vimをclojureで実装したらしい avi を試してみることにした。 確認環境は、ubuntu13.04。
 $ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、avi本体を /usr/local 配下にインストールするとのこと。 あとでアンインストールができなくなると困るので paco を使うことにした。
 $ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
@@ -26,6 +27,7 @@ $ avi で見慣れたvimの画面が表示された。
 起動したところ JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。 どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
 肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。 唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
 ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>vimのclojure実装であるaviを試してみた。 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

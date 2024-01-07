@@ -14,12 +14,13 @@ http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html gcutilの見
 Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT gcutilの見出しは以下のルールになる
 S* Suviver E* Eden Y Young O* Old P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所 F* Full *C comitted javaが確保したメモリサイズ *U used 使用済みメモリ *GC GCの回数 *GCT GCの時間 GCについては、下記が詳しい。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/jvm_gcutil/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/jvm_gcutil/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-03-25T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-03-25T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="GCの発生頻度などの調査"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="GCの発生頻度などの調査"/>
 <meta name="twitter:description" content="GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
 まずはプロセスIDを調べる。例としてtomcatの場合。
 $ sudo -u tomcat jps -v tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
@@ -30,6 +31,7 @@ jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得�
 http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html gcutilの見出し
 Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT gcutilの見出しは以下のルールになる
 S* Suviver E* Eden Y Young O* Old P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所 F* Full *C comitted javaが確保したメモリサイズ *U used 使用済みメモリ *GC GCの回数 *GCT GCの時間 GCについては、下記が詳しい。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>GCの発生頻度などの調査 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

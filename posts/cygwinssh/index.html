@@ -8,16 +8,18 @@ $ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL
 http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html しかし今度はpublickeyがパーミッションエラー。
 debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try. Permission denied (publickey)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/cygwinssh/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/cygwinssh/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-12-22T14:01:39+09:00" />
 <meta property="article:modified_time" content="2012-12-22T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="cygwinでssh接続できない"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="cygwinでssh接続できない"/>
 <meta name="twitter:description" content="/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定し てる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成でき ないと怒られてしまう。
 $ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &#39;/home/mikio/.ssh&#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
 http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html しかし今度はpublickeyがパーミッションエラー。
 debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try. Permission denied (publickey)."/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>cygwinでssh接続できない | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

@@ -7,15 +7,17 @@
 7bitで表現 7列目10行目 7/10 111/1010 0x7A 符号化文字集合の種類 ASCII 7bit アメリカの文字を表す。 ISO/IEC 646 7bit ASCIIをもとに国ごとに書き換えて良い文字を定義したもの 国ごとにある JIS X 201 7bit ISO/IEC 646 をもとにした日本の規格 バックスラッシュが円記号、チルダがアッパーバーになっている ISO/IEC 2022 8bit / 2byte ISO/IEC 646では国ひとつしか定義できないので複数の国の文字を混在できるようにした 8bitの場合、符号表が下記のように分類される
 CL領域(ControlLeft) 左側の制御文字 GL領域(GraphicLeft) 左側の図形文字 CR領域(ControlRight) 右側の制御文字 GR領域(GraphicRight) 右側の図形文字 図形文字とは通常の文字のこと 1byteでは漢字などを表現しきれない 2byte以上使うことでその欠点を解消 1byteで94文字使うことができる。2byte使うと 94x94 文字使うことができる。 JIS X 208 2byte ISO/IEC 2022をモトにした日本の規格 8836文字扱える(常用漢字は2136文字なので十分) EUC-JP, Shift_JIS ASCIIとJIS X 208 の漢字を組み合わせたもの ISO/IEC 8859(ISO-8859-1, Latin-1) 8bit ヨーロッパで普及している ISO/IEC 646は国ごとの定義だったものが、8859では地域ごとの定義に拡大 GLにASCII GRに各国の固有の文字集合 ISO/IEC 8859-1は通称 Latin-1とも呼ばれ欧米を中心に使用されている。 ISO/IEC 10646(Unicode) ISO/IEC 10646: ISOが規格したもの Unicode: 企業が規格したもの 両者は統合される 当初16bitで表現する規格だったが、文字が足りなくなり4byteになった Unicodeでは、文字の問題は解決しなかった 結果古い規格は現在も維持メンテナンスされている JIS X 0212 補助漢字 JIS X 208にない漢字を足したもの JIS X 208と一緒に使う事が前提 EUC-JPでは採用されているものの、Shift_JISでは使用されていない" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/moji-code/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/moji-code/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-12T14:01:39+09:00" />
 <meta property="article:modified_time" content="2019-12-12T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="文字コードメモ"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="文字コードメモ"/>
 <meta name="twitter:description" content="文字とは 文字の集合 符号化文字集合: 文字の集合に数字を割り当てたもの 文字コード: 文字に割り当てた数字 コードポイント: 符号化文字集合の表の位置のこと(コードポジションとも) 区点番号 JIS規格のコードポイントを表す 区は行、点は列を表す たとえば16行目6列目は、区番号16、点番号6、すなわち16区6点となる 列が上位ビット、行が下位ビットを表す 例) 小文字のzの場合
 7bitで表現 7列目10行目 7/10 111/1010 0x7A 符号化文字集合の種類 ASCII 7bit アメリカの文字を表す。 ISO/IEC 646 7bit ASCIIをもとに国ごとに書き換えて良い文字を定義したもの 国ごとにある JIS X 201 7bit ISO/IEC 646 をもとにした日本の規格 バックスラッシュが円記号、チルダがアッパーバーになっている ISO/IEC 2022 8bit / 2byte ISO/IEC 646では国ひとつしか定義できないので複数の国の文字を混在できるようにした 8bitの場合、符号表が下記のように分類される
 CL領域(ControlLeft) 左側の制御文字 GL領域(GraphicLeft) 左側の図形文字 CR領域(ControlRight) 右側の制御文字 GR領域(GraphicRight) 右側の図形文字 図形文字とは通常の文字のこと 1byteでは漢字などを表現しきれない 2byte以上使うことでその欠点を解消 1byteで94文字使うことができる。2byte使うと 94x94 文字使うことができる。 JIS X 208 2byte ISO/IEC 2022をモトにした日本の規格 8836文字扱える(常用漢字は2136文字なので十分) EUC-JP, Shift_JIS ASCIIとJIS X 208 の漢字を組み合わせたもの ISO/IEC 8859(ISO-8859-1, Latin-1) 8bit ヨーロッパで普及している ISO/IEC 646は国ごとの定義だったものが、8859では地域ごとの定義に拡大 GLにASCII GRに各国の固有の文字集合 ISO/IEC 8859-1は通称 Latin-1とも呼ばれ欧米を中心に使用されている。 ISO/IEC 10646(Unicode) ISO/IEC 10646: ISOが規格したもの Unicode: 企業が規格したもの 両者は統合される 当初16bitで表現する規格だったが、文字が足りなくなり4byteになった Unicodeでは、文字の問題は解決しなかった 結果古い規格は現在も維持メンテナンスされている JIS X 0212 補助漢字 JIS X 208にない漢字を足したもの JIS X 208と一緒に使う事が前提 EUC-JPでは採用されているものの、Shift_JISでは使用されていない"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>文字コードメモ | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

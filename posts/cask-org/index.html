@@ -12,12 +12,13 @@ $ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d
 (source org) (depends-on &#34;org-plus-contrib&#34; &#34;2.8.6&#34;) これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
 Caskの指定方法が間違っていたのだろうか？" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/cask-org/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/cask-org/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-07-07T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-07-07T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="org-mode でファイルを開くとエラーが発生"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="org-mode でファイルを開くとエラーが発生"/>
 <meta name="twitter:description" content="org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、 そのファイルが更新された状態になってしまう。
 Invalid function: org-with-silent-modifications 似たような症状が下記にも報告されている。
 http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html 上記スレッドでは、
@@ -26,6 +27,7 @@ http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html 上記ス�
 $ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask その際、バージョンをひとつ前の2.8.6に変更
 (source org) (depends-on &#34;org-plus-contrib&#34; &#34;2.8.6&#34;) これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
 Caskの指定方法が間違っていたのだろうか？"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>org-mode でファイルを開くとエラーが発生 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

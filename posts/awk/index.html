@@ -7,15 +7,17 @@
 $ awk &#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39; BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力 awk &#39;$4 == &#34;200&#34; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &#34;200&#34; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&#34;a&#34;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&#34;a&#34;以外で始まるとき、表示(正規表現) (例)
 $ cat access.log | awk &#39;$4 = &#34;200&#34; {print $5$6}&#39; | sed &#39;s/\&#34;//g&#39; デリミタを変更するには Fオプションを使用する。カンマの場合は以下のとおり。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/awk/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/awk/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-03-25T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-03-25T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="ちょい足しawkの基本"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="ちょい足しawkの基本"/>
 <meta name="twitter:description" content="基本 コンマンドラインでちょい足し的に使うときのカンペ。
 $ awk &#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39; BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力 awk &#39;$4 == &#34;200&#34; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &#34;200&#34; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&#34;a&#34;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&#34;a&#34;以外で始まるとき、表示(正規表現) (例)
 $ cat access.log | awk &#39;$4 = &#34;200&#34; {print $5$6}&#39; | sed &#39;s/\&#34;//g&#39; デリミタを変更するには Fオプションを使用する。カンマの場合は以下のとおり。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>ちょい足しawkの基本 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

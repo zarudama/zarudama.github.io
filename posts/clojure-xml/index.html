@@ -10,18 +10,20 @@ user&gt; (require &#39;[clojure.xml :as xml]) user&gt; (xml/parse (slurp &#34;te
 (defn xml-parse [s] (xml/parse (java.io.ByteArrayInputStream. (.getBytes s)))) これで文字列としてのxmlもパースできるようになった。
 user&gt; (def xml-doc &#34;&lt;parent&gt; &lt;child&gt; hello &lt;/child&gt; &lt;/parent&gt;&#34;) #&#39;user/xml-doc user&gt; (xml-parse xml-doc) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&#34; hello &#34;]}]} xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、 そんな時はC-c M-o でバッファクリアすると良い感じ。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/clojure-xml/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/clojure-xml/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-07-27T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-07-27T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Clojureでxmlを読みこむ方法"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="Clojureでxmlを読みこむ方法"/>
 <meta name="twitter:description" content="clojureでxmlを処理する方法のメモ。随時更新予定。
 基本 下記のxmlをtest.xmlとしてプロジェクト直下に保存。
 &lt;parent&gt; &lt;child&gt; hello &lt;/child&gt; &lt;/parent&gt; clojure.xml/parse関数を使うとmapデータに変換できる。
 user&gt; (require &#39;[clojure.xml :as xml]) user&gt; (xml/parse (slurp &#34;test.xml&#34;)) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&#34;\n\t\thello\n\t&#34;]}]} ここでは、slurp関数を使ってXMLファイルを直接読んで処理したが、 slurp以外の関数で読み込んだxmlを扱いたいときなどは、xmlは既に文字列になっていることが多い。 clojure.xml/parse関数は文字列を直接パースできないので下記のようなラッパー関数を用意する。
 (defn xml-parse [s] (xml/parse (java.io.ByteArrayInputStream. (.getBytes s)))) これで文字列としてのxmlもパースできるようになった。
 user&gt; (def xml-doc &#34;&lt;parent&gt; &lt;child&gt; hello &lt;/child&gt; &lt;/parent&gt;&#34;) #&#39;user/xml-doc user&gt; (xml-parse xml-doc) {:tag :parent, :attrs nil, :content [{:tag :child, :attrs nil, :content [&#34; hello &#34;]}]} xmlのデータが画面に表示されると、場合によってはスクロールが重くなるので、 そんな時はC-c M-o でバッファクリアすると良い感じ。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>Clojureでxmlを読みこむ方法 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

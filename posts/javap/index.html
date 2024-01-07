@@ -9,17 +9,19 @@ package hoge; public class Fuga { public static void main(String[] args) { Syste
 javap -c hoge.Fuga &gt; Fuga.code Fuga.codeは以下のようになる。
 Compiled from &#34;Fuga.java&#34; public class hoge.Fuga { public hoge.Fuga(); Code: 0: aload_0 1: invokespecial #1 // Method java/lang/Object.&#34;&lt;init&gt;&#34;:()V 4: return public static void main(java.lang.String[]); Code: 0: getstatic #2 // Field java/lang/System.out:Ljava/io/PrintStream; 3: ldc #3 // String Hello Javap! 5: invokevirtual #4 // Method java/io/PrintStream." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/javap/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/javap/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-06-02T14:01:39+09:00" />
 <meta property="article:modified_time" content="2012-06-02T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="javapコマンドを使ってみた。"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="javapコマンドを使ってみた。"/>
 <meta name="twitter:description" content="Javaは *.java から *.class を生成するが、これはテキストエディタで閲覧できないバイナリファイルだ。 これをエディタで閲覧できる状態にするには、jdkに標準搭載されているjavapコマンドを使用しすれば良い。
 例えばhogeというパッケージにあるFuga.javaがあるとする。
 package hoge; public class Fuga { public static void main(String[] args) { System.out.println(&#34;Hello Javap!&#34;); } } これをコンパイルした結果をjavapで見たい時は、以下のようなコマンドを叩けばいい。 このときhoge.Fugaクラスはhoge/Fuga.lcassというディレクトリ構造になければならない。
 javap -c hoge.Fuga &gt; Fuga.code Fuga.codeは以下のようになる。
 Compiled from &#34;Fuga.java&#34; public class hoge.Fuga { public hoge.Fuga(); Code: 0: aload_0 1: invokespecial #1 // Method java/lang/Object.&#34;&lt;init&gt;&#34;:()V 4: return public static void main(java.lang.String[]); Code: 0: getstatic #2 // Field java/lang/System.out:Ljava/io/PrintStream; 3: ldc #3 // String Hello Javap! 5: invokevirtual #4 // Method java/io/PrintStream."/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>javapコマンドを使ってみた。 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

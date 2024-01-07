@@ -10,18 +10,20 @@ $ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch sta
 $ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。
 $ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/git-repo-delete/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/git-repo-delete/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-08-29T14:01:39+09:00" />
 <meta property="article:modified_time" content="2012-08-29T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。"/>
 <meta name="twitter:description" content="サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。
 http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ トリから見ると生きのこってたりする。 git remote show origin で確認で きる。
 $ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &#39;git remote prune&#39; to remove) refs/remotes/origin/fuga-branch stale (use &#39;git remote prune&#39; to remove) : この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
 まず、確認。
 $ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。
 $ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

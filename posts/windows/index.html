@@ -11,12 +11,13 @@ XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE% HOMEはダ�
 XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin; 下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME= PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86
 TERM xternm(CYGWIN用) CYGWIN tty(screenのデタッチ用) キーボードの入力速度を早める (Win7) [コンパネ] -&gt; [コンピュータの簡単操作] -&gt; [キーボード動作の変更] -&gt; [キーボードの設定] アンチエイリアスの設定 MacTypeをインストールする。 fontは「Mig 1M」を使用する。MigMix1M 行間が広いので注意。 入れるソフト インストーラ系ソフトのインストール Spybot Searcy &amp; Directory Link Shell Extension" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/windows/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/windows/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2011-04-28T14:01:39+09:00" />
 <meta property="article:modified_time" content="2011-04-28T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="(超個人的)Windowsインストール後にやることまとめ"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="(超個人的)Windowsインストール後にやることまとめ"/>
 <meta name="twitter:description" content="ソフトのインストールポリシー インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;/opt/下に展開する。 コントロールキーの設定 xp xkeyemacsをつかってcapsキーをctrsキーにする。 win7 Changekeyを使用する(右クリメニューで管理者として実行すること)。
 chgkey.exe Dropboxに保存してある。 GUIのキーボードが表示されるので変更する
 Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift 再起動 Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。 これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。
@@ -24,6 +25,7 @@ Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift 再起�
 XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE% HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。 HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。 ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。 MAVEN_HOME %HOME%\opt\ XYZZYHOME
 XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin; 下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME= PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86
 TERM xternm(CYGWIN用) CYGWIN tty(screenのデタッチ用) キーボードの入力速度を早める (Win7) [コンパネ] -&gt; [コンピュータの簡単操作] -&gt; [キーボード動作の変更] -&gt; [キーボードの設定] アンチエイリアスの設定 MacTypeをインストールする。 fontは「Mig 1M」を使用する。MigMix1M 行間が広いので注意。 入れるソフト インストーラ系ソフトのインストール Spybot Searcy &amp; Directory Link Shell Extension"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>(超個人的)Windowsインストール後にやることまとめ | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

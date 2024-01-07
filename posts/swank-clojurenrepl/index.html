@@ -12,12 +12,13 @@ https://github.com/technomancy/swank-clojure This project is no longer under act
 シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示) ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、
 REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ) nREPLとは直接関係ないけど、auto-complte.elに対応するモジュール(ac-slime)がない。 HyperSpecのようなドキュメントシステムは？(doc関数ががあるからいらないか) ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/swank-clojurenrepl/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/swank-clojurenrepl/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-09-07T14:01:39+09:00" />
 <meta property="article:modified_time" content="2012-09-07T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="swank-clojureの後継モジュールのnREPLを試してみた"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="swank-clojureの後継モジュールのnREPLを試してみた"/>
 <meta name="twitter:description" content="いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
 https://github.com/technomancy/swank-clojure This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit. 超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。 もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
 ということで、el-getでレシピに下記を追加して nrepl.el をインストール。
@@ -26,6 +27,7 @@ https://github.com/technomancy/swank-clojure This project is no longer under act
 キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
 シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示) ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、
 REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ) nREPLとは直接関係ないけど、auto-complte.elに対応するモジュール(ac-slime)がない。 HyperSpecのようなドキュメントシステムは？(doc関数ががあるからいらないか) ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>swank-clojureの後継モジュールのnREPLを試してみた | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

@@ -11,12 +11,13 @@ about:sync-log 今まで同期エラーがでると、原因を示してくれ�
 自分の場合、ログをみたところ、bookmark同期に原因があった模様。
 1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items. 1368414695441	Sync." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/firefox-sync-bug/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/firefox-sync-bug/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2013-05-03T14:01:39+09:00" />
 <meta property="article:modified_time" content="2013-05-03T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="firefox の同期不具合"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="firefox の同期不具合"/>
 <meta name="twitter:description" content="下記のエラーが頻繁に表示される。
 「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は、
 「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」 で、もとに戻るはず。
@@ -24,6 +25,7 @@ about:sync-log 今まで同期エラーがでると、原因を示してくれ�
 about:sync-log 今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、 このログをみれば詳細な情報が手にはいるので大助かり。
 自分の場合、ログをみたところ、bookmark同期に原因があった模様。
 1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items. 1368414695441	Sync."/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>firefox の同期不具合 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

@@ -14,12 +14,13 @@ http://sourceforge.net/mailarchive/message.php?msg_id=30783951 はじめに Java
 必要なもの JDEEのビルドには下記のものが必要になります。
 emacs24.3 emacsは執筆時点の最新のemacs24.3を使用しています。 JDEE-2.4.2 githubに ミラー がありますのでそちらを利用します。 CEDET CEDETは、24.3同梱のものを使用するので別途用意する必要はありません。 ant-contrib-0.6 ant-contribは、 ant側のライブラリとしてビルド時に必要です。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/emacsjdeejava/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/emacsjdeejava/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-12-23T14:01:39+09:00" />
 <meta property="article:modified_time" content="2012-12-23T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Emacs中毒者に贈るJDEEによるJava開発環境の構築"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="Emacs中毒者に贈るJDEEによるJava開発環境の構築"/>
 <meta name="twitter:description" content="この投稿は Emacs Advent Calendar 2012 の23日目の記事です。 追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
 そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
 また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。
@@ -30,6 +31,7 @@ http://sourceforge.net/mailarchive/message.php?msg_id=30783951 はじめに Java
 インポート文の自動生成 JDEE Javadoc表示 JDEE &#43; w3m ビルド JDEE &#43; ant デバッガ JDEE &#43; jdb REPLぽいもの JDEE(BeanShell) コードスニペット Yasnippet タグジャンプ gtags(global) メソッド補完 helm-jdee-method(拙作) まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) &#43; 大作Elisp拡張」という、 「重い &#43; 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。
 必要なもの JDEEのビルドには下記のものが必要になります。
 emacs24.3 emacsは執筆時点の最新のemacs24.3を使用しています。 JDEE-2.4.2 githubに ミラー がありますのでそちらを利用します。 CEDET CEDETは、24.3同梱のものを使用するので別途用意する必要はありません。 ant-contrib-0.6 ant-contribは、 ant側のライブラリとしてビルド時に必要です。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

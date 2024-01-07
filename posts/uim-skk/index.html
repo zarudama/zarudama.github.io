@@ -14,12 +14,13 @@ https://code.google.com/p/uim-doc-ja/wiki/CustomizeUim そこで、そこの説�
 以下わかったことをまとめておきます。
 基本は、GUIの設定ダイアログで設定する。 それで設定できないものは、 ~/.uim にSchemeで設定ファイルを記述する。 ダイアログとかぶる設定は、 ~/.uim が優先される。 端末を開き、uim-shを打ち込めば、uimのschemeのREPLが起動する。 (exit)で終了。 uim-shを起動したところ Schemeで設定できる UIM ってやっぱカッコいいな。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/uim-skk/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/uim-skk/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-05-11T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-05-11T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="uim-skkでsticky-shiftを実現する"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="uim-skkでsticky-shiftを実現する"/>
 <meta name="twitter:description" content="Ubuntuを13.04から14.04にアップグレードしました。 Ubuntu界隈では、IMEがIBus1.5になり使いにくいと大荒れのようです。 IBus1.5では、IMEを切り替えるとキーボードの配置まで変わるらしく、 特に英語キーボードを使ってたりするとストレスが半端ないようです。
 私は、幸いにもuim-skkを使用していたので、この騒ぎを体験せずにすみました。 やっぱりskkはおすすめですね。
 そんな我が道をいくuim-skkですが、ひとつ問題がありました。 それは、sticky-shiftの設定ができないとうことです。
@@ -30,6 +31,7 @@ https://code.google.com/p/uim-doc-ja/wiki/CustomizeUim そこで、そこの説�
 (require-module &#34;skk&#34;) (define-key skk-sticky-key? &#39;(&#34;;&#34;)) これでバッチリセミコロンでSticky-Shiftできました! uim-skkを使用している人はぜひ試してみてください。 快適さが全然ちがいますよ。
 以下わかったことをまとめておきます。
 基本は、GUIの設定ダイアログで設定する。 それで設定できないものは、 ~/.uim にSchemeで設定ファイルを記述する。 ダイアログとかぶる設定は、 ~/.uim が優先される。 端末を開き、uim-shを打ち込めば、uimのschemeのREPLが起動する。 (exit)で終了。 uim-shを起動したところ Schemeで設定できる UIM ってやっぱカッコいいな。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>uim-skkでsticky-shiftを実現する | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

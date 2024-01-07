@@ -10,18 +10,20 @@ http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124 タイル型のウィンド�
 インストールメモ $ sudo apt-get install xmonad $ sudo apt-get install dmenu # キーボードランチャー $ sudo apt-get install xmobar # ステータスバー xmorbar用の設定ファイル( ~/.xmobarrc )を作成する。
 -- -*- mode:haskell -*- Config { font = &#34;xft:Sans-9:bold&#34; , bgColor = &#34;black&#34; , fgColor = &#34;grey&#34; , position = Top , lowerOnStart = False , commands = [ Run Network &#34;eth0&#34; [&#34;-L&#34;,&#34;0&#34;,&#34;-H&#34;,&#34;32&#34;,&#34;--normal&#34;,&#34;green&#34;,&#34;--high&#34;,&#34;red&#34;] 10 , Run Cpu [&#34;-L&#34;,&#34;3&#34;,&#34;-H&#34;,&#34;50&#34;,&#34;--normal&#34;,&#34;green&#34;,&#34;--high&#34;,&#34;red&#34;] 10 , Run Memory [&#34;-t&#34;,&#34;Mem: &lt;usedratio&gt;%&#34;] 10 , Run Swap [] 10 , Run Battery [] 600 , Run Com &#34;lsb_release&#34; [&#34;-s&#34;,&#34;-d&#34;] &#34;&#34; 36000 , Run Date &#34;%Y %b %_d(%a) %H:%M:%S&#34; &#34;date&#34; 10 ] , sepChar = &#34;%&#34; , alignSep = &#34;}{&#34; , template = &#34;&lt;fc=#ee9a00&gt;%lsb_release%&lt;/fc&gt; | %cpu% | %memory% %swap% | %eth0% | %battery% }{ %date%&#34; } ~/." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/xmonad/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/xmonad/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-09-28T14:01:39+09:00" />
 <meta property="article:modified_time" content="2012-09-28T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="xmonadを試す"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="xmonadを試す"/>
 <meta name="twitter:description" content="CUIでtmuxを操作してるときの一覧できる快適さをGUIに求めた結果、 自宅のUbuntuにXmonadをいれてみました。
 http://gihyo.jp/admin/serial/01/ubuntu-recipe/0124 タイル型のウィンドウマネージャです。常にウィンドウ全てが一覧されるやつです。 インストールしてみて実感しましたがタイル型はとーっても快適です。 普段からemacsでキーボード操作メインのユーザだったらすぐに気にいるかと思います。 とくにウィンドウ切り替えが Mod&#43;j/k でできるのがイイ! (それに比べて WindowsのALT&#43;tabは左手の手首が死ぬ。。。)
 今回、Xmonadというのをインストールしましたが、老舗のawesomeというのも人気があるそうです。 ただXmonadの方が後発である分いろいろブラッシュアップされてるような印象でした。 問題は設定ファイルがHaskellってことですかね。できれば覚えたくないですよね。 いやHaskellは勉強して動かしたことはありますが、 今はLisp系言語を覚え中なので他の言語はできるだけ気にせず脳の負担を増やしたくないのです。 そういう意味で気になるのは、設定フィアルがCommonLispであるstumpwm。そのうち試したいと思います。
 しかしタイル型使ってると、UnityとかgnomuShellの動向がどうでもよくなりますな。
 インストールメモ $ sudo apt-get install xmonad $ sudo apt-get install dmenu # キーボードランチャー $ sudo apt-get install xmobar # ステータスバー xmorbar用の設定ファイル( ~/.xmobarrc )を作成する。
 -- -*- mode:haskell -*- Config { font = &#34;xft:Sans-9:bold&#34; , bgColor = &#34;black&#34; , fgColor = &#34;grey&#34; , position = Top , lowerOnStart = False , commands = [ Run Network &#34;eth0&#34; [&#34;-L&#34;,&#34;0&#34;,&#34;-H&#34;,&#34;32&#34;,&#34;--normal&#34;,&#34;green&#34;,&#34;--high&#34;,&#34;red&#34;] 10 , Run Cpu [&#34;-L&#34;,&#34;3&#34;,&#34;-H&#34;,&#34;50&#34;,&#34;--normal&#34;,&#34;green&#34;,&#34;--high&#34;,&#34;red&#34;] 10 , Run Memory [&#34;-t&#34;,&#34;Mem: &lt;usedratio&gt;%&#34;] 10 , Run Swap [] 10 , Run Battery [] 600 , Run Com &#34;lsb_release&#34; [&#34;-s&#34;,&#34;-d&#34;] &#34;&#34; 36000 , Run Date &#34;%Y %b %_d(%a) %H:%M:%S&#34; &#34;date&#34; 10 ] , sepChar = &#34;%&#34; , alignSep = &#34;}{&#34; , template = &#34;&lt;fc=#ee9a00&gt;%lsb_release%&lt;/fc&gt; | %cpu% | %memory% %swap% | %eth0% | %battery% }{ %date%&#34; } ~/."/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>xmonadを試す | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

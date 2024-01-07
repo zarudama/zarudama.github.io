@@ -8,16 +8,18 @@
 (defcustom helm-ff-transformer-show-only-basename t &#34;Show only basename of candidates in `helm-find-files&#39;. This can be toggled at anytime from `helm-find-files&#39; with \ \\&lt;helm-find-files-map&gt;\\[helm-ff-run-toggle-basename].&#34; :type &#39;boolean :group &#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
 (setq helm-ff-transformer-show-only-basename nil) " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/helm-file-list/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/helm-file-list/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2013-06-14T14:01:39+09:00" />
 <meta property="article:modified_time" content="2013-06-14T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="helmのファイル一覧でパスを表示する"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="helmのファイル一覧でパスを表示する"/>
 <meta name="twitter:description" content=" helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、 パス部分が表示されなくなってしまった。 デフォルトの挙動が変更されたようである。
 自分の場合、helm-git.elを使用しているが、 同じリポジトリに同名ファイルが複数あるため、 ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。 これでは困るので調査したところ、ファイル表示部分は、helm本体の helm-files.el の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
 (defcustom helm-ff-transformer-show-only-basename t &#34;Show only basename of candidates in `helm-find-files&#39;. This can be toggled at anytime from `helm-find-files&#39; with \ \\&lt;helm-find-files-map&gt;\\[helm-ff-run-toggle-basename].&#34; :type &#39;boolean :group &#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
 (setq helm-ff-transformer-show-only-basename nil) "/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>helmのファイル一覧でパスを表示する | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

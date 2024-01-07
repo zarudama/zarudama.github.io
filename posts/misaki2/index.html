@@ -6,14 +6,16 @@
 <meta property="og:description" content="misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
 mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore &#43;&#43;&#43; b/.gitignore @@ -7,6 &#43;7,8 @@ /.lein-failures /checkouts /.lein-deps-sum &#43;misaki/src/misaki/ &#43;/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj &#43;&#43;&#43; b/project.clj @@ -13,7 &#43;13,9 @@ [cuma &#34;0.0.4&#34;] [clj-gntp &#34;0.0.1&#34;] ; cljs compiler - [org.clojure/clojurescript &#34;0.0-1586&#34;]] &#43; [org.clojure/clojurescript &#34;0.0-1586&#34;] &#43; [org.clojure/tools.nrepl &#34;0.2.3&#34;] &#43; ] :plugins [[codox &#34;0.6.4&#34;] [lein-cloverage &#34;1.0.2&#34;] diff --git a/samples/blog/_config." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/misaki2/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/misaki2/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-01-11T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-01-11T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Misakiにnrepl-serverを埋め込む"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="Misakiにnrepl-serverを埋め込む"/>
 <meta name="twitter:description" content="misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
 mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore &#43;&#43;&#43; b/.gitignore @@ -7,6 &#43;7,8 @@ /.lein-failures /checkouts /.lein-deps-sum &#43;misaki/src/misaki/ &#43;/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj &#43;&#43;&#43; b/project.clj @@ -13,7 &#43;13,9 @@ [cuma &#34;0.0.4&#34;] [clj-gntp &#34;0.0.1&#34;] ; cljs compiler - [org.clojure/clojurescript &#34;0.0-1586&#34;]] &#43; [org.clojure/clojurescript &#34;0.0-1586&#34;] &#43; [org.clojure/tools.nrepl &#34;0.2.3&#34;] &#43; ] :plugins [[codox &#34;0.6.4&#34;] [lein-cloverage &#34;1.0.2&#34;] diff --git a/samples/blog/_config."/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>Misakiにnrepl-serverを埋め込む | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

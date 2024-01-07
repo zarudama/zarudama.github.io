@@ -5,13 +5,15 @@
 <meta property="og:title" content="サイト内全文検索" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/search/" /><meta property="article:section" content="" />
+<meta property="og:url" content="https://zarudama.github.io/search/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="" />
 
 
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="サイト内全文検索"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="サイト内全文検索"/>
 <meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>サイト内全文検索 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -88,7 +90,7 @@ const data = [
     url: "/site-renewal2024/",
     title: "約５年ぶりにサイトを更新し、ついでにリニューアルした",
     date: "2024-01-07T23:05:39+09:00",
-    body: "約５年ぶりにサイトを更新し、ついでにリニューアルした 経緯 前回更新が2019年。仕事がクソ忙しくて調べ物をした記事。 2014年頃は頻繁に更新していたものの、別の趣味に夢中になり10年近くブログ更新は停止していた。 いやー長すぎだろ（笑） 今回久しぶりに時間が取れたので、2024年正月休みの時間を利用して放置していたgithub上のブログをリニューアルすることにした。 今どきの技術記事は、noteやqiita,zennなどで書くのがトレンドなんだろうけどorg-mode使ってデザインとか自前でいろいろやりたいので、Hugo使う！ Javascriptのゲーム作りとかMSXとかの記事も書けたらなーと思う。 どのように構築しているか Hugoを使用。 Hugoは標準でEmacsのorg-modeをサポートしており、mdファイルのかわりにorgファイルを使える。素晴らしい！ 全文検索は「くまくまノート」さまのサイトを参考に実装。ありがとうございます。 テーマは独自に記述。見た目はZennぽくしてみた。 参考URL ox-hugoを使わずに直接orgを使う話 https://mopemope.com/post/hugo-with-org/ hugoの使い方 https://knowledge.sakura.ad.jp/22908/ 目次について 目次を入れる場合は下記を記述する。いらないときは記述しない #+toc: true 目次調査の経緯 hugoではorg-modeのtocをサポートしてないっぽい 下記では「#+toc: t」で表示されるとあるが、実際には反映しない https://discourse.gohugo.io/t/table-of-contents-for-org-mode-is-empty/6272/4 https://discourse.gohugo.io/t/toc-for-org-mode-missing/29899 どうもmarkdownパーサーが入れ替わったのでそのタイミングでデグレしたのかも。 org-modeは少数派なので、今後サポートされる可能性は低い。 以上から自前で実装する必要がある。 下記を参考にした https://toshikunblog.net/post/20200610/2020-0610/#google_vignette"
+    body: "約５年ぶりにサイトを更新し、ついでにリニューアルした 経緯 前回更新が2019年。仕事がクソ忙しくて調べ物をした記事。 2014年頃は頻繁に更新していたものの、別の趣味に夢中になり10年近くブログ更新は停止していた。 いやー長すぎだろ（笑） 今回久しぶりに時間が取れたので、2024年正月休みの時間を利用して放置して いたgithub上のブログをリニューアルすることにした。今どきの技術記事は、 noteやQiitaあるいはZennなどで書くのがトレンドなんだろうけど、org-mode 使ってデザインとか自前でいろいろやりたいので、Hugo使う！ Javascriptのゲーム作りとかMSXとかの記事も書けたらなーと思う。 どのように構築しているか Hugoを使用。 Hugoは標準でEmacsのorg-modeをサポートしており、mdファイルのかわりにorgファイルを使える。素晴らしい！ 全文検索は「くまくまノート」さまのサイトを参考に実装。ありがとうございます。 テーマは独自に記述。見た目はZennぽくしてみた。 参考URL ox-hugoを使わずに直接orgを使う話 https://mopemope.com/post/hugo-with-org/ hugoの使い方 https://knowledge.sakura.ad.jp/22908/ 目次について 目次を入れる場合は Front Matter に下記を記述する。目次がいらないときはfalseを指定するのではなく、*#+toc* を記述しないこと。 #+toc: true 下記を参考にして実装しました。ありがとうございます。 https://toshikunblog.net/post/20200610/2020-0610/#google_vignette 目次調査の経緯 hugoではorg-modeのtocをサポートしてないっぽい 下記では「#+toc: t」で表示されるとあるが、実際には反映しない https://discourse.gohugo.io/t/table-of-contents-for-org-mode-is-empty/6272/4 https://discourse.gohugo.io/t/toc-for-org-mode-missing/29899 どうもmarkdownパーサーが入れ替わったのでそのタイミングでデグレしたのかも。 org-modeは少数派なので、今後サポートされる可能性は低い。 以上から自前で実装する必要がある。"
   },
   {
     url: "/posts/android_gameprogramming_atoz/",

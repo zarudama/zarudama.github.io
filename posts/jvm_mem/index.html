@@ -11,12 +11,13 @@ $ java -version java version &#34;*****&#34; Java(TM) SE Runtime Environment (bu
 初期ヒープサイズ マシンの物理メモリーの 1/64 か、妥当な最小サイズかの大きい方。 最大ヒープサイズ 物理メモリーの 1/4 か、1GB かの小さい方。 http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
 $ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.0 137152.0 0.0 68410.3 224000.0 107742.6 996736.0 113947.3 61440.0 61324.8 7 1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/jvm_mem/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/jvm_mem/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-03-25T14:01:39+09:00" />
 <meta property="article:modified_time" content="2014-03-25T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="JVMのヒープサイズと変更方法"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="JVMのヒープサイズと変更方法"/>
 <meta name="twitter:description" content="稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
 JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、 初期割り当てのヒープサイズが異なる。
 サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
@@ -24,6 +25,7 @@ $ java -version java version &#34;*****&#34; Java(TM) SE Runtime Environment (bu
 サーバーモード
 初期ヒープサイズ マシンの物理メモリーの 1/64 か、妥当な最小サイズかの大きい方。 最大ヒープサイズ 物理メモリーの 1/4 か、1GB かの小さい方。 http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
 $ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.0 137152.0 0.0 68410.3 224000.0 107742.6 996736.0 113947.3 61440.0 61324.8 7 1."/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>JVMのヒープサイズと変更方法 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">

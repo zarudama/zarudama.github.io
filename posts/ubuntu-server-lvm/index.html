@@ -8,16 +8,18 @@
 まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。
 $ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ} で削除できる。 この時、swap領域に割り当てたものが削除できない場合があるが その時は、いったんインストール作業を中断してやり直せばよい。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/ubuntu-server-lvm/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zarudama.github.io/posts/ubuntu-server-lvm/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-12-30T14:01:39+09:00" />
 <meta property="article:modified_time" content="2012-12-30T14:01:39+09:00" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Ubuntu Server インストール時に前回作ったLVMが削除できなかった。"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="Ubuntu Server インストール時に前回作ったLVMが削除できなかった。"/>
 <meta name="twitter:description" content="Ubuntu Serverをインストールし直したとき、前回作ったLVMを再構成しようとしたら VGやLVMが削除できなくて先に進めなくなった。
 この状態を回避するには、 まず ALT&#43;F2 でコンソールを切り替える。 Ubuntu Serverでは仮想コンソールが複数立ちあがっていて、 ALT &#43; F1 - F4 で切り替えられるのだ。
 まず、論理ボリュームを削除し、その後、ボリュームグループを削除する。
 $ lvremove /dev/{ボリュームグループ}/{論理ボリューム} $ vgremove /dev/{ボリュームグループ} で削除できる。 この時、swap領域に割り当てたものが削除できない場合があるが その時は、いったんインストール作業を中断してやり直せばよい。"/>
+<meta name="twitter:site" content="@zarudama_games"/>
 
 <title>Ubuntu Server インストール時に前回作ったLVMが削除できなかった。 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
