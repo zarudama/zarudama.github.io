@@ -5,26 +5,26 @@
 <meta property="og:title" content="org-mode でファイルを開くとエラーが発生" />
 <meta property="og:description" content="org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、 そのファイルが更新された状態になってしまう。
 Invalid function: org-with-silent-modifications 似たような症状が下記にも報告されている。
- http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html  上記スレッドでは、
- ...Emacs -q and reinstalling from elpa...  としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
+http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html 上記スレッドでは、
+...Emacs -q and reinstalling from elpa... としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
 かわりにcask管理のorgを取得しなおした。こんな感じ。
 $ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask その際、バージョンをひとつ前の2.8.6に変更
-(source org) (depends-on &#34;org-plus-contrib&#34; &#34;2.8.6&#34;)  これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
+(source org) (depends-on &#34;org-plus-contrib&#34; &#34;2.8.6&#34;) これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
 Caskの指定方法が間違っていたのだろうか？" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/cask-org/" />
-<meta property="article:published_time" content="2014-07-07T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2014-07-07T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/cask-org/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-07-07T14:01:39+09:00" />
+<meta property="article:modified_time" content="2014-07-07T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="org-mode でファイルを開くとエラーが発生"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="org-mode でファイルを開くとエラーが発生"/>
 <meta name="twitter:description" content="org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。 *.orgファイルを開くと、下記のようなエラーが *Message* バッファに表示され、 そのファイルが更新された状態になってしまう。
 Invalid function: org-with-silent-modifications 似たような症状が下記にも報告されている。
- http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html  上記スレッドでは、
- ...Emacs -q and reinstalling from elpa...  としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
+http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html 上記スレッドでは、
+...Emacs -q and reinstalling from elpa... としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。
 かわりにcask管理のorgを取得しなおした。こんな感じ。
 $ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/ $ cd ~/.emacs.d/ $ cask その際、バージョンをひとつ前の2.8.6に変更
-(source org) (depends-on &#34;org-plus-contrib&#34; &#34;2.8.6&#34;)  これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
+(source org) (depends-on &#34;org-plus-contrib&#34; &#34;2.8.6&#34;) これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。 なのでバージョン指定は不要かもしれない。
 Caskの指定方法が間違っていたのだろうか？"/>
 
 <title>org-mode でファイルを開くとエラーが発生 | ざる魂</title>
@@ -67,34 +67,41 @@ Caskの指定方法が間違っていたのだろうか？"/>
     
     
     
-      <p>org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。
-*.orgファイルを開くと、下記のようなエラーが <code>*Message*</code> バッファに表示され、
+      <p>
+org-modeをcask経由で新しくしたところ、挙動がおかしくなってしまった。
+*.orgファイルを開くと、下記のようなエラーが <code class="verbatim">*Message*</code> バッファに表示され、
 そのファイルが更新された状態になってしまう。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">	Invalid <span style="color:#069;font-weight:bold">function</span>: org-with-silent-modifications</code></pre></div>
-<p>似たような症状が下記にも報告されている。</p>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>	Invalid <span style="color:#069;font-weight:bold">function</span>: org-with-silent-modifications</span></span></code></pre></div>
+</div>
+<p>
+似たような症状が下記にも報告されている。</p>
 <ul>
-<li>http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html</li>
+<li><a href="http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html">http://lists.gnu.org/archive/html/emacs-orgmode/2014-06/msg00622.html</a></li>
 </ul>
-
 <p>上記スレッドでは、</p>
-
-<pre><code> ...Emacs -q and reinstalling from elpa...
-</code></pre>
-
+<pre class="example">
+ ...Emacs -q and reinstalling from elpa...
+</pre>
 <p>としたら解決したとあるが具体的なコマンド例がないのでよくわからなかった。</p>
-
-<p>かわりにcask管理のorgを取得しなおした。こんな感じ。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/
-$ <span style="color:#366">cd</span> ~/.emacs.d/
-$ cask</code></pre></div>
-<p>その際、バージョンをひとつ前の2.8.6に変更</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#033">source</span> <span style="color:#033">org</span>)
-(<span style="color:#033">depends-on</span> <span style="color:#c30">&#34;org-plus-contrib&#34;</span> <span style="color:#c30">&#34;2.8.6&#34;</span>) </code></pre></div>
-<p>これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。
+<p>
+かわりにcask管理のorgを取得しなおした。こんな感じ。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ rm -rf ~/.emacs.d/.cask/24.3.1/elpa/org-plus-contrib-20140707/
+</span></span><span style="display:flex;"><span>$ <span style="color:#366">cd</span> ~/.emacs.d/
+</span></span><span style="display:flex;"><span>$ cask</span></span></code></pre></div>
+</div>
+<p>
+その際、バージョンをひとつ前の2.8.6に変更</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#033">source</span> <span style="color:#033">org</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#033">depends-on</span> <span style="color:#c30">&#34;org-plus-contrib&#34;</span> <span style="color:#c30">&#34;2.8.6&#34;</span>)</span></span></code></pre></div>
+</div>
+<p>
+これでエラーにならなくなった。しかし、バージョンを確認すると最新の2.8.7bになっている。
 なのでバージョン指定は不要かもしれない。</p>
-
-<p>Caskの指定方法が間違っていたのだろうか？</p>
+<p>
+Caskの指定方法が間違っていたのだろうか？</p>
 
     
 </div>

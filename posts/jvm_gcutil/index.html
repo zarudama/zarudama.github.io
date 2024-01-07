@@ -9,27 +9,27 @@ $ sudo -u tomcat jps -v tomcatユーザの起動したJavaプロセスのIDを�
 javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
 $ pgrep -lf java PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
 jstat -gcutil -t 123456 3000 意味は以下のとおり。
-jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt; -t タイムスタンプを出力 -gcutil GCの統計情報  jstatのマニュアルは以下。
- http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
-Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出しは以下のルールになる
-   S* Suviver    E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間    GCについては、下記が詳しい。" />
+jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt; -t タイムスタンプを出力 -gcutil GCの統計情報 jstatのマニュアルは以下。
+http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html gcutilの見出し
+Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT gcutilの見出しは以下のルールになる
+S* Suviver E* Eden Y Young O* Old P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所 F* Full *C comitted javaが確保したメモリサイズ *U used 使用済みメモリ *GC GCの回数 *GCT GCの時間 GCについては、下記が詳しい。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/jvm_gcutil/" />
-<meta property="article:published_time" content="2014-03-25T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2014-03-25T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/jvm_gcutil/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-03-25T14:01:39+09:00" />
+<meta property="article:modified_time" content="2014-03-25T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="GCの発生頻度などの調査"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="GCの発生頻度などの調査"/>
 <meta name="twitter:description" content="GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。
 まずはプロセスIDを調べる。例としてtomcatの場合。
 $ sudo -u tomcat jps -v tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。
 javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。
 $ pgrep -lf java PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。
 jstat -gcutil -t 123456 3000 意味は以下のとおり。
-jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt; -t タイムスタンプを出力 -gcutil GCの統計情報  jstatのマニュアルは以下。
- http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html  gcutilの見出し
-Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出しは以下のルールになる
-   S* Suviver    E* Eden    Y Young    O* Old    P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所   F* Full    *C comitted javaが確保したメモリサイズ   *U used 使用済みメモリ   *GC  GCの回数   *GCT  GCの時間    GCについては、下記が詳しい。"/>
+jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt; -t タイムスタンプを出力 -gcutil GCの統計情報 jstatのマニュアルは以下。
+http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html gcutilの見出し
+Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT gcutilの見出しは以下のルールになる
+S* Suviver E* Eden Y Young O* Old P* Permenet Permanent領域は、JVMにロードされたクラスの置き場所 F* Full *C comitted javaが確保したメモリサイズ *U used 使用済みメモリ *GC GCの回数 *GCT GCの時間 GCについては、下記が詳しい。"/>
 
 <title>GCの発生頻度などの調査 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -71,36 +71,42 @@ Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出�
     
     
     
-      <p>GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。</p>
-
-<p>まずはプロセスIDを調べる。例としてtomcatの場合。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo -u tomcat jps -v</code></pre></div>
+      
+<p>
+GCの発生頻度を調査するためのカンペ。gclogを使用せずにお手軽に実施できる。</p>
+<p>
+まずはプロセスIDを調べる。例としてtomcatの場合。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo -u tomcat jps -v</span></span></code></pre></div>
+</div>
 <p>tomcatユーザの起動したJavaプロセスのIDを付加情報付きで表示する。</p>
-
-<p>javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pgrep -lf java</code></pre></div>
-<p>PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">jstat -gcutil -t <span style="color:#f60">123456</span> <span style="color:#f60">3000</span></code></pre></div>
-<p>意味は以下のとおり。</p>
-
-<pre><code>jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt;
+<p>
+javaプロセスがひとつしかない場合などは、下記のほうが楽かもしれない。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ pgrep -lf java</span></span></code></pre></div>
+</div>
+<p>
+PIDが123456だった場合、3秒ごとにgcの発生状況をチェックするコマンドの例。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>jstat -gcutil -t <span style="color:#f60">123456</span> <span style="color:#f60">3000</span></span></span></code></pre></div>
+</div>
+<p>
+意味は以下のとおり。</p>
+<pre class="example">
+jstat &lt;出力オプション&gt; &lt;プロセスID&gt; &lt;データ取得間隔(ms)&gt;
 -t タイムスタンプを出力
 -gcutil GCの統計情報
-</code></pre>
-
-<p>jstatのマニュアルは以下。</p>
-
+</pre>
+<p>
+jstatのマニュアルは以下。</p>
 <ul>
-<li>http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html</li>
+<li><a href="http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html">http://docs.oracle.com/javase/jp/6/technotes/tools/share/jstat.html</a></li>
 </ul>
-
 <p>gcutilの見出し</p>
-
-<pre><code>Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT
-</code></pre>
-
+<pre class="example">
+Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT
+</pre>
 <p>gcutilの見出しは以下のルールになる</p>
-
 <table>
 <tbody>
 <tr>
@@ -108,55 +114,46 @@ Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出�
 <td>Suviver</td>
 <td></td>
 </tr>
-
 <tr>
 <td>E*</td>
 <td>Eden</td>
 <td></td>
 </tr>
-
 <tr>
 <td>Y</td>
 <td>Young</td>
 <td></td>
 </tr>
-
 <tr>
 <td>O*</td>
 <td>Old</td>
 <td></td>
 </tr>
-
 <tr>
 <td>P*</td>
 <td>Permenet</td>
 <td>Permanent領域は、JVMにロードされたクラスの置き場所</td>
 </tr>
-
 <tr>
 <td>F*</td>
 <td>Full</td>
 <td></td>
 </tr>
-
 <tr>
 <td>*C</td>
 <td>comitted</td>
 <td>javaが確保したメモリサイズ</td>
 </tr>
-
 <tr>
 <td>*U</td>
 <td>used</td>
 <td>使用済みメモリ</td>
 </tr>
-
 <tr>
 <td>*GC</td>
 <td></td>
 <td>GCの回数</td>
 </tr>
-
 <tr>
 <td>*GCT</td>
 <td></td>
@@ -164,18 +161,24 @@ Timestamp S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT  gcutilの見出�
 </tr>
 </tbody>
 </table>
-
-<p>GCについては、下記が詳しい。</p>
-
+<p>
+GCについては、下記が詳しい。</p>
 <ul>
-<li>http://www.atmarkit.co.jp/ait/articles/0404/02/news079.html</li>
-<li>http://www.atmarkit.co.jp/ait/articles/0211/30/news002.html</li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/0404/02/news079.html">http://www.atmarkit.co.jp/ait/articles/0404/02/news079.html</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/0211/30/news002.html">http://www.atmarkit.co.jp/ait/articles/0211/30/news002.html</a></li>
 </ul>
-
-<h1 id="メモリ使用量を確認したいとき">メモリ使用量を確認したいとき</h1>
-
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+メモリ使用量を確認したいとき
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>gcオプションを使えばよい。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo jstat -gc -t <span style="color:#f60">12345</span> <span style="color:#f60">3000</span></code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo jstat -gc -t <span style="color:#f60">12345</span> <span style="color:#f60">3000</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+
     
 </div>
 <div class="pager pure-u-1">

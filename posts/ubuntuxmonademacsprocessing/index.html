@@ -4,12 +4,13 @@
 <meta name="description" content="">
 <meta property="og:title" content="ubuntuでxmonadして、emacsでProcessingしてます" />
 <meta property="og:description" content="最近Processingをいじり始めました。
-http://mikio.github.io/img/processing/xmonad.png
-上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
+Ubuntu上のXmonadでemacs使ってProcessingしてるところ 上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
 ちょろっと作った
-&lt;p&gt; &lt;a href=&quot;/processings/hello/&quot;&gt;テストプログラム&lt;/a&gt; &lt;/p&gt;  Javascriptモードで出力しました。こんなのが簡単に作れます。
+&lt;a href=&#34;processings/hello&#34;&gt;テストプログラム&lt;/a&gt;
+Javascriptモードで出力しました。こんなのが簡単に作れます。
 日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。 最大のきっかけとなったのは下記の本を手にしたからです。
-&lt;p&gt; &lt;a href=&quot;http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038644&amp;linkCode=as2&amp;tag=ocha04-22&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4798038644&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4798038644&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt; &lt;/p&gt;  この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。 事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。 実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
+&lt;a href=&#34;http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038644&amp;linkCode=as2&amp;tag=ocha04-22&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4798038644&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&#34; &gt;&lt;/a&gt;&lt;img src=&#34;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4798038644&#34; width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; alt=&#34;&#34; style=&#34;border:none !important; margin:0px !important;&#34; /&gt;
+この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。 事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。 実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
 初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、 データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。 自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
 特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。 プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、 この本はデータ作成にも多くのページを割いて解説しています。 また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
 processing のおすすめポイント processingは実はjavaである。 文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。 でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。 実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。
@@ -17,21 +18,24 @@ Processingをイメージで簡単に説明すると、「Processingという巨
 インストールが超簡単。 ダウンロードして展開するだけです。Java実行環境は同梱されてるので別途インストールする必要がありません。
 複数のプラットホームに対応している。 作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。 出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。
 HTMLモード、androidモードがある。 昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。
-emacsでprocessing  結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。 問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。 emacsからもProcessingを使えます。下記を参考にしました。 http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、 エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。" />
+結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。 問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
+emacsでprocessing emacsからもProcessingを使えます。下記を参考にしました。
+http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526 MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、 エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/ubuntuxmonademacsprocessing/" />
-<meta property="article:published_time" content="2013-08-07T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2013-08-07T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/ubuntuxmonademacsprocessing/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2013-08-07T14:01:39+09:00" />
+<meta property="article:modified_time" content="2013-08-07T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ubuntuでxmonadして、emacsでProcessingしてます"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="ubuntuでxmonadして、emacsでProcessingしてます"/>
 <meta name="twitter:description" content="最近Processingをいじり始めました。
-http://mikio.github.io/img/processing/xmonad.png
-上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
+Ubuntu上のXmonadでemacs使ってProcessingしてるところ 上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。
 ちょろっと作った
-&lt;p&gt; &lt;a href=&quot;/processings/hello/&quot;&gt;テストプログラム&lt;/a&gt; &lt;/p&gt;  Javascriptモードで出力しました。こんなのが簡単に作れます。
+&lt;a href=&#34;processings/hello&#34;&gt;テストプログラム&lt;/a&gt;
+Javascriptモードで出力しました。こんなのが簡単に作れます。
 日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。 最大のきっかけとなったのは下記の本を手にしたからです。
-&lt;p&gt; &lt;a href=&quot;http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038644&amp;linkCode=as2&amp;tag=ocha04-22&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4798038644&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4798038644&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt; &lt;/p&gt;  この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。 事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。 実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
+&lt;a href=&#34;http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038644&amp;linkCode=as2&amp;tag=ocha04-22&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4798038644&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&#34; &gt;&lt;/a&gt;&lt;img src=&#34;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4798038644&#34; width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; alt=&#34;&#34; style=&#34;border:none !important; margin:0px !important;&#34; /&gt;
+この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。 事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。 実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。
 初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、 データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。 自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。
 特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。 プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、 この本はデータ作成にも多くのページを割いて解説しています。 また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。
 processing のおすすめポイント processingは実はjavaである。 文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。 でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。 実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。
@@ -39,7 +43,9 @@ Processingをイメージで簡単に説明すると、「Processingという巨
 インストールが超簡単。 ダウンロードして展開するだけです。Java実行環境は同梱されてるので別途インストールする必要がありません。
 複数のプラットホームに対応している。 作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。 出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。
 HTMLモード、androidモードがある。 昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。
-emacsでprocessing  結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。 問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。 emacsからもProcessingを使えます。下記を参考にしました。 http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526  MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、 エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。"/>
+結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。 問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
+emacsでprocessing emacsからもProcessingを使えます。下記を参考にしました。
+http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526 MELPAに登録されているのでインスールも簡単です。 C-c C-p C-r で実行できますし、 エラーがあれば M-g M-n で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。"/>
 
 <title>ubuntuでxmonadして、emacsでProcessingしてます | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -71,7 +77,7 @@ emacsでprocessing  結局、サポートプラットホームは、Linux、Mac�
 <section>
       <span class="date">作成日: 2013-08-07</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2013-08-07</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;108 文字> </span>
+      <sapn class="wordcount"> &lt;104 文字> </span>
     </section>
     
   </aside>
@@ -81,107 +87,136 @@ emacsでprocessing  結局、サポートプラットホームは、Linux、Mac�
     
     
     
-      <p>最近Processingをいじり始めました。</p>
-
-<p><a href="http://mikio.github.io/img/processing/xmonad.png" title="http://mikio.github.io/img/processing/xmonad.png">http://mikio.github.io/img/processing/xmonad.png</a></p>
-
-<p>上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。</p>
-
-<p>ちょろっと作った</p>
-
-<pre><code>&lt;p&gt;
-&lt;a href=&quot;/processings/hello/&quot;&gt;テストプログラム&lt;/a&gt;
-&lt;/p&gt;
-
-</code></pre>
-
+      
+<p>
+最近Processingをいじり始めました。</p>
+<figure>
+<img src="http://mikio.github.io/img/processing/xmonad.png" alt="http://mikio.github.io/img/processing/xmonad.png" title="http://mikio.github.io/img/processing/xmonad.png" width="640px"/>
+<figcaption>
+Ubuntu上のXmonadでemacs使ってProcessingしてるところ
+</figcaption>
+</figure>
+<p>
+上の画像は、Ubuntu上のXmonadでemacs使ってProcessingしてるところです。非常に快適です。</p>
+<p>
+ちょろっと作った</p>
+<div class="html-block">
+<p>&lt;a href=&#34;<em>processings/hello</em>&#34;&gt;テストプログラム&lt;/a&gt;</p>
+</div>
 <p>Javascriptモードで出力しました。こんなのが簡単に作れます。</p>
-
-<p>日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。
+<p>
+日経LinuxでProcessingの連載をしていたので興味があったのですが、きちんと読んでいませんでした(今読みかえしているところです)。
 最大のきっかけとなったのは下記の本を手にしたからです。</p>
-
-<pre><code>&lt;p&gt;
-&lt;a href=&quot;http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038644&amp;linkCode=as2&amp;tag=ocha04-22&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4798038644&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4798038644&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
-&lt;/p&gt;
-
-</code></pre>
-
-<p>この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。
+<div class="html-block">
+<p>&lt;a href=&#34;<a href="http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038644&amp;linkCode=as2&amp;tag=ocha04-22">http://www.amazon.co.jp/gp/product/4798038644/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038644&amp;linkCode=as2&amp;tag=ocha04-22</a>&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;<a href="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4798038644&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22">http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4798038644&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22</a>&#34; &gt;&lt;/a&gt;&lt;img src=&#34;<a href="http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4798038644">http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4798038644</a>&#34; width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; alt=&#34;&#34; style=&#34;border:none !important; margin:0px !important;&#34; /&gt;</p>
+</div>
+<p>
+この本はゲームプログラミングはおろかプログラミングそのものが初めてという人のための本です。
 事実、本の帯には「猫でも13歳でもわかる」みたいなことが書いてあります(笑)。
 実際本の内容は懇切丁寧に書かれており、猫は無理でも中学生ならゲームが作れそうです。</p>
-
-<p>初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、
+<p>
+初心者向けの本とはいえその内容は広範囲で、基本の2Dプログラミング、アイデアの出しかた、
 データの作成、Andoroidアプリの公開方法、3Dプログラミング、そしてなんとキネクトプログラミングまでやってます。
 自分はプログラミング初心者ではないですが、Processingをざっと勉強したいという経験者にもうってつけだと思います。</p>
-
-<p>特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。
+<p>
+特にいいなと思ったのは、プログラマの最大の敵であるゲーム素材のつくり方まで解説してある点です。
 プログラマは大抵絵心がなかったりするので、絵や音の素材を用意するのが苦手だと思うのですが、
 この本はデータ作成にも多くのページを割いて解説しています。
 また、本は分厚いですがそれぞれの章の独立生が割と高いので興味のあるところから読むってのもありかもです。</p>
-
-<h1 id="processing-のおすすめポイント">processing のおすすめポイント</h1>
-
-<h2 id="processingは実はjavaである">processingは実はjavaである。</h2>
-
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+processing のおすすめポイント
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+processingは実はjavaである。
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
 <p>文法はほとんどJavaなので実はしっかりした言語体系です。自分は最初、Processingという独自のスクリプト言語があるものと勘ちがいしていました。
 でも実は、Processingという独自の言語があるわけではなく、Java言語をProcessingというIDEを通して簡単に始められるというものでした。
 実際Processingでは普通にArrayListが使えますしジェネリクスも使えます。</p>
-
-<p>Processingをイメージで簡単に説明すると、「Processingという巨大なクラスがあって、
+<p>
+Processingをイメージで簡単に説明すると、「Processingという巨大なクラスがあって、
 このメソッドがグローバルな関数に見立てたAPIとなっていて、PDEという独自IDEによってあたかもグローバル関数や変数を簡単に定義できるようになっている。
 PDEのおかげで、javaのパスとかメインクラスの作成とか面倒なことを考えずすぐに再生ボタンで実行できる環境」ってことになります (間違ってたらすみません)。
 なのでJavaを実際に始める前にProcessingから入るというのは非常に有効な手段かと思います。</p>
-
-<h2 id="インストールが超簡単">インストールが超簡単。</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+インストールが超簡単。
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
 <p>ダウンロードして展開するだけです。Java実行環境は同梱されてるので別途インストールする必要がありません。</p>
-
-<h2 id="複数のプラットホームに対応している">複数のプラットホームに対応している。</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+複数のプラットホームに対応している。
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
 <p>作ったプログラムは、Linux, Mac, Windows向けにエクスポートできます。
 出力されたものにJava実行環境も含まれているので配布先に別途Javaをインストールしてもらう必要もありません。</p>
-
-<h2 id="htmlモード-androidモードがある">HTMLモード、androidモードがある。</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
+HTMLモード、androidモードがある。
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
 <p>昔のver1.5のころは、エクスポート方法としてアプレットがあったのですが、これはjavascriptに置きかわりました。
 JavaAppletはいろいろ問題があるのでこの変更は嬉しいですね。
 AndroidのエクスポートもSDKを別途ダウンロードする必要はあるものの非常に簡単にAndroidでプログラムを動かせます。</p>
-
-<h2 id="emacsでprocessing">emacsでprocessing</h2>
-
-<ul>
+<p>
 結局、サポートプラットホームは、Linux、Mac、Windwos、Android、そしてJavascriptになります
 (ただし最近のゲームライブラリはどれもこの辺サポートしてるのでアピールポイントにはなりにくくなってますね)。
-問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。
-emacsからもProcessingを使えます。下記を参考にしました。
-<li>http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526</li>
-</ul>
-
-<p>MELPAに登録されているのでインスールも簡単です。 <code>C-c C-p C-r</code> で実行できますし、
-エラーがあれば <code>M-g M-n</code> で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</p>
-
-<h2 id="xmonadでprocessing">xmonadでprocessing</h2>
-
-<p>最後にXmonadでProcessingする方法を書いておきます。</p>
-
-<p>Xmonad上では、JavaのSwingがまともに動かないみたいなので、
-Processingするにはxmonadの設定ファイルを修正する必要があります。</p>
-
-<p><code>~/.xmonad/xmonad.hs</code> ファイルのlogHookを下記のように <code>XMonad.Hooks.ICCCMFocus</code> をインポートして、
- logHook の右辺を <code>takeTopFocus</code> に置き換えます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">import XMonad.Hooks.ICCCMFocus
- :
-<span style="color:#033">main</span> <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">do</span>
- :
-xmonad $ defaultConfig 
- :
-  , <span style="color:#033">logHook</span> <span style="color:#555">=</span> takeTopFocus
- :</code></pre></div>
-<p>意味はわかってません。。。下記のURLを参考にしました。</p>
-
+問題は各モードでどこまで差異なく実行できるかですが、この辺はまだ検証できてません。 でも活動が活発なので期待です。</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
+emacsでprocessing
+</h3>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>emacsからもProcessingを使えます。下記を参考にしました。</p>
 <ul>
-<li>http://www.willprice.org/about.html</li>
+<li><a href="http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526">http://hoshi-sano.hatenablog.com/entry/2013/08/03/121526</a></li>
 </ul>
+<p>MELPAに登録されているのでインスールも簡単です。 <code class="verbatim">C-c C-p C-r</code> で実行できますし、
+エラーがあれば <code class="verbatim">M-g M-n</code> で簡単ジャンプできます。あとは javascript モードも対応してくれるといいな。</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-3">
+<h3 id="headline-7">
+xmonadでprocessing
+</h3>
+<div id="outline-text-headline-7" class="outline-text-3">
+<p>最後にXmonadでProcessingする方法を書いておきます。</p>
+<p>
+Xmonad上では、JavaのSwingがまともに動かないみたいなので、
+Processingするにはxmonadの設定ファイルを修正する必要があります。</p>
+<p>
+ <code class="verbatim">~/.xmonad/xmonad.hs</code> ファイルのlogHookを下記のように <code class="verbatim">XMonad.Hooks.ICCCMFocus</code> をインポートして、
+ logHook の右辺を <code class="verbatim">takeTopFocus</code> に置き換えます。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>import XMonad.Hooks.ICCCMFocus
+</span></span><span style="display:flex;"><span> :
+</span></span><span style="display:flex;"><span><span style="color:#033">main</span> <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span> :
+</span></span><span style="display:flex;"><span>xmonad $ defaultConfig 
+</span></span><span style="display:flex;"><span> :
+</span></span><span style="display:flex;"><span>  , <span style="color:#033">logHook</span> <span style="color:#555">=</span> takeTopFocus
+</span></span><span style="display:flex;"><span> :</span></span></code></pre></div>
+</div>
+<p>意味はわかってません。。。下記のURLを参考にしました。</p>
+<ul>
+<li><a href="http://www.willprice.org/about.html">http://www.willprice.org/about.html</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 
     
 </div>

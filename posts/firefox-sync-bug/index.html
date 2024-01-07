@@ -4,26 +4,26 @@
 <meta name="description" content="">
 <meta property="og:title" content="firefox の同期不具合" />
 <meta property="og:description" content="下記のエラーが頻繁に表示される。
-「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」  これの対処方法は、
- 「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」  で、もとに戻るはず。
+「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は、
+「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」 で、もとに戻るはず。
 追記 結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、 syncエラーの原因が読めることがわかった。
 about:sync-log 今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、 このログをみれば詳細な情報が手にはいるので大助かり。
 自分の場合、ログをみたところ、bookmark同期に原因があった模様。
-1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items." />
+1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items. 1368414695441	Sync." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/firefox-sync-bug/" />
-<meta property="article:published_time" content="2013-05-03T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2013-05-03T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/firefox-sync-bug/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2013-05-03T14:01:39+09:00" />
+<meta property="article:modified_time" content="2013-05-03T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="firefox の同期不具合"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="firefox の同期不具合"/>
 <meta name="twitter:description" content="下記のエラーが頻繁に表示される。
-「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」  これの対処方法は、
- 「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」  で、もとに戻るはず。
+「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」 これの対処方法は、
+「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」 で、もとに戻るはず。
 追記 結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、 syncエラーの原因が読めることがわかった。
 about:sync-log 今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、 このログをみれば詳細な情報が手にはいるので大助かり。
 自分の場合、ログをみたところ、bookmark同期に原因があった模様。
-1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items."/>
+1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items. 1368414695441	Sync."/>
 
 <title>firefox の同期不具合 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -65,56 +65,66 @@ about:sync-log 今まで同期エラーがでると、原因を示してくれ�
     
     
     
-      <p>下記のエラーが頻繁に表示される。</p>
-
-<pre><code>「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」
-</code></pre>
-
-<p>これの対処方法は、</p>
-
+      
+<p>
+下記のエラーが頻繁に表示される。</p>
+<pre class="example">
+「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」
+</pre>
+<p>
+これの対処方法は、</p>
 <ul>
 <li>「メニュー」→「ツール」→「オプション」→「Syncタブ」</li>
 <li>「アカウントを管理ボタン」→「Syncをリセット」</li>
 </ul>
-
 <p>で、もとに戻るはず。</p>
-
-<h1 id="追記">追記</h1>
-
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+追記
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、
 syncエラーの原因が読めることがわかった。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">about:sync-log</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>about:sync-log</span></span></code></pre></div>
+</div>
 <p>今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、
 このログをみれば詳細な情報が手にはいるので大助かり。</p>
-
-<p>自分の場合、ログをみたところ、bookmark同期に原因があった模様。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f60">1368414694893</span>	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items
-<span style="color:#f60">1368414694893</span>	Sync.Engine.Bookmarks	INFO	<span style="color:#f60">2</span> outgoing items pre-reconciliation
-<span style="color:#f60">1368414695441</span>	Sync.Engine.Bookmarks	WARN	Got exception <span style="color:#c30">&#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34;</span> building GUID map. Skipping all other incoming items.
-<span style="color:#f60">1368414695441</span>	Sync.Engine.Bookmarks	WARN	Reconciliation failed: aborting incoming processing.</code></pre></div>
+<p>
+自分の場合、ログをみたところ、bookmark同期に原因があった模様。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items
+</span></span><span style="display:flex;"><span>1368414694893	Sync.Engine.Bookmarks	INFO	<span style="color:#f60">2</span> outgoing items pre-reconciliation
+</span></span><span style="display:flex;"><span>1368414695441	Sync.Engine.Bookmarks	WARN	Got exception <span style="color:#c30">&#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34;</span> building GUID map. Skipping all other incoming items.
+</span></span><span style="display:flex;"><span>1368414695441	Sync.Engine.Bookmarks	WARN	Reconciliation failed: aborting incoming processing.</span></span></code></pre></div>
+</div>
 <p>そこで「ツール」→「オプション」→「Sync」→「同期するデータ」から、
 ブックマークを外して再度同期したところ、エラーが表示されなくなった。</p>
-
-<p>しかしこのままではブックマークの同期ができないのでなんとかしなくてはならない。
+<p>
+しかしこのままではブックマークの同期ができないのでなんとかしなくてはならない。
 そこで、下記の手順をとることにした。</p>
-
 <ul>
-<li>https://account.services.mozilla.com にアクセス</li>
-<li>左ペインの <code>Clear Your Sync data</code> をクリック </li>
-<li><code>Clear My Sync Data</code> をクリックしてサーバー上のデータを削除</li>
+<li><a href="https://account.services.mozilla.com">https://account.services.mozilla.com</a> にアクセス</li>
+<li>左ペインの <code class="verbatim">Clear Your Sync data</code> をクリック </li>
+<li><code class="verbatim">Clear My Sync Data</code> をクリックしてサーバー上のデータを削除</li>
 <li>上述した方法でアカウントをリセット。そのとき、「他のすべてのデバイスのブラウザデータを、このパソコンのデータと置き換える」を選択する。</li>
 </ul>
-
 <p>ただしこの方法は、同期もとにするPCのデータに異常がない場合に有効。</p>
-
-<p>以上で同期が復活するはず。</p>
-
-<h1 id="参考">参考</h1>
-
+<p>
+以上で同期が復活するはず。</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+参考
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
 <ul>
-<li>https://account.services.mozilla.com/sync/request_quota</li>
-<li>http://coffeecupman.blog28.fc2.com/blog-entry-25.html</li>
+<li><a href="https://account.services.mozilla.com/sync/request_quota">https://account.services.mozilla.com/sync/request_quota</a></li>
+<li><a href="http://coffeecupman.blog28.fc2.com/blog-entry-25.html">http://coffeecupman.blog28.fc2.com/blog-entry-25.html</a></li>
 </ul>
+</div>
+</div>
 
     
 </div>

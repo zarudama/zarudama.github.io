@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>nrepl on ざる魂</title>
@@ -7,24 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Fri, 07 Sep 2012 14:01:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/nrepl/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://zarudama.github.io/tags/nrepl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>swank-clojureの後継モジュールのnREPLを試してみた</title>
       <link>https://zarudama.github.io/posts/swank-clojurenrepl/</link>
       <pubDate>Fri, 07 Sep 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/swank-clojurenrepl/</guid>
-      <description>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
- https://github.com/technomancy/swank-clojure  This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit.  超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。 もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
-ということで、el-getでレシピに下記を追加して nrepl.el をインストール。
-(:name nrepl :type github :pkgname &amp;#34;kingtim/nrepl.el&amp;#34; ) で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。
- :dependencies [[org.clojure/clojure &amp;quot;1.4.0&amp;quot;] [org.clojure/tools.nrepl &amp;quot;0.2.0-beta9&amp;quot; ]]  最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。
-キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
- シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)  ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、</description>
+      <description>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。&#xA;https://github.com/technomancy/swank-clojure This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit. 超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。 もしイケテるデバッガが欲しいならRitzがいいかもYO!。」&#xA;ということで、el-getでレシピに下記を追加して nrepl.el をインストール。&#xA;(:name nrepl :type github :pkgname &amp;#34;kingtim/nrepl.el&amp;#34; ) で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。&#xA;:dependencies [[org.clojure/clojure &amp;#34;1.4.0&amp;#34;] [org.clojure/tools.nrepl &amp;#34;0.2.0-beta9&amp;#34; ]] 最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。&#xA;キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。&#xA;シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示) ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、&#xA;REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ) nREPLとは直接関係ないけど、auto-complte.elに対応するモジュール(ac-slime)がない。 HyperSpecのようなドキュメントシステムは？(doc関数ががあるからいらないか) ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。</description>
     </item>
-    
   </channel>
 </rss>

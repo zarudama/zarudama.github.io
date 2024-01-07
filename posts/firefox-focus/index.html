@@ -6,24 +6,24 @@
 <meta property="og:description" content="Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカ スが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作 性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとし ている自分にとっては不便極まりない。
 ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。
 代わりにGireaseMonkey1を使った代替方法が見つかったのでそのスクリプトを使用することにした。
- http://javascripter.hatenablog.com/entry/20080620/1213923411  GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。
+http://javascripter.hatenablog.com/entry/20080620/1213923411 GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。
 新規ユーザスクリプトを追加する手順は以下。
- [メニュー]-[ツール]-[GreasMonkey]-[新規ユーザースクリプト]  // ==UserScript== // @name no-focus // @namespace no-focus // @version 1 // @include http* // ==/UserScript= window.addEventListener(&#39;load&#39;, function() { document.activeElement.blur(); this.removeEventListener(&#39;load&#39;, arguments.callee, false); }, false);  コードの意味はよくわかってないから、問題があるかもしれないが、その場合 はその時考えよう。
- Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。 [return]   " />
+[メニュー]-&gt;[ツール]-&gt;[GreasMonkey]-&gt;[新規ユーザースクリプト] // ==UserScript== // @name no-focus // @namespace no-focus // @version 1 // @include http* // ==/UserScript= window.addEventListener(&#39;load&#39;, function() { document.activeElement.blur(); this.removeEventListener(&#39;load&#39;, arguments.callee, false); }, false); コードの意味はよくわかってないから、問題があるかもしれないが、その場合 はその時考えよう。
+1 Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/firefox-focus/" />
-<meta property="article:published_time" content="2012-09-06T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2012-09-06T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/firefox-focus/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2012-09-06T14:01:39+09:00" />
+<meta property="article:modified_time" content="2012-09-06T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。"/>
 <meta name="twitter:description" content="Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカ スが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作 性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとし ている自分にとっては不便極まりない。
 ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。
 代わりにGireaseMonkey1を使った代替方法が見つかったのでそのスクリプトを使用することにした。
- http://javascripter.hatenablog.com/entry/20080620/1213923411  GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。
+http://javascripter.hatenablog.com/entry/20080620/1213923411 GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。
 新規ユーザスクリプトを追加する手順は以下。
- [メニュー]-[ツール]-[GreasMonkey]-[新規ユーザースクリプト]  // ==UserScript== // @name no-focus // @namespace no-focus // @version 1 // @include http* // ==/UserScript= window.addEventListener(&#39;load&#39;, function() { document.activeElement.blur(); this.removeEventListener(&#39;load&#39;, arguments.callee, false); }, false);  コードの意味はよくわかってないから、問題があるかもしれないが、その場合 はその時考えよう。
- Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。 [return]   "/>
+[メニュー]-&gt;[ツール]-&gt;[GreasMonkey]-&gt;[新規ユーザースクリプト] // ==UserScript== // @name no-focus // @namespace no-focus // @version 1 // @include http* // ==/UserScript= window.addEventListener(&#39;load&#39;, function() { document.activeElement.blur(); this.removeEventListener(&#39;load&#39;, arguments.callee, false); }, false); コードの意味はよくわかってないから、問題があるかもしれないが、その場合 はその時考えよう。
+1 Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。"/>
 
 <title>Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -65,48 +65,51 @@
     
     
     
-      <p>Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカ
+      <p>
+Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカ
 スが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作
 性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとし
 ている自分にとっては不便極まりない。</p>
-
-<p>ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。</p>
-
-<p>代わりにGireaseMonkey<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>を使った代替方法が見つかったのでそのスクリプトを使用することにした。</p>
-
+<p>
+ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。</p>
+<p>
+代わりにGireaseMonkey<sup class="footnote-reference"><a id="footnote-reference-1" href="#footnote-1">1</a></sup>を使った代替方法が見つかったのでそのスクリプトを使用することにした。</p>
 <ul>
-<li>http://javascripter.hatenablog.com/entry/20080620/1213923411</li>
+<li><a href="http://javascripter.hatenablog.com/entry/20080620/1213923411">http://javascripter.hatenablog.com/entry/20080620/1213923411</a></li>
 </ul>
-
 <p>GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。</p>
-
-<p>新規ユーザスクリプトを追加する手順は以下。</p>
-
+<p>
+新規ユーザスクリプトを追加する手順は以下。</p>
 <ul>
-<li>[メニュー]->[ツール]->[GreasMonkey]->[新規ユーザースクリプト]</li>
+<li>[メニュー]-&gt;[ツール]-&gt;[GreasMonkey]-&gt;[新規ユーザースクリプト]</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#09f;font-style:italic">// ==UserScript==
-</span><span style="color:#09f;font-style:italic">// @name        no-focus
-</span><span style="color:#09f;font-style:italic">// @namespace   no-focus
-</span><span style="color:#09f;font-style:italic">// @version     1
-</span><span style="color:#09f;font-style:italic">// @include     http*
-</span><span style="color:#09f;font-style:italic">// ==/UserScript=
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#366">window</span>.addEventListener(<span style="color:#c30">&#39;load&#39;</span>,
-<span style="color:#069;font-weight:bold">function</span>() {
-  <span style="color:#366">document</span>.activeElement.blur();
-  <span style="color:#069;font-weight:bold">this</span>.removeEventListener(<span style="color:#c30">&#39;load&#39;</span>, arguments.callee, <span style="color:#069;font-weight:bold">false</span>);
-},
-<span style="color:#069;font-weight:bold">false</span>);
-</code></pre></div>
-<p>コードの意味はよくわかってないから、問題があるかもしれないが、その場合
+<div class="src src-javascript">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// ==UserScript==
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// @name        no-focus
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// @namespace   no-focus
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// @version     1
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// @include     http*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// ==/UserScript=
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#366">window</span>.addEventListener(<span style="color:#c30">&#39;load&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#366">document</span>.activeElement.blur();
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">this</span>.removeEventListener(<span style="color:#c30">&#39;load&#39;</span>, arguments.callee, <span style="color:#069;font-weight:bold">false</span>);
+</span></span><span style="display:flex;"><span>},
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">false</span>);</span></span></code></pre></div>
+</div>
+<p>
+コードの意味はよくわかってないから、問題があるかもしれないが、その場合
 はその時考えよう。</p>
 <div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1">Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。 <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-</ol>
+<hr class="footnotes-separatator">
+<div class="footnote-definitions">
+<div class="footnote-definition">
+<sup id="footnote-1"><a href="#footnote-reference-1">1</a></sup>
+<div class="footnote-body">
+<p>Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。</p>
+</div>
+</div>
+</div>
 </div>
 
     

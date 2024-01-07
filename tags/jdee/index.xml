@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jdee on ざる魂</title>
@@ -7,25 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sun, 23 Dec 2012 14:01:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/jdee/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://zarudama.github.io/tags/jdee/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築</title>
       <link>https://zarudama.github.io/posts/emacsjdeejava/</link>
       <pubDate>Sun, 23 Dec 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/emacsjdeejava/</guid>
-      <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
-追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
-そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
- また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。 http://sourceforge.net/mailarchive/message.php?msg_id=30783951  はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
-ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、 なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。
-で、やっぱりJDEEがいいということで、苦労の末、 最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。
-今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。 今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。
-   インポート文の自動生成 JDEE   Javadoc表示 JDEE + w3m   ビルド JDEE + ant   デバッガ JDEE + jdb   REPLぽいもの JDEE(BeanShell)   コードスニペット Yasnippet   タグジャンプ gtags(global)   メソッド補完 helm-jdee-method(拙作)    まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、 「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。</description>
+      <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。 追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。&#xA;そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。&#xA;また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。&#xA;http://sourceforge.net/mailarchive/message.php?msg_id=30783951 はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。&#xA;ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、 なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。&#xA;で、やっぱりJDEEがいいということで、苦労の末、 最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。&#xA;今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。 今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。&#xA;インポート文の自動生成 JDEE Javadoc表示 JDEE + w3m ビルド JDEE + ant デバッガ JDEE + jdb REPLぽいもの JDEE(BeanShell) コードスニペット Yasnippet タグジャンプ gtags(global) メソッド補完 helm-jdee-method(拙作) まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、 「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。&#xA;必要なもの JDEEのビルドには下記のものが必要になります。&#xA;emacs24.3 emacsは執筆時点の最新のemacs24.3を使用しています。 JDEE-2.4.2 githubに ミラー がありますのでそちらを利用します。 CEDET CEDETは、24.3同梱のものを使用するので別途用意する必要はありません。 ant-contrib-0.6 ant-contribは、 ant側のライブラリとしてビルド時に必要です。</description>
     </item>
-    
   </channel>
 </rss>

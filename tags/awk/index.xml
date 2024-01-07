@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>awk on ざる魂</title>
@@ -7,20 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 25 Mar 2014 14:01:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://zarudama.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ちょい足しawkの基本</title>
       <link>https://zarudama.github.io/posts/awk/</link>
       <pubDate>Tue, 25 Mar 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/awk/</guid>
-      <description>基本 コンマンドラインでちょい足し的に使うときのカンペ。
-$ awk &amp;#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&amp;#39;  BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力  awk &#39;$4 == &amp;quot;200&amp;quot; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &amp;quot;200&amp;quot; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&amp;quot;a&amp;quot;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&amp;quot;a&amp;quot;以外で始まるとき、表示(正規表現)  (例)
-$ cat access.log | awk &amp;#39;$4 = &amp;#34;200&amp;#34; {print $5$6}&amp;#39; | sed &amp;#39;s/\&amp;#34;//g&amp;#39; デリミタを変更するには Fオプションを使用する。カンマの場合は以下のとおり。</description>
+      <description>基本 コンマンドラインでちょい足し的に使うときのカンペ。&#xA;$ awk &amp;#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&amp;#39; BEGIEN, END, パターンは省略できる(&amp;#34;[]&amp;#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力 awk &amp;#39;$4 == &amp;#34;200&amp;#34; {print $4,$5}&amp;#39;# $4が200のとき、$4,$5を表示 awk &amp;#39;$4 != &amp;#34;200&amp;#34; { print }&amp;#39; # $4が200でないとき、1行まるごと表示 awk &amp;#39;$4 ~ /200/ { print }&amp;#39; # $4が200のとき、1行まるごと表示(正規表現) awk &amp;#39;$1 ~ /^a/ { print}&amp;#39; # $1が&amp;#34;a&amp;#34;で始まるとき、表示(正規表現) awk &amp;#39;$1 !~ /^a/{ print}&amp;#39; # $1が&amp;#34;a&amp;#34;以外で始まるとき、表示(正規表現) (例)&#xA;$ cat access.log | awk &amp;#39;$4 = &amp;#34;200&amp;#34; {print $5$6}&amp;#39; | sed &amp;#39;s/\&amp;#34;//g&amp;#39; デリミタを変更するには Fオプションを使用する。カンマの場合は以下のとおり。</description>
     </item>
-    
   </channel>
 </rss>

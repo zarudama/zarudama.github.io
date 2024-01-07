@@ -3,29 +3,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta property="og:title" content="Emacs中毒者に贈るJDEEによるJava開発環境の構築" />
-<meta property="og:description" content="この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
-追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
+<meta property="og:description" content="この投稿は Emacs Advent Calendar 2012 の23日目の記事です。 追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
 そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
- また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。 http://sourceforge.net/mailarchive/message.php?msg_id=30783951  はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
+また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。
+http://sourceforge.net/mailarchive/message.php?msg_id=30783951 はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
 ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、 なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。
 で、やっぱりJDEEがいいということで、苦労の末、 最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。
 今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。 今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。
-   インポート文の自動生成 JDEE   Javadoc表示 JDEE &#43; w3m   ビルド JDEE &#43; ant   デバッガ JDEE &#43; jdb   REPLぽいもの JDEE(BeanShell)   コードスニペット Yasnippet   タグジャンプ gtags(global)   メソッド補完 helm-jdee-method(拙作)    まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) &#43; 大作Elisp拡張」という、 「重い &#43; 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。" />
+インポート文の自動生成 JDEE Javadoc表示 JDEE &#43; w3m ビルド JDEE &#43; ant デバッガ JDEE &#43; jdb REPLぽいもの JDEE(BeanShell) コードスニペット Yasnippet タグジャンプ gtags(global) メソッド補完 helm-jdee-method(拙作) まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) &#43; 大作Elisp拡張」という、 「重い &#43; 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。
+必要なもの JDEEのビルドには下記のものが必要になります。
+emacs24.3 emacsは執筆時点の最新のemacs24.3を使用しています。 JDEE-2.4.2 githubに ミラー がありますのでそちらを利用します。 CEDET CEDETは、24.3同梱のものを使用するので別途用意する必要はありません。 ant-contrib-0.6 ant-contribは、 ant側のライブラリとしてビルド時に必要です。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/emacsjdeejava/" />
-<meta property="article:published_time" content="2012-12-23T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2012-12-23T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/emacsjdeejava/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2012-12-23T14:01:39+09:00" />
+<meta property="article:modified_time" content="2012-12-23T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Emacs中毒者に贈るJDEEによるJava開発環境の構築"/>
-<meta name="twitter:description" content="この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
-追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Emacs中毒者に贈るJDEEによるJava開発環境の構築"/>
+<meta name="twitter:description" content="この投稿は Emacs Advent Calendar 2012 の23日目の記事です。 追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
 そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。
- また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。 http://sourceforge.net/mailarchive/message.php?msg_id=30783951  はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
+また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。 今後に期待しましょう。
+http://sourceforge.net/mailarchive/message.php?msg_id=30783951 はじめに Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？ 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。
 ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、 なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。
 で、やっぱりJDEEがいいということで、苦労の末、 最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。
 今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。 今ところantベースのプロジェクトでしか使用しておらず、 Mavenベースのプロジェクトでは動作確認してません。
-   インポート文の自動生成 JDEE   Javadoc表示 JDEE &#43; w3m   ビルド JDEE &#43; ant   デバッガ JDEE &#43; jdb   REPLぽいもの JDEE(BeanShell)   コードスニペット Yasnippet   タグジャンプ gtags(global)   メソッド補完 helm-jdee-method(拙作)    まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) &#43; 大作Elisp拡張」という、 「重い &#43; 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。"/>
+インポート文の自動生成 JDEE Javadoc表示 JDEE &#43; w3m ビルド JDEE &#43; ant デバッガ JDEE &#43; jdb REPLぽいもの JDEE(BeanShell) コードスニペット Yasnippet タグジャンプ gtags(global) メソッド補完 helm-jdee-method(拙作) まだ導入したばかりで検証してないものもあります。 JDEEは「BeanShell(JavaInterpreter) &#43; 大作Elisp拡張」という、 「重い &#43; 重い」の強力タッグです。動作速度については期待しないほうが良いです。 メソッド補完については、Helmで補完するelispを自作しました。
+必要なもの JDEEのビルドには下記のものが必要になります。
+emacs24.3 emacsは執筆時点の最新のemacs24.3を使用しています。 JDEE-2.4.2 githubに ミラー がありますのでそちらを利用します。 CEDET CEDETは、24.3同梱のものを使用するので別途用意する必要はありません。 ant-contrib-0.6 ant-contribは、 ant側のライブラリとしてビルド時に必要です。"/>
 
 <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -57,7 +61,7 @@
 <section>
       <span class="date">作成日: 2012-12-23</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2012-12-23</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;613 文字> </span>
+      <sapn class="wordcount"> &lt;604 文字> </span>
     </section>
     
   </aside>
@@ -67,453 +71,534 @@
     
     
     
-      <p>この投稿は <a href="http://qiita.com/advent-calendar/2012/emacs" title="Emacs Advent Calendar 2012">Emacs Advent Calendar 2012</a> の23日目の記事です。</p>
-
-<h1 id="追記-2013-08-01">追記(2013/08/01)</h1>
-
+      
+<p>
+この投稿は <a href="http://qiita.com/advent-calendar/2012/emacs">Emacs Advent Calendar 2012</a> の23日目の記事です。 </p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+追記(2013/08/01)
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>いつの間にか本家JDEEがCEDET2.0に対応していました。
 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。
 これによりJDEEの導入がグッっと簡単になりました。</p>
-
-<p>そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。
+<p>
+そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。
 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。</p>
-
-<ul>
+<p>
 また嬉しいことにJDEE(に代わるJavaの開発環境)の開発(議論)がスタートしているみたいです。
-今後に期待しましょう。
-<li>http://sourceforge.net/mailarchive/message.php?msg_id=30783951</li>
+今後に期待しましょう。</p>
+<ul>
+<li><a href="http://sourceforge.net/mailarchive/message.php?msg_id=30783951">http://sourceforge.net/mailarchive/message.php?msg_id=30783951</a></li>
 </ul>
-
-<h1 id="はじめに">はじめに</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+はじめに
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
 <p>Java開発といえばEclipse一択なこの時代、どれだけ需要があるかわかりませんが、
 Emacs中毒な皆さんはできればEclipseなんか使いたくないですよね？
 私は使いたくないです(笑)。私もご多分にもれず、なんでもEmacsで済ましたい人になってしまったので、
 当然JavaもEmacsで開発したくなります。そこでJDEEの環境を構築しようとしたのですが、
 JDEEの開発は停止しているせいか、最新のEmacs23や24だとすんなり動きません。</p>
-
-<p>ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、
+<p>
+ならばと、malabar-modeも試したのですが、Maven環境を要求してきますし、
 なんだか動作がもっさりな上に(JDEEより重い印象)ところどころエラーがでたりしてうまく動きません。</p>
-
-<p>で、やっぱりJDEEがいいということで、苦労の末、
+<p>
+で、やっぱりJDEEがいいということで、苦労の末、
 最近やっとemacsによるJava開発環境(JDEE)が構築できたのでその方法をメモしておきます。</p>
-
-<p>今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。
+<p>
+今回は、JDEEの導入方法しか解説しませんが、最終的な私のJava開発環境は以下のとおりです。
 今ところantベースのプロジェクトでしか使用しておらず、
 Mavenベースのプロジェクトでは動作確認してません。</p>
-
 <table>
 <tbody>
 <tr>
 <td>インポート文の自動生成</td>
 <td>JDEE</td>
 </tr>
-
 <tr>
 <td>Javadoc表示</td>
 <td>JDEE + w3m</td>
 </tr>
-
 <tr>
 <td>ビルド</td>
 <td>JDEE + ant</td>
 </tr>
-
 <tr>
 <td>デバッガ</td>
 <td>JDEE + jdb</td>
 </tr>
-
 <tr>
 <td>REPLぽいもの</td>
 <td>JDEE(BeanShell)</td>
 </tr>
-
 <tr>
 <td>コードスニペット</td>
 <td>Yasnippet</td>
 </tr>
-
 <tr>
 <td>タグジャンプ</td>
 <td>gtags(global)</td>
 </tr>
-
 <tr>
 <td>メソッド補完</td>
 <td>helm-jdee-method(拙作)</td>
 </tr>
 </tbody>
 </table>
-
-<p>まだ導入したばかりで検証してないものもあります。
+<p>
+まだ導入したばかりで検証してないものもあります。
 JDEEは「BeanShell(JavaInterpreter) + 大作Elisp拡張」という、
 「重い + 重い」の強力タッグです。動作速度については期待しないほうが良いです。
 メソッド補完については、Helmで補完するelispを自作しました。</p>
-
-<h1 id="必要なもの">必要なもの</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+必要なもの
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>
+JDEEのビルドには下記のものが必要になります。</p>
 <dl>
-JDEEのビルドには下記のものが必要になります。
-<dt>emacs24.3</dt>
+<dt>
+emacs24.3
+</dt>
 <dd>emacsは執筆時点の最新のemacs24.3を使用しています。</dd>
-</dl>
-
-<dl>
-<dt><a href="http://jdee.sourceforge.net/" title="JDEE-2.4.2">JDEE-2.4.2</a></dt>
-<dd>githubに <a href="https://github.com/emacsmirror/jdee/" title="ミラー">ミラー</a> がありますのでそちらを利用します。</dd>
-</dl>
-
-<dl>
-<dt><a href="http://cedet.sourceforge.net/" title="CEDET">CEDET</a></dt>
+<dt>
+<a href="http://jdee.sourceforge.net/">JDEE-2.4.2</a>
+</dt>
+<dd>githubに <a href="https://github.com/emacsmirror/jdee/">ミラー</a> がありますのでそちらを利用します。</dd>
+<dt>
+<a href="http://cedet.sourceforge.net/">CEDET</a>
+</dt>
 <dd>CEDETは、24.3同梱のものを使用するので別途用意する必要はありません。</dd>
-</dl>
-
-<dl>
-<dt><a href="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/ant-contrib-0.6/" title="ant-contrib-0.6">ant-contrib-0.6</a></dt>
+<dt>
+<a href="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/ant-contrib-0.6/">ant-contrib-0.6</a>
+</dt>
 <dd>ant-contribは、</dd>
-ant側のライブラリとしてビルド時に必要です。
 </dl>
-
-<p>あとはantの最新版とJDKの最新版を用意しておきます。
-また環境変数 <code>JAVA_HOME</code> は必須です。
+<p>ant側のライブラリとしてビルド時に必要です。</p>
+<p>
+あとはantの最新版とJDKの最新版を用意しておきます。
+また環境変数 <code class="verbatim">JAVA_HOME</code> は必須です。
 ちなみに、elib1.0はemacs22以降から組み込みなので必要ありません。</p>
-
-<p>以降では、 <code>~/site-lisp</code> とういうディレクトリを作成し、
+<p>
+以降では、 <code class="verbatim">~/site-lisp</code> とういうディレクトリを作成し、
 そこに必要なソースコードを展開してビルドすることにします。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">~/site-lisp
-  |
-  +- jdee</code></pre></div>
-<p>ちなみに動作確認は、windows7,windowXP,ubuntu-server上のCUI環境でしています。
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>~/site-lisp
+</span></span><span style="display:flex;"><span>  |
+</span></span><span style="display:flex;"><span>  +- jdee</span></span></code></pre></div>
+</div>
+<p>
+ちなみに動作確認は、windows7,windowXP,ubuntu-server上のCUI環境でしています。
 実際の構築は、Cygwin+WindowsXPで実施しました。LinuxもMacも大体同じかと思います。</p>
-
-<h1 id="jdeeのビルド">JDEEのビルド</h1>
-
-<p>ビルドには <a href="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/ant-contrib-0.6/" title="ant-contrib-0.6">ant-contrib-0.6</a> が必要です。ant-contrib-0.6.zipを展開してできた
- <code>ant-contrib-0.6.jar</code> を <code>~/.ant/lib/</code> ディレクトリに配置しておいてください。
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+JDEEのビルド
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>ビルドには <a href="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/ant-contrib-0.6/">ant-contrib-0.6</a> が必要です。ant-contrib-0.6.zipを展開してできた
+ <code class="verbatim">ant-contrib-0.6.jar</code> を <code class="verbatim">~/.ant/lib/</code> ディレクトリに配置しておいてください。
 ここでは、~/srcにソースファイル群を展開し、~/site-lisp/jdeeにインストールすことにします。</p>
-
-<p>まずはJDEEモジュールを準備します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~/src
-$ git clone https://github.com/emacsmirror/jdee.git</code></pre></div>
-<p>jdeeディレクトリに入り <code>ant confugre</code> を実行してbuild.propertiesを生成します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> jdee
-$ ant configure</code></pre></div>
-<p>build.propertiesを編集します。 <code>cedet.dir</code>, <code>build.bin.emacs</code> を環境に合わせて編集します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># 絶対パスで記述すること</span>
-elib.dir<span style="color:#555">=</span>
-prefix.dir<span style="color:#555">=</span>C:/Users/mikio/Dropbox/site-lisp/jdee
-cedet.dir<span style="color:#555">=</span>
-build.bin.emacs<span style="color:#555">=</span>c:/Users/mikio/apps/emacs-24.3/bin/runemacs.exe</code></pre></div>
-<p>準備ができたらビルドします。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ant</code></pre></div>
-<p>最後に <code>prefix.dir</code> で定義したディレクトリにインストールします。
+<p>
+まずはJDEEモジュールを準備します。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ <span style="color:#366">cd</span> ~/src
+</span></span><span style="display:flex;"><span>$ git clone https://github.com/emacsmirror/jdee.git</span></span></code></pre></div>
+</div>
+<p>
+jdeeディレクトリに入り <code class="verbatim">ant confugre</code> を実行してbuild.propertiesを生成します。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ <span style="color:#366">cd</span> jdee
+</span></span><span style="display:flex;"><span>$ ant configure</span></span></code></pre></div>
+</div>
+<p>
+build.propertiesを編集します。 <code class="verbatim">cedet.dir</code>, <code class="verbatim">build.bin.emacs</code> を環境に合わせて編集します。 </p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 絶対パスで記述すること</span>
+</span></span><span style="display:flex;"><span>elib.dir<span style="color:#555">=</span>
+</span></span><span style="display:flex;"><span>prefix.dir<span style="color:#555">=</span>C:/Users/mikio/Dropbox/site-lisp/jdee
+</span></span><span style="display:flex;"><span>cedet.dir<span style="color:#555">=</span>
+</span></span><span style="display:flex;"><span>build.bin.emacs<span style="color:#555">=</span>c:/Users/mikio/apps/emacs-24.3/bin/runemacs.exe</span></span></code></pre></div>
+</div>
+<p>
+準備ができたらビルドします。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ant</span></span></code></pre></div>
+</div>
+<p>
+最後に <code class="verbatim">prefix.dir</code> で定義したディレクトリにインストールします。
 このときインストール先のディレクトリは無くても勝手に作ってくれます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ant install</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ant install</span></span></code></pre></div>
+</div>
 <p>以上で完了です。</p>
-
-<h1 id="emacsの設定">.emacsの設定</h1>
-
-<p>CEDETとJDEEのビルドができたら下記の設定を.emacsに加えます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#033">add-to-list</span> <span style="color:#fc3">&#39;load-path</span> <span style="color:#c30">&#34;~/site-lisp/jdee/lisp&#34;</span>)
-(<span style="color:#c0f">load</span> <span style="color:#c30">&#34;jde-autoload&#34;</span>)
-
-(<span style="color:#366">defun</span> <span style="color:#033">my-jde-mode-hook</span> ()
-  (<span style="color:#366">require</span> <span style="color:#fc3">&#39;jde</span>)
-
-  (<span style="color:#366">setq</span> <span style="color:#033">jde-build-function</span> <span style="color:#fc3">&#39;jde-ant-build</span>) <span style="color:#09f;font-style:italic">; ビルドにantを利用する</span>
-  (<span style="color:#366">setq</span> <span style="color:#033">jde-ant-read-target</span> <span style="color:#360">t</span>)             <span style="color:#09f;font-style:italic">; targetを問い合わせる</span>
-  (<span style="color:#366">setq</span> <span style="color:#033">jde-ant-enable-find</span> <span style="color:#360">t</span>)             <span style="color:#09f;font-style:italic">; antに-findオプションを指定する(要らないかも)</span>
-
-  <span style="color:#09f;font-style:italic">;; complilationバッファを自動的にスクロールさせる</span>
-  (<span style="color:#366">setq</span> <span style="color:#033">compilation-ask-about-save</span> <span style="color:#360">nil</span>)
-  (<span style="color:#366">setq</span> <span style="color:#033">compilation-scroll-output</span> <span style="color:#fc3">&#39;first-error</span>)
-
-  (<span style="color:#c0f">define-key</span> <span style="color:#033">jde-mode-map</span> (<span style="color:#033">kbd</span> <span style="color:#c30">&#34;C-c C-v .&#34;</span>) <span style="color:#fc3">&#39;jde-complete-minibuf</span>)
-  )
-
-(<span style="color:#033">add-hook</span> <span style="color:#fc3">&#39;jde-mode-hook</span> <span style="color:#fc3">&#39;my-jde-mode-hook</span>)</code></pre></div>
-<h1 id="サンプルプロジェクトの準備">サンプルプロジェクトの準備</h1>
-
-<p>ここまで作業できたら、動作確認してみましょう。
-JDEEの動作確認用に <a href="https://github.com/mikio/sample-java-project" title="Javaプロジェクト">Javaプロジェクト</a> を準備しました。
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+.emacsの設定
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>
+CEDETとJDEEのビルドができたら下記の設定を.emacsに加えます。</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#033">add-to-list</span> <span style="color:#fc3">&#39;load-path</span> <span style="color:#c30">&#34;~/site-lisp/jdee/lisp&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#c0f">load</span> <span style="color:#c30">&#34;jde-autoload&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#366">defun</span> <span style="color:#033">my-jde-mode-hook</span> ()
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">require</span> <span style="color:#fc3">&#39;jde</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">setq</span> <span style="color:#033">jde-build-function</span> <span style="color:#fc3">&#39;jde-ant-build</span>) <span style="color:#09f;font-style:italic">; ビルドにantを利用する</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">setq</span> <span style="color:#033">jde-ant-read-target</span> <span style="color:#360">t</span>)             <span style="color:#09f;font-style:italic">; targetを問い合わせる</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">setq</span> <span style="color:#033">jde-ant-enable-find</span> <span style="color:#360">t</span>)             <span style="color:#09f;font-style:italic">; antに-findオプションを指定する(要らないかも)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">;; complilationバッファを自動的にスクロールさせる</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">setq</span> <span style="color:#033">compilation-ask-about-save</span> <span style="color:#360">nil</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">setq</span> <span style="color:#033">compilation-scroll-output</span> <span style="color:#fc3">&#39;first-error</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#c0f">define-key</span> <span style="color:#033">jde-mode-map</span> (<span style="color:#033">kbd</span> <span style="color:#c30">&#34;C-c C-v .&#34;</span>) <span style="color:#fc3">&#39;jde-complete-minibuf</span>)
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#033">add-hook</span> <span style="color:#fc3">&#39;jde-mode-hook</span> <span style="color:#fc3">&#39;my-jde-mode-hook</span>)</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+サンプルプロジェクトの準備
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
+<p>
+ここまで作業できたら、動作確認してみましょう。
+JDEEの動作確認用に <a href="https://github.com/mikio/sample-java-project">Javaプロジェクト</a> を準備しました。
 といっても私の作ったものではなくて、
-<a href="https://github.com/skeeto/emacs-java" title="java-mode-plus">java-mode-plus</a> を作成してるskeetoさんの <a href="https://github.com/skeeto/sample-java-project" title="プロジェクト">プロジェクト</a> をforkしていくつか追加したものです。
+<a href="https://github.com/skeeto/emacs-java">java-mode-plus</a> を作成してるskeetoさんの <a href="https://github.com/skeeto/sample-java-project">プロジェクト</a> をforkしていくつか追加したものです。
 fork前のプロジェクトは、アノテーションを活用してすごくシンプルに書かれた、
 すばらしいプロジェクトなのですが、JDEEがアノテーションをサポートしていないため、
 わざわざ改悪？して古いライブラリを使用して書きなおしています。
 あくまでJDEEの動作確認用のものなので、そのまま使用するときは注意してください。</p>
-
-<ul>
+<p>
 このプロジェクトはivyを使用しています。ivyとは、antベースのプロジェクトで、
-Mavenのリポジトリを利用して必要なjarをダウンロードするモジュールです。
-<li>http://ant.apache.org/ivy/download.cgi</li>
-上記サイトから最新版をダウンロードして展開したら、 <code>ivy-2.3.0-rc1.jar=
- を =~/.ant/lib/</code> に配置したらインストール完了です。
+Mavenのリポジトリを利用して必要なjarをダウンロードするモジュールです。</p>
+<ul>
+<li><a href="http://ant.apache.org/ivy/download.cgi">http://ant.apache.org/ivy/download.cgi</a></li>
 </ul>
-
-<p>ivyのインストールが終わったら、サンプルプロジェクトを下記のようにgithubから落してください。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/mikio/sample-java-project.git</code></pre></div>
-<p>続いてprj.elを自分の環境に合わせて編集します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#033">jde-project-file-version</span> <span style="color:#c30">&#34;1.0&#34;</span>)
-(<span style="color:#033">jde-set-variables</span>
-
- <span style="color:#09f;font-style:italic">;; --------------</span>
- <span style="color:#09f;font-style:italic">;; project common</span>
- <span style="color:#09f;font-style:italic">;; --------------</span>
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-jdk</span> (<span style="color:#366">quote</span> (<span style="color:#c30">&#34;1.7&#34;</span>)))
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-jdk-registry</span> (<span style="color:#366">quote</span> ((<span style="color:#c30">&#34;1.7&#34;</span> <span style="color:#555">.</span> <span style="color:#c30">&#34;c:/Program Files/Java/jdk1.7.0_09/&#34;</span>)
-                            )))
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-jdk-doc-url</span> <span style="color:#c30">&#34;http://docs.oracle.com/javase/jp/6/api/&#34;</span>)
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-help-docsets</span> <span style="color:#555">&#39;</span>(
-                      <span style="color:#09f;font-style:italic">;;(&#34;JDK API&#34; &#34;file://c:/Users/mikio/Dropbox/java6_ja_apidocs/ja/api&#34; nil)</span>
-                      (<span style="color:#c30">&#34;JDK API&#34;</span> <span style="color:#c30">&#34;http://docs.oracle.com/javase/jp/6/api/&#34;</span> <span style="color:#360">nil</span>)
-                      ))
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-help-use-frames</span> <span style="color:#360">nil</span>)
-
- <span style="color:#09f;font-style:italic">;; --------------</span>
- <span style="color:#09f;font-style:italic">;; this project only</span>
- <span style="color:#09f;font-style:italic">;; --------------</span>
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-sourcepath</span> (<span style="color:#366">quote</span> (<span style="color:#c30">&#34;./src&#34;</span> <span style="color:#c30">&#34;./test&#34;</span>)))
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-global-classpath</span> (<span style="color:#366">quote</span> (<span style="color:#c30">&#34;./build/classes&#34;</span> <span style="color:#c30">&#34;./build/test&#34;</span> <span style="color:#c30">&#34;./lib&#34;</span>)))
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-lib-directory-names</span> <span style="color:#555">&#39;</span>(<span style="color:#c30">&#34;lib&#34;</span>))
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-expand-classpath-p</span> <span style="color:#360">t</span>)
-
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-build-function</span> (<span style="color:#366">quote</span> <span style="color:#033">jde-ant-build</span>))
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-ant-enable-find</span> <span style="color:#360">t</span>)
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-ant-read-target</span> <span style="color:#360">t</span>)
- <span style="color:#555">&#39;</span>(<span style="color:#033">jde-ant-working-directory</span> <span style="color:#c30">&#34;./&#34;</span>))</code></pre></div>
-<p><code>jde-jdk</code> 、 <code>jde-jdk-registry</code> をローカルの環境に合わせて編集してください。</p>
-
-<p>また、今回のサンプルを使用しない場合、下記の変数を自分の環境に合わせて適宜設定すれば、
+<p>上記サイトから最新版をダウンロードして展開したら、 <code class="verbatim">ivy-2.3.0-rc1.jar</code>
+ を <code class="verbatim">~/.ant/lib/</code> に配置したらインストール完了です。</p>
+<p>
+ivyのインストールが終わったら、サンプルプロジェクトを下記のようにgithubから落してください。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git clone https://github.com/mikio/sample-java-project.git</span></span></code></pre></div>
+</div>
+<p>
+続いてprj.elを自分の環境に合わせて編集します。</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#033">jde-project-file-version</span> <span style="color:#c30">&#34;1.0&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#033">jde-set-variables</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">;; --------------</span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">;; project common</span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">;; --------------</span>
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-jdk</span> (<span style="color:#366">quote</span> (<span style="color:#c30">&#34;1.7&#34;</span>)))
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-jdk-registry</span> (<span style="color:#366">quote</span> ((<span style="color:#c30">&#34;1.7&#34;</span> <span style="color:#555">.</span> <span style="color:#c30">&#34;c:/Program Files/Java/jdk1.7.0_09/&#34;</span>)
+</span></span><span style="display:flex;"><span>                            )))
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-jdk-doc-url</span> <span style="color:#c30">&#34;http://docs.oracle.com/javase/jp/6/api/&#34;</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-help-docsets</span> <span style="color:#555">&#39;</span>(
+</span></span><span style="display:flex;"><span>                      <span style="color:#09f;font-style:italic">;;(&#34;JDK API&#34; &#34;file://c:/Users/mikio/Dropbox/java6_ja_apidocs/ja/api&#34; nil)</span>
+</span></span><span style="display:flex;"><span>                      (<span style="color:#c30">&#34;JDK API&#34;</span> <span style="color:#c30">&#34;http://docs.oracle.com/javase/jp/6/api/&#34;</span> <span style="color:#360">nil</span>)
+</span></span><span style="display:flex;"><span>                      ))
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-help-use-frames</span> <span style="color:#360">nil</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">;; --------------</span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">;; this project only</span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">;; --------------</span>
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-sourcepath</span> (<span style="color:#366">quote</span> (<span style="color:#c30">&#34;./src&#34;</span> <span style="color:#c30">&#34;./test&#34;</span>)))
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-global-classpath</span> (<span style="color:#366">quote</span> (<span style="color:#c30">&#34;./build/classes&#34;</span> <span style="color:#c30">&#34;./build/test&#34;</span> <span style="color:#c30">&#34;./lib&#34;</span>)))
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-lib-directory-names</span> <span style="color:#555">&#39;</span>(<span style="color:#c30">&#34;lib&#34;</span>))
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-expand-classpath-p</span> <span style="color:#360">t</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-build-function</span> (<span style="color:#366">quote</span> <span style="color:#033">jde-ant-build</span>))
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-ant-enable-find</span> <span style="color:#360">t</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-ant-read-target</span> <span style="color:#360">t</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#555">&#39;</span>(<span style="color:#033">jde-ant-working-directory</span> <span style="color:#c30">&#34;./&#34;</span>))</span></span></code></pre></div>
+</div>
+<p>
+ <code class="verbatim">jde-jdk</code> 、 <code class="verbatim">jde-jdk-registry</code> をローカルの環境に合わせて編集してください。</p>
+<p>
+また、今回のサンプルを使用しない場合、下記の変数を自分の環境に合わせて適宜設定すれば、
 どの環境でも動くかと思います。</p>
-
 <table>
 <tbody>
 <tr>
 <td>jde-sourcepath</td>
 <td>.javaの場所</td>
 </tr>
-
 <tr>
 <td>jde-global-classpath</td>
 <td>.class、.jarの場所</td>
 </tr>
-
 <tr>
 <td>jde-lib-directory-names</td>
 <td>.jarのあるディレクトリの正規表現</td>
 </tr>
 </tbody>
 </table>
-
-<p><code>jde-lib-directory-names</code> には <code>*.jar</code> ファイルのあるディクレトリ名を設定します。
-今回の場合は、 <code>{PROJECT_ROOT}/lib/</code> にjarファイルがあるので <code>lib</code> としています。
-また、 <code>jde-expand-classpath-p</code> にはtを必ず設定します。
-設定しないと、BeanShell起動時に <code>*.jar</code> ファイルがClassPathに設定されません。</p>
-
-<h1 id="動作確認してみる">動作確認してみる</h1>
-
-<p>続いてもろもろの動作確認をしていきます。
- <code>&lt;PROJECT-ROOT&gt;/src/sample/java/project/SampleJavaProject.java</code> を開いてください。</p>
-
-<h2 id="beanshell">BeanShell</h2>
-
-<p>おもむろに、 <code>C-c C-v C-k</code> でBeanShellを起動します。
+<p>
+ <code class="verbatim">jde-lib-directory-names</code> には <code class="verbatim">*.jar</code> ファイルのあるディクレトリ名を設定します。
+今回の場合は、 <code class="verbatim">{PROJECT_ROOT}/lib/</code> にjarファイルがあるので <code class="verbatim">lib</code> としています。
+また、 <code class="verbatim">jde-expand-classpath-p</code> にはtを必ず設定します。
+設定しないと、BeanShell起動時に <code class="verbatim">*.jar</code> ファイルがClassPathに設定されません。</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+動作確認してみる
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>
+続いてもろもろの動作確認をしていきます。
+ <code class="verbatim">&lt;PROJECT-ROOT&gt;/src/sample/java/project/SampleJavaProject.java</code> を開いてください。</p>
+<div id="outline-container-headline-8" class="outline-3">
+<h3 id="headline-8">
+BeanShell
+</h3>
+<div id="outline-text-headline-8" class="outline-text-3">
+<p>おもむろに、 <code class="verbatim">C-c C-v C-k</code> でBeanShellを起動します。
 まれにJavaファイルを開いてもJde-modeにならないことがあります。
 原因はわからないのですが、もしキーバインドが効かなかった場合は、
-手動で <code>M-x jde-mode</code> してから再度、 <code>C-c C-v C-k</code> して下さい。</p>
-
-<p>BeanShellは、JDEEを使用する上でEmacsとJavaの橋渡し的な位置づけにあるようで、
+手動で <code class="verbatim">M-x jde-mode</code> してから再度、 <code class="verbatim">C-c C-v C-k</code> して下さい。</p>
+<p>
+BeanShellは、JDEEを使用する上でEmacsとJavaの橋渡し的な位置づけにあるようで、
 様々な動作の裏で動くみたいです。ただし非常に起動が重いので最初に起動しておくと良いです。
-起動をかけると <code>Starting the BeanShell. Pleasewait...</code> のメッセージがミニバッファに表示されるので、
- <code>bsh %</code> のプロンプトがでるまで待ちます。コーヒーの一杯でも用意したほうがいいかもです(2回目移行は速い)。</p>
-
-<p><a href="/img/jdee/bean-shell.png" title="/img/jdee/bean-shell.png">/img/jdee/bean-shell.png</a></p>
-
-<p>BeanShellを起動しておくと、ちょっとしたAPIの挙動を調べるとき便利です。
-例えば環境変数 <code>JAVA_HOME</code> を調べるAPIの動作確認をしたい時は、</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bsh % System.out.println<span style="color:#555">(</span>System.getenv<span style="color:#555">()</span>.get<span style="color:#555">(</span><span style="color:#c30">&#34;JAVA_HOME&#34;</span><span style="color:#555">))</span>;
-C:<span style="color:#c30;font-weight:bold">\P</span>rogram Files<span style="color:#c30;font-weight:bold">\J</span>ava<span style="color:#c30;font-weight:bold">\j</span>dk1.7.0_09</code></pre></div>
+起動をかけると <code class="verbatim">Starting the BeanShell. Pleasewait...</code> のメッセージがミニバッファに表示されるので、
+ <code class="verbatim">bsh %</code> のプロンプトがでるまで待ちます。コーヒーの一杯でも用意したほうがいいかもです(2回目移行は速い)。</p>
+<p>
+<img src="/img/jdee/bean-shell.png" alt="/img/jdee/bean-shell.png" title="/img/jdee/bean-shell.png" /></p>
+<p>
+BeanShellを起動しておくと、ちょっとしたAPIの挙動を調べるとき便利です。
+例えば環境変数 <code class="verbatim">JAVA_HOME</code> を調べるAPIの動作確認をしたい時は、</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>bsh % System.out.println<span style="color:#555">(</span>System.getenv<span style="color:#555">()</span>.get<span style="color:#555">(</span><span style="color:#c30">&#34;JAVA_HOME&#34;</span><span style="color:#555">))</span>;
+</span></span><span style="display:flex;"><span>C:<span style="color:#c30;font-weight:bold">\P</span>rogram Files<span style="color:#c30;font-weight:bold">\J</span>ava<span style="color:#c30;font-weight:bold">\j</span>dk1.7.0_09</span></span></code></pre></div>
+</div>
 <p>という風に簡単に確認できます(いちいちSystem.out.printlnしないと結果がわからないですが)。</p>
-
-<p>ちなみに、なにか動作がおかしいな(インポートやメソッドの補完が効かないなど)と思ったら、
-このBeanShellを再起動すれば( <code>M-x jde-bsh-exit</code> でBeanShellを終了できる)治ることがあります。
+<p>
+ちなみに、なにか動作がおかしいな(インポートやメソッドの補完が効かないなど)と思ったら、
+このBeanShellを再起動すれば( <code class="verbatim">M-x jde-bsh-exit</code> でBeanShellを終了できる)治ることがあります。
 この辺はSLIMEに似てますね。</p>
-
-<h2 id="依存ライブラリのダウンロード">依存ライブラリのダウンロード</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-3">
+<h3 id="headline-9">
+依存ライブラリのダウンロード
+</h3>
+<div id="outline-text-headline-9" class="outline-text-3">
 <p>続いてプロジェクトに必要なjarをリポジトリからローカルにもってきます。
 通常は、下記のようにコマンドラインから入力しますが、これをJDEEから操作してみましょう。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ant lib</code></pre></div>
-<p><code>C-c C-v C-b</code> でantを実行できます。
-ミニバッファにantのターゲットを求めるプロンプトが表示されるので <code>C-i</code> してください。
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ant lib</span></span></code></pre></div>
+</div>
+<p><code class="verbatim">C-c C-v C-b</code> でantを実行できます。
+ミニバッファにantのターゲットを求めるプロンプトが表示されるので <code class="verbatim">C-i</code> してください。
 ターゲットの一覧が表示されます。</p>
-
-<p><a href="/img/jdee/ant-target.png" title="/img/jdee/ant-target.png">/img/jdee/ant-target.png</a></p>
-
-<p>プロンプトで <code>lib</code> と入力してエンターしてください。</p>
-
-<p><a href="/img/jdee/ant-lib.png" title="/img/jdee/ant-lib.png">/img/jdee/ant-lib.png</a></p>
-
-<p>無事成功すれば、 <code>&lt;PROJECT_ROOT&gt;/lib</code> に必要なjarファイルがダウンロードされているはずです。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ls -la lib
-total <span style="color:#f60">26716</span>
-drwxr-xr-x+ <span style="color:#f60">1</span> mikio None       <span style="color:#f60">0</span> Dec <span style="color:#f60">22</span> <span style="color:#f60">11</span>:06 .
-drwxr-xr-x+ <span style="color:#f60">1</span> mikio None       <span style="color:#f60">0</span> Nov <span style="color:#f60">28</span> <span style="color:#f60">23</span>:04 ..
--rwxr-xr-x  <span style="color:#f60">1</span> mikio None   <span style="color:#f60">74080</span> Jan <span style="color:#f60">10</span>  <span style="color:#f60">2012</span> annotations-2.0.0.jar
-                  :
-                  :
--rwxr-xr-x  <span style="color:#f60">1</span> mikio None  <span style="color:#f60">124724</span> Nov <span style="color:#f60">23</span>  <span style="color:#f60">2005</span> xmlParserAPIs-2.6.2.jar
--rwxr-xr-x  <span style="color:#f60">1</span> mikio None  <span style="color:#f60">108874</span> Nov <span style="color:#f60">16</span>  <span style="color:#f60">2006</span> xom-1.0.jar</code></pre></div>
-<h2 id="ビルドエラー">ビルドエラー</h2>
-
+<p>
+<img src="/img/jdee/ant-target.png" alt="/img/jdee/ant-target.png" title="/img/jdee/ant-target.png" /></p>
+<p>
+プロンプトで <code class="verbatim">lib</code> と入力してエンターしてください。</p>
+<p>
+<img src="/img/jdee/ant-lib.png" alt="/img/jdee/ant-lib.png" title="/img/jdee/ant-lib.png" /></p>
+<p>
+無事成功すれば、 <code class="verbatim">&lt;PROJECT_ROOT&gt;/lib</code> に必要なjarファイルがダウンロードされているはずです。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ls -la lib
+</span></span><span style="display:flex;"><span>total <span style="color:#f60">26716</span>
+</span></span><span style="display:flex;"><span>drwxr-xr-x+ <span style="color:#f60">1</span> mikio None       <span style="color:#f60">0</span> Dec <span style="color:#f60">22</span> 11:06 .
+</span></span><span style="display:flex;"><span>drwxr-xr-x+ <span style="color:#f60">1</span> mikio None       <span style="color:#f60">0</span> Nov <span style="color:#f60">28</span> 23:04 ..
+</span></span><span style="display:flex;"><span>-rwxr-xr-x  <span style="color:#f60">1</span> mikio None   <span style="color:#f60">74080</span> Jan <span style="color:#f60">10</span>  <span style="color:#f60">2012</span> annotations-2.0.0.jar
+</span></span><span style="display:flex;"><span>                  :
+</span></span><span style="display:flex;"><span>                  :
+</span></span><span style="display:flex;"><span>-rwxr-xr-x  <span style="color:#f60">1</span> mikio None  <span style="color:#f60">124724</span> Nov <span style="color:#f60">23</span>  <span style="color:#f60">2005</span> xmlParserAPIs-2.6.2.jar
+</span></span><span style="display:flex;"><span>-rwxr-xr-x  <span style="color:#f60">1</span> mikio None  <span style="color:#f60">108874</span> Nov <span style="color:#f60">16</span>  <span style="color:#f60">2006</span> xom-1.0.jar</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-3">
+<h3 id="headline-10">
+ビルドエラー
+</h3>
+<div id="outline-text-headline-10" class="outline-text-3">
 <p>つぎにビルドに失敗してエラー表示された時の挙動を試してみましょう。
 まず、わざとビルドを失敗させるために、ソース冒頭のimport文を全て削除します。
-次に、 <code>C-c C-v C-b RET</code> でビルドしてみてください。</p>
-
-<p>当然エラーが表示されますが、エラーが表示された場合、 <code>M-g M-n, M-g M-p</code> 
+次に、 <code class="verbatim">C-c C-v C-b RET</code> でビルドしてみてください。</p>
+<p>
+当然エラーが表示されますが、エラーが表示された場合、 <code class="verbatim">M-g M-n, M-g M-p</code> 
 ですばやくジャンプできます。</p>
-
-<p><a href="/img/jdee/ant-error.png" title="/img/jdee/ant-error.png">/img/jdee/ant-error.png</a></p>
-
-<h2 id="importの自動挿入とビルド">importの自動挿入とビルド</h2>
-
-<p>import文を自動挿入するには、 <code>C-c C-v z</code> してください。
+<p>
+<img src="/img/jdee/ant-error.png" alt="/img/jdee/ant-error.png" title="/img/jdee/ant-error.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-3">
+<h3 id="headline-11">
+importの自動挿入とビルド
+</h3>
+<div id="outline-text-headline-11" class="outline-text-3">
+<p>import文を自動挿入するには、 <code class="verbatim">C-c C-v z</code> してください。
 通常は、JDEEが自動で必要なクラスをどばっと挿入してくれます。
 ただし今回の場合は、候補が複数あるのでCUIによる選択画面が表示されます。
 必要なクラスのカッコのところでRETを叩いて選択してください
-( <code>org.apache.commons</code> で始まるものを選択してください)。
+( <code class="verbatim">org.apache.commons</code> で始まるものを選択してください)。
 最後にOKの上でRETで決定です。</p>
-
-<p><a href="/img/jdee/import.png" title="/img/jdee/import.png">/img/jdee/import.png</a></p>
-
-<p>import文の挿入が成功したら <code>C-c C-v C-b</code> でビルドプロンプトを表示し、
+<p>
+<img src="/img/jdee/import.png" alt="/img/jdee/import.png" title="/img/jdee/import.png" /></p>
+<p>
+import文の挿入が成功したら <code class="verbatim">C-c C-v C-b</code> でビルドプロンプトを表示し、
 何もターゲットを入力せずにエンターしてください。
 今度はビルドが成功するはずです。</p>
-
-<h2 id="apiドキュメントの参照">APIドキュメントの参照</h2>
-
-<p>カーソルをStringのところに合わせて <code>C-c C-v C-w</code> してください。
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-3">
+<h3 id="headline-12">
+APIドキュメントの参照
+</h3>
+<div id="outline-text-headline-12" class="outline-text-3">
+<p>カーソルをStringのところに合わせて <code class="verbatim">C-c C-v C-w</code> してください。
 StringクラスのJavadocがブラウザ上に開きます。
 emacserなら当然w3mですよね？ローカルにダウンロードしたAPIを指定すると更に快適です。</p>
-
-<p><a href="/img/jdee/javadoc.png" title="/img/jdee/javadoc.png">/img/jdee/javadoc.png</a></p>
-<!-- **** javaDocコメントの挿入 -->
-<!--  =C-c C-v j= でJavaDocのコメントが挿入されます。 -->
-
-<h2 id="メソッド補完">メソッド補完</h2>
-
-<p><code>C-c C-v .</code> でメソッドの補完ができます。
- <code>options.</code> とピリオドまで打ったところで <code>C-c C-v .</code> します。</p>
-
-<p><a href="/img/jdee/method.png" title="/img/jdee/method.png">/img/jdee/method.png</a></p>
-
-<p>ミニバッファに <code>[...]</code> が表示されます。ここで <code>C-i</code> してください。
+<p>
+<img src="/img/jdee/javadoc.png" alt="/img/jdee/javadoc.png" title="/img/jdee/javadoc.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-3">
+<h3 id="headline-13">
+メソッド補完
+</h3>
+<div id="outline-text-headline-13" class="outline-text-3">
+<p><code class="verbatim">C-c C-v .</code> でメソッドの補完ができます。
+ <code class="verbatim">options.</code> とピリオドまで打ったところで <code class="verbatim">C-c C-v .</code> します。 </p>
+<p>
+<img src="/img/jdee/method.png" alt="/img/jdee/method.png" title="/img/jdee/method.png" /></p>
+<p>
+ミニバッファに <code class="verbatim">[...]</code> が表示されます。ここで <code class="verbatim">C-i</code> してください。
 候補が一覧表示されます。引数も含めて入力してください。
-適当なところで <code>C-i</code> しながら候補がひとつに絞りこめたところでエンターすれば、
-選んだメソッドを入力できます。これはこれで感動ものですが<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">1</a></sup> 
+適当なところで <code class="verbatim">C-i</code> しながら候補がひとつに絞りこめたところでエンターすれば、
+選んだメソッドを入力できます。これはこれで感動ものですが<sup class="footnote-reference"><a id="footnote-reference-1" href="#footnote-1">1</a></sup> 
 ・・・とっても使いづらいですね。でも安心してください。helm版を作りました。</p>
-
-<h2 id="メソッド補完-helm版">メソッド補完(Helm版)</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-3">
+<h3 id="headline-14">
+メソッド補完(Helm版)
+</h3>
+<div id="outline-text-headline-14" class="outline-text-3">
 <p>ミニバッファでメソッドを補完する機能は確かに便利ですが、
 今となってはこのインターフェイスは古くさいですね。
 そこでこの機能をHelmで実現してみました。</p>
-
 <ul>
-<li><a href="https://github.com/mikio/emacs-helm-jdee-method" title="helm-jdee-method.el">helm-jdee-method.el</a>  <sup class="footnote-ref" id="fnref:3"><a href="#fn:3">2</a></sup></li>
+<li><a href="https://github.com/mikio/emacs-helm-jdee-method">helm-jdee-method.el</a>  <sup class="footnote-reference"><a id="footnote-reference-2" href="#footnote-2">2</a></sup></li>
 </ul>
-
 <p>今回は時間がなかったので手動インストールですが、そのうちMELPAに登録します。</p>
-
-<p>このelisp拡張はHelmとYasnippetに依存しています
+<p>
+このelisp拡張はHelmとYasnippetに依存しています
 (導入してない方はこの機会にインストールすることをお勧めします)。
-まず<a href="https://raw.github.com/mikio/emacs-helm-jdee-method/master/helm-jdee-method.el" title="helm-jdee-moethod.el">helm-jdee-moethod.el</a> をロードパスのとおったところに置いて、
-今回設定した <code>.emacs</code> の <code>my-jde-mode-hook</code> 関数の冒頭で下記の設定をしてください。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">defun</span> <span style="color:#033">my-jde-mode-hook</span> ()
-  (<span style="color:#366">require</span> <span style="color:#fc3">&#39;helm-jdee-method</span>) <span style="color:#09f;font-style:italic">;; これを追加</span>
-  (<span style="color:#366">require</span> <span style="color:#fc3">&#39;jde</span>)
-  (<span style="color:#c0f">define-key</span> <span style="color:#033">jde-mode-map</span> (<span style="color:#033">kbd</span> <span style="color:#c30">&#34;C-c C-v C-i&#34;</span>) <span style="color:#fc3">&#39;helm-jdee-method</span>) <span style="color:#09f;font-style:italic">;; これを追加</span>
-  )</code></pre></div>
-<p>これで例えば、 <code>options.</code> とピリオドまで打ったところで <code>C-c C-v C-i</code> すると、
+まず<a href="https://raw.github.com/mikio/emacs-helm-jdee-method/master/helm-jdee-method.el">helm-jdee-moethod.el</a> をロードパスのとおったところに置いて、
+今回設定した <code class="verbatim">.emacs</code> の <code class="verbatim">my-jde-mode-hook</code> 関数の冒頭で下記の設定をしてください。</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#366">defun</span> <span style="color:#033">my-jde-mode-hook</span> ()
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">require</span> <span style="color:#fc3">&#39;helm-jdee-method</span>) <span style="color:#09f;font-style:italic">;; これを追加</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">require</span> <span style="color:#fc3">&#39;jde</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#c0f">define-key</span> <span style="color:#033">jde-mode-map</span> (<span style="color:#033">kbd</span> <span style="color:#c30">&#34;C-c C-v C-i&#34;</span>) <span style="color:#fc3">&#39;helm-jdee-method</span>) <span style="color:#09f;font-style:italic">;; これを追加</span>
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div>
+</div>
+<p>
+これで例えば、 <code class="verbatim">options.</code> とピリオドまで打ったところで <code class="verbatim">C-c C-v C-i</code> すると、
 メソッドの候補一覧がhelmで表示されます。</p>
-
-<p><a href="/img/jdee/helm1.png" title="/img/jdee/helm1.png">/img/jdee/helm1.png</a></p>
-
-<p>適当に選ぶとメソッドが挿入されるのですが、Yasnippetで動的にテンプレートを作成しているので、
+<p>
+<img src="/img/jdee/helm1.png" alt="/img/jdee/helm1.png" title="/img/jdee/helm1.png" /></p>
+<p>
+適当に選ぶとメソッドが挿入されるのですが、Yasnippetで動的にテンプレートを作成しているので、
 引数ごとに値を入力できます。引数を入力したらTabで移動してください。</p>
-
-<p><a href="/img/jdee/helm2.png" title="/img/jdee/helm2.png">/img/jdee/helm2.png</a></p>
-
-<p>先程のミニバッファ版に比べると、Eclipseのインテリセンス機能みたいで、
+<p>
+<img src="/img/jdee/helm2.png" alt="/img/jdee/helm2.png" title="/img/jdee/helm2.png" /></p>
+<p>
+先程のミニバッファ版に比べると、Eclipseのインテリセンス機能みたいで、
 なかなか便利なんじゃないでしょうか？
 また、自前のクラスもBeanShellを再起動すれば補完されますし、
 ClassPathさえ正しく設定されてれば、AndroidSDKなんかのAPIも適切に補完してくれると思います
 (Androidに関して私はまだ試してません。DalvikVMなので駄目かも？)。</p>
-
-<p>ちなみに補完機能をauto-completeにしなかった理由は、メソッド補完がかなり高コストだからです。
+<p>
+ちなみに補完機能をauto-completeにしなかった理由は、メソッド補完がかなり高コストだからです。
 これを自動でやると、とてももっさりになってしまうので、
 ユーザが必要なときに「よっこらしょ」って感じで利用することを想定しました。</p>
-
-<h1 id="操作方法まとめ">操作方法まとめ</h1>
-
-<p>ここまでの機能の操作方法をまとめました。</p>
-
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-2">
+<h2 id="headline-15">
+操作方法まとめ
+</h2>
+<div id="outline-text-headline-15" class="outline-text-2">
+<p>
+ここまでの機能の操作方法をまとめました。</p>
 <table>
 <tbody>
 <tr>
 <td>メソッドの補完</td>
 <td>C-c C-v .</td>
 </tr>
-
 <tr>
 <td>メソッドの補完(Helm)</td>
 <td>C-c C-v C-i</td>
 </tr>
-
 <tr>
 <td>ビルド(ant)</td>
 <td>C-c C-v C-b</td>
 </tr>
-
 <tr>
 <td>BeanShell起動</td>
 <td>C-c C-v C-k</td>
 </tr>
-
 <tr>
 <td>BeanShell終了</td>
 <td>M-x jde-bsh-exit</td>
 </tr>
-
 <tr>
 <td>prj.elの再読込</td>
 <td>M-x jde-load-project-file</td>
 </tr>
-
 <tr>
 <td>自動import</td>
 <td>C-c C-v z</td>
 </tr>
-
 <tr>
 <td>javadocの表示</td>
 <td>C-c C-v C-w</td>
 </tr>
 </tbody>
 </table>
-
-<p>これだけでも大分便利に使えるのではと思います。</p>
-
-<p>これに加えて、デバッガの起動やJunitのファイル単位の実行などが使えれば更に便利だと思いますが、
+<p>
+これだけでも大分便利に使えるのではと思います。</p>
+<p>
+これに加えて、デバッガの起動やJunitのファイル単位の実行などが使えれば更に便利だと思いますが、
 自分はまだ試していません。</p>
-
-<p>また、これらJDEEの基本機能に加えて、私は、AutoComplete, Yasnippet,Gtagsなどを導入しており、
-かなり快適に使えてます<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">3</a></sup>flymakeも試したのですが、動作が重いのでいまのところ常用してません。</p>
-
-<h1 id="所感">所感</h1>
-
+<p>
+また、これらJDEEの基本機能に加えて、私は、AutoComplete, Yasnippet,Gtagsなどを導入しており、
+かなり快適に使えてます<sup class="footnote-reference"><a id="footnote-reference-3" href="#footnote-3">3</a></sup>flymakeも試したのですが、動作が重いのでいまのところ常用してません。</p>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-2">
+<h2 id="headline-16">
+所感
+</h2>
+<div id="outline-text-headline-16" class="outline-text-2">
 <p>ここまで紹介しておいてなんですが、JDEEは現在では開発が停止してます。
 そのため新しい文法はサポートされてません(アノテーション、ジェネリクス、拡張for文など)。
 特にアノテーションを利用したJavaコードだと、Import文などはうまく補完できなかったりします。
@@ -521,43 +606,70 @@ ClassPathさえ正しく設定されてれば、AndroidSDKなんかのAPIも適�
 そんなJDEEとは対象的にCEDETの開発は盛んで、JAVAの対応も結構進んでいるようです
 (メーリングリストでよく話題をみかけます)。
 なので将来的には、JDEEをやめてCEDETメインの環境に移行するかもしれません。</p>
-
-<p>以上、長文をここまで読んで頂いてありがとうございました。</p>
-
-<h1 id="参考url">参考URL</h1>
-
+<p>
+以上、長文をここまで読んで頂いてありがとうございました。</p>
+</div>
+</div>
+<div id="outline-container-headline-17" class="outline-2">
+<h2 id="headline-17">
+参考URL
+</h2>
+<div id="outline-text-headline-17" class="outline-text-2">
 <ul>
-<li>JDEEインストールしてからの設定とか下記のサイトが大変参考になった。</li>
-<li>http://epian-wiki.appspot.com/wiki/Emacs/JDEE</li>
+<li>
+<p>JDEEインストールしてからの設定とか下記のサイトが大変参考になった。</p>
+<ul>
+<li><a href="http://epian-wiki.appspot.com/wiki/Emacs/JDEE">http://epian-wiki.appspot.com/wiki/Emacs/JDEE</a></li>
 </ul>
-
+</li>
+<li>
+<p>操作方法はメニューを開けば大体わかる。詳しくは以下のサイトが詳しい。</p>
 <ul>
-<li>操作方法はメニューを開けば大体わかる。詳しくは以下のサイトが詳しい。</li>
-<li>http://www.02.246.ne.jp/~torutk/jdee/jdee.html</li>
+<li><a href="http://www.02.246.ne.jp/~torutk/jdee/jdee.html">http://www.02.246.ne.jp/~torutk/jdee/jdee.html</a></li>
 </ul>
-
+</li>
+<li>
+<p>割と最近のMLのやりとり。</p>
 <ul>
-<li>割と最近のMLのやりとり。</li>
-<li>http://sourceforge.net/mailarchive/message.php?msg_id=28645729</li>
+<li><a href="http://sourceforge.net/mailarchive/message.php?msg_id=28645729">http://sourceforge.net/mailarchive/message.php?msg_id=28645729</a></li>
 </ul>
-
-<h1 id="更新履歴">更新履歴</h1>
-
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-18" class="outline-2">
+<h2 id="headline-18">
+更新履歴
+</h2>
+<div id="outline-text-headline-18" class="outline-text-2">
 <ul>
-<li>2013/01/15 <code>jde-lib-directory-names</code> の説明が間違っていたため、修正しました。失礼しました。</li>
+<li>2013/01/15 <code class="verbatim">jde-lib-directory-names</code> の説明が間違っていたため、修正しました。失礼しました。</li>
 <li>2013/08/01 本家JDEEがCEDET2.0に対応したので記事も併せて修正しました。</li>
 </ul>
+</div>
+</div>
 <div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:2">JDEE紹介サイトの多くが、メソッド補完のスクリーンショットにGUIメニュー版を載せていたので、CUIではメソッド補完は使えないものと勘違いしてました。 <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-
-<li id="fn:3">すみません、anything版は作成してません。要望があれば対応するかもです。 <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-
-<li id="fn:4">Yasnippetはnekopさんの定義した [[https://github.com/nekop/yasnippet-java-mode][Javaのやつ]] を利用しています。ありがとうございます。 <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
-</ol>
+<hr class="footnotes-separatator">
+<div class="footnote-definitions">
+<div class="footnote-definition">
+<sup id="footnote-1"><a href="#footnote-reference-1">1</a></sup>
+<div class="footnote-body">
+<p>JDEE紹介サイトの多くが、メソッド補完のスクリーンショットにGUIメニュー版を載せていたので、CUIではメソッド補完は使えないものと勘違いしてました。</p>
+</div>
+</div>
+<div class="footnote-definition">
+<sup id="footnote-2"><a href="#footnote-reference-2">2</a></sup>
+<div class="footnote-body">
+<p>すみません、anything版は作成してません。要望があれば対応するかもです。</p>
+</div>
+</div>
+<div class="footnote-definition">
+<sup id="footnote-3"><a href="#footnote-reference-3">3</a></sup>
+<div class="footnote-body">
+<p>Yasnippetはnekopさんの定義した <a href="https://github.com/nekop/yasnippet-java-mode">Javaのやつ</a> を利用しています。ありがとうございます。</p>
+</div>
+</div>
+</div>
 </div>
 
     
@@ -565,7 +677,7 @@ ClassPathさえ正しく設定されてれば、AndroidSDKなんかのAPIも適�
 <div class="pager pure-u-1">
   
   <div class="pager-new">
-    <a href="https://zarudama.github.io/posts/eshell/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>eshell上でリダイレクトした結果が文字化け</a>
+    <a href="https://zarudama.github.io/posts/ubuntu-server-lvm/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>Ubuntu Server インストール時に前回作ったLVMが削除できなかった。</a>
   </div>
   
   

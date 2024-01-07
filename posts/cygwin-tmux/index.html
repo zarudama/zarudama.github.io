@@ -7,28 +7,28 @@
 コンパイルしてインストールするため、依存するライブラリが必要です。
 2014/06/23 追記
 apt-cyg は、最新版を利用すれば問題ありません。
-apt-cygを事前にイストールしておけば簡単ですが、&#43; &#43;最新のCygwinでは、apt-cygがすんなり動きません。
+apt-cygを事前にイストールしておけば簡単ですが、 最新のCygwinでは、apt-cygがすんなり動きません。
 インストール方法 apt-cygで事前に必要なパッケージをインストールしておく。
 $ apt-cyg install ncurses $ apt-cyg install libncurses-devel $ apt-cyg install libevent-devel $ apt-cyg install pkg-config autoconf automake $ apt-cyg install make gcc-core あとは参考サイトにあるとおりでオッケー。
 $ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code $ cd tmux-tmux-code/ $ ./autogen.sh $ CFLAGS=&#34;-I/usr/include/ncurses&#34; ./configure --prefix=/usr $ make &amp;&amp; make install 参考
- http://atdxfe.hatenablog.com/entry/2013/11/27/031058 http://java.ociweb.com/mark/programming/tmuxInCygwin.html  翌日、なぜか起動しなくなった。 後日、起動時に下記のエラーが発生
+http://atdxfe.hatenablog.com/entry/2013/11/27/031058 http://java.ociweb.com/mark/programming/tmuxInCygwin.html 翌日、なぜか起動しなくなった。 後日、起動時に下記のエラーが発生
 $ tmux failed to connect to server: No error ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/cygwin-tmux/" />
-<meta property="article:published_time" content="2014-06-21T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2014-06-21T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/cygwin-tmux/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-06-21T14:01:39+09:00" />
+<meta property="article:modified_time" content="2014-06-21T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="cygwinにtmuxを導入"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="cygwinにtmuxを導入"/>
 <meta name="twitter:description" content="はじめに Cygwinでは、長らくtmuxが使えなかったのですが、 最近tmuxが正式にCygwinをサポートしたようです。
 コンパイルしてインストールするため、依存するライブラリが必要です。
 2014/06/23 追記
 apt-cyg は、最新版を利用すれば問題ありません。
-apt-cygを事前にイストールしておけば簡単ですが、&#43; &#43;最新のCygwinでは、apt-cygがすんなり動きません。
+apt-cygを事前にイストールしておけば簡単ですが、 最新のCygwinでは、apt-cygがすんなり動きません。
 インストール方法 apt-cygで事前に必要なパッケージをインストールしておく。
 $ apt-cyg install ncurses $ apt-cyg install libncurses-devel $ apt-cyg install libevent-devel $ apt-cyg install pkg-config autoconf automake $ apt-cyg install make gcc-core あとは参考サイトにあるとおりでオッケー。
 $ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code $ cd tmux-tmux-code/ $ ./autogen.sh $ CFLAGS=&#34;-I/usr/include/ncurses&#34; ./configure --prefix=/usr $ make &amp;&amp; make install 参考
- http://atdxfe.hatenablog.com/entry/2013/11/27/031058 http://java.ociweb.com/mark/programming/tmuxInCygwin.html  翌日、なぜか起動しなくなった。 後日、起動時に下記のエラーが発生
+http://atdxfe.hatenablog.com/entry/2013/11/27/031058 http://java.ociweb.com/mark/programming/tmuxInCygwin.html 翌日、なぜか起動しなくなった。 後日、起動時に下記のエラーが発生
 $ tmux failed to connect to server: No error ."/>
 
 <title>cygwinにtmuxを導入 | ざる魂</title>
@@ -71,53 +71,82 @@ $ tmux failed to connect to server: No error ."/>
     
     
     
-      <h1 id="はじめに">はじめに</h1>
-
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+はじめに
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>Cygwinでは、長らくtmuxが使えなかったのですが、
 最近tmuxが正式にCygwinをサポートしたようです。</p>
-
-<p>コンパイルしてインストールするため、依存するライブラリが必要です。</p>
-
-<p><strong>2014/06/23 追記</strong></p>
-
-<p>apt-cyg は、最新版を利用すれば問題ありません。</p>
-
-<p><del>apt-cygを事前にイストールしておけば簡単ですが、+
-+最新のCygwinでは、apt-cygがすんなり動きません。</del></p>
-
-<h1 id="インストール方法">インストール方法</h1>
-
-<p>apt-cygで事前に必要なパッケージをインストールしておく。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install ncurses
-$ apt-cyg install libncurses-devel
-$ apt-cyg install libevent-devel
-$ apt-cyg install pkg-config autoconf automake
-$ apt-cyg install make gcc-core</code></pre></div>
-<p>あとは参考サイトにあるとおりでオッケー。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code
-$ <span style="color:#366">cd</span> tmux-tmux-code/
-$ ./autogen.sh
-$ <span style="color:#033">CFLAGS</span><span style="color:#555">=</span><span style="color:#c30">&#34;-I/usr/include/ncurses&#34;</span> ./configure --prefix<span style="color:#555">=</span>/usr
-$ make <span style="color:#555">&amp;&amp;</span> make install</code></pre></div>
-<p>参考</p>
-
+<p>
+コンパイルしてインストールするため、依存するライブラリが必要です。</p>
+<p>
+ <strong>2014/06/23 追記</strong></p>
+<p>
+apt-cyg は、最新版を利用すれば問題ありません。</p>
+<p>
+<del>apt-cygを事前にイストールしておけば簡単ですが、</del>
+<del>最新のCygwinでは、apt-cygがすんなり動きません。</del></p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+インストール方法
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>
+apt-cygで事前に必要なパッケージをインストールしておく。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ apt-cyg install ncurses
+</span></span><span style="display:flex;"><span>$ apt-cyg install libncurses-devel
+</span></span><span style="display:flex;"><span>$ apt-cyg install libevent-devel
+</span></span><span style="display:flex;"><span>$ apt-cyg install pkg-config autoconf automake
+</span></span><span style="display:flex;"><span>$ apt-cyg install make gcc-core</span></span></code></pre></div>
+</div>
+<p>
+あとは参考サイトにあるとおりでオッケー。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code
+</span></span><span style="display:flex;"><span>$ <span style="color:#366">cd</span> tmux-tmux-code/
+</span></span><span style="display:flex;"><span>$ ./autogen.sh
+</span></span><span style="display:flex;"><span>$ <span style="color:#033">CFLAGS</span><span style="color:#555">=</span><span style="color:#c30">&#34;-I/usr/include/ncurses&#34;</span> ./configure --prefix<span style="color:#555">=</span>/usr
+</span></span><span style="display:flex;"><span>$ make <span style="color:#555">&amp;&amp;</span> make install</span></span></code></pre></div>
+</div>
+<p>
+参考</p>
 <ul>
-<li>http://atdxfe.hatenablog.com/entry/2013/11/27/031058</li>
-<li>http://java.ociweb.com/mark/programming/tmuxInCygwin.html</li>
+<li><a href="http://atdxfe.hatenablog.com/entry/2013/11/27/031058">http://atdxfe.hatenablog.com/entry/2013/11/27/031058</a></li>
+<li><a href="http://java.ociweb.com/mark/programming/tmuxInCygwin.html">http://java.ociweb.com/mark/programming/tmuxInCygwin.html</a></li>
 </ul>
-
-<h1 id="翌日-なぜか起動しなくなった">翌日、なぜか起動しなくなった。</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+翌日、なぜか起動しなくなった。
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
 <p>後日、起動時に下記のエラーが発生</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ tmux
-failed to connect to server: No error</code></pre></div>
-<p><code>.bashrc</code> に下記を追記することで治った。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">alias</span> <span style="color:#033">tmux</span><span style="color:#555">=</span><span style="color:#c30">&#39;rm -rf /tmp/tmux* &amp;&amp; tmux&#39;</span></code></pre></div>
-<h2 id="参考">参考</h2>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ tmux
+</span></span><span style="display:flex;"><span>failed to connect to server: No error</span></span></code></pre></div>
+</div>
+<p><code class="verbatim">.bashrc</code> に下記を追記することで治った。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#366">alias</span> <span style="color:#033">tmux</span><span style="color:#555">=</span><span style="color:#c30">&#39;rm -rf /tmp/tmux* &amp;&amp; tmux&#39;</span></span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+参考
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
 <ul>
-<li>http://superuser.com/questions/760503/cygwin-tmux-failed-to-connect-to-server-no-error</li>
+<li><a href="http://superuser.com/questions/760503/cygwin-tmux-failed-to-connect-to-server-no-error">http://superuser.com/questions/760503/cygwin-tmux-failed-to-connect-to-server-no-error</a></li>
 </ul>
+</div>
+</div>
+</div>
+</div>
 
     
 </div>

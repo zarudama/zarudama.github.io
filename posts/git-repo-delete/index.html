@@ -3,18 +3,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta property="og:title" content="削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。" />
-<meta property="og:description" content="サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。 http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ トリから見ると生きのこってたりする。 git remote show origin で確認で きる。  $ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &#39;git remote prune&#39; to remove) refs/remotes/origin/fuga-branch stale (use &#39;git remote prune&#39; to remove)  この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
+<meta property="og:description" content="サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。
+http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ トリから見ると生きのこってたりする。 git remote show origin で確認で きる。
+$ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &#39;git remote prune&#39; to remove) refs/remotes/origin/fuga-branch stale (use &#39;git remote prune&#39; to remove) : この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
 まず、確認。
 $ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。
 $ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/git-repo-delete/" />
-<meta property="article:published_time" content="2012-08-29T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2012-08-29T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/git-repo-delete/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2012-08-29T14:01:39+09:00" />
+<meta property="article:modified_time" content="2012-08-29T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。"/>
-<meta name="twitter:description" content="サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。 http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ トリから見ると生きのこってたりする。 git remote show origin で確認で きる。  $ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &#39;git remote prune&#39; to remove) refs/remotes/origin/fuga-branch stale (use &#39;git remote prune&#39; to remove)  この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。"/>
+<meta name="twitter:description" content="サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。
+http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ トリから見ると生きのこってたりする。 git remote show origin で確認で きる。
+$ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &#39;git remote prune&#39; to remove) refs/remotes/origin/fuga-branch stale (use &#39;git remote prune&#39; to remove) : この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
 まず、確認。
 $ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。
 $ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。"/>
@@ -49,7 +53,7 @@ $ git remote prune origin もう一回確認。なにも表示されなければ
 <section>
       <span class="date">作成日: 2012-08-29</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2012-08-29</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;78 文字> </span>
+      <sapn class="wordcount"> &lt;79 文字> </span>
     </section>
     
   </aside>
@@ -59,35 +63,45 @@ $ git remote prune origin もう一回確認。なにも表示されなければ
     
     
     
-      <ul>
-サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。
-<li>http://blog.s21g.com/articles/992</li>
-なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ
-トリから見ると生きのこってたりする。 <code>git remote show origin</code> で確認で
-きる。
+      <p>
+サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。</p>
+<ul>
+<li><a href="http://blog.s21g.com/articles/992">http://blog.s21g.com/articles/992</a></li>
 </ul>
-
-<p>$ git remote show origin
- * remote origin
- :
- :
-    refs/remotes/origin/hoge-branch        stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fuga-branch        stale (use 'git remote prune' to remove)
-</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"></code></pre></div>
-<p>この中で <code>stale (use 'git remote prune' to remove)</code> とあるのがいらないブランチだ。
+<p>なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ
+トリから見ると生きのこってたりする。 <code class="verbatim">git remote show origin</code> で確認で
+きる。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git remote show origin
+</span></span><span style="display:flex;"><span> * remote origin
+</span></span><span style="display:flex;"><span> :
+</span></span><span style="display:flex;"><span> :
+</span></span><span style="display:flex;"><span>    refs/remotes/origin/hoge-branch        stale <span style="color:#555">(</span>use <span style="color:#c30">&#39;git remote prune&#39;</span> to remove<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>    refs/remotes/origin/fuga-branch        stale <span style="color:#555">(</span>use <span style="color:#c30">&#39;git remote prune&#39;</span> to remove<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span> :</span></span></code></pre></div>
+</div>
+<p>この中で <code class="verbatim">stale (use &#39;git remote prune&#39; to remove)</code> とあるのがいらないブランチだ。
 stale(腐った)をplue(切り詰める)すれば良い。</p>
+<p>
+まず、確認。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git remote prune origin --dry-run
+</span></span><span style="display:flex;"><span>Pruning origin
+</span></span><span style="display:flex;"><span>URL: gitolite@db72-dictwiki:wsrch
+</span></span><span style="display:flex;"><span> * <span style="color:#555">[</span>would prune<span style="color:#555">]</span> origin/hoge-branch
+</span></span><span style="display:flex;"><span> * <span style="color:#555">[</span>would prune<span style="color:#555">]</span> origin/fuga-branch</span></span></code></pre></div>
+</div>
+<p>
+実行。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git remote prune origin</span></span></code></pre></div>
+</div>
+<p>
+もう一回確認。なにも表示されなければ多分成功している。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git remote prune origin --dry-run</span></span></code></pre></div>
+</div>
 
-<p>まず、確認。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git remote prune origin --dry-run
-Pruning origin
-URL: gitolite@db72-dictwiki:wsrch
- * <span style="color:#555">[</span>would prune<span style="color:#555">]</span> origin/hoge-branch
- * <span style="color:#555">[</span>would prune<span style="color:#555">]</span> origin/fuga-branch</code></pre></div>
-<p>実行。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git remote prune origin</code></pre></div>
-<p>もう一回確認。なにも表示されなければ多分成功している。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git remote prune origin --dry-run</code></pre></div>
     
 </div>
 <div class="pager pure-u-1">

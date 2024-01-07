@@ -3,17 +3,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta property="og:title" content="(超個人的)Windowsインストール後にやることまとめ" />
-<meta property="og:description" content="ソフトのインストールポリシー  インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&/opt/下に展開する。  コントロールキーの設定 xp win7  xkeyemacsをつかってcapsキーをctrsキーにする。 Changekeyを使用する(右クリメニューで管理者として実行すること)。 chgkey.exe Dropboxに保存してある。 GUIのキーボードが表示されるので変更する Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift  再起動  Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。 これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。
-一番最初にインストール  Launcy Firefox Emacs ExpLzh  環境変数の設定  HOME XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE%   HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。 HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。 ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。   MAVEN_HOME %HOME%\opt\ XYZZYHOME XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin;   下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME=  キーボードの入力速度を早める  PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5." />
+<meta property="og:description" content="ソフトのインストールポリシー インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;/opt/下に展開する。 コントロールキーの設定 xp xkeyemacsをつかってcapsキーをctrsキーにする。 win7 Changekeyを使用する(右クリメニューで管理者として実行すること)。
+chgkey.exe Dropboxに保存してある。 GUIのキーボードが表示されるので変更する
+Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift 再起動 Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。 これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。
+一番最初にインストール Launcy Firefox Emacs ExpLzh 環境変数の設定 HOME
+XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE% HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。 HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。 ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。 MAVEN_HOME %HOME%\opt\ XYZZYHOME
+XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin; 下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME= PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86
+TERM xternm(CYGWIN用) CYGWIN tty(screenのデタッチ用) キーボードの入力速度を早める (Win7) [コンパネ] -&gt; [コンピュータの簡単操作] -&gt; [キーボード動作の変更] -&gt; [キーボードの設定] アンチエイリアスの設定 MacTypeをインストールする。 fontは「Mig 1M」を使用する。MigMix1M 行間が広いので注意。 入れるソフト インストーラ系ソフトのインストール Spybot Searcy &amp; Directory Link Shell Extension" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/windows/" />
-<meta property="article:published_time" content="2011-04-28T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2011-04-28T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/windows/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2011-04-28T14:01:39+09:00" />
+<meta property="article:modified_time" content="2011-04-28T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="(超個人的)Windowsインストール後にやることまとめ"/>
-<meta name="twitter:description" content="ソフトのインストールポリシー  インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&/opt/下に展開する。  コントロールキーの設定 xp win7  xkeyemacsをつかってcapsキーをctrsキーにする。 Changekeyを使用する(右クリメニューで管理者として実行すること)。 chgkey.exe Dropboxに保存してある。 GUIのキーボードが表示されるので変更する Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift  再起動  Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。 これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。
-一番最初にインストール  Launcy Firefox Emacs ExpLzh  環境変数の設定  HOME XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE%   HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。 HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。 ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。   MAVEN_HOME %HOME%\opt\ XYZZYHOME XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin;   下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME=  キーボードの入力速度を早める  PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5."/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="(超個人的)Windowsインストール後にやることまとめ"/>
+<meta name="twitter:description" content="ソフトのインストールポリシー インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;/opt/下に展開する。 コントロールキーの設定 xp xkeyemacsをつかってcapsキーをctrsキーにする。 win7 Changekeyを使用する(右クリメニューで管理者として実行すること)。
+chgkey.exe Dropboxに保存してある。 GUIのキーボードが表示されるので変更する
+Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift 再起動 Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。 これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。
+一番最初にインストール Launcy Firefox Emacs ExpLzh 環境変数の設定 HOME
+XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE% HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。 HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。 ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。 MAVEN_HOME %HOME%\opt\ XYZZYHOME
+XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin; 下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME= PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86
+TERM xternm(CYGWIN用) CYGWIN tty(screenのデタッチ用) キーボードの入力速度を早める (Win7) [コンパネ] -&gt; [コンピュータの簡単操作] -&gt; [キーボード動作の変更] -&gt; [キーボードの設定] アンチエイリアスの設定 MacTypeをインストールする。 fontは「Mig 1M」を使用する。MigMix1M 行間が広いので注意。 入れるソフト インストーラ系ソフトのインストール Spybot Searcy &amp; Directory Link Shell Extension"/>
 
 <title>(超個人的)Windowsインストール後にやることまとめ | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -55,106 +65,166 @@
     
     
     
-      <h1 id="ソフトのインストールポリシー">ソフトのインストールポリシー</h1>
-
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+ソフトのインストールポリシー
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <ul>
 <li>インストーラのないツールは基本的に%HOME%/apps下に展開する。</li>
 <li>インストーラものはデフォルト値でインストール</li>
 <li>%HOME%/shortcutsにショートカットをおいてlauncyで管理</li>
-<li>UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&/opt/下に展開する。</li>
+<li>UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;/opt/下に展開する。</li>
 </ul>
-
-<h1 id="コントロールキーの設定">コントロールキーの設定</h1>
-
-<h3 id="xp">xp</h3>
-
-<h3 id="win7">win7</h3>
-
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+コントロールキーの設定
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<div id="outline-container-headline-3" class="outline-4">
+<h4 id="headline-3">
+xp
+</h4>
+<div id="outline-text-headline-3" class="outline-text-4">
 <ul>
 <li>xkeyemacsをつかってcapsキーをctrsキーにする。</li>
-<li>Changekeyを使用する(右クリメニューで管理者として実行すること)。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-4">
+<h4 id="headline-4">
+win7
+</h4>
+<div id="outline-text-headline-4" class="outline-text-4">
+<ul>
+<li>
+<p>Changekeyを使用する(右クリメニューで管理者として実行すること)。</p>
+<ul>
 <li>chgkey.exe</li>
 <li>Dropboxに保存してある。</li>
-<li>GUIのキーボードが表示されるので変更する</li>
+</ul>
+</li>
+<li>
+<p>GUIのキーボードが表示されるので変更する</p>
+<ul>
 <li>Caps → Ctrl</li>
 <li>無変換 → Ctrl</li>
 <li>変換 → Ctrl</li>
 <li>ひらがな → Shift </li>
+</ul>
+</li>
 <li>再起動</li>
 </ul>
-
-<h1 id="usersディレクトリの作成-xpのみ">Usersディレクトリの作成(XPのみ)</h1>
-
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+Usersディレクトリの作成(XPのみ)
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
 <p>「Link Shell Extension」をインストールして
 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。
 これにより
 c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。</p>
-
-<h1 id="一番最初にインストール">一番最初にインストール</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+一番最初にインストール
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
 <ul>
 <li>Launcy</li>
 <li>Firefox</li>
 <li>Emacs</li>
 <li>ExpLzh</li>
 </ul>
-
-<h1 id="環境変数の設定">環境変数の設定</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+環境変数の設定
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
 <ul>
-<li>HOME</li>
+<li>
+<p>HOME</p>
+<ul>
 <li>XPの場合:HOME=c:\Users\mikio</li>
 <li>Windows7の場合:HOME=%USERPROFILE%</li>
-</ul>
-
-<ul>
 <li>HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。</li>
 <li>HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。</li>
 <li>※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。</li>
 </ul>
-
+</li>
+<li>MAVEN_HOME
+%HOME%\opt\</li>
+<li>
+<p>XYZZYHOME</p>
 <ul>
-<li>MAVEN_HOME</li>
- %HOME%\opt\
-<li>XYZZYHOME</li>
 <li>XYZZYHOME=%HOME%\aps\xyzzy</li>
+<li>PATH
+c:\cygwin\bin;</li>
+</ul>
+</li>
+<li>下記は.bashrc側に置くので設定しなくて良い。
+JAVA_HOME=%HOME%\opt\
+ANT_HOME=</li>
 <li>PATH</li>
-    c:\cygwin\bin;
 </ul>
-
+<p>%PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86</p>
 <ul>
-<li>下記は.bashrc側に置くので設定しなくて良い。</li>
-  JAVA_HOME=%HOME%\opt\
-  ANT_HOME=
+<li>TERM
+xternm(CYGWIN用)</li>
+<li>CYGWIN
+tty(screenのデタッチ用)</li>
 </ul>
-
-<h1 id="キーボードの入力速度を早める">キーボードの入力速度を早める</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+キーボードの入力速度を早める
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
 <ul>
-<li>PATH</li>
-%PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86
-<li>TERM</li>
-  xternm(CYGWIN用)
-<li>CYGWIN</li>
-  tty(screenのデタッチ用)
-<li>(Win7) [コンパネ] -> [コンピュータの簡単操作] -> [キーボード動作の変更] -> [キーボードの設定]</li>
+<li>(Win7) [コンパネ] -&gt; [コンピュータの簡単操作] -&gt; [キーボード動作の変更] -&gt; [キーボードの設定]</li>
 </ul>
-
-<h1 id="アンチエイリアスの設定">アンチエイリアスの設定</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-2">
+<h2 id="headline-9">
+アンチエイリアスの設定
+</h2>
+<div id="outline-text-headline-9" class="outline-text-2">
 <ul>
 <li>MacTypeをインストールする。</li>
 <li>fontは「Mig 1M」を使用する。MigMix1M 行間が広いので注意。</li>
 </ul>
-
-<h1 id="入れるソフト">入れるソフト</h1>
-
-<h2 id="インストーラ系ソフトのインストール">インストーラ系ソフトのインストール</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-2">
+<h2 id="headline-10">
+入れるソフト
+</h2>
+<div id="outline-text-headline-10" class="outline-text-2">
+<div id="outline-container-headline-11" class="outline-3">
+<h3 id="headline-11">
+インストーラ系ソフトのインストール
+</h3>
+<div id="outline-text-headline-11" class="outline-text-3">
 <ul>
-<li>Spybot Searcy & Directory</li>
-<li>Link Shell Extension</li>
-<li>http://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html</li>
+<li>Spybot Searcy &amp; Directory</li>
+<li>
+<p>Link Shell Extension</p>
+<ul>
+<li><a href="http://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html">http://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html</a></li>
+</ul>
+</li>
 <li>AdujustClock</li>
 <li>WinSCP</li>
 <li>Jing</li>
@@ -165,107 +235,168 @@ c:\Users\というディレクトリができ、Windows7/Vistaと同じような
 <li>Switcher(MacのExpose)</li>
 <li>JDK, JRE</li>
 </ul>
-
-<h2 id="解凍系">解凍系</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-3">
+<h3 id="headline-12">
+解凍系
+</h3>
+<div id="outline-text-headline-12" class="outline-text-3">
 <ul>
 <li>cygwinのインストール</li>
-</ul>
-
+<li>
+<p>putty、ごった煮にさらに機能追加版</p>
 <ul>
-<li>putty、ごった煮にさらに機能追加版</li>
-<li>http://ice.hotmint.com/putty/</li>
- ※オリジナルのごった煮版は、コマンドラインからのplinkがうまく使えなかったので使用しない。
+<li><a href="http://ice.hotmint.com/putty/">http://ice.hotmint.com/putty/</a></li>
 </ul>
-
-<ul>
+<p>※オリジナルのごった煮版は、コマンドラインからのplinkがうまく使えなかったので使用しない。</p>
+</li>
 <li>Jane sytle</li>
 <li>eclip</li>
 <li>Eclipse</li>
 <li>WinDeskWide(仮想デスクトップ)</li>
 <li>TClock Light (for Windows XP)</li>
-<li>tclocklight-kt100204(for WIndows7)</li>
-  タスクバーを左たてに表示する場合、tclock.iniを書きに書きかえる。
-  Format="yy/mm/dd\nddd\nhh:nn:ss"
-<li>AdjustClock</li>
- windows7の場合、OSに自動同期機能があるのでいらない。
+<li>tclocklight-kt100204(for WIndows7)
+タスクバーを左たてに表示する場合、tclock.iniを書きに書きかえる。
+Format=&#34;yy/mm/dd\nddd\nhh:nn:ss&#34;</li>
+<li>AdjustClock
+windows7の場合、OSに自動同期機能があるのでいらない。</li>
 </ul>
-
-<h2 id="スタートアップの設定">スタートアップの設定</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-3">
+<h3 id="headline-13">
+スタートアップの設定
+</h3>
+<div id="outline-text-headline-13" class="outline-text-3">
 <ul>
-<li>タートアップフォルダの開き方</li>
-<li>[スタート] -> [すべてのプログラム] -> []</li>
+<li>
+<p>タートアップフォルダの開き方</p>
+<ul>
+<li>[スタート] -&gt; [すべてのプログラム] -&gt; []</li>
 <li>スタートアップを右クリック - 開く</li>
-下記を登録する。
+</ul>
+</li>
+</ul>
+<p>下記を登録する。</p>
+<ul>
 <li>tclock</li>
 <li>eclip</li>
 <li>pagent</li>
 </ul>
-<!-- - WinDeskWide -->
-<!-- - AdjustClock -->
-<!-- - Launchy -->
-
-<h1 id="mysql">MySQL</h1>
-
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-2">
+<h2 id="headline-14">
+MySQL
+</h2>
+<div id="outline-text-headline-14" class="outline-text-2">
 <p>MySQLのHPにてCommunityServerをインストールする。
 HPの上の方にある大きなバナーのやつだと余計な製品がたくさん入って
 わけわからんので注意。</p>
-
-<h1 id="php">php</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-2">
+<h2 id="headline-15">
+php
+</h2>
+<div id="outline-text-headline-15" class="outline-text-2">
 <ul>
-<li>http://windows.php.net/download/#php-5.3-ts-VC9-x86</li>
-windows版のバイナリ(*.zip)をダウンロードして展開する。
+<li><a href="http://windows.php.net/download/#php-5.3-ts-VC9-x86">http://windows.php.net/download/#php-5.3-ts-VC9-x86</a></li>
+</ul>
+<p>windows版のバイナリ(*.zip)をダウンロードして展開する。</p>
+<ul>
 <li>展開場所の例</li>
 </ul>
-
-<p>$HOME/opt/php</p>
-
-<h1 id="別pcに移行する場合">別PCに移行する場合</h1>
-
-<h2 id="ファイル共有の設定">ファイル共有の設定</h2>
-
-<h2 id="ローカルpcのadminユーザのパスワードを設定">ローカルPCのAdminユーザのパスワードを設定</h2>
-
-<h2 id="設定ファイルのコピー">設定ファイルのコピー</h2>
-
-<h2 id="移行用ソフト">移行用ソフト</h2>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#033">$HOME</span>/opt/php</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-2">
+<h2 id="headline-16">
+別PCに移行する場合
+</h2>
+<div id="outline-text-headline-16" class="outline-text-2">
+<div id="outline-container-headline-17" class="outline-3">
+<h3 id="headline-17">
+ファイル共有の設定
+</h3>
+<div id="outline-text-headline-17" class="outline-text-3">
 <ul>
 <li>コンパネ　-　Windowsファイアウォール - 例外</li>
 <li>「ファイルとプリンタの共有」をチェックする。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-18" class="outline-3">
+<h3 id="headline-18">
+ローカルPCのAdminユーザのパスワードを設定
+</h3>
+<div id="outline-text-headline-18" class="outline-text-3">
+<ul>
 <li>コントロールパネル - ユーザアカウント</li>
 <li>Administratorを選択し、[パスワードのリセット]をクリックし、新しいパスワードを入力する。</li>
-<li>エクスプローラを立ち上げ、旧端末のCドライブに接続する。</li>
- -- \\旧端末のコンピュータ名\C$
-<li>旧端末の必要な情報をコピーする(FireCopyを使用する。)。</li>
- -- c:\miki
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-19" class="outline-3">
+<h3 id="headline-19">
+設定ファイルのコピー
+</h3>
+<div id="outline-text-headline-19" class="outline-text-3">
+<ul>
+<li>エクスプローラを立ち上げ、旧端末のCドライブに接続する。
+– \\旧端末のコンピュータ名\C$</li>
+<li>旧端末の必要な情報をコピーする(FireCopyを使用する。)。
+– c:\miki</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-20" class="outline-3">
+<h3 id="headline-20">
+移行用ソフト
+</h3>
+<div id="outline-text-headline-20" class="outline-text-3">
+<ul>
 <li>FireFile Copy :高速ファイルツール。上書き確認とかいろいろ。エクスプローラだときつい。</li>
 </ul>
-
-<h1 id="faithの自作マシンでのドライバインストール">Faithの自作マシンでのドライバインストール</h1>
-
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-21" class="outline-2">
+<h2 id="headline-21">
+Faithの自作マシンでのドライバインストール
+</h2>
+<div id="outline-text-headline-21" class="outline-text-2">
 <p>windows7を入れた最初の状態では、ネットワークアダプタのドライバがないため
 ネットにつながらない。
 そこで、ドライバをインストールする。ネットワークアダプター以外にも
 いくつかドライバがないものがあるのでついでにインストールしておく</p>
-
 <ul>
 <li>ユニバーサルシリアルバスや</li>
-</ul>
-
-<h1 id="fathのbtoパソコン">FathのBTOパソコン</h1>
-
-<ul>
 <li>マザーボードのCD-ROMを用意する(P8Z68V-PRO)。</li>
 <li>[コントロールパネル] - [ハードウェアとサウンド]-[デバイスマネージャ]</li>
 <li>ほかのデバイスを選択し、びっくりマークのついている機器を右クリック</li>
 <li>[ドライバーソフトウェアの更新]－[コンピュータを参照してドライバーソフトウェアを検索します]</li>
-<li>電源PC</li>
-GOURIKI3 700A
-対応規格：ATX/EPS 電源容量：700W 80PLUS認証：Bronze サイズ：150x155x86mm 剛力3 GOURIKI3-700Aのスペック・仕様
 </ul>
+</div>
+</div>
+<div id="outline-container-headline-22" class="outline-2">
+<h2 id="headline-22">
+FathのBTOパソコン
+</h2>
+<div id="outline-text-headline-22" class="outline-text-2">
+<ul>
+<li>電源PC</li>
+</ul>
+<p>GOURIKI3 700A
+対応規格：ATX/EPS 電源容量：700W 80PLUS認証：Bronze サイズ：150x155x86mm 剛力3 GOURIKI3-700Aのスペック・仕様</p>
+</div>
+</div>
 
     
 </div>

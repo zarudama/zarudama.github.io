@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PR on ざる魂</title>
@@ -7,24 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Fri, 05 Jan 2024 23:16:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/pr/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://zarudama.github.io/tags/pr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>「Androidゲームプログラミング A to Z 」レビュー</title>
       <link>https://zarudama.github.io/posts/android_gameprogramming_atoz/</link>
       <pubDate>Fri, 05 Jan 2024 23:16:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/android_gameprogramming_atoz/</guid>
-      <description>「Androidゲームプログラミング A to Z 」は libGDXの作者が書いた本です。
-実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。 Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
-この本は、libGDXの解説はないけれど、その思想は当然libGDXにも引き継がれ ています。そのためlibGDXの理解もしやすくなります。libGDXをやるなら読ん でおいて損はないと思います。
-また、Androidの本ではありますが、Androidスマホに特化したわけでもなく、 どんなハードのゲーム開発にも通用しそうな内容ばかりです。
-そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと 思います。1
-/img/amazon_android_gameprogiraming_a_to_z.jpg
- ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。 [return]   </description>
+      <description>「Androidゲームプログラミング A to Z 」は libGDXの作者が書いた本です。&#xA;実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。 Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。&#xA;この本は、libGDXの解説はないけれど、その思想は当然libGDXにも引き継がれ ています。そのためlibGDXの理解もしやすくなります。libGDXをやるなら読ん でおいて損はないと思います。&#xA;また、Androidの本ではありますが、Androidスマホに特化したわけでもなく、 どんなハードのゲーム開発にも通用しそうな内容ばかりです。&#xA;そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと 思います。1&#xA;1 ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。</description>
     </item>
-    
   </channel>
 </rss>

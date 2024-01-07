@@ -4,17 +4,17 @@
 <meta name="description" content="">
 <meta property="og:title" content="ちょい足しawkの基本" />
 <meta property="og:description" content="基本 コンマンドラインでちょい足し的に使うときのカンペ。
-$ awk &#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39;  BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力  awk &#39;$4 == &quot;200&quot; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &quot;200&quot; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&quot;a&quot;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&quot;a&quot;以外で始まるとき、表示(正規表現)  (例)
+$ awk &#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39; BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力 awk &#39;$4 == &#34;200&#34; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &#34;200&#34; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&#34;a&#34;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&#34;a&#34;以外で始まるとき、表示(正規表現) (例)
 $ cat access.log | awk &#39;$4 = &#34;200&#34; {print $5$6}&#39; | sed &#39;s/\&#34;//g&#39; デリミタを変更するには Fオプションを使用する。カンマの場合は以下のとおり。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/awk/" />
-<meta property="article:published_time" content="2014-03-25T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2014-03-25T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/awk/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-03-25T14:01:39+09:00" />
+<meta property="article:modified_time" content="2014-03-25T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ちょい足しawkの基本"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="ちょい足しawkの基本"/>
 <meta name="twitter:description" content="基本 コンマンドラインでちょい足し的に使うときのカンペ。
-$ awk &#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39;  BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力  awk &#39;$4 == &quot;200&quot; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &quot;200&quot; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&quot;a&quot;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&quot;a&quot;以外で始まるとき、表示(正規表現)  (例)
+$ awk &#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39; BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力 awk &#39;$4 == &#34;200&#34; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &#34;200&#34; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&#34;a&#34;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&#34;a&#34;以外で始まるとき、表示(正規表現) (例)
 $ cat access.log | awk &#39;$4 = &#34;200&#34; {print $5$6}&#39; | sed &#39;s/\&#34;//g&#39; デリミタを変更するには Fオプションを使用する。カンマの場合は以下のとおり。"/>
 
 <title>ちょい足しawkの基本 | ざる魂</title>
@@ -57,53 +57,90 @@ $ cat access.log | awk &#39;$4 = &#34;200&#34; {print $5$6}&#39; | sed &#39;s/\&
     
     
     
-      <h1 id="基本">基本</h1>
-
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+基本
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>コンマンドラインでちょい足し的に使うときのカンペ。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ awk <span style="color:#c30">&#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39;</span></code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ awk <span style="color:#c30">&#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&#39;</span></span></span></code></pre></div>
+</div>
 <ul>
-<li>BEGIEN, END, パターンは省略できる("[]"でくくったもの)</li>
+<li>BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの)</li>
 <li>例は以下。アクセスログのステータスコードが200のものを出力</li>
 </ul>
-
-<pre><code>awk '$4 == &quot;200&quot; {print $4,$5}'# $4が200のとき、$4,$5を表示
-awk '$4 != &quot;200&quot; { print }'   # $4が200でないとき、1行まるごと表示
-awk '$4 ~ /200/ { print }'    # $4が200のとき、1行まるごと表示(正規表現)
-awk '$1 ~ /^a/ { print}'      # $1が&quot;a&quot;で始まるとき、表示(正規表現)
-awk '$1 !~ /^a/{ print}'      # $1が&quot;a&quot;以外で始まるとき、表示(正規表現)
-</code></pre>
-
+<pre class="example">
+awk &#39;$4 == &#34;200&#34; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示
+awk &#39;$4 != &#34;200&#34; { print }&#39;   # $4が200でないとき、1行まるごと表示
+awk &#39;$4 ~ /200/ { print }&#39;    # $4が200のとき、1行まるごと表示(正規表現)
+awk &#39;$1 ~ /^a/ { print}&#39;      # $1が&#34;a&#34;で始まるとき、表示(正規表現)
+awk &#39;$1 !~ /^a/{ print}&#39;      # $1が&#34;a&#34;以外で始まるとき、表示(正規表現)
+</pre>
 <p>(例)</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cat access.log | awk <span style="color:#c30">&#39;$4 = &#34;200&#34; {print $5$6}&#39;</span> | sed <span style="color:#c30">&#39;s/\&#34;//g&#39;</span></code></pre></div>
-<h1 id="デリミタを変更するには">デリミタを変更するには</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cat access.log | awk <span style="color:#c30">&#39;$4 = &#34;200&#34; {print $5$6}&#39;</span> | sed <span style="color:#c30">&#39;s/\&#34;//g&#39;</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+デリミタを変更するには
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
 <p>Fオプションを使用する。カンマの場合は以下のとおり。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cat access.log | awk -F , <span style="color:#c30">&#39;$4 = &#34;200&#34; {print $5$6}&#39;</span> | sed <span style="color:#c30">&#39;s/\&#34;//g&#39;</span></code></pre></div>
-<h1 id="マッチした文字列だけを表示">マッチした文字列だけを表示</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat access.log | awk -F , <span style="color:#c30">&#39;$4 = &#34;200&#34; {print $5$6}&#39;</span> | sed <span style="color:#c30">&#39;s/\&#34;//g&#39;</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+マッチした文字列だけを表示
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
 <p>文字列の中から数字部分を取りだす場合は以下のとおり。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ gawk <span style="color:#c30">&#39;{print gensub(/(.*)([0-9]+)(.*)/,&#34;\\2&#34;,&#34;&#34;)}&#39;</span></code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ gawk <span style="color:#c30">&#39;{print gensub(/(.*)([0-9]+)(.*)/,&#34;\\2&#34;,&#34;&#34;)}&#39;</span></span></span></code></pre></div>
+</div>
 <ul>
-<li>gensubのgenは汎用からきている。</li>
+<li>
+<p>gensubのgenは汎用からきている。</p>
+<ul>
 <li>第1引数：正規表現</li>
 <li>第2引数：置換文字列。ここでは後方参照の2番目として「\\2」を指定している。</li>
 <li>第3引数：g/Gを指定した場合、マッチするすべてを置換する。それ以外の場合は最初だけ置換する。</li>
 </ul>
-
+</li>
+</ul>
 <p>マッチしたい部分とさせたくない部分を正規表現でグルーピングし、
 マッチしたグループだけで後方参照で置換することで、
 マッチさせた文字列だけを表示できる。</p>
-
-<h1 id="タブを出力する例">タブを出力する例</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+タブを出力する例
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
 <p>整形する際、区切り文字としてタブを出力したい場合の例。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cat hoge.txt |awk <span style="color:#c30">&#39;{print $1&#34;\t&#34;$2}&#39;</span></code></pre></div>
-<h1 id="参考">参考</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cat hoge.txt |awk <span style="color:#c30">&#39;{print $1&#34;\t&#34;$2}&#39;</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+参考
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
 <ul>
-<li>http://d.hatena.ne.jp/Rocco/20071120/p6</li>
-<li>http://www.kt.rim.or.jp/~kbk/gawk-30/gawk_13.html</li>
+<li><a href="http://d.hatena.ne.jp/Rocco/20071120/p6">http://d.hatena.ne.jp/Rocco/20071120/p6</a></li>
+<li><a href="http://www.kt.rim.or.jp/~kbk/gawk-30/gawk_13.html">http://www.kt.rim.or.jp/~kbk/gawk-30/gawk_13.html</a></li>
 </ul>
+</div>
+</div>
 
     
 </div>

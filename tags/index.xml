@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on ざる魂</title>
@@ -6,307 +6,245 @@
     <description>Recent content in Tags on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 05 Jan 2024 23:16:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 07 Jan 2024 23:05:39 +0900</lastBuildDate>
+    <atom:link href="https://zarudama.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>PR</title>
-      <link>https://zarudama.github.io/tags/pr/</link>
-      <pubDate>Fri, 05 Jan 2024 23:16:39 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/tags/pr/</guid>
+      <title>blog</title>
+      <link>https://zarudama.github.io/tags/blog/</link>
+      <pubDate>Sun, 07 Jan 2024 23:05:39 +0900</pubDate>
+      <guid>https://zarudama.github.io/tags/blog/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>libGDX</title>
       <link>https://zarudama.github.io/tags/libgdx/</link>
       <pubDate>Fri, 05 Jan 2024 23:16:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/libgdx/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>PR</title>
+      <link>https://zarudama.github.io/tags/pr/</link>
+      <pubDate>Fri, 05 Jan 2024 23:16:39 +0900</pubDate>
+      <guid>https://zarudama.github.io/tags/pr/</guid>
+      <description></description>
+    </item>
     <item>
       <title>javascript</title>
       <link>https://zarudama.github.io/tags/javascript/</link>
       <pubDate>Fri, 05 Jan 2024 19:41:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/javascript/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>文字コード</title>
       <link>https://zarudama.github.io/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89/</link>
       <pubDate>Thu, 12 Dec 2019 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>java</title>
       <link>https://zarudama.github.io/tags/java/</link>
       <pubDate>Sat, 08 Jun 2019 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/java/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>emacs</title>
       <link>https://zarudama.github.io/tags/emacs/</link>
       <pubDate>Mon, 08 Dec 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/emacs/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>clojure</title>
       <link>https://zarudama.github.io/tags/clojure/</link>
       <pubDate>Sun, 27 Jul 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/clojure/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>libGDX入門</title>
       <link>https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/</link>
       <pubDate>Sat, 05 Jul 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>tmux</title>
       <link>https://zarudama.github.io/tags/tmux/</link>
       <pubDate>Sat, 21 Jun 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/tmux/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>cygwin</title>
       <link>https://zarudama.github.io/tags/cygwin/</link>
       <pubDate>Fri, 20 Jun 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/cygwin/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>skk ubuntu</title>
       <link>https://zarudama.github.io/tags/skk-ubuntu/</link>
       <pubDate>Sun, 11 May 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/skk-ubuntu/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>windows</title>
       <link>https://zarudama.github.io/tags/windows/</link>
       <pubDate>Wed, 16 Apr 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/windows/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>vim</title>
       <link>https://zarudama.github.io/tags/vim/</link>
       <pubDate>Fri, 04 Apr 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/vim/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>awk</title>
       <link>https://zarudama.github.io/tags/awk/</link>
       <pubDate>Tue, 25 Mar 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/awk/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>jvm</title>
       <link>https://zarudama.github.io/tags/jvm/</link>
       <pubDate>Tue, 25 Mar 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/jvm/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>linux</title>
       <link>https://zarudama.github.io/tags/linux/</link>
       <pubDate>Tue, 25 Mar 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/linux/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>thinkpad</title>
       <link>https://zarudama.github.io/tags/thinkpad/</link>
       <pubDate>Thu, 23 Jan 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/thinkpad/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>misaki</title>
       <link>https://zarudama.github.io/tags/misaki/</link>
       <pubDate>Sat, 11 Jan 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/misaki/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>nexus7</title>
       <link>https://zarudama.github.io/tags/nexus7/</link>
       <pubDate>Mon, 23 Sep 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/nexus7/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>processing</title>
       <link>https://zarudama.github.io/tags/processing/</link>
       <pubDate>Wed, 07 Aug 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/processing/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ubuntu</title>
       <link>https://zarudama.github.io/tags/ubuntu/</link>
       <pubDate>Wed, 07 Aug 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/ubuntu/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>xmonad</title>
       <link>https://zarudama.github.io/tags/xmonad/</link>
       <pubDate>Wed, 07 Aug 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/xmonad/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>helm</title>
       <link>https://zarudama.github.io/tags/helm/</link>
       <pubDate>Fri, 14 Jun 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/helm/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>firefox</title>
       <link>https://zarudama.github.io/tags/firefox/</link>
       <pubDate>Fri, 03 May 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/firefox/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>hamari</title>
       <link>https://zarudama.github.io/tags/hamari/</link>
       <pubDate>Sat, 16 Feb 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/hamari/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>oblog</title>
       <link>https://zarudama.github.io/tags/oblog/</link>
       <pubDate>Sat, 16 Feb 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/oblog/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>jdee</title>
       <link>https://zarudama.github.io/tags/jdee/</link>
       <pubDate>Sun, 23 Dec 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/jdee/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ssh</title>
       <link>https://zarudama.github.io/tags/ssh/</link>
       <pubDate>Sat, 22 Dec 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/ssh/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>skk</title>
       <link>https://zarudama.github.io/tags/skk/</link>
       <pubDate>Sun, 09 Sep 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/skk/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>nrepl</title>
       <link>https://zarudama.github.io/tags/nrepl/</link>
       <pubDate>Fri, 07 Sep 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/nrepl/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>git</title>
       <link>https://zarudama.github.io/tags/git/</link>
       <pubDate>Wed, 29 Aug 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/git/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>zenbook</title>
       <link>https://zarudama.github.io/tags/zenbook/</link>
       <pubDate>Sat, 12 May 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/zenbook/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>gamedev</title>
       <link>https://zarudama.github.io/tags/gamedev/</link>
       <pubDate>Wed, 09 Nov 2011 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/tags/gamedev/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

@@ -9,21 +9,21 @@
 $ apt-cyg install screen 次に設定ファイル。
 defencoding utf8 escape ^z^z startup_message off vbell off hardstatus alwayslastline &#34;%w&#34; で端末を利用するときは次の手順で。
 $ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A HOST ssh-agentを起動してから、screenすることで毎回ssh-agent とssh-addをする必要がなくなる。
-あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 =Cygwin Terminal= で疑似マルチターミナルが実現できた!" />
+あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 Cygwin Terminal で疑似マルチターミナルが実現できた!" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/puttycygwin-terminal/" />
-<meta property="article:published_time" content="2012-08-27T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2012-08-27T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/puttycygwin-terminal/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2012-08-27T14:01:39+09:00" />
+<meta property="article:modified_time" content="2012-08-27T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="puttyをやめて、cygwin Terminalにする"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="puttyをやめて、cygwin Terminalにする"/>
 <meta name="twitter:description" content="puttyベースのminntyがいつのまにcygwinに完全統合されて、 Cygwin Terminal というアプリになっていたので「putty &#43; pagent」の組み合わせを やめて、 Cygwin Terminal と ssh-agent を組みあわせてCygwinだけで SSH接続を実現することにした。
 その際、screenを導入することにした。screenを導入することによって、起動 の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の 設定をする必要がなくなるからだ。
 導入は簡単。
 $ apt-cyg install screen 次に設定ファイル。
 defencoding utf8 escape ^z^z startup_message off vbell off hardstatus alwayslastline &#34;%w&#34; で端末を利用するときは次の手順で。
 $ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A HOST ssh-agentを起動してから、screenすることで毎回ssh-agent とssh-addをする必要がなくなる。
-あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 =Cygwin Terminal= で疑似マルチターミナルが実現できた!"/>
+あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 Cygwin Terminal で疑似マルチターミナルが実現できた!"/>
 
 <title>puttyをやめて、cygwin Terminalにする | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -65,34 +65,43 @@ $ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A
     
     
     
-      <p>puttyベースのminntyがいつのまにcygwinに完全統合されて、 <code>Cygwin
+      <p>
+puttyベースのminntyがいつのまにcygwinに完全統合されて、 <code class="verbatim">Cygwin
 Terminal</code> というアプリになっていたので「putty + pagent」の組み合わせを
-やめて、 <code>Cygwin Terminal</code> と <code>ssh-agent</code> を組みあわせてCygwinだけで
+やめて、 <code class="verbatim">Cygwin Terminal</code> と <code class="verbatim">ssh-agent</code> を組みあわせてCygwinだけで
 SSH接続を実現することにした。</p>
-
-<p>その際、screenを導入することにした。screenを導入することによって、起動
+<p>
+その際、screenを導入することにした。screenを導入することによって、起動
 の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の
 設定をする必要がなくなるからだ。</p>
-
-<p>導入は簡単。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install screen</code></pre></div>
-<p>次に設定ファイル。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">defencoding utf8
-escape ^z^z
-startup_message off
-vbell off
-hardstatus alwayslastline <span style="color:#c30">&#34;%w&#34;</span></code></pre></div>
-<p>で端末を利用するときは次の手順で。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh-agent bash
-$ ssh-add ~/.ssh/id_dsa
-$ ssh-add -l <span style="color:#09f;font-style:italic"># 確認</span>
-$ screen
-$ ssh -A HOST</code></pre></div>
+<p>
+導入は簡単。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ apt-cyg install screen</span></span></code></pre></div>
+</div>
+<p>
+次に設定ファイル。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>defencoding utf8
+</span></span><span style="display:flex;"><span>escape ^z^z
+</span></span><span style="display:flex;"><span>startup_message off
+</span></span><span style="display:flex;"><span>vbell off
+</span></span><span style="display:flex;"><span>hardstatus alwayslastline <span style="color:#c30">&#34;%w&#34;</span></span></span></code></pre></div>
+</div>
+<p>
+で端末を利用するときは次の手順で。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ssh-agent bash
+</span></span><span style="display:flex;"><span>$ ssh-add ~/.ssh/id_dsa
+</span></span><span style="display:flex;"><span>$ ssh-add -l <span style="color:#09f;font-style:italic"># 確認</span>
+</span></span><span style="display:flex;"><span>$ screen
+</span></span><span style="display:flex;"><span>$ ssh -A HOST</span></span></code></pre></div>
+</div>
 <p>ssh-agentを起動してから、screenすることで毎回ssh-agent
 とssh-addをする必要がなくなる。</p>
-
-<p>あとは必要に応じて、 <code>C-z c</code> で仮想端末を追加すれば良い。これで、
-=Cygwin Terminal= で疑似マルチターミナルが実現できた!</p>
+<p>
+あとは必要に応じて、 <code class="verbatim">C-z c</code> で仮想端末を追加すれば良い。これで、
+<code class="verbatim">Cygwin Terminal</code> で疑似マルチターミナルが実現できた!</p>
 
     
 </div>

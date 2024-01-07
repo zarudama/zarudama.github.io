@@ -6,31 +6,31 @@
 <meta property="og:description" content="はじめに 最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？ って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。 ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。 良いです。
 そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。 これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。 毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。 自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。
 Caskの導入 インストールは非常に簡単です。
- https://github.com/cask/cask  公式にあるとおり下記コマンドを実施するだけです。
+https://github.com/cask/cask 公式にあるとおり下記コマンドを実施するだけです。
 $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python すると、 ~/.cask にcask自身がインストールされます。 あとは、PATHに下記を追加しておきます。
 export PATH=$PATH:~/.cask/bin これで準備オッケーです。
 Caskファイルを編集して自分の欲しいパッケージを羅列してきます。
-$ vim ~/.emacs.d/Cask で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが =~/.emacs.d/.cask= というディレクトリに保存されていきます。
+$ vim ~/.emacs.d/Cask で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが ~/.emacs.d/.cask というディレクトリに保存されていきます。
 $ cd ~/.emacs.d $ cask 簡単ですなー。
 そしてこれらを利用するにはロードパスを通しておきます。
 (require &#39;cask &#34;~/.cask/cask.el&#34;) (cask-initialize) あとはいつもどおりの自分の設定を書けばオッケー。
 ちなみにWindowsでは導入できないとの情報を見ましたが 自分の環境では問題ありませんでした。環境は下記のとおりです。
 # PC Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz 2.50GHz RAM 4.00 GB # Windows Windows7 Professional Service Pack 1 32bit # emacs GNU Emacs 24." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/cask/" />
-<meta property="article:published_time" content="2014-06-01T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2014-06-01T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/cask/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-06-01T14:01:39+09:00" />
+<meta property="article:modified_time" content="2014-06-01T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Caskの導入と設定ファイルの棚卸し"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Caskの導入と設定ファイルの棚卸し"/>
 <meta name="twitter:description" content="はじめに 最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？ って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。 ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。 良いです。
 そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。 これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。 毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。 自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。
 Caskの導入 インストールは非常に簡単です。
- https://github.com/cask/cask  公式にあるとおり下記コマンドを実施するだけです。
+https://github.com/cask/cask 公式にあるとおり下記コマンドを実施するだけです。
 $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python すると、 ~/.cask にcask自身がインストールされます。 あとは、PATHに下記を追加しておきます。
 export PATH=$PATH:~/.cask/bin これで準備オッケーです。
 Caskファイルを編集して自分の欲しいパッケージを羅列してきます。
-$ vim ~/.emacs.d/Cask で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが =~/.emacs.d/.cask= というディレクトリに保存されていきます。
+$ vim ~/.emacs.d/Cask で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが ~/.emacs.d/.cask というディレクトリに保存されていきます。
 $ cd ~/.emacs.d $ cask 簡単ですなー。
 そしてこれらを利用するにはロードパスを通しておきます。
 (require &#39;cask &#34;~/.cask/cask.el&#34;) (cask-initialize) あとはいつもどおりの自分の設定を書けばオッケー。
@@ -67,7 +67,7 @@ $ cd ~/.emacs.d $ cask 簡単ですなー。
 <section>
       <span class="date">作成日: 2014-06-01</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2014-06-01</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;166 文字> </span>
+      <sapn class="wordcount"> &lt;165 文字> </span>
     </section>
     
   </aside>
@@ -77,50 +77,67 @@ $ cd ~/.emacs.d $ cask 簡単ですなー。
     
     
     
-      <h1 id="はじめに">はじめに</h1>
-
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+はじめに
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>最近Caskが流行り始めてますね。標準のパッケージシステムであるpackage.elがあるのにどうよ？
 って最初は否定的だったのですが、その機能が自分が求めてたものだったので導入しました。
 ClojureのLeiningenみたいに設定ファイルを記述してコマンド叩けば自動でライブラリを落としてくれます。
 良いです。</p>
-
-<p>そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。
+<p>
+そしてCask導入ついでに、設定ファイルたちの見直しを実施しました。
 これって部屋の掃除と同じで、なかなか気がすすまない作業ですよね。
 毎日すこしずつ掃除してればちょっとの手間ですむけど溜め込むと大変。
 自分は後者でした。ここでは、Caskの導入方法と、自分の設定ファイルの解説をしたいと思います。</p>
-
-<h1 id="caskの導入">Caskの導入</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+Caskの導入
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
 <p>インストールは非常に簡単です。</p>
-
 <ul>
-<li>https://github.com/cask/cask</li>
+<li><a href="https://github.com/cask/cask">https://github.com/cask/cask</a></li>
 </ul>
-
 <p>公式にあるとおり下記コマンドを実施するだけです。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python</code></pre></div>
-<p>すると、 <code>~/.cask</code> にcask自身がインストールされます。
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python</span></span></code></pre></div>
+</div>
+<p>すると、 <code class="verbatim">~/.cask</code> にcask自身がインストールされます。
 あとは、PATHに下記を追加しておきます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:~/.cask/bin</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:~/.cask/bin</span></span></code></pre></div>
+</div>
 <p>これで準備オッケーです。</p>
-
-<p>Caskファイルを編集して自分の欲しいパッケージを羅列してきます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ vim ~/.emacs.d/Cask</code></pre></div>
-<p>で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが
-=~/.emacs.d/.cask= というディレクトリに保存されていきます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~/.emacs.d
-$ cask</code></pre></div>
+<p>
+Caskファイルを編集して自分の欲しいパッケージを羅列してきます。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ vim ~/.emacs.d/Cask</span></span></code></pre></div>
+</div>
+<p>
+で、最後に下記コマンドを実行すれば、あとはツラツラと必要なパッケージが
+<code class="verbatim">~/.emacs.d/.cask</code> というディレクトリに保存されていきます。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ <span style="color:#366">cd</span> ~/.emacs.d
+</span></span><span style="display:flex;"><span>$ cask</span></span></code></pre></div>
+</div>
 <p>簡単ですなー。</p>
-
-<p>そしてこれらを利用するにはロードパスを通しておきます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">require</span> <span style="color:#fc3">&#39;cask</span> <span style="color:#c30">&#34;~/.cask/cask.el&#34;</span>)
-(<span style="color:#033">cask-initialize</span>)</code></pre></div>
+<p>
+そしてこれらを利用するにはロードパスを通しておきます。</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#366">require</span> <span style="color:#fc3">&#39;cask</span> <span style="color:#c30">&#34;~/.cask/cask.el&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#033">cask-initialize</span>)</span></span></code></pre></div>
+</div>
 <p>あとはいつもどおりの自分の設定を書けばオッケー。</p>
-
-<p>ちなみにWindowsでは導入できないとの情報を見ましたが
+<p>
+ちなみにWindowsでは導入できないとの情報を見ましたが
 自分の環境では問題ありませんでした。環境は下記のとおりです。</p>
-
-<pre><code># PC
+<pre class="example">
+# PC
 Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz 2.50GHz
 RAM 4.00 GB
 
@@ -135,50 +152,64 @@ GNU Emacs 24.3.1 (i386-mingw-nt6.1.7601) of 2013-03-18 on MARVIN
 # Cygwin
 $ uname -r
 1.7.30(0.272/5/3)
-</code></pre>
-
-<h1 id="emacs設定ファイルの書き方">Emacs設定ファイルの書き方</h1>
-
+</pre>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+Emacs設定ファイルの書き方
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
 <p>.emacsの整理にあたっては、下記の方やりかたを全面採用しました。</p>
-
 <ul>
-<li>http://unknownplace.org/memo/2013/01/21/1/</li>
-<li>https://github.com/emacs-jp/emacs-jp.github.com/issues/15#issuecomment-13706554</li>
-- 
-このやり方を採用すれば
+<li><a href="http://unknownplace.org/memo/2013/01/21/1/">http://unknownplace.org/memo/2013/01/21/1/</a></li>
+<li><a href="https://github.com/emacs-jp/emacs-jp.github.com/issues/15#issuecomment-13706554">https://github.com/emacs-jp/emacs-jp.github.com/issues/15#issuecomment-13706554</a></li>
+<li></li>
 </ul>
-
-<p>$ emacs -q -l init.e</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"></code></pre></div>
+<p>このやり方を採用すれば</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ emacs -q -l init.el</span></span></code></pre></div>
+</div>
 <p>とするだけで自分の環境が閉じた状態で簡単に再現できます。
 設定ファイルを公開している方は、みんなこの方法を採用したほうがいいんじゃないかなーと思います。</p>
-
-<p>ちなみに、初期化ファイルは、init-loaderを使用するのが定番のようですが、
+<p>
+ちなみに、初期化ファイルは、init-loaderを使用するのが定番のようですが、
 自分には合いませんでした。ファイル名をいじって読み込む順番や読み込みの有無を指定するのが苦手で。
 それよりはコードを直接いじったりコメントアウトするほうが楽でした。</p>
-
-<h1 id="私の-emacsのインストール方法">私の.emacsのインストール方法</h1>
-
-<p>私のemacs環境は下記の方法でどなたでも試すことができます(ただしまだテストしてません)。</p>
-
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+私の.emacsのインストール方法
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>
+私のemacs環境は下記の方法でどなたでも試すことができます(ただしまだテストしてません)。</p>
 <ul>
-<li>https://github.com/mikio/.emacs.d</li>
+<li><a href="https://github.com/mikio/.emacs.d">https://github.com/mikio/.emacs.d</a></li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~
-$ git clone https://github.com/mikio/.emacs.d.git
-$ <span style="color:#366">cd</span> .emacs.d
-$ cask
-$ emacs -q -l init.el</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ <span style="color:#366">cd</span> ~
+</span></span><span style="display:flex;"><span>$ git clone https://github.com/mikio/.emacs.d.git
+</span></span><span style="display:flex;"><span>$ <span style="color:#366">cd</span> .emacs.d
+</span></span><span style="display:flex;"><span>$ cask
+</span></span><span style="display:flex;"><span>$ emacs -q -l init.el</span></span></code></pre></div>
+</div>
 <p>ちなみに、手動インストールが必要なddskkやJDEEなどはインストールできません(当然)。</p>
-
-<p>やりかたを公開しているのは別にオレオレemacsをみんなに使って欲しいのではなくて
+<p>
+やりかたを公開しているのは別にオレオレemacsをみんなに使って欲しいのではなくて
 自分がどこでも環境を再構築できるようにしたいためです。念の為。</p>
-
-<h1 id="私の-emacsのディレクトリ配置">私の.emacsのディレクトリ配置</h1>
-
-<p>ディレクトリ構成は下記のようになってます。</p>
-
-<pre><code>$HOME
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+私の.emacsのディレクトリ配置
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>
+ディレクトリ構成は下記のようになってます。</p>
+<pre class="example">
+$HOME
   + Dropbox/site-lisp/ # 手動でインストールしたlisp
   + .cask/             # Cask自身のインストール場所
   + .skk/ # ddskkのプライベート辞書の場所
@@ -187,20 +218,37 @@ $ emacs -q -l init.el</code></pre></div>
       init.el # ブート的な起動ファイル
       .cask/  # Caskによりインストールされたパッケージ群の保存場所
       conf/  # 各パッケージの初期化ファイル群
-</code></pre>
-
-<h1 id="私の-emacsの分割のポリシー">私の.emacsの分割のポリシー</h1>
-
+</pre>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+私の.emacsの分割のポリシー
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
 <p>最後に設定ファイル分割のポリシーをメモしておきます。</p>
-
 <ul>
-<li>requireが必要ない設定(キーバインドとか、単純な設定など)</li>
+<li>
+<p>requireが必要ない設定(キーバインドとか、単純な設定など)</p>
+<ul>
 <li>conf/init.elにまとめる</li>
-<li>標準取り込み済みだけどrequireが必要な設定</li>
+</ul>
+</li>
+<li>
+<p>標準取り込み済みだけどrequireが必要な設定</p>
+<ul>
 <li>conf/extend.elにまとめる</li>
-<li>caskで取り込んだ外部パッケージ</li>
+</ul>
+</li>
+<li>
+<p>caskで取り込んだ外部パッケージ</p>
+<ul>
 <li>適当な単位で処理を分ける</li>
-<li>完全に手でインストールしなければならないもの</li>
+</ul>
+</li>
+<li>
+<p>完全に手でインストールしなければならないもの</p>
+<ul>
 <li>JDEE</li>
 <li>ddskk</li>
 <li>sdic</li>
@@ -208,10 +256,11 @@ $ emacs -q -l init.el</code></pre></div>
 <li>navi2ch</li>
 <li>これらは、個別に設定ファイルを準備</li>
 </ul>
-
-<ul>
+</li>
 <li>全体として、elispが存在しなければ無視するように気を使う</li>
 </ul>
+</div>
+</div>
 
     
 </div>

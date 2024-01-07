@@ -5,35 +5,33 @@
 <meta property="og:title" content="Clojureでゲームプログラミングその1 実験編" />
 <meta property="og:description" content="はじめに LispでGAMEつくろうかなと。 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(&#43;Java)を比較したときに 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
 とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
- ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
+ウィンドウ表示 画像表示 メインループの実現 画像移動 もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
 ウィンドウ表示 ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。
 (import (javax.swing JFrame)) (def frame (JFrame. &#34;Clojure SampleGame&#34;)) (doto frame (.setSize 640 480) (.setVisible true)) でた。簡単すぎる！結構感動します。
- 初めてのウィンドウ表示!   次は画像を表示してみる。
+初めてのウィンドウ表示! 次は画像を表示してみる。
 画像表示 まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。
 java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&#34;hoge.png&#34;)); 下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
-http://mikio.github.io/img/clojure-game01/gai.png
-画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
-(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;)))  とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
-(import (java.awt Graphics)) (def graphics (." />
+スプライトパターン 画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
+(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;))) とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
+(import (java.awt Graphics)) (def graphics (.. frame (getGraphics))) (doto graphics (." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/clojure1/" />
-<meta property="article:published_time" content="2011-11-09T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2011-11-09T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/clojure1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2011-11-09T14:01:39+09:00" />
+<meta property="article:modified_time" content="2011-11-09T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Clojureでゲームプログラミングその1 実験編"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Clojureでゲームプログラミングその1 実験編"/>
 <meta name="twitter:description" content="はじめに LispでGAMEつくろうかなと。 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(&#43;Java)を比較したときに 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。
 とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。
- ウィンドウ表示 画像表示 メインループの実現 画像移動  もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
+ウィンドウ表示 画像表示 メインループの実現 画像移動 もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。
 ウィンドウ表示 ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。
 (import (javax.swing JFrame)) (def frame (JFrame. &#34;Clojure SampleGame&#34;)) (doto frame (.setSize 640 480) (.setVisible true)) でた。簡単すぎる！結構感動します。
- 初めてのウィンドウ表示!   次は画像を表示してみる。
+初めてのウィンドウ表示! 次は画像を表示してみる。
 画像表示 まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。
 java.awt.image.BufferedImage bimage; image = javax.imageio.ImageIO.read(new java.io.File(&#34;hoge.png&#34;)); 下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。
-http://mikio.github.io/img/clojure-game01/gai.png
-画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
-(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;)))  とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
-(import (java.awt Graphics)) (def graphics (."/>
+スプライトパターン 画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。 外部ファイルはプロジェクトルートからの相対パスでOKのようである。
+(import (java.awt.image BufferedImage)) (import (javax.imageio ImageIO)) (import (java.io File)) (def image (ImageIO/read (File. &#34;gai.png&#34;))) とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。
+(import (java.awt Graphics)) (def graphics (.. frame (getGraphics))) (doto graphics (."/>
 
 <title>Clojureでゲームプログラミングその1 実験編 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -65,7 +63,7 @@ http://mikio.github.io/img/clojure-game01/gai.png
 <section>
       <span class="date">作成日: 2011-11-09</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2011-11-09</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;921 文字> </span>
+      <sapn class="wordcount"> &lt;972 文字> </span>
     </section>
     
   </aside>
@@ -75,115 +73,173 @@ http://mikio.github.io/img/clojure-game01/gai.png
     
     
     
-      <h1 id="はじめに">はじめに</h1>
-
-<p>LispでGAMEつくろうかなと。
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+はじめに
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>
+LispでGAMEつくろうかなと。
 最初CommonLispでつくろうかなと思ったけども、現時点でCommonLispとClojure(+Java)を比較したときに
 後者のほうが詳しいかなということで、まずはClojureでつくってみて、落ち着いたらCommonLispでもつくってみようかなと。</p>
-
-<p>とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。</p>
-
+<p>
+とりあえず、下記の流れで、画像を表示して動かすところまでチャレンジしてみる。</p>
 <ul>
 <li>ウィンドウ表示</li>
 <li>画像表示</li>
 <li>メインループの実現</li>
 <li>画像移動</li>
 </ul>
-
 <p>もちろん前回インストールしたSLIMEとLeiningenを使って作業しますよ。
 ちなみにClojureで「もの」を作るのは初めてなので、ホント手探りです。
 しかもClojureでGameプログラミングの情報ってほとんどないんだよな。さて。</p>
-
-<h1 id="ウィンドウ表示">ウィンドウ表示</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+ウィンドウ表示
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
 <p>ClojureでのGUIはさっぱりわからんけども、とりあえずJavaのサンプルとかを頼りにウィンドウを表示してみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Clojure" data-lang="Clojure">(<span style="color:#366">import </span>(<span style="color:#033">javax.swing</span> <span style="color:#033">JFrame</span>))
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">frame</span> (<span style="color:#033">JFrame.</span> <span style="color:#c30">&#34;Clojure SampleGame&#34;</span>)) 
-(<span style="color:#366">doto </span><span style="color:#033">frame</span>
-(<span style="color:#033">.setSize</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
-  (<span style="color:#033">.setVisible</span> <span style="color:#033">true</span>))</code></pre></div>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">javax.swing</span> <span style="color:#033">JFrame</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">frame</span> (<span style="color:#c0f">JFrame.</span> <span style="color:#c30">&#34;Clojure SampleGame&#34;</span>)) 
+</span></span><span style="display:flex;"><span>(<span style="color:#366">doto </span><span style="color:#033">frame</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#c0f">.setSize</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#c0f">.setVisible</span> <span style="color:#033">true</span>))</span></span></code></pre></div>
+</div>
 <p>でた。簡単すぎる！結構感動します。</p>
-
-<figure class="center">
-    <img src="/img/clojure-game01/01.png"/> <figcaption>
+<p>
+<figure class="center"><img src="/img/clojure-game01/01.png"/><figcaption>
             <h4>初めてのウィンドウ表示!</h4>
         </figcaption>
 </figure>
-
-
-<p>次は画像を表示してみる。</p>
-
-<h1 id="画像表示">画像表示</h1>
-
-<p>まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">java.awt.image.BufferedImage</span> <span style="color:#033">bimage</span><span style="color:#09f;font-style:italic">;</span>
-<span style="color:#033">image</span> <span style="color:#366">= </span><span style="color:#033">javax.imageio.ImageIO.read</span>(<span style="color:#069;font-weight:bold">new </span><span style="color:#033">java.io.File</span>(<span style="color:#c30">&#34;hoge.png&#34;</span>))<span style="color:#09f;font-style:italic">;</span></code></pre></div>
+</p>
+<p>
+次は画像を表示してみる。</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+画像表示
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>
+まずは、画像ファイルの読み込みだ。下記のコードをclojureで動かしてみる。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">java.awt.image.BufferedImage</span> <span style="color:#033">bimage</span><span style="color:#09f;font-style:italic">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">image</span> <span style="color:#366">= </span><span style="color:#033">javax.imageio.ImageIO.read</span>(<span style="color:#069;font-weight:bold">new </span><span style="color:#033">java.io.File</span>(<span style="color:#c30">&#34;hoge.png&#34;</span>))<span style="color:#09f;font-style:italic">;</span></span></span></code></pre></div>
+</div>
 <p>下記の画像を表示してみる。これは昔作ったゲームで使用したものでアニメーションパターンもはいってる。</p>
-
-<p><a href="http://mikio.github.io/img/clojure-game01/gai.png" title="http://mikio.github.io/img/clojure-game01/gai.png">http://mikio.github.io/img/clojure-game01/gai.png</a></p>
-
-<p>画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。
+<figure>
+<img src="http://mikio.github.io/img/clojure-game01/gai.png" alt="http://mikio.github.io/img/clojure-game01/gai.png" title="http://mikio.github.io/img/clojure-game01/gai.png" /><figcaption>
+スプライトパターン
+</figcaption>
+</figure>
+<p>
+画像ファイルはプロジェクト直下においてある（REPLを起動したディレクトリ)。
 外部ファイルはプロジェクトルートからの相対パスでOKのようである。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">import </span>(<span style="color:#033">java.awt.image</span> <span style="color:#033">BufferedImage</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">javax.imageio</span> <span style="color:#033">ImageIO</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">java.io</span> <span style="color:#033">File</span>))
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">image</span> (<span style="color:#033">ImageIO/read</span> (<span style="color:#033">File.</span> <span style="color:#c30">&#34;gai.png&#34;</span>))) </code></pre></div>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.awt.image</span> <span style="color:#033">BufferedImage</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">javax.imageio</span> <span style="color:#033">ImageIO</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.io</span> <span style="color:#033">File</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">image</span> (<span style="color:#c0f">ImageIO/read</span> (<span style="color:#c0f">File.</span> <span style="color:#c30">&#34;gai.png&#34;</span>)))</span></span></code></pre></div>
+</div>
 <p>とりあえずうまく読み込めたっぽいので、ウィンドウに表示してみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">import </span>(<span style="color:#033">java.awt</span> <span style="color:#033">Graphics</span>))
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">graphics</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#033">getGraphics</span>)))
-(<span style="color:#366">doto </span><span style="color:#033">graphics</span>
-  (<span style="color:#033">.drawImage</span> <span style="color:#033">image</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#033">frame</span>))</code></pre></div>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.awt</span> <span style="color:#033">Graphics</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">graphics</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#c0f">getGraphics</span>)))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">doto </span><span style="color:#033">graphics</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#c0f">.drawImage</span> <span style="color:#033">image</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#033">frame</span>))</span></span></code></pre></div>
+</div>
 <p>でた！</p>
-
-<p><a href="http://mikio.github.io/img/clojure-game01/02.png" title="http://mikio.github.io/img/clojure-game01/02.png">http://mikio.github.io/img/clojure-game01/02.png</a></p>
-
-<p>線もかけたよ。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#033">drawLine</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>))</code></pre></div>
-<p><a href="http://mikio.github.io/img/clojure-game01/03.png" title="http://mikio.github.io/img/clojure-game01/03.png">http://mikio.github.io/img/clojure-game01/03.png</a></p>
-
-<p>ところでこれまでの画像表示はタイトルバーにめり込んでしまっている。
+<figure>
+<img src="http://mikio.github.io/img/clojure-game01/02.png" alt="http://mikio.github.io/img/clojure-game01/02.png" title="http://mikio.github.io/img/clojure-game01/02.png" /><figcaption>
+スプライトの表示
+</figcaption>
+</figure>
+<p>
+線もかけたよ。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#c0f">drawLine</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>))</span></span></code></pre></div>
+</div>
+<figure>
+<img src="http://mikio.github.io/img/clojure-game01/03.png" alt="http://mikio.github.io/img/clojure-game01/03.png" title="http://mikio.github.io/img/clojure-game01/03.png" /><figcaption>
+いろいろ試す
+</figcaption>
+</figure>
+<p>
+ところでこれまでの画像表示はタイトルバーにめり込んでしまっている。
 これは描画命令の座標原点が、ウィンドウそのもの左上を原点としているためである。
 これを回避するには、Graphics#translateを呼び出す。</p>
-
-<h1 id="位置調整">位置調整</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+位置調整
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
 <p>ずれの原因であるタイトルバーや枠お情報は、java.awt.Insetsとういクラスに格納されている。
 これはJframe#getInsetsメソッドで取得でいるので、束縛しておく。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">insets</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> <span style="color:#033">getInsets</span>)) </code></pre></div>
-<p>確認。それっぽい値が入っている。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> <span style="color:#033">insets</span>
-<span style="color:#555">#</span><span style="color:#033">&lt;Insets</span> <span style="color:#033">java.awt.Insets</span>[<span style="color:#033">top=24</span>,<span style="color:#033">left=1</span>,<span style="color:#033">bottom=5</span>,<span style="color:#033">right=1</span>]<span style="color:#033">&gt;</span></code></pre></div>
-<p>では、このinsetsを使って描画用原点をずらしてみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#033">setVisible</span> <span style="color:#033">true</span>))
-(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#033">translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>)))
-(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#033">clearRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>))
-(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#033">drawImage</span> <span style="color:#033">image</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#033">frame</span>))</code></pre></div>
-<p><a href="http://mikio.github.io/img/clojure-game01/04.png" title="http://mikio.github.io/img/clojure-game01/04.png">http://mikio.github.io/img/clojure-game01/04.png</a></p>
-
-<p>これで左上原点が、ずれていい具合に表示された。</p>
-
-<p>insentsを利用したついでに説明。
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">insets</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> <span style="color:#033">getInsets</span>))</span></span></code></pre></div>
+</div>
+<p>
+確認。それっぽい値が入っている。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> <span style="color:#033">insets</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">#</span><span style="color:#033">&lt;Insets</span> <span style="color:#033">java.awt.Insets</span>[<span style="color:#033">top=24</span>,<span style="color:#033">left=1</span>,<span style="color:#033">bottom=5</span>,<span style="color:#033">right=1</span>]<span style="color:#033">&gt;</span></span></span></code></pre></div>
+</div>
+<p>
+では、このinsetsを使って描画用原点をずらしてみる。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#c0f">setVisible</span> <span style="color:#033">true</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#c0f">translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>)))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#c0f">clearRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">.. </span><span style="color:#033">graphics</span> (<span style="color:#c0f">drawImage</span> <span style="color:#033">image</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#033">frame</span>))</span></span></code></pre></div>
+</div>
+<figure>
+<p><img src="http://mikio.github.io/img/clojure-game01/04.png" alt="http://mikio.github.io/img/clojure-game01/04.png" title="http://mikio.github.io/img/clojure-game01/04.png" /> </p>
+<figcaption>
+原点をずらしたところ
+</figcaption>
+</figure>
+<p>
+これで左上原点が、ずれていい具合に表示された。</p>
+<p>
+insentsを利用したついでに説明。
 実はウィンドウサイズで640x480を指定しているけれども、
 タイトルバーや枠のサイズがあるため、描画領域は640x480よりもちょっと小さい。
 なので、例えば640x480ちょうどのサイズの画像を表示しようとしても少し切れてしまったりする。
 ということで、insentsを利用して描画領域が純粋に640x480似なるように調整する。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">doto </span><span style="color:#033">frame</span>
-    (<span style="color:#033">.setSize</span> (<span style="color:#366">+ </span><span style="color:#f60">640</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">right</span>)) (<span style="color:#366">+ </span><span style="color:#f60">480</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">bottom</span>)))
-    (<span style="color:#033">.setVisible</span> <span style="color:#033">true</span>))</code></pre></div>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">doto </span><span style="color:#033">frame</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setSize</span> (<span style="color:#366">+ </span><span style="color:#f60">640</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">right</span>)) (<span style="color:#366">+ </span><span style="color:#f60">480</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">bottom</span>)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setVisible</span> <span style="color:#033">true</span>))</span></span></code></pre></div>
+</div>
 <p>以上で描画領域の細かい調整が完了した。</p>
-
-<h1 id="画像の一部を表示したい">画像の一部を表示したい</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+画像の一部を表示したい
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
 <p>ところで、現状だとアニメパターンがすべて表示されていてみっともないので
 一部だけを表示したい。
 この要件を満たすには、Graphics#DrawImageで下記のように引数を指定すれば良い。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#033">.drawImage</span>
- 	<span style="color:#033">image</span>   <span style="color:#09f;font-style:italic">;; 描画画像</span>
-	<span style="color:#f60">0</span> <span style="color:#f60">0</span>     <span style="color:#09f;font-style:italic">;; 転送先の左上座標</span>
-	<span style="color:#f60">32</span> <span style="color:#f60">32</span>   <span style="color:#09f;font-style:italic">;; 転送先の右下座標</span>
-	<span style="color:#f60">0</span> <span style="color:#f60">0</span>     <span style="color:#09f;font-style:italic">;; 画像元の左上座標</span>
-	<span style="color:#f60">32</span> <span style="color:#f60">32</span>   <span style="color:#09f;font-style:italic">;; 画像元の右下座標</span>
- 	<span style="color:#033">frame</span>)  <span style="color:#09f;font-style:italic">;; 描画対象</span></code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cojure" data-lang="cojure">(import java.awt.Color)
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#c0f">.drawImage</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#033">image</span>   <span style="color:#09f;font-style:italic">;; 描画画像</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f60">0</span> <span style="color:#f60">0</span>     <span style="color:#09f;font-style:italic">;; 転送先の左上座標</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f60">32</span> <span style="color:#f60">32</span>   <span style="color:#09f;font-style:italic">;; 転送先の右下座標</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f60">0</span> <span style="color:#f60">0</span>     <span style="color:#09f;font-style:italic">;; 画像元の左上座標</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f60">32</span> <span style="color:#f60">32</span>   <span style="color:#09f;font-style:italic">;; 画像元の右下座標</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#033">frame</span>)  <span style="color:#09f;font-style:italic">;; 描画対象</span></span></span></code></pre></div>
+</div>
+<div class="src src-cojure">
+<pre tabindex="0"><code class="language-cojure" data-lang="cojure">(import java.awt.Color)
 (def clear-color (Color. 0 0 127))
 
 (let [g (.. frame (getGraphics))]
@@ -195,269 +251,345 @@ http://mikio.github.io/img/clojure-game01/gai.png
                 0 0 32 32
                 0 0 32 32
                 frame)
-    (.dispose)))</code></pre></div>
-<p><a href="http://mikio.github.io/img/clojure-game01/05.png" title="http://mikio.github.io/img/clojure-game01/05.png">http://mikio.github.io/img/clojure-game01/05.png</a></p>
-
-<p>なんども描画してると、前の画像が残って確認しづらいので
+    (.dispose)))</code></pre>
+</div>
+<figure>
+<img src="http://mikio.github.io/img/clojure-game01/05.png" alt="http://mikio.github.io/img/clojure-game01/05.png" title="http://mikio.github.io/img/clojure-game01/05.png" /><figcaption>
+毎フレーム画像をクリア
+</figcaption>
+</figure>
+<p>
+なんども描画してると、前の画像が残って確認しづらいので
 描画前にクリアカラーで塗りつぶしている。
 ついでにグラフィックオブジェクトもその都度破棄するようにした。</p>
-
-<h1 id="メインループの実現">メインループの実現</h1>
-
-<p>つぎはゲームのかなめ、メインループを実現してみる。
-メインループの実現方法にはにはいろいろあけれども
+<p>
+つぎはゲームのかなめ、メインループを実現してみる。</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+メインループの実現
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
+<p>メインループの実現方法にはにはいろいろあけれども
 とりあえず動かすことが目的なので、
 実装が簡単そうなjava.util.TimerTaskを使用してみる。</p>
-
-<p>Clojureで継承が必要なJavaクラスを使うには、proxyを使う。
+<p>
+Clojureで継承が必要なJavaクラスを使うには、proxyを使う。
 以下のようにTimerTaskを継承したクラスをつくる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">import </span>(<span style="color:#033">java.util</span> <span style="color:#033">Timer</span> <span style="color:#033">TimerTask</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">java.util</span> <span style="color:#033">TimerTask</span>))
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">mainloop</span>
-  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
-    (<span style="color:#033">run</span> []
-      (<span style="color:#366">println </span><span style="color:#c30">&#34;呼びだされた&#34;</span>))
-    )) </code></pre></div>
-<p>テストしてみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span><span style="color:#033">mainloop</span> <span style="color:#033">run</span>) 
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">nil</span></code></pre></div>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.util</span> <span style="color:#033">Timer</span> <span style="color:#033">TimerTask</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.util</span> <span style="color:#033">TimerTask</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">mainloop</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">run</span> []
+</span></span><span style="display:flex;"><span>      (<span style="color:#366">println </span><span style="color:#c30">&#34;呼びだされた&#34;</span>))
+</span></span><span style="display:flex;"><span>    ))</span></span></code></pre></div>
+</div>
+<p>
+テストしてみる。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span><span style="color:#033">mainloop</span> <span style="color:#033">run</span>) 
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">nil</span></span></span></code></pre></div>
+</div>
 <p>うまくいっているようである。</p>
-
-<p>続いてTimeクラスにmainloopを渡してみる。これがはまった。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span>(<span style="color:#033">Timer.</span>) <span style="color:#033">schedule</span> <span style="color:#033">mainloop</span> <span style="color:#f60">0</span> <span style="color:#f60">500</span>)
-
-<span style="color:#033">Malformed</span> <span style="color:#033">member</span> <span style="color:#033">expression</span>
-  [<span style="color:#033">Thrown</span> <span style="color:#366">class </span><span style="color:#033">java.lang.IllegalArgumentException</span>]
-
-<span style="color:#033">Restarts</span><span style="color:#a00;background-color:#faa">:</span>
- <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> [<span style="color:#033">QUIT</span>] <span style="color:#033">Quit</span> <span style="color:#033">to</span> <span style="color:#033">the</span> <span style="color:#033">SLIME</span> <span style="color:#033">top</span> <span style="color:#033">level</span>
-
-<span style="color:#033">Backtrace</span><span style="color:#a00;background-color:#faa">:</span>
-  <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Compiler$HostExpr$Parser.parse</span>(<span style="color:#033">Compiler.java</span><span style="color:#fc3">:825</span>)
-  <span style="color:#f60">1</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Compiler.analyzeSeq</span>(<span style="color:#033">Compiler.java</span><span style="color:#fc3">:5369</span>)</code></pre></div>
+<p>
+続いてTimeクラスにmainloopを渡してみる。これがはまった。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span>(<span style="color:#c0f">Timer.</span>) <span style="color:#033">schedule</span> <span style="color:#033">mainloop</span> <span style="color:#f60">0</span> <span style="color:#f60">500</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#033">Malformed</span> <span style="color:#033">member</span> <span style="color:#033">expression</span>
+</span></span><span style="display:flex;"><span>  [<span style="color:#033">Thrown</span> <span style="color:#366">class </span><span style="color:#033">java.lang.IllegalArgumentException</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#033">Restarts</span><span style="color:#a00;background-color:#faa">:</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> [<span style="color:#033">QUIT</span>] <span style="color:#033">Quit</span> <span style="color:#033">to</span> <span style="color:#033">the</span> <span style="color:#033">SLIME</span> <span style="color:#033">top</span> <span style="color:#033">level</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#033">Backtrace</span><span style="color:#a00;background-color:#faa">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Compiler$HostExpr$Parser.parse</span>(<span style="color:#c0f">Compiler.java</span><span style="color:#fc3">:825</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f60">1</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Compiler.analyzeSeq</span>(<span style="color:#c0f">Compiler.java</span><span style="color:#fc3">:5369</span>)</span></span></code></pre></div>
+</div>
 <p>「Malformed member expression」の原因がわからなくてかなりはまった。
 ぐぐった結果、javaのlong型を引数として渡すときは、long関数を呼び出す必要があることがわかった。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span>(<span style="color:#033">Timer.</span>) <span style="color:#033">schedule</span> <span style="color:#033">mainloop</span> (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">500</span>))
-<span style="color:#033">No</span> <span style="color:#033">matching</span> <span style="color:#033">field</span> <span style="color:#033">found</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">schedule</span> <span style="color:#366">for class </span><span style="color:#033">java.util.Timer</span>
-  [<span style="color:#033">Thrown</span> <span style="color:#366">class </span><span style="color:#033">java.lang.IllegalArgumentException</span>]
-
-<span style="color:#033">Restarts</span><span style="color:#a00;background-color:#faa">:</span>
- <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> [<span style="color:#033">QUIT</span>] <span style="color:#033">Quit</span> <span style="color:#033">to</span> <span style="color:#033">the</span> <span style="color:#033">SLIME</span> <span style="color:#033">top</span> <span style="color:#033">level</span>
-
-<span style="color:#033">Backtrace</span><span style="color:#a00;background-color:#faa">:</span>
-  <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Reflector.getInstanceField</span>(<span style="color:#033">Reflector.java</span><span style="color:#fc3">:245</span>)
-  <span style="color:#f60">1</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Reflector.invokeNoArgInstanceMember</span>(<span style="color:#033">Reflector.java</span><span style="color:#fc3">:267</span>)</code></pre></div>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span>(<span style="color:#c0f">Timer.</span>) <span style="color:#033">schedule</span> <span style="color:#033">mainloop</span> (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">500</span>))
+</span></span><span style="display:flex;"><span><span style="color:#033">No</span> <span style="color:#033">matching</span> <span style="color:#033">field</span> <span style="color:#033">found</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">schedule</span> <span style="color:#366">for class </span><span style="color:#033">java.util.Timer</span>
+</span></span><span style="display:flex;"><span>  [<span style="color:#033">Thrown</span> <span style="color:#366">class </span><span style="color:#033">java.lang.IllegalArgumentException</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#033">Restarts</span><span style="color:#a00;background-color:#faa">:</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> [<span style="color:#033">QUIT</span>] <span style="color:#033">Quit</span> <span style="color:#033">to</span> <span style="color:#033">the</span> <span style="color:#033">SLIME</span> <span style="color:#033">top</span> <span style="color:#033">level</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#033">Backtrace</span><span style="color:#a00;background-color:#faa">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f60">0</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Reflector.getInstanceField</span>(<span style="color:#c0f">Reflector.java</span><span style="color:#fc3">:245</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f60">1</span><span style="color:#a00;background-color:#faa">:</span> <span style="color:#033">clojure.lang.Reflector.invokeNoArgInstanceMember</span>(<span style="color:#c0f">Reflector.java</span><span style="color:#fc3">:267</span>)</span></span></code></pre></div>
+</div>
 <p>とここでまたエラー。でまたぐぐった結果、メソッドの呼び出し方が間違っていたorz。
 scheduleをカッコでくくらないと駄目らしい。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span>(<span style="color:#033">Timer.</span>) (<span style="color:#033">schedule</span> <span style="color:#033">mainloop</span> (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">500</span>)))
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">呼びだされた</span>
-<span style="color:#033">nil</span></code></pre></div>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#366">.. </span>(<span style="color:#c0f">Timer.</span>) (<span style="color:#c0f">schedule</span> <span style="color:#033">mainloop</span> (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">500</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">呼びだされた</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">nil</span></span></span></code></pre></div>
+</div>
 <p>ということでやっとTimerクラスにTimerタスクで作ったメインループを渡すことができた。ふぅ。
 次は画像を動かしてみる。</p>
-
-<h1 id="画像の移動">画像の移動</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+画像の移動
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
 <p>いよいよ画像に魂を与えるw。その為には状態を管理しなければならない。座標だ。
 Clojureはデフォルトでは値を更新できない。これを変更するためには特別な定義が必要。
 スレッドを使う予定は今のところ無いので、扱いの簡単そうなatomを使用してみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#09f;font-style:italic">;; プレイヤー定義</span>
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">player</span> (<span style="color:#033">atom</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]}))</code></pre></div>
-<p>こんな感じで参照できる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>)
-[<span style="color:#f60">0</span> <span style="color:#f60">0</span>]
-<span style="color:#033">user&gt;</span> </code></pre></div>
-<p>x座標は配列の0番目</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>) 
-<span style="color:#f60">0</span></code></pre></div>
-<p>y座標は配列の1番目</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>) 
-<span style="color:#f60">0</span></code></pre></div>
-<p>playerの座標を更新してみる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> <span style="color:#033">player</span>
-<span style="color:#555">#</span><span style="color:#033">&lt;Atom</span><span style="color:#555">@</span><span style="color:#f60">2</span><span style="color:#033">a134eca</span><span style="color:#a00;background-color:#faa">:</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]}<span style="color:#033">&gt;</span>
-
-<span style="color:#09f;font-style:italic">;; 変更</span>
-<span style="color:#033">user&gt;</span> (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">1</span>])
-{<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">1</span>]}
-
-<span style="color:#09f;font-style:italic">;; たしかに更新された</span>
-<span style="color:#033">user&gt;</span> <span style="color:#033">player</span>
-<span style="color:#555">#</span><span style="color:#033">&lt;Atom</span><span style="color:#555">@</span><span style="color:#f60">2</span><span style="color:#033">a134eca</span><span style="color:#a00;background-color:#faa">:</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">1</span>]}<span style="color:#033">&gt;</span></code></pre></div>
-<p>x座標を更新させる</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#033">user&gt;</span> (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
-{<span style="color:#fc3">:pos</span> [<span style="color:#f60">1</span> <span style="color:#f60">1</span>]}
-<span style="color:#033">user&gt;</span> (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
-{<span style="color:#fc3">:pos</span> [<span style="color:#f60">2</span> <span style="color:#f60">1</span>]}
-<span style="color:#033">user&gt;</span> (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
-{<span style="color:#fc3">:pos</span> [<span style="color:#f60">3</span> <span style="color:#f60">1</span>]}
-<span style="color:#033">user&gt;</span> (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
-{<span style="color:#fc3">:pos</span> [<span style="color:#f60">4</span> <span style="color:#f60">1</span>]}</code></pre></div>
-<p>ではここまでの移動処理を組み込む。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">mainloop</span>
-  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
-    (<span style="color:#033">run</span> []
-      (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>]) <span style="color:#09f;font-style:italic">;; 座標更新</span>
-      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">&lt; </span><span style="color:#f60">640</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>))
-             (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]))
-
-      (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">g</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#033">getGraphics</span>))
-            <span style="color:#033">player-x</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)
-            <span style="color:#033">player-y</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>)]
-
-        (<span style="color:#366">doto </span><span style="color:#033">g</span>
-          (<span style="color:#033">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
-          (<span style="color:#033">.setColor</span> <span style="color:#033">clear-color</span>)
-          (<span style="color:#033">.fillRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
-          (<span style="color:#033">.drawImage</span> <span style="color:#033">image</span>
-                      <span style="color:#033">player-x</span> <span style="color:#033">player-y</span>
-                      (<span style="color:#366">+ </span><span style="color:#033">player-x</span> <span style="color:#f60">32</span>) (<span style="color:#366">+ </span><span style="color:#033">player-y</span> <span style="color:#f60">32</span>)
-                      <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">32</span> <span style="color:#f60">32</span>
-                      <span style="color:#033">frame</span>)
-          (<span style="color:#033">.dispose</span>))))))</code></pre></div>
-<p>定義したメインループを20ms間隔で呼び出す。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">.. </span>(<span style="color:#033">Timer.</span>) (<span style="color:#033">schedule</span> <span style="color:#033">mainloop</span> (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">20</span>)))</code></pre></div>
-<p><div class="youtube">
-<iframe src="http://www.youtube.com/embed/T4LLkAqETLQ?hl=ja&fs=1" frameborder="0" allowfullscreen></iframe>
-</div></p>
-
-<p>画面がちらつきというか、画像が点滅していて話にならない。
-次はこのチラツキを抑えるために java.awt.image.BufferStrategyを使ってみる。</p>
-
-<h1 id="ちらつき防止対策">ちらつき防止対策</h1>
-
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">;; プレイヤー定義</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">player</span> (<span style="color:#c0f">atom</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]}))</span></span></code></pre></div>
+</div>
+<p>
+こんな感じで参照できる。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>)
+</span></span><span style="display:flex;"><span>[<span style="color:#f60">0</span> <span style="color:#f60">0</span>]
+</span></span><span style="display:flex;"><span><span style="color:#033">user&gt;</span></span></span></code></pre></div>
+</div>
+<p>
+x座標は配列の0番目</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>) 
+</span></span><span style="display:flex;"><span><span style="color:#f60">0</span></span></span></code></pre></div>
+</div>
+<p>
+y座標は配列の1番目</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>) 
+</span></span><span style="display:flex;"><span><span style="color:#f60">0</span></span></span></code></pre></div>
+</div>
+<p>
+playerの座標を更新してみる。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> <span style="color:#033">player</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">#</span><span style="color:#033">&lt;Atom</span><span style="color:#555">@</span><span style="color:#f60">2</span><span style="color:#033">a134eca</span><span style="color:#a00;background-color:#faa">:</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]}<span style="color:#033">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">;; 変更</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">1</span>])
+</span></span><span style="display:flex;"><span>{<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">1</span>]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">;; たしかに更新された</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">user&gt;</span> <span style="color:#033">player</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">#</span><span style="color:#033">&lt;Atom</span><span style="color:#555">@</span><span style="color:#f60">2</span><span style="color:#033">a134eca</span><span style="color:#a00;background-color:#faa">:</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">1</span>]}<span style="color:#033">&gt;</span></span></span></code></pre></div>
+</div>
+<p>
+x座標を更新させる</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
+</span></span><span style="display:flex;"><span>{<span style="color:#fc3">:pos</span> [<span style="color:#f60">1</span> <span style="color:#f60">1</span>]}
+</span></span><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
+</span></span><span style="display:flex;"><span>{<span style="color:#fc3">:pos</span> [<span style="color:#f60">2</span> <span style="color:#f60">1</span>]}
+</span></span><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
+</span></span><span style="display:flex;"><span>{<span style="color:#fc3">:pos</span> [<span style="color:#f60">3</span> <span style="color:#f60">1</span>]}
+</span></span><span style="display:flex;"><span><span style="color:#033">user&gt;</span> (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>])
+</span></span><span style="display:flex;"><span>{<span style="color:#fc3">:pos</span> [<span style="color:#f60">4</span> <span style="color:#f60">1</span>]}</span></span></code></pre></div>
+</div>
+<p>
+ではここまでの移動処理を組み込む。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">mainloop</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">run</span> []
+</span></span><span style="display:flex;"><span>      (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>]) <span style="color:#09f;font-style:italic">;; 座標更新</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">&lt; </span><span style="color:#f60">640</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>))
+</span></span><span style="display:flex;"><span>             (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">g</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#c0f">getGraphics</span>))
+</span></span><span style="display:flex;"><span>            <span style="color:#033">player-x</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#033">player-y</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>)]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        (<span style="color:#366">doto </span><span style="color:#033">g</span>
+</span></span><span style="display:flex;"><span>          (<span style="color:#c0f">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
+</span></span><span style="display:flex;"><span>          (<span style="color:#c0f">.setColor</span> <span style="color:#033">clear-color</span>)
+</span></span><span style="display:flex;"><span>          (<span style="color:#c0f">.fillRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
+</span></span><span style="display:flex;"><span>          (<span style="color:#c0f">.drawImage</span> <span style="color:#033">image</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#033">player-x</span> <span style="color:#033">player-y</span>
+</span></span><span style="display:flex;"><span>                      (<span style="color:#366">+ </span><span style="color:#033">player-x</span> <span style="color:#f60">32</span>) (<span style="color:#366">+ </span><span style="color:#033">player-y</span> <span style="color:#f60">32</span>)
+</span></span><span style="display:flex;"><span>                      <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">32</span> <span style="color:#f60">32</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#033">frame</span>)
+</span></span><span style="display:flex;"><span>          (<span style="color:#c0f">.dispose</span>))))))</span></span></code></pre></div>
+</div>
+<p>
+定義したメインループを20ms間隔で呼び出す。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">.. </span>(<span style="color:#c0f">Timer.</span>) (<span style="color:#c0f">schedule</span> <span style="color:#033">mainloop</span> (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">20</span>)))</span></span></code></pre></div>
+</div>
+<div class="html-block">
+<p>&lt;div class=&#34;youtube&#34;&gt;
+&lt;iframe src=&#34;<a href="http://www.youtube.com/embed/T4LLkAqETLQ?hl=ja&amp;fs=1">http://www.youtube.com/embed/T4LLkAqETLQ?hl=ja&amp;fs=1</a>&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</p>
+</div>
+<p>
+画面がちらつきというか、画像が点滅していて話にならない。
+次はこのチラツキを抑えるために java.awt.image.BufferStrategyを使ってみる。 </p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+ちらつき防止対策
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
 <p>下記のようにJFrame#setIgnoreRepaint, JFrame#createBufferStrategyを呼び出しバッファの準備をする。
 この時注意すべきは、JFrame#createBufferStrategyはJFrame#setVisibleのあとに呼び出さなければならないこと。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#366">doto </span><span style="color:#033">frame</span>
-    (<span style="color:#033">.setSize</span> (<span style="color:#366">+ </span><span style="color:#f60">640</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">right</span>)) (<span style="color:#366">+ </span><span style="color:#f60">480</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">bottom</span>)))
-    (<span style="color:#033">.setVisible</span> <span style="color:#033">true</span>)
-    (<span style="color:#033">.setIgnoreRepaint</span> <span style="color:#033">true</span>) <span style="color:#09f;font-style:italic">;; ウィンドウの再描画を無効に(BufferStrategyを使うので)</span>
-    (<span style="color:#033">.createBufferStrategy</span> <span style="color:#f60">2</span>) <span style="color:#09f;font-style:italic">;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる</span>
-    )
-<span style="color:#09f;font-style:italic">;; バッファ作成</span>
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">buffer</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#033">getBufferStrategy</span>)))</code></pre></div>
-<p>bufferを使って以下のように呼び出し。TimerTaskクラスオブジェクトは都度生成できるように関数化しておいた。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#069;font-weight:bold">defn </span><span style="color:#033">create-mainloop</span>
-  []
-  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
-    (<span style="color:#033">run</span> []
-      (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>]) <span style="color:#09f;font-style:italic">;; 座標更新</span>
-      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">&lt; </span><span style="color:#f60">640</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>))
-             (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]))
-
-      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">not </span>(<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#033">contentsLost</span>)))
-        (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">g</span> (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#033">getDrawGraphics</span>))
-              <span style="color:#033">player-x</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)
-              <span style="color:#033">player-y</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>)]
-          (<span style="color:#366">doto </span><span style="color:#033">g</span>
-            (<span style="color:#033">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
-            (<span style="color:#033">.setColor</span> <span style="color:#033">clear-color</span>)
-            (<span style="color:#033">.fillRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
-            (<span style="color:#033">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
-            (<span style="color:#033">.drawImage</span> <span style="color:#033">image</span>
-                        <span style="color:#033">player-x</span> <span style="color:#033">player-y</span>
-                        (<span style="color:#366">+ </span><span style="color:#033">player-x</span> <span style="color:#f60">32</span>) (<span style="color:#366">+ </span><span style="color:#033">player-y</span> <span style="color:#f60">32</span>)
-                        <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">32</span> <span style="color:#f60">32</span>
-                        <span style="color:#033">frame</span>)
-            (<span style="color:#033">.dispose</span>))
-          (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#033">show</span>))
-          )))))</code></pre></div>
-<p><div class="youtube">
-<iframe src="http://www.youtube.com/embed/3mO4EUh9cl0?hl=ja&fs=1" frameborder="0" allowfullscreen></iframe>
-</div></p>
-
-<p>最終的なコード。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#069;font-weight:bold">ns </span><span style="color:#033">hello-cube.core</span>)
-
-(<span style="color:#366">import </span>(<span style="color:#033">javax.swing</span> <span style="color:#033">JFrame</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">java.util</span> <span style="color:#033">Timer</span> <span style="color:#033">TimerTask</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">java.awt</span> <span style="color:#033">Graphics</span> <span style="color:#033">Color</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">java.awt.image</span> <span style="color:#033">BufferedImage</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">javax.imageio</span> <span style="color:#033">ImageIO</span>))
-(<span style="color:#366">import </span>(<span style="color:#033">java.io</span> <span style="color:#033">File</span>))
-
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">clear-color</span> (<span style="color:#033">Color.</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">127</span>))
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">frame</span> (<span style="color:#033">JFrame.</span> <span style="color:#c30">&#34;Clojure Sample Game&#34;</span>)) 
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">image</span> (<span style="color:#033">ImageIO/read</span> (<span style="color:#033">File.</span> <span style="color:#c30">&#34;gai.png&#34;</span>))) <span style="color:#09f;font-style:italic">;; 画像読み込み</span>
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">player</span> (<span style="color:#033">atom</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]}))
-
-<span style="color:#09f;font-style:italic">;; 枠を考慮してサイズ指定</span>
-(<span style="color:#366">doto </span><span style="color:#033">frame</span>
-    (<span style="color:#033">.setVisible</span> <span style="color:#033">true</span>)
-    (<span style="color:#033">.setIgnoreRepaint</span> <span style="color:#033">true</span>) <span style="color:#09f;font-style:italic">;; ウィンドウの再描画を無効に(BufferStrategyを使うので)</span>
-    (<span style="color:#033">.createBufferStrategy</span> <span style="color:#f60">2</span>) <span style="color:#09f;font-style:italic">;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる</span>
-    )
-
-<span style="color:#09f;font-style:italic">;; バッファ作成</span>
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">buffer</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#033">getBufferStrategy</span>)))
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">insets</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> <span style="color:#033">getInsets</span>))  <span style="color:#09f;font-style:italic">;; ウィンドウを表示してから出ないと値が入らない。</span>
-
-(<span style="color:#366">doto </span><span style="color:#033">frame</span>
-    (<span style="color:#033">.setSize</span> (<span style="color:#366">+ </span><span style="color:#f60">640</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">right</span>)) (<span style="color:#366">+ </span><span style="color:#f60">480</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">bottom</span>))))
-
-
-(<span style="color:#069;font-weight:bold">defn </span><span style="color:#033">create-mainloop</span>
-  []
-  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
-    (<span style="color:#033">run</span> []
-      (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>]) <span style="color:#09f;font-style:italic">;; 座標更新</span>
-      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">&lt; </span><span style="color:#f60">640</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>))
-             (<span style="color:#033">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]))
-
-      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">not </span>(<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#033">contentsLost</span>)))
-        (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">g</span> (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#033">getDrawGraphics</span>))
-              <span style="color:#033">player-x</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)
-              <span style="color:#033">player-y</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>)]
-          (<span style="color:#366">doto </span><span style="color:#033">g</span>
-            (<span style="color:#033">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
-            (<span style="color:#033">.setColor</span> <span style="color:#033">clear-color</span>)
-            (<span style="color:#033">.fillRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
-            (<span style="color:#033">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
-            (<span style="color:#033">.drawImage</span> <span style="color:#033">image</span>
-                        <span style="color:#033">player-x</span> <span style="color:#033">player-y</span>
-                        (<span style="color:#366">+ </span><span style="color:#033">player-x</span> <span style="color:#f60">32</span>) (<span style="color:#366">+ </span><span style="color:#033">player-y</span> <span style="color:#f60">32</span>)
-                        <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">32</span> <span style="color:#f60">32</span>
-                        <span style="color:#033">frame</span>)
-            (<span style="color:#033">.dispose</span>))
-          (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#033">show</span>))
-          )))))
-
-(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">timer</span> (<span style="color:#033">Timer.</span>))
-(<span style="color:#366">.. </span><span style="color:#033">timer</span> (<span style="color:#033">schedule</span> (<span style="color:#033">create-mainloop</span>) (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">20</span>)))</code></pre></div>
-<h1 id="所感">所感</h1>
-
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#366">doto </span><span style="color:#033">frame</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setSize</span> (<span style="color:#366">+ </span><span style="color:#f60">640</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">right</span>)) (<span style="color:#366">+ </span><span style="color:#f60">480</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">bottom</span>)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setVisible</span> <span style="color:#033">true</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setIgnoreRepaint</span> <span style="color:#033">true</span>) <span style="color:#09f;font-style:italic">;; ウィンドウの再描画を無効に(BufferStrategyを使うので)</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.createBufferStrategy</span> <span style="color:#f60">2</span>) <span style="color:#09f;font-style:italic">;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">;; バッファ作成</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">buffer</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#c0f">getBufferStrategy</span>)))</span></span></code></pre></div>
+</div>
+<p>
+bufferを使って以下のように呼び出し。TimerTaskクラスオブジェクトは都度生成できるように関数化しておいた。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">defn </span><span style="color:#033">create-mainloop</span>
+</span></span><span style="display:flex;"><span>  []
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">run</span> []
+</span></span><span style="display:flex;"><span>      (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>]) <span style="color:#09f;font-style:italic">;; 座標更新</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">&lt; </span><span style="color:#f60">640</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>))
+</span></span><span style="display:flex;"><span>             (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">not </span>(<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#c0f">contentsLost</span>)))
+</span></span><span style="display:flex;"><span>        (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">g</span> (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#c0f">getDrawGraphics</span>))
+</span></span><span style="display:flex;"><span>              <span style="color:#033">player-x</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)
+</span></span><span style="display:flex;"><span>              <span style="color:#033">player-y</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>)]
+</span></span><span style="display:flex;"><span>          (<span style="color:#366">doto </span><span style="color:#033">g</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.setColor</span> <span style="color:#033">clear-color</span>)
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.fillRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.drawImage</span> <span style="color:#033">image</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#033">player-x</span> <span style="color:#033">player-y</span>
+</span></span><span style="display:flex;"><span>                        (<span style="color:#366">+ </span><span style="color:#033">player-x</span> <span style="color:#f60">32</span>) (<span style="color:#366">+ </span><span style="color:#033">player-y</span> <span style="color:#f60">32</span>)
+</span></span><span style="display:flex;"><span>                        <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">32</span> <span style="color:#f60">32</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#033">frame</span>)
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.dispose</span>))
+</span></span><span style="display:flex;"><span>          (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#c0f">show</span>))
+</span></span><span style="display:flex;"><span>          )))))</span></span></code></pre></div>
+</div>
+<div class="html-block">
+<p>&lt;div class=&#34;youtube&#34;&gt;
+&lt;iframe src=&#34;<a href="http://www.youtube.com/embed/3mO4EUh9cl0?hl=ja&amp;fs=1">http://www.youtube.com/embed/3mO4EUh9cl0?hl=ja&amp;fs=1</a>&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</p>
+</div>
+<p>
+最終的なコード。</p>
+<div class="src src-clojure">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">ns </span><span style="color:#033">hello-cube.core</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">javax.swing</span> <span style="color:#033">JFrame</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.util</span> <span style="color:#033">Timer</span> <span style="color:#033">TimerTask</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.awt</span> <span style="color:#033">Graphics</span> <span style="color:#033">Color</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.awt.image</span> <span style="color:#033">BufferedImage</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">javax.imageio</span> <span style="color:#033">ImageIO</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">import </span>(<span style="color:#c0f">java.io</span> <span style="color:#033">File</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">clear-color</span> (<span style="color:#c0f">Color.</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">127</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">frame</span> (<span style="color:#c0f">JFrame.</span> <span style="color:#c30">&#34;Clojure Sample Game&#34;</span>)) 
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">image</span> (<span style="color:#c0f">ImageIO/read</span> (<span style="color:#c0f">File.</span> <span style="color:#c30">&#34;gai.png&#34;</span>))) <span style="color:#09f;font-style:italic">;; 画像読み込み</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">player</span> (<span style="color:#c0f">atom</span> {<span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]}))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">;; 枠を考慮してサイズ指定</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#366">doto </span><span style="color:#033">frame</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setVisible</span> <span style="color:#033">true</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setIgnoreRepaint</span> <span style="color:#033">true</span>) <span style="color:#09f;font-style:italic">;; ウィンドウの再描画を無効に(BufferStrategyを使うので)</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.createBufferStrategy</span> <span style="color:#f60">2</span>) <span style="color:#09f;font-style:italic">;;  setVisibleメソッドのあとで呼ばないと実行時エラーになる</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">;; バッファ作成</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">buffer</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> (<span style="color:#c0f">getBufferStrategy</span>)))
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">insets</span> (<span style="color:#366">.. </span><span style="color:#033">frame</span> <span style="color:#033">getInsets</span>))  <span style="color:#09f;font-style:italic">;; ウィンドウを表示してから出ないと値が入らない。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#366">doto </span><span style="color:#033">frame</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">.setSize</span> (<span style="color:#366">+ </span><span style="color:#f60">640</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">right</span>)) (<span style="color:#366">+ </span><span style="color:#f60">480</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">bottom</span>))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">defn </span><span style="color:#033">create-mainloop</span>
+</span></span><span style="display:flex;"><span>  []
+</span></span><span style="display:flex;"><span>  (<span style="color:#366">proxy </span>[<span style="color:#033">TimerTask</span>] []
+</span></span><span style="display:flex;"><span>    (<span style="color:#c0f">run</span> []
+</span></span><span style="display:flex;"><span>      (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [(<span style="color:#366">+ </span><span style="color:#f60">1</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)) <span style="color:#f60">1</span>]) <span style="color:#09f;font-style:italic">;; 座標更新</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">&lt; </span><span style="color:#f60">640</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>))
+</span></span><span style="display:flex;"><span>             (<span style="color:#c0f">swap!</span> <span style="color:#033">player</span> <span style="color:#366">assoc </span><span style="color:#fc3">:pos</span> [<span style="color:#f60">0</span> <span style="color:#f60">0</span>]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#069;font-weight:bold">if </span>(<span style="color:#366">not </span>(<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#c0f">contentsLost</span>)))
+</span></span><span style="display:flex;"><span>        (<span style="color:#069;font-weight:bold">let </span>[<span style="color:#033">g</span> (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#c0f">getDrawGraphics</span>))
+</span></span><span style="display:flex;"><span>              <span style="color:#033">player-x</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">0</span>)
+</span></span><span style="display:flex;"><span>              <span style="color:#033">player-y</span> (<span style="color:#366">nth </span>(<span style="color:#555">@</span><span style="color:#033">player</span> <span style="color:#fc3">:pos</span>) <span style="color:#f60">1</span>)]
+</span></span><span style="display:flex;"><span>          (<span style="color:#366">doto </span><span style="color:#033">g</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.setColor</span> <span style="color:#033">clear-color</span>)
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.fillRect</span> <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">640</span> <span style="color:#f60">480</span>)
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.translate</span> (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">left</span>) (<span style="color:#366">.. </span><span style="color:#033">insets</span> <span style="color:#033">top</span>))
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.drawImage</span> <span style="color:#033">image</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#033">player-x</span> <span style="color:#033">player-y</span>
+</span></span><span style="display:flex;"><span>                        (<span style="color:#366">+ </span><span style="color:#033">player-x</span> <span style="color:#f60">32</span>) (<span style="color:#366">+ </span><span style="color:#033">player-y</span> <span style="color:#f60">32</span>)
+</span></span><span style="display:flex;"><span>                        <span style="color:#f60">0</span> <span style="color:#f60">0</span> <span style="color:#f60">32</span> <span style="color:#f60">32</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#033">frame</span>)
+</span></span><span style="display:flex;"><span>            (<span style="color:#c0f">.dispose</span>))
+</span></span><span style="display:flex;"><span>          (<span style="color:#366">.. </span><span style="color:#033">buffer</span> (<span style="color:#c0f">show</span>))
+</span></span><span style="display:flex;"><span>          )))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#069;font-weight:bold">def </span><span style="color:#033">timer</span> (<span style="color:#c0f">Timer.</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#366">.. </span><span style="color:#033">timer</span> (<span style="color:#c0f">schedule</span> (<span style="color:#c0f">create-mainloop</span>) (<span style="color:#366">long </span><span style="color:#f60">0</span>) (<span style="color:#366">long </span><span style="color:#f60">20</span>)))</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-2">
+<h2 id="headline-9">
+所感
+</h2>
+<div id="outline-text-headline-9" class="outline-text-2">
 <p>ほとんどJavaのメソッドしか使ってないけどもSLIMEの良さは体感できた。
 コードが即時反映されて画像が動くのは楽しい。
 理想はSLIME上からGameObjectをリアルタイムに操作することだけど、これを実現するにはatomでは無理かも。
 あとはスレッドとSLIMEの関係がよくわかってない。TimerTaskを使いにくく感じたのでメインループは別の方法で実現したい。</p>
-
-<p>次回はもうちょっとコードのリファクタリングを施しつつ、
+<p>
+次回はもうちょっとコードのリファクタリングを施しつつ、
 アニメーションとキーボード操作をできるようにしてみる。</p>
-
-<h1 id="参考書籍">参考書籍</h1>
-
-<p><ul class="thumbnails amazon">
-<li class="span2">
-<a href="http://www.amazon.co.jp/gp/product/4274067890/ref=as_li_tf_il?ie=UTF8&amp;tag=ocha04-22&amp;linkCode=as2&amp;camp=247&amp;creative=1211&amp;creativeASIN=4274067890"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;Format=_SL160_&amp;ASIN=4274067890&amp;MarketPlace=JP&amp;ID=AsinImage&amp;WS=1&amp;tag=ocha04-22&amp;ServiceVersion=20070822"></a><img width="1" height="1" border="0" style="border:none !important; margin:0px !important;" alt="" src="http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4274067890">
-</li>
-<li class="span2">
-<a href="http://www.amazon.co.jp/gp/product/4899772319/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;tag=ocha04-22&amp;linkCode=as2&amp;camp=247&amp;creative=1211&amp;creativeASIN=4899772319"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;Format=_SL160_&amp;ASIN=4899772319&amp;MarketPlace=JP&amp;ID=AsinImage&amp;WS=1&amp;tag=ocha04-22&amp;ServiceVersion=20070822"></a><img width="1" height="1" border="0" style="border:none !important; margin:0px !important;" alt="" src="http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4899772319">
-</li>
-</ul></p>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-2">
+<h2 id="headline-10">
+参考書籍
+</h2>
+<div id="outline-text-headline-10" class="outline-text-2">
+<div class="html-block">
+<p>&lt;ul class=&#34;thumbnails amazon&#34;&gt;
+&lt;li class=&#34;span2&#34;&gt;
+&lt;a href=&#34;<a href="http://www.amazon.co.jp/gp/product/4274067890/ref=as_li_tf_il?ie=UTF8&amp;amp;tag=ocha04-22&amp;amp;linkCode=as2&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=4274067890">http://www.amazon.co.jp/gp/product/4274067890/ref=as_li_tf_il?ie=UTF8&amp;amp;tag=ocha04-22&amp;amp;linkCode=as2&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=4274067890</a>&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;<a href="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;amp;Format=_SL160_&amp;amp;ASIN=4274067890&amp;amp;MarketPlace=JP&amp;amp;ID=AsinImage&amp;amp;WS=1&amp;amp;tag=ocha04-22&amp;amp;ServiceVersion=20070822">http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;amp;Format=_SL160_&amp;amp;ASIN=4274067890&amp;amp;MarketPlace=JP&amp;amp;ID=AsinImage&amp;amp;WS=1&amp;amp;tag=ocha04-22&amp;amp;ServiceVersion=20070822</a>&#34;&gt;&lt;/a&gt;&lt;img width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; style=&#34;border:none !important; margin:0px !important;&#34; alt=&#34;&#34; src=&#34;<a href="http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;amp;l=as2&amp;amp;o=9&amp;amp;a=4274067890">http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;amp;l=as2&amp;amp;o=9&amp;amp;a=4274067890</a>&#34;&gt;
+&lt;/li&gt;
+&lt;li class=&#34;span2&#34;&gt;
+&lt;a href=&#34;<a href="http://www.amazon.co.jp/gp/product/4899772319/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;amp;tag=ocha04-22&amp;amp;linkCode=as2&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=4899772319">http://www.amazon.co.jp/gp/product/4899772319/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;amp;tag=ocha04-22&amp;amp;linkCode=as2&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=4899772319</a>&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;<a href="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;amp;Format=_SL160_&amp;amp;ASIN=4899772319&amp;amp;MarketPlace=JP&amp;amp;ID=AsinImage&amp;amp;WS=1&amp;amp;tag=ocha04-22&amp;amp;ServiceVersion=20070822">http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&amp;amp;Format=_SL160_&amp;amp;ASIN=4899772319&amp;amp;MarketPlace=JP&amp;amp;ID=AsinImage&amp;amp;WS=1&amp;amp;tag=ocha04-22&amp;amp;ServiceVersion=20070822</a>&#34;&gt;&lt;/a&gt;&lt;img width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; style=&#34;border:none !important; margin:0px !important;&#34; alt=&#34;&#34; src=&#34;<a href="http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;amp;l=as2&amp;amp;o=9&amp;amp;a=4899772319">http://www.assoc-amazon.jp/e/ir?t=ocha04-22&amp;amp;l=as2&amp;amp;o=9&amp;amp;a=4899772319</a>&#34;&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</p>
+</div>
+</div>
+</div>
 
     
 </div>

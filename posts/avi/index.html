@@ -8,22 +8,22 @@ $ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、avi
 $ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
 インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。 ダウンロードとインストールが終ったらコマンドが返るのでおもむろに
 $ avi で見慣れたvimの画面が表示された。
- 起動したところ   JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。 どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
+起動したところ JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。 どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
 肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。 唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
 ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/avi/" />
-<meta property="article:published_time" content="2014-04-04T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2014-04-04T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/avi/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-04-04T14:01:39+09:00" />
+<meta property="article:modified_time" content="2014-04-04T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="vimのclojure実装であるaviを試してみた。"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="vimのclojure実装であるaviを試してみた。"/>
 <meta name="twitter:description" content="vimをclojureで実装したらしい avi を試してみることにした。 確認環境は、ubuntu13.04。
 $ git clone https://github.com/maitria/avi.git $ cd avi READMEによると、avi本体を /usr/local 配下にインストールするとのこと。 あとでアンインストールができなくなると困るので paco を使うことにした。
 $ sudo paco -D LEIN_ROOT=yes /home/mikio/bin/lein install LEIN_ROOT は lein をrootユーザーで使用するときは定義しなくてはならないらしい。 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。
 インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。 ダウンロードとインストールが終ったらコマンドが返るのでおもむろに
 $ avi で見慣れたvimの画面が表示された。
- 起動したところ   JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。 どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
+起動したところ JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。 どうやらJNIを使って下回りの部分はC言語で書かれているようである。 (なのでwindowsでは動かないかも)。
 肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。 唯一、 :q はできたので、終了させることはできた。。。 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)
 ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。"/>
 
@@ -67,37 +67,42 @@ $ avi で見慣れたvimの画面が表示された。
     
     
     
-      <p>vimをclojureで実装したらしい <a href="https://github.com/maitria/avi" title="avi">avi</a> を試してみることにした。
+      <p>vimをclojureで実装したらしい <a href="https://github.com/maitria/avi">avi</a> を試してみることにした。
 確認環境は、ubuntu13.04。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/maitria/avi.git
-$ <span style="color:#366">cd</span> avi</code></pre></div>
-<p>READMEによると、avi本体を <code>/usr/local</code> 配下にインストールするとのこと。
-あとでアンインストールができなくなると困るので <a href="http://porg.sourceforge.net/" title="paco">paco</a> を使うことにした。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo paco -D <span style="color:#033">LEIN_ROOT</span><span style="color:#555">=</span>yes /home/mikio/bin/lein install</code></pre></div>
-<p><code>LEIN_ROOT</code> は <code>lein</code> をrootユーザーで使用するときは定義しなくてはならないらしい。
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git clone https://github.com/maitria/avi.git
+</span></span><span style="display:flex;"><span>$ <span style="color:#366">cd</span> avi</span></span></code></pre></div>
+</div>
+<p>READMEによると、avi本体を <code class="verbatim">/usr/local</code> 配下にインストールするとのこと。
+あとでアンインストールができなくなると困るので <a href="http://porg.sourceforge.net/">paco</a> を使うことにした。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo paco -D <span style="color:#033">LEIN_ROOT</span><span style="color:#555">=</span>yes /home/mikio/bin/lein install</span></span></code></pre></div>
+</div>
+<p><code class="verbatim">LEIN_ROOT</code> は <code class="verbatim">lein</code> をrootユーザーで使用するときは定義しなくてはならないらしい。
 (値のyesは適当)。pacoのDオプションはインストールの対象をカレントディレクトリにするという意味。</p>
-
-<p>インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。
+<p>
+インストールが始まるとワラワラと沢山のライブラリをダウンロードしてくる。
 ダウンロードとインストールが終ったらコマンドが返るのでおもむろに</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ avi</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ avi</span></span></code></pre></div>
+</div>
 <p>で見慣れたvimの画面が表示された。</p>
-
-<figure class="center">
-    <img src="/img/avi/avi.png"/> <figcaption>
+<p>
+<figure class="center"><img src="/img/avi/avi.png"/><figcaption>
             <h4>起動したところ</h4>
         </figcaption>
 </figure>
-
-
-<p>JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。
+</p>
+<p>
+JVMで動くから重いと思ってたら起動が早くてびっくりした(本家よりはわずかに重い)。
 どうやらJNIを使って下回りの部分はC言語で書かれているようである。
 (なのでwindowsでは動かないかも)。</p>
-
-<p>肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。
-唯一、 <code>:q</code> はできたので、終了させることはできた。。。
+<p>
+肝心の操作は、iコマンドはもちろんaコマンドも受け付けず、文字入力はなにもできない状態だった。
+唯一、 <code class="verbatim">:q</code> はできたので、終了させることはできた。。。
 (個々の環境にも依存すると思うので無事操作できた人がいたらコメントやリプで教えていただけると嬉しいです)</p>
-
-<p>ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。</p>
+<p>
+ちょっと残念な結果になったが、今後の開発が非常に楽しみなプロダクトだ。</p>
 
     
 </div>

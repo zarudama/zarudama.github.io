@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on ざる魂</title>
+    <link>https://zarudama.github.io/tags/blog/</link>
+    <description>Recent content in blog on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 07 Jan 2024 23:05:39 +0900</lastBuildDate>
+    <atom:link href="https://zarudama.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>約５年ぶりにサイトを更新し、ついでにリニューアルした</title>
+      <link>https://zarudama.github.io/site-renewal2024/</link>
+      <pubDate>Sun, 07 Jan 2024 23:05:39 +0900</pubDate>
+      <guid>https://zarudama.github.io/site-renewal2024/</guid>
+      <description> 経緯 前回更新が2019年。仕事がクソ忙しくて調べ物をした記事。&#xA;2014年頃は頻繁に更新していたものの、別の趣味に夢中になり10年近くブログ更新は停止していた。 いやー長すぎだろ（笑）&#xA;今回久しぶりに時間が取れたので、2024年正月休みの時間を利用して放置していたgithub上のブログをリニューアルすることにした。 今どきの技術記事は、noteやqiita,zennなどで書くのがトレンドなんだろうけどorg-mode使ってデザインとか自前でいろいろやりたいので、Hugo使う！&#xA;Javascriptのゲーム作りとかMSXとかの記事も書けたらなーと思う。&#xA;どのように構築しているか Hugoを使用。 Hugoは標準でEmacsのorg-modeをサポートしており、mdファイルのかわりにorgファイルを使える。素晴らしい！ 全文検索は「くまくまノート」さまのサイトを参考に実装。ありがとうございます。 テーマは独自に記述。見た目はZennぽくしてみた。 参考URL ox-hugoを使わずに直接orgを使う話 https://mopemope.com/post/hugo-with-org/ hugoの使い方 https://knowledge.sakura.ad.jp/22908/&#xA;目次について 目次を入れる場合は下記を記述する。いらないときは記述しない&#xA;#+toc: true 目次調査の経緯 hugoではorg-modeのtocをサポートしてないっぽい 下記では「#+toc: t」で表示されるとあるが、実際には反映しない&#xA;https://discourse.gohugo.io/t/table-of-contents-for-org-mode-is-empty/6272/4 https://discourse.gohugo.io/t/toc-for-org-mode-missing/29899 どうもmarkdownパーサーが入れ替わったのでそのタイミングでデグレしたのかも。 org-modeは少数派なので、今後サポートされる可能性は低い。 以上から自前で実装する必要がある。 下記を参考にした&#xA;https://toshikunblog.net/post/20200610/2020-0610/#google_vignette </description>
+    </item>
+  </channel>
+</rss>

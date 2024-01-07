@@ -3,19 +3,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta property="og:title" content="eshell上でリダイレクトした結果が文字化け" />
-<meta property="og:description" content="$ git diff &gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
+<meta property="og:description" content=" $ git diff &gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
 ^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。
-$ b git diff &gt; hoge." />
+$ b git diff &gt; hoge.patch " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/eshell/" />
-<meta property="article:published_time" content="2012-12-30T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2012-12-30T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/eshell/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2012-12-30T14:01:39+09:00" />
+<meta property="article:modified_time" content="2012-12-30T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="eshell上でリダイレクトした結果が文字化け"/>
-<meta name="twitter:description" content="$ git diff &gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="eshell上でリダイレクトした結果が文字化け"/>
+<meta name="twitter:description" content=" $ git diff &gt; hoge.patch hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。
 ^[[0m^[[01;32march^[[0m ^[[01;32mcut^[[0m ^[[01;32mdoexec^[[0m ^[[01;32mgettext^[[0m ^[[01;36mksh^[[0m るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。
-$ b git diff &gt; hoge."/>
+$ b git diff &gt; hoge.patch "/>
 
 <title>eshell上でリダイレクトした結果が文字化け | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -57,22 +57,29 @@ $ b git diff &gt; hoge."/>
     
     
     
-      <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git diff &gt; hoge.patch</code></pre></div>
+      <div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ git diff &gt; hoge.patch</span></span></code></pre></div>
+</div>
 <p>hoge.patchを開くと下記のような制御コードのまじった結果になりpatchとして使用できない。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">^<span style="color:#555">[[</span>0m^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32march^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32mcut^<span style="color:#555">[[</span>0m                   ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32mdoexec^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;32mgettext^<span style="color:#555">[[</span>0m   ^<span style="color:#555">[[</span><span style="color:#f60">01</span>;36mksh^<span style="color:#555">[[</span>0m</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>^<span style="color:#555">[[</span>0m^<span style="color:#555">[[</span>01;32march^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span>01;32mcut^<span style="color:#555">[[</span>0m                   ^<span style="color:#555">[[</span>01;32mdoexec^<span style="color:#555">[[</span>0m      ^<span style="color:#555">[[</span>01;32mgettext^<span style="color:#555">[[</span>0m   ^<span style="color:#555">[[</span>01;36mksh^<span style="color:#555">[[</span>0m</span></span></code></pre></div>
+</div>
 <p>るびきちさんのメルマガ第3号に紹介されていたesh-myparser.elを使って以下のコマンドでおっけー。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ b git diff &gt; hoge.patch</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ b git diff &gt; hoge.patch</span></span></code></pre></div>
+</div>
+
     
 </div>
 <div class="pager pure-u-1">
   
   <div class="pager-new">
-    <a href="https://zarudama.github.io/posts/ubuntu-server-lvm/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>Ubuntu Server インストール時に前回作ったLVMが削除できなかった。</a>
+    <a href="https://zarudama.github.io/posts/cygwintmux/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>cygwin経由で表示したtmuxの分割罫線が表示崩れする</a>
   </div>
   
   
   <div class="pager-old">
-  <a href="https://zarudama.github.io/posts/emacsjdeejava/">Emacs中毒者に贈るJDEEによるJava開発環境の構築<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  <a href="https://zarudama.github.io/posts/ubuntu-server-lvm/">Ubuntu Server インストール時に前回作ったLVMが削除できなかった。<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
   </div>
   
 </div>

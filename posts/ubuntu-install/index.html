@@ -5,37 +5,27 @@
 <meta property="og:title" content="(超個人的)Ubuntuインストール後にやることまとめ" />
 <meta property="og:description" content="Ubuntu12.04LTS版です。
 最初にやること ホーム配下のディレクトリリネーム ホーム配下のディレクトリが日本語になっているので早々に英語化する。
-LANG=C xdg-user-dirs-gtk-update
-update 最初は、メニューがところどころ日本語になっていなかったりする。 なにはともあれアップデートマネージャで最新にアップデートする。
-端末の設定 IME起動ショートカットの変更  [Windwoskキー] - [gnome-terminal] [メニュー] - [編集] - [キーボードショートカット]  すべてチェックを外しておく [右上のパネル（キーボード）] - [設定] - [一般] タブ [キーボードショットカット] - [切り替え]  [Zenkaku_Hankaku]だけにする  xmodmapによるキーマッピング 下記を参考にした。 http://d.hatena.ne.jp/kenbeese/20120214/title
+LANG=C xdg-user-dirs-gtk-update update 最初は、メニューがところどころ日本語になっていなかったりする。 なにはともあれアップデートマネージャで最新にアップデートする。
+端末の設定 [Windwoskキー] -&gt; [gnome-terminal] [メニュー] -&gt; [編集] -&gt; [キーボードショートカット] すべてチェックを外しておく IME起動ショートカットの変更 [右上のパネル（キーボード）] -&gt; [設定] -&gt; [一般] タブ [キーボードショットカット] -&gt; [切り替え] [Zenkaku_Hankaku]だけにする xmodmapによるキーマッピング 下記を参考にした。 http://d.hatena.ne.jp/kenbeese/20120214/title
 ~/.Xmodmapを作成する。
-keycode 102 = Control_L keycode 100 = Control_L keycode 101 = Shift_L
-keycode 66 = Control_L NoSymbol Control_L clear Lock
-add Control = Control_L
-反映
-xmodmap ~/.xmodmap
-これにより下記の割り当てになる。
-無変換(102)→ctrl 変換(keycode 100)→ctrl カタカナひらがな(101)→shift" />
+keycode 102 = Control_L keycode 100 = Control_L keycode 101 = Shift_L keycode 66 = Control_L NoSymbol Control_L clear Lock add Control = Control_L 反映
+xmodmap ~/.xmodmap これにより下記の割り当てになる。
+無変換(102)→ctrl 変換(keycode 100)→ctrl カタカナひらがな(101)→shift 更に起動時に自動的に有効になるように、 ~/xinitrc を準備する。 下記を記述する。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/ubuntu-install/" />
-<meta property="article:published_time" content="2012-05-05T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2012-05-05T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/ubuntu-install/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2012-05-05T14:01:39+09:00" />
+<meta property="article:modified_time" content="2012-05-05T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="(超個人的)Ubuntuインストール後にやることまとめ"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="(超個人的)Ubuntuインストール後にやることまとめ"/>
 <meta name="twitter:description" content="Ubuntu12.04LTS版です。
 最初にやること ホーム配下のディレクトリリネーム ホーム配下のディレクトリが日本語になっているので早々に英語化する。
-LANG=C xdg-user-dirs-gtk-update
-update 最初は、メニューがところどころ日本語になっていなかったりする。 なにはともあれアップデートマネージャで最新にアップデートする。
-端末の設定 IME起動ショートカットの変更  [Windwoskキー] - [gnome-terminal] [メニュー] - [編集] - [キーボードショートカット]  すべてチェックを外しておく [右上のパネル（キーボード）] - [設定] - [一般] タブ [キーボードショットカット] - [切り替え]  [Zenkaku_Hankaku]だけにする  xmodmapによるキーマッピング 下記を参考にした。 http://d.hatena.ne.jp/kenbeese/20120214/title
+LANG=C xdg-user-dirs-gtk-update update 最初は、メニューがところどころ日本語になっていなかったりする。 なにはともあれアップデートマネージャで最新にアップデートする。
+端末の設定 [Windwoskキー] -&gt; [gnome-terminal] [メニュー] -&gt; [編集] -&gt; [キーボードショートカット] すべてチェックを外しておく IME起動ショートカットの変更 [右上のパネル（キーボード）] -&gt; [設定] -&gt; [一般] タブ [キーボードショットカット] -&gt; [切り替え] [Zenkaku_Hankaku]だけにする xmodmapによるキーマッピング 下記を参考にした。 http://d.hatena.ne.jp/kenbeese/20120214/title
 ~/.Xmodmapを作成する。
-keycode 102 = Control_L keycode 100 = Control_L keycode 101 = Shift_L
-keycode 66 = Control_L NoSymbol Control_L clear Lock
-add Control = Control_L
-反映
-xmodmap ~/.xmodmap
-これにより下記の割り当てになる。
-無変換(102)→ctrl 変換(keycode 100)→ctrl カタカナひらがな(101)→shift"/>
+keycode 102 = Control_L keycode 100 = Control_L keycode 101 = Shift_L keycode 66 = Control_L NoSymbol Control_L clear Lock add Control = Control_L 反映
+xmodmap ~/.xmodmap これにより下記の割り当てになる。
+無変換(102)→ctrl 変換(keycode 100)→ctrl カタカナひらがな(101)→shift 更に起動時に自動的に有効になるように、 ~/xinitrc を準備する。 下記を記述する。"/>
 
 <title>(超個人的)Ubuntuインストール後にやることまとめ | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -67,7 +57,7 @@ xmodmap ~/.xmodmap
 <section>
       <span class="date">作成日: 2012-05-05</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2012-05-05</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;486 文字> </span>
+      <sapn class="wordcount"> &lt;502 文字> </span>
     </section>
     
   </aside>
@@ -77,375 +67,522 @@ xmodmap ~/.xmodmap
     
     
     
-      <p>Ubuntu12.04LTS版です。</p>
-
-<h1 id="最初にやること">最初にやること</h1>
-
-<h2 id="ホーム配下のディレクトリリネーム">ホーム配下のディレクトリリネーム</h2>
-
+      
+<p>
+Ubuntu12.04LTS版です。</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+最初にやること
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+ホーム配下のディレクトリリネーム
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
 <p>ホーム配下のディレクトリが日本語になっているので早々に英語化する。</p>
-
-<p>LANG=C xdg-user-dirs-gtk-update</p>
-
-<h2 id="update">update</h2>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#033">LANG</span><span style="color:#555">=</span>C xdg-user-dirs-gtk-update</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+update
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
 <p>最初は、メニューがところどころ日本語になっていなかったりする。
 なにはともあれアップデートマネージャで最新にアップデートする。</p>
-
-<h2 id="端末の設定">端末の設定</h2>
-
-<h1 id="ime起動ショートカットの変更">IME起動ショートカットの変更</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+端末の設定
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
 <ul>
-<li>[Windwoskキー] -> [gnome-terminal]</li>
-<li>[メニュー] -> [編集] -> [キーボードショートカット] </li>
+<li>[Windwoskキー] -&gt; [gnome-terminal]</li>
+<li>[メニュー] -&gt; [編集] -&gt; [キーボードショートカット] </li>
 <li>すべてチェックを外しておく</li>
-<li>[右上のパネル（キーボード）] -> [設定] -> [一般] タブ</li>
-<li>[キーボードショットカット] -> [切り替え] </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+IME起動ショートカットの変更
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<ul>
+<li>[右上のパネル（キーボード）] -&gt; [設定] -&gt; [一般] タブ</li>
+<li>[キーボードショットカット] -&gt; [切り替え] </li>
 <li>[Zenkaku_Hankaku]だけにする</li>
 </ul>
-
-<h1 id="xmodmapによるキーマッピング">xmodmapによるキーマッピング</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+xmodmapによるキーマッピング
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
 <p>下記を参考にした。
-http://d.hatena.ne.jp/kenbeese/20120214/title</p>
-
-<p>~/.Xmodmapを作成する。</p>
-
-<p>keycode 102 = Control_L
-keycode 100 = Control_L
-keycode 101 = Shift_L</p>
-
-<p>keycode  66 = Control_L NoSymbol Control_L
-clear Lock</p>
-
-<p>add Control = Control_L</p>
-
-<p>反映</p>
-
-<p>xmodmap ~/.xmodmap</p>
-
-<p>これにより下記の割り当てになる。</p>
-
-<p>無変換(102)→ctrl
-変換(keycode 100)→ctrl
-カタカナひらがな(101)→shift</p>
-
-<p>更に起動時に自動的に有効になるように、 <code>~/xinitrc</code> を準備する。
+<a href="http://d.hatena.ne.jp/kenbeese/20120214/title">http://d.hatena.ne.jp/kenbeese/20120214/title</a></p>
+<p>
+~/.Xmodmapを作成する。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>keycode <span style="color:#033">102</span> <span style="color:#555">=</span> Control_L
+</span></span><span style="display:flex;"><span>keycode <span style="color:#033">100</span> <span style="color:#555">=</span> Control_L
+</span></span><span style="display:flex;"><span>keycode <span style="color:#033">101</span> <span style="color:#555">=</span> Shift_L
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>keycode  <span style="color:#033">66</span> <span style="color:#555">=</span> Control_L NoSymbol Control_L
+</span></span><span style="display:flex;"><span>clear Lock
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>add <span style="color:#033">Control</span> <span style="color:#555">=</span> Control_L</span></span></code></pre></div>
+</div>
+<p>
+反映</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>xmodmap ~/.xmodmap</span></span></code></pre></div>
+</div>
+<p>
+これにより下記の割り当てになる。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>無変換<span style="color:#555">(</span>102<span style="color:#555">)</span>→ctrl
+</span></span><span style="display:flex;"><span>変換<span style="color:#555">(</span>keycode 100<span style="color:#555">)</span>→ctrl
+</span></span><span style="display:flex;"><span>カタカナひらがな<span style="color:#555">(</span>101<span style="color:#555">)</span>→shift</span></span></code></pre></div>
+</div>
+<p>
+更に起動時に自動的に有効になるように、 <code class="verbatim">~/xinitrc</code> を準備する。
 下記を記述する。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xmodmap ~/.~Xmodmap</code></pre></div>
-<p>もし割り当てを変更したいときは、xevコマンドを使ってキーコードを
-調べ、 <code>~/.xmomap</code> を変更すれば良い。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ xev</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>xmodmap ~/.~Xmodmap</span></span></code></pre></div>
+</div>
+<p>
+もし割り当てを変更したいときは、xevコマンドを使ってキーコードを
+調べ、 <code class="verbatim">~/.xmomap</code> を変更すれば良い。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ xev</span></span></code></pre></div>
+</div>
 <p>CapsLock(66,Eisu_toggle)  = 左Ctrl(Control_L)
 Win(133,Super_L) = 左Ctrl
 左ALT(64, ALT_L) = Win
 無変換(102, Muhenkan)) = 左ALT
 変換(100,Henkan_Mode) = 右CTRL
 変換(101,Hiragana_Katakana) = 右シフト</p>
-
-<h1 id="dropbox">Dropbox</h1>
-
-<h1 id="firefox">firefox</h1>
-
-<p>これがないとはじまらない。dropboxのサイトへいき、.debをダウンロードしてパッケージをインストールする。
-syncの設定して、keysnailを入れる。</p>
-
-<h1 id="mig-1m">Mig 1M</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+Dropbox
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>これがないとはじまらない。dropboxのサイトへいき、.debをダウンロードしてパッケージをインストールする。</p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+firefox
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
+<p>syncの設定して、keysnailを入れる。</p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-2">
+<h2 id="headline-9">
+Mig 1M 
+</h2>
+<div id="outline-text-headline-9" class="outline-text-2">
 <p>1MのMはMonoSpaceのM。つまり等幅フォントということ。
 下記から「Mig 1M」フォントをダウンロードする。</p>
-
 <ul>
-<li>http://mix-mplus-ipa.sourceforge.jp/download.html</li>
+<li><a href="http://mix-mplus-ipa.sourceforge.jp/download.html">http://mix-mplus-ipa.sourceforge.jp/download.html</a></li>
 </ul>
-
 <p>あとは下記のコマンドで使えるようになる。</p>
-
-<p>mkdir ~/.fonts 
-cp migu-1m-20120411.zip ~/.fonts
-cd ~/.fonts 
-unzip migu-1m-20120411.zip
-fc-cache -fv</p>
-
-<h1 id="vlゴシック">VLゴシック</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mkdir ~/.fonts 
+</span></span><span style="display:flex;"><span>cp migu-1m-20120411.zip ~/.fonts
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> ~/.fonts 
+</span></span><span style="display:flex;"><span>unzip migu-1m-20120411.zip
+</span></span><span style="display:flex;"><span>fc-cache -fv</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-2">
+<h2 id="headline-10">
+VLゴシック
+</h2>
+<div id="outline-text-headline-10" class="outline-text-2">
 <p>下記をfirefoxから開けばOK</p>
-
 <ul>
-<li>http://apt.ubuntu.com/p/ttf-vlgothic</li>
+<li><a href="http://apt.ubuntu.com/p/ttf-vlgothic">http://apt.ubuntu.com/p/ttf-vlgothic</a></li>
 </ul>
-
 <p>インストールしたフォントを使用するには、Advanced Settingsを
 ソフトウェアセンターからインストールする必要がある(gnome-tweak-toolで検索する)。</p>
-
-<p>Advanced Settingsをインストールすると、Launcherに「高度な設定」アイコンがあるのでこれを起動し、
+<p>
+Advanced Settingsをインストールすると、Launcherに「高度な設定」アイコンがあるのでこれを起動し、
 フォントを選択すればよい。</p>
-
-<h1 id="全体のキーボード操作をemacs系にする">全体のキーボード操作をemacs系にする</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-2">
+<h2 id="headline-11">
+全体のキーボード操作をemacs系にする
+</h2>
+<div id="outline-text-headline-11" class="outline-text-2">
 <p>ターミナルで下記コマンドを実行する。</p>
-
-<p>sudo apt-get install dconf-tools
-gsettings get org.gnome.desktop.interface gtk-key-theme Emacs</p>
-
-<p>手動の場合は以下。</p>
-
-<p>dconf-editor</p>
-
-<p>以下のパスで</p>
-
-<p>/org/gnome/desktop/interface/gtk-key-theme</p>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install dconf-tools
+</span></span><span style="display:flex;"><span>gsettings get org.gnome.desktop.interface gtk-key-theme Emacs</span></span></code></pre></div>
+</div>
+<p>
+手動の場合は以下。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>dconf-editor</span></span></code></pre></div>
+</div>
+<p>
+以下のパスで</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>/org/gnome/desktop/interface/gtk-key-theme</span></span></code></pre></div>
+</div>
 <p>値をEmacsにする。Eは大文字なので注意すること。もどすときはDefaultにする。</p>
-
-<h1 id="paco">paco</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-2">
+<h2 id="headline-12">
+paco
+</h2>
+<div id="outline-text-headline-12" class="outline-text-2">
 <ul>
-<li>http://paco.sourceforge.net/</li>
-<li>http://d.hatena.ne.jp/rx7/20081011/p2</li>
+<li><a href="http://paco.sourceforge.net/">http://paco.sourceforge.net/</a></li>
+<li><a href="http://d.hatena.ne.jp/rx7/20081011/p2">http://d.hatena.ne.jp/rx7/20081011/p2</a></li>
 </ul>
-
 <p>pacoは、make install によってインストールされたアプリケーションのパッ
 ケージ管理をしてくれる。</p>
-<!-- ソースは適当にWebからダウンロード -->
-
-<p>sudo apt-get install libgtkmm-2.4-dev
-cd ~/src/paco-2.0.9/
-./configure
-make
-sudo make install
-sudo make logme</p>
-
-<h1 id="emacs">emacs</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ソースは適当にWebからダウンロード</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install libgtkmm-2.4-dev
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> ~/src/paco-2.0.9/
+</span></span><span style="display:flex;"><span>./configure
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span><span style="display:flex;"><span>sudo make logme</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-2">
+<h2 id="headline-13">
+emacs
+</h2>
+<div id="outline-text-headline-13" class="outline-text-2">
 <p>ソースは最新版(ver24)を取ってくる。build-depは多分emacs23でOK。</p>
-<!-- ソースは適当にWebからダウンロード。「emacs24」とかで検索。 -->
-
-<p>sudo apt-get build-dep emacs23
-cd ~/src/emacs-24/</p>
-<!-- configureで画像関連でエラーになるかも。そのときは -->
-<!-- sudo apt-get install libgif-dev ligtiff-dev libxpm-dev -->
-
-<p>./configure
-make
-sudo paco -D make install</p>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ソースは適当にWebからダウンロード。「emacs24」とかで検索。</span>
+</span></span><span style="display:flex;"><span>sudo apt-get build-dep emacs23
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> ~/src/emacs-24/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># configureで画像関連でエラーになるかも。そのときは</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># sudo apt-get install libgif-dev ligtiff-dev libxpm-dev</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./configure
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>sudo paco -D make install</span></span></code></pre></div>
+</div>
 <p>ついでにw3mも入れとく。</p>
-
-<p>sudo apt-get install w3m</p>
-
-<h1 id="cmigemo">cmigemo</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install w3m</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-2">
+<h2 id="headline-14">
+cmigemo
+</h2>
+<div id="outline-text-headline-14" class="outline-text-2">
 <p>Kaoriaからソースを取得する。</p>
-
-<p>wget http://cmigemo.googlecode.com/files/cmigemo-default-src-20110227.zip
-unzip cmigemo-default-src-20110227.zip
-cd cmigemo-default-src-20110227</p>
-
-<p>そのままコンパイルするとエラーがでるので修正する。</p>
-
-<p>src/wordbuf.c:118: error: ‘INT_MAX’ undeclared (first use in this function)
-src/wordbuf.c:118: error: (Each undeclared identifier is reported only once
-src/wordbuf.c:118: error: for each function it appears in.)</p>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>wget http://cmigemo.googlecode.com/files/cmigemo-default-src-20110227.zip
+</span></span><span style="display:flex;"><span>unzip cmigemo-default-src-20110227.zip
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> cmigemo-default-src-20110227</span></span></code></pre></div>
+</div>
+<p>
+そのままコンパイルするとエラーがでるので修正する。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>src/wordbuf.c:118: error: ‘INT_MAX’ undeclared <span style="color:#555">(</span>first use in this <span style="color:#069;font-weight:bold">function</span><span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>src/wordbuf.c:118: error: <span style="color:#555">(</span>Each undeclared identifier is reported only once
+</span></span><span style="display:flex;"><span>src/wordbuf.c:118: error: <span style="color:#069;font-weight:bold">for</span> each <span style="color:#069;font-weight:bold">function</span> it appears in.<span style="color:#555">)</span></span></span></code></pre></div>
+</div>
 <p>wordbuf.cに下記を追加する。</p>
-
-<p>#include <limits.h></p>
-
-<p>あとは下記のとおり。</p>
-
-<p>sudo apt-get install curl
-sudo apt-get install nkf</p>
-
-<p>cd ~/src/cmigemo-default-src/
-sh ./configure 
-make gcc
-cd dict
-make utf-8
-cd ..
-sudo paco -D make gcc-install</p>
-
-<p>次のようにテストできる。</p>
-
-<p>$ cmigemo -d /usr/local/share/migemo/utf-8/migemo-dict
-migemo_open("/usr/local/share/migemo/utf-8/migemo-dict")=0xf54010
-clock()=0.300000
-QUERY: kyassyu
-PATTERN: (ｷｬｯｼｭ|キャッシュ|きゃっしゅ|ｋｙａｓｓｙｕ|kyassyu)</p>
-
-<h1 id="git">git</h1>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install git
-git config --global alias.st <span style="color:#c30">&#34;status&#34;</span>
-git config --global alias.ci <span style="color:#c30">&#34;commit&#34;</span>
-git config --global alias.br <span style="color:#c30">&#34;branch&#34;</span>
-git config --global alias.co <span style="color:#c30">&#34;checkout&#34;</span>
-git config --global color.ui <span style="color:#c30">&#34;auto&#34;</span>
-git config --global core.pager <span style="color:#c30">&#34;cat&#34;</span>
-git config --global user.email <span style="color:#c30">&#34;hoge@faga.com&#34;</span>
-git config --global user.name <span style="color:#c30">&#34;hoge&#34;</span></code></pre></div>
-<h1 id="skk-uim">skk(uim)</h1>
-
-<ul>
-ubuntuは、標準でiBusを使用しているが、ibus-sskは
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#include &lt;limits.h&gt;</span></span></span></code></pre></div>
+</div>
+<p>
+あとは下記のとおり。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install curl
+</span></span><span style="display:flex;"><span>sudo apt-get install nkf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> ~/src/cmigemo-default-src/
+</span></span><span style="display:flex;"><span>sh ./configure 
+</span></span><span style="display:flex;"><span>make gcc
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> dict
+</span></span><span style="display:flex;"><span>make utf-8
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> ..
+</span></span><span style="display:flex;"><span>sudo paco -D make gcc-install</span></span></code></pre></div>
+</div>
+<p>
+次のようにテストできる。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cmigemo -d /usr/local/share/migemo/utf-8/migemo-dict
+</span></span><span style="display:flex;"><span>migemo_open<span style="color:#555">(</span><span style="color:#c30">&#34;/usr/local/share/migemo/utf-8/migemo-dict&#34;</span><span style="color:#555">)=</span>0xf54010
+</span></span><span style="display:flex;"><span>clock<span style="color:#555">()=</span>0.300000
+</span></span><span style="display:flex;"><span>QUERY: kyassyu
+</span></span><span style="display:flex;"><span>PATTERN: <span style="color:#555">(</span>ｷｬｯｼｭ|キャッシュ|きゃっしゅ|ｋｙａｓｓｙｕ|kyassyu<span style="color:#555">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-2">
+<h2 id="headline-15">
+git
+</h2>
+<div id="outline-text-headline-15" class="outline-text-2">
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install git
+</span></span><span style="display:flex;"><span>git config --global alias.st <span style="color:#c30">&#34;status&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global alias.ci <span style="color:#c30">&#34;commit&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global alias.br <span style="color:#c30">&#34;branch&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global alias.co <span style="color:#c30">&#34;checkout&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global color.ui <span style="color:#c30">&#34;auto&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global core.pager <span style="color:#c30">&#34;cat&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global user.email <span style="color:#c30">&#34;hoge@faga.com&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global user.name <span style="color:#c30">&#34;hoge&#34;</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-2">
+<h2 id="headline-16">
+skk(uim)
+</h2>
+<div id="outline-text-headline-16" class="outline-text-2">
+<p>ubuntuは、標準でiBusを使用しているが、ibus-sskは
 変換時にemacsのキーバインドが使えないので、
-変わりにuimというインプットメソッドがあるので入れてみる。
-<li>http://ubuntu-note.blog.so-net.ne.jp/2010-10-17-1</li>
+変わりにuimというインプットメソッドがあるので入れてみる。</p>
+<ul>
+<li><a href="http://ubuntu-note.blog.so-net.ne.jp/2010-10-17-1">http://ubuntu-note.blog.so-net.ne.jp/2010-10-17-1</a></li>
 </ul>
-
-<p>sudo apt-get install uim uim-skk</p>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install uim uim-skk</span></span></code></pre></div>
+</div>
 <ul>
 <li>設定　言語サポート　「キーボードに使うIMシステム」</li>
 <li>uimを選択</li>
-その後ログアウトすれば使用できるようになる。
+</ul>
+<p>その後ログアウトすれば使用できるようになる。</p>
+<ul>
 <li>Dashでuimを入力すると設定画面が表示される</li>
 <li>ツールバーは表示できない。</li>
 </ul>
-
+<p>emacsと重複するため、SKKの起動キーを変更する。</p>
 <ul>
-emacsと重複するため、SKKの起動キーを変更する。
-<li>[設定] -> [SKKキー設定1] </li>
+<li>[設定] -&gt; [SKKキー設定1] </li>
 <li>Zenkaku_Hankakuだけにする</li>
 </ul>
-
-<h1 id="jdk">jdk</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-17" class="outline-2">
+<h2 id="headline-17">
+jdk
+</h2>
+<div id="outline-text-headline-17" class="outline-text-2">
+<p>下記よりjdk最新版を取得する。</p>
 <ul>
-下記よりjdk最新版を取得する。
-<li>http://www.oracle.com/technetwork/java/javase/downloads/index.html</li>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></li>
 </ul>
-
 <p>CUIから最新版をダウンロードする場合。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">wget --no-cookies --header <span style="color:#c30">&#34;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&#34;</span> -O jdk-6u41-linux-i586.bin <span style="color:#c30">&#39;http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-i586.bin&#39;</span></code></pre></div>
-<p>解凍したディレクトリを移動する。</p>
-
-<p>sudo mkdir <em>usr/lib/jvm/
-sudo mv ./jdk1.7.0_04</em> /usr/lib/jvm/jdk1.7.0</p>
-
-<p>下記でインストールする。</p>
-
-<p>sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0/bin/java" 1
-sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0/bin/javac" 1
-sudo update-alternatives --install "/usr/bin/javap" "javap" "/usr/lib/jvm/jdk1.7.0/bin/javap" 1
-sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0/bin/javaws" 1</p>
-
-<p>複数のjavaがあれば、下記でデフォルトにするコマンドを選択する。
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>wget --no-cookies --header <span style="color:#c30">&#34;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&#34;</span> -O jdk-6u41-linux-i586.bin <span style="color:#c30">&#39;http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-i586.bin&#39;</span></span></span></code></pre></div>
+</div>
+<p>
+解凍したディレクトリを移動する。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo mkdir /usr/lib/jvm/
+</span></span><span style="display:flex;"><span>sudo mv ./jdk1.7.0_04/ /usr/lib/jvm/jdk1.7.0</span></span></code></pre></div>
+</div>
+<p>
+下記でインストールする。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo update-alternatives --install <span style="color:#c30">&#34;/usr/bin/java&#34;</span> <span style="color:#c30">&#34;java&#34;</span> <span style="color:#c30">&#34;/usr/lib/jvm/jdk1.7.0/bin/java&#34;</span> <span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span>sudo update-alternatives --install <span style="color:#c30">&#34;/usr/bin/javac&#34;</span> <span style="color:#c30">&#34;javac&#34;</span> <span style="color:#c30">&#34;/usr/lib/jvm/jdk1.7.0/bin/javac&#34;</span> <span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span>sudo update-alternatives --install <span style="color:#c30">&#34;/usr/bin/javap&#34;</span> <span style="color:#c30">&#34;javap&#34;</span> <span style="color:#c30">&#34;/usr/lib/jvm/jdk1.7.0/bin/javap&#34;</span> <span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span>sudo update-alternatives --install <span style="color:#c30">&#34;/usr/bin/javaws&#34;</span> <span style="color:#c30">&#34;javaws&#34;</span> <span style="color:#c30">&#34;/usr/lib/jvm/jdk1.7.0/bin/javaws&#34;</span> <span style="color:#f60">1</span></span></span></code></pre></div>
+</div>
+<p>
+複数のjavaがあれば、下記でデフォルトにするコマンドを選択する。
 今回はoracleJavaのみなので必要ない。</p>
-
-<p>sudo update-alternatives --config java</p>
-
-<p>下記で確認する。</p>
-
-<p>java -version
-javac
-javap
-javaws</p>
-
-<h2 id="参考">参考</h2>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo update-alternatives --config java</span></span></code></pre></div>
+</div>
+<p>
+下記で確認する。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>java -version
+</span></span><span style="display:flex;"><span>javac
+</span></span><span style="display:flex;"><span>javap
+</span></span><span style="display:flex;"><span>javaws</span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-18" class="outline-3">
+<h3 id="headline-18">
+参考
+</h3>
+<div id="outline-text-headline-18" class="outline-text-3">
 <ul>
-<li>http://radi0ant.hatenablog.com/entry/2011/12/29/015013</li>
-<li>http://askubuntu.com/questions/55848/how-do-i-install-oracle-java-jdk-7</li>
+<li><a href="http://radi0ant.hatenablog.com/entry/2011/12/29/015013">http://radi0ant.hatenablog.com/entry/2011/12/29/015013</a></li>
+<li><a href="http://askubuntu.com/questions/55848/how-do-i-install-oracle-java-jdk-7">http://askubuntu.com/questions/55848/how-do-i-install-oracle-java-jdk-7</a></li>
 </ul>
-
-<h1 id="lein-clojure">lein(clojure)</h1>
-
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-19" class="outline-2">
+<h2 id="headline-19">
+lein(clojure)
+</h2>
+<div id="outline-text-headline-19" class="outline-text-2">
 <p>binディレクトリを作成する。</p>
-
-<p>$ cd ~
-$ mkdir bin
-$ vi .bashrch</p>
-<!-- 下記を追加 -->
-
-<p>export PATH=~/bin</p>
-
-<p>leinをインストールする。</p>
-
-<p>cd ~/bin
-wget https://raw.github.com/technomancy/leiningen/stable/bin/lein
-chmod +x lein
-./elin repl # ダウンロード後、repl開始</p>
-
-<h1 id="eclipse">eclipse</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ <span style="color:#366">cd</span> ~
+</span></span><span style="display:flex;"><span>$ mkdir bin
+</span></span><span style="display:flex;"><span>$ vi .bashrch
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 下記を追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span>~/bin</span></span></code></pre></div>
+</div>
+<p>
+leinをインストールする。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#366">cd</span> ~/bin
+</span></span><span style="display:flex;"><span>wget https://raw.github.com/technomancy/leiningen/stable/bin/lein
+</span></span><span style="display:flex;"><span>chmod +x lein
+</span></span><span style="display:flex;"><span>./elin repl <span style="color:#09f;font-style:italic"># ダウンロード後、repl開始</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-20" class="outline-2">
+<h2 id="headline-20">
+eclipse
+</h2>
+<div id="outline-text-headline-20" class="outline-text-2">
 <ul>
-<li>http://gihyo.jp/admin/serial/01/ubuntu-recipe/0167</li>
+<li><a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0167">http://gihyo.jp/admin/serial/01/ubuntu-recipe/0167</a></li>
 </ul>
-
 <p>ソフトウェアセンターから「eclipse」」とpleiadesをインストールする。
 その後、/etc/eclipse.iniを編集する。</p>
-
-<p>-javaagent:/usr/lib/eclipse/plugins/jp.sourceforge.mergedoc.pleiades/pleiades.jar</p>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>-javaagent:/usr/lib/eclipse/plugins/jp.sourceforge.mergedoc.pleiades/pleiades.jar</span></span></code></pre></div>
+</div>
 <p>この時、eclipse.iniのそれぞれのパラメータの改行位置がおかしいことがあるので、その時は適切に編集する。
 編集が終ったら、Dashメニューより起動して日本語化されていることを確認す
 る。</p>
-
-<h1 id="その他">その他</h1>
-
-<h2 id="dvdについて">DVDについて</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-21" class="outline-2">
+<h2 id="headline-21">
+その他
+</h2>
+<div id="outline-text-headline-21" class="outline-text-2">
+<div id="outline-container-headline-22" class="outline-3">
+<h3 id="headline-22">
+DVDについて
+</h3>
+<div id="outline-text-headline-22" class="outline-text-3">
 <p>DVDをみるためには以下のインストールが必要。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo apt-get install ubuntu-restricted-extras
-$ sudo sh /usr/share/doc/libdvdread4/install-css.sh</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo apt-get install ubuntu-restricted-extras
+</span></span><span style="display:flex;"><span>$ sudo sh /usr/share/doc/libdvdread4/install-css.sh</span></span></code></pre></div>
+</div>
 <ul>
 <li>iso マウントには Frius ISO mount</li>
 <li>dvd バックアップには、k9 copy</li>
 </ul>
-
-<h2 id="vmwareなどでインストールしたときにlocaleに日本語がない場合">vmwareなどでインストールしたときにlocaleに日本語がない場合</h2>
-
-<p>sudo apt-get install language-pack-ja
-sudo dpkg-reconfigure locales</p>
-
-<h2 id="クリップボード履歴">クリップボード履歴</h2>
-
-<p>sudo apt-get install parcellite</p>
-
-<h2 id="スクリーンショット">スクリーンショット</h2>
-
+</div>
+</div>
+<div id="outline-container-headline-23" class="outline-3">
+<h3 id="headline-23">
+vmwareなどでインストールしたときにlocaleに日本語がない場合
+</h3>
+<div id="outline-text-headline-23" class="outline-text-3">
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install language-pack-ja
+</span></span><span style="display:flex;"><span>sudo dpkg-reconfigure locales</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-24" class="outline-3">
+<h3 id="headline-24">
+クリップボード履歴
+</h3>
+<div id="outline-text-headline-24" class="outline-text-3">
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install parcellite</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-25" class="outline-3">
+<h3 id="headline-25">
+スクリーンショット
+</h3>
+<div id="outline-text-headline-25" class="outline-text-3">
 <p>Ubuntuでは標準でスクリーンショットがあって、PrintScrキーを押下するだけでアクティブウィンドウが
 png形式でキャプチャされる。
 けれども、この場合、クライアント領域だけのキャプチャになるので用途によっては不便である。
 その編の問題を解決してくれるソフトがShutterである</p>
-
-<p>sudo apt-get install shutter</p>
-
-<p>http://ankyo.blog.so-net.ne.jp/2011-04-07</p>
-
-<h1 id="日本語imeについて">日本語IMEについて</h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install shutter</span></span></code></pre></div>
+</div>
+<p>
+http://ankyo.blog.so-net.ne.jp/2011-04-07</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-26" class="outline-2">
+<h2 id="headline-26">
+日本語IMEについて
+</h2>
+<div id="outline-text-headline-26" class="outline-text-2">
+<p>Linuxは、日本語入力には３つのソフトウェアが必要。</p>
 <ul>
-Linuxは、日本語入力には３つのソフトウェアが必要。
 <li>日本の文字を入力するためのシステムであるインプットメソッド</li>
 <li>かな漢字の変換をするシステム</li>
 <li>両者をつなぐ日本語ブリッジ</li>
-</ul>
-
+<li>
+<p>インプットメソッドの例</p>
 <ul>
-<li>インプットメソッドの例</li>
 <li>SCIM</li>
 <li>iBus</li>
 <li>uim</li>
 </ul>
-
+</li>
+<li>
+<p>かな漢字変換システムの例</p>
 <ul>
-<li>かな漢字変換システムの例</li>
 <li>Anthy</li>
 <li>MOZC</li>
 <li>SKK</li>
 </ul>
-
+</li>
+<li>
+<p>日本語ブリッジの例</p>
 <ul>
-<li>日本語ブリッジの例</li>
 <li>ibus-mozc</li>
 <li>uim-skk</li>
 <li>scim-anthy</li>
 </ul>
-
+</li>
+</ul>
 <p>最近のUbuntuでは、インプットメソッドに、iBus,
 かな漢字変換システムには、Anthyを使用している。</p>
+</div>
+</div>
 
     
 </div>

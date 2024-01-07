@@ -4,26 +4,30 @@
 <meta name="description" content="">
 <meta property="og:title" content="SKKを導入してみる(WindowsXP)" />
 <meta property="og:description" content="去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、 ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのに クライアントが増えてます!。。。ということでいくつか検証してみて 最終的に下記の組み合わせを使用することにしました。快適!快適ー!
- corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー)  ということで以下に調べた内容をメモしておきます。
-corvus-SKK  最近できたらしいWindows用のFEP 辞書が独自形式 取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。  「;」によるStickyShiftを実現する方法  設定画面で[位置] タブで下記の設定を施す。  開始：; 代替：なし 送り：なし
-SKK日本語入力FEP  軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。  wceSKKServ  wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。 linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。  google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
+corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー) ということで以下に調べた内容をメモしておきます。
+corvus-SKK 最近できたらしいWindows用のFEP 辞書が独自形式
+取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない
+wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 「;」によるStickyShiftを実現する方法 設定画面で[位置] タブで下記の設定を施す。 開始：; 代替：なし 送り：なし SKK日本語入力FEP 軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。 wceSKKServ wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。
+linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。 google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
 また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、 このサーバを使えば、その問題も解決します。 スバラシス!
 xp環境でのインストール gemを入れてから下記でインストールする。
-dos gem install google-ime-skk dos gem install json" />
+dos&gt; gem install google-ime-skk dos&gt; gem install json 下記のようなバッチファイルを作ってスタートアップに登録しておく。 「gskk.bat」" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/skkwindowsxp/" />
-<meta property="article:published_time" content="2012-09-09T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2012-09-09T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/skkwindowsxp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2012-09-09T14:01:39+09:00" />
+<meta property="article:modified_time" content="2012-09-09T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="SKKを導入してみる(WindowsXP)"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="SKKを導入してみる(WindowsXP)"/>
 <meta name="twitter:description" content="去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、 ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのに クライアントが増えてます!。。。ということでいくつか検証してみて 最終的に下記の組み合わせを使用することにしました。快適!快適ー!
- corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー)  ということで以下に調べた内容をメモしておきます。
-corvus-SKK  最近できたらしいWindows用のFEP 辞書が独自形式 取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。  「;」によるStickyShiftを実現する方法  設定画面で[位置] タブで下記の設定を施す。  開始：; 代替：なし 送り：なし
-SKK日本語入力FEP  軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。  wceSKKServ  wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。 linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。  google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
+corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー) ということで以下に調べた内容をメモしておきます。
+corvus-SKK 最近できたらしいWindows用のFEP 辞書が独自形式
+取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない
+wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 「;」によるStickyShiftを実現する方法 設定画面で[位置] タブで下記の設定を施す。 開始：; 代替：なし 送り：なし SKK日本語入力FEP 軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。 wceSKKServ wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。
+linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。 google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
 また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、 このサーバを使えば、その問題も解決します。 スバラシス!
 xp環境でのインストール gemを入れてから下記でインストールする。
-dos gem install google-ime-skk dos gem install json"/>
+dos&gt; gem install google-ime-skk dos&gt; gem install json 下記のようなバッチファイルを作ってスタートアップに登録しておく。 「gskk.bat」"/>
 
 <title>SKKを導入してみる(WindowsXP) | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -65,58 +69,81 @@ dos gem install google-ime-skk dos gem install json"/>
     
     
     
-      <p>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、
+      
+<p>
+去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、
 emacsの外の世界ではgooglIME(or MOZC)を使用していました。
 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、
-ふと最近のWindwosSKK界隈を調べてみると、今まで<a href="http://homepage3.nifty.com/monjya/skkime.jis.html" title="skkime">skkime</a> 一択だったのに
+ふと最近のWindwosSKK界隈を調べてみると、今まで<a href="http://homepage3.nifty.com/monjya/skkime.jis.html">skkime</a> 一択だったのに
 クライアントが増えてます!。。。ということでいくつか検証してみて
 最終的に下記の組み合わせを使用することにしました。快適!快適ー!</p>
-
 <ul>
-<li><a href="http://code.google.com/p/corvus-skk/" title="corvus-SKK(IME)">corvus-SKK(IME)</a></li>
-<li><a href="http://www.megadriver.info/~fumi/wceskkserv/" title="wceSKKServ(辞書サーバー)">wceSKKServ(辞書サーバー)</a></li>
-<li><a href="http://d.hatena.ne.jp/hitode909/20110421/1303274561" title="google-ime-skk(辞書サーバー)">google-ime-skk(辞書サーバー)</a></li>
+<li><a href="http://code.google.com/p/corvus-skk/">corvus-SKK(IME)</a></li>
+<li><a href="http://www.megadriver.info/~fumi/wceskkserv/">wceSKKServ(辞書サーバー)</a></li>
+<li><a href="http://d.hatena.ne.jp/hitode909/20110421/1303274561">google-ime-skk(辞書サーバー)</a></li>
 </ul>
-
 <p>ということで以下に調べた内容をメモしておきます。</p>
-
-<h1 id="corvus-skk">corvus-SKK</h1>
-
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+corvus-SKK
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <ul>
 <li>最近できたらしいWindows用のFEP</li>
-<li>辞書が独自形式</li>
+<li>
+<p>辞書が独自形式</p>
+<ul>
 <li>取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。</li>
 <li>emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。</li>
-<li>サーバーがひとつしか使えない</li>
+</ul>
+</li>
+<li>
+<p>サーバーがひとつしか使えない</p>
+<ul>
 <li>wceSKKServであれば、複数の辞書を扱えるので問題なし</li>
+</ul>
+</li>
 <li>トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない</li>
 <li>独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。</li>
 <li>StickyShiftが使える!</li>
 <li>Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
 </ul>
-
-<h2 id="によるstickyshiftを実現する方法">「;」によるStickyShiftを実現する方法</h2>
-
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+「;」によるStickyShiftを実現する方法
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
 <ul>
 <li>設定画面で[位置] タブで下記の設定を施す。</li>
 </ul>
-
-<p>開始：;
-  代替：なし
-  送り：なし</p>
-
-<h1 id="http-coexe-web-fc2-com-skkfep-html-skk日本語入力fep"><a href="http://coexe.web.fc2.com/skkfep.html" title="SKK日本語入力FEP">SKK日本語入力FEP</a></h1>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  開始：;
+</span></span><span style="display:flex;"><span>  代替：なし
+</span></span><span style="display:flex;"><span>  送り：なし</span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+<a href="http://coexe.web.fc2.com/skkfep.html">SKK日本語入力FEP</a>
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
 <ul>
 <li>軽快な動作を目的とした比較的新しいWindows版SKK。</li>
 <li>Windowsアプリを使いやすくするための独自機能が特徴。</li>
-<li><a href="http://coexe.web.fc2.com/programs.html#skkime" title="SKK-IME1.5改">SKK-IME1.5改</a> と同じ作者であり基本理念が引き継がれている。</li>
+<li><a href="http://coexe.web.fc2.com/programs.html#skkime">SKK-IME1.5改</a> と同じ作者であり基本理念が引き継がれている。</li>
 <li>WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
 <li>WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。</li>
 </ul>
-
-<h1 id="wceskkserv">wceSKKServ</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+wceSKKServ
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
 <ul>
 <li>wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。</li>
 <li>wceSKKServで使用する辞書は、euc-jpしか受付ない模様。</li>
@@ -124,46 +151,64 @@ emacsの外の世界ではgooglIME(or MOZC)を使用していました。
 <li>従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。</li>
 <li>どうしてもしたい場合は、コピーしたものを使う。</li>
 <li>例えばスタートアップでユーザー辞書をコピーするとか。</li>
-<li>サーバを使うメリットとしては、以下がある。</li>
+<li>
+<p>サーバを使うメリットとしては、以下がある。</p>
+<ul>
 <li>linux環境において辞書を共用することでメモリの節約</li>
 <li>予めサーバーとして立ちあげておくことで、起動がスムーズになる</li>
-<li>サーバー側に複数の辞書を登録することで、クライアント側では、</li>
-   そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。
+<li>サーバー側に複数の辞書を登録することで、クライアント側では、
+そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。</li>
 </ul>
-
-<h1 id="google-ime-skk">google-ime-skk</h1>
-
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+google-ime-skk
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
 <p>最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、
 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。
 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、
 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。</p>
-
-<p>また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、
+<p>
+また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、
 このサーバを使えば、その問題も解決します。
 スバラシス!</p>
-
-<h2 id="xp環境でのインストール">xp環境でのインストール</h2>
-
-<p>gemを入れてから下記でインストールする。</p>
-
-<p>dos> gem install google-ime-skk
-dos> gem install json</p>
-
-<p>下記のようなバッチファイルを作ってスタートアップに登録しておく。
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
+xp環境でのインストール
+</h3>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>
+gemを入れてから下記でインストールする。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>dos&gt; gem install google-ime-skk
+</span></span><span style="display:flex;"><span>dos&gt; gem install json</span></span></code></pre></div>
+</div>
+<p>
+下記のようなバッチファイルを作ってスタートアップに登録しておく。
 「gskk.bat」</p>
-
-<p>google-ime-skk.bat</p>
-
-<p>あとは下記に接続すればok。</p>
-
-<p>localhost:55100</p>
-
-<p>コンソールが表示されるのが嫌という向きもあるだろうが
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>google-ime-skk.bat</span></span></code></pre></div>
+</div>
+<p>
+あとは下記に接続すればok。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>localhost:55100</span></span></code></pre></div>
+</div>
+<p>
+コンソールが表示されるのが嫌という向きもあるだろうが
 自分の場合は、あとでログが見れたほうが嬉しいことが多いので
 そのままにしている。</p>
-
-<p>また、バーチャルデスクトップ(WinDeskwide)を使っているので
+<p>
+また、バーチャルデスクトップ(WinDeskwide)を使っているので
 不要なウィンドウは全部そっちに集めてスッキリできるので問題ない。</p>
+</div>
+</div>
+</div>
+</div>
 
     
 </div>

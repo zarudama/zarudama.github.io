@@ -3,19 +3,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta property="og:title" content="windows版emacs24.3で画像を表示する。" />
-<meta property="og:description" content=" Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。   自分の場合pngが表示されなかったので libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。 http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。  emacs(Windows版)で画像を表示している様子 /img/image-dired/image-dired.png
-w3mでakb48を検索してみた。 /img/image-dired/w3m.png
-参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  " />
+<meta property="og:description" content=" Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
+F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。 自分の場合pngが表示されなかったので
+libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。
+http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
+emacs(Windows版)で画像を表示している様子 w3mでakb48を検索してみた。 参考 http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/windowsemacs243/" />
-<meta property="article:published_time" content="2013-05-03T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2013-05-03T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/windowsemacs243/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2013-05-03T14:01:39+09:00" />
+<meta property="article:modified_time" content="2013-05-03T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="windows版emacs24.3で画像を表示する。"/>
-<meta name="twitter:description" content=" Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。   自分の場合pngが表示されなかったので libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。 http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。  emacs(Windows版)で画像を表示している様子 /img/image-dired/image-dired.png
-w3mでakb48を検索してみた。 /img/image-dired/w3m.png
-参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  "/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="windows版emacs24.3で画像を表示する。"/>
+<meta name="twitter:description" content=" Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
+F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。 自分の場合pngが表示されなかったので
+libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。
+http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
+emacs(Windows版)で画像を表示している様子 w3mでakb48を検索してみた。 参考 http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files "/>
 
 <title>windows版emacs24.3で画像を表示する。 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -47,7 +51,7 @@ w3mでakb48を検索してみた。 /img/image-dired/w3m.png
 <section>
       <span class="date">作成日: 2013-05-03</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2013-05-03</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;26 文字> </span>
+      <sapn class="wordcount"> &lt;24 文字> </span>
     </section>
     
   </aside>
@@ -57,34 +61,43 @@ w3mでakb48を検索してみた。 /img/image-dired/w3m.png
     
     
     
-      <ul>
-Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
-<li><code>F1 v dynamic-library-alist</code> で必要なdllを調べる。</li>
+      
+<p>
+Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。</p>
+<ul>
+<li><code class="verbatim">F1 v dynamic-library-alist</code> で必要なdllを調べる。</li>
 <li>表示されたdllをググッてダウンロードする。</li>
 <li>PATHの通った場所へdllを置く。</li>
 </ul>
-
+<p>自分の場合pngが表示されなかったので</p>
 <ul>
-自分の場合pngが表示されなかったので
-<li><code>libpng14-14.dll</code> が表示されたのでこれをググり、下記サイトからダウンロードした。</li>
-<li>http://www.gtk.org/download/win32.php</li>
-<li>emacsを再起動後、 <code>zlib1.dll</code> がないと怒られたので、これもダウンロードして配置。</li>
-<li>emacsを再起動し、 <code>M-x image-dired</code> でpng画像を開いたところ無事表示できた。</li>
-あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
-</ul>
-
-<p>emacs(Windows版)で画像を表示している様子
-<a href="/img/image-dired/image-dired.png" title="/img/image-dired/image-dired.png">/img/image-dired/image-dired.png</a></p>
-
-<p>w3mでakb48を検索してみた。
-<a href="/img/image-dired/w3m.png" title="/img/image-dired/w3m.png">/img/image-dired/w3m.png</a></p>
-
-<h1 id="参考">参考</h1>
-
+<li>
+<p><code class="verbatim">libpng14-14.dll</code> が表示されたのでこれをググり、下記サイトからダウンロードした。</p>
 <ul>
-<li>http://qiita.com/items/dc621c568a294004f5a2</li>
-<li>http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files</li>
+<li><a href="http://www.gtk.org/download/win32.php">http://www.gtk.org/download/win32.php</a></li>
 </ul>
+</li>
+<li>emacsを再起動後、 <code class="verbatim">zlib1.dll</code> がないと怒られたので、これもダウンロードして配置。</li>
+<li>emacsを再起動し、 <code class="verbatim">M-x image-dired</code> でpng画像を開いたところ無事表示できた。</li>
+</ul>
+<p>あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。</p>
+<p>
+emacs(Windows版)で画像を表示している様子
+<img src="/img/image-dired/image-dired.png" alt="/img/image-dired/image-dired.png" title="/img/image-dired/image-dired.png" /></p>
+<p>
+w3mでakb48を検索してみた。
+<img src="/img/image-dired/w3m.png" alt="/img/image-dired/w3m.png" title="/img/image-dired/w3m.png" /></p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+参考
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<ul>
+<li><a href="http://qiita.com/items/dc621c568a294004f5a2">http://qiita.com/items/dc621c568a294004f5a2</a></li>
+<li><a href="http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files">http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files</a></li>
+</ul>
+</div>
+</div>
 
     
 </div>

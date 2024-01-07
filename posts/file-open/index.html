@@ -4,23 +4,29 @@
 <meta name="description" content="">
 <meta property="og:title" content="ファイルオープン数が上限値に達した" />
 <meta property="og:description" content="CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。
- 下記を参考にした。 http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html  確認方法 ファイル上限値の確認コマンドは以下。
-$ cat /proc/sys/fs/file-nr 1792 0 566699  左から順に 今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限 となる。  一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
+下記を参考にした。
+http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html 確認方法 ファイル上限値の確認コマンドは以下。
+$ cat /proc/sys/fs/file-nr 1792 0 566699 左から順に
+今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限 となる。
+一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
 $ cat /proc/sys/fs/file-nr 1792 0 566699 一時的にファイルディスクリプタの上限値を変更する。
 $ /sbin/sysctl -w fs.file-max = 1234567 設定値の確認
 $ cat /proc/sys/fs/file-nr 1216 0 1234567 ユーザ毎(カレントユーザ) 現在のセッション(自分が起動したプロセス)に対して、 ファイルディスクリプタ上限値を設定するには、 ulimit を使用する。
 ulimitはユーザに対していろいろな制限を設定するコマンド。 ulimit -a で全ての設定値を確認できる。
 $ ulimit -a core file size (blocks, -c) 0 data seg size (kbytes, -d) unlimited scheduling priority (-e) 0 file size (blocks, -f) unlimited pending signals (-i) 114688 max locked memory (kbytes, -l) 32 max memory size (kbytes, -m) unlimited open files (-n) 1024 pipe size (512 bytes, -p) 8 POSIX message queues (bytes, -q) 819200 real-time priority (-r) 0 stack size (kbytes, -s) 10240 cpu time (seconds, -t) unlimited max user processes (-u) 114688 virtual memory (kbytes, -v) unlimited file locks (-x) unlimited ファイルディスクリプタの上限値を設定するには、 ulimit -n N でファイルディスクリプタ上限をN個に変更できる。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/file-open/" />
-<meta property="article:published_time" content="2013-03-02T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2013-03-02T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/file-open/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2013-03-02T14:01:39+09:00" />
+<meta property="article:modified_time" content="2013-03-02T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ファイルオープン数が上限値に達した"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="ファイルオープン数が上限値に達した"/>
 <meta name="twitter:description" content="CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。
- 下記を参考にした。 http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html  確認方法 ファイル上限値の確認コマンドは以下。
-$ cat /proc/sys/fs/file-nr 1792 0 566699  左から順に 今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限 となる。  一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
+下記を参考にした。
+http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html 確認方法 ファイル上限値の確認コマンドは以下。
+$ cat /proc/sys/fs/file-nr 1792 0 566699 左から順に
+今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限 となる。
+一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
 $ cat /proc/sys/fs/file-nr 1792 0 566699 一時的にファイルディスクリプタの上限値を変更する。
 $ /sbin/sysctl -w fs.file-max = 1234567 設定値の確認
 $ cat /proc/sys/fs/file-nr 1216 0 1234567 ユーザ毎(カレントユーザ) 現在のセッション(自分が起動したプロセス)に対して、 ファイルディスクリプタ上限値を設定するには、 ulimit を使用する。
@@ -57,7 +63,7 @@ $ ulimit -a core file size (blocks, -c) 0 data seg size (kbytes, -d) unlimited s
 <section>
       <span class="date">作成日: 2013-03-02</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2013-03-02</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;288 文字> </span>
+      <sapn class="wordcount"> &lt;289 文字> </span>
     </section>
     
   </aside>
@@ -67,139 +73,213 @@ $ ulimit -a core file size (blocks, -c) 0 data seg size (kbytes, -d) unlimited s
     
     
     
-      <!-- これの検証も必要 -->
-<!-- cat /proc/`pgrep httpd | head -1`/limits | grep 'open files' -->
-
+      
 <p>CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。</p>
-
+<p>
+下記を参考にした。</p>
 <ul>
-下記を参考にした。
-<li>http://thinkit.co.jp/free/tech/23/5</li>
-<li>http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html</li>
+<li><a href="http://thinkit.co.jp/free/tech/23/5">http://thinkit.co.jp/free/tech/23/5</a></li>
+<li><a href="http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html">http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html</a></li>
 </ul>
-
-<h1 id="確認方法">確認方法</h1>
-
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+確認方法
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>ファイル上限値の確認コマンドは以下。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cat /proc/sys/fs/file-nr
-<span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">566699</span></code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cat /proc/sys/fs/file-nr
+</span></span><span style="display:flex;"><span><span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">566699</span></span></span></code></pre></div>
+</div>
+<p>左から順に</p>
 <ul>
-左から順に
 <li>今までにオープンしたことのあるファイルの最大数</li>
 <li>現在オープンしているファイルの総数</li>
 <li>オープン可能なファイル数の上限</li>
-となる。
 </ul>
-
-<h1 id="一時的な設定方法">一時的な設定方法</h1>
-
-<h2 id="システム全体">システム全体</h2>
-
-<p>現状のファイルディスクリプタの上限値を確認</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cat /proc/sys/fs/file-nr
-<span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">566699</span></code></pre></div>
-<p>一時的にファイルディスクリプタの上限値を変更する。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ /sbin/sysctl -w fs.file-max <span style="color:#555">=</span> <span style="color:#f60">1234567</span></code></pre></div>
-<p>設定値の確認</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cat /proc/sys/fs/file-nr
-<span style="color:#f60">1216</span>    <span style="color:#f60">0</span>       <span style="color:#f60">1234567</span></code></pre></div>
-<h2 id="ユーザ毎-カレントユーザ">ユーザ毎(カレントユーザ)</h2>
-
+<p>となる。</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+一時的な設定方法
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+システム全体
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>
+現状のファイルディスクリプタの上限値を確認</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cat /proc/sys/fs/file-nr
+</span></span><span style="display:flex;"><span><span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">566699</span></span></span></code></pre></div>
+</div>
+<p>
+一時的にファイルディスクリプタの上限値を変更する。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ /sbin/sysctl -w fs.file-max <span style="color:#555">=</span> <span style="color:#f60">1234567</span></span></span></code></pre></div>
+</div>
+<p>
+設定値の確認</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cat /proc/sys/fs/file-nr
+</span></span><span style="display:flex;"><span><span style="color:#f60">1216</span>    <span style="color:#f60">0</span>       <span style="color:#f60">1234567</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+ユーザ毎(カレントユーザ)
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
 <p>現在のセッション(自分が起動したプロセス)に対して、
-ファイルディスクリプタ上限値を設定するには、 <code>ulimit</code> を使用する。</p>
-
-<p>ulimitはユーザに対していろいろな制限を設定するコマンド。
+ファイルディスクリプタ上限値を設定するには、 <code class="verbatim">ulimit</code> を使用する。</p>
+<p>
+ulimitはユーザに対していろいろな制限を設定するコマンド。
 ulimit -a で全ての設定値を確認できる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">ulimit</span> -a
-core file size          <span style="color:#555">(</span>blocks, -c<span style="color:#555">)</span> <span style="color:#f60">0</span>
-data seg size           <span style="color:#555">(</span>kbytes, -d<span style="color:#555">)</span> unlimited
-scheduling priority             <span style="color:#555">(</span>-e<span style="color:#555">)</span> <span style="color:#f60">0</span>
-file size               <span style="color:#555">(</span>blocks, -f<span style="color:#555">)</span> unlimited
-pending signals                 <span style="color:#555">(</span>-i<span style="color:#555">)</span> <span style="color:#f60">114688</span>
-max locked memory       <span style="color:#555">(</span>kbytes, -l<span style="color:#555">)</span> <span style="color:#f60">32</span>
-max memory size         <span style="color:#555">(</span>kbytes, -m<span style="color:#555">)</span> unlimited
-open files                      <span style="color:#555">(</span>-n<span style="color:#555">)</span> <span style="color:#f60">1024</span>
-pipe size            <span style="color:#555">(</span><span style="color:#f60">512</span> bytes, -p<span style="color:#555">)</span> <span style="color:#f60">8</span>
-POSIX message queues     <span style="color:#555">(</span>bytes, -q<span style="color:#555">)</span> <span style="color:#f60">819200</span>
-real-time priority              <span style="color:#555">(</span>-r<span style="color:#555">)</span> <span style="color:#f60">0</span>
-stack size              <span style="color:#555">(</span>kbytes, -s<span style="color:#555">)</span> <span style="color:#f60">10240</span>
-cpu <span style="color:#366">time</span>               <span style="color:#555">(</span>seconds, -t<span style="color:#555">)</span> unlimited
-max user processes              <span style="color:#555">(</span>-u<span style="color:#555">)</span> <span style="color:#f60">114688</span>
-virtual memory          <span style="color:#555">(</span>kbytes, -v<span style="color:#555">)</span> unlimited
-file locks                      <span style="color:#555">(</span>-x<span style="color:#555">)</span> unlimited</code></pre></div>
-<p>ファイルディスクリプタの上限値を設定するには、 <code>ulimit -n N</code> でファイルディスクリプタ上限をN個に変更できる。</p>
-
-<p>まず現状のファイルディスクリプタの上限値を確認する。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># (open filesが該当)</span>
-$ <span style="color:#366">ulimit</span> -n
-<span style="color:#f60">1024</span></code></pre></div>
-<p>下記は、Nを2048個にする例。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">ulimit</span> -n <span style="color:#f60">2048</span>
--bash: ulimit: open files: cannot modify limit: 許可されていない操作です
-$ sudo <span style="color:#366">ulimit</span> -n <span style="color:#f60">2048</span>
-sudo: ulimit: <span style="color:#366">command</span> not found</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ <span style="color:#366">ulimit</span> -a
+</span></span><span style="display:flex;"><span>core file size          <span style="color:#555">(</span>blocks, -c<span style="color:#555">)</span> <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>data seg size           <span style="color:#555">(</span>kbytes, -d<span style="color:#555">)</span> unlimited
+</span></span><span style="display:flex;"><span>scheduling priority             <span style="color:#555">(</span>-e<span style="color:#555">)</span> <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>file size               <span style="color:#555">(</span>blocks, -f<span style="color:#555">)</span> unlimited
+</span></span><span style="display:flex;"><span>pending signals                 <span style="color:#555">(</span>-i<span style="color:#555">)</span> <span style="color:#f60">114688</span>
+</span></span><span style="display:flex;"><span>max locked memory       <span style="color:#555">(</span>kbytes, -l<span style="color:#555">)</span> <span style="color:#f60">32</span>
+</span></span><span style="display:flex;"><span>max memory size         <span style="color:#555">(</span>kbytes, -m<span style="color:#555">)</span> unlimited
+</span></span><span style="display:flex;"><span>open files                      <span style="color:#555">(</span>-n<span style="color:#555">)</span> <span style="color:#f60">1024</span>
+</span></span><span style="display:flex;"><span>pipe size            <span style="color:#555">(</span><span style="color:#f60">512</span> bytes, -p<span style="color:#555">)</span> <span style="color:#f60">8</span>
+</span></span><span style="display:flex;"><span>POSIX message queues     <span style="color:#555">(</span>bytes, -q<span style="color:#555">)</span> <span style="color:#f60">819200</span>
+</span></span><span style="display:flex;"><span>real-time priority              <span style="color:#555">(</span>-r<span style="color:#555">)</span> <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>stack size              <span style="color:#555">(</span>kbytes, -s<span style="color:#555">)</span> <span style="color:#f60">10240</span>
+</span></span><span style="display:flex;"><span>cpu <span style="color:#366">time</span>               <span style="color:#555">(</span>seconds, -t<span style="color:#555">)</span> unlimited
+</span></span><span style="display:flex;"><span>max user processes              <span style="color:#555">(</span>-u<span style="color:#555">)</span> <span style="color:#f60">114688</span>
+</span></span><span style="display:flex;"><span>virtual memory          <span style="color:#555">(</span>kbytes, -v<span style="color:#555">)</span> unlimited
+</span></span><span style="display:flex;"><span>file locks                      <span style="color:#555">(</span>-x<span style="color:#555">)</span> unlimited</span></span></code></pre></div>
+</div>
+<p>
+ファイルディスクリプタの上限値を設定するには、 <code class="verbatim">ulimit -n N</code> でファイルディスクリプタ上限をN個に変更できる。</p>
+<p>
+まず現状のファイルディスクリプタの上限値を確認する。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># (open filesが該当)</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#366">ulimit</span> -n
+</span></span><span style="display:flex;"><span><span style="color:#f60">1024</span></span></span></code></pre></div>
+</div>
+<p>
+下記は、Nを2048個にする例。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ <span style="color:#366">ulimit</span> -n <span style="color:#f60">2048</span>
+</span></span><span style="display:flex;"><span>-bash: ulimit: open files: cannot modify limit: 許可されていない操作です
+</span></span><span style="display:flex;"><span>$ sudo <span style="color:#366">ulimit</span> -n <span style="color:#f60">2048</span>
+</span></span><span style="display:flex;"><span>sudo: ulimit: <span style="color:#366">command</span> not found</span></span></code></pre></div>
+</div>
 <p>残念ながら一般ユーザ実行すると失敗する(sudoでも実行できない)。
 rootユーザで実行しなくてはならない。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo su
-<span style="color:#09f;font-style:italic"># ulimit -n 2048</span>
-$ <span style="color:#366">ulimit</span> -n
-<span style="color:#f60">2048</span></code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo su
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ulimit -n 2048</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#366">ulimit</span> -n
+</span></span><span style="display:flex;"><span><span style="color:#f60">2048</span></span></span></code></pre></div>
+</div>
 <p>ただし直接rootになることは禁止されている環境も多いため、実質この方法は実施できない。</p>
-
-<h1 id="恒久的な設定方法">恒久的な設定方法</h1>
-
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+恒久的な設定方法
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
 <p>一時的な方法では、OSを再起動すると初期値に戻ってしまう。
 これを防ぐためには、設定ファイルに直接記述する。</p>
-
+<p>
+設定対象のファイルは以下のとおり。</p>
 <dl>
-設定対象のファイルは以下のとおり。
-<dt>/etc/sysctl.conf</dt>
+<dt>
+/etc/sysctl.conf
+</dt>
 <dd>システム全体のファイルオープン数</dd>
-<dt>/etc/security/limits.conf</dt>
+<dt>
+/etc/security/limits.conf
+</dt>
 <dd>アカウント毎のファイルオープン数</dd>
 </dl>
-
 <p>設定前にバックアップしておく。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo cp /etc/security/limits.conf /etc/security/limits.conf.orig
-sudo cp /etc/sysctl.conf /etc/sysctl.conf.orig</code></pre></div>
-<h3 id="sysctl-conf">sysctl.conf</h3>
-
-<p>まず現在値を確認。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cat /proc/sys/fs/file-nr
-<span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">566699</span></code></pre></div>
-<p>sysctl.confを編集。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo vi /etc/sysctl.conf
-fs.file-max <span style="color:#555">=</span> <span style="color:#f60">1232457</span>
-<span style="color:#09f;font-style:italic"># FORMAT</span>
-<span style="color:#09f;font-style:italic"># fs.file-max = N :システム全体のファイルディスクリプタの上限</span>
-<span style="color:#09f;font-style:italic"># kernel.threads-max = N :システム全体のプロセス数の上限</span></code></pre></div>
-<p>設定ファイルの内容を反映させる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo /sbin/sysctl -p</code></pre></div>
-<p>変更を確認。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cat /proc/sys/fs/file-nr
-<span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">1234567</span></code></pre></div>
-<p>ちなみに上限値は下記でも確認できる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ /sbin/sysctl fs.file-max
-fs.file-max <span style="color:#555">=</span> <span style="color:#f60">593544</span></code></pre></div>
-<h3 id="limits-conf">limits.conf</h3>
-
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo cp /etc/security/limits.conf /etc/security/limits.conf.orig
+</span></span><span style="display:flex;"><span>sudo cp /etc/sysctl.conf /etc/sysctl.conf.orig</span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-6" class="outline-4">
+<h4 id="headline-6">
+sysctl.conf
+</h4>
+<div id="outline-text-headline-6" class="outline-text-4">
+<p>
+まず現在値を確認。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cat /proc/sys/fs/file-nr
+</span></span><span style="display:flex;"><span><span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">566699</span></span></span></code></pre></div>
+</div>
+<p>
+sysctl.confを編集。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo vi /etc/sysctl.conf
+</span></span><span style="display:flex;"><span>fs.file-max <span style="color:#555">=</span> <span style="color:#f60">1232457</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># FORMAT</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># fs.file-max = N :システム全体のファイルディスクリプタの上限</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># kernel.threads-max = N :システム全体のプロセス数の上限</span></span></span></code></pre></div>
+</div>
+<p>
+設定ファイルの内容を反映させる。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo /sbin/sysctl -p</span></span></code></pre></div>
+</div>
+<p>
+変更を確認。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cat /proc/sys/fs/file-nr
+</span></span><span style="display:flex;"><span><span style="color:#f60">1792</span>    <span style="color:#f60">0</span>       <span style="color:#f60">1234567</span></span></span></code></pre></div>
+</div>
+<p>
+ちなみに上限値は下記でも確認できる。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ /sbin/sysctl fs.file-max
+</span></span><span style="display:flex;"><span>fs.file-max <span style="color:#555">=</span> <span style="color:#f60">593544</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
+limits.conf
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>
+注意点として、limits.confに設定した値は、ログインしないdameonプロセスには効かないとのこと。</p>
 <ul>
-注意点として、limits.confに設定した値は、ログインしないdameonプロセスには効かないとのこと。
-<li>http://yumewaza.yumemi.co.jp/2010/07/limitsconf.html</li>
-/etc/init.d/配下から起動する場合は、その起動スクリプト内に ulimit -n <num> を記述する必要がある。
+<li><a href="http://yumewaza.yumemi.co.jp/2010/07/limitsconf.html">http://yumewaza.yumemi.co.jp/2010/07/limitsconf.html</a></li>
 </ul>
-
-<p>limits.confは設定値は、ログインしたユーザのセッション内で有効になる。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo vi /etc/security/limits.conf
-mikio soft nofile <span style="color:#f60">2048</span>
-mikio hard nofile <span style="color:#f60">2048</span>
-<span style="color:#09f;font-style:italic"># FORMAT</span>
-<span style="color:#09f;font-style:italic"># &lt;USER&gt; &lt;soft|hard&gt; &lt;nofile|noproc&gt; &lt;設定数&gt;</span>
-<span style="color:#09f;font-style:italic"># soft:一般ユーザが設定可能な上限値(ulimit -nのことかな？)</span>
-<span style="color:#09f;font-style:italic"># hard:ルートユーザが設定可能な上限値</span>
-<span style="color:#09f;font-style:italic"># nofile: ファイルディスクリプタの上限値</span>
-<span style="color:#09f;font-style:italic"># noproc: プロセス(スレッド)の上限値</span></code></pre></div>
+<p>/etc/init.d/配下から起動する場合は、その起動スクリプト内に ulimit -n &lt;num&gt; を記述する必要がある。</p>
+<p>
+limits.confは設定値は、ログインしたユーザのセッション内で有効になる。</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo vi /etc/security/limits.conf
+</span></span><span style="display:flex;"><span>mikio soft nofile <span style="color:#f60">2048</span>
+</span></span><span style="display:flex;"><span>mikio hard nofile <span style="color:#f60">2048</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># FORMAT</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># &lt;USER&gt; &lt;soft|hard&gt; &lt;nofile|noproc&gt; &lt;設定数&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># soft:一般ユーザが設定可能な上限値(ulimit -nのことかな？)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># hard:ルートユーザが設定可能な上限値</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># nofile: ファイルディスクリプタの上限値</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># noproc: プロセス(スレッド)の上限値</span></span></span></code></pre></div>
+</div>
 <p>すぐに反映させるには、一度ログアウトして、そこから対象プロセス(tomcatやapache)を再起動する。</p>
+</div>
+</div>
+</div>
+</div>
 
     
 </div>

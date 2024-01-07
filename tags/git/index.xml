@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>git on ざる魂</title>
@@ -7,21 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Wed, 29 Aug 2012 14:01:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://zarudama.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。</title>
       <link>https://zarudama.github.io/posts/git-repo-delete/</link>
       <pubDate>Wed, 29 Aug 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/git-repo-delete/</guid>
-      <description>サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。 http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ トリから見ると生きのこってたりする。 git remote show origin で確認で きる。  $ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &#39;git remote prune&#39; to remove) refs/remotes/origin/fuga-branch stale (use &#39;git remote prune&#39; to remove)  この中で stale (use &#39;git remote prune&#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。
-まず、確認。
-$ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。
-$ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。</description>
+      <description>サーバー上で削除されたリモートブランチは、自動ではローカルリポジトリに反映されない仕様らしい。&#xA;http://blog.s21g.com/articles/992 なので、とあるリポジトリで削除したはずのリモートブランチが、別のリポジ トリから見ると生きのこってたりする。 git remote show origin で確認で きる。&#xA;$ git remote show origin * remote origin : : refs/remotes/origin/hoge-branch stale (use &amp;#39;git remote prune&amp;#39; to remove) refs/remotes/origin/fuga-branch stale (use &amp;#39;git remote prune&amp;#39; to remove) : この中で stale (use &amp;#39;git remote prune&amp;#39; to remove) とあるのがいらないブランチだ。 stale(腐った)をplue(切り詰める)すれば良い。&#xA;まず、確認。&#xA;$ git remote prune origin --dry-run Pruning origin URL: gitolite@db72-dictwiki:wsrch * [would prune] origin/hoge-branch * [would prune] origin/fuga-branch 実行。&#xA;$ git remote prune origin もう一回確認。なにも表示されなければ多分成功している。</description>
     </item>
-    
   </channel>
 </rss>

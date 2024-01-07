@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>windows on ざる魂</title>
@@ -7,78 +7,41 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Wed, 16 Apr 2014 14:01:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://zarudama.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows7でemacsのアイコンが2重に表示されるのを防ぐ</title>
       <link>https://zarudama.github.io/posts/emacs-win-taskbar/</link>
       <pubDate>Wed, 16 Apr 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/emacs-win-taskbar/</guid>
-      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。
-でもこれ、Windows版emacsだとうまくいきません。
-runemacs.exe を起動してタスクバーに登録しても、 起動時にDos窓が開いてアイコンが2つ表示されてしまいます。 これでは不便なのでなんとかします。
-この問題については、下記で解説されてるので一読をおすすめします。
- http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html  ただしこのサイトで公開されているツールはもうないようなので、 下記から代替ツールをダウンロードして適当なところに配置します。
- https://code.google.com/p/win7appid/  runemacs.exe のショートカットを作成して、 先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。
-さきほどダウンロードしたWin7AppId1.exeを、 登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。
-DOS&amp;gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を 選択すれば準備オッケーです。
-これで、タスクバーのアイコンをランチャーとして登録し、 かつ余計なDos窓が開くこともなくなります。</description>
+      <description>Windows7には、タスクバーにアイコンを登録しておくと、 Win+数字キーで起動できる便利な機能があります。&#xA;でもこれ、Windows版emacsだとうまくいきません。&#xA;runemacs.exe を起動してタスクバーに登録しても、 起動時にDos窓が開いてアイコンが2つ表示されてしまいます。 これでは不便なのでなんとかします。&#xA;この問題については、下記で解説されてるので一読をおすすめします。&#xA;http://dnerkx.blogspot.jp/2009/12/emacs-ntemacs-231-windows-7-part2.html ただしこのサイトで公開されているツールはもうないようなので、 下記から代替ツールをダウンロードして適当なところに配置します。&#xA;https://code.google.com/p/win7appid/ runemacs.exe のショートカットを作成して、 先程ダウンロードしたWin7AppId1.1.exeと同じ場所に配置します。&#xA;さきほどダウンロードしたWin7AppId1.exeを、 登録したタスクバーアイコンを指定してコマンドプロンプトから実行します。&#xA;DOS&amp;gt; Win7AppId1.1.exe runemacs.lnk GNU.Emacs runemacs.lnkが更新されるので、右クリックして「タスクバーに表示する」を 選択すれば準備オッケーです。&#xA;これで、タスクバーのアイコンをランチャーとして登録し、 かつ余計なDos窓が開くこともなくなります。</description>
     </item>
-    
     <item>
       <title>windows版emacs24.3で画像を表示する。</title>
       <link>https://zarudama.github.io/posts/windowsemacs243/</link>
       <pubDate>Fri, 03 May 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/windowsemacs243/</guid>
-      <description> Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。   自分の場合pngが表示されなかったので libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。 http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。  emacs(Windows版)で画像を表示している様子 /img/image-dired/image-dired.png
-w3mでakb48を検索してみた。 /img/image-dired/w3m.png
-参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  </description>
+      <description> Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。&#xA;F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。 自分の場合pngが表示されなかったので&#xA;libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。&#xA;http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。&#xA;emacs(Windows版)で画像を表示している様子 w3mでakb48を検索してみた。 参考 http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files </description>
     </item>
-    
     <item>
       <title>python window tiler を試す</title>
       <link>https://zarudama.github.io/posts/python-window-tiler/</link>
       <pubDate>Tue, 29 Jan 2013 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/python-window-tiler/</guid>
-      <description>この記事 にxmonadがでてきたので、自分が普段使っているWindowsでもタイル 型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、 どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納 得のいくものがなかったので、使っていなかったのだ。でもその時から大分時 間も経ってるので、最近は何かないかなと調べたところPythonで実装されたそ の名もずばり「Python-windows-tiler」というものを見つけた。
- https://github.com/Tzbob/python-windows-tiler http://d.hatena.ne.jp/uhiaha888/20121125/1353824257  使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日 本語を含むとエラーになるのでルートに解凍するのが良いと思う。
-キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て winにしてPWT.exeを再起動した。
-これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめで たし、と思ったのだが、Win+Lキーでウィンドウの横幅を広げようとしたらロッ ク画面になってしまう。。。
-てことでWin+Lを無効化する方法を模索したけど、結局どれもうまくいかなかっ たので横幅操作は封印することにした。てか、Winを使用するコンビネーション キーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win キー経由でタイル操作はとても使いやすい。多様する操作はこれ。
-   Win+SPC ウィンドウレイアウトの変更   Win+j, Win+k ALT+TABの代りになる   Win+S+Ent プライマリの切替   Win+数字キー 仮想デスクトップの切替   Win+S+数字キー カレントアプリを仮想デスクトップへ移動    特にWin+j,kがイイ!
-自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみの あるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが 逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの emacsでは windows.el を使用し、端末ではtmuxを使用してるので、タイル型 ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱する のだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分 にはAwesome系の操作体系のほうが向いているような気がした。
-ということで、Ubuntuではxmonadをもう一度使ってみようと思う。</description>
+      <description>この記事 にxmonadがでてきたので、自分が普段使っているWindowsでもタイル 型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、 どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納 得のいくものがなかったので、使っていなかったのだ。でもその時から大分時 間も経ってるので、最近は何かないかなと調べたところPythonで実装されたそ の名もずばり「Python-windows-tiler」というものを見つけた。&#xA;https://github.com/Tzbob/python-windows-tiler http://d.hatena.ne.jp/uhiaha888/20121125/1353824257 使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日 本語を含むとエラーになるのでルートに解凍するのが良いと思う。&#xA;キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て winにしてPWT.exeを再起動した。&#xA;これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめで たし、と思ったのだが、Win+Lキーでウィンドウの横幅を広げようとしたらロッ ク画面になってしまう。。。&#xA;てことでWin+Lを無効化する方法を模索したけど、結局どれもうまくいかなかっ たので横幅操作は封印することにした。てか、Winを使用するコンビネーション キーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win キー経由でタイル操作はとても使いやすい。多様する操作はこれ。&#xA;Win+SPC ウィンドウレイアウトの変更 Win+j, Win+k ALT+TABの代りになる Win+S+Ent プライマリの切替 Win+数字キー 仮想デスクトップの切替 Win+S+数字キー カレントアプリを仮想デスクトップへ移動 特にWin+j,kがイイ!&#xA;自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみの あるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが 逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの emacsでは windows.el を使用し、端末ではtmuxを使用してるので、タイル型 ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱する のだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分 にはAwesome系の操作体系のほうが向いているような気がした。&#xA;ということで、Ubuntuではxmonadをもう一度使ってみようと思う。</description>
     </item>
-    
     <item>
       <title>SKKを導入してみる(WindowsXP)</title>
       <link>https://zarudama.github.io/posts/skkwindowsxp/</link>
       <pubDate>Sun, 09 Sep 2012 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/skkwindowsxp/</guid>
-      <description>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、 ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのに クライアントが増えてます!。。。ということでいくつか検証してみて 最終的に下記の組み合わせを使用することにしました。快適!快適ー!
- corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー)  ということで以下に調べた内容をメモしておきます。
-corvus-SKK  最近できたらしいWindows用のFEP 辞書が独自形式 取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。  「;」によるStickyShiftを実現する方法  設定画面で[位置] タブで下記の設定を施す。  開始：; 代替：なし 送り：なし
-SKK日本語入力FEP  軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。  wceSKKServ  wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。 linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。  google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
-また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、 このサーバを使えば、その問題も解決します。 スバラシス!
-xp環境でのインストール gemを入れてから下記でインストールする。
-dos gem install google-ime-skk dos gem install json</description>
+      <description>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、 ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのに クライアントが増えてます!。。。ということでいくつか検証してみて 最終的に下記の組み合わせを使用することにしました。快適!快適ー!&#xA;corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー) ということで以下に調べた内容をメモしておきます。&#xA;corvus-SKK 最近できたらしいWindows用のFEP 辞書が独自形式&#xA;取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない&#xA;wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 「;」によるStickyShiftを実現する方法 設定画面で[位置] タブで下記の設定を施す。 開始：; 代替：なし 送り：なし SKK日本語入力FEP 軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。 wceSKKServ wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。&#xA;linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。 google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。&#xA;また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、 このサーバを使えば、その問題も解決します。 スバラシス!&#xA;xp環境でのインストール gemを入れてから下記でインストールする。&#xA;dos&amp;gt; gem install google-ime-skk dos&amp;gt; gem install json 下記のようなバッチファイルを作ってスタートアップに登録しておく。 「gskk.bat」</description>
     </item>
-    
     <item>
       <title>(超個人的)Windowsインストール後にやることまとめ</title>
       <link>https://zarudama.github.io/posts/windows/</link>
       <pubDate>Thu, 28 Apr 2011 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/windows/</guid>
-      <description>ソフトのインストールポリシー  インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;/opt/下に展開する。  コントロールキーの設定 xp win7  xkeyemacsをつかってcapsキーをctrsキーにする。 Changekeyを使用する(右クリメニューで管理者として実行すること)。 chgkey.exe Dropboxに保存してある。 GUIのキーボードが表示されるので変更する Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift  再起動  Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。 これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。
-一番最初にインストール  Launcy Firefox Emacs ExpLzh  環境変数の設定  HOME XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE%   HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。 HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。 ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。   MAVEN_HOME %HOME%\opt\ XYZZYHOME XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin;   下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME=  キーボードの入力速度を早める  PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.</description>
+      <description>ソフトのインストールポリシー インストーラのないツールは基本的に%HOME%/apps下に展開する。 インストーラものはデフォルト値でインストール %HOME%/shortcutsにショートカットをおいてlauncyで管理 UNIX系(コマンドライン系)のミドルウェアでインストーラーがない場合は%HOME&amp;amp;/opt/下に展開する。 コントロールキーの設定 xp xkeyemacsをつかってcapsキーをctrsキーにする。 win7 Changekeyを使用する(右クリメニューで管理者として実行すること)。&#xA;chgkey.exe Dropboxに保存してある。 GUIのキーボードが表示されるので変更する&#xA;Caps → Ctrl 無変換 → Ctrl 変換 → Ctrl ひらがな → Shift 再起動 Usersディレクトリの作成(XPのみ) 「Link Shell Extension」をインストールして 「c:\」に「C:\Documents and Settings」のディレクトリジャンクションを作り名前を「Users」とする。 これにより c:\Users\というディレクトリができ、Windows7/Vistaと同じような構成になる。&#xA;一番最初にインストール Launcy Firefox Emacs ExpLzh 環境変数の設定 HOME&#xA;XPの場合:HOME=c:\Users\mikio Windows7の場合:HOME=%USERPROFILE% HOMEはダブルクォーテーションで囲んではいけない。emacsが起動しなくなる。 HOMEはcygwin,Emacs用、XYZZYHOMEはxyzzy用の環境変数。 ※cygwinでは、HOMEを設定すると、自動的に/home/mikiがc:\mikiにマウントされる。 MAVEN_HOME %HOME%\opt\ XYZZYHOME&#xA;XYZZYHOME=%HOME%\aps\xyzzy PATH c:\cygwin\bin; 下記は.bashrc側に置くので設定しなくて良い。 JAVA_HOME=%HOME%\opt\ ANT_HOME= PATH %PATH%;%HOME%\bin;%MAVEN_HOME%\bin;%HOME%\opt\php-5.3.8-Win32-VC9-x86&#xA;TERM xternm(CYGWIN用) CYGWIN tty(screenのデタッチ用) キーボードの入力速度を早める (Win7) [コンパネ] -&amp;gt; [コンピュータの簡単操作] -&amp;gt; [キーボード動作の変更] -&amp;gt; [キーボードの設定] アンチエイリアスの設定 MacTypeをインストールする。 fontは「Mig 1M」を使用する。MigMix1M 行間が広いので注意。 入れるソフト インストーラ系ソフトのインストール Spybot Searcy &amp;amp; Directory Link Shell Extension</description>
     </item>
-    
   </channel>
 </rss>

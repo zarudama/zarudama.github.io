@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>libGDX on ざる魂</title>
@@ -7,133 +7,55 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Fri, 05 Jan 2024 23:16:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://zarudama.github.io/tags/libgdx/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://zarudama.github.io/tags/libgdx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>「Androidゲームプログラミング A to Z 」レビュー</title>
       <link>https://zarudama.github.io/posts/android_gameprogramming_atoz/</link>
       <pubDate>Fri, 05 Jan 2024 23:16:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/android_gameprogramming_atoz/</guid>
-      <description>「Androidゲームプログラミング A to Z 」は libGDXの作者が書いた本です。
-実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。 Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
-この本は、libGDXの解説はないけれど、その思想は当然libGDXにも引き継がれ ています。そのためlibGDXの理解もしやすくなります。libGDXをやるなら読ん でおいて損はないと思います。
-また、Androidの本ではありますが、Androidスマホに特化したわけでもなく、 どんなハードのゲーム開発にも通用しそうな内容ばかりです。
-そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと 思います。1
-/img/amazon_android_gameprogiraming_a_to_z.jpg
- ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。 [return]   </description>
+      <description>「Androidゲームプログラミング A to Z 」は libGDXの作者が書いた本です。&#xA;実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。 Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。&#xA;この本は、libGDXの解説はないけれど、その思想は当然libGDXにも引き継がれ ています。そのためlibGDXの理解もしやすくなります。libGDXをやるなら読ん でおいて損はないと思います。&#xA;また、Androidの本ではありますが、Androidスマホに特化したわけでもなく、 どんなハードのゲーム開発にも通用しそうな内容ばかりです。&#xA;そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと 思います。1&#xA;1 ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。</description>
     </item>
-    
     <item>
       <title>libGDX入門 その05 ゲームデータの保存</title>
       <link>https://zarudama.github.io/posts/libgdx-beginner5/</link>
       <pubDate>Sat, 05 Jul 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/libgdx-beginner5/</guid>
-      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。
-前回 は、以下のことを学びました。
- Screenインタフェイスを使った画面遷移  今回は、前回作ったゲームに以下の機能を追加します。
- BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示  これらの情報は、ゲームを再開したときも保持していて欲しいですね。
-そこで今回は、これら3つの情報を com.badlogic.gdx.Preferences というクラスを利用して 保存していきます。
-公式情報は下記にあります。
- https://libgdx.com/wiki/preferences https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html  注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、 扱えるのはごく小さなデータのみです1。 また、データはテキストとして保存されるので、 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
-インスタンスの取得方法 さらに、ゲーム中の複雑なデータを扱う場合は、 データをシリアライズしたりして保存する必要があるかと思います。 これらについては、今回は扱いません。
-下記で取得できます(公式からの引用)。
-Preferences prefs = Gdx.app.getPreferences(&amp;#34;My Preferences&amp;#34;); 文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。 個人的にこの名前は、javaのパッケージ名が良いかと思います。 (ただしそれがユニークであるという保証がある場合のみ)
-というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。 今回の例でいうと下記の名前になります。
-Preferences prefs = Gdx.app.getPreferences(&amp;#34;com.zarudama.fishcatch&amp;#34;);  この辺の考察は下記が詳しいので、一読をおすすめします。 doc.tir.ne.jp/devel/clan/libgdx preferencesについて  値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.util.Map クラスに少し似ています。
-公式から引用します。
-prefs.putString(&amp;#34;name&amp;#34;, &amp;#34;Donald Duck&amp;#34;); String name = prefs.</description>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。&#xA;前回 は、以下のことを学びました。&#xA;Screenインタフェイスを使った画面遷移 今回は、前回作ったゲームに以下の機能を追加します。&#xA;BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示 これらの情報は、ゲームを再開したときも保持していて欲しいですね。&#xA;そこで今回は、これら3つの情報を com.badlogic.gdx.Preferences というクラスを利用して 保存していきます。&#xA;公式情報は下記にあります。&#xA;https://libgdx.com/wiki/preferences https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html 注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、 扱えるのはごく小さなデータのみです1。 また、データはテキストとして保存されるので、 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。&#xA;さらに、ゲーム中の複雑なデータを扱う場合は、 データをシリアライズしたりして保存する必要があるかと思います。 これらについては、今回は扱いません。&#xA;インスタンスの取得方法 下記で取得できます(公式からの引用)。&#xA;Preferences prefs = Gdx.app.getPreferences(&amp;#34;My Preferences&amp;#34;); 文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。 個人的にこの名前は、javaのパッケージ名が良いかと思います。 (ただしそれがユニークであるという保証がある場合のみ)&#xA;というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。 今回の例でいうと下記の名前になります。&#xA;Preferences prefs = Gdx.app.getPreferences(&amp;#34;com.zarudama.fishcatch&amp;#34;); この辺の考察は下記が詳しいので、一読をおすすめします。&#xA;doc.tir.ne.jp/devel/clan/libgdx preferencesについて 値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.util.Map クラスに少し似ています。&#xA;公式から引用します。&#xA;prefs.putString(&amp;#34;name&amp;#34;, &amp;#34;Donald Duck&amp;#34;); String name = prefs.getString(&amp;#34;name&amp;#34;, &amp;#34;No name stored&amp;#34;); prefs.putBoolean(&amp;#34;soundOn&amp;#34;, true); prefs.putInteger(&amp;#34;highscore&amp;#34;, 10); 下記のようなメソッドの仕様になっています。</description>
     </item>
-    
     <item>
       <title>libGDX入門 その04 画面遷移</title>
       <link>https://zarudama.github.io/posts/libgdx-beginner4/</link>
       <pubDate>Sun, 29 Jun 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/libgdx-beginner4/</guid>
-      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。
-前回 は、以下のことを学びました。
- ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。
-ライフサイクルについて 今まであえて説明を避けてきたのですが(面倒そうなので←)、 Screenインタフェイスを扱うにあたり避けられそうもなかったので調査しました。
-libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。
-/img/libgdx-beginner/4/life-cycle.png
-メソッドは、 ApplicationListener のものです。
-注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。 特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。 私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。
-   create() アプリケーションが新しく生成された時に呼ばれます。   resize() アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。   pause() スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。   resume() 待機状態から、ウィンドウがアクティブになった時に呼ばれます。   dispose() アプリケーションが破棄される時に呼ばれます。     ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。 clan libGDXメモ 上記サイトの説明にもありますが、ゲームの情報を保存するときは、 pause() が良いようです。   公式ドキュメントは下記にあります。 https://libgdx.com/wiki/app/the-life-cycle  画面遷移 今回作成したゲームでは、次のような遷移があります。
-/img/libgdx-beginner/4/screen.png
-まず「メインメニュー」が表示され、 「START」をタップすると「ゲーム」画面になり、 「QUIT」をタップすると「メインメニュー」画面に戻ります。 非常にシンプルですね。
-その1でも紹介しましたが、関連するクラス図を再掲します。
-/img/libgdx-beginner/4/class.png</description>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。&#xA;前回 は、以下のことを学びました。&#xA;ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド 今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。&#xA;ライフサイクルについて 今まであえて説明を避けてきたのですが(面倒そうなので←)、 Screenインタフェイスを扱うにあたり避けられそうもなかったので調査しました。&#xA;libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。&#xA;libgdxのライフサイクル メソッドは、 ApplicationListener のものです。&#xA;注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。 特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。 私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。&#xA;create() アプリケーションが新しく生成された時に呼ばれます。 resize() アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。 pause() スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。 resume() 待機状態から、ウィンドウがアクティブになった時に呼ばれます。 dispose() アプリケーションが破棄される時に呼ばれます。 ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。&#xA;clan libGDXメモ 上記サイトの説明にもありますが、ゲームの情報を保存するときは、 pause() が良いようです。&#xA;公式ドキュメントは下記にあります。 https://libgdx.com/wiki/app/the-life-cycle 画面遷移 今回作成したゲームでは、次のような遷移があります。&#xA;今回の画面遷移 まず「メインメニュー」が表示され、 「START」をタップすると「ゲーム」画面になり、 「QUIT」をタップすると「メインメニュー」画面に戻ります。 非常にシンプルですね。&#xA;その1でも紹介しましたが、関連するクラス図を再掲します。&#xA;Screenのクラス図 ApplicationAdapter クラスは、 ApplicationListener インタフェイスを空実装したデフォルトクラスでしたね。 ScreenAdapter クラスも同様に、 Screen インタフェイスを空実装したデフォルトクラスです。&#xA;今までは、 ApplicationAdapter クラスを継承していましたが、 今回からは、 Game クラスを継承します。&#xA;Game クラスは、 ApplicationListener を実装したクラスで、画面遷移を担当する Screen インタフェイスの インスタンスを保持します。今まで ApplicationAdapter を継承していたクラスはこのGameクラスを継承します。</description>
     </item>
-    
     <item>
       <title>libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</title>
       <link>https://zarudama.github.io/posts/libgdx-beginner3/</link>
       <pubDate>Thu, 19 Jun 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/libgdx-beginner3/</guid>
-      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 3回目です。
-前回 は、以下のことを学びました。
- カメラとビューポート タッチ処理  今回は次のことを学びます。
- ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  前回までは、最初の雛形コードに徐々にコードを継ぎたして完成させるというチュートリアル形式でしたが、 実際にコードを入力しながら実行していくのは少ないんじゃないかという疑問と(自分も含めて)、 記事を書くのが大変なので(手抜き)、最初に一気に解説し、最後にコードを載せるスタイルにします。
-ログの出しかた プログラムの動作を追うとき、ログ出力はとても重宝しますよね。 デバッガもいいですが、私は昔ながらのデバッグプリントで追うのが好きです。
-ということで、ログ出力の方法を解説します。
-公式から引用します。
-Gdx.app.log(&amp;#34;MyTag&amp;#34;, &amp;#34;my informative message&amp;#34;); Gdx.app.error(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;, exception); Gdx.app.debug(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;); log メソッドは普通に情報を出力したい場合、 =error= メソッドは、例外を共なうようなエラー出力(第3引数にはException型)をしたい場合、 =debug= メソッドは開発時のみ出力したい場合に使用します。
-第一引数の MyTag は識別子ですね。一般的にはにはクラス名などが多いようです。 自分は下記のようにクラスフィールドを定義しておき、この LOG_TAG を使用します。
-public static final String LOG_TAG = GameScreen.class.getSimpleName(); こんな感じです。
-Gdx.app.log(LOG_TAG, &amp;#34;my informative message&amp;#34;); 次のように表示されます。
-GameScreen: my informative message こうするとログ出力にクラス名も一緒に表示されるので、 どこで出力したメッセージか一目でわかるので便利です。</description>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 3回目です。&#xA;前回 は、以下のことを学びました。&#xA;カメラとビューポート タッチ処理 今回は次のことを学びます。&#xA;ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド 前回までは、最初の雛形コードに徐々にコードを継ぎたして完成させるというチュートリアル形式でしたが、 実際にコードを入力しながら実行していくのは少ないんじゃないかという疑問と(自分も含めて)、 記事を書くのが大変なので(手抜き)、最初に一気に解説し、最後にコードを載せるスタイルにします。&#xA;ログの出しかた プログラムの動作を追うとき、ログ出力はとても重宝しますよね。 デバッガもいいですが、私は昔ながらのデバッグプリントで追うのが好きです。&#xA;ということで、ログ出力の方法を解説します。&#xA;公式から引用します。&#xA;Gdx.app.log(&amp;#34;MyTag&amp;#34;, &amp;#34;my informative message&amp;#34;); Gdx.app.error(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;, exception); Gdx.app.debug(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;); log メソッドは普通に情報を出力したい場合、 error メソッドは、例外を共なうようなエラー出力(第3引数にはException型)をしたい場合、 debug メソッドは開発時のみ出力したい場合に使用します。&#xA;第一引数の MyTag は識別子ですね。一般的にはにはクラス名などが多いようです。 自分は下記のようにクラスフィールドを定義しておき、この LOG_TAG を使用します。&#xA;public static final String LOG_TAG = GameScreen.class.getSimpleName(); こんな感じです。&#xA;Gdx.app.log(LOG_TAG, &amp;#34;my informative message&amp;#34;); 次のように表示されます。&#xA;GameScreen: my informative message こうするとログ出力にクラス名も一緒に表示されるので、 どこで出力したメッセージか一目でわかるので便利です。&#xA;これらのログ出力は、ログのレベルを指定することで メッセージの出力範囲を制御できます。&#xA;下記のように指定します。</description>
     </item>
-    
     <item>
       <title>libGDX入門 その02 カメラとビューポート</title>
       <link>https://zarudama.github.io/posts/libgdx-beginner2/</link>
       <pubDate>Mon, 02 Jun 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/libgdx-beginner2/</guid>
-      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。
-前回 は、プロジェクトを作って、以下のことを学びました。
- 画像の表示 キーボードによる操作 BGMの再生 効果音の再生  今回は次のことを学びます。
- 物理画面に依存しない画面表示 タッチ処理  物理画面に依存しない画面表示  物理画面とは何でしょうか？ここでは次のように定義します。 スマホやタブレット画面解像度 デスクトップのウィンドウサイズ Androidには様々な画面サイズがありますし、 iPhoneもモデルチェンジ毎に画面サイズが変化しています。 これら様々な画面サイズのことを考慮しないと、 意図した通りの画面が表示できません。  ゲームを作るときの基本として、物理画面でプログラムしないというのがあります。 物理的なディスプレイのサイズに依存した座標管理をすると、 移植性が下がり仕様変更に弱くなったり、 端末毎の画面サイズの違いを吸収できないプログラムになってしまいます。
-例えば横スクロールアクションを作ったときに、 Aさんの画面は小さいから敵の動きがところ狭しとなるところが、 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、 なんてことが発生します。端末によって難易度が変わってくるのです。
-https://zarudama.github.io/img/libgdx-beginner/2/screen2.png
-実は既にこの問題は、私の手元で発生しています。 下記は、Nexus7(2013)で表示したサンプルの画面です。
-http://zarudama.github.io/img/libgdx-beginner/2/004.png
-/img/libgdx-beginner/2/003.png
-Nexus7版は、PCの画面と全然違いますね。キャラクターや文字が非常に小さくなってます。 これはPC版が640x480の解像度なのに対して、Nexus7版は1920x1200の解像度で表示しているからです。 この状態でゲームを作ってしまったら全然別ものになってしまいますよね。 ちなみにMac持ってないのでiOS系ではどうなるかわかりません。
-というわけで、どの端末でも公平に画面表示できるようにひと工夫必要になってきます (こういう処理は、ゲームづくりの序盤でやっておかないと、あとから変更するのは大変なので さっさと済ませておきたいことのひとつですね)。
-カメラとビューポート ではどうやってこの問題を解決するか。それにはカメラとビューポートを使用します。
-カメラとは、ゲームの世界を現実世界のディスプレイに届けるためのオブジェクトです。
-ビューポートとは、カメラの捉えたゲームの世界を、ディスプレイのどこに表示するかを 決める枠(矩形領域)のことです。
-https://zarudama.github.io/img/libgdx-beginner/2/screen3.png
-ビューポートは、ディスプレイサイズと一致しているわけではないことに注意してください。 ゲームのサンプルなどだと一致していることが多いですが、 今回のように様々なディスプレイサイズに対応させる場合は、 一致しなくなることの方が多くなるはずです。また、他の使い方としては、 カメラを2つ用意して一方はゲーム画面、 一方は小さな枠で別のシーンを表示するなんてこともできるかもしれません(やったことないですが)。
- カメラを使うことにより、カメラとして定義した論理空間でゲームを制御できます。 この空間でやりとりすれば、あとはlibGDXがよろしく画面に表示してくれるわけです。 カメラでできることを列挙してみます。 物理的な画面サイズを気にせず、自分の定義した画面サイズでゲームを構築できる ズームイン、ズームアウト、画面を回転させたり、揺らしたりなど、画面全体にかかるエフェクトが簡単にできる カメラを動かすことで、スクロール処理が簡単に実装できる カメラを導入することでこのような自由が手に入るわけですが、 その代償として操作が複雑になってしまうのも事実です。 コーディング中は、今自分がどこの座標系で何を操作しているかを常に意識する必要があります。 ちょっと大袈裟ですが、慣れれば大したことありません。またこの考えはそのまま3Dプログラミングにも繋がります。   座標系には、以下の種類があります。 ワールド座標系。ゲームオブジェクトを置く論理空間。画面サイズは気にしなくて良い。 カメラ座標系。ワールドのゲームオブジェクトをカメラの枠での座標系で測りなおした座標系。真ん中が原点となる。 ビューポート座標系。左下を原点とした座標系。 スクリーン座標系。Android左上を原点とした最終的な座標系。タッチ座標などはOSからこの座標系の値が得られる。  ビューポート座標系とスクリーン座標系は他では別の呼びかたかもしれません。 座標系を意識する例を示します。</description>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。&#xA;前回 は、プロジェクトを作って、以下のことを学びました。&#xA;画像の表示 キーボードによる操作 BGMの再生 効果音の再生 今回は次のことを学びます。&#xA;物理画面に依存しない画面表示 タッチ処理 物理画面に依存しない画面表示 物理画面とは何でしょうか？ここでは次のように定義します。&#xA;スマホやタブレット画面解像度 デスクトップのウィンドウサイズ Androidには様々な画面サイズがありますし、 iPhoneもモデルチェンジ毎に画面サイズが変化しています。 これら様々な画面サイズのことを考慮しないと、 意図した通りの画面が表示できません。&#xA;ゲームを作るときの基本として、物理画面でプログラムしないというのがあります。 物理的なディスプレイのサイズに依存した座標管理をすると、 移植性が下がり仕様変更に弱くなったり、 端末毎の画面サイズの違いを吸収できないプログラムになってしまいます。&#xA;例えば横スクロールアクションを作ったときに、 Aさんの画面は小さいから敵の動きがところ狭しとなるところが、 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、 なんてことが発生します。端末によって難易度が変わってくるのです。&#xA;端末の小さいAさんは、端末の大きいBさんより不利になる 実は既にこの問題は、私の手元で発生しています。 下記は、Nexus7(2013)で表示したサンプルの画面です。&#xA;nexus7の画面 PC版の画面 Nexus7版は、PCの画面と全然違いますね。キャラクターや文字が非常に小さくなってます。 これはPC版が640x480の解像度なのに対して、Nexus7版は1920x1200の解像度で表示しているからです。 この状態でゲームを作ってしまったら全然別ものになってしまいますよね。 ちなみにMac持ってないのでiOS系ではどうなるかわかりません。&#xA;というわけで、どの端末でも公平に画面表示できるようにひと工夫必要になってきます (こういう処理は、ゲームづくりの序盤でやっておかないと、あとから変更するのは大変なので さっさと済ませておきたいことのひとつですね)。&#xA;カメラとビューポート ではどうやってこの問題を解決するか。それにはカメラとビューポートを使用します。&#xA;カメラとは、ゲームの世界を現実世界のディスプレイに届けるためのオブジェクトです。&#xA;ビューポートとは、カメラの捉えたゲームの世界を、ディスプレイのどこに表示するかを 決める枠(矩形領域)のことです。&#xA;カメラとビューポート ビューポートは、ディスプレイサイズと一致しているわけではないことに注意してください。 ゲームのサンプルなどだと一致していることが多いですが、 今回のように様々なディスプレイサイズに対応させる場合は、 一致しなくなることの方が多くなるはずです。また、他の使い方としては、 カメラを2つ用意して一方はゲーム画面、 一方は小さな枠で別のシーンを表示するなんてこともできるかもしれません(やったことないですが)。&#xA;カメラを使うことにより、カメラとして定義した論理空間でゲームを制御できます。 この空間でやりとりすれば、あとはlibGDXがよろしく画面に表示してくれるわけです。 カメラでできることを列挙してみます。&#xA;物理的な画面サイズを気にせず、自分の定義した画面サイズでゲームを構築できる ズームイン、ズームアウト、画面を回転させたり、揺らしたりなど、画面全体にかかるエフェクトが簡単にできる カメラを動かすことで、スクロール処理が簡単に実装できる カメラを導入することでこのような自由が手に入るわけですが、 その代償として操作が複雑になってしまうのも事実です。 コーディング中は、今自分がどこの座標系で何を操作しているかを常に意識する必要があります。 ちょっと大袈裟ですが、慣れれば大したことありません。またこの考えはそのまま3Dプログラミングにも繋がります。&#xA;座標系には、以下の種類があります。&#xA;ワールド座標系。ゲームオブジェクトを置く論理空間。画面サイズは気にしなくて良い。 カメラ座標系。ワールドのゲームオブジェクトをカメラの枠での座標系で測りなおした座標系。真ん中が原点となる。 ビューポート座標系。左下を原点とした座標系。 スクリーン座標系。Android左上を原点とした最終的な座標系。タッチ座標などはOSからこの座標系の値が得られる。 ビューポート座標系とスクリーン座標系は他では別の呼びかたかもしれません。 座標系を意識する例を示します。</description>
     </item>
-    
     <item>
       <title>Emacs JDEE でlibGDXプログラミング!</title>
       <link>https://zarudama.github.io/posts/libgdx-jdee/</link>
       <pubDate>Thu, 15 May 2014 14:01:39 +0900</pubDate>
-      
       <guid>https://zarudama.github.io/posts/libgdx-jdee/</guid>
-      <description>はじめに libGDX でゲームプログラミングを始めています。
-最初は、Eclipseでコーディングしていました。
-でも重すぎるので、軽いと評判のIntelliJ IDEAに乘りかえました。
-確かに快適でした。Eclipseよりは。しかしそれでもいろいろ不満がつのる。。。
-…結局、Emacsに戻ってきました。やはり最後はいつもの場所へ。悲しい性ですね。
-ということで、EmacsでJavaやるなら JDEE です。
-gradleプロジェクトをJDEEでも使えるようにする JDEEはgradleをサポートしてません。 でもやっぱりいるんですねー。すばらしき先人が。 GradleプロジェクトをJDEEの plj.el に変換するスクリプトを発見しました。
- http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html  上記で紹介されている jdee.gradle を、libGDXのプロジェクトルートに配置します。 そのままだと、testディレクトリがないと怒られるので、testを含む行をコメントアウトします。
-更に build.gradle を編集し、 apply from:... を追加します。
-} } +apply from:&amp;#39;jdee.gradle&amp;#39; allprojects { apply plugin: &amp;#34;eclipse&amp;#34; apply plugin: &amp;#34;idea&amp;#34; あとは、プロジェクトルートで下記コマンドを実行します。
-$ ./gradlew jdee すると各サブプロジェクト内で、 prj.el が作成されます。
-最後に下記の plj.el をプロジェクトルートに配置します。
-(jde-project-file-version &amp;#34;1.0&amp;#34;) (jde-set-variables &amp;#39;(jde-jdk (quote (&amp;#34;1.7&amp;#34;))) &amp;#39;(jde-jdk-registry (quote ( ;;(&amp;#34;1.7&amp;#34; . &amp;#34;c:/Program Files/Java/jdk1.7.0_09/&amp;#34;) (&amp;#34;1.7&amp;#34; . &amp;#34;/usr/lib/jvm/jdk1.7.0/&amp;#34;) ))) &amp;#39;(jde-jdk-doc-url &amp;#34;http://docs.</description>
+      <description>はじめに libGDX でゲームプログラミングを始めています。&#xA;最初は、Eclipseでコーディングしていました。&#xA;でも重すぎるので、軽いと評判のIntelliJ IDEAに乘りかえました。&#xA;確かに快適でした。Eclipseよりは。しかしそれでもいろいろ不満がつのる。。。&#xA;…結局、Emacsに戻ってきました。やはり最後はいつもの場所へ。悲しい性ですね。&#xA;ということで、EmacsでJavaやるなら JDEE です。&#xA;gradleプロジェクトをJDEEでも使えるようにする JDEEはgradleをサポートしてません。 でもやっぱりいるんですねー。すばらしき先人が。 GradleプロジェクトをJDEEの plj.el に変換するスクリプトを発見しました。&#xA;http://ignatyev-dev.blogspot.jp/2013/07/gradle-projects-in-jdee.html 上記で紹介されている jdee.gradle を、libGDXのプロジェクトルートに配置します。 そのままだと、testディレクトリがないと怒られるので、testを含む行をコメントアウトします。&#xA;更に build.gradle を編集し、 apply from:... を追加します。&#xA;} } +apply from:&amp;#39;jdee.gradle&amp;#39; allprojects { apply plugin: &amp;#34;eclipse&amp;#34; apply plugin: &amp;#34;idea&amp;#34; あとは、プロジェクトルートで下記コマンドを実行します。&#xA;$ ./gradlew jdee すると各サブプロジェクト内で、 prj.el が作成されます。&#xA;最後に下記の plj.el をプロジェクトルートに配置します。&#xA;(jde-project-file-version &amp;#34;1.0&amp;#34;) (jde-set-variables &amp;#39;(jde-jdk (quote (&amp;#34;1.7&amp;#34;))) &amp;#39;(jde-jdk-registry (quote ( ;;(&amp;#34;1.7&amp;#34; . &amp;#34;c:/Program Files/Java/jdk1.7.0_09/&amp;#34;) (&amp;#34;1.7&amp;#34; . &amp;#34;/usr/lib/jvm/jdk1.7.0/&amp;#34;) ))) &amp;#39;(jde-jdk-doc-url &amp;#34;http://docs.oracle.com/javase/jp/6/api/&amp;#34;) ;; JDKのjavadocのURL &amp;#39;(jde-help-docsets &amp;#39;((&amp;#34;JDK API&amp;#34; &amp;#34;http://docs.</description>
     </item>
-    
+    <item>
+      <title>libGDX入門 その01 画像を表示したり音を鳴らしたり</title>
+      <link>https://zarudama.github.io/posts/libgdx-beginner1/</link>
+      <pubDate>Sun, 04 May 2014 14:01:39 +0900</pubDate>
+      <guid>https://zarudama.github.io/posts/libgdx-beginner1/</guid>
+      <description>はじめに libGDX は、Javaでゲームを作るためのライブラリです。 マルチプラットフォーム対応で、PC(Windows,Linux,Mac), Android, iOS, HTMLに対応しています。&#xA;libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。 実際、ググってみると、英語のドキュメントは沢山みかけますが、日本語のドキュメントはまだまだ少数です。&#xA;また、公式ドキュメントも大変充実しています(英語のみ)。&#xA;https://libgdx.com/wiki/ 実のところこのドキュメントを読めば大抵の事は解決します。&#xA;ただ、私もそうなんですが、日本語情報がないってだけで、 重い腰が上がらないって人も多いと思います。 そんな人向けに(というより自分の勉強ついでに)、 そして少しでもlibGDXを使用する人が増えることを願い、 少しずつ記事を書いていこうと思います。&#xA;この記事が、libGDXを学ぶためのきっかけになって頂ければ幸いです。&#xA;その2は こちら。&#xA;このシリーズの目次は こちら 。 プロジェクトを作る libGDXでは、専用のプロジェクト生成アプリが用意されています。 マルチプラットフォームの性質上、プロジェクトの構成が複雑なので 素直にこのアプリを使用したほうが良いかと思います。&#xA;http://libgdx.badlogicgames.com/download.html 起動は、以下のような感じです。Windowsならばダブルクリックで起動できるでしょう。&#xA;$ java -jar gdx-setup.jar Usage: GdxSetup --dir &amp;lt;dir-name&amp;gt; --name &amp;lt;app-name&amp;gt; --package &amp;lt;package&amp;gt; --mainClass &amp;lt;mainClass&amp;gt; --sdkLocation &amp;lt;SDKLocation&amp;gt; dir ... the directory to write the project files to name ... the name of the application package ... the Java package name of the application mainClass .</description>
+    </item>
   </channel>
 </rss>

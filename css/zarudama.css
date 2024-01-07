@@ -113,7 +113,7 @@ h1, h2, h3, h4, h5, h6	{font-weight: normal;}
     border-radius: 12px;
     box-sizing: border-box;
 }
-.content h2 {
+.content h1 {
     margin-top: 2.3em;
     padding-bottom: 0.3em;
     font-size: 1.5em;
@@ -121,8 +121,16 @@ h1, h2, h3, h4, h5, h6	{font-weight: normal;}
     line-height: 1.5;
     border-bottom: 1px solid #5c93bb2b;
 }
-.content h3 {
+.content h2 {
     font-size: 1.3em;
+    margin-top: 2.25em;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    line-height: 1.5;
+    outline: 0;
+}
+.content h3 {
+    font-size: 1.0em;
     margin-top: 2.25em;
     margin-bottom: 0.5em;
     font-weight: 700;

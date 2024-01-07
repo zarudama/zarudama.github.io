@@ -5,39 +5,41 @@
 <meta property="og:title" content="libGDX入門 その05 ゲームデータの保存" />
 <meta property="og:description" content="はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。
 前回 は、以下のことを学びました。
- Screenインタフェイスを使った画面遷移  今回は、前回作ったゲームに以下の機能を追加します。
- BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示  これらの情報は、ゲームを再開したときも保持していて欲しいですね。
+Screenインタフェイスを使った画面遷移 今回は、前回作ったゲームに以下の機能を追加します。
+BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示 これらの情報は、ゲームを再開したときも保持していて欲しいですね。
 そこで今回は、これら3つの情報を com.badlogic.gdx.Preferences というクラスを利用して 保存していきます。
 公式情報は下記にあります。
- https://libgdx.com/wiki/preferences https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html  注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、 扱えるのはごく小さなデータのみです1。 また、データはテキストとして保存されるので、 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
-インスタンスの取得方法 さらに、ゲーム中の複雑なデータを扱う場合は、 データをシリアライズしたりして保存する必要があるかと思います。 これらについては、今回は扱いません。
-下記で取得できます(公式からの引用)。
+https://libgdx.com/wiki/preferences https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html 注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、 扱えるのはごく小さなデータのみです1。 また、データはテキストとして保存されるので、 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
+さらに、ゲーム中の複雑なデータを扱う場合は、 データをシリアライズしたりして保存する必要があるかと思います。 これらについては、今回は扱いません。
+インスタンスの取得方法 下記で取得できます(公式からの引用)。
 Preferences prefs = Gdx.app.getPreferences(&#34;My Preferences&#34;); 文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。 個人的にこの名前は、javaのパッケージ名が良いかと思います。 (ただしそれがユニークであるという保証がある場合のみ)
 というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。 今回の例でいうと下記の名前になります。
-Preferences prefs = Gdx.app.getPreferences(&#34;com.zarudama.fishcatch&#34;);  この辺の考察は下記が詳しいので、一読をおすすめします。 doc.tir.ne.jp/devel/clan/libgdx preferencesについて  値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.util.Map クラスに少し似ています。
+Preferences prefs = Gdx.app.getPreferences(&#34;com.zarudama.fishcatch&#34;); この辺の考察は下記が詳しいので、一読をおすすめします。
+doc.tir.ne.jp/devel/clan/libgdx preferencesについて 値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.util.Map クラスに少し似ています。
 公式から引用します。
-prefs.putString(&#34;name&#34;, &#34;Donald Duck&#34;); String name = prefs." />
+prefs.putString(&#34;name&#34;, &#34;Donald Duck&#34;); String name = prefs.getString(&#34;name&#34;, &#34;No name stored&#34;); prefs.putBoolean(&#34;soundOn&#34;, true); prefs.putInteger(&#34;highscore&#34;, 10); 下記のようなメソッドの仕様になっています。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zarudama.github.io/posts/libgdx-beginner5/" />
-<meta property="article:published_time" content="2014-07-05T14:01:39&#43;09:00"/>
-<meta property="article:modified_time" content="2014-07-05T14:01:39&#43;09:00"/>
+<meta property="og:url" content="https://zarudama.github.io/posts/libgdx-beginner5/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-07-05T14:01:39+09:00" />
+<meta property="article:modified_time" content="2014-07-05T14:01:39+09:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="libGDX入門 その05 ゲームデータの保存"/>
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="libGDX入門 その05 ゲームデータの保存"/>
 <meta name="twitter:description" content="はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。
 前回 は、以下のことを学びました。
- Screenインタフェイスを使った画面遷移  今回は、前回作ったゲームに以下の機能を追加します。
- BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示  これらの情報は、ゲームを再開したときも保持していて欲しいですね。
+Screenインタフェイスを使った画面遷移 今回は、前回作ったゲームに以下の機能を追加します。
+BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示 これらの情報は、ゲームを再開したときも保持していて欲しいですね。
 そこで今回は、これら3つの情報を com.badlogic.gdx.Preferences というクラスを利用して 保存していきます。
 公式情報は下記にあります。
- https://libgdx.com/wiki/preferences https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html  注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、 扱えるのはごく小さなデータのみです1。 また、データはテキストとして保存されるので、 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
-インスタンスの取得方法 さらに、ゲーム中の複雑なデータを扱う場合は、 データをシリアライズしたりして保存する必要があるかと思います。 これらについては、今回は扱いません。
-下記で取得できます(公式からの引用)。
+https://libgdx.com/wiki/preferences https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html 注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、 扱えるのはごく小さなデータのみです1。 また、データはテキストとして保存されるので、 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
+さらに、ゲーム中の複雑なデータを扱う場合は、 データをシリアライズしたりして保存する必要があるかと思います。 これらについては、今回は扱いません。
+インスタンスの取得方法 下記で取得できます(公式からの引用)。
 Preferences prefs = Gdx.app.getPreferences(&#34;My Preferences&#34;); 文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。 個人的にこの名前は、javaのパッケージ名が良いかと思います。 (ただしそれがユニークであるという保証がある場合のみ)
 というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。 今回の例でいうと下記の名前になります。
-Preferences prefs = Gdx.app.getPreferences(&#34;com.zarudama.fishcatch&#34;);  この辺の考察は下記が詳しいので、一読をおすすめします。 doc.tir.ne.jp/devel/clan/libgdx preferencesについて  値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.util.Map クラスに少し似ています。
+Preferences prefs = Gdx.app.getPreferences(&#34;com.zarudama.fishcatch&#34;); この辺の考察は下記が詳しいので、一読をおすすめします。
+doc.tir.ne.jp/devel/clan/libgdx preferencesについて 値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.util.Map クラスに少し似ています。
 公式から引用します。
-prefs.putString(&#34;name&#34;, &#34;Donald Duck&#34;); String name = prefs."/>
+prefs.putString(&#34;name&#34;, &#34;Donald Duck&#34;); String name = prefs.getString(&#34;name&#34;, &#34;No name stored&#34;); prefs.putBoolean(&#34;soundOn&#34;, true); prefs.putInteger(&#34;highscore&#34;, 10); 下記のようなメソッドの仕様になっています。"/>
 
 <title>libGDX入門 その05 ゲームデータの保存 | ざる魂</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
@@ -69,7 +71,7 @@ prefs.putString(&#34;name&#34;, &#34;Donald Duck&#34;); String name = prefs."/>
 <section>
       <span class="date">作成日: 2014-07-05</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2014-07-05</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;372 文字> </span>
+      <sapn class="wordcount"> &lt;371 文字> </span>
     </section>
     
   </aside>
@@ -79,265 +81,341 @@ prefs.putString(&#34;name&#34;, &#34;Donald Duck&#34;); String name = prefs."/>
     
     
     
-      <h1 id="はじめに">はじめに</h1>
-
-<p><a href="https://libgdx.com/" title="libGDX">libGDX</a> を勉強するついでに解説記事を書く <a href="/tags/libgdx入門/" title="シリーズ">シリーズ</a> 5回目です。</p>
-
-<p><a href="/posts/libgdx-beginner4/" title="前回">前回</a> は、以下のことを学びました。</p>
-
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+はじめに
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p><a href="https://libgdx.com/">libGDX</a> を勉強するついでに解説記事を書く <a href="/tags/libgdx入門/">シリーズ</a> 5回目です。</p>
+<p>
+<a href="/posts/libgdx-beginner4/">前回</a> は、以下のことを学びました。</p>
 <ul>
 <li>Screenインタフェイスを使った画面遷移</li>
 </ul>
-
 <p>今回は、前回作ったゲームに以下の機能を追加します。</p>
-
 <ul>
 <li>BGMのON/OFF機能</li>
 <li>SEのON/OFF機能</li>
 <li>HiScoreの表示</li>
 </ul>
-
 <p>これらの情報は、ゲームを再開したときも保持していて欲しいですね。</p>
-
-<p>そこで今回は、これら3つの情報を <code>com.badlogic.gdx.Preferences</code> というクラスを利用して
+<p>
+そこで今回は、これら3つの情報を <code class="verbatim">com.badlogic.gdx.Preferences</code> というクラスを利用して
 保存していきます。</p>
-
-<p>公式情報は下記にあります。</p>
-
+<p>
+公式情報は下記にあります。</p>
 <ul>
-<li>https://libgdx.com/wiki/preferences</li>
-<li>https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html</li>
+<li><a href="https://libgdx.com/wiki/preferences">https://libgdx.com/wiki/preferences</a></li>
+<li><a href="https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html">https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html</a></li>
 </ul>
-
-<h1 id="注意">注意</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+注意
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
 <p>今回「ゲームデータの保存」というタイトルにしてしまいましたが、
-扱えるのはごく小さなデータのみです<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。
+扱えるのはごく小さなデータのみです<sup class="footnote-reference"><a id="footnote-reference-1" href="#footnote-1">1</a></sup>。
 また、データはテキストとして保存されるので、
 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。</p>
-
-<h1 id="インスタンスの取得方法">インスタンスの取得方法</h1>
-
-<p>さらに、ゲーム中の複雑なデータを扱う場合は、
+<p>
+さらに、ゲーム中の複雑なデータを扱う場合は、
 データをシリアライズしたりして保存する必要があるかと思います。
 これらについては、今回は扱いません。</p>
-
-<p>下記で取得できます(公式からの引用)。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Preferences prefs <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">getPreferences</span><span style="color:#555">(</span><span style="color:#c30">&#34;My Preferences&#34;</span><span style="color:#555">);</span></code></pre></div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+インスタンスの取得方法
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>
+下記で取得できます(公式からの引用)。</p>
+<div class="src src-java">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Preferences<span style="color:#bbb"> </span>prefs<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span>Gdx.<span style="color:#309">app</span>.<span style="color:#309">getPreferences</span>(<span style="color:#c30">&#34;My Preferences&#34;</span>);</span></span></code></pre></div>
+</div>
 <p>文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。
 個人的にこの名前は、javaのパッケージ名が良いかと思います。
 (ただしそれがユニークであるという保証がある場合のみ)</p>
-
-<p>というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。
+<p>
+というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。
 今回の例でいうと下記の名前になります。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Preferences <span style="color:#033">prefs</span> <span style="color:#555">=</span> Gdx.app.getPreferences<span style="color:#555">(</span><span style="color:#c30">&#34;com.zarudama.fishcatch&#34;</span><span style="color:#555">)</span>;</code></pre></div>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Preferences <span style="color:#033">prefs</span> <span style="color:#555">=</span> Gdx.app.getPreferences<span style="color:#555">(</span><span style="color:#c30">&#34;com.zarudama.fishcatch&#34;</span><span style="color:#555">)</span>;</span></span></code></pre></div>
+</div>
+<p>この辺の考察は下記が詳しいので、一読をおすすめします。</p>
 <ul>
-この辺の考察は下記が詳しいので、一読をおすすめします。
-<li><a href="http://doc.tir.ne.jp/devel/clan/libgdx#preferences%25E3%2581%25AB%25E3%2581%25A4%25E3%2581%2584%25E3%2581%25A6" title="doc.tir.ne.jp/devel/clan/libgdx preferencesについて">doc.tir.ne.jp/devel/clan/libgdx preferencesについて</a></li>
+<li><a href="http://doc.tir.ne.jp/devel/clan/libgdx#preferences%25E3%2581%25AB%25E3%2581%25A4%25E3%2581%2584%25E3%2581%25A6">doc.tir.ne.jp/devel/clan/libgdx preferencesについて</a></li>
 </ul>
-
-<h1 id="値の書込みと読込み">値の書込みと読込み</h1>
-
-<p>libGDXの <code>Preferences</code> は、Javaの標準クラスの
- <code>java.util.prefs.Preferences</code> や <code>java.util.Map</code> クラスに少し似ています。</p>
-
-<p>公式から引用します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">prefs<span style="color:#555">.</span><span style="color:#309">putString</span><span style="color:#555">(</span><span style="color:#c30">&#34;name&#34;</span><span style="color:#555">,</span> <span style="color:#c30">&#34;Donald Duck&#34;</span><span style="color:#555">);</span>
-String name <span style="color:#555">=</span> prefs<span style="color:#555">.</span><span style="color:#309">getString</span><span style="color:#555">(</span><span style="color:#c30">&#34;name&#34;</span><span style="color:#555">,</span> <span style="color:#c30">&#34;No name stored&#34;</span><span style="color:#555">);</span>
-
-prefs<span style="color:#555">.</span><span style="color:#309">putBoolean</span><span style="color:#555">(</span><span style="color:#c30">&#34;soundOn&#34;</span><span style="color:#555">,</span> <span style="color:#069;font-weight:bold">true</span><span style="color:#555">);</span>
-prefs<span style="color:#555">.</span><span style="color:#309">putInteger</span><span style="color:#555">(</span><span style="color:#c30">&#34;highscore&#34;</span><span style="color:#555">,</span> 10<span style="color:#555">);</span></code></pre></div>
-<p>下記のようなメソッドの仕様になっています。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Preferences<span style="color:#a00;background-color:#faa">#</span>put型名 <span style="color:#555">(</span>キー文字列<span style="color:#555">,</span>  型に応じた値<span style="color:#555">);</span></code></pre></div>
-<p>保存できるデータ型は、int、long、float、boolean、Stringになります。</p>
-
-<p>getterは第2引数にデフォルト値を指定できます。
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+値の書込みと読込み
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>libGDXの <code class="verbatim">Preferences</code> は、Javaの標準クラスの
+ <code class="verbatim">java.util.prefs.Preferences</code> や <code class="verbatim">java.util.Map</code> クラスに少し似ています。</p>
+<p>
+公式から引用します。</p>
+<div class="src src-java">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>prefs.<span style="color:#309">putString</span>(<span style="color:#c30">&#34;name&#34;</span>,<span style="color:#bbb"> </span><span style="color:#c30">&#34;Donald Duck&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>String<span style="color:#bbb"> </span>name<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span>prefs.<span style="color:#309">getString</span>(<span style="color:#c30">&#34;name&#34;</span>,<span style="color:#bbb"> </span><span style="color:#c30">&#34;No name stored&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>prefs.<span style="color:#309">putBoolean</span>(<span style="color:#c30">&#34;soundOn&#34;</span>,<span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">true</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>prefs.<span style="color:#309">putInteger</span>(<span style="color:#c30">&#34;highscore&#34;</span>,<span style="color:#bbb"> </span>10);</span></span></code></pre></div>
+</div>
+<p>
+下記のようなメソッドの仕様になっています。</p>
+<div class="src src-java">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Preferences<span style="color:#a00;background-color:#faa">#</span>put型名<span style="color:#bbb"> </span>(キー文字列,<span style="color:#bbb">  </span>型に応じた値);</span></span></code></pre></div>
+</div>
+<p>
+保存できるデータ型は、int、long、float、boolean、Stringになります。</p>
+<p>
+getterは第2引数にデフォルト値を指定できます。
 これは値が存在しなかった場合に返却する値です。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String name <span style="color:#555">=</span> prefs<span style="color:#555">.</span><span style="color:#309">getString</span><span style="color:#555">(</span><span style="color:#c30">&#34;name&#34;</span><span style="color:#555">,</span> <span style="color:#c30">&#34;No name stored&#34;</span><span style="color:#555">);</span></code></pre></div>
-<p>この場合、 <code>name</code> というキーの値が存在しないときは、 <code>No name stored</code> が返却されます。</p>
-
-<h1 id="データを保存するタイミング">データを保存するタイミング</h1>
-
-<p><code>Preferences</code> のインスタンスに値をセットしただけでは、それはメモリ上の操作に過ぎませんので、
-これをストレージに書きだす必要があります<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>。 <code>Preferences#fluash()</code> メソッドを呼びだしてください。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">prefs<span style="color:#555">.</span><span style="color:#309">flush</span><span style="color:#555">();</span></code></pre></div>
-<p>データを保存するタイミングですが、基本的にはデータを変更する都度 <code>flush()</code> するのが良いと思います。
+<div class="src src-java">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>name<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span>prefs.<span style="color:#309">getString</span>(<span style="color:#c30">&#34;name&#34;</span>,<span style="color:#bbb"> </span><span style="color:#c30">&#34;No name stored&#34;</span>);</span></span></code></pre></div>
+</div>
+<p>この場合、 <code class="verbatim">name</code> というキーの値が存在しないときは、 <code class="verbatim">No name stored</code> が返却されます。</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+データを保存するタイミング
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p><code class="verbatim">Preferences</code> のインスタンスに値をセットしただけでは、それはメモリ上の操作に過ぎませんので、
+これをストレージに書きだす必要があります<sup class="footnote-reference"><a id="footnote-reference-2" href="#footnote-2">2</a></sup>。 <code class="verbatim">Preferences#fluash()</code> メソッドを呼びだしてください。</p>
+<div class="src src-java">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>prefs.<span style="color:#309">flush</span>();</span></span></code></pre></div>
+</div>
+<p>
+データを保存するタイミングですが、基本的にはデータを変更する都度 <code class="verbatim">flush()</code> するのが良いと思います。
 都度アクセスするのは少々冗長ですが確実です。</p>
-
-<p>しかしアプリによっては、データ量が多い場合やタイミングが不特定の場合、
+<p>
+しかしアプリによっては、データ量が多い場合やタイミングが不特定の場合、
 保存するタイミングが頻発するのは望ましくないなどの状況があると思います。
-そんな時は、 <code>ApplicationLisnter#pause()</code> に保存するのが良いと思います。</p>
-
+そんな時は、 <code class="verbatim">ApplicationLisnter#pause()</code> に保存するのが良いと思います。</p>
+<p>
+理由は <code class="verbatim">pause()</code> はアプリが消滅する寸前および、フォーカースが外れたときに必ず呼ばれるメソッドだからです。
+これまた下記が詳しいです。</p>
 <ul>
-理由は <code>pause()</code> はアプリが消滅する寸前および、フォーカースが外れたときに必ず呼ばれるメソッドだからです。
-これまた下記が詳しいです。
-<li><a href="http://doc.tir.ne.jp/devel/clan/libgdx#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%BB%E3%83%BC%E3%83%96%E3%81%A8%E3%83%AD%E3%83%BC%E3%83%89" title="doc.tir.ne.jp/devel/clan/libgdx#データのセーブとロード">doc.tir.ne.jp/devel/clan/libgdx#データのセーブとロード</a></li>
+<li><a href="http://doc.tir.ne.jp/devel/clan/libgdx#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%BB%E3%83%BC%E3%83%96%E3%81%A8%E3%83%AD%E3%83%BC%E3%83%89">doc.tir.ne.jp/devel/clan/libgdx#データのセーブとロード</a></li>
 </ul>
-
 <p>ライフサイクルの図をもう一度掲載します。</p>
-
-<p><a href="/img/libgdx-beginner/4/life-cycle.png" title="/img/libgdx-beginner/4/life-cycle.png">/img/libgdx-beginner/4/life-cycle.png</a></p>
-
-<h1 id="保存される場所">保存される場所</h1>
-
+<figure>
+<img src="/img/libgdx-beginner/4/life-cycle.png" alt="/img/libgdx-beginner/4/life-cycle.png" title="/img/libgdx-beginner/4/life-cycle.png" /><figcaption>
+libgdxのライフサイクル
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+保存される場所
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
+<p>
+公式からのそのまま転用ですが、下記に保存されます。</p>
 <table>
 <tbody>
-<tr>
-<td>��式からのそのまま転用ですが、下記に保存されます�</td>
-</tr>
-
 <tr>
 <td>OS</td>
 <td>場所</td>
 </tr>
-
 <tr>
 <td>Windows</td>
 <td>%UserProfile%/.prefs/My Preferences</td>
 </tr>
-
 <tr>
 <td>Linux and OS X</td>
 <td>~/.prefs/My Preferences</td>
 </tr>
 </tbody>
 </table>
-
+<p>
+Androidでは、<a href="http://developer.android.com/reference/android/content/SharedPreferences.html">SharedPreferences</a> を使用するとのこですが、アプリを削除すると保存データも同時に削除されるようです。
+Androidの保存場所は機種依存が大きいため一概にどこと言えません。下記を参考にしてください。</p>
 <ul>
-Androidでは、<a href="http://developer.android.com/reference/android/content/SharedPreferences.html" title="SharedPreferences">SharedPreferences</a> を使用するとのこですが、アプリを削除すると保存データも同時に削除されるようです。
-Androidの保存場所は機種依存が大きいため一概にどこと言えません。下記を参考にしてください。
-<li>http://techbooster.org/android/application/16004/</li>
+<li><a href="http://techbooster.org/android/application/16004/">http://techbooster.org/android/application/16004/</a></li>
 </ul>
-
 <p>iOSの場合はどこにどんな状態で保存されるかわかりません(公式にも載っておらず、私もMacを持っていないため) 。</p>
-
-<p>参考までにUbuntuの場合は、下記のようなXMLデータが保存されます。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#099">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;no&#34;?&gt;</span>
-<span style="color:#099">&lt;!DOCTYPE properties SYSTEM &#34;http://java.sun.com/dtd/properties.dtd&#34;&gt;</span>
-<span style="color:#309;font-weight:bold">&lt;properties&gt;</span>
-<span style="color:#309;font-weight:bold">&lt;entry</span> <span style="color:#309">key=</span><span style="color:#c30">&#34;bgmOn&#34;</span><span style="color:#309;font-weight:bold">&gt;</span>true<span style="color:#309;font-weight:bold">&lt;/entry&gt;</span>
-<span style="color:#309;font-weight:bold">&lt;entry</span> <span style="color:#309">key=</span><span style="color:#c30">&#34;seOn&#34;</span><span style="color:#309;font-weight:bold">&gt;</span>false<span style="color:#309;font-weight:bold">&lt;/entry&gt;</span>
-<span style="color:#309;font-weight:bold">&lt;entry</span> <span style="color:#309">key=</span><span style="color:#c30">&#34;hiscore&#34;</span><span style="color:#309;font-weight:bold">&gt;</span>9<span style="color:#309;font-weight:bold">&lt;/entry&gt;</span>
-<span style="color:#309;font-weight:bold">&lt;/properties&gt;</span></code></pre></div>
-<h1 id="実際の実装例">実際の実装例</h1>
-
-<p>前回実装したショボゲーに、下記のような感じで実装してみました。</p>
-
-<p><a href="/img/libgdx-beginner/5/000.png" title="/img/libgdx-beginner/5/000.png">/img/libgdx-beginner/5/000.png</a></p>
-
-<p>左下にハイスコア表示、右側にそれぞれ「BGM」「SE」のオンオフボタンを配置してあります。</p>
-
-<p>これらは下記の <code>Settings</code> クラスを通して操作します。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">package</span> <span style="color:#0cf;font-weight:bold">com.zarudama.fishcatch</span><span style="color:#555">;</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Gdx</span><span style="color:#555">;</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Preferences</span><span style="color:#555">;</span>
-<span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">Settings</span> <span style="color:#555">{</span>
-    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> String NAME <span style="color:#555">=</span> <span style="color:#c30">&#34;com.zarudama.fishcatch&#34;</span><span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> String KEY_SE_ON <span style="color:#555">=</span> <span style="color:#c30">&#34;seOn&#34;</span><span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> String KEY_BGM_ON <span style="color:#555">=</span> <span style="color:#c30">&#34;bgmOn&#34;</span><span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> String KEY_HISCORE <span style="color:#555">=</span> <span style="color:#c30">&#34;hiscore&#34;</span><span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">boolean</span> DEFAULT_SE_ON <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">true</span><span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">boolean</span> DEFAULT_BGM_ON <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">true</span><span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">private</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">int</span> DEFAULT_HISCORE <span style="color:#555">=</span> 0<span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">private</span> Preferences mPrefs<span style="color:#555">;</span>
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#c0f">Settings</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        mPrefs <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">getPreferences</span><span style="color:#555">(</span>NAME<span style="color:#555">);</span>
-    <span style="color:#555">}</span>
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">boolean</span> <span style="color:#c0f">seOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        <span style="color:#069;font-weight:bold">return</span> mPrefs<span style="color:#555">.</span><span style="color:#309">getBoolean</span><span style="color:#555">(</span>KEY_SE_ON<span style="color:#555">,</span> DEFAULT_SE_ON<span style="color:#555">);</span>
-    <span style="color:#555">}</span>
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">boolean</span> <span style="color:#c0f">bgmOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        <span style="color:#069;font-weight:bold">return</span> mPrefs<span style="color:#555">.</span><span style="color:#309">getBoolean</span><span style="color:#555">(</span>KEY_BGM_ON<span style="color:#555">,</span> DEFAULT_BGM_ON<span style="color:#555">);</span>
-    <span style="color:#555">}</span>
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">hiscore</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        <span style="color:#069;font-weight:bold">return</span> mPrefs<span style="color:#555">.</span><span style="color:#309">getInteger</span><span style="color:#555">(</span>KEY_HISCORE<span style="color:#555">,</span> DEFAULT_HISCORE<span style="color:#555">);</span>
-    <span style="color:#555">}</span>
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">toggleSeOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        mPrefs<span style="color:#555">.</span><span style="color:#309">putBoolean</span><span style="color:#555">(</span>KEY_SE_ON<span style="color:#555">,</span> <span style="color:#555">!</span>seOn<span style="color:#555">());</span>
-        mPrefs<span style="color:#555">.</span><span style="color:#309">flush</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">toggleBgmOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        mPrefs<span style="color:#555">.</span><span style="color:#309">putBoolean</span><span style="color:#555">(</span>KEY_BGM_ON<span style="color:#555">,</span> <span style="color:#555">!</span>bgmOn<span style="color:#555">());</span>
-        mPrefs<span style="color:#555">.</span><span style="color:#309">flush</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">hiscore</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">final</span> <span style="color:#078;font-weight:bold">int</span> aScore<span style="color:#555">)</span> <span style="color:#555">{</span>
-        mPrefs<span style="color:#555">.</span><span style="color:#309">putInteger</span><span style="color:#555">(</span>KEY_HISCORE<span style="color:#555">,</span> aScore<span style="color:#555">);</span>
-        mPrefs<span style="color:#555">.</span><span style="color:#309">flush</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-<span style="color:#555">}</span></code></pre></div>
-<p><code>Settings</code> クラスは、 <code>FishcatchGame</code> クラスを通してアクセスします。
+<p>
+参考までにUbuntuの場合は、下記のようなXMLデータが保存されます。</p>
+<div class="src src-xml">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#099">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;no&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#099">&lt;!DOCTYPE properties SYSTEM &#34;http://java.sun.com/dtd/properties.dtd&#34;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#309;font-weight:bold">&lt;properties&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#309;font-weight:bold">&lt;entry</span> <span style="color:#309">key=</span><span style="color:#c30">&#34;bgmOn&#34;</span><span style="color:#309;font-weight:bold">&gt;</span>true<span style="color:#309;font-weight:bold">&lt;/entry&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#309;font-weight:bold">&lt;entry</span> <span style="color:#309">key=</span><span style="color:#c30">&#34;seOn&#34;</span><span style="color:#309;font-weight:bold">&gt;</span>false<span style="color:#309;font-weight:bold">&lt;/entry&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#309;font-weight:bold">&lt;entry</span> <span style="color:#309">key=</span><span style="color:#c30">&#34;hiscore&#34;</span><span style="color:#309;font-weight:bold">&gt;</span>9<span style="color:#309;font-weight:bold">&lt;/entry&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#309;font-weight:bold">&lt;/properties&gt;</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+実際の実装例
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>
+前回実装したショボゲーに、下記のような感じで実装してみました。</p>
+<figure>
+<img src="/img/libgdx-beginner/5/000.png" alt="/img/libgdx-beginner/5/000.png" title="/img/libgdx-beginner/5/000.png" /><figcaption>
+改造したタイトル画面
+</figcaption>
+</figure>
+<p>
+左下にハイスコア表示、右側にそれぞれ「BGM」「SE」のオンオフボタンを配置してあります。</p>
+<p>
+これらは下記の <code class="verbatim">Settings</code> クラスを通して操作します。</p>
+<div class="src src-java">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">package</span><span style="color:#bbb"> </span><span style="color:#0cf;font-weight:bold">com.zarudama.fishcatch</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Gdx</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Preferences</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">Settings</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>NAME<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span><span style="color:#c30">&#34;com.zarudama.fishcatch&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>KEY_SE_ON<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span><span style="color:#c30">&#34;seOn&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>KEY_BGM_ON<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span><span style="color:#c30">&#34;bgmOn&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>KEY_HISCORE<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span><span style="color:#c30">&#34;hiscore&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">boolean</span><span style="color:#bbb"> </span>DEFAULT_SE_ON<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">true</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">boolean</span><span style="color:#bbb"> </span>DEFAULT_BGM_ON<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">true</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">int</span><span style="color:#bbb"> </span>DEFAULT_HISCORE<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span>0;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span>Preferences<span style="color:#bbb"> </span>mPrefs;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#c0f">Settings</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mPrefs<span style="color:#bbb"> </span><span style="color:#555">=</span><span style="color:#bbb"> </span>Gdx.<span style="color:#309">app</span>.<span style="color:#309">getPreferences</span>(NAME);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">boolean</span><span style="color:#bbb"> </span><span style="color:#c0f">seOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">return</span><span style="color:#bbb"> </span>mPrefs.<span style="color:#309">getBoolean</span>(KEY_SE_ON,<span style="color:#bbb"> </span>DEFAULT_SE_ON);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">boolean</span><span style="color:#bbb"> </span><span style="color:#c0f">bgmOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">return</span><span style="color:#bbb"> </span>mPrefs.<span style="color:#309">getBoolean</span>(KEY_BGM_ON,<span style="color:#bbb"> </span>DEFAULT_BGM_ON);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">int</span><span style="color:#bbb"> </span><span style="color:#c0f">hiscore</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">return</span><span style="color:#bbb"> </span>mPrefs.<span style="color:#309">getInteger</span>(KEY_HISCORE,<span style="color:#bbb"> </span>DEFAULT_HISCORE);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#c0f">toggleSeOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mPrefs.<span style="color:#309">putBoolean</span>(KEY_SE_ON,<span style="color:#bbb"> </span><span style="color:#555">!</span>seOn());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mPrefs.<span style="color:#309">flush</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#c0f">toggleBgmOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mPrefs.<span style="color:#309">putBoolean</span>(KEY_BGM_ON,<span style="color:#bbb"> </span><span style="color:#555">!</span>bgmOn());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mPrefs.<span style="color:#309">flush</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#c0f">hiscore</span>(<span style="color:#069;font-weight:bold">final</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">int</span><span style="color:#bbb"> </span>aScore)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mPrefs.<span style="color:#309">putInteger</span>(KEY_HISCORE,<span style="color:#bbb"> </span>aScore);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mPrefs.<span style="color:#309">flush</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}</span></span></code></pre></div>
+</div>
+<p>
+<code class="verbatim">Settings</code> クラスは、 <code class="verbatim">FishcatchGame</code> クラスを通してアクセスします。
 ただし自分はドットが二つ以上つづく文があまり好きではないので
-(メソッドチェーンとか流れるようなインターフェイスというやつ<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>)、
-外部からアクセスするときは <code>Settings</code> クラスへアクセスするのではなく、
-専用のメソッドを <code>FishcatchGame</code> クラスに設けています。</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">FishcatchGame</span> <span style="color:#069;font-weight:bold">extends</span> Game <span style="color:#555">{</span>
-    <span style="color:#555">:</span>
-    <span style="color:#069;font-weight:bold">private</span> Settings settings<span style="color:#555">;</span>
-
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">boolean</span> <span style="color:#c0f">seOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        <span style="color:#069;font-weight:bold">return</span> settings<span style="color:#555">.</span><span style="color:#309">seOn</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">boolean</span> <span style="color:#c0f">bgmOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        <span style="color:#069;font-weight:bold">return</span> settings<span style="color:#555">.</span><span style="color:#309">bgmOn</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">hiscore</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        <span style="color:#069;font-weight:bold">return</span> settings<span style="color:#555">.</span><span style="color:#309">hiscore</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">toggleSeOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        settings<span style="color:#555">.</span><span style="color:#309">toggleSeOn</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">toggleBgmOn</span><span style="color:#555">()</span> <span style="color:#555">{</span>
-        settings<span style="color:#555">.</span><span style="color:#309">toggleBgmOn</span><span style="color:#555">();</span>
-    <span style="color:#555">}</span>
-
-    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">hiscore</span><span style="color:#555">(</span><span style="color:#078;font-weight:bold">int</span> score<span style="color:#555">)</span> <span style="color:#555">{</span>
-        settings<span style="color:#555">.</span><span style="color:#309">hiscore</span><span style="color:#555">(</span>score<span style="color:#555">);</span>
-    <span style="color:#555">}</span>
-      <span style="color:#555">:</span>
-<span style="color:#555">}</span></code></pre></div>
+(メソッドチェーンとか流れるようなインターフェイスというやつ<sup class="footnote-reference"><a id="footnote-reference-3" href="#footnote-3">3</a></sup>)、
+外部からアクセスするときは <code class="verbatim">Settings</code> クラスへアクセスするのではなく、
+専用のメソッドを <code class="verbatim">FishcatchGame</code> クラスに設けています。</p>
+<div class="src src-java">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">FishcatchGame</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">extends</span><span style="color:#bbb"> </span>Game<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">private</span><span style="color:#bbb"> </span>Settings<span style="color:#bbb"> </span>settings;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">boolean</span><span style="color:#bbb"> </span><span style="color:#c0f">seOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">return</span><span style="color:#bbb"> </span>settings.<span style="color:#309">seOn</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">boolean</span><span style="color:#bbb"> </span><span style="color:#c0f">bgmOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">return</span><span style="color:#bbb"> </span>settings.<span style="color:#309">bgmOn</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">int</span><span style="color:#bbb"> </span><span style="color:#c0f">hiscore</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">return</span><span style="color:#bbb"> </span>settings.<span style="color:#309">hiscore</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#c0f">toggleSeOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>settings.<span style="color:#309">toggleSeOn</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#c0f">toggleBgmOn</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>settings.<span style="color:#309">toggleBgmOn</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#078;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#c0f">hiscore</span>(<span style="color:#078;font-weight:bold">int</span><span style="color:#bbb"> </span>score)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>settings.<span style="color:#309">hiscore</span>(score);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}</span></span></code></pre></div>
+</div>
+<p>
+ちなみに現在の自分コーディングスタイルは原則下記の影響を受けています。</p>
 <ul>
-ちなみに現在の自分コーディングスタイルは原則下記の影響を受けています。
-<li>http://www.slideshare.net/MoriharuOhzu/ss-14083300</li>
-「オブジェクト指向エクササイズ」を解説したもので、
+<li><a href="http://www.slideshare.net/MoriharuOhzu/ss-14083300">http://www.slideshare.net/MoriharuOhzu/ss-14083300</a></li>
+</ul>
+<p>「オブジェクト指向エクササイズ」を解説したもので、
 オブジェクト指向言語を普段使い全ての人に読んで欲しい内容です。
-このlibGDXシリーズではほぼ無視してコーディングしてますが…。
-</ul>
-
-<h1 id="ソースコード">ソースコード</h1>
-
+このlibGDXシリーズではほぼ無視してコーディングしてますが…。</p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+ソースコード
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
+<p>今回実装したサンプルコードは、下記にあります。</p>
 <ul>
-今回実装したサンプルコードは、下記にあります。
-<li>https://github.com/zarudama/fishcatch</li>
+<li><a href="https://github.com/zarudama/fishcatch">https://github.com/zarudama/fishcatch</a></li>
 </ul>
-
-<h1 id="おわりに">おわりに</h1>
-
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-2">
+<h2 id="headline-9">
+おわりに
+</h2>
+<div id="outline-text-headline-9" class="outline-text-2">
 <p>今回までの内容で最低限必要な機能は網羅できたのではないかなと思います。</p>
-
-<p>次回からは、 <code>Scene2d</code> 、 広告の実装、 Googleの「<a href="https://play.google.com/store/apps/details?id%3Dcom.google.android.play.games" title="Google Play ゲーム">Google Play ゲーム</a>」あたりを扱っていきたいなと思います。</p>
-
-<h1 id="参考書籍">参考書籍</h1>
-
-<p>「<a href="https://amzn.to/3S70Tbm" title="Androidゲームプログラミング A to Z">Androidゲームプログラミング A to Z</a> 」</p>
-
-<h1 id="注釈">注釈</h1>
-
-<p><a href="/img/amazon_android_gameprogiraming_a_to_z.jpg" title="/img/amazon_android_gameprogiraming_a_to_z.jpg">/img/amazon_android_gameprogiraming_a_to_z.jpg</a></p>
+<p>
+次回からは、 <code class="verbatim">Scene2d</code> 、 広告の実装、 Googleの「<a href="https://play.google.com/store/apps/details?id%3Dcom.google.android.play.games">Google Play ゲーム</a>」あたりを扱っていきたいなと思います。</p>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-2">
+<h2 id="headline-10">
+参考書籍
+</h2>
+<div id="outline-text-headline-10" class="outline-text-2">
+<p>「<a href="https://amzn.to/3S70Tbm">Androidゲームプログラミング A to Z</a> 」</p>
+<img src="/img/amazon_android_gameprogiraming_a_to_z.jpg" alt="/img/amazon_android_gameprogiraming_a_to_z.jpg" title="/img/amazon_android_gameprogiraming_a_to_z.jpg" width="300px"/>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-2">
+<h2 id="headline-11">
+注釈
+</h2>
+</div>
 <div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1">最大2kとのこと[[http://doc.tir.ne.jp/devel/clan/libgdx#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%BB%E3%83%BC%E3%83%96%E3%81%A8%E3%83%AD%E3%83%BC%E3%83%89][(/doc.tir.ne.jp/devel/clan/libgdx#データのセーブとロード]]) <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-
-<li id="fn:2">libGDXの実装によっては、非同期で書き出している可能性もありますが、意識しないほうがいいと思います。 <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-
-<li id="fn:3">[[http://d.hatena.ne.jp/higayasuo/20071025/1193319054]] <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-</ol>
+<hr class="footnotes-separatator">
+<div class="footnote-definitions">
+<div class="footnote-definition">
+<sup id="footnote-1"><a href="#footnote-reference-1">1</a></sup>
+<div class="footnote-body">
+<p>最大2kとのこと<a href="http://doc.tir.ne.jp/devel/clan/libgdx#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%BB%E3%83%BC%E3%83%96%E3%81%A8%E3%83%AD%E3%83%BC%E3%83%89">(/doc.tir.ne.jp/devel/clan/libgdx#データのセーブとロード</a>)</p>
+</div>
+</div>
+<div class="footnote-definition">
+<sup id="footnote-2"><a href="#footnote-reference-2">2</a></sup>
+<div class="footnote-body">
+<p>libGDXの実装によっては、非同期で書き出している可能性もありますが、意識しないほうがいいと思います。</p>
+</div>
+</div>
+<div class="footnote-definition">
+<sup id="footnote-3"><a href="#footnote-reference-3">3</a></sup>
+<div class="footnote-body">
+<p><a href="http://d.hatena.ne.jp/higayasuo/20071025/1193319054">http://d.hatena.ne.jp/higayasuo/20071025/1193319054</a></p>
+</div>
+</div>
+</div>
 </div>
 
     

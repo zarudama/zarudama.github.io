@@ -1,529 +1,299 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://zarudama.github.io/tags/blog/</loc>
+    <lastmod>2024-01-07T23:05:39+09:00</lastmod>
+  </url><url>
+    <loc>https://zarudama.github.io/tags/</loc>
+    <lastmod>2024-01-07T23:05:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/</loc>
     <lastmod>2024-01-07T23:05:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/site-renewal2024/</loc>
     <lastmod>2024-01-07T23:05:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/tags/pr/</loc>
-    <lastmod>2024-01-05T23:16:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/</loc>
-    <lastmod>2024-01-07T19:41:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/tags/</loc>
-    <lastmod>2024-01-07T19:41:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/tags/libgdx/</loc>
-    <lastmod>2024-01-05T23:16:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/android_gameprogramming_atoz/</loc>
     <lastmod>2024-01-05T23:16:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/tags/libgdx/</loc>
+    <lastmod>2024-01-05T23:16:39+09:00</lastmod>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/</loc>
+    <lastmod>2024-01-07T19:41:39+09:00</lastmod>
+  </url><url>
+    <loc>https://zarudama.github.io/tags/pr/</loc>
+    <lastmod>2024-01-05T23:16:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/tags/javascript/</loc>
     <lastmod>2024-01-07T19:41:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/javascript-recipe-study/</loc>
     <lastmod>2024-01-07T19:41:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89/</loc>
     <lastmod>2019-12-12T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/moji-code/</loc>
     <lastmod>2019-12-12T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/java/</loc>
     <lastmod>2019-06-08T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/java-matome/</loc>
     <lastmod>2019-06-08T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/emacs/</loc>
     <lastmod>2014-12-08T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/evil_adventcalendar_2014/</loc>
     <lastmod>2014-12-08T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/clojure-xml/</loc>
-    <lastmod>2014-07-27T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/clojure/</loc>
     <lastmod>2014-07-27T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/clojure-xml/</loc>
+    <lastmod>2014-07-27T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/posts/cask-org/</loc>
     <lastmod>2014-07-07T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/</loc>
     <lastmod>2014-07-05T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/libgdx-beginner5/</loc>
     <lastmod>2014-07-05T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/libgdx-beginner4/</loc>
     <lastmod>2014-06-29T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/cygwin-tmux/</loc>
     <lastmod>2014-06-21T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/tmux/</loc>
     <lastmod>2014-06-21T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/apt-cyg-bug/</loc>
     <lastmod>2014-06-20T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/cygwin/</loc>
     <lastmod>2014-06-20T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/libgdx-beginner3/</loc>
     <lastmod>2014-06-19T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/libgdx-beginner2/</loc>
     <lastmod>2014-06-02T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/cask/</loc>
     <lastmod>2014-06-01T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/libgdx-jdee/</loc>
     <lastmod>2014-05-15T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/skk-ubuntu/</loc>
     <lastmod>2014-05-11T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/uim-skk/</loc>
     <lastmod>2014-05-11T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/libgdx-beginner1/</loc>
     <lastmod>2014-05-04T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/emacs-win-taskbar/</loc>
-    <lastmod>2014-04-16T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/windows/</loc>
     <lastmod>2014-04-16T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/emacs-win-taskbar/</loc>
+    <lastmod>2014-04-16T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/tags/vim/</loc>
     <lastmod>2014-04-04T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/avi/</loc>
     <lastmod>2014-04-04T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/jvm_gcutil/</loc>
-    <lastmod>2014-03-25T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/jvm_mem/</loc>
-    <lastmod>2014-03-25T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/awk/</loc>
     <lastmod>2014-03-25T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/jvm_gcutil/</loc>
+    <lastmod>2014-03-25T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/tags/jvm/</loc>
     <lastmod>2014-03-25T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/jvm_mem/</loc>
+    <lastmod>2014-03-25T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/tags/linux/</loc>
     <lastmod>2014-03-25T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/awk/</loc>
     <lastmod>2014-03-25T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/tokyoclj19/</loc>
     <lastmod>2014-03-16T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/find-date-del/</loc>
     <lastmod>2014-03-15T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/thinkpad/</loc>
     <lastmod>2014-01-23T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/thinkpad-keyboard/</loc>
     <lastmod>2014-01-23T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/misaki2/</loc>
-    <lastmod>2014-01-11T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/misaki/</loc>
     <lastmod>2014-01-11T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/misaki2/</loc>
+    <lastmod>2014-01-11T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/posts/misaki/</loc>
     <lastmod>2014-01-05T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/nexus72013/</loc>
-    <lastmod>2013-09-23T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/nexus7/</loc>
     <lastmod>2013-09-23T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/nexus72013/</loc>
+    <lastmod>2013-09-23T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/tags/processing/</loc>
     <lastmod>2013-08-07T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/ubuntu/</loc>
     <lastmod>2013-08-07T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/ubuntuxmonademacsprocessing/</loc>
     <lastmod>2013-08-07T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/xmonad/</loc>
     <lastmod>2013-08-07T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/helm/</loc>
     <lastmod>2013-06-14T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/helm-file-list/</loc>
     <lastmod>2013-06-14T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/windowsmisaki/</loc>
     <lastmod>2013-05-04T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/firefox/</loc>
     <lastmod>2013-05-03T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/firefox-sync-bug/</loc>
     <lastmod>2013-05-03T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/windowsemacs243/</loc>
     <lastmod>2013-05-03T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/file-open/</loc>
     <lastmod>2013-03-02T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/hamari/</loc>
     <lastmod>2013-02-16T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/oblog/</loc>
     <lastmod>2013-02-16T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/paragrah-html/</loc>
     <lastmod>2013-02-16T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/python-window-tiler/</loc>
     <lastmod>2013-01-29T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/emacspackage-elisp/</loc>
     <lastmod>2013-01-06T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/cygwintmux/</loc>
     <lastmod>2013-01-06T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/ubuntu-server-lvm/</loc>
-    <lastmod>2012-12-30T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/eshell/</loc>
     <lastmod>2012-12-30T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/ubuntu-server-lvm/</loc>
+    <lastmod>2012-12-30T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/posts/emacsjdeejava/</loc>
     <lastmod>2012-12-23T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/jdee/</loc>
     <lastmod>2012-12-23T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/cygwinssh/</loc>
     <lastmod>2012-12-22T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/ssh/</loc>
     <lastmod>2012-12-22T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/howm-modeorg-mode/</loc>
     <lastmod>2012-09-28T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/xmonad/</loc>
     <lastmod>2012-09-28T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zarudama.github.io/posts/skkwindowsxp/</loc>
-    <lastmod>2012-09-09T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/skk/</loc>
     <lastmod>2012-09-09T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zarudama.github.io/posts/skkwindowsxp/</loc>
+    <lastmod>2012-09-09T14:01:39+09:00</lastmod>
+  </url><url>
     <loc>https://zarudama.github.io/tags/nrepl/</loc>
     <lastmod>2012-09-07T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/swank-clojurenrepl/</loc>
     <lastmod>2012-09-07T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/firefox-focus/</loc>
     <lastmod>2012-09-06T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/git/</loc>
     <lastmod>2012-08-29T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/git-repo-delete/</loc>
     <lastmod>2012-08-29T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/cygwinsvn-upgrade/</loc>
     <lastmod>2012-08-28T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/puttycygwin-terminal/</loc>
     <lastmod>2012-08-27T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/javap/</loc>
     <lastmod>2012-06-02T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/ubuntu-1204-lts-on-zenbook-ux21e/</loc>
     <lastmod>2012-05-12T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/zenbook/</loc>
     <lastmod>2012-05-12T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/emacs-slime-nodejs-swank-js-emacsjavascript/</loc>
     <lastmod>2012-05-10T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/ubuntu-install/</loc>
     <lastmod>2012-05-05T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/java-printf/</loc>
     <lastmod>2012-05-02T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/sudo/</loc>
     <lastmod>2012-03-10T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/clojure1/</loc>
     <lastmod>2011-11-09T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/tags/gamedev/</loc>
     <lastmod>2011-11-09T14:01:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/posts/windows/</loc>
     <lastmod>2011-04-28T14:01:39+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zarudama.github.io/search/</loc>
   </url>
-  
 </urlset>
