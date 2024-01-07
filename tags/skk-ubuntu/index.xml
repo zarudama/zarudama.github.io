@@ -6,6 +6,7 @@
     <description>Recent content in skk ubuntu on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
+    <lastBuildDate>Sun, 11 May 2014 14:01:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/skk-ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +14,7 @@
     <item>
       <title>uim-skkでsticky-shiftを実現する</title>
       <link>https://zarudama.github.io/posts/uim-skk/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 11 May 2014 14:01:39 +0900</pubDate>
       
       <guid>https://zarudama.github.io/posts/uim-skk/</guid>
       <description>Ubuntuを13.04から14.04にアップグレードしました。 Ubuntu界隈では、IMEがIBus1.5になり使いにくいと大荒れのようです。 IBus1.5では、IMEを切り替えるとキーボードの配置まで変わるらしく、 特に英語キーボードを使ってたりするとストレスが半端ないようです。
@@ -23,7 +24,7 @@
  https://code.google.com/p/uim-doc-ja/wiki/RequestUimSolved#sticky_shift%E3%82%92%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84  2chに質問したりもしたのですが、特に反応もなく放置されたままでした。
  http://anago.2ch.net/test/read.cgi/software/1328329402/197  それでもやはりなんとかしたいと思い、 改めてドキュメントを読んでみると、 ~/.uim という設定ファイルの詳しい記述方法がありました。 最初からもっと読んでおくべきでしたね。。。
  https://code.google.com/p/uim-doc-ja/wiki/CustomizeUim  そこで、そこの説明に載っているソース( /usr/share/uim/ )をgrepしてみると、 それらしきカスタム変数が定義されていたのです。 さっそく見よう見まねで ~/.uim を定義してみました。
-(require-module &amp;quot;skk&amp;quot;) (define-key skk-sticky-key? &#39;(&amp;quot;;&amp;quot;))  これでバッチリセミコロンでSticky-Shiftできました! uim-skkを使用している人はぜひ試してみてください。 快適さが全然ちがいますよ。
+(require-module &amp;#34;skk&amp;#34;) (define-key skk-sticky-key? &amp;#39;(&amp;#34;;&amp;#34;)) これでバッチリセミコロンでSticky-Shiftできました! uim-skkを使用している人はぜひ試してみてください。 快適さが全然ちがいますよ。
 以下わかったことをまとめておきます。
  基本は、GUIの設定ダイアログで設定する。 それで設定できないものは、 ~/.uim にSchemeで設定ファイルを記述する。 ダイアログとかぶる設定は、 ~/.uim が優先される。 端末を開き、uim-shを打ち込めば、uimのschemeのREPLが起動する。 (exit)で終了。  http://mikio.github.io/img/uim/uim.png
 Schemeで設定できる UIM ってやっぱカッコいいな。</description>

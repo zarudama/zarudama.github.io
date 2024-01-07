@@ -6,29 +6,40 @@
     <description>Recent content in javascript on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 10 May 2012 14:01:39 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jan 2024 19:41:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>ゲームアルゴリズムレシピの練習と再実装</title>
+      <link>https://zarudama.github.io/posts/javascript-recipe-study/</link>
+      <pubDate>Fri, 05 Jan 2024 19:41:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/javascript-recipe-study/</guid>
+      <description>「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、 javascriptによるゲームプログラミングの練習をしています。2008年発売と古 いですが、平易な説明でわかりやすくサンプルも豊富で参考になります。ただ、 Javascriptのサンプルとしては書き方がちょっと古いので最近の書き方に直し つつ、Canvasベースで再実装しながら勉強していきます。
+/demo/javascript-recipe-study/image/recipe-book.jpg
+作成したサンプル  たくさんのスプライト(p71)  たくさんのスプライト２(p71) ジャンプゲーム(p84)  今後使うかもしれないライブラリ候補  phinajs https://phinajs.com/ 日本製なのでやりやすそう PixiJS https://pixijs.com/ 自分でゲームライブラリを構築するときのグラフィックライブラリとして使う場合 PHASER https://phaser.io/ PixiJSを使ったゲームライブラリ Three.js https://threejs.org/ 3Dやるならとりあえずこれって感じ p5.js https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ  </description>
+    </item>
+    
+    <item>
       <title>emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる</title>
-      <link>https://zarudama.github.io/posts/parma-link/emacs-slime-nodejs-swank-js-emacsjavascript/</link>
+      <link>https://zarudama.github.io/posts/emacs-slime-nodejs-swank-js-emacsjavascript/</link>
       <pubDate>Thu, 10 May 2012 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/emacs-slime-nodejs-swank-js-emacsjavascript/</guid>
+      <guid>https://zarudama.github.io/posts/emacs-slime-nodejs-swank-js-emacsjavascript/</guid>
       <description>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。 その後、npmでsocket.ioをインストール。
-dos&amp;gt; npm install socket.io  あとは、swank-jsをインストールする。
+dos&amp;gt; npm install socket.io あとは、swank-jsをインストールする。
 下記を参考にWindowsXP環境にインストールした。
  http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html  上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。 もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
  https://github.com/swank-js/swank-js  インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。 回避方法としてswank-js.elはMarmaladeからインストールした。
-M-x packagea-list-packages  下記を選択してixでインスール。
-slime-js 0.0.1 installed Slime extension for swank-js.  あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
-M-x slime-connect 127.0.0.1 4005  その後、repl上で接続したいURLを指定する。
-,target-url  次にブラウザ上で下記にアクセスする。
+M-x packagea-list-packages 下記を選択してixでインスール。
+slime-js 0.0.1 installed Slime extension for swank-js. あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
+M-x slime-connect 127.0.0.1 4005 その後、repl上で接続したいURLを指定する。
+,target-url 次にブラウザ上で下記にアクセスする。
  http://localhost:8009/  その後、repl上で接続する。
-,select-remote  あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
-alert (&amp;quot;hoge&amp;quot;)  </description>
+,select-remote あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
+alert (&amp;#34;hoge&amp;#34;)</description>
     </item>
     
   </channel>

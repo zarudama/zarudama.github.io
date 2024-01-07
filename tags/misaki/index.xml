@@ -6,27 +6,45 @@
     <description>Recent content in misaki on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 03 Nov 2019 20:34:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jan 2014 14:01:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/misaki/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Windowsでmisakiのデモが動かない</title>
-      <link>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</link>
-      <pubDate>Sun, 03 Nov 2019 20:34:00 +0900</pubDate>
+      <title>Misakiにnrepl-serverを埋め込む</title>
+      <link>https://zarudama.github.io/posts/misaki2/</link>
+      <pubDate>Sat, 11 Jan 2014 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/post/2013/05/windows_misaki_stack/</guid>
-      <description>&amp;#30446;&amp;#27425; 動作環境 Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。 C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m</description>
+      <guid>https://zarudama.github.io/posts/misaki2/</guid>
+      <description>misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
+mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore +++ b/.gitignore @@ -7,6 +7,8 @@ /.lein-failures /checkouts /.lein-deps-sum +misaki/src/misaki/ +/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj +++ b/project.clj @@ -13,7 +13,9 @@ [cuma &amp;#34;0.0.4&amp;#34;] [clj-gntp &amp;#34;0.0.1&amp;#34;] ; cljs compiler - [org.clojure/clojurescript &amp;#34;0.0-1586&amp;#34;]] + [org.clojure/clojurescript &amp;#34;0.0-1586&amp;#34;] + [org.clojure/tools.nrepl &amp;#34;0.2.3&amp;#34;] + ] :plugins [[codox &amp;#34;0.6.4&amp;#34;] [lein-cloverage &amp;#34;1.0.2&amp;#34;] diff --git a/samples/blog/_config.clj b/samples/blog/_config.</description>
     </item>
     
     <item>
       <title>Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた</title>
-      <link>https://zarudama.github.io/post/2014/01/misaki_clojure_2/</link>
-      <pubDate>Sun, 03 Nov 2019 17:16:00 +0900</pubDate>
+      <link>https://zarudama.github.io/posts/misaki/</link>
+      <pubDate>Sun, 05 Jan 2014 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/post/2014/01/misaki_clojure_2/</guid>
-      <description>年末から地味につくっていた Misaki のプラグインですが、ひととおり欲しい機能の実装を終えたので、github公開しました。 Emacs org-mode で記事を書けるBlog</description>
+      <guid>https://zarudama.github.io/posts/misaki/</guid>
+      <description>年末から地味につくっていた Misaki のプラグインですが、 ひととおり欲しい機能の実装を終えたので、github公開しました。 Emacs org-mode で記事を書けるBlogジェネレータです。
+ https://github.com/mikio/misaki-orgmode デモ  org-modeのBlogジェネレータは以外と少ないので選択肢が増えたと思います (Misaki-orgmodeは、Blogに特化しているわけではないので、 静的サイトジェネレータとしても使えます)。
+Misaki をベースに、記事部分(orgファイル)をemacs本体を使ってhtmlにコンパイルする方式を取っています。 実装にあたっては、misaki-markdown を参考にしました(というかほぼまるパクリですが…)。 Misaki-orgmodeのロゴはイラストレータを使ってイチから作りました(ちょっとバナーが大きかったかも)。 デモサイトはcssフレームワークなどを使用して用意したらよかったかもしれませんが、 シンプルな構成のほうがカスタマイズの自由度が高いと考えあえて採用していません。 また、このブログ自体、Misaki-orgmodeで生成しており、こちらは Pure というCSSフレームワークを使用しています。
+本ブログ「ざるだましい」はもともと o-blog というツールを使用していました。 このツールは大変使いやすかったのですが、1ファイルでの運用を強制されるのと、 Clojureプログラミングをしたいという理由からMisakiに乗り換えました。
+現状では、Emacsによるインターフェースがないので 記事ファイルが増えた場合は管理が大変ですが、 ゆくゆくは下記で紹介されている org-octopress のようなツールを作りたいと思っています。
+ http://quickhack.net/nom/blog/2013-05-01-org-octopress.html  org-modeをブログに利用していみたいかたは一考してみてください。
+参考 ざるだましいのロゴに使用しているフォント
+ http://www.hogera.com/pcb/font/catalog/  </description>
+    </item>
+    
+    <item>
+      <title>Windowsでmisakiのデモが動かない</title>
+      <link>https://zarudama.github.io/posts/windowsmisaki/</link>
+      <pubDate>Sat, 04 May 2013 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/windowsmisaki/</guid>
+      <description>Clojureで書かれたブログジェネレータの misaki ですが、そのままではWindows上ではサンプルが動作しません。
+C:\Users\miki\dev\misaki&amp;gt;lein run samples/blog * Compiling [1mall templates[22m * Compiling [1matom.xml.clj[22m [4mjava.io.FileNotFoundException: samples\blog\public\samples\blog\template\ato m.xml (?w?????p?X?????????????B)[24m at misaki.util.file$write_file / [1minvoke[22m ([31mfile.clj[0m:[31m[1m 152[22m[0m) at misaki.compiler.default.core$compile_STAR_ / [1minvoke[22m ([31mcore.cl j[0m:[31m[1m237[22m[0m) at misaki.compiler.default.core$compile_template / [1minvoke[22m ([31mcore .clj[0m:[31m[1m256[22m[0m) at misaki.compiler.default.core$_compile$fn__1874 / [1minvoke[22m ([31mcor e.clj[0m:[31m[1m70[22m[0m) at misaki.compiler.default.core$_compile / [1minvoke[22m ([31mcore.clj[0m :[31m[1m58[22m[0m) at misaki.core$call_compiler_fn / [1mdoInvoke[22m ([31mcore.clj[0m:[31m [1m55[22m[0m) at misaki.core$compile_STAR_$fn__1112 / [1minvoke[22m ([31mcore.clj[0m:[ 31m[1m160[22m[0m) at misaki.util.sequence$some_with_default_value / [1minvoke[22m ([31mseque nce.clj[0m:[31m[1m44[22m[0m) at misaki.core$compile_STAR_ / [1minvoke[22m ([31mcore.clj[0m:[31m[1m16 7[22m[0m) at misaki.</description>
     </item>
     
   </channel>

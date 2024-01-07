@@ -6,20 +6,21 @@
     <description>Recent content in helm on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
+    <lastBuildDate>Fri, 14 Jun 2013 14:01:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/helm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>helmのファイル一覧でパスを表示する</title>
-      <link>https://zarudama.github.io/posts/parma-link/helm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://zarudama.github.io/posts/helm-file-list/</link>
+      <pubDate>Fri, 14 Jun 2013 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/helm/</guid>
+      <guid>https://zarudama.github.io/posts/helm-file-list/</guid>
       <description>helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、 パス部分が表示されなくなってしまった。 デフォルトの挙動が変更されたようである。
 自分の場合、helm-git.elを使用しているが、 同じリポジトリに同名ファイルが複数あるため、 ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。 これでは困るので調査したところ、ファイル表示部分は、helm本体の =helm-files.el= の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
-(defcustom helm-ff-transformer-show-only-basename t &amp;quot;Show only basename of candidates in `helm-find-files&#39;. This can be toggled at anytime from `helm-find-files&#39; with \ \\&amp;lt;helm-find-files-map&amp;gt;\\[helm-ff-run-toggle-basename].&amp;quot; :type &#39;boolean :group &#39;helm-files)  .emacsに下記の定義をすることで無事解決できた。
-(setq helm-ff-transformer-show-only-basename nil)  </description>
+(defcustom helm-ff-transformer-show-only-basename t &amp;#34;Show only basename of candidates in `helm-find-files&amp;#39;. This can be toggled at anytime from `helm-find-files&amp;#39;with \ \\&amp;lt;helm-find-files-map&amp;gt;\\[helm-ff-run-toggle-basename].&amp;#34; :type &amp;#39;boolean :group &amp;#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
+(setq helm-ff-transformer-show-only-basename nil)</description>
     </item>
     
   </channel>

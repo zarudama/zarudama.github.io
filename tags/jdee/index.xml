@@ -13,10 +13,10 @@
     
     <item>
       <title>Emacs中毒者に贈るJDEEによるJava開発環境の構築</title>
-      <link>https://zarudama.github.io/posts/parma-link/emacsjdeejava/</link>
+      <link>https://zarudama.github.io/posts/emacsjdeejava/</link>
       <pubDate>Sun, 23 Dec 2012 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/emacsjdeejava/</guid>
+      <guid>https://zarudama.github.io/posts/emacsjdeejava/</guid>
       <description>この投稿は Emacs Advent Calendar 2012 の23日目の記事です。
 追記(2013/08/01) いつの間にか本家JDEEがCEDET2.0に対応していました。 emacs24.3にはCEDET2.0が最初から導入されているため、CEDETを別途導入する必要はなくなります。 これによりJDEEの導入がグッっと簡単になりました。
 そこで最新のemacs24.3対応ということでもう一度記事の内容を整理しました。 特に理由のない限り、最新のemacsとJDEEを利用するのが良いかと思います。

@@ -1,56 +1,95 @@
 <!DOCTYPE html>
 <html lang="ja"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
-<title>ざる魂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="libGDX入門 その02 カメラとビューポート" />
+<meta property="og:description" content="はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。
+前回 は、プロジェクトを作って、以下のことを学びました。
+ 画像の表示 キーボードによる操作 BGMの再生 効果音の再生  今回は次のことを学びます。
+ 物理画面に依存しない画面表示 タッチ処理  物理画面に依存しない画面表示  物理画面とは何でしょうか？ここでは次のように定義します。 スマホやタブレット画面解像度 デスクトップのウィンドウサイズ Androidには様々な画面サイズがありますし、 iPhoneもモデルチェンジ毎に画面サイズが変化しています。 これら様々な画面サイズのことを考慮しないと、 意図した通りの画面が表示できません。  ゲームを作るときの基本として、物理画面でプログラムしないというのがあります。 物理的なディスプレイのサイズに依存した座標管理をすると、 移植性が下がり仕様変更に弱くなったり、 端末毎の画面サイズの違いを吸収できないプログラムになってしまいます。
+例えば横スクロールアクションを作ったときに、 Aさんの画面は小さいから敵の動きがところ狭しとなるところが、 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、 なんてことが発生します。端末によって難易度が変わってくるのです。
+https://zarudama.github.io/img/libgdx-beginner/2/screen2.png
+実は既にこの問題は、私の手元で発生しています。 下記は、Nexus7(2013)で表示したサンプルの画面です。
+http://zarudama.github.io/img/libgdx-beginner/2/004.png
+/img/libgdx-beginner/2/003.png
+Nexus7版は、PCの画面と全然違いますね。キャラクターや文字が非常に小さくなってます。 これはPC版が640x480の解像度なのに対して、Nexus7版は1920x1200の解像度で表示しているからです。 この状態でゲームを作ってしまったら全然別ものになってしまいますよね。 ちなみにMac持ってないのでiOS系ではどうなるかわかりません。
+というわけで、どの端末でも公平に画面表示できるようにひと工夫必要になってきます (こういう処理は、ゲームづくりの序盤でやっておかないと、あとから変更するのは大変なので さっさと済ませておきたいことのひとつですね)。
+カメラとビューポート ではどうやってこの問題を解決するか。それにはカメラとビューポートを使用します。
+カメラとは、ゲームの世界を現実世界のディスプレイに届けるためのオブジェクトです。
+ビューポートとは、カメラの捉えたゲームの世界を、ディスプレイのどこに表示するかを 決める枠(矩形領域)のことです。
+https://zarudama.github.io/img/libgdx-beginner/2/screen3.png
+ビューポートは、ディスプレイサイズと一致しているわけではないことに注意してください。 ゲームのサンプルなどだと一致していることが多いですが、 今回のように様々なディスプレイサイズに対応させる場合は、 一致しなくなることの方が多くなるはずです。また、他の使い方としては、 カメラを2つ用意して一方はゲーム画面、 一方は小さな枠で別のシーンを表示するなんてこともできるかもしれません(やったことないですが)。
+ カメラを使うことにより、カメラとして定義した論理空間でゲームを制御できます。 この空間でやりとりすれば、あとはlibGDXがよろしく画面に表示してくれるわけです。 カメラでできることを列挙してみます。 物理的な画面サイズを気にせず、自分の定義した画面サイズでゲームを構築できる ズームイン、ズームアウト、画面を回転させたり、揺らしたりなど、画面全体にかかるエフェクトが簡単にできる カメラを動かすことで、スクロール処理が簡単に実装できる カメラを導入することでこのような自由が手に入るわけですが、 その代償として操作が複雑になってしまうのも事実です。 コーディング中は、今自分がどこの座標系で何を操作しているかを常に意識する必要があります。 ちょっと大袈裟ですが、慣れれば大したことありません。またこの考えはそのまま3Dプログラミングにも繋がります。   座標系には、以下の種類があります。 ワールド座標系。ゲームオブジェクトを置く論理空間。画面サイズは気にしなくて良い。 カメラ座標系。ワールドのゲームオブジェクトをカメラの枠での座標系で測りなおした座標系。真ん中が原点となる。 ビューポート座標系。左下を原点とした座標系。 スクリーン座標系。Android左上を原点とした最終的な座標系。タッチ座標などはOSからこの座標系の値が得られる。  ビューポート座標系とスクリーン座標系は他では別の呼びかたかもしれません。 座標系を意識する例を示します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/libgdx-beginner2/" />
+<meta property="article:published_time" content="2014-06-02T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2014-06-02T14:01:39&#43;09:00"/>
 
-<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="libGDX入門 その02 カメラとビューポート"/>
+<meta name="twitter:description" content="はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。
+前回 は、プロジェクトを作って、以下のことを学びました。
+ 画像の表示 キーボードによる操作 BGMの再生 効果音の再生  今回は次のことを学びます。
+ 物理画面に依存しない画面表示 タッチ処理  物理画面に依存しない画面表示  物理画面とは何でしょうか？ここでは次のように定義します。 スマホやタブレット画面解像度 デスクトップのウィンドウサイズ Androidには様々な画面サイズがありますし、 iPhoneもモデルチェンジ毎に画面サイズが変化しています。 これら様々な画面サイズのことを考慮しないと、 意図した通りの画面が表示できません。  ゲームを作るときの基本として、物理画面でプログラムしないというのがあります。 物理的なディスプレイのサイズに依存した座標管理をすると、 移植性が下がり仕様変更に弱くなったり、 端末毎の画面サイズの違いを吸収できないプログラムになってしまいます。
+例えば横スクロールアクションを作ったときに、 Aさんの画面は小さいから敵の動きがところ狭しとなるところが、 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、 なんてことが発生します。端末によって難易度が変わってくるのです。
+https://zarudama.github.io/img/libgdx-beginner/2/screen2.png
+実は既にこの問題は、私の手元で発生しています。 下記は、Nexus7(2013)で表示したサンプルの画面です。
+http://zarudama.github.io/img/libgdx-beginner/2/004.png
+/img/libgdx-beginner/2/003.png
+Nexus7版は、PCの画面と全然違いますね。キャラクターや文字が非常に小さくなってます。 これはPC版が640x480の解像度なのに対して、Nexus7版は1920x1200の解像度で表示しているからです。 この状態でゲームを作ってしまったら全然別ものになってしまいますよね。 ちなみにMac持ってないのでiOS系ではどうなるかわかりません。
+というわけで、どの端末でも公平に画面表示できるようにひと工夫必要になってきます (こういう処理は、ゲームづくりの序盤でやっておかないと、あとから変更するのは大変なので さっさと済ませておきたいことのひとつですね)。
+カメラとビューポート ではどうやってこの問題を解決するか。それにはカメラとビューポートを使用します。
+カメラとは、ゲームの世界を現実世界のディスプレイに届けるためのオブジェクトです。
+ビューポートとは、カメラの捉えたゲームの世界を、ディスプレイのどこに表示するかを 決める枠(矩形領域)のことです。
+https://zarudama.github.io/img/libgdx-beginner/2/screen3.png
+ビューポートは、ディスプレイサイズと一致しているわけではないことに注意してください。 ゲームのサンプルなどだと一致していることが多いですが、 今回のように様々なディスプレイサイズに対応させる場合は、 一致しなくなることの方が多くなるはずです。また、他の使い方としては、 カメラを2つ用意して一方はゲーム画面、 一方は小さな枠で別のシーンを表示するなんてこともできるかもしれません(やったことないですが)。
+ カメラを使うことにより、カメラとして定義した論理空間でゲームを制御できます。 この空間でやりとりすれば、あとはlibGDXがよろしく画面に表示してくれるわけです。 カメラでできることを列挙してみます。 物理的な画面サイズを気にせず、自分の定義した画面サイズでゲームを構築できる ズームイン、ズームアウト、画面を回転させたり、揺らしたりなど、画面全体にかかるエフェクトが簡単にできる カメラを動かすことで、スクロール処理が簡単に実装できる カメラを導入することでこのような自由が手に入るわけですが、 その代償として操作が複雑になってしまうのも事実です。 コーディング中は、今自分がどこの座標系で何を操作しているかを常に意識する必要があります。 ちょっと大袈裟ですが、慣れれば大したことありません。またこの考えはそのまま3Dプログラミングにも繋がります。   座標系には、以下の種類があります。 ワールド座標系。ゲームオブジェクトを置く論理空間。画面サイズは気にしなくて良い。 カメラ座標系。ワールドのゲームオブジェクトをカメラの枠での座標系で測りなおした座標系。真ん中が原点となる。 ビューポート座標系。左下を原点とした座標系。 スクリーン座標系。Android左上を原点とした最終的な座標系。タッチ座標などはOSからこの座標系の値が得られる。  ビューポート座標系とスクリーン座標系は他では別の呼びかたかもしれません。 座標系を意識する例を示します。"/>
 
+<title>libGDX入門 その02 カメラとビューポート | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
 
-
-
-
-     <link rel="stylesheet" href="/css/layouts/side-menu.css">
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
-<body>
-        <div id="layout">
-<a href="#menu" id="menuLink" class="menu-link">
-    
-    <span></span>
-</a>
-
-<div id="menu">
-    <div class="pure-menu">
-        <a class="pure-menu-heading" href="/">ホーム</a>
-        <a class="pure-menu-heading" href="/search">全文検索</a>
-        <ul class="pure-menu-list">
-            
-            
-                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
-            
-            
-            
-                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
-            
-            
-        </ul>
-    </div>
-</div>
-<div id="main" class="markdown-body">
-<div class="content">
-<section id="main">
-  <h1 id="title">libGDX入門 その02 カメラとビューポート</h1>
-  <div>
-      
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
   </div>
-  <div>
-        <article id="content">
-           <h1 id="はじめに">はじめに</h1>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">libGDX入門 その02 カメラとビューポート</h1>
+  <aside id="meta"><a class="tags" href="/tags/libgdx%E5%85%A5%E9%96%80">libGDX入門</a><a class="tags" href="/tags/libgdx">libGDX</a>
+<section>
+      <span class="date">作成日: 2014-06-02</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2014-06-02</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;1211 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <h1 id="はじめに">はじめに</h1>
 
-<p><a href="http://libgdx.badlogicgames.com/" title="libGDX">libGDX</a> を勉強するついでに解説記事を書く <a href="http://mikio.github.io/tag/libGDX%E5%85%A5%E9%96%80.html" title="シリーズ">シリーズ</a> 2回目です。</p>
+<p><a href="https://libgdx.com/" title="libGDX">libGDX</a> を勉強するついでに解説記事を書く <a href="/tags/libgdx入門/" title="シリーズ">シリーズ</a> 2回目です。</p>
 
-<p><a href="http://mikio.github.io/article/2014/05/04_libgdx-beginner.html" title="前回">前回</a> は、プロジェクトを作って、以下のことを学びました。</p>
+<p><a href="/posts/libgdx-beginner1/" title="前回">前回</a> は、プロジェクトを作って、以下のことを学びました。</p>
 
 <ul>
 <li>画像の表示</li>
@@ -88,14 +127,14 @@ Aさんの画面は小さいから敵の動きがところ狭しとなるとこ�
 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、
 なんてことが発生します。端末によって難易度が変わってくるのです。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/screen2.png" title="http://mikio.github.io/img/libgdx-beginner/2/screen2.png">http://mikio.github.io/img/libgdx-beginner/2/screen2.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/2/screen2.png" title="https://zarudama.github.io/img/libgdx-beginner/2/screen2.png">https://zarudama.github.io/img/libgdx-beginner/2/screen2.png</a></p>
 
 <p>実は既にこの問題は、私の手元で発生しています。
 下記は、Nexus7(2013)で表示したサンプルの画面です。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/004.png" title="http://mikio.github.io/img/libgdx-beginner/2/004.png">http://mikio.github.io/img/libgdx-beginner/2/004.png</a></p>
+<p><a href="http://zarudama.github.io/img/libgdx-beginner/2/004.png" title="http://zarudama.github.io/img/libgdx-beginner/2/004.png">http://zarudama.github.io/img/libgdx-beginner/2/004.png</a></p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/003.png" title="http://mikio.github.io/img/libgdx-beginner/2/003.png">http://mikio.github.io/img/libgdx-beginner/2/003.png</a></p>
+<p><a href="/img/libgdx-beginner/2/003.png" title="/img/libgdx-beginner/2/003.png">/img/libgdx-beginner/2/003.png</a></p>
 
 <p>Nexus7版は、PCの画面と全然違いますね。キャラクターや文字が非常に小さくなってます。
 これはPC版が640x480の解像度なのに対して、Nexus7版は1920x1200の解像度で表示しているからです。
@@ -115,7 +154,7 @@ Bさんの端末だと画面が大きいからフィールドが遠くまで見�
 <p>ビューポートとは、カメラの捉えたゲームの世界を、ディスプレイのどこに表示するかを
 決める枠(矩形領域)のことです。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/screen3.png" title="http://mikio.github.io/img/libgdx-beginner/2/screen3.png">http://mikio.github.io/img/libgdx-beginner/2/screen3.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/2/screen3.png" title="https://zarudama.github.io/img/libgdx-beginner/2/screen3.png">https://zarudama.github.io/img/libgdx-beginner/2/screen3.png</a></p>
 
 <p>ビューポートは、ディスプレイサイズと一致しているわけではないことに注意してください。
 ゲームのサンプルなどだと一致していることが多いですが、
@@ -178,17 +217,14 @@ Bさんの端末だと画面が大きいからフィールドが遠くまで見�
 前回のサンプルでは、画面サイズはデフォルトのままでしたが、
 今回はターゲットサイズを横800 x 縦480に設定したので、
 createメソッド内でカメラを下記のように定義します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  OrthographicCamera camera<span style="color:#555">;</span>
 
-<pre><code class="language-java">  OrthographicCamera camera;
-
-  @Override
-  public void create () {
-    ：
-    camera = new OrthographicCamera(800, 480);
-    ：
-  }
-</code></pre>
-
+  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+    <span style="color:#a00;background-color:#faa">：</span>
+    camera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">(</span>800<span style="color:#555">,</span> 480<span style="color:#555">);</span>
+    <span style="color:#a00;background-color:#faa">：</span>
+  <span style="color:#555">}</span></code></pre></div>
 <p>フィールドに <code>camera</code> を追加しています。
 ちなみになぜこんな長たらしい名前がついてるのかわかりませんが、
 2D用のカメラは、 <code>OrthographicCamera</code> クラスといいます。
@@ -196,26 +232,23 @@ libGDXのソースコードを見渡しましたが、他に2D用のカメラは
 =OrthographicCamera= は2D専用と思って問題ないでしょう。</p>
 
 <p>続いて、描画にカメラを反映させるため、 <code>render</code> メソッドを変更します。</p>
-
-<pre><code class="language-java">@Override
-public void render() {
-    :
-  Gdx.gl.glClearColor(1, 0, 0, 1);
-  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-  camera.update(); // 追加 #1
-  batch.setProjectionMatrix(camera.combined); // 追加 #2
-  batch.begin();
-  sprite.draw(batch);
-    :
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#99f">@Override</span>
+<span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+    <span style="color:#555">:</span>
+  Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClearColor</span><span style="color:#555">(</span>1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+  Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClear</span><span style="color:#555">(</span>GL20<span style="color:#555">.</span><span style="color:#309">GL_COLOR_BUFFER_BIT</span><span style="color:#555">);</span>
+  camera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// 追加 #1
+</span><span style="color:#09f;font-style:italic"></span>  batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// 追加 #2
+</span><span style="color:#09f;font-style:italic"></span>  batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+  sprite<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+    <span style="color:#555">:</span>
+<span style="color:#555">}</span></code></pre></div>
 <p><code>#1</code> でカメラ自身の座標計算(行列演算)をし、 <code>#2</code> でその結果をスプライトに適用させる準備をします。
 この処理は定型処理なので、最初のうちは決めごとと思って問題ありません。</p>
 
 <p>ここまでの実行結果は下記のとおりです。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/005.png" title="http://mikio.github.io/img/libgdx-beginner/2/005.png">http://mikio.github.io/img/libgdx-beginner/2/005.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/2/005.png" title="https://zarudama.github.io/img/libgdx-beginner/2/005.png">https://zarudama.github.io/img/libgdx-beginner/2/005.png</a></p>
 
 <p>なにか変です。画像のサイズが以前に比べて縦長になっています。なぜでしょうか？</p>
 
@@ -235,37 +268,31 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 
 <p>フィールドに <code>viewport</code> を追加し、createメソッド内で
 ビューポートを定義します。</p>
-
-<pre><code class="language-java">  OrthographicCamera camera;
-  Viewport viewport;  // 追加
-  @Override
-  public void create () {
-    ：
-    camera = new OrthographicCamera(800, 480);
-    viewport = new FitViewport(800, 480, camera); // 追加
-    ：
-  }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  OrthographicCamera camera<span style="color:#555">;</span>
+  Viewport viewport<span style="color:#555">;</span>  <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+    <span style="color:#a00;background-color:#faa">：</span>
+    camera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">(</span>800<span style="color:#555">,</span> 480<span style="color:#555">);</span>
+    viewport <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> FitViewport<span style="color:#555">(</span>800<span style="color:#555">,</span> 480<span style="color:#555">,</span> camera<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#a00;background-color:#faa">：</span>
+  <span style="color:#555">}</span></code></pre></div>
 <p><code>ViewPort</code> はスーパークラスであり、このクラスを継承した様々なクラスがあります。
 インスンタンスを設定する際には、用途に応じたViewPort継承クラスを指定する必要があります。
 今回は、 <code>FitViewport</code> クラスを利用します。</p>
 
 <p>続いて <code>resize</code> メソッドを追加します。 <code>resize</code> メソッドは、 <code>ApplicationListener</code> クラスのメソッドであり、
 画面の向きが変わったり、アプリケーションが起動したタイミングなどで呼ばれます。</p>
-
-<pre><code class="language-java">  @Override
-  public void resize(int width, int height) {
-      viewport.update(width, height); 
-  }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">resize</span><span style="color:#555">(</span><span style="color:#078;font-weight:bold">int</span> width<span style="color:#555">,</span> <span style="color:#078;font-weight:bold">int</span> height<span style="color:#555">)</span> <span style="color:#555">{</span>
+      viewport<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">(</span>width<span style="color:#555">,</span> height<span style="color:#555">);</span> 
+  <span style="color:#555">}</span></code></pre></div>
 <p>ビューポートは画面の大きさが変化した時だけ設定すれば良いため、
  <code>resize</code> メソッドから呼びだすだけでよく、 <code>render</code> メソッドなどで呼びだす必要はありません。</p>
 
 <p>ここまでの実行結果は下記のとおりです。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/006.png" title="http://mikio.github.io/img/libgdx-beginner/2/006.png">http://mikio.github.io/img/libgdx-beginner/2/006.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/2/006.png" title="https://zarudama.github.io/img/libgdx-beginner/2/006.png">https://zarudama.github.io/img/libgdx-beginner/2/006.png</a></p>
 
 <p>やった、歪みがなくなりました! 
 しかし、ここでひとつおかしいことに気づかないでしょうか？
@@ -280,59 +307,44 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 
 <p>背景用に次の画像を「右クリ→名前をつけて保存」で保存してください。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/bg.png" title="http://mikio.github.io/img/libgdx-beginner/2/bg.png">http://mikio.github.io/img/libgdx-beginner/2/bg.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/2/bg.png" title="https://zarudama.github.io/img/libgdx-beginner/2/bg.png">https://zarudama.github.io/img/libgdx-beginner/2/bg.png</a></p>
 
 <p>保存したファイルを下記に追加してください。</p>
-
-<pre><code class="language-sh">~/dev/libgdxtest/android/assets/
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">~/dev/libgdxtest/android/assets/</code></pre></div>
 <p>下記のように変更します。</p>
 
 <p>フィールド</p>
-
-<pre><code class="language-java">  Texture bgImg; // 追加
-  Sprite bg;     // 追加
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  Texture bgImg<span style="color:#555">;</span> <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>  Sprite bg<span style="color:#555">;</span>     <span style="color:#555">//</span> 追加</code></pre></div>
 <p><code>create</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void create () {
-      :
-     // 追加
-     bgImg = new Texture(&quot;bg.png&quot;);
-     bg = new Sprite(bgImg);
-     bg.setScale(2.0f, 2.0f);
-     bg.setPosition(-400, -240);
-      :
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+     <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>     bgImg <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Texture<span style="color:#555">(</span><span style="color:#c30">&#34;bg.png&#34;</span><span style="color:#555">);</span>
+     bg <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>bgImg<span style="color:#555">);</span>
+     bg<span style="color:#555">.</span><span style="color:#309">setScale</span><span style="color:#555">(</span>2<span style="color:#555">.</span><span style="color:#309">0f</span><span style="color:#555">,</span> 2<span style="color:#555">.</span><span style="color:#309">0f</span><span style="color:#555">);</span>
+     bg<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(-</span>400<span style="color:#555">,</span> <span style="color:#555">-</span>240<span style="color:#555">);</span>
+      <span style="color:#555">:</span></code></pre></div>
 <p><code>render</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void render() {
-      :
-	batch.setProjectionMatrix(camera.combined);
-      batch.begin();
-      bg.draw(batch); // 追加
-      sprite.draw(batch);
-      sprite2.draw(batch);
-      :
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+	batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+      batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+      bg<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>      sprite<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+      sprite2<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+      <span style="color:#555">:</span></code></pre></div>
 <p><code>dispose</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void dispose() {
-       :
-      bgImg.dispose();
-  }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">dispose</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+       <span style="color:#555">:</span>
+      bgImg<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+  <span style="color:#555">}</span></code></pre></div>
 <p>これで実行してみます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/007.png" title="http://mikio.github.io/img/libgdx-beginner/2/007.png">http://mikio.github.io/img/libgdx-beginner/2/007.png</a></p>
+<p><a href="http://zarudama.github.io/img/libgdx-beginner/2/007.png" title="http://zarudama.github.io/img/libgdx-beginner/2/007.png">http://zarudama.github.io/img/libgdx-beginner/2/007.png</a></p>
 
 <p>するとどうでしょう？赤い枠が上下に出現しています。
 これは、 <code>FitViewPort</code> がウィンドウサイズからビューポートのサイズを自動計算して
@@ -340,16 +352,16 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 
 <p>試しにウィンドウサイズを色々マウスでドラッグして変化させてみてください。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/008.png" title="http://mikio.github.io/img/libgdx-beginner/2/008.png">http://mikio.github.io/img/libgdx-beginner/2/008.png</a></p>
+<p><a href="/img/libgdx-beginner/2/008.png" title="/img/libgdx-beginner/2/008.png">/img/libgdx-beginner/2/008.png</a></p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/009.png" title="http://mikio.github.io/img/libgdx-beginner/2/009.png">http://mikio.github.io/img/libgdx-beginner/2/009.png</a></p>
+<p><a href="/img/libgdx-beginner/2/009.png" title="/img/libgdx-beginner/2/009.png">/img/libgdx-beginner/2/009.png</a></p>
 
 <p>こんな風に画面のサイズに応じて、ビューポートのサイズを動的に変化さてくれます。
 画面の短い辺に対して最大のサイズを割りあて、長い辺に大してはその比率を調整するようですね。</p>
 
 <p>もちろんNexus7の実機でもうまく表示できています。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/nexus7.png" title="http://mikio.github.io/img/libgdx-beginner/2/nexus7.png">http://mikio.github.io/img/libgdx-beginner/2/nexus7.png</a></p>
+<p><a href="/img/libgdx-beginner/2/nexus7.png" title="/img/libgdx-beginner/2/nexus7.png">/img/libgdx-beginner/2/nexus7.png</a></p>
 
 <p>このように、 <code>FitViewPort</code> クラスを使うことにより、どのような画面サイズであっても、
 こちらの意図したとおりの画面比率で表示されるようになります。</p>
@@ -357,9 +369,7 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 <ul>
 <code>ViewPort</code> クラスには他にも様々な種類のクラスがあります。
 いろいろ試してみてください。
-<li>https://github.com/libgdx/libgdx/wiki/Viewports</li>
-ちなみに上記ビューポートの解説は、下記のよう辿るといきつけます。
-<li>https://github.com/libgdx/libgdx/wiki → Scene2d → ViewPort</li>
+<li>https://libgdx.com/wiki/graphics/viewports</li>
 </ul>
 
 <h1 id="カメラの位置調整">カメラの位置調整</h1>
@@ -370,13 +380,13 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 <p>実はスプライト画像がひとつしか表示されてません。本来は2つ表示されているハズなのですが。
 最初の時はこうでした。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/003.png" title="http://mikio.github.io/img/libgdx-beginner/2/003.png">http://mikio.github.io/img/libgdx-beginner/2/003.png</a></p>
+<p><a href="/img/libgdx-beginner/2/003.png" title="/img/libgdx-beginner/2/003.png">/img/libgdx-beginner/2/003.png</a></p>
 
 <p>何が起きているかというと、カメラの位置がおかしいのです。
 カメラはスプライトと違って、真ん中が原点となります。
 なので、ワールド原点を中心とした枠が表示されているのです。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/010.png" title="http://mikio.github.io/img/libgdx-beginner/2/010.png">http://mikio.github.io/img/libgdx-beginner/2/010.png</a></p>
+<p><a href="/img/libgdx-beginner/2/010.png" title="/img/libgdx-beginner/2/010.png">/img/libgdx-beginner/2/010.png</a></p>
 
 <h2 id="ワールド軸の描画">ワールド軸の描画</h2>
 
@@ -385,53 +395,38 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 ここで、見た目をわかりやすくするためにワールドの座標軸を描画してみます。</p>
 
 <p>インポート</p>
-
-<pre><code class="language-java">import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.glutils.ShapeRenderer</span><span style="color:#555">;</span></code></pre></div>
 <p>フィールド</p>
-
-<pre><code class="language-java">  ShapeRenderer shapeRenderer; // 追加
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  ShapeRenderer shapeRenderer<span style="color:#555">;</span> <span style="color:#555">//</span> 追加</code></pre></div>
 <p><code>create</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void create () {
-      :
-     // 追加
-     shapeRenderer = new ShapeRenderer();
-      :
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+     <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>     shapeRenderer <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> ShapeRenderer<span style="color:#555">();</span>
+      <span style="color:#555">:</span></code></pre></div>
 <p><code>render</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void render() {
-      :
-    // ワールド座標軸を描画する。
-    shapeRenderer.setProjectionMatrix(camera.combined);
-    shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-    shapeRenderer.setColor(1, 0, 0, 1);
-    shapeRenderer.line(-1024, 0, 1024, 0);
-    shapeRenderer.setColor(0, 1, 0, 1);
-    shapeRenderer.line(0, -1024, 0, 1024);
-    shapeRenderer.end();
-      :
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+    <span style="color:#09f;font-style:italic">// ワールド座標軸を描画する。
+</span><span style="color:#09f;font-style:italic"></span>    shapeRenderer<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+    shapeRenderer<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">(</span>ShapeRenderer<span style="color:#555">.</span><span style="color:#309">ShapeType</span><span style="color:#555">.</span><span style="color:#309">Line</span><span style="color:#555">);</span>
+    shapeRenderer<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+    shapeRenderer<span style="color:#555">.</span><span style="color:#309">line</span><span style="color:#555">(-</span>1024<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1024<span style="color:#555">,</span> 0<span style="color:#555">);</span>
+    shapeRenderer<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>0<span style="color:#555">,</span> 1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+    shapeRenderer<span style="color:#555">.</span><span style="color:#309">line</span><span style="color:#555">(</span>0<span style="color:#555">,</span> <span style="color:#555">-</span>1024<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1024<span style="color:#555">);</span>
+    shapeRenderer<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+      <span style="color:#555">:</span></code></pre></div>
 <p><code>dispose</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void dispose() {
-       :
-     shapeRenderer.dispose();
-  }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">dispose</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+       <span style="color:#555">:</span>
+     shapeRenderer<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+  <span style="color:#555">}</span></code></pre></div>
 <p>これで実行してみます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/012.png" title="http://mikio.github.io/img/libgdx-beginner/2/012.png">http://mikio.github.io/img/libgdx-beginner/2/012.png</a></p>
+<p><a href="/img/libgdx-beginner/2/012.png" title="/img/libgdx-beginner/2/012.png">/img/libgdx-beginner/2/012.png</a></p>
 
 <p>X軸を赤、Y軸を緑で描画しています。
 これで状況がよりわかりやすくなったと思います。</p>
@@ -444,18 +439,13 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 <p>そこで試しに下記のメソッドを追記してみましょう。</p>
 
 <p><code>create</code> メソッド</p>
-
-<pre><code class="language-java">
-
-  @Override
-  public void create () {
-      :
-     camera = new OrthographicCamera(800,480);
-     camera.setToOrtho(false, 800, 480);    // 追加
-      :
-  }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+     camera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">(</span>800<span style="color:#555">,</span>480<span style="color:#555">);</span>
+     camera<span style="color:#555">.</span><span style="color:#309">setToOrtho</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">false</span><span style="color:#555">,</span> 800<span style="color:#555">,</span> 480<span style="color:#555">);</span>    <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>      <span style="color:#555">:</span>
+  <span style="color:#555">}</span></code></pre></div>
 <p><code>Camera#setToOrtho</code> メソッドは、カメラを右上に移動させて、左下に丁度ワールド原点がくるように調整するものです。
 第1引数は、ydownといって、trueにするとY軸が反転されますが、通常はfalseで良いと思います。
 第2引数と第3引数は、カメラのの幅と高さです。 <code>setToOrth</code> をコンストラクタに続けて指定する時は、
@@ -463,7 +453,7 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 
 <p>これを実行すると以下のように表示されます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/013.png" title="http://mikio.github.io/img/libgdx-beginner/2/013.png">http://mikio.github.io/img/libgdx-beginner/2/013.png</a></p>
+<p><a href="/img/libgdx-beginner/2/013.png" title="/img/libgdx-beginner/2/013.png">/img/libgdx-beginner/2/013.png</a></p>
 
 <p>無事カメラが移動されて、2つ目のスプライトも表示されるようになりました。</p>
 
@@ -472,31 +462,28 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 <p>こんどはカメラをキーボードで動かしてみましょう。</p>
 
 <p><code>render</code> メソッドで下記のように追記します。</p>
-
-<pre><code class="language-java">  @Override
-  public void render() {
-      if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-          //pos.x -= 1;            // 削除
-          camera.position.x -= 2;  // 追加
-      }
-      if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-          //pos.x += 1;            // 削除
-          camera.position.x += 2;  // 追加
-      }
-      if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-          //pos.y += 1;            // 削除
-          camera.position.y += 2;  // 追加
-      }
-      if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-          //pos.y -= 1;            // 削除
-          camera.position.y -= 2;  // 追加
-      }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">LEFT</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+          <span style="color:#09f;font-style:italic">//pos.x -= 1;            // 削除
+</span><span style="color:#09f;font-style:italic"></span>          camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">-=</span> 2<span style="color:#555">;</span>  <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>      <span style="color:#555">}</span>
+      <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">RIGHT</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+          <span style="color:#09f;font-style:italic">//pos.x += 1;            // 削除
+</span><span style="color:#09f;font-style:italic"></span>          camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">+=</span> 2<span style="color:#555">;</span>  <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>      <span style="color:#555">}</span>
+      <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">UP</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+          <span style="color:#09f;font-style:italic">//pos.y += 1;            // 削除
+</span><span style="color:#09f;font-style:italic"></span>          camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">+=</span> 2<span style="color:#555">;</span>  <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>      <span style="color:#555">}</span>
+      <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">DOWN</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+          <span style="color:#09f;font-style:italic">//pos.y -= 1;            // 削除
+</span><span style="color:#09f;font-style:italic"></span>          camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">-=</span> 2<span style="color:#555">;</span>  <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>      <span style="color:#555">}</span></code></pre></div>
 <p><code>pos</code> ベクトルへの処理を削除し、変わりに <code>camera.position</code> への処理を追加します。
 これを実行すると以下のように表示されます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/014.png" title="http://mikio.github.io/img/libgdx-beginner/2/014.png">http://mikio.github.io/img/libgdx-beginner/2/014.png</a></p>
+<p><a href="/img/libgdx-beginner/2/014.png" title="/img/libgdx-beginner/2/014.png">/img/libgdx-beginner/2/014.png</a></p>
 
 <p>カーソルキーでカメラを動かしてみてください。
 背景のBG画像があまり大きくないので端にいくと表示が変な見ためになるので注意です。</p>
@@ -505,31 +492,28 @@ libGDXは、OpenGLを直接操作する低レイヤのメソッドも用意し�
 カメラの座標を表示してみます。</p>
 
 <p><code>render</code> メソッドで下記のように追記します。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+    <span style="color:#a00;background-color:#faa">：</span>
+    <span style="color:#09f;font-style:italic">// カメラの座標の文字列を作って
+</span><span style="color:#09f;font-style:italic"></span>    String info <span style="color:#555">=</span> String<span style="color:#555">.</span><span style="color:#309">format</span><span style="color:#555">(</span><span style="color:#c30">&#34;cam pos(%f,%f)&#34;</span><span style="color:#555">,</span> camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
 
-<pre><code class="language-java">  @Override
-  public void render() {
-    ：
-    // カメラの座標の文字列を作って
-    String info = String.format(&quot;cam pos(%f,%f)&quot;, camera.position.x, camera.position.y);
 
-
-    batch.setProjectionMatrix(camera.combined);
-    batch.begin();
-        ：
-    font.draw(batch, info, 0, 20); // 追加
-        ：
-    batch.begin();
-</code></pre>
-
+    batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+    batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+        <span style="color:#a00;background-color:#faa">：</span>
+    font<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">,</span> info<span style="color:#555">,</span> 0<span style="color:#555">,</span> 20<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#a00;background-color:#faa">：</span>
+    batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span></code></pre></div>
 <p>座標は大体左したに表示されるように指定しています。</p>
 
 <p>これを実行すると以下のように表示されます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/015.png" title="http://mikio.github.io/img/libgdx-beginner/2/015.png">http://mikio.github.io/img/libgdx-beginner/2/015.png</a></p>
+<p><a href="/img/libgdx-beginner/2/015.png" title="/img/libgdx-beginner/2/015.png">/img/libgdx-beginner/2/015.png</a></p>
 
 <p>左下に表示されてますね。ではカーソルキーでカメラを動かしてみてください。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/016.png" title="http://mikio.github.io/img/libgdx-beginner/2/016.png">http://mikio.github.io/img/libgdx-beginner/2/016.png</a></p>
+<p><a href="/img/libgdx-beginner/2/016.png" title="/img/libgdx-beginner/2/016.png">/img/libgdx-beginner/2/016.png</a></p>
 
 <p>あれ、期待した動きと違ってませんか？ 私は違いました。
 どう動いて欲しかったというと、画面にひっついて常に左下に表示して欲しいと思いました。</p>
@@ -547,46 +531,37 @@ UI専用のカメラを準備して、そのカメラは動かさずにおく。
 これだけでオッケーです(libGDXのサンプルでもやっている方法です)。</p>
 
 <p>フィールド</p>
-
-<pre><code class="language-java">  OrthographicCamera uiCamera;  // 追加
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  OrthographicCamera uiCamera<span style="color:#555">;</span>  <span style="color:#555">//</span> 追加</code></pre></div>
 <p><code>create</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void create () {
-      :
-     // 追加
-     uiCamera = new OrthographicCamera();
-     uiCamera.setToOrtho(false, 800, 480);
-      :
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+     <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>     uiCamera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">();</span>
+     uiCamera<span style="color:#555">.</span><span style="color:#309">setToOrtho</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">false</span><span style="color:#555">,</span> 800<span style="color:#555">,</span> 480<span style="color:#555">);</span>
+      <span style="color:#555">:</span></code></pre></div>
 <p><code>render</code> メソッド</p>
-
-<pre><code class="language-java">  @Override
-  public void render() {
-      :
-    //font.draw(batch, info, 0, 20);
-    //font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-      :
-    // render の一番最後で描画すること
-    uiCamera.update();
-	batch.setProjectionMatrix(uiCamera.combined);
-    batch.begin();
-    font.draw(batch, info, 0, 20);
-    font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-    batch.end();
-  }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+    <span style="color:#09f;font-style:italic">//font.draw(batch, info, 0, 20);
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">//font.draw(batch, &#34;Hello libGDX&#34;, 200, 400);
+</span><span style="color:#09f;font-style:italic"></span>      <span style="color:#555">:</span>
+    <span style="color:#09f;font-style:italic">// render の一番最後で描画すること
+</span><span style="color:#09f;font-style:italic"></span>    uiCamera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span>
+	batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>uiCamera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+    batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+    font<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">,</span> info<span style="color:#555">,</span> 0<span style="color:#555">,</span> 20<span style="color:#555">);</span>
+    font<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">,</span> <span style="color:#c30">&#34;Hello libGDX&#34;</span><span style="color:#555">,</span> 200<span style="color:#555">,</span> 400<span style="color:#555">);</span>
+    batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+  <span style="color:#555">}</span></code></pre></div>
 <p>以前の <code>font.draw</code> はコメントアウトもしくは、削除します。
 注意すべき点は、UIの描画物は <code>render</code> メソッド内の一番最後で描画するということです。
 これは、画面上の一番上に描画するためです。</p>
 
 <p>実行してみます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/017.png" title="http://mikio.github.io/img/libgdx-beginner/2/017.png">http://mikio.github.io/img/libgdx-beginner/2/017.png</a></p>
+<p><a href="/img/libgdx-beginner/2/017.png" title="/img/libgdx-beginner/2/017.png">/img/libgdx-beginner/2/017.png</a></p>
 
 <p>おおお、無事希望どおりの動きになりました!</p>
 
@@ -600,23 +575,17 @@ UI専用のカメラを準備して、そのカメラは動かさずにおく。
 Desktop版は、ウィンドウなので、初期サイズを変更できます。</p>
 
 <p>下記のファイルを編集すればオッケーです。</p>
-
-<pre><code class="language-sh">~/dev/libgdxtest/desktop/src/com/zarudama/libgdxtest/desktop/DesktopLauncher.java
-</code></pre>
-
-<pre><code class="language-java">public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 800;  // 追加
-		config.height = 480; // 追加
-		new LwjglApplication(new LibGdxSample(), config);
-	}
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">~/dev/libgdxtest/desktop/src/com/zarudama/libgdxtest/desktop/DesktopLauncher.java</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">DesktopLauncher</span> <span style="color:#555">{</span>
+	<span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">main</span> <span style="color:#555">(</span>String<span style="color:#555">[]</span> arg<span style="color:#555">)</span> <span style="color:#555">{</span>
+		LwjglApplicationConfiguration config <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> LwjglApplicationConfiguration<span style="color:#555">();</span>
+		config<span style="color:#555">.</span><span style="color:#309">width</span> <span style="color:#555">=</span> 800<span style="color:#555">;</span>  <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>		config<span style="color:#555">.</span><span style="color:#309">height</span> <span style="color:#555">=</span> 480<span style="color:#555">;</span> <span style="color:#09f;font-style:italic">// 追加
+</span><span style="color:#09f;font-style:italic"></span>		<span style="color:#069;font-weight:bold">new</span> LwjglApplication<span style="color:#555">(</span><span style="color:#069;font-weight:bold">new</span> LibGdxSample<span style="color:#555">(),</span> config<span style="color:#555">);</span>
+	<span style="color:#555">}</span>
+<span style="color:#555">}</span></code></pre></div>
 <p>実行結果です。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/018.png" title="http://mikio.github.io/img/libgdx-beginner/2/018.png">http://mikio.github.io/img/libgdx-beginner/2/018.png</a></p>
+<p><a href="/img/libgdx-beginner/2/018.png" title="/img/libgdx-beginner/2/018.png">/img/libgdx-beginner/2/018.png</a></p>
 
 <p>画面サイズと論理サイズが一致したので赤い帯がなくなりましたね!</p>
 
@@ -628,30 +597,24 @@ Desktop版は、ウィンドウなので、初期サイズを変更できます�
 スマホ特有の処理、タッチ操作の処理方法は先送りにしていました。</p>
 
 <p>指でタッチしているかどうかを検知するには、 <code>Gdx.input.isTouched</code> メソッドを使用します。</p>
-
-<pre><code class="language-java">if (Gdx.input.isTouched(0)) {
-    :
-  // なにかの処理
-    :
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isTouched</span><span style="color:#555">(</span>0<span style="color:#555">))</span> <span style="color:#555">{</span>
+    <span style="color:#555">:</span>
+  <span style="color:#09f;font-style:italic">// なにかの処理
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#555">:</span>
+<span style="color:#555">}</span></code></pre></div>
 <p>このメソッドの引数には番号が必要ですが、これはタッチした指の番号です。
 最初にタッチした指の番号は0, 2番目にタッチした座標の番号は1という具合です。</p>
 
 <p>タッチの座標を得るには、 <code>Gdx.input.getX</code> , <code>Gdx.input.getY</code> メソッドを使用します。</p>
-
-<pre><code class="language-java">float x0 = Gdx.input.getX(0);
-float y0 = Gdx.input.getY(0);
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#078;font-weight:bold">float</span> x0 <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getX</span><span style="color:#555">(</span>0<span style="color:#555">);</span>
+<span style="color:#078;font-weight:bold">float</span> y0 <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getY</span><span style="color:#555">(</span>0<span style="color:#555">);</span></code></pre></div>
 <p>番号は先程の説明と同じ意味です。</p>
 
 <p>ただしこの座標、注意が必要で、得られる座標は、画面左上を原点とします。</p>
 
 <p>x座標は左から右、Y座標は上から下に伸びます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/screen.png" title="http://mikio.github.io/img/libgdx-beginner/2/screen.png">http://mikio.github.io/img/libgdx-beginner/2/screen.png</a></p>
+<p><a href="/img/libgdx-beginner/2/screen.png" title="/img/libgdx-beginner/2/screen.png">/img/libgdx-beginner/2/screen.png</a></p>
 
 <p>この座標系は一般的にはスクリーン座標系などと呼ばれ、
 最終的な絶対座標(物理座標)として使われるものですが、libGDXでは左下を原点とした
@@ -659,13 +622,10 @@ float y0 = Gdx.input.getY(0);
 
 <p>ただし私たちは今回カメラを導入しています。なのでカメラの便利メソッドで簡単に変換できます。
 こんな感じです。</p>
-
-<pre><code class="language-java">  Vector3 touchPos = new Vector3();
-  touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-  camera.unproject(touchPos); // #1
-  targetPos.set(touchPos.x, touchPos.y);
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  Vector3 touchPos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector3<span style="color:#555">();</span>
+  touchPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getX</span><span style="color:#555">(),</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getY</span><span style="color:#555">(),</span> 0<span style="color:#555">);</span>
+  camera<span style="color:#555">.</span><span style="color:#309">unproject</span><span style="color:#555">(</span>touchPos<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #1
+</span><span style="color:#09f;font-style:italic"></span>  targetPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>touchPos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span></code></pre></div>
 <p><code>#1</code> で、スクリーン座標で得た左上を原点とした座標をワールドの座標に変換します。</p>
 
 <p>*2013/06/19 追記*
@@ -676,15 +636,12 @@ float y0 = Gdx.input.getY(0);
 説明はこのままにしておきますが、ソースコードの方は訂正してあります。</p>
 
 <p>この処理を <code>if</code> で囲ってあげれば判定処理の出来あがりです。</p>
-
-<pre><code class="language-java">if (Gdx.input.isTouched(0)) {
-  Vector3 touchPos = new Vector3();
-  touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-  camera.unproject(touchPos); // #1
-  targetPos.set(touchPos.x, touchPos.y);
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isTouched</span><span style="color:#555">(</span>0<span style="color:#555">))</span> <span style="color:#555">{</span>
+  Vector3 touchPos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector3<span style="color:#555">();</span>
+  touchPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getX</span><span style="color:#555">(),</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getY</span><span style="color:#555">(),</span> 0<span style="color:#555">);</span>
+  camera<span style="color:#555">.</span><span style="color:#309">unproject</span><span style="color:#555">(</span>touchPos<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// #1
+</span><span style="color:#09f;font-style:italic"></span>  targetPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>touchPos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
+<span style="color:#555">}</span></code></pre></div>
 <p><code>Gdx.input.isTouched</code> メソッドは、タッチし続けてれば、毎フレーム「真」になります。</p>
 
 <p>他にタッチを検出するメソッドとして、
@@ -694,12 +651,9 @@ float y0 = Gdx.input.getY(0);
 最初の一回しか真にならないということです。</p>
 
 <p>例えば、下記のようなコードで、タッチした時だけ音を鳴らすことができます。</p>
-
-<pre><code class="language-java">if (Gdx.input.justTouched()) {
-    sound.play();
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">justTouched</span><span style="color:#555">())</span> <span style="color:#555">{</span>
+    sound<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
+<span style="color:#555">}</span></code></pre></div>
 <p>ちなみにjustTouchedと同等の機能のキーボード版のメソッドはありません。
 恐らく、このメソッドの実装には、状態変数の保持が必要になってくるので、
 そこをライブラリ側で実装してしまうと無駄が多くなるので、
@@ -709,51 +663,42 @@ float y0 = Gdx.input.getY(0);
 下記のように修正してみてください。</p>
 
 <p>インポート。</p>
-
-<pre><code class="language-java">import com.badlogic.gdx.math.Vector3;
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.math.Vector3</span><span style="color:#555">;</span></code></pre></div>
 <p>フィールド。</p>
-
-<pre><code class="language-java">  Vector2 targetPos;
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  Vector2 targetPos<span style="color:#555">;</span></code></pre></div>
 <p><code>render</code> メソッド。キーボード処理の直後に追加します。</p>
-
-<pre><code class="language-java">  @Override
-  public void render() {
-       ：
-    if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-        pos.y -= 1;
-        camera.position.y -= 2;
-    }
-       :
-    // ↓追加
-    if (Gdx.input.justTouched()) {
-         sound.play();
-    }
-    if (Gdx.input.isTouched(0)) {
-      Vector3 touchPos = new Vector3();
-      touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-      camera.unproject(touchPos);
-      targetPos.set(touchPos.x, touchPos.y);
-    }
-    // ↑追加
-    String info = String.format(&quot;cam pos(%f,%f)&quot;, camera.position.x, camera.position.y);
-    // ↓追加
-    pos.lerp(targetPos, 0.2f);
-    sprite.setPosition(pos.x, pos.y);
-    // ↑追加
-       ：
-  }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#99f">@Override</span>
+  <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+       <span style="color:#a00;background-color:#faa">：</span>
+    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">DOWN</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+        pos<span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">-=</span> 1<span style="color:#555">;</span>
+        camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">-=</span> 2<span style="color:#555">;</span>
+    <span style="color:#555">}</span>
+       <span style="color:#555">:</span>
+    <span style="color:#09f;font-style:italic">// ↓追加
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">justTouched</span><span style="color:#555">())</span> <span style="color:#555">{</span>
+         sound<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
+    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isTouched</span><span style="color:#555">(</span>0<span style="color:#555">))</span> <span style="color:#555">{</span>
+      Vector3 touchPos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector3<span style="color:#555">();</span>
+      touchPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getX</span><span style="color:#555">(),</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getY</span><span style="color:#555">(),</span> 0<span style="color:#555">);</span>
+      camera<span style="color:#555">.</span><span style="color:#309">unproject</span><span style="color:#555">(</span>touchPos<span style="color:#555">);</span>
+      targetPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>touchPos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
+    <span style="color:#555">}</span>
+    <span style="color:#09f;font-style:italic">// ↑追加
+</span><span style="color:#09f;font-style:italic"></span>    String info <span style="color:#555">=</span> String<span style="color:#555">.</span><span style="color:#309">format</span><span style="color:#555">(</span><span style="color:#c30">&#34;cam pos(%f,%f)&#34;</span><span style="color:#555">,</span> camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
+    <span style="color:#09f;font-style:italic">// ↓追加
+</span><span style="color:#09f;font-style:italic"></span>    pos<span style="color:#555">.</span><span style="color:#309">lerp</span><span style="color:#555">(</span>targetPos<span style="color:#555">,</span> 0<span style="color:#555">.</span><span style="color:#309">2f</span><span style="color:#555">);</span>
+    sprite<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>pos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> pos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
+    <span style="color:#09f;font-style:italic">// ↑追加
+</span><span style="color:#09f;font-style:italic"></span>       <span style="color:#a00;background-color:#faa">：</span>
+  <span style="color:#555">}</span></code></pre></div>
 <p><code>render</code> メソッド内で実行している <code>pos.lerp</code> メソッドは、第一引数の座標
 へ値を少しずつ近づけていく処理を実施します。「最初早くて後おそく」って感じの動きです。</p>
 
 <p>では、実行してみます。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/2/019.png" title="http://mikio.github.io/img/libgdx-beginner/2/019.png">http://mikio.github.io/img/libgdx-beginner/2/019.png</a></p>
+<p><a href="/img/libgdx-beginner/2/019.png" title="/img/libgdx-beginner/2/019.png">/img/libgdx-beginner/2/019.png</a></p>
 
 <p>これまでのコードを忠実に入力していれば、音をビヨーンとならしながら移動します。</p>
 
@@ -762,169 +707,166 @@ float y0 = Gdx.input.getY(0);
 <h1 id="ソース">ソース</h1>
 
 <p>最後に今回のソースコードを掲載しておきます。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">package</span> <span style="color:#0cf;font-weight:bold">com.zarudama.libgdxtest</span><span style="color:#555">;</span>
 
-<pre><code class="language-java">package com.zarudama.libgdxtest;
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.ApplicationAdapter</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Gdx</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Input</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.audio.Music</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.audio.Sound</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.GL20</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.OrthographicCamera</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.PerspectiveCamera</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Camera</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Texture</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.BitmapFont</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.Sprite</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.SpriteBatch</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.math.Vector2</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.math.Vector3</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.FitViewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.FillViewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.StretchViewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.ScreenViewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.ExtendViewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.utils.viewport.Viewport</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.glutils.ShapeRenderer</span><span style="color:#555">;</span>
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+<span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">LibGdxSample</span> <span style="color:#069;font-weight:bold">extends</span> ApplicationAdapter <span style="color:#555">{</span>
+    SpriteBatch batch<span style="color:#555">;</span>
+    BitmapFont font<span style="color:#555">;</span>
+    Texture img<span style="color:#555">;</span>
+    Sprite sprite<span style="color:#555">;</span>
+    Sprite sprite2<span style="color:#555">;</span>
+    Vector2 pos<span style="color:#555">;</span>
+    Sound sound<span style="color:#555">;</span>
+    Music music<span style="color:#555">;</span>
+    <span style="color:#078;font-weight:bold">float</span> angle<span style="color:#555">;</span>
+    OrthographicCamera camera<span style="color:#555">;</span>
+    Viewport viewport<span style="color:#555">;</span>
 
-public class LibGdxSample extends ApplicationAdapter {
-    SpriteBatch batch;
-    BitmapFont font;
-    Texture img;
-    Sprite sprite;
-    Sprite sprite2;
-    Vector2 pos;
-    Sound sound;
-    Music music;
-    float angle;
-    OrthographicCamera camera;
-    Viewport viewport;
+    Texture bgImg<span style="color:#555">;</span>
+    Sprite bg<span style="color:#555">;</span>
+    ShapeRenderer shapeRenderer<span style="color:#555">;</span>
 
-    Texture bgImg;
-    Sprite bg;
-    ShapeRenderer shapeRenderer;
+    OrthographicCamera uiCamera<span style="color:#555">;</span>
 
-    OrthographicCamera uiCamera;
+    Vector2 targetPos<span style="color:#555">;</span>
 
-    Vector2 targetPos;
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+        batch <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> SpriteBatch<span style="color:#555">();</span>
+        font <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> BitmapFont<span style="color:#555">();</span>
+        img <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Texture<span style="color:#555">(</span><span style="color:#c30">&#34;badlogic.jpg&#34;</span><span style="color:#555">);</span>
+        sprite <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">);</span>
+        sprite2 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">);</span>
+        pos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector2<span style="color:#555">();</span>
+        sound <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">audio</span><span style="color:#555">.</span><span style="color:#309">newSound</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">files</span><span style="color:#555">.</span><span style="color:#309">internal</span><span style="color:#555">(</span><span style="color:#c30">&#34;jump.wav&#34;</span><span style="color:#555">));</span>
+        music <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">audio</span><span style="color:#555">.</span><span style="color:#309">newMusic</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">files</span><span style="color:#555">.</span><span style="color:#309">internal</span><span style="color:#555">(</span><span style="color:#c30">&#34;mixdown.mp3&#34;</span><span style="color:#555">));</span>
+        music<span style="color:#555">.</span><span style="color:#309">setLooping</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">true</span><span style="color:#555">);</span>
+        music<span style="color:#555">.</span><span style="color:#309">setVolume</span><span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">5f</span><span style="color:#555">);</span>
+        music<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
 
-    @Override
-    public void create () {
-        batch = new SpriteBatch();
-        font = new BitmapFont();
-        img = new Texture(&quot;badlogic.jpg&quot;);
-        sprite = new Sprite(img);
-        sprite2 = new Sprite(img);
-        pos = new Vector2();
-        sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
-        music = Gdx.audio.newMusic(Gdx.files.internal(&quot;mixdown.mp3&quot;));
-        music.setLooping(true);
-        music.setVolume(0.5f);
-        music.play();
+        bgImg <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Texture<span style="color:#555">(</span><span style="color:#c30">&#34;bg.png&#34;</span><span style="color:#555">);</span>
+        bg <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>bgImg<span style="color:#555">);</span>
+        bg<span style="color:#555">.</span><span style="color:#309">setScale</span><span style="color:#555">(</span>2<span style="color:#555">.</span><span style="color:#309">0f</span><span style="color:#555">,</span> 2<span style="color:#555">.</span><span style="color:#309">0f</span><span style="color:#555">);</span>
+        bg<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(-</span>400<span style="color:#555">,</span> <span style="color:#555">-</span>240<span style="color:#555">);</span>
 
-        bgImg = new Texture(&quot;bg.png&quot;);
-        bg = new Sprite(bgImg);
-        bg.setScale(2.0f, 2.0f);
-        bg.setPosition(-400, -240);
+        camera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">(</span>800<span style="color:#555">,</span>480<span style="color:#555">);</span>
+        camera<span style="color:#555">.</span><span style="color:#309">setToOrtho</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">false</span><span style="color:#555">,</span> 800<span style="color:#555">,</span> 480<span style="color:#555">);</span>
+        viewport <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> FitViewport<span style="color:#555">(</span>800<span style="color:#555">,</span> 480<span style="color:#555">,</span> camera<span style="color:#555">);</span>
 
-        camera = new OrthographicCamera(800,480);
-        camera.setToOrtho(false, 800, 480);
-        viewport = new FitViewport(800, 480, camera);
+        uiCamera <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> OrthographicCamera<span style="color:#555">();</span>
+        uiCamera<span style="color:#555">.</span><span style="color:#309">setToOrtho</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">false</span><span style="color:#555">,</span> 800<span style="color:#555">,</span> 480<span style="color:#555">);</span>
 
-        uiCamera = new OrthographicCamera();
-        uiCamera.setToOrtho(false, 800, 480);
+        shapeRenderer <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> ShapeRenderer<span style="color:#555">();</span>
 
-        shapeRenderer = new ShapeRenderer();
+        targetPos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector2<span style="color:#555">();</span>
+    <span style="color:#555">}</span>
 
-        targetPos = new Vector2();
-    }
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">resize</span><span style="color:#555">(</span><span style="color:#078;font-weight:bold">int</span> width<span style="color:#555">,</span> <span style="color:#078;font-weight:bold">int</span> height<span style="color:#555">)</span> <span style="color:#555">{</span>
+        viewport<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">(</span>width<span style="color:#555">,</span> height<span style="color:#555">);</span>
+    <span style="color:#555">}</span>
 
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height);
-    }
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">LEFT</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">-=</span> 2<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">RIGHT</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">+=</span> 2<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">UP</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">+=</span> 2<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">DOWN</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">-=</span> 2<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">justTouched</span><span style="color:#555">())</span> <span style="color:#555">{</span>
+            sound<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isTouched</span><span style="color:#555">(</span>0<span style="color:#555">))</span> <span style="color:#555">{</span>
+            Vector3 touchPos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector3<span style="color:#555">();</span>
+            touchPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getX</span><span style="color:#555">(),</span> Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">getY</span><span style="color:#555">(),</span> 0<span style="color:#555">);</span>
+            viewport<span style="color:#555">.</span><span style="color:#309">unproject</span><span style="color:#555">(</span>touchPos<span style="color:#555">);</span>
+            targetPos<span style="color:#555">.</span><span style="color:#309">set</span><span style="color:#555">(</span>touchPos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> touchPos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
+        <span style="color:#555">}</span>
+        String info <span style="color:#555">=</span> String<span style="color:#555">.</span><span style="color:#309">format</span><span style="color:#555">(</span><span style="color:#c30">&#34;cam pos(%f,%f)&#34;</span><span style="color:#555">,</span> camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> camera<span style="color:#555">.</span><span style="color:#309">position</span><span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
 
-    @Override
-    public void render() {
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            camera.position.x -= 2;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            camera.position.x += 2;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            camera.position.y += 2;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            camera.position.y -= 2;
-        }
-        if (Gdx.input.justTouched()) {
-            sound.play();
-        }
-        if (Gdx.input.isTouched(0)) {
-            Vector3 touchPos = new Vector3();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            viewport.unproject(touchPos);
-            targetPos.set(touchPos.x, touchPos.y);
-        }
-        String info = String.format(&quot;cam pos(%f,%f)&quot;, camera.position.x, camera.position.y);
+        pos<span style="color:#555">.</span><span style="color:#309">lerp</span><span style="color:#555">(</span>targetPos<span style="color:#555">,</span> 0<span style="color:#555">.</span><span style="color:#309">2f</span><span style="color:#555">);</span>
+        sprite<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>pos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> pos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
+        sprite<span style="color:#555">.</span><span style="color:#309">setScale</span><span style="color:#555">((</span><span style="color:#078;font-weight:bold">float</span><span style="color:#555">)</span> Math<span style="color:#555">.</span><span style="color:#309">sin</span><span style="color:#555">(</span>angle<span style="color:#555">));</span>
+        angle <span style="color:#555">+=</span> 0<span style="color:#555">.</span><span style="color:#309">04</span><span style="color:#555">;</span>
 
-        pos.lerp(targetPos, 0.2f);
-        sprite.setPosition(pos.x, pos.y);
-        sprite.setScale((float) Math.sin(angle));
-        angle += 0.04;
+        sprite2<span style="color:#555">.</span><span style="color:#309">setRotation</span><span style="color:#555">(</span>angle<span style="color:#555">);</span>
+        sprite2<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>200<span style="color:#555">,</span> 300<span style="color:#555">);</span>
+        sprite2<span style="color:#555">.</span><span style="color:#309">setRotation</span><span style="color:#555">(</span>angle<span style="color:#555">);</span>
 
-        sprite2.setRotation(angle);
-        sprite2.setPosition(200, 300);
-        sprite2.setRotation(angle);
+        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClearColor</span><span style="color:#555">(</span>1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClear</span><span style="color:#555">(</span>GL20<span style="color:#555">.</span><span style="color:#309">GL_COLOR_BUFFER_BIT</span><span style="color:#555">);</span>
+        camera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// ワールドからスクリーンまでのマトリックスを生成する。
+</span><span style="color:#09f;font-style:italic"></span>        batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+        bg<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        sprite<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        sprite2<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
 
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update(); // ワールドからスクリーンまでのマトリックスを生成する。
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        bg.draw(batch);
-        sprite.draw(batch);
-        sprite2.draw(batch);
-        batch.end();
+        <span style="color:#09f;font-style:italic">// ワールド座標軸を描画する。
+</span><span style="color:#09f;font-style:italic"></span>        shapeRenderer<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>camera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">(</span>ShapeRenderer<span style="color:#555">.</span><span style="color:#309">ShapeType</span><span style="color:#555">.</span><span style="color:#309">Line</span><span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">line</span><span style="color:#555">(-</span>1024<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1024<span style="color:#555">,</span> 0<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">setColor</span><span style="color:#555">(</span>0<span style="color:#555">,</span> 1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">line</span><span style="color:#555">(</span>0<span style="color:#555">,</span> <span style="color:#555">-</span>1024<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1024<span style="color:#555">);</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
 
-        // ワールド座標軸を描画する。
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(1, 0, 0, 1);
-        shapeRenderer.line(-1024, 0, 1024, 0);
-        shapeRenderer.setColor(0, 1, 0, 1);
-        shapeRenderer.line(0, -1024, 0, 1024);
-        shapeRenderer.end();
+        uiCamera<span style="color:#555">.</span><span style="color:#309">update</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// uiCameraを動かさないのであれば、必要ない。
+</span><span style="color:#09f;font-style:italic"></span>        batch<span style="color:#555">.</span><span style="color:#309">setProjectionMatrix</span><span style="color:#555">(</span>uiCamera<span style="color:#555">.</span><span style="color:#309">combined</span><span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+        font<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">,</span> info<span style="color:#555">,</span> 0<span style="color:#555">,</span> 20<span style="color:#555">);</span>
+        font<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">,</span> <span style="color:#c30">&#34;Hello libGDX&#34;</span><span style="color:#555">,</span> 200<span style="color:#555">,</span> 400<span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
 
-        uiCamera.update(); // uiCameraを動かさないのであれば、必要ない。
-        batch.setProjectionMatrix(uiCamera.combined);
-        batch.begin();
-        font.draw(batch, info, 0, 20);
-        font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-        batch.end();
-    }
-
-    @Override
-    public void dispose() {
-        sound.dispose();
-        music.dispose();
-        batch.dispose();
-        font.dispose();
-        img.dispose();
-        bgImg.dispose();
-        shapeRenderer.dispose();
-    }
-}
-</code></pre>
-
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">dispose</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        sound<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        music<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        font<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        img<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        bgImg<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
+<span style="color:#555">}</span></code></pre></div>
 <h1 id="おわりに">おわりに</h1>
 
 <ul>
 面倒だけど重要な説明が終りました。
 これで、端末の画面サイズを気にせずプログラミングできるようになりました。
-<a href="http://mikio.github.io/article/2014/06/19_libgdx-beginner3.html" title="次回">次回</a> は、そろそろゲームっぽいものをつくろうかなと思います。
+<a href="/posts/libgdx-beginner3/" title="次回">次回</a> は、そろそろゲームっぽいものをつくろうかなと思います。
 予定している内容は、
 <li>アニメーション処理</li>
 <li>画面遷移</li>
@@ -940,49 +882,46 @@ public class LibGdxSample extends ApplicationAdapter {
 ビューポートについては下記にも詳しい内容があります。合せて読めば理解も深まると思います。
 <li>http://qiita.com/fslasht/items/13dbf31277ad43e50b85</li>
 <li>http://qiita.com/fslasht/items/c0830eaf05b7a91b8e85</li>
+「<a href="https://amzn.to/3S70Tbm" title="Androidゲームプログラミング A to Z">Androidゲームプログラミング A to Z</a> 」
 </ul>
-
-<p><p>
-<div class="figure" style="float:left">
-</p>
-<p>
-<a href="http://www.amazon.co.jp/gp/product/4844331132/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844331132&linkCode=as2&tag=ocha04-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4844331132&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=ocha04-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&l=as2&o=9&a=4844331132" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-</p>
-<p>
-</div>
-</p></p>
-
-<pre><code>
-</code></pre>
-
-<p>libGDXの作者が書いた本です。Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
-libGDXの解説ではないけれど、その思想は当然libGDXにも引き継がれています。もちろんlibGDXの理解もしやすくなります。
-また、Androidの本ではありますが、スマホに特化した内容ばかりではなく、
-どんなゲーム開発にも通用しそうな内容ばかりです。
-実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。
-そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと思います。
-ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。
-それでもlibGDXをやるなら読んでいて損はないと思います。</p>
-
-<pre><code>&lt;p&gt;
-&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-</code></pre>
 
 <h1 id="変更履歴">変更履歴</h1>
 
 <ul>
+<a href="/img/amazon_android_gameprogiraming_a_to_z.jpg" title="/img/amazon_android_gameprogiraming_a_to_z.jpg">/img/amazon_android_gameprogiraming_a_to_z.jpg</a>
 <li>2014/06/19 タッチ座標の取得方法に問題があったのを訂正した。</li>
 </ul>
 
-        </article>
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/libgdx-beginner3/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</a>
   </div>
-</section>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/cask/">Caskの導入と設定ファイルの棚卸し<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
 
-
-                </div>
-            </div></div>
-        <script src="/js/ui.js"></script>
-    </body>
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>

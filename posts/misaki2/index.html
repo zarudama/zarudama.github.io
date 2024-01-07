@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
-<title>ざる魂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="Misakiにnrepl-serverを埋め込む" />
+<meta property="og:description" content="misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
+mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore &#43;&#43;&#43; b/.gitignore @@ -7,6 &#43;7,8 @@ /.lein-failures /checkouts /.lein-deps-sum &#43;misaki/src/misaki/ &#43;/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj &#43;&#43;&#43; b/project.clj @@ -13,7 &#43;13,9 @@ [cuma &#34;0.0.4&#34;] [clj-gntp &#34;0.0.1&#34;] ; cljs compiler - [org.clojure/clojurescript &#34;0.0-1586&#34;]] &#43; [org.clojure/clojurescript &#34;0.0-1586&#34;] &#43; [org.clojure/tools.nrepl &#34;0.2.3&#34;] &#43; ] :plugins [[codox &#34;0.6.4&#34;] [lein-cloverage &#34;1.0.2&#34;] diff --git a/samples/blog/_config.clj b/samples/blog/_config." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/misaki2/" />
+<meta property="article:published_time" content="2014-01-11T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2014-01-11T14:01:39&#43;09:00"/>
 
-<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Misakiにnrepl-serverを埋め込む"/>
+<meta name="twitter:description" content="misakiのプラグインを開発していて、nreplから接続したかったのでその方法。 下記のように修正。
+mikio@gnudam:~/dev/misaki$ git diff HEAD^ diff --git a/.gitignore b/.gitignore index fb7a616..777bdaa 100644 --- a/.gitignore &#43;&#43;&#43; b/.gitignore @@ -7,6 &#43;7,8 @@ /.lein-failures /checkouts /.lein-deps-sum &#43;misaki/src/misaki/ &#43;/.nrepl-port /blog /test/public /samples/*/public/201* diff --git a/project.clj b/project.clj index 82e93ff..8b0aa33 100644 --- a/project.clj &#43;&#43;&#43; b/project.clj @@ -13,7 &#43;13,9 @@ [cuma &#34;0.0.4&#34;] [clj-gntp &#34;0.0.1&#34;] ; cljs compiler - [org.clojure/clojurescript &#34;0.0-1586&#34;]] &#43; [org.clojure/clojurescript &#34;0.0-1586&#34;] &#43; [org.clojure/tools.nrepl &#34;0.2.3&#34;] &#43; ] :plugins [[codox &#34;0.6.4&#34;] [lein-cloverage &#34;1.0.2&#34;] diff --git a/samples/blog/_config.clj b/samples/blog/_config."/>
 
+<title>Misakiにnrepl-serverを埋め込む | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
 
-
-
-
-     <link rel="stylesheet" href="/css/layouts/side-menu.css">
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
-<body>
-        <div id="layout">
-<a href="#menu" id="menuLink" class="menu-link">
-    
-    <span></span>
-</a>
-
-<div id="menu">
-    <div class="pure-menu">
-        <a class="pure-menu-heading" href="/">ホーム</a>
-        <a class="pure-menu-heading" href="/search">全文検索</a>
-        <ul class="pure-menu-list">
-            
-            
-                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
-            
-            
-            
-                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
-            
-            
-        </ul>
-    </div>
-</div>
-<div id="main" class="markdown-body">
-<div class="content">
-<section id="main">
-  <h1 id="title">Misakiにnrepl-serverを埋め込む</h1>
-  <div>
-      
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
   </div>
-  <div>
-        <article id="content">
-           <p>misakiのプラグインを開発していて、nreplから接続したかったのでその方法。
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">Misakiにnrepl-serverを埋め込む</h1>
+  <aside id="meta"><a class="tags" href="/tags/misaki">misaki</a><a class="tags" href="/tags/clojure">clojure</a>
+<section>
+      <span class="date">作成日: 2014-01-11</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2014-01-11</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;426 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>misakiのプラグインを開発していて、nreplから接続したかったのでその方法。
 下記のように修正。</p>
-
-<pre><code class="language-sh">mikio@gnudam:~/dev/misaki$ git diff HEAD^
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mikio@gnudam:~/dev/misaki$ git diff HEAD^
 diff --git a/.gitignore b/.gitignore
-index fb7a616..777bdaa 100644
+index fb7a616..777bdaa <span style="color:#f60">100644</span>
 --- a/.gitignore
 +++ b/.gitignore
 @@ -7,6 +7,8 @@
@@ -64,137 +72,149 @@ index fb7a616..777bdaa 100644
  /test/public
  /samples/*/public/201*
 diff --git a/project.clj b/project.clj
-index 82e93ff..8b0aa33 100644
+index 82e93ff..8b0aa33 <span style="color:#f60">100644</span>
 --- a/project.clj
 +++ b/project.clj
 @@ -13,7 +13,9 @@
-                  [cuma &quot;0.0.4&quot;]
-                  [clj-gntp &quot;0.0.1&quot;]
+                  <span style="color:#555">[</span>cuma <span style="color:#c30">&#34;0.0.4&#34;</span><span style="color:#555">]</span>
+                  <span style="color:#555">[</span>clj-gntp <span style="color:#c30">&#34;0.0.1&#34;</span><span style="color:#555">]</span>
                   ; cljs compiler
--                 [org.clojure/clojurescript &quot;0.0-1586&quot;]]
-+                 [org.clojure/clojurescript &quot;0.0-1586&quot;]
-+                 [org.clojure/tools.nrepl &quot;0.2.3&quot;]
-+                 ]
+-                 <span style="color:#555">[</span>org.clojure/clojurescript <span style="color:#c30">&#34;0.0-1586&#34;</span><span style="color:#555">]]</span>
++                 <span style="color:#555">[</span>org.clojure/clojurescript <span style="color:#c30">&#34;0.0-1586&#34;</span><span style="color:#555">]</span>
++                 <span style="color:#555">[</span>org.clojure/tools.nrepl <span style="color:#c30">&#34;0.2.3&#34;</span><span style="color:#555">]</span>
++                 <span style="color:#555">]</span>
 
-   :plugins [[codox &quot;0.6.4&quot;]
-             [lein-cloverage &quot;1.0.2&quot;]
+   :plugins <span style="color:#555">[[</span>codox <span style="color:#c30">&#34;0.6.4&#34;</span><span style="color:#555">]</span>
+             <span style="color:#555">[</span>lein-cloverage <span style="color:#c30">&#34;1.0.2&#34;</span><span style="color:#555">]</span>
 diff --git a/samples/blog/_config.clj b/samples/blog/_config.clj
-index e36a47f..0e74f47 100644
+index e36a47f..0e74f47 <span style="color:#f60">100644</span>
 --- a/samples/blog/_config.clj
 +++ b/samples/blog/_config.clj
 @@ -17,6 +17,10 @@
-  ;;   default value: 8080
-  :port 8080
+  ;;   default value: <span style="color:#f60">8080</span>
+  :port <span style="color:#f60">8080</span>
 
 + ;; embeded repl-server port
-+ ;;   default value: 42042
-+ :repl-port 42042
++ ;;   default value: <span style="color:#f60">42042</span>
++ :repl-port <span style="color:#f60">42042</span>
 +
   ;; site language
-  ;;   default value: &quot;en&quot;
-  :lang &quot;en&quot;
+  ;;   default value: <span style="color:#c30">&#34;en&#34;</span>
+  :lang <span style="color:#c30">&#34;en&#34;</span>
 diff --git a/src/misaki/config.clj b/src/misaki/config.clj
-index 735874d..8865cf6 100644
+index 735874d..8865cf6 <span style="color:#f60">100644</span>
 --- a/src/misaki/config.clj
 +++ b/src/misaki/config.clj
 @@ -13,6 +13,7 @@
- ;; ## Default Value
+ ;; <span style="color:#09f;font-style:italic">## Default Value</span>
 
- (def PORT     &quot;Default dev server port.&quot; 8080)
-+(def REPL-PORT &quot;Default dev nrepl server port.&quot; 42042)
- (def LANGUAGE &quot;Default language.&quot;        &quot;en&quot;)
- (def COMPILER &quot;Default compiler.&quot;        &quot;default&quot;)
- (def POST_FILENAME_REGEXP
+ <span style="color:#555">(</span>def PORT     <span style="color:#c30">&#34;Default dev server port.&#34;</span> <span style="color:#f60">8080</span><span style="color:#555">)</span>
++<span style="color:#555">(</span>def REPL-PORT <span style="color:#c30">&#34;Default dev nrepl server port.&#34;</span> <span style="color:#f60">42042</span><span style="color:#555">)</span>
+ <span style="color:#555">(</span>def LANGUAGE <span style="color:#c30">&#34;Default language.&#34;</span>        <span style="color:#c30">&#34;en&#34;</span><span style="color:#555">)</span>
+ <span style="color:#555">(</span>def COMPILER <span style="color:#c30">&#34;Default compiler.&#34;</span>        <span style="color:#c30">&#34;default&#34;</span><span style="color:#555">)</span>
+ <span style="color:#555">(</span>def POST_FILENAME_REGEXP
 @@ -102,6 +103,7 @@
-                         (path template-dir post-dir))
-       :post-sort-type (:post-sort-type config :date-desc)
-       :port           (:port config PORT)
-+      :repl-port           (:repl-port config REPL-PORT)
-       :lang           (:lang config LANGUAGE)
-       :site           (:site config {})
-       :index-name     (:index-name config &quot;&quot;)
+                         <span style="color:#555">(</span>path template-dir post-dir<span style="color:#555">))</span>
+       :post-sort-type <span style="color:#555">(</span>:post-sort-type config :date-desc<span style="color:#555">)</span>
+       :port           <span style="color:#555">(</span>:port config PORT<span style="color:#555">)</span>
++      :repl-port           <span style="color:#555">(</span>:repl-port config REPL-PORT<span style="color:#555">)</span>
+       :lang           <span style="color:#555">(</span>:lang config LANGUAGE<span style="color:#555">)</span>
+       :site           <span style="color:#555">(</span>:site config <span style="color:#555">{})</span>
+       :index-name     <span style="color:#555">(</span>:index-name config <span style="color:#c30">&#34;&#34;</span><span style="color:#555">)</span>
 diff --git a/src/misaki/server.clj b/src/misaki/server.clj
-index d0fee30..03a593b 100644
+index d0fee30..03a593b <span style="color:#f60">100644</span>
 --- a/src/misaki/server.clj
 +++ b/src/misaki/server.clj
 @@ -13,7 +13,9 @@
-     [watchtower.core      :refer :all]
-     [compojure.core       :refer [routes]]
-     [compojure.route      :refer [files]]
--    [ring.adapter.jetty   :refer [run-jetty]]))
-+    [ring.adapter.jetty   :refer [run-jetty]]
-+    [clojure.tools.nrepl.server :refer [start-server stop-server]]
-+    ))
+     <span style="color:#555">[</span>watchtower.core      :refer :all<span style="color:#555">]</span>
+     <span style="color:#555">[</span>compojure.core       :refer <span style="color:#555">[</span>routes<span style="color:#555">]]</span>
+     <span style="color:#555">[</span>compojure.route      :refer <span style="color:#555">[</span>files<span style="color:#555">]]</span>
+-    <span style="color:#555">[</span>ring.adapter.jetty   :refer <span style="color:#555">[</span>run-jetty<span style="color:#555">]]))</span>
++    <span style="color:#555">[</span>ring.adapter.jetty   :refer <span style="color:#555">[</span>run-jetty<span style="color:#555">]]</span>
++    <span style="color:#555">[</span>clojure.tools.nrepl.server :refer <span style="color:#555">[</span>start-server stop-server<span style="color:#555">]]</span>
++    <span style="color:#555">))</span>
 
- ; =elapsing
- (defmacro elapsing
+ ; <span style="color:#555">=</span>elapsing
+ <span style="color:#555">(</span>defmacro elapsing
 @@ -87,18 +89,21 @@
- (defn -main [&amp; [dir :as args]]
-   (binding [*base-dir* (normalize-path dir)]
-     (with-config
+ <span style="color:#555">(</span>defn -main <span style="color:#555">[</span>&amp; <span style="color:#555">[</span>dir :as args<span style="color:#555">]]</span>
+   <span style="color:#555">(</span>binding <span style="color:#555">[</span>*base-dir* <span style="color:#555">(</span>normalize-path dir<span style="color:#555">)]</span>
+     <span style="color:#555">(</span>with-config
 -      ; compile all templates at first
--      (do-all-compile)
+-      <span style="color:#555">(</span><span style="color:#069;font-weight:bold">do</span>-all-compile<span style="color:#555">)</span>
 -
--      ; compile all only if '--compile' option is specified
--      (when-not (contains? (set args) &quot;--compile&quot;)
--        (start-watcher (:template-dir *config*))
--        (println &quot; * starting server: &quot;
--                 (cyan (str &quot;http://localhost:&quot;
--                            (:port *config*)
--                            (:url-base *config*))))
--        (run-jetty
--          (routes (files (:url-base *config*)
--                         {:root (:public-dir *config*)}))
--          {:port (:port *config*)})))))
-+      (let [repl-port (:repl-port *config*)
-+            repl-server (start-server :port repl-port)]
+-      ; compile all only <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30">&#39;--compile&#39;</span> option is specified
+-      <span style="color:#555">(</span>when-not <span style="color:#555">(</span>contains? <span style="color:#555">(</span><span style="color:#366">set</span> args<span style="color:#555">)</span> <span style="color:#c30">&#34;--compile&#34;</span><span style="color:#555">)</span>
+-        <span style="color:#555">(</span>start-watcher <span style="color:#555">(</span>:template-dir *config*<span style="color:#555">))</span>
+-        <span style="color:#555">(</span>println <span style="color:#c30">&#34; * starting server: &#34;</span>
+-                 <span style="color:#555">(</span>cyan <span style="color:#555">(</span>str <span style="color:#c30">&#34;http://localhost:&#34;</span>
+-                            <span style="color:#555">(</span>:port *config*<span style="color:#555">)</span>
+-                            <span style="color:#555">(</span>:url-base *config*<span style="color:#555">))))</span>
+-        <span style="color:#555">(</span>run-jetty
+-          <span style="color:#555">(</span>routes <span style="color:#555">(</span>files <span style="color:#555">(</span>:url-base *config*<span style="color:#555">)</span>
+-                         <span style="color:#555">{</span>:root <span style="color:#555">(</span>:public-dir *config*<span style="color:#555">)}))</span>
+-          <span style="color:#555">{</span>:port <span style="color:#555">(</span>:port *config*<span style="color:#555">)})))))</span>
++      <span style="color:#555">(</span><span style="color:#366">let</span> <span style="color:#555">[</span>repl-port <span style="color:#555">(</span>:repl-port *config*<span style="color:#555">)</span>
++            repl-server <span style="color:#555">(</span>start-server :port repl-port<span style="color:#555">)]</span>
 +         ;; compile all templates at first
-+         (do-all-compile)
++         <span style="color:#555">(</span><span style="color:#069;font-weight:bold">do</span>-all-compile<span style="color:#555">)</span>
 +
-+         ;; compile all only if '--compile' option is specified
-+         (when-not (contains? (set args) &quot;--compile&quot;)
-+           (start-watcher (:template-dir *config*))
-+           (println &quot; * starting server: &quot;
-+                    (cyan (str &quot;http://localhost:&quot;
-+                               (:port *config*)
-+                               (:url-base *config*))))
-+           (println &quot; * starting nrepl server on port &quot; (cyan repl-port))
-+           (run-jetty
-+            (routes (files (:url-base *config*)
-+                           {:root (:public-dir *config*)}))
-+            {:port (:port *config*)}))))))
-</code></pre>
-
++         ;; compile all only <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30">&#39;--compile&#39;</span> option is specified
++         <span style="color:#555">(</span>when-not <span style="color:#555">(</span>contains? <span style="color:#555">(</span><span style="color:#366">set</span> args<span style="color:#555">)</span> <span style="color:#c30">&#34;--compile&#34;</span><span style="color:#555">)</span>
++           <span style="color:#555">(</span>start-watcher <span style="color:#555">(</span>:template-dir *config*<span style="color:#555">))</span>
++           <span style="color:#555">(</span>println <span style="color:#c30">&#34; * starting server: &#34;</span>
++                    <span style="color:#555">(</span>cyan <span style="color:#555">(</span>str <span style="color:#c30">&#34;http://localhost:&#34;</span>
++                               <span style="color:#555">(</span>:port *config*<span style="color:#555">)</span>
++                               <span style="color:#555">(</span>:url-base *config*<span style="color:#555">))))</span>
++           <span style="color:#555">(</span>println <span style="color:#c30">&#34; * starting nrepl server on port &#34;</span> <span style="color:#555">(</span>cyan repl-port<span style="color:#555">))</span>
++           <span style="color:#555">(</span>run-jetty
++            <span style="color:#555">(</span>routes <span style="color:#555">(</span>files <span style="color:#555">(</span>:url-base *config*<span style="color:#555">)</span>
++                           <span style="color:#555">{</span>:root <span style="color:#555">(</span>:public-dir *config*<span style="color:#555">)}))</span>
++            <span style="color:#555">{</span>:port <span style="color:#555">(</span>:port *config*<span style="color:#555">)}))))))</span></code></pre></div>
 <p>下記で、修正したmisakiにローカルのjarが置き換わる。</p>
-
-<pre><code class="language-sh">$ cd ~/dev/misaki/
-$ lein install
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~/dev/misaki/
+$ lein install</code></pre></div>
 <p>misaki本家が更新されたときは、</p>
-
-<pre><code class="language-sh">$ git co master
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git co master
 $ git fetch upsutream
 $ git merge upstream/master
-$ lein install
-</code></pre>
-
+$ lein install</code></pre></div>
 <p>こんな感じで。</p>
 
 <p>もし修正版のmisakiを使用したくなくなったら
 リポジトリを手動で削除すれば良い(正式なやりかたがあるかもしれんが)。</p>
-
-<pre><code class="language-sh">$ rm -rf ~/.m2/repository/misaki/misaki/0.2.6.2-beta
-$ lein deps
-</code></pre>
-
-        </article>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rm -rf ~/.m2/repository/misaki/misaki/0.2.6.2-beta
+$ lein deps</code></pre></div>
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/thinkpad-keyboard/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>キーボードについて</a>
   </div>
-</section>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/misaki/">Emacsのorg-modeでBlogを書ける「Misaki org-mode」を書いた<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
 
-
-                </div>
-            </div></div>
-        <script src="/js/ui.js"></script>
-    </body>
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>

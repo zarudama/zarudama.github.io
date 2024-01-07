@@ -13,28 +13,28 @@
     
     <item>
       <title>cygwinでssh接続できない</title>
-      <link>https://zarudama.github.io/posts/parma-link/cygwinssh/</link>
+      <link>https://zarudama.github.io/posts/cygwinssh/</link>
       <pubDate>Sat, 22 Dec 2012 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/cygwinssh/</guid>
+      <guid>https://zarudama.github.io/posts/cygwinssh/</guid>
       <description>/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定し てる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成でき ないと怒られてしまう。
-$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &#39;/home/mikio/.ssh&#39;.  この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
+$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &amp;#39;/home/mikio/.ssh&amp;#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
  http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
 debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try.</description>
     </item>
     
     <item>
       <title>puttyをやめて、cygwin Terminalにする</title>
-      <link>https://zarudama.github.io/posts/parma-link/puttycygwin-terminal/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://zarudama.github.io/posts/puttycygwin-terminal/</link>
+      <pubDate>Mon, 27 Aug 2012 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/puttycygwin-terminal/</guid>
+      <guid>https://zarudama.github.io/posts/puttycygwin-terminal/</guid>
       <description>puttyベースのminntyがいつのまにcygwinに完全統合されて、 Cygwin Terminal というアプリになっていたので「putty + pagent」の組み合わせを やめて、 Cygwin Terminal と ssh-agent を組みあわせてCygwinだけで SSH接続を実現することにした。
 その際、screenを導入することにした。screenを導入することによって、起動 の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の 設定をする必要がなくなるからだ。
 導入は簡単。
-$ apt-cyg install screen  次に設定ファイル。
-defencoding utf8 escape ^z^z startup_message off vbell off hardstatus alwayslastline &amp;quot;%w&amp;quot;  で端末を利用するときは次の手順で。
-$ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A HOST  ssh-agentを起動してから、screenすることで毎回ssh-agent とssh-addをする必要がなくなる。
+$ apt-cyg install screen 次に設定ファイル。
+defencoding utf8 escape ^z^z startup_message off vbell off hardstatus alwayslastline &amp;#34;%w&amp;#34; で端末を利用するときは次の手順で。
+$ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A HOST ssh-agentを起動してから、screenすることで毎回ssh-agent とssh-addをする必要がなくなる。
 あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 =Cygwin Terminal= で疑似マルチターミナルが実現できた!</description>
     </item>
     

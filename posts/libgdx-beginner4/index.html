@@ -1,56 +1,87 @@
 <!DOCTYPE html>
 <html lang="ja"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
-<title>ざる魂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="libGDX入門 その04 画面遷移" />
+<meta property="og:description" content="はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。
+前回 は、以下のことを学びました。
+ ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。
+ライフサイクルについて 今まであえて説明を避けてきたのですが(面倒そうなので←)、 Screenインタフェイスを扱うにあたり避けられそうもなかったので調査しました。
+libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。
+/img/libgdx-beginner/4/life-cycle.png
+メソッドは、 ApplicationListener のものです。
+注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。 特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。 私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。
+   create() アプリケーションが新しく生成された時に呼ばれます。   resize() アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。   pause() スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。   resume() 待機状態から、ウィンドウがアクティブになった時に呼ばれます。   dispose() アプリケーションが破棄される時に呼ばれます。     ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。 clan libGDXメモ 上記サイトの説明にもありますが、ゲームの情報を保存するときは、 pause() が良いようです。   公式ドキュメントは下記にあります。 https://libgdx.com/wiki/app/the-life-cycle  画面遷移 今回作成したゲームでは、次のような遷移があります。
+/img/libgdx-beginner/4/screen.png
+まず「メインメニュー」が表示され、 「START」をタップすると「ゲーム」画面になり、 「QUIT」をタップすると「メインメニュー」画面に戻ります。 非常にシンプルですね。
+その1でも紹介しましたが、関連するクラス図を再掲します。
+/img/libgdx-beginner/4/class.png" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/libgdx-beginner4/" />
+<meta property="article:published_time" content="2014-06-29T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2014-06-29T14:01:39&#43;09:00"/>
 
-<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="libGDX入門 その04 画面遷移"/>
+<meta name="twitter:description" content="はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。
+前回 は、以下のことを学びました。
+ ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。
+ライフサイクルについて 今まであえて説明を避けてきたのですが(面倒そうなので←)、 Screenインタフェイスを扱うにあたり避けられそうもなかったので調査しました。
+libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。
+/img/libgdx-beginner/4/life-cycle.png
+メソッドは、 ApplicationListener のものです。
+注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。 特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。 私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。
+   create() アプリケーションが新しく生成された時に呼ばれます。   resize() アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。   pause() スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。   resume() 待機状態から、ウィンドウがアクティブになった時に呼ばれます。   dispose() アプリケーションが破棄される時に呼ばれます。     ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。 clan libGDXメモ 上記サイトの説明にもありますが、ゲームの情報を保存するときは、 pause() が良いようです。   公式ドキュメントは下記にあります。 https://libgdx.com/wiki/app/the-life-cycle  画面遷移 今回作成したゲームでは、次のような遷移があります。
+/img/libgdx-beginner/4/screen.png
+まず「メインメニュー」が表示され、 「START」をタップすると「ゲーム」画面になり、 「QUIT」をタップすると「メインメニュー」画面に戻ります。 非常にシンプルですね。
+その1でも紹介しましたが、関連するクラス図を再掲します。
+/img/libgdx-beginner/4/class.png"/>
 
+<title>libGDX入門 その04 画面遷移 | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
 
-
-
-
-     <link rel="stylesheet" href="/css/layouts/side-menu.css">
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
-<body>
-        <div id="layout">
-<a href="#menu" id="menuLink" class="menu-link">
-    
-    <span></span>
-</a>
-
-<div id="menu">
-    <div class="pure-menu">
-        <a class="pure-menu-heading" href="/">ホーム</a>
-        <a class="pure-menu-heading" href="/search">全文検索</a>
-        <ul class="pure-menu-list">
-            
-            
-                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
-            
-            
-            
-                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
-            
-            
-        </ul>
-    </div>
-</div>
-<div id="main" class="markdown-body">
-<div class="content">
-<section id="main">
-  <h1 id="title">libGDX入門 その04 画面遷移</h1>
-  <div>
-      
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
   </div>
-  <div>
-        <article id="content">
-           <h1 id="はじめに">はじめに</h1>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">libGDX入門 その04 画面遷移</h1>
+  <aside id="meta"><a class="tags" href="/tags/libgdx%E5%85%A5%E9%96%80">libGDX入門</a><a class="tags" href="/tags/libgdx">libGDX</a>
+<section>
+      <span class="date">作成日: 2014-06-29</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2014-06-29</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;560 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <h1 id="はじめに">はじめに</h1>
 
-<p><a href="http://libgdx.badlogicgames.com/" title="libGDX">libGDX</a> を勉強するついでに解説記事を書く <a href="http://mikio.github.io/tag/libGDX%E5%85%A5%E9%96%80.html" title="シリーズ">シリーズ</a> 4回目です。</p>
+<p><a href="https://libgdx.com/" title="libGDX">libGDX</a> を勉強するついでに解説記事を書く <a href="/tags/libgdx入門/" title="シリーズ">シリーズ</a> 4回目です。</p>
 
-<p><a href="http://mikio.github.io/article/2014/06/19_libgdx-beginner3.html" title="前回">前回</a> は、以下のことを学びました。</p>
+<p><a href="/posts/libgdx-beginner3/" title="前回">前回</a> は、以下のことを学びました。</p>
 
 <ul>
 <li>ログ出力</li>
@@ -68,7 +99,7 @@ Screenインタフェイスを扱うにあたり避けられそうもなかっ�
 
 <p>libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/4/life-cycle.png" title="http://mikio.github.io/img/libgdx-beginner/4/life-cycle.png">http://mikio.github.io/img/libgdx-beginner/4/life-cycle.png</a></p>
+<p><a href="/img/libgdx-beginner/4/life-cycle.png" title="/img/libgdx-beginner/4/life-cycle.png">/img/libgdx-beginner/4/life-cycle.png</a></p>
 
 <p>メソッドは、 <code>ApplicationListener</code> のものです。</p>
 
@@ -113,14 +144,14 @@ Screenインタフェイスを扱うにあたり避けられそうもなかっ�
 
 <ul>
 公式ドキュメントは下記にあります。 
-<li>https://github.com/libgdx/libgdx/wiki/The-life-cycle</li>
+<li>https://libgdx.com/wiki/app/the-life-cycle</li>
 </ul>
 
 <h1 id="画面遷移">画面遷移</h1>
 
 <p>今回作成したゲームでは、次のような遷移があります。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/4/screen.png" title="http://mikio.github.io/img/libgdx-beginner/4/screen.png">http://mikio.github.io/img/libgdx-beginner/4/screen.png</a></p>
+<p><a href="/img/libgdx-beginner/4/screen.png" title="/img/libgdx-beginner/4/screen.png">/img/libgdx-beginner/4/screen.png</a></p>
 
 <p>まず「メインメニュー」が表示され、
 「START」をタップすると「ゲーム」画面になり、
@@ -129,7 +160,7 @@ Screenインタフェイスを扱うにあたり避けられそうもなかっ�
 
 <p>その1でも紹介しましたが、関連するクラス図を再掲します。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/4/class.png" title="http://mikio.github.io/img/libgdx-beginner/4/class.png">http://mikio.github.io/img/libgdx-beginner/4/class.png</a></p>
+<p><a href="/img/libgdx-beginner/4/class.png" title="/img/libgdx-beginner/4/class.png">/img/libgdx-beginner/4/class.png</a></p>
 
 <p><code>ApplicationAdapter</code> クラスは、 <code>ApplicationListener</code> インタフェイスを空実装したデフォルトクラスでしたね。
 =ScreenAdapter= クラスも同様に、 <code>Screen</code> インタフェイスを空実装したデフォルトクラスです。</p>
@@ -142,20 +173,17 @@ Screenインタフェイスを扱うにあたり避けられそうもなかっ�
 
 <p>Screenインタフェイスについては、ライフサイクルを確認したいため、 <code>MyScreenAdapter</code> クラスという
 デフォルト実装クラスを用意し、各メソッドでログを出力することにします。</p>
-
-<pre><code class="language-java">public abstract class MyScreenAdapter implements Screen {
-      :
-    @Override
-    public void show () {
-        Gdx.app.log(LOG_TAG, &quot;show&quot;);
-    }
-      :
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">abstract</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">MyScreenAdapter</span> <span style="color:#069;font-weight:bold">implements</span> Screen <span style="color:#555">{</span>
+      <span style="color:#555">:</span>
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">show</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">log</span><span style="color:#555">(</span>LOG_TAG<span style="color:#555">,</span> <span style="color:#c30">&#34;show&#34;</span><span style="color:#555">);</span>
+    <span style="color:#555">}</span>
+      <span style="color:#555">:</span>
+<span style="color:#555">}</span></code></pre></div>
 <p>今回のゲームで実装するクラスは以下のとおりです。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/4/screen2.png" title="http://mikio.github.io/img/libgdx-beginner/4/screen2.png">http://mikio.github.io/img/libgdx-beginner/4/screen2.png</a></p>
+<p><a href="/img/libgdx-beginner/4/screen2.png" title="/img/libgdx-beginner/4/screen2.png">/img/libgdx-beginner/4/screen2.png</a></p>
 
 <p><code>LibGdxSample</code> クラスは、処理の起点となるクラスです。
 この図からは省いていますが、Screen系のクラスは先程紹介した <code>MyScreenAdapter</code> クラスを継承します。
@@ -185,26 +213,20 @@ Screenインタフェイスを扱うにあたり避けられそうもなかっ�
 
 <p>例えば現在「メニュー画面」を表示していた場合、「ゲーム画面」に切り替えたくなったら、
 下記のようなコードを実行します。</p>
-
-<pre><code class="language-java">game.setScreen(new GameScreen(this));
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">game<span style="color:#555">.</span><span style="color:#309">setScreen</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">new</span> GameScreen<span style="color:#555">(</span><span style="color:#069;font-weight:bold">this</span><span style="color:#555">));</span></code></pre></div>
 <p>この <code>setScreen()</code> メソッドの中で、
 現在表示中の「メニュー画面」の <code>MainMenu#hide()</code> メソッドが呼ばれ、
 次に表示予定の「ゲーム画面」の <code>GameScreen#show()</code> メソッドが呼ばれます。</p>
 
 <p><code>Game#setScreen()</code> のソースコードです。短かいので全部載せておきます。</p>
-
-<pre><code class="language-java">    public void setScreen (Screen screen) {
-        if (this.screen != null) this.screen.hide();
-        this.screen = screen;
-        if (this.screen != null) {
-            this.screen.show();
-            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        }
-    }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">setScreen</span> <span style="color:#555">(</span>Screen screen<span style="color:#555">)</span> <span style="color:#555">{</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span><span style="color:#069;font-weight:bold">this</span><span style="color:#555">.</span><span style="color:#309">screen</span> <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">null</span><span style="color:#555">)</span> <span style="color:#069;font-weight:bold">this</span><span style="color:#555">.</span><span style="color:#309">screen</span><span style="color:#555">.</span><span style="color:#309">hide</span><span style="color:#555">();</span>
+        <span style="color:#069;font-weight:bold">this</span><span style="color:#555">.</span><span style="color:#309">screen</span> <span style="color:#555">=</span> screen<span style="color:#555">;</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span><span style="color:#069;font-weight:bold">this</span><span style="color:#555">.</span><span style="color:#309">screen</span> <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">null</span><span style="color:#555">)</span> <span style="color:#555">{</span>
+            <span style="color:#069;font-weight:bold">this</span><span style="color:#555">.</span><span style="color:#309">screen</span><span style="color:#555">.</span><span style="color:#309">show</span><span style="color:#555">();</span>
+            <span style="color:#069;font-weight:bold">this</span><span style="color:#555">.</span><span style="color:#309">screen</span><span style="color:#555">.</span><span style="color:#309">resize</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">graphics</span><span style="color:#555">.</span><span style="color:#309">getWidth</span><span style="color:#555">(),</span> Gdx<span style="color:#555">.</span><span style="color:#309">graphics</span><span style="color:#555">.</span><span style="color:#309">getHeight</span><span style="color:#555">());</span>
+        <span style="color:#555">}</span>
+    <span style="color:#555">}</span></code></pre></div>
 <p><code>setScreen()</code> した時は、hide,show,resizeが即実行されるということを
 頭に叩きこんでおいたほうが良さそうですね。</p>
 
@@ -235,7 +257,7 @@ screens around or dispose of them when another screen is set.
 </code></pre>
 
 <ul>
-<li>http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/Game.html</li>
+<li>https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Game.html</li>
 </ul>
 
 <p>ゲームによって、リソースの解放タイミングは様々なので、
@@ -258,41 +280,32 @@ screens around or dispose of them when another screen is set.
 <h2 id="その1-hide-で解放する">その1 hide() で解放する</h2>
 
 <p>例えば、下記のように <code>Screen#render()</code> メソッドから <code>setScreen()</code> メソッドを呼びだすとします。</p>
-
-<pre><code class="language-java">public void render (float deltaTime) {
-       : 
-    game.setScreen(new MainMenuScreen(game));
-       : 
-    leftButton.draw(batch);
-       : 
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span> <span style="color:#555">(</span><span style="color:#078;font-weight:bold">float</span> deltaTime<span style="color:#555">)</span> <span style="color:#555">{</span>
+       <span style="color:#555">:</span> 
+    game<span style="color:#555">.</span><span style="color:#309">setScreen</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">new</span> MainMenuScreen<span style="color:#555">(</span>game<span style="color:#555">));</span>
+       <span style="color:#555">:</span> 
+    leftButton<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+       <span style="color:#555">:</span> 
+<span style="color:#555">}</span></code></pre></div>
 <p>このとき、現在実行中の <code>Screen</code> インスタンスの <code>hide()</code> メソッドが呼ばれます。
  <code>hide()</code> メソッドは下記のようにテクスチャの開放処理を実装していたとします。</p>
-
-<pre><code class="language-java">public void hide() {
-    img.dispose();
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">hide</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+    img<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+<span style="color:#555">}</span></code></pre></div>
 <p>結論をいうとこの書き方ではうまくいきません。
 なぜなら、 <code>hide()</code> でテクスチャを解放したにもかかわらず、
 その後に、テクスチャの描画処理を呼んでしまっているからです。</p>
 
 <p><code>hide()</code> にリソースの解放処理を入れるならば、 <code>redner()</code> メソッドを下記のように
 書かなければなりません。</p>
-
-<pre><code class="language-java">public void render (float deltaTime) {
-       : 
-       : 
-    leftButton.draw(batch);
-       : 
-    game.setScreen(new MainMenuScreen(game));
-    // ここには何も処理を書かない。
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span> <span style="color:#555">(</span><span style="color:#078;font-weight:bold">float</span> deltaTime<span style="color:#555">)</span> <span style="color:#555">{</span>
+       <span style="color:#555">:</span> 
+       <span style="color:#555">:</span> 
+    leftButton<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+       <span style="color:#555">:</span> 
+    game<span style="color:#555">.</span><span style="color:#309">setScreen</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">new</span> MainMenuScreen<span style="color:#555">(</span>game<span style="color:#555">));</span>
+    <span style="color:#09f;font-style:italic">// ここには何も処理を書かない。
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#555">}</span></code></pre></div>
 <p>つまり、 <code>setScreen()</code> を <code>render()</code> の一番最後に持ってこなければなりません。
 しかしながら、最後に呼びだすなどのルールは忘れやすそうですし、
 強制性がないので個人的にはお勧めしません。</p>
@@ -313,28 +326,25 @@ screens around or dispose of them when another screen is set.
 <p>今回採用した方法です。その1の方法を改良しました。</p>
 
 <p>Gameクラスを継承したクラスを少し改造します。</p>
-
-<pre><code class="language-java">public class LibGdxSample extends Game {
-    private Screen nextScreen;
-        :
-    @Override
-    public void render() {
-        super.render();
-        if (nextScreen != null) {
-            super.setScreen(nextScreen);
-            nextScreen = null;
-        }
-    }
-        :
-    @Override
-    public void setScreen (Screen screen) {
-        Gdx.app.log(LOG_TAG, &quot;setScreen&quot;);
-        nextScreen = screen;
-    }
-        :
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">LibGdxSample</span> <span style="color:#069;font-weight:bold">extends</span> Game <span style="color:#555">{</span>
+    <span style="color:#069;font-weight:bold">private</span> Screen nextScreen<span style="color:#555">;</span>
+        <span style="color:#555">:</span>
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        <span style="color:#069;font-weight:bold">super</span><span style="color:#555">.</span><span style="color:#309">render</span><span style="color:#555">();</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>nextScreen <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">null</span><span style="color:#555">)</span> <span style="color:#555">{</span>
+            <span style="color:#069;font-weight:bold">super</span><span style="color:#555">.</span><span style="color:#309">setScreen</span><span style="color:#555">(</span>nextScreen<span style="color:#555">);</span>
+            nextScreen <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">null</span><span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+    <span style="color:#555">}</span>
+        <span style="color:#555">:</span>
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">setScreen</span> <span style="color:#555">(</span>Screen screen<span style="color:#555">)</span> <span style="color:#555">{</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">app</span><span style="color:#555">.</span><span style="color:#309">log</span><span style="color:#555">(</span>LOG_TAG<span style="color:#555">,</span> <span style="color:#c30">&#34;setScreen&#34;</span><span style="color:#555">);</span>
+        nextScreen <span style="color:#555">=</span> screen<span style="color:#555">;</span>
+    <span style="color:#555">}</span>
+        <span style="color:#555">:</span>
+<span style="color:#555">}</span></code></pre></div>
 <p>まず、 <code>nextScreen</code> というフィールドを新設します。
 そして <code>setScreen</code> メソッドをオーバライドし、
 =nextScreen= フィールドに <code>screen</code> をセットするだけの処理にします。
@@ -349,25 +359,22 @@ screens around or dispose of them when another screen is set.
  <code>dispose()</code> 処理を実装できるようになりました。</p>
 
 <p>後は次のように、 <code>hide()</code> から <code>dispose()</code> 処理を呼びだせば良いですね。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">hide</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        dispose<span style="color:#555">();</span>
+    <span style="color:#555">}</span>
 
-<pre><code class="language-java">    @Override
-    public void hide() {
-        dispose();
-    }
-
-    @Override
-    public void dispose() {
-        music.dispose();
-        seGet.dispose();
-        seMiss.dispose();
-        batch.dispose();
-        font.dispose();
-        img.dispose();
-        bgImg.dispose();
-        shapeRenderer.dispose();
-    }
-</code></pre>
-
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">dispose</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        music<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        seGet<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        seMiss<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        font<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        img<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        bgImg<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        shapeRenderer<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span></code></pre></div>
 <p>最後に注意というか知っていたほうが良い知識として、
 =Screen#hide()= は、 <code>Game#dispose()</code> からも自動で呼びだされるということを述べておきます。</p>
 
@@ -383,14 +390,11 @@ public abstract class Game implements ApplicationListener {
 </code></pre>
 
 <p>なので、 <code>Game#dispose()</code> 内でわざわざ自分で  <code>Screen#dispose()</code> を呼びだす必要はありません。</p>
-
-<pre><code class="language-java">    public void dispose() {
-        super.dispose();
-        Screen screen = getScreen();
-        if (screen != null) screen.dispose();
-    }
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">dispose</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        <span style="color:#069;font-weight:bold">super</span><span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        Screen screen <span style="color:#555">=</span> getScreen<span style="color:#555">();</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>screen <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">null</span><span style="color:#555">)</span> screen<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span></code></pre></div>
 <h1 id="ゲームっぽい何か">ゲームっぽい何か</h1>
 
 <p>さて、長い説明が終わってやっとゲームの説明です(といっても非常に単純なものですが)。
@@ -423,21 +427,18 @@ BGMは下記のサイトで作成しました。
 
 <p>プログラムの骨組みは、前回のものを踏襲しています。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/4/001.png" title="http://mikio.github.io/img/libgdx-beginner/4/001.png">http://mikio.github.io/img/libgdx-beginner/4/001.png</a></p>
+<p><a href="/img/libgdx-beginner/4/001.png" title="/img/libgdx-beginner/4/001.png">/img/libgdx-beginner/4/001.png</a></p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/4/002.png" title="http://mikio.github.io/img/libgdx-beginner/4/002.png">http://mikio.github.io/img/libgdx-beginner/4/002.png</a></p>
+<p><a href="/img/libgdx-beginner/4/002.png" title="/img/libgdx-beginner/4/002.png">/img/libgdx-beginner/4/002.png</a></p>
 
 <p>ゲームのプログラムは、ほとんどが今まで説明してきたlibGDXの内容でつくられてます。
 なので詳しく説明しませんが、一点だけ解説するとすれば、当たり判定のところでしょうか。
 魚と猫の当り判定のコードは以下のようになっています。</p>
-
-<pre><code class="language-java">if (nekoBounds.overlaps(fishBounds)) {
-    resetFish();
-    seGet.play();
-    score += 1;
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>nekoBounds<span style="color:#555">.</span><span style="color:#309">overlaps</span><span style="color:#555">(</span>fishBounds<span style="color:#555">))</span> <span style="color:#555">{</span>
+    resetFish<span style="color:#555">();</span>
+    seGet<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
+    score <span style="color:#555">+=</span> 1<span style="color:#555">;</span>
+<span style="color:#555">}</span></code></pre></div>
 <p><code>nekoBoudns</code> と <code>fishBounds</code> は、 <code>Rectangle</code> クラスで、それぞれキャラクタの矩形情報です。
 =Rectangle#overlaps()= メソッドを呼ぶことで、2つの矩形が重なりあっているかを判定できます。</p>
 
@@ -445,7 +446,9 @@ BGMは下記のサイトで作成しました。
 
 <p>今回は、ソースコードが4ファイルになってしまったため、githubに載せることにしました。</p>
 
-<p>https://github.com/mikio/fishcatch</p>
+<ul>
+<li>https://github.com/zarudama/fishcatch</li>
+</ul>
 
 <p>思いのほかコード量が多くなってしまったのが反省点です。
 いろいろ工夫の余地はあると思うので、今後改善していきたいと思います。</p>
@@ -458,7 +461,7 @@ BGMは下記のサイトで作成しました。
 <ul>
 ゲームの種類によっては、沢山のアセットを駆使しなければならない場合もあるでしょう。
 そんなときは、libGDXの <code>AssetManager</code> クラスを使うのが良さそうです。
-<li>https://github.com/libgdx/libgdx/wiki/Managing-your-assets</li>
+<li>https://libgdx.com/wiki/managing-your-assets</li>
 非同期読み込みや依存管理、キャッシュの管理など便利な機能を多く実装しているようですね。
 =Screen= 利用時の解放処理の煩雑さも、このクラスを利用すれば解決するのかもしれません。
 </ul>
@@ -475,47 +478,47 @@ BGMは下記のサイトで作成しました。
 <h1 id="おわりに">おわりに</h1>
 
 <ul>
-<a href="http://mikio.github.io/article/2014/07/05_libgdx-beginner5.html" title="次回">次回</a> 予定している内容は、
+<a href="/posts/libgdx-beginner5/" title="次回">次回</a> 予定している内容は、
 <li>ゲームデータの保存</li>
 です。
 </ul>
 
 <h1 id="参考書籍">参考書籍</h1>
 
-<pre><code>&lt;p&gt;
-&lt;div class=&quot;figure&quot; style=&quot;float:left&quot;&gt;
-&lt;/p&gt;
-&lt;p&gt;
-&lt;a href=&quot;http://www.amazon.co.jp/gp/product/4844331132/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4844331132&amp;linkCode=as2&amp;tag=ocha04-22&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4844331132&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4844331132&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
-&lt;/p&gt;
-&lt;p&gt;
-&lt;/div&gt;
-&lt;/p&gt;
+<p>「<a href="https://amzn.to/3S70Tbm" title="Androidゲームプログラミング A to Z">Androidゲームプログラミング A to Z</a> 」</p>
 
-</code></pre>
+<p><a href="/img/amazon_android_gameprogiraming_a_to_z.jpg" title="/img/amazon_android_gameprogiraming_a_to_z.jpg">/img/amazon_android_gameprogiraming_a_to_z.jpg</a></p>
 
-<p>libGDXの作者が書いた本です。Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
-libGDXの解説ではないけれど、その思想は当然libGDXにも引き継がれています。もちろんlibGDXの理解もしやすくなります。
-また、Androidの本ではありますが、スマホに特化した内容ばかりではなく、
-どんなゲーム開発にも通用しそうな内容ばかりです。
-実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。
-そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと思います。
-ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。
-それでもlibGDXをやるなら読んでいて損はないと思います。</p>
-
-<pre><code>&lt;p&gt;
-&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-</code></pre>
-
-        </article>
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/libgdx-beginner5/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>libGDX入門 その05 ゲームデータの保存</a>
   </div>
-</section>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/cygwin-tmux/">cygwinにtmuxを導入<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
 
-
-                </div>
-            </div></div>
-        <script src="/js/ui.js"></script>
-    </body>
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>

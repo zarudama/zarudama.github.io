@@ -1,52 +1,69 @@
 <!DOCTYPE html>
 <html lang="ja"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
-<title>ざる魂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="JVMのヒープサイズと変更方法" />
+<meta property="og:description" content="稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
+JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、 初期割り当てのヒープサイズが異なる。
+サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
+$ java -version java version &#34;*****&#34; Java(TM) SE Runtime Environment (build ******) Java HotSpot(TM) Server VM (build ******) Severモードの場合は、 Server の表記があるはず。
+ サーバーモード | 初期ヒープサイズ | マシンの物理メモリーの 1/64 か、妥当な最小サイズかの大きい方。 | | 最大ヒープサイズ | 物理メモリーの 1/4 か、1GB かの小さい方。 | http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html  JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
+$ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.0 137152.0 0.0 68410." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/jvm_mem/" />
+<meta property="article:published_time" content="2014-03-25T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2014-03-25T14:01:39&#43;09:00"/>
 
-<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JVMのヒープサイズと変更方法"/>
+<meta name="twitter:description" content="稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。1
+JVMの初期ヒープサイズ JVMは、サーバーモードで起動しているのか、クライアントモードで起動しているかで、 初期割り当てのヒープサイズが異なる。
+サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。
+$ java -version java version &#34;*****&#34; Java(TM) SE Runtime Environment (build ******) Java HotSpot(TM) Server VM (build ******) Severモードの場合は、 Server の表記があるはず。
+ サーバーモード | 初期ヒープサイズ | マシンの物理メモリーの 1/64 か、妥当な最小サイズかの大きい方。 | | 最大ヒープサイズ | 物理メモリーの 1/4 か、1GB かの小さい方。 | http://docs.oracle.com/javase/jp/6/technotes/guides/vm/gc-ergonomics.html  JVMの稼動時のヒープサイズ JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。
+$ sudo jstat -gc 28905 S0C S1C S0U S1U EC EU OC OU PC PU YGC YGCT FGC FGCT GCT 127552.0 137152.0 0.0 68410."/>
 
+<title>JVMのヒープサイズと変更方法 | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
 
-
-
-
-     <link rel="stylesheet" href="/css/layouts/side-menu.css">
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
-<body>
-        <div id="layout">
-<a href="#menu" id="menuLink" class="menu-link">
-    
-    <span></span>
-</a>
-
-<div id="menu">
-    <div class="pure-menu">
-        <a class="pure-menu-heading" href="/">ホーム</a>
-        <a class="pure-menu-heading" href="/search">全文検索</a>
-        <ul class="pure-menu-list">
-            
-            
-                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
-            
-            
-            
-                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
-            
-            
-        </ul>
-    </div>
-</div>
-<div id="main" class="markdown-body">
-<div class="content">
-<section id="main">
-  <h1 id="title">JVMのヒープサイズと変更方法</h1>
-  <div>
-      
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
   </div>
-  <div>
-        <article id="content">
-           <p>稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">JVMのヒープサイズと変更方法</h1>
+  <aside id="meta"><a class="tags" href="/tags/java">java</a><a class="tags" href="/tags/jvm">jvm</a>
+<section>
+      <span class="date">作成日: 2014-03-25</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2014-03-25</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;152 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>稼動中のJVMのヒープサイズを知りたくなることは良くあるのでその方法。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
 
 <h1 id="jvmの初期ヒープサイズ">JVMの初期ヒープサイズ</h1>
 
@@ -54,13 +71,10 @@
 初期割り当てのヒープサイズが異なる。</p>
 
 <p>サーバーモードなのかクライアントモードなのかは、実行ユーザにて、下記コマンドで確認できる。</p>
-
-<pre><code class="language-sh">$ java -version
-java version &quot;*****&quot;
-Java(TM) SE Runtime Environment (build ******)
-Java HotSpot(TM) Server VM (build ******)
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ java -version
+java version <span style="color:#c30">&#34;*****&#34;</span>
+Java<span style="color:#555">(</span>TM<span style="color:#555">)</span> SE Runtime Environment <span style="color:#555">(</span>build ******<span style="color:#555">)</span>
+Java HotSpot<span style="color:#555">(</span>TM<span style="color:#555">)</span> Server VM <span style="color:#555">(</span>build ******<span style="color:#555">)</span></code></pre></div>
 <p>Severモードの場合は、 <code>Server</code> の表記があるはず。</p>
 
 <ul>
@@ -73,12 +87,9 @@ Java HotSpot(TM) Server VM (build ******)
 <h1 id="jvmの稼動時のヒープサイズ">JVMの稼動時のヒープサイズ</h1>
 
 <p>JVMの使用しているヒープの量を調べる(以降、すべてOracleJava)。</p>
-
-<pre><code class="language-sh">$ sudo jstat -gc 28905
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo jstat -gc <span style="color:#f60">28905</span>
  S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT
-127552.0 137152.0  0.0   68410.3 224000.0 107742.6  996736.0   113947.3  61440.0 61324.8      7    1.323   1      0.045    1.368
-</code></pre>
-
+<span style="color:#f60">127552</span>.0 <span style="color:#f60">137152</span>.0  <span style="color:#f60">0</span>.0   <span style="color:#f60">68410</span>.3 <span style="color:#f60">224000</span>.0 <span style="color:#f60">107742</span>.6  <span style="color:#f60">996736</span>.0   <span style="color:#f60">113947</span>.3  <span style="color:#f60">61440</span>.0 <span style="color:#f60">61324</span>.8      <span style="color:#f60">7</span>    <span style="color:#f60">1</span>.323   <span style="color:#f60">1</span>      <span style="color:#f60">0</span>.045    <span style="color:#f60">1</span>.368</code></pre></div>
 <p>割りあてられた容量を見るには、*Cのサイフィックス、使用量を見るには、*Uのサフィックスに着目する(単位はKb)。</p>
 
 <table>
@@ -139,19 +150,13 @@ S0C + S1C + EC + OC + PC = 127 + 137 + 224 + 996
 <p>ヒープ領域は、次のオプションで変更できる。</p>
 
 <p>例)</p>
-
-<pre><code class="language-sh">-Xms1024m -Xmx1024m
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">-Xms1024m -Xmx1024m</code></pre></div>
 <p>上記オプションには、プログラム格納用の領域のPermanet領域は割り当てられないので注意が必要である。
 Permanet領域はデフォルトで64MBのようなので、プログラムサイズが足りないときは増やす必要がある。
 この値は、次のオプションで変更できる。</p>
 
 <p>例)</p>
-
-<pre><code class="language-sh">-XX:MaxPermSize=128m
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">-XX:MaxPermSize<span style="color:#555">=</span>128m</code></pre></div>
 <h1 id="参考">参考</h1>
 
 <ul>
@@ -168,13 +173,36 @@ Permanet領域はデフォルトで64MBのようなので、プログラムサ�
 </ol>
 </div>
 
-        </article>
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/jvm_gcutil/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>GCの発生頻度などの調査</a>
   </div>
-</section>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/awk/">ちょい足しawkの基本<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
 
-
-                </div>
-            </div></div>
-        <script src="/js/ui.js"></script>
-    </body>
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>

@@ -6,19 +6,20 @@
     <description>Recent content in zenbook on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
+    <lastBuildDate>Sat, 12 May 2012 14:01:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/zenbook/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ubuntu 12.04 LTS On ZENBOOK UX21E</title>
-      <link>https://zarudama.github.io/posts/parma-link/ubuntu-1204-lts-on-zenbook-ux21e/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://zarudama.github.io/posts/ubuntu-1204-lts-on-zenbook-ux21e/</link>
+      <pubDate>Sat, 12 May 2012 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/ubuntu-1204-lts-on-zenbook-ux21e/</guid>
+      <guid>https://zarudama.github.io/posts/ubuntu-1204-lts-on-zenbook-ux21e/</guid>
       <description>メインで使用していたノートが3年になるのでZENBOOKを買った。 次期モデルの噂も出始めてはいるが、いつになるかもわからないし、欲しいときが買いどきということで購入。
 ubuntuもほとんどそのままの状態で大体の機能が使えている。
-http://mikio.github.io/img/ubuntu-ux21e-640-480.jpg
+/img/ubuntu-ux21e-640-480.jpg
  以下を参考にした。 https://help.ubuntu.com/community/AsusZenbook  インストール後の設定は別エントリにまとめている。
 事前に2chや価格comで情報収集していたが、感想としてはやはりキーボードの打ちにくさが一番気になった。 他のキーボードを使わずに、このノートだけを使いつづければ、多分慣れてし まって、なんとも思わなくなるんだろう。 けれども自分の場合、会社ではロジクールの打ちやすいキーボードを使用して いるので凄く気になってしまう。。。
 つぎにヒンジ。自分が丁度いいと思う角度で止めようと思っても、 自重でトルクがかかってパカっと最大まで開いてしまう。 普段大きな問題となることないが、地味に痛い。ただし固体差もあるだろうか ら大丈夫な人もいるかと思う。

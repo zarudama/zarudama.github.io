@@ -1,54 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
-<title>ざる魂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="libGDX入門 その01 画像を表示したり音を鳴らしたり" />
+<meta property="og:description" content="はじめに libGDX は、Javaでゲームを作るためのライブラリです。 マルチプラットフォーム対応で、PC(Windows,Linux,Mac), Android, iOS, HTMLに対応しています。
+libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。 実際、ググってみると、英語のドキュメントは沢山みかけますが、日本語のドキュメントはまだまだ少数です。
+ また、公式ドキュメントも大変充実しています(英語のみ)。 https://libgdx.com/wiki/ 実のところこのドキュメントを読めば大抵の事は解決します。  ただ、私もそうなんですが、日本語情報がないってだけで、 重い腰が上がらないって人も多いと思います。 そんな人向けに(というより自分の勉強ついでに)、 そして少しでもlibGDXを使用する人が増えることを願い、 少しずつ記事を書いていこうと思います。
+この記事が、libGDXを学ぶためのきっかけになって頂ければ幸いです。
+その2は こちら。
+このシリーズの目次は こちら 。
+プロジェクトを作る  libGDXでは、専用のプロジェクト生成アプリが用意されています。 マルチプラットフォームの性質上、プロジェクトの構成が複雑なので 素直にこのアプリを使用したほうが良いかと思います。 http://libgdx.badlogicgames.com/download.html  起動は、以下のような感じです。Windowsならばダブルクリックで起動できるでしょう。
+$ java -jar gdx-setup.jar Usage: GdxSetup --dir &lt;dir-name&gt; --name &lt;app-name&gt; --package &lt;package&gt; --mainClass &lt;mainClass&gt; --sdkLocation &lt;SDKLocation&gt; dir ... the directory to write the project files to name ... the name of the application package ... the Java package name of the application mainClass ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/libgdx-beginner1/" />
+<meta property="article:published_time" content="2014-05-04T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2014-05-04T14:01:39&#43;09:00"/>
 
-<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="libGDX入門 その01 画像を表示したり音を鳴らしたり"/>
+<meta name="twitter:description" content="はじめに libGDX は、Javaでゲームを作るためのライブラリです。 マルチプラットフォーム対応で、PC(Windows,Linux,Mac), Android, iOS, HTMLに対応しています。
+libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。 実際、ググってみると、英語のドキュメントは沢山みかけますが、日本語のドキュメントはまだまだ少数です。
+ また、公式ドキュメントも大変充実しています(英語のみ)。 https://libgdx.com/wiki/ 実のところこのドキュメントを読めば大抵の事は解決します。  ただ、私もそうなんですが、日本語情報がないってだけで、 重い腰が上がらないって人も多いと思います。 そんな人向けに(というより自分の勉強ついでに)、 そして少しでもlibGDXを使用する人が増えることを願い、 少しずつ記事を書いていこうと思います。
+この記事が、libGDXを学ぶためのきっかけになって頂ければ幸いです。
+その2は こちら。
+このシリーズの目次は こちら 。
+プロジェクトを作る  libGDXでは、専用のプロジェクト生成アプリが用意されています。 マルチプラットフォームの性質上、プロジェクトの構成が複雑なので 素直にこのアプリを使用したほうが良いかと思います。 http://libgdx.badlogicgames.com/download.html  起動は、以下のような感じです。Windowsならばダブルクリックで起動できるでしょう。
+$ java -jar gdx-setup.jar Usage: GdxSetup --dir &lt;dir-name&gt; --name &lt;app-name&gt; --package &lt;package&gt; --mainClass &lt;mainClass&gt; --sdkLocation &lt;SDKLocation&gt; dir ... the directory to write the project files to name ... the name of the application package ... the Java package name of the application mainClass ."/>
 
+<title>libGDX入門 その01 画像を表示したり音を鳴らしたり | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
 
-
-
-
-     <link rel="stylesheet" href="/css/layouts/side-menu.css">
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
-<body>
-        <div id="layout">
-<a href="#menu" id="menuLink" class="menu-link">
-    
-    <span></span>
-</a>
-
-<div id="menu">
-    <div class="pure-menu">
-        <a class="pure-menu-heading" href="/">ホーム</a>
-        <a class="pure-menu-heading" href="/search">全文検索</a>
-        <ul class="pure-menu-list">
-            
-            
-                <li class="pure-menu-item"><a href="/posts/" class="pure-menu-link">Posts</a></li>
-            
-            
-            
-                <li class="pure-menu-item"><a href="/search/" class="pure-menu-link">Searches</a></li>
-            
-            
-        </ul>
-    </div>
-</div>
-<div id="main" class="markdown-body">
-<div class="content">
-<section id="main">
-  <h1 id="title">libGDX入門 その01 画像を表示したり音を鳴らしたり</h1>
-  <div>
-      
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
   </div>
-  <div>
-        <article id="content">
-           <h1 id="はじめに">はじめに</h1>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">libGDX入門 その01 画像を表示したり音を鳴らしたり</h1>
+  <aside id="meta">
+<section>
+      <span class="date">作成日: 2014-05-04</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2014-05-04</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;1621 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      
+      <h1 id="はじめに">はじめに</h1>
 
-<p><a href="http://libgdx.badlogicgames.com/" title="libGDX">libGDX</a> は、Javaでゲームを作るためのライブラリです。
+<p><a href="https://libgdx.com/" title="libGDX">libGDX</a> は、Javaでゲームを作るためのライブラリです。
 マルチプラットフォーム対応で、PC(Windows,Linux,Mac), Android, iOS, HTMLに対応しています。</p>
 
 <p>libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。
@@ -56,7 +78,7 @@
 
 <ul>
 また、公式ドキュメントも大変充実しています(英語のみ)。
-<li>https://github.com/libgdx/libgdx/wiki</li>
+<li>https://libgdx.com/wiki/</li>
 実のところこのドキュメントを読めば大抵の事は解決します。
 </ul>
 
@@ -68,9 +90,9 @@
 
 <p>この記事が、libGDXを学ぶためのきっかけになって頂ければ幸いです。</p>
 
-<p>その2は <a href="http://mikio.github.io/article/2014/06/02_libgdx-beginner2.html" title="こちら">こちら</a>。</p>
+<p>その2は <a href="https://zarudama.github.io/article/2014/06/02_libgdx-beginner2.html" title="こちら">こちら</a>。</p>
 
-<p>このシリーズの目次は <a href="http://mikio.github.io/tag/libGDX%E5%85%A5%E9%96%80.html" title="こちら">こちら</a> 。</p>
+<p>このシリーズの目次は <a href="https://zarudama.github.io/tag/libGDX%E5%85%A5%E9%96%80.html" title="こちら">こちら</a> 。</p>
 
 <h1 id="プロジェクトを作る">プロジェクトを作る</h1>
 
@@ -82,17 +104,14 @@ libGDXでは、専用のプロジェクト生成アプリが用意されてい�
 </ul>
 
 <p>起動は、以下のような感じです。Windowsならばダブルクリックで起動できるでしょう。</p>
-
-<pre><code class="language-sh">$ java -jar gdx-setup.jar 
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ java -jar gdx-setup.jar 
 Usage: GdxSetup --dir &lt;dir-name&gt; --name &lt;app-name&gt; --package &lt;package&gt; --mainClass &lt;mainClass&gt; --sdkLocation &lt;SDKLocation&gt;
 dir ... the directory to write the project files to
 name ... the name of the application
 package ... the Java package name of the application
 mainClass ... the name of your main ApplicationListener
-sdkLocation ... the location of your android SDK. Uses ANDROID_HOME if not specified
-</code></pre>
-
-<p><a href="http://mikio.github.io/img/libgdx-beginner/setup.png" title="http://mikio.github.io/img/libgdx-beginner/setup.png">http://mikio.github.io/img/libgdx-beginner/setup.png</a></p>
+sdkLocation ... the location of your android SDK. Uses ANDROID_HOME <span style="color:#069;font-weight:bold">if</span> not specified</code></pre></div>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/setup.png" title="https://zarudama.github.io/img/libgdx-beginner/setup.png">https://zarudama.github.io/img/libgdx-beginner/setup.png</a></p>
 
 <table>
 <tbody>
@@ -134,16 +153,18 @@ sdkLocation ... the location of your android SDK. Uses ANDROID_HOME if not speci
 <p>Generateボタンをクリックすれば、プロジェクトが生成されます。
 必要なライブラリ(gradle、dllやsoなど)も全部まるっとダウンロードしてくれるので楽チンです。</p>
 
+<section class="toc">
+  <h2>Contents</h2>
+  
+</section>
+
 <h2 id="注意点">注意点</h2>
 
 <p>以降、プロジェクトを <code>~/dev/libgdxtest/</code> に生成した前提で話をすすめます。
 今後プロジェクトを実行する際、挙動がおかしいなと思ったら、
 下記のデイレクトリを(バックアップしたうえで)削除して再実行してみてください。</p>
-
-<pre><code class="language-sh">$ rm -rf ~/.m2
-$ rm -rf ~/.gradle
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rm -rf ~/.m2
+$ rm -rf ~/.gradle</code></pre></div>
 <p>ともにjarファイルなどの依存ファイルを保存するディレクトリですが、
 稀に状態がおかしくなるようです。</p>
 
@@ -160,15 +181,15 @@ $ rm -rf ~/.gradle
 
 <p><code>gdx-setup.jar</code> で生成したディレクトリを選択します。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/SelectDirImport_004.png" title="http://mikio.github.io/img/libgdx-beginner/SelectDirImport_004.png">http://mikio.github.io/img/libgdx-beginner/SelectDirImport_004.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/SelectDirImport_004.png" title="https://zarudama.github.io/img/libgdx-beginner/SelectDirImport_004.png">https://zarudama.github.io/img/libgdx-beginner/SelectDirImport_004.png</a></p>
 
 <p>Gradleを選択し、「next」ボタンを押下します。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/ImportProject_006.png" title="http://mikio.github.io/img/libgdx-beginner/ImportProject_006.png">http://mikio.github.io/img/libgdx-beginner/ImportProject_006.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/ImportProject_006.png" title="https://zarudama.github.io/img/libgdx-beginner/ImportProject_006.png">https://zarudama.github.io/img/libgdx-beginner/ImportProject_006.png</a></p>
 
 <p>「Use default gradle wrapper」を選択します。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/ImportProject_008.png" title="http://mikio.github.io/img/libgdx-beginner/ImportProject_008.png">http://mikio.github.io/img/libgdx-beginner/ImportProject_008.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/ImportProject_008.png" title="https://zarudama.github.io/img/libgdx-beginner/ImportProject_008.png">https://zarudama.github.io/img/libgdx-beginner/ImportProject_008.png</a></p>
 
 <p>最後にFinishボタンを押下します。最初のインポートには時間がかかります。
 最終的に下記のエラー(HTML関係)が表示されますが、HTMLはひとまず使用しないので気にしないでおきます。</p>
@@ -176,12 +197,12 @@ $ rm -rf ~/.gradle
 <h2 id="pc版を動かす">PC版を動かす</h2>
 
 <ul>
-<a href="http://mikio.github.io/img/libgdx-beginner/error.png" title="http://mikio.github.io/img/libgdx-beginner/error.png">http://mikio.github.io/img/libgdx-beginner/error.png</a>
+<a href="https://zarudama.github.io/img/libgdx-beginner/error.png" title="https://zarudama.github.io/img/libgdx-beginner/error.png">https://zarudama.github.io/img/libgdx-beginner/error.png</a>
 インポートが終わったら、早速実行してみます。
 <li>メニュー → Run → Edit Configrationsを選択。</li>
 </ul>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png" title="http://mikio.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png">http://mikio.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png" title="https://zarudama.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png">https://zarudama.github.io/img/libgdx-beginner/Run-DebugConfigurations_012.png</a></p>
 
 <table>
 <tbody>
@@ -218,11 +239,11 @@ $ rm -rf ~/.gradle
 <p>実行環境が作成できたら、右上にあるIntelliJのセレクトボックスからDesktopを選択して再生ボタンを押下します。
 最初の実行は、インポート以上に時間がかかりますので心してください。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/run.png" title="http://mikio.github.io/img/libgdx-beginner/run.png">http://mikio.github.io/img/libgdx-beginner/run.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/run.png" title="https://zarudama.github.io/img/libgdx-beginner/run.png">https://zarudama.github.io/img/libgdx-beginner/run.png</a></p>
 
 <p>下記の画面が表示されたら成功です!おめでとうございます!!</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/sample.png" title="http://mikio.github.io/img/libgdx-beginner/sample.png">http://mikio.github.io/img/libgdx-beginner/sample.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/sample.png" title="https://zarudama.github.io/img/libgdx-beginner/sample.png">https://zarudama.github.io/img/libgdx-beginner/sample.png</a></p>
 
 <h2 id="android版を動かす">Android版を動かす</h2>
 
@@ -241,27 +262,21 @@ $ rm -rf ~/.gradle
 </code></pre>
 
 <p>ターミナルでプロジェクトルートに移動します。</p>
-
-<pre><code class="language-sh">$ cd ~/dev/libtext
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~/dev/libtext</code></pre></div>
 <p>下記のコマンドを実行します。</p>
-
-<pre><code class="language-sh">$ ./gradlew html:superDev
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ./gradlew html:superDev</code></pre></div>
 <ul>
 いろいろ出力が表示され、最終的に <code>The code server is ready.</code> の表示がされたら、
 下記にアクセスします。
 <li>http://localhost:8080/html/</li>
 </ul>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/terminal.png" title="http://mikio.github.io/img/libgdx-beginner/terminal.png">http://mikio.github.io/img/libgdx-beginner/terminal.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/terminal.png" title="https://zarudama.github.io/img/libgdx-beginner/terminal.png">https://zarudama.github.io/img/libgdx-beginner/terminal.png</a></p>
 
 <p>HTML版は、 <code>String.format</code> メソッドが使えなかったり、
 BitmapFontが表示できなかったり制限があるので注意してください。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/html.png" title="http://mikio.github.io/img/libgdx-beginner/html.png">http://mikio.github.io/img/libgdx-beginner/html.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/html.png" title="https://zarudama.github.io/img/libgdx-beginner/html.png">https://zarudama.github.io/img/libgdx-beginner/html.png</a></p>
 
 <h1 id="eclipseで使う">Eclipseで使う</h1>
 
@@ -334,41 +349,26 @@ Emacserの自分は、この方法が一番好きです。</p>
 Windowsの場合は、gradlewに、拡張子 <code>.bat</code> を追加して実行してください。</p>
 
 <p>gradlewコマンドは、プロジェクトルートで実行する必要があります。</p>
-
-<pre><code class="language-sh">$ cd ~/dev/libgdxtest 
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#366">cd</span> ~/dev/libgdxtest </code></pre></div>
 <h2 id="pc版を動かす-2">PC版を動かす</h2>
 
 <p>下記のように実行します。</p>
-
-<pre><code class="language-sh">$ ./gradlew desktop:run
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ./gradlew desktop:run</code></pre></div>
 <h2 id="android版を動かす-2">Android版を動かす</h2>
 
 <p>予め <code>ANDROID_HOME</code> を定義しておく必要があります。
 =.bashrc= などに記述しておきます。</p>
-
-<pre><code class="language-sh">export ANDROID_HOME=~/opt/adt-bundle-linux-x86_64-20130717/sdk
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">export</span> <span style="color:#033">ANDROID_HOME</span><span style="color:#555">=</span>~/opt/adt-bundle-linux-x86_64-20130717/sdk</code></pre></div>
 <p>下記のように実行します。</p>
-
-<pre><code class="language-sh">$ gradlew android:installDebug android:run
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ gradlew android:installDebug android:run</code></pre></div>
 <h2 id="html版を動かす-2">HTML版を動かす</h2>
 
 <p>下記のように実行します。</p>
-
-<pre><code class="language-sh">$ ./gradlew html:superDev
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ./gradlew html:superDev
   :
   :
 The code server is ready.
-Next, visit: http://localhost:9876/
-</code></pre>
-
+Next, visit: http://localhost:9876/</code></pre></div>
 <ul>
 いろいろ出力が表示され、最終的に <code>The code server is ready.</code> の表示がされたら、
 下記にアクセスします。
@@ -380,51 +380,45 @@ BitmapFontが表示できなかったり制限があるので注意してくだ�
 <h1 id="基本的なクラスについて">基本的なクラスについて</h1>
 
 <p>gdx-setup.jarで作成される雛形は下記のとおりです。</p>
-
-<pre><code class="language-sh">PROJECT_ROOT
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PROJECT_ROOT
   + android
   + core
   + desktop
   + gradle
   + html
-  + ios
-</code></pre>
-
+  + ios</code></pre></div>
 <p>環境別にディレクトリが切られ、ゲームロジックそのものは <code>core</code> ディレクトリに記述していきます。
 環境ごとのディレクトリにはそれぞれその環境専用の起動クラス(*Launcher.java)が定義されています。
 環境に依存するコード(例えば広告表示など)は、この環境別のディレクトリ内に記述してきます。</p>
 
 <p>さて <code>core/src</code> ディレクトリには下記のようなクラスがあります。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">package</span> <span style="color:#0cf;font-weight:bold">com.zarudama.libgdxtest</span><span style="color:#555">;</span>
 
-<pre><code class="language-java">package com.zarudama.libgdxtest;
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.ApplicationAdapter</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Gdx</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.GL20</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Texture</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.SpriteBatch</span><span style="color:#555">;</span>
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+<span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">LibGdxSample</span> <span style="color:#069;font-weight:bold">extends</span> ApplicationAdapter <span style="color:#555">{</span>
+    SpriteBatch batch<span style="color:#555">;</span>
+    Texture img<span style="color:#555">;</span>
 
-public class LibGdxSample extends ApplicationAdapter {
-    SpriteBatch batch;
-    Texture img;
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+        batch <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> SpriteBatch<span style="color:#555">();</span>
+        img <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Texture<span style="color:#555">(</span><span style="color:#c30">&#34;badlogic.jpg&#34;</span><span style="color:#555">);</span>
+    <span style="color:#555">}</span>
 
-    @Override
-    public void create () {
-        batch = new SpriteBatch();
-        img = new Texture(&quot;badlogic.jpg&quot;);
-    }
-
-    @Override
-    public void render () {
-        Gdx.gl.glClearColor(1, 0, 0, 1); //画面を赤で塗りつぶし
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // カラーバッファをクリア
-        batch.begin(); // 描画の開始
-        batch.draw(img, 0, 0); // テクスチャーを描画
-        batch.end(); // 描画の終了
-    }
-}
-</code></pre>
-
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClearColor</span><span style="color:#555">(</span>1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">//画面を赤で塗りつぶし
+</span><span style="color:#09f;font-style:italic"></span>        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClear</span><span style="color:#555">(</span>GL20<span style="color:#555">.</span><span style="color:#309">GL_COLOR_BUFFER_BIT</span><span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// カラーバッファをクリア
+</span><span style="color:#09f;font-style:italic"></span>        batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// 描画の開始
+</span><span style="color:#09f;font-style:italic"></span>        batch<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>img<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">);</span> <span style="color:#09f;font-style:italic">// テクスチャーを描画
+</span><span style="color:#09f;font-style:italic"></span>        batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span> <span style="color:#09f;font-style:italic">// 描画の終了
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#555">}</span>
+<span style="color:#555">}</span></code></pre></div>
 <p>これは、 <code>gdx-setup.jar</code> で最初に作られる画像を表示するだけのクラスです。
 createメソッドは、アプリ内で一度だけ実行される処理を記述し、
 renderは毎フレーム呼びだす処理を記述します。renderはつまりメインループとなります。</p>
@@ -440,7 +434,7 @@ Gameクラスを継承することが多くなります。
 Gameクラスは、画面遷移を担当するScreenクラスを扱い、
 GameクラスもまたApplicationListenerインターフェイスを実装しています。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/class.png" title="http://mikio.github.io/img/libgdx-beginner/class.png">http://mikio.github.io/img/libgdx-beginner/class.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/class.png" title="https://zarudama.github.io/img/libgdx-beginner/class.png">https://zarudama.github.io/img/libgdx-beginner/class.png</a></p>
 
 <p>SpriteBatchクラスは、libGDXで描画を担当するクラスでこれもまた必ず必要なクラスです。
 batch.beginメソッドとbatch.endメソッドの間のdrawメソッドで様々な描画を行ないます。</p>
@@ -457,57 +451,55 @@ Textureクラスをそのまま描画していますが、実際には後述す�
 <p>libGDXはデフォルトで文字描画をサポートしていますので、それを利用します。</p>
 
 <p>下記のように変更してください。diff形式で表示しています。"+"は追加した行、"-"は削除した行です。</p>
-
-<pre><code class="language-diff">mikio@gnudam:~/dev/libgdxtest$ git diff
-diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
-index ad39967..3c84c72 100644
---- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
-+++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
-@@ -4,17 +4,20 @@ import com.badlogic.gdx.ApplicationAdapter;
- import com.badlogic.gdx.Gdx;
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">mikio@gnudam:~/dev/libgdxtest$ git diff
+<span style="color:#030;font-weight:bold">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+</span><span style="color:#030;font-weight:bold">index ad39967..3c84c72 100644
+</span><span style="color:#030;font-weight:bold"></span><span style="background-color:#fcc">--- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+</span><span style="background-color:#fcc"></span><span style="background-color:#cfc">+++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+</span><span style="background-color:#cfc"></span><span style="color:#030;font-weight:bold">@@ -4,17 +4,20 @@ import com.badlogic.gdx.ApplicationAdapter;
+</span><span style="color:#030;font-weight:bold"></span> import com.badlogic.gdx.Gdx;
  import com.badlogic.gdx.graphics.GL20;
  import com.badlogic.gdx.graphics.Texture;
-+import com.badlogic.gdx.graphics.g2d.BitmapFont;
- import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+<span style="background-color:#cfc">+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+</span><span style="background-color:#cfc"></span> import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
  public class LibGdxSample extends ApplicationAdapter {
      SpriteBatch batch;
--    Texture img;
-+    BitmapFont font;
-+    Texture img;
-
+<span style="background-color:#fcc">-    Texture img;
+</span><span style="background-color:#fcc"></span><span style="background-color:#cfc">+    BitmapFont font;
+</span><span style="background-color:#cfc">+    Texture img;
+</span><span style="background-color:#cfc"></span>
     @Override
     public void create () {
        batch = new SpriteBatch();
-       img = new Texture(&quot;badlogic.jpg&quot;);
--   }
-+      font = new BitmapFont();
-+   }
-
+       img = new Texture(&#34;badlogic.jpg&#34;);
+<span style="background-color:#fcc">-   }
+</span><span style="background-color:#fcc"></span><span style="background-color:#cfc">+      font = new BitmapFont();
+</span><span style="background-color:#cfc">+   }
+</span><span style="background-color:#cfc"></span>
     @Override
     public void render () {
-@@ -22,6 +25,7 @@ public class LibGdxSample extends ApplicationAdapter {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+<span style="color:#030;font-weight:bold">@@ -22,6 +25,7 @@ public class LibGdxSample extends ApplicationAdapter {
+</span><span style="color:#030;font-weight:bold"></span>        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(img, 0, 0);
-+       font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-        batch.end();
+<span style="background-color:#cfc">+       font.draw(batch, &#34;Hello libGDX&#34;, 200, 400);
+</span><span style="background-color:#cfc"></span>        batch.end();
     }
 
-+   @Override
-+   public void dispose() {
-+       font.dispose();
-+       batch.dispose();
-+       img.dispose();
-+   }
-
+<span style="background-color:#cfc">+   @Override
+</span><span style="background-color:#cfc">+   public void dispose() {
+</span><span style="background-color:#cfc">+       font.dispose();
+</span><span style="background-color:#cfc">+       batch.dispose();
+</span><span style="background-color:#cfc">+       img.dispose();
+</span><span style="background-color:#cfc">+   }
+</span><span style="background-color:#cfc"></span>
  }
-</code></pre>
-
+</code></pre></div>
 <p>サンプルでは、なぜかリソースを解放する処理が抜けていたので、
 disposeメソッドに追加してあります。disposeはアプリケーションの終了処理を記述します。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/sample2.png" title="http://mikio.github.io/img/libgdx-beginner/sample2.png">http://mikio.github.io/img/libgdx-beginner/sample2.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/sample2.png" title="https://zarudama.github.io/img/libgdx-beginner/sample2.png">https://zarudama.github.io/img/libgdx-beginner/sample2.png</a></p>
 
 <h1 id="スプライトクラスを使用する">スプライトクラスを使用する。</h1>
 
@@ -517,9 +509,8 @@ Textureクラスはあくまで画像そのもののクラスであり、
 
 <p>ゆくゆくは拡大縮小したりアニメーションしたりする必要がでてきますので、
 そのような操作が扱いやすいSpriteクラスを使用します。</p>
-
-<pre><code class="language-sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
-index 3c84c72..5ab4749 100644
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index 3c84c72..5ab4749 <span style="color:#f60">100644</span>
 --- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 +++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 @@ -5,18 +5,22 @@ import com.badlogic.gdx.Gdx;
@@ -529,30 +520,28 @@ index 3c84c72..5ab4749 100644
 +import com.badlogic.gdx.graphics.g2d.Sprite;
  import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
- public class LibGdxSample extends ApplicationAdapter {
+ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
      SpriteBatch batch;
      BitmapFont font;
      Texture img;
 +    Sprite sprite;
      @Override
-     public void create () {
-         batch = new SpriteBatch();
-         font = new BitmapFont();
-         img = new Texture(&quot;badlogic.jpg&quot;);
-+        sprite = new Sprite(img);
-     }
+     public void create <span style="color:#555">()</span> <span style="color:#555">{</span>
+         <span style="color:#033">batch</span> <span style="color:#555">=</span> new SpriteBatch<span style="color:#555">()</span>;
+         <span style="color:#033">font</span> <span style="color:#555">=</span> new BitmapFont<span style="color:#555">()</span>;
+         <span style="color:#033">img</span> <span style="color:#555">=</span> new Texture<span style="color:#555">(</span><span style="color:#c30">&#34;badlogic.jpg&#34;</span><span style="color:#555">)</span>;
++        <span style="color:#033">sprite</span> <span style="color:#555">=</span> new Sprite<span style="color:#555">(</span>img<span style="color:#555">)</span>;
+     <span style="color:#555">}</span>
 
-@@ -24,7 +28,7 @@ public class LibGdxSample extends ApplicationAdapter {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
--       batch.draw(img, 0, 0);
-+       sprite.draw(batch);
-        font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-        batch.end();
-    }
-</code></pre>
-
+@@ -24,7 +28,7 @@ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
+        Gdx.gl.glClearColor<span style="color:#555">(</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span><span style="color:#555">)</span>;
+        Gdx.gl.glClear<span style="color:#555">(</span>GL20.GL_COLOR_BUFFER_BIT<span style="color:#555">)</span>;
+        batch.begin<span style="color:#555">()</span>;
+-       batch.draw<span style="color:#555">(</span>img, <span style="color:#f60">0</span>, <span style="color:#f60">0</span><span style="color:#555">)</span>;
++       sprite.draw<span style="color:#555">(</span>batch<span style="color:#555">)</span>;
+        font.draw<span style="color:#555">(</span>batch, <span style="color:#c30">&#34;Hello libGDX&#34;</span>, <span style="color:#f60">200</span>, <span style="color:#f60">400</span><span style="color:#555">)</span>;
+        batch.end<span style="color:#555">()</span>;
+    <span style="color:#555">}</span></code></pre></div>
 <p>このプログラムを実行しても、見た目の変化はありません。</p>
 
 <h1 id="座標系">座標系</h1>
@@ -611,9 +600,8 @@ index 3c84c72..5ab4749 100644
 <h1 id="画像を動かす">画像を動かす</h1>
 
 <p>画像の表示ができたのでさっそく動かしてみます。</p>
-
-<pre><code class="language-sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
-index 5ab4749..e97625e 100644
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index 5ab4749..e97625e <span style="color:#f60">100644</span>
 --- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 +++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 @@ -2,18 +2,20 @@ package com.zarudama.libgdxtest;
@@ -628,7 +616,7 @@ index 5ab4749..e97625e 100644
  import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 +import com.badlogic.gdx.math.Vector2;
 
- public class LibGdxSample extends ApplicationAdapter {
+ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
      SpriteBatch batch;
      BitmapFont font;
      Texture img;
@@ -636,56 +624,53 @@ index 5ab4749..e97625e 100644
 +    Vector2 pos;
 
      @Override
-    public void create () {
-@@ -21,14 +23,30 @@ public class LibGdxSample extends ApplicationAdapter {
-         font = new BitmapFont();
-         img = new Texture(&quot;badlogic.jpg&quot;);
-         sprite = new Sprite(img);
-+        pos = new Vector2();
-     }
+    public void create <span style="color:#555">()</span> <span style="color:#555">{</span>
+@@ -21,14 +23,30 @@ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
+         <span style="color:#033">font</span> <span style="color:#555">=</span> new BitmapFont<span style="color:#555">()</span>;
+         <span style="color:#033">img</span> <span style="color:#555">=</span> new Texture<span style="color:#555">(</span><span style="color:#c30">&#34;badlogic.jpg&#34;</span><span style="color:#555">)</span>;
+         <span style="color:#033">sprite</span> <span style="color:#555">=</span> new Sprite<span style="color:#555">(</span>img<span style="color:#555">)</span>;
++        <span style="color:#033">pos</span> <span style="color:#555">=</span> new Vector2<span style="color:#555">()</span>;
+     <span style="color:#555">}</span>
 
     @Override
-    public void render () {
-+       if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-+           pos.x -= 1;
-+       }
-+       if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-+           pos.x += 1;
-+       }
-+       if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-+           pos.y += 1;
-+       }
-+       if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-+           pos.y -= 1;
-+       }
-+       String info = String.format(&quot;pos(%f,%f)&quot;, pos.x, pos.y);
+    public void render <span style="color:#555">()</span> <span style="color:#555">{</span>
++       <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.LEFT<span style="color:#555">))</span> <span style="color:#555">{</span>
++           pos.x -<span style="color:#555">=</span> <span style="color:#f60">1</span>;
++       <span style="color:#555">}</span>
++       <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.RIGHT<span style="color:#555">))</span> <span style="color:#555">{</span>
++           pos.x +<span style="color:#555">=</span> <span style="color:#f60">1</span>;
++       <span style="color:#555">}</span>
++       <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.UP<span style="color:#555">))</span> <span style="color:#555">{</span>
++           pos.y +<span style="color:#555">=</span> <span style="color:#f60">1</span>;
++       <span style="color:#555">}</span>
++       <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.DOWN<span style="color:#555">))</span> <span style="color:#555">{</span>
++           pos.y -<span style="color:#555">=</span> <span style="color:#f60">1</span>;
++       <span style="color:#555">}</span>
++       String <span style="color:#033">info</span> <span style="color:#555">=</span> String.format<span style="color:#555">(</span><span style="color:#c30">&#34;pos(%f,%f)&#34;</span>, pos.x, pos.y<span style="color:#555">)</span>;
 +
-+       sprite.setPosition(pos.x, pos.y);
++       sprite.setPosition<span style="color:#555">(</span>pos.x, pos.y<span style="color:#555">)</span>;
 +
-        dx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        sprite.draw(batch);
-        batch.draw(sprite, 0, 0);
-        font.draw(batch, info, 0, 420);
-        font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-        batch.end();
-    }
+        dx.gl.glClearColor<span style="color:#555">(</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span><span style="color:#555">)</span>;
+        Gdx.gl.glClear<span style="color:#555">(</span>GL20.GL_COLOR_BUFFER_BIT<span style="color:#555">)</span>;
+        batch.begin<span style="color:#555">()</span>;
+        sprite.draw<span style="color:#555">(</span>batch<span style="color:#555">)</span>;
+        batch.draw<span style="color:#555">(</span>sprite, <span style="color:#f60">0</span>, <span style="color:#f60">0</span><span style="color:#555">)</span>;
+        font.draw<span style="color:#555">(</span>batch, info, <span style="color:#f60">0</span>, <span style="color:#f60">420</span><span style="color:#555">)</span>;
+        font.draw<span style="color:#555">(</span>batch, <span style="color:#c30">&#34;Hello libGDX&#34;</span>, <span style="color:#f60">200</span>, <span style="color:#f60">400</span><span style="color:#555">)</span>;
+        batch.end<span style="color:#555">()</span>;
+    <span style="color:#555">}</span>
 
     @Override
-    public void dispose() {
-        font.dispose();
-        batch.dispose();
-        img.dispose();
-    }
-
-</code></pre>
-
+    public void dispose<span style="color:#555">()</span> <span style="color:#555">{</span>
+        font.dispose<span style="color:#555">()</span>;
+        batch.dispose<span style="color:#555">()</span>;
+        img.dispose<span style="color:#555">()</span>;
+    <span style="color:#555">}</span></code></pre></div>
 <p>座標を扱うのはベクトルクラスが便利なので、posフィールドを追加しています。</p>
 
 <p>また、今自分がいる場所も把握したいので、info変数にposフィールドの値を設定して描画しています。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/sample3.png" title="http://mikio.github.io/img/libgdx-beginner/sample3.png">http://mikio.github.io/img/libgdx-beginner/sample3.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/sample3.png" title="https://zarudama.github.io/img/libgdx-beginner/sample3.png">https://zarudama.github.io/img/libgdx-beginner/sample3.png</a></p>
 
 <ul>
 キーボードの入力を得るには、Gdx.input.isKeyPressedメソッドを利用します。
@@ -707,16 +692,12 @@ index 5ab4749..e97625e 100644
 </ul>
 
 <p>~/dev/libgdxtest/android/assets</p>
-
-<pre><code class="language-sh">
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"></code></pre></div>
 <p>下記のように変更します。</p>
-
-<pre><code class="language-sh"> mikio@gnudam:~/dev/libgdxtest$ git diff
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"> mikio@gnudam:~/dev/libgdxtest$ git diff
 diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.j
 ava
-index 5ab4749..cf11ba1 100644
+index 5ab4749..cf11ba1 <span style="color:#f60">100644</span>
 --- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 +++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 @@ -2,18 +2,22 @@ package com.zarudama.libgdxtest;
@@ -732,7 +713,7 @@ index 5ab4749..cf11ba1 100644
  import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 +import com.badlogic.gdx.math.Vector2;
 
- public class LibGdxSample extends ApplicationAdapter {
+ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
      SpriteBatch batch;
      BitmapFont font;
      Texture img;
@@ -741,53 +722,51 @@ index 5ab4749..cf11ba1 100644
 +    Sound sound;
 
      @Override
-     public void create () {
-@@ -21,14 +25,35 @@ public class LibGdxSample extends ApplicationAdapter {
-         font = new BitmapFont();
-                img = new Texture(&quot;badlogic.jpg&quot;);
-         sprite = new Sprite(img);
-         pos = new Vector2();
-+        sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
-     }
+     public void create <span style="color:#555">()</span> <span style="color:#555">{</span>
+@@ -21,14 +25,35 @@ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
+         <span style="color:#033">font</span> <span style="color:#555">=</span> new BitmapFont<span style="color:#555">()</span>;
+                <span style="color:#033">img</span> <span style="color:#555">=</span> new Texture<span style="color:#555">(</span><span style="color:#c30">&#34;badlogic.jpg&#34;</span><span style="color:#555">)</span>;
+         <span style="color:#033">sprite</span> <span style="color:#555">=</span> new Sprite<span style="color:#555">(</span>img<span style="color:#555">)</span>;
+         <span style="color:#033">pos</span> <span style="color:#555">=</span> new Vector2<span style="color:#555">()</span>;
++        <span style="color:#033">sound</span> <span style="color:#555">=</span> Gdx.audio.newSound<span style="color:#555">(</span>Gdx.files.internal<span style="color:#555">(</span><span style="color:#c30">&#34;jump.wav&#34;</span><span style="color:#555">))</span>;
+     <span style="color:#555">}</span>
 
      @Override
-     public void render () {
-         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-             pos.x -= 1;
-         }
-         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-             pos.x += 1;
-         }
-         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-             pos.y += 1;
-         }
-         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-             pos.y -= 1;
-         }
-         String info = String.format(&quot;pos(%f,%f)&quot;, pos.x, pos.y);
+     public void render <span style="color:#555">()</span> <span style="color:#555">{</span>
+         <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.LEFT<span style="color:#555">))</span> <span style="color:#555">{</span>
+             pos.x -<span style="color:#555">=</span> <span style="color:#f60">1</span>;
+         <span style="color:#555">}</span>
+         <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.RIGHT<span style="color:#555">))</span> <span style="color:#555">{</span>
+             pos.x +<span style="color:#555">=</span> <span style="color:#f60">1</span>;
+         <span style="color:#555">}</span>
+         <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.UP<span style="color:#555">))</span> <span style="color:#555">{</span>
+             pos.y +<span style="color:#555">=</span> <span style="color:#f60">1</span>;
+         <span style="color:#555">}</span>
+         <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.DOWN<span style="color:#555">))</span> <span style="color:#555">{</span>
+             pos.y -<span style="color:#555">=</span> <span style="color:#f60">1</span>;
+         <span style="color:#555">}</span>
+         String <span style="color:#033">info</span> <span style="color:#555">=</span> String.format<span style="color:#555">(</span><span style="color:#c30">&#34;pos(%f,%f)&#34;</span>, pos.x, pos.y<span style="color:#555">)</span>;
 
-+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-+            sound.play();
-+        }
++        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx.input.isKeyPressed<span style="color:#555">(</span>Input.Keys.SPACE<span style="color:#555">))</span> <span style="color:#555">{</span>
++            sound.play<span style="color:#555">()</span>;
++        <span style="color:#555">}</span>
 
-         Gdx.gl.glClearColor(1, 0, 0, 1);
-         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-         batch.begin();
-         batch.draw(sprite, pos.x, pos.y);
-         font.draw(batch, info, 0, 420);
-         font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-         batch.end();
-     }
+         Gdx.gl.glClearColor<span style="color:#555">(</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span><span style="color:#555">)</span>;
+         Gdx.gl.glClear<span style="color:#555">(</span>GL20.GL_COLOR_BUFFER_BIT<span style="color:#555">)</span>;
+         batch.begin<span style="color:#555">()</span>;
+         batch.draw<span style="color:#555">(</span>sprite, pos.x, pos.y<span style="color:#555">)</span>;
+         font.draw<span style="color:#555">(</span>batch, info, <span style="color:#f60">0</span>, <span style="color:#f60">420</span><span style="color:#555">)</span>;
+         font.draw<span style="color:#555">(</span>batch, <span style="color:#c30">&#34;Hello libGDX&#34;</span>, <span style="color:#f60">200</span>, <span style="color:#f60">400</span><span style="color:#555">)</span>;
+         batch.end<span style="color:#555">()</span>;
+     <span style="color:#555">}</span>
 
      @Override
-     public void dispose() {
-         font.dispose();
-+        sound.dispose();
-         batch.dispose();
-         img.dispose();
-     }
-</code></pre>
-
+     public void dispose<span style="color:#555">()</span> <span style="color:#555">{</span>
+         font.dispose<span style="color:#555">()</span>;
++        sound.dispose<span style="color:#555">()</span>;
+         batch.dispose<span style="color:#555">()</span>;
+         img.dispose<span style="color:#555">()</span>;
+     <span style="color:#555">}</span></code></pre></div>
 <p>soundクラスを使いして、playメソッドを呼ぶだけです。
 スペースキー押下でジャンプしたような効果音が鳴ります。
 最後にリソースを解放するのを忘れずに。</p>
@@ -803,14 +782,10 @@ index 5ab4749..cf11ba1 100644
 </ul>
 
 <p>~/dev/libgdxtest/android/assets</p>
-
-<pre><code class="language-sh">
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"></code></pre></div>
 <p>下記のように変更します。</p>
-
-<pre><code class="language-sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
-index 5ab4749..c345ac8 100644
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+index 5ab4749..c345ac8 <span style="color:#f60">100644</span>
 --- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 +++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 @@ -2,18 +2,24 @@ package com.zarudama.libgdxtest;
@@ -827,7 +802,7 @@ index 5ab4749..c345ac8 100644
  import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  import com.badlogic.gdx.math.Vector2;
 
- public class LibGdxSample extends ApplicationAdapter {
+ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
      SpriteBatch batch;
      BitmapFont font;
      Texture img;
@@ -837,31 +812,29 @@ index 5ab4749..c345ac8 100644
 +    Music music;
 
      @Override
-    public void create () {
-@@ -21,15 +27,48 @@ public class LibGdxSample extends ApplicationAdapter {
-         font = new BitmapFont();
-        img = new Texture(&quot;badlogic.jpg&quot;);
-         sprite = new Sprite(img);
-         pos = new Vector2();
-         sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
-+        music = Gdx.audio.newMusic(Gdx.files.internal(&quot;mixdown.mp3&quot;));
-+        music.setLooping(true);
-+        music.setVolume(0.5f);
-+        music.play();
-     }
+    public void create <span style="color:#555">()</span> <span style="color:#555">{</span>
+@@ -21,15 +27,48 @@ public class LibGdxSample extends ApplicationAdapter <span style="color:#555">{</span>
+         <span style="color:#033">font</span> <span style="color:#555">=</span> new BitmapFont<span style="color:#555">()</span>;
+        <span style="color:#033">img</span> <span style="color:#555">=</span> new Texture<span style="color:#555">(</span><span style="color:#c30">&#34;badlogic.jpg&#34;</span><span style="color:#555">)</span>;
+         <span style="color:#033">sprite</span> <span style="color:#555">=</span> new Sprite<span style="color:#555">(</span>img<span style="color:#555">)</span>;
+         <span style="color:#033">pos</span> <span style="color:#555">=</span> new Vector2<span style="color:#555">()</span>;
+         <span style="color:#033">sound</span> <span style="color:#555">=</span> Gdx.audio.newSound<span style="color:#555">(</span>Gdx.files.internal<span style="color:#555">(</span><span style="color:#c30">&#34;jump.wav&#34;</span><span style="color:#555">))</span>;
++        <span style="color:#033">music</span> <span style="color:#555">=</span> Gdx.audio.newMusic<span style="color:#555">(</span>Gdx.files.internal<span style="color:#555">(</span><span style="color:#c30">&#34;mixdown.mp3&#34;</span><span style="color:#555">))</span>;
++        music.setLooping<span style="color:#555">(</span><span style="color:#366">true</span><span style="color:#555">)</span>;
++        music.setVolume<span style="color:#555">(</span><span style="color:#f60">0</span>.5f<span style="color:#555">)</span>;
++        music.play<span style="color:#555">()</span>;
+     <span style="color:#555">}</span>
 
 
      @Override
-     public void dispose() {
-         font.dispose();
-         sound.dispose();
-+        music.dispose();
-         batch.dispose();
-         img.dispose();
-     }
- }
-</code></pre>
-
+     public void dispose<span style="color:#555">()</span> <span style="color:#555">{</span>
+         font.dispose<span style="color:#555">()</span>;
+         sound.dispose<span style="color:#555">()</span>;
++        music.dispose<span style="color:#555">()</span>;
+         batch.dispose<span style="color:#555">()</span>;
+         img.dispose<span style="color:#555">()</span>;
+     <span style="color:#555">}</span>
+ <span style="color:#555">}</span></code></pre></div>
 <p>これもMusicクラスを使用して、playメソッドを呼ぶだけです。
 ただしBGMなので、ループフラグを有効にし、ボリュームを控えめにしています。
 簡単ですね。最後にリソースを解放するのを忘れずに。</p>
@@ -871,8 +844,7 @@ index 5ab4749..c345ac8 100644
 <p>最後に、せっかくスプライトクラスを使っているので、拡縮を試してみます。</p>
 
 <p>下記のように変更してください。</p>
-
-<pre><code class="language-shmikio">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shmikio" data-lang="shmikio">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 index e52752e..1c12907 100644
 --- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 +++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
@@ -897,18 +869,15 @@ index e52752e..1c12907 100644
          batch.begin();
          sprite.draw(batch);
          font.draw(batch, info, 0, 420);
-         font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-         batch.end();
-</code></pre>
-
+         font.draw(batch, &#34;Hello libGDX&#34;, 200, 400);
+         batch.end();</code></pre></div>
 <p><code>angle</code> フィールドを追加し、 <code>Sprite#setScale</code> メソッドで拡縮しています。
 sclae値としてマイナスを与えると、画像が反転するようです。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/sample4.png" title="http://mikio.github.io/img/libgdx-beginner/sample4.png">http://mikio.github.io/img/libgdx-beginner/sample4.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/sample4.png" title="https://zarudama.github.io/img/libgdx-beginner/sample4.png">https://zarudama.github.io/img/libgdx-beginner/sample4.png</a></p>
 
 <p>ついでに回転させてみます。</p>
-
-<pre><code class="language-shmikio">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shmikio" data-lang="shmikio">diff --git a/core/src/com/zarudama/libgdxtest/LibGdxSample.java b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 index 1c12907..696c158 100644
 --- a/core/src/com/zarudama/libgdxtest/LibGdxSample.java
 +++ b/core/src/com/zarudama/libgdxtest/LibGdxSample.java
@@ -922,12 +891,12 @@ index 1c12907..696c158 100644
      Music music;
 @@ -28,6 +29,7 @@ public class LibGdxSample extends ApplicationAdapter {
          font = new BitmapFont();
-         img = new Texture(&quot;badlogic.jpg&quot;);
+         img = new Texture(&#34;badlogic.jpg&#34;);
          sprite = new Sprite(img);
 +        sprite2 = new Sprite(img);
          pos = new Vector2();
-         sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
-         music = Gdx.audio.newMusic(Gdx.files.internal(&quot;mixdown.mp3&quot;));
+         sound = Gdx.audio.newSound(Gdx.files.internal(&#34;jump.wav&#34;));
+         music = Gdx.audio.newMusic(Gdx.files.internal(&#34;mixdown.mp3&#34;));
 @@ -60,11 +62,14 @@ public class LibGdxSample extends ApplicationAdapter {
          sprite.setScale((float) Math.sin(angle));
          angle += 0.04;
@@ -941,16 +910,14 @@ index 1c12907..696c158 100644
          sprite.draw(batch);
 +        sprite2.draw(batch);
          font.draw(batch, info, 0, 420);
-         font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-         batch.end();
-</code></pre>
-
+         font.draw(batch, &#34;Hello libGDX&#34;, 200, 400);
+         batch.end();</code></pre></div>
 <p>効果がわかりにくいので、sprite2フィールドを追加し、
 スプライトを2つにしました。
 このようにスプライトを追加しても画像は共有できます。
 回転は、Sprite#setRotationメソッドで実施しています。</p>
 
-<p><a href="http://mikio.github.io/img/libgdx-beginner/sample5.png" title="http://mikio.github.io/img/libgdx-beginner/sample5.png">http://mikio.github.io/img/libgdx-beginner/sample5.png</a></p>
+<p><a href="https://zarudama.github.io/img/libgdx-beginner/sample5.png" title="https://zarudama.github.io/img/libgdx-beginner/sample5.png">https://zarudama.github.io/img/libgdx-beginner/sample5.png</a></p>
 
 <h1 id="ソース">ソース</h1>
 
@@ -961,93 +928,90 @@ index 1c12907..696c158 100644
 </ul>
 
 <p>package com.zarudama.libgdxtest</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.ApplicationAdapter</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Gdx</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.Input</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.audio.Music</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.audio.Sound</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.GL20</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.Texture</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.BitmapFont</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.Sprite</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.graphics.g2d.SpriteBatch</span><span style="color:#555">;</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">com.badlogic.gdx.math.Vector2</span><span style="color:#555">;</span>
 
-<pre><code class="language-java">import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
+<span style="color:#069;font-weight:bold">public</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">LibGdxSample</span> <span style="color:#069;font-weight:bold">extends</span> ApplicationAdapter <span style="color:#555">{</span>
+    SpriteBatch batch<span style="color:#555">;</span>
+    BitmapFont font<span style="color:#555">;</span>
+    Texture img<span style="color:#555">;</span>
+    Sprite sprite<span style="color:#555">;</span>
+    Sprite sprite2<span style="color:#555">;</span>
+    Vector2 pos<span style="color:#555">;</span>
+    Sound sound<span style="color:#555">;</span>
+    Music music<span style="color:#555">;</span>
+    <span style="color:#078;font-weight:bold">float</span> angle<span style="color:#555">;</span>
 
-public class LibGdxSample extends ApplicationAdapter {
-    SpriteBatch batch;
-    BitmapFont font;
-    Texture img;
-    Sprite sprite;
-    Sprite sprite2;
-    Vector2 pos;
-    Sound sound;
-    Music music;
-    float angle;
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">create</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+        batch <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> SpriteBatch<span style="color:#555">();</span>
+        font <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> BitmapFont<span style="color:#555">();</span>
+        img <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Texture<span style="color:#555">(</span><span style="color:#c30">&#34;badlogic.jpg&#34;</span><span style="color:#555">);</span>
+        sprite <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">);</span>
+        sprite2 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Sprite<span style="color:#555">(</span>img<span style="color:#555">);</span>
+        pos <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> Vector2<span style="color:#555">();</span>
+        sound <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">audio</span><span style="color:#555">.</span><span style="color:#309">newSound</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">files</span><span style="color:#555">.</span><span style="color:#309">internal</span><span style="color:#555">(</span><span style="color:#c30">&#34;jump.wav&#34;</span><span style="color:#555">));</span>
+        music <span style="color:#555">=</span> Gdx<span style="color:#555">.</span><span style="color:#309">audio</span><span style="color:#555">.</span><span style="color:#309">newMusic</span><span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">files</span><span style="color:#555">.</span><span style="color:#309">internal</span><span style="color:#555">(</span><span style="color:#c30">&#34;mixdown.mp3&#34;</span><span style="color:#555">));</span>
+        music<span style="color:#555">.</span><span style="color:#309">setLooping</span><span style="color:#555">(</span><span style="color:#069;font-weight:bold">true</span><span style="color:#555">);</span>
+        music<span style="color:#555">.</span><span style="color:#309">setVolume</span><span style="color:#555">(</span>0<span style="color:#555">.</span><span style="color:#309">5f</span><span style="color:#555">);</span>
+        music<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
 
-    @Override
-    public void create () {
-        batch = new SpriteBatch();
-        font = new BitmapFont();
-        img = new Texture(&quot;badlogic.jpg&quot;);
-        sprite = new Sprite(img);
-        sprite2 = new Sprite(img);
-        pos = new Vector2();
-        sound = Gdx.audio.newSound(Gdx.files.internal(&quot;jump.wav&quot;));
-        music = Gdx.audio.newMusic(Gdx.files.internal(&quot;mixdown.mp3&quot;));
-        music.setLooping(true);
-        music.setVolume(0.5f);
-        music.play();
-    }
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">render</span> <span style="color:#555">()</span> <span style="color:#555">{</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">LEFT</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            pos<span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">-=</span> 1<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">RIGHT</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            pos<span style="color:#555">.</span><span style="color:#309">x</span> <span style="color:#555">+=</span> 1<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">UP</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            pos<span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">+=</span> 1<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">DOWN</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            pos<span style="color:#555">.</span><span style="color:#309">y</span> <span style="color:#555">-=</span> 1<span style="color:#555">;</span>
+        <span style="color:#555">}</span>
+        <span style="color:#09f;font-style:italic">//String info = String.format(&#34;pos(%f,%f)&#34;, pos.x, pos.y);
+</span><span style="color:#09f;font-style:italic"></span>        String info <span style="color:#555">=</span> <span style="color:#c30">&#34;&#34;</span><span style="color:#555">;</span> <span style="color:#09f;font-style:italic">//html版ではコンパイルできない。
+</span><span style="color:#09f;font-style:italic"></span>
+        <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>Gdx<span style="color:#555">.</span><span style="color:#309">input</span><span style="color:#555">.</span><span style="color:#309">isKeyPressed</span><span style="color:#555">(</span>Input<span style="color:#555">.</span><span style="color:#309">Keys</span><span style="color:#555">.</span><span style="color:#309">SPACE</span><span style="color:#555">))</span> <span style="color:#555">{</span>
+            sound<span style="color:#555">.</span><span style="color:#309">play</span><span style="color:#555">();</span>
+        <span style="color:#555">}</span>
+        sprite<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>pos<span style="color:#555">.</span><span style="color:#309">x</span><span style="color:#555">,</span> pos<span style="color:#555">.</span><span style="color:#309">y</span><span style="color:#555">);</span>
+        sprite<span style="color:#555">.</span><span style="color:#309">setScale</span><span style="color:#555">((</span><span style="color:#078;font-weight:bold">float</span><span style="color:#555">)</span> Math<span style="color:#555">.</span><span style="color:#309">sin</span><span style="color:#555">(</span>angle<span style="color:#555">));</span>
+        angle <span style="color:#555">+=</span> 0<span style="color:#555">.</span><span style="color:#309">04</span><span style="color:#555">;</span>
 
-    @Override
-    public void render () {
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            pos.x -= 1;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            pos.x += 1;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            pos.y += 1;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            pos.y -= 1;
-        }
-        //String info = String.format(&quot;pos(%f,%f)&quot;, pos.x, pos.y);
-        String info = &quot;&quot;; //html版ではコンパイルできない。
+        sprite2<span style="color:#555">.</span><span style="color:#309">setPosition</span><span style="color:#555">(</span>200<span style="color:#555">,</span> 300<span style="color:#555">);</span>
+        sprite2<span style="color:#555">.</span><span style="color:#309">setRotation</span><span style="color:#555">(</span>angle<span style="color:#555">);</span>
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            sound.play();
-        }
-        sprite.setPosition(pos.x, pos.y);
-        sprite.setScale((float) Math.sin(angle));
-        angle += 0.04;
+        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClearColor</span><span style="color:#555">(</span>1<span style="color:#555">,</span> 0<span style="color:#555">,</span> 0<span style="color:#555">,</span> 1<span style="color:#555">);</span>
+        Gdx<span style="color:#555">.</span><span style="color:#309">gl</span><span style="color:#555">.</span><span style="color:#309">glClear</span><span style="color:#555">(</span>GL20<span style="color:#555">.</span><span style="color:#309">GL_COLOR_BUFFER_BIT</span><span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">begin</span><span style="color:#555">();</span>
+        sprite<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        sprite2<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">);</span>
+        font<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">,</span> info<span style="color:#555">,</span> 0<span style="color:#555">,</span> 420<span style="color:#555">);</span>
+        font<span style="color:#555">.</span><span style="color:#309">draw</span><span style="color:#555">(</span>batch<span style="color:#555">,</span> <span style="color:#c30">&#34;Hello libGDX&#34;</span><span style="color:#555">,</span> 200<span style="color:#555">,</span> 400<span style="color:#555">);</span>
+        batch<span style="color:#555">.</span><span style="color:#309">end</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
 
-        sprite2.setPosition(200, 300);
-        sprite2.setRotation(angle);
-
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        sprite.draw(batch);
-        sprite2.draw(batch);
-        font.draw(batch, info, 0, 420);
-        font.draw(batch, &quot;Hello libGDX&quot;, 200, 400);
-        batch.end();
-    }
-
-    @Override
-    public void dispose() {
-        sound.dispose();
-        music.dispose();
-        batch.dispose();
-        font.dispose();
-        img.dispose();
-    }
-}
-</code></pre>
-
+    <span style="color:#99f">@Override</span>
+    <span style="color:#069;font-weight:bold">public</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">dispose</span><span style="color:#555">()</span> <span style="color:#555">{</span>
+        sound<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        music<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        batch<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        font<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+        img<span style="color:#555">.</span><span style="color:#309">dispose</span><span style="color:#555">();</span>
+    <span style="color:#555">}</span>
+<span style="color:#555">}</span></code></pre></div>
 <h1 id="おわりに">おわりに</h1>
 
 <ul>
@@ -1063,45 +1027,45 @@ public class LibGdxSample extends ApplicationAdapter {
 <li>物理画面に依存しない画面表示</li>
 <li>画面遷移</li>
 などなどです。
-<a href="http://mikio.github.io/article/2014/06/02_libgdx-beginner2.html" title="次回">次回</a> は、これらの処理を学んでいきます。
+<a href="/posts/libgdx-beginner2/" title="次回">次回</a> は、これらの処理を学んでいきます。
 </ul>
 
 <h1 id="参考書籍">参考書籍</h1>
 
-<pre><code>&lt;p&gt;
-&lt;div class=&quot;figure&quot; style=&quot;float:left&quot;&gt;
-&lt;/p&gt;
-&lt;p&gt;
-&lt;a href=&quot;http://www.amazon.co.jp/gp/product/4844331132/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4844331132&amp;linkCode=as2&amp;tag=ocha04-22&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=4844331132&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=ocha04-22&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-jp.amazon-adsystem.com/e/ir?t=ocha04-22&amp;l=as2&amp;o=9&amp;a=4844331132&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
-&lt;/p&gt;
-&lt;p&gt;
-&lt;/div&gt;
-&lt;/p&gt;
+<p>「<a href="https://amzn.to/3S70Tbm" title="Androidゲームプログラミング A to Z">Androidゲームプログラミング A to Z</a> 」</p>
 
-</code></pre>
+<p><a href="/img/amazon_android_gameprogiraming_a_to_z.jpg" title="/img/amazon_android_gameprogiraming_a_to_z.jpg">/img/amazon_android_gameprogiraming_a_to_z.jpg</a></p>
 
-<p>libGDXの作者が書いた本。Androidでゲームを作るための基本を独自のフレームワーク作成を通して解説しています。
-libGDXの解説ではないけれど、その思想は当然libGDXにも引き継がれています。もちろんlibGDXの理解もしやすくなります。
-また、Androidの本ではありますが、スマホに特化したわけでもなく、
-どんなゲーム開発にも通用しそうな内容ばかりです。
-実践的かつ基本的で自分は退屈せずに読めました(特にMVCについての言及が良い)。
-そういう意味でこの本は、すべての初級ゲーム開発者におすすめできる本かと思います。
-ただし一部内容が古いので注意してください(沢山売れて第2版が翻訳されればいいんですが)。
-それでもlibGDXをやるなら読んでいて損はないと思います。</p>
-
-<pre><code>&lt;p&gt;
-&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-</code></pre>
-
-        </article>
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/uim-skk/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>uim-skkでsticky-shiftを実現する</a>
   </div>
-</section>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/emacs-win-taskbar/">Windows7でemacsのアイコンが2重に表示されるのを防ぐ<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
 
-
-                </div>
-            </div></div>
-        <script src="/js/ui.js"></script>
-    </body>
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>

@@ -6,16 +6,17 @@
     <description>Recent content in oblog on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
+    <lastBuildDate>Sat, 16 Feb 2013 14:01:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/oblog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>org-modeの段落の改行を削除したい</title>
-      <link>https://zarudama.github.io/posts/parma-link/paragrah-html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://zarudama.github.io/posts/paragrah-html/</link>
+      <pubDate>Sat, 16 Feb 2013 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/posts/parma-link/paragrah-html/</guid>
+      <guid>https://zarudama.github.io/posts/paragrah-html/</guid>
       <description>当ブログは、o-blog で運営していて、org-modeで原稿を書いています。 その際、頻繁に fill-paragraph(M-q) を使用するのですが、 これが org-export-as-html すると都合が悪いのです。
 どう都合が悪いかというと、段落の文のなかに半角スペースが紛れこんでしまうのです。
 例をあげると

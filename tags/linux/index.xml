@@ -6,36 +6,73 @@
     <description>Recent content in linux on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 03 Nov 2019 20:16:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 25 Mar 2014 14:01:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>sudoで環境変数を引き継ぎたい</title>
-      <link>https://zarudama.github.io/post/2012/03/sudo_env_variable/</link>
-      <pubDate>Sun, 03 Nov 2019 20:16:00 +0900</pubDate>
+      <title>ちょい足しawkの基本</title>
+      <link>https://zarudama.github.io/posts/awk/</link>
+      <pubDate>Tue, 25 Mar 2014 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/post/2012/03/sudo_env_variable/</guid>
-      <description>&amp;#30446;&amp;#27425; 方法 経過 別解 sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。 方法 -Eオプションを追加する。 sudo -E ls -la $HOME</description>
-    </item>
-    
-    <item>
-      <title>ファイルオープン数が上限値に達した</title>
-      <link>https://zarudama.github.io/post/2013/03/file_open/</link>
-      <pubDate>Sun, 03 Nov 2019 19:51:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2013/03/file_open/</guid>
-      <description>&amp;#30446;&amp;#27425; 確認方法 一時的な設定方法 システム全体 ユーザ毎(カレントユーザ) 恒久的な設定方法 - sysctl.conf - limits.conf - メモ CentOSで「too many files」なるエラー</description>
+      <guid>https://zarudama.github.io/posts/awk/</guid>
+      <description>基本 コンマンドラインでちょい足し的に使うときのカンペ。
+$ awk &amp;#39;[BEGIN {各行を処理する前の処理}] [パターン] {各行の処理} [END {各行を処理した後の処理}]&amp;#39;  BEGIEN, END, パターンは省略できる(&#34;[]&#34;でくくったもの) 例は以下。アクセスログのステータスコードが200のものを出力  awk &#39;$4 == &amp;quot;200&amp;quot; {print $4,$5}&#39;# $4が200のとき、$4,$5を表示 awk &#39;$4 != &amp;quot;200&amp;quot; { print }&#39; # $4が200でないとき、1行まるごと表示 awk &#39;$4 ~ /200/ { print }&#39; # $4が200のとき、1行まるごと表示(正規表現) awk &#39;$1 ~ /^a/ { print}&#39; # $1が&amp;quot;a&amp;quot;で始まるとき、表示(正規表現) awk &#39;$1 !~ /^a/{ print}&#39; # $1が&amp;quot;a&amp;quot;以外で始まるとき、表示(正規表現)  (例)
+$ cat access.log | awk &amp;#39;$4 = &amp;#34;200&amp;#34; {print $5$6}&amp;#39; | sed &amp;#39;s/\&amp;#34;//g&amp;#39; デリミタを変更するには Fオプションを使用する。カンマの場合は以下のとおり。</description>
     </item>
     
     <item>
       <title>特定の日付より古いファイルを削除する方法</title>
-      <link>https://zarudama.github.io/post/2014/03/linux_find/</link>
-      <pubDate>Sun, 03 Nov 2019 17:08:00 +0900</pubDate>
+      <link>https://zarudama.github.io/posts/find-date-del/</link>
+      <pubDate>Sat, 15 Mar 2014 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/post/2014/03/linux_find/</guid>
-      <description>&amp;#30446;&amp;#27425; 答え 解説 ついでに日数指定の復習 timeの意味 TODO 日数の指定 参考 例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。 f</description>
+      <guid>https://zarudama.github.io/posts/find-date-del/</guid>
+      <description>例えば一年以上前の3/3より前(3/2以前)のログファイルを削除したい場合。
+/img/find-del/find1.png
+findがすぐに思いつくが、findには日付指定のオプションが見あたらない。
+答え touchでダミーファイルを作って、findのnewerオプションと否定演算子を使い、xargsとrmで削除する。
+$ touch -t 201303030000 /tmp/hoge $ find /usr/local/apache/logs \! -newer /tmp/hoge|sort|less 中身を確認して問題なさそうなら
+$ find /usr/local/apache/logs \! -newer /tmp/hoge|xargs rm 解説 普通に考えると find を使って -mtime などで日数を指定する。
+$ find /usr/local/apache/logs -mtime +180|wc -l 554 $ find /usr/local/apache/logs -mtime +90|wc -l 757 でも今回の要件の場合日数を計算するのが面倒なので日付を直接指定して削除したい。 しかし man find してもそんなオプションはない。 だが良くみるとファイルのタイムスタンプを基準にするオプション newer ならある。 このオプションを使えばなんとかなりそうである。
+まず下記のようにダミーのファイルを作成する。
+$ touch -t 201303030000 /tmp/hoge tオプションの意味は YYYYMMDDhhmm 。詳細は man touch 参照。
+で、このファイルのタイムスタンプを基準に newer を使えばよい。
+$ find /usr/local/apache/logs -newer hoge|sort|less これで2013年3月3日以降に変更されたファイルを抽出できる。 だが今回の場合は「指定日以前」のファイルを抽出したいのでこれでは駄目だ。</description>
+    </item>
+    
+    <item>
+      <title>ファイルオープン数が上限値に達した</title>
+      <link>https://zarudama.github.io/posts/file-open/</link>
+      <pubDate>Sat, 02 Mar 2013 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/file-open/</guid>
+      <description>CentOSで「too many files」なるエラーが多発したのでその対応策をメモしておく。
+ 下記を参考にした。 http://thinkit.co.jp/free/tech/23/5 http://www.matsuaz.com/matsumotojs/2010/12/24/1293117835413.html  確認方法 ファイル上限値の確認コマンドは以下。
+$ cat /proc/sys/fs/file-nr 1792 0 566699  左から順に 今までにオープンしたことのあるファイルの最大数 現在オープンしているファイルの総数 オープン可能なファイル数の上限 となる。  一時的な設定方法 システム全体 現状のファイルディスクリプタの上限値を確認
+$ cat /proc/sys/fs/file-nr 1792 0 566699 一時的にファイルディスクリプタの上限値を変更する。
+$ /sbin/sysctl -w fs.file-max = 1234567 設定値の確認
+$ cat /proc/sys/fs/file-nr 1216 0 1234567 ユーザ毎(カレントユーザ) 現在のセッション(自分が起動したプロセス)に対して、 ファイルディスクリプタ上限値を設定するには、 ulimit を使用する。
+ulimitはユーザに対していろいろな制限を設定するコマンド。 ulimit -a で全ての設定値を確認できる。
+$ ulimit -a core file size (blocks, -c) 0 data seg size (kbytes, -d) unlimited scheduling priority (-e) 0 file size (blocks, -f) unlimited pending signals (-i) 114688 max locked memory (kbytes, -l) 32 max memory size (kbytes, -m) unlimited open files (-n) 1024 pipe size (512 bytes, -p) 8 POSIX message queues (bytes, -q) 819200 real-time priority (-r) 0 stack size (kbytes, -s) 10240 cpu time (seconds, -t) unlimited max user processes (-u) 114688 virtual memory (kbytes, -v) unlimited file locks (-x) unlimited ファイルディスクリプタの上限値を設定するには、 ulimit -n N でファイルディスクリプタ上限をN個に変更できる。</description>
+    </item>
+    
+    <item>
+      <title>sudoで環境変数を引き継ぎたい</title>
+      <link>https://zarudama.github.io/posts/sudo/</link>
+      <pubDate>Sat, 10 Mar 2012 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/sudo/</guid>
+      <description>sudo でコマンドを実行する際、今現在のログインアカウントの環境変数を引き継いで実行したい。
+方法 -Eオプションを追加する。
+$ sudo -E ls -la $HOME  -Eは実行したいコマンドの直前に置く。
+経過 sudo -u hogeなどで実行すると、sudoを実行したユーザの環境変数が引き継がれない。 昔は、こんなこと考えずに引き継がれてた気がするが、どうやらsudoのバージョンが上がって 仕様変更されたらしい。
+ http://arika.org/2009/04/24/sudo-and-env  環境変数を引き継ぐためにはvisudoを使ってsudoersファイルに環境変数を記述するのが 定石のようだが、/etc配下はできるだけ触りたくない。
+そこで下記の方法を見つけた。-Eをつけるだけで良いらしい。
+ http://d.hatena.ne.jp/Yudoufu/20110326/1301129885  ただし、man sudo しても-Eオプションは何故か載っていなかった。 （manにないだけで実際には使用できる。)
+manの最後にver1.6.6とあるのでマニュアルが古いと思われる。 sudo[Enter]で表示されるUsageにはEオプションは存在するので。
+別解 -u オプションを使用して別ユーザーとしてsudoを実行したい場合、 そのユーザーの .bashrc や /etc/profile に定義してある設定を使用したい場合がある。 そんなときは、-i オプションを使用すれば良い。
+sudo -u taro -i env</description>
     </item>
     
   </channel>

@@ -6,104 +6,97 @@
     <description>Recent content in libGDX入門 on ざる魂</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 08 Nov 2019 16:24:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 05 Jul 2014 14:01:39 +0900</lastBuildDate>
     
 	<atom:link href="https://zarudama.github.io/tags/libgdx%E5%85%A5%E9%96%80/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>libGDX入門 その01 画像を表示したり音を鳴らしたり</title>
-      <link>https://zarudama.github.io/post/2014/05/libgdx01/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
+      <title>libGDX入門 その05 ゲームデータの保存</title>
+      <link>https://zarudama.github.io/posts/libgdx-beginner5/</link>
+      <pubDate>Sat, 05 Jul 2014 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/post/2014/05/libgdx01/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに プロジェクトを作る  注意点  IntelliJで使う  プロジェクトのインポート PC版を動かす Android版を動かす HTML版を動かす  Eclipseで使う  Gradleプラグインのインストール プロジェクトのインポート PC版を動かす Android版を動かす HTML版を動かす  コマンドラインで使う  PC版を動かす Android版を動かす HTML版を動かす  基本的なクラスについて 文字表示 スプライトクラスを使用する。 座標系 画像を動かす 効果音を鳴らす BGMを鳴らす 画像を拡大・縮小・回転してみる ソース おわりに 参考書籍   
-はじめに libGDX は、Javaでゲームを作るためのライブラリです。マルチプラットフォーム対応で、PC(Windows/Linux/Mac), Android, iOS, HTMLに対応しています。
-libGDXは、日本での知名度はイマイチのようですが、海外ではかなり人気があるようです。実際、ググってみると、英語のドキュメントは沢山みかけますが、日本語のドキュメントはまだまだ少数です。ただし、公式ドキュメントは大変充実しています(英語のみ)。
- https://github.com/libgdx/libgdx/wiki  実のところこのドキュメントを読めば大抵の事は解決します。
-ただ、私もそうなんですが、日本語情報がないってだけで、重い腰が上がらないって人も多いと思います。そんな人向けに(というより自分の勉強ついでに)、そして少しでもlibGDXを使用する人が増えることを願い、少しずつ記事を書いていこうと思います。
-この記事が、libGDXを学ぶためのきっかけになって頂ければ幸いです。
-その2は こちら。
-このシリーズの目次は こちら 。
-プロジェクトを作る libGDXでは、専用のプロジェクト生成アプリが用意されています。マルチプラットフォームの性質上、プロジェクトの構成が複雑なので素直にこのアプリを使用したほうが良いかと思います。
- http://libgdx.badlogicgames.com/download.html  起動は、以下のような感じです。Windowsならばダブルクリックで起動できるでしょう。
-$ java -jar gdx-setup.</description>
-    </item>
-    
-    <item>
-      <title>libGDX入門 その02 カメラとビューポート</title>
-      <link>https://zarudama.github.io/post/2014/06/libgdx02/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2014/06/libgdx02/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに 物理画面に依存しない画面表示 カメラとビューポート 実際のコーディング  カメラの導入 ビューポートの導入  背景の追加 カメラの位置調整  ワールド軸の描画 setToOrthメソッド  カメラを動かす UI用カメラの導入  Windowサイズの変更  タッチ処理 ソース おわりに 参考URL 参考書籍 変更履歴   
-はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。
-前回 は、プロジェクトを作って、以下のことを学びました。
- 画像の表示 キーボードによる操作 BGMの再生 効果音の再生  今回は次のことを学びます。
- 物理画面に依存しない画面表示 タッチ処理  物理画面に依存しない画面表示 物理画面とは何でしょうか？ここでは次のように定義します。
- スマホやタブレット画面解像度 デスクトップのウィンドウサイズ  Androidには様々な画面サイズがありますし、 iPhoneもモデルチェンジ毎に画面サイズが変化しています。これら様々な画面サイズのことを考慮しないと、意図した通りの画面が表示できません。
-ゲームを作るときの基本として、物理画面でプログラムしないというのがあります。物理的なディスプレイのサイズに依存した座標管理をすると、移植性が下がり仕様変更に弱くなったり、端末毎の画面サイズの違いを吸収できないプログラムになってしまいます。
-例えば横スクロールアクションを作ったときに、 Aさんの画面は小さいから敵の動きがところ狭しとなるところが、 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、なんてことが発生します。端末によって難易度が変わってくるのです。
-  &amp;#22259;1: 端末の小さいAさんは、端末の大きいBさんより不利になる
-  実は既にこの問題は、私の手元で発生しています。下記は、Nexus7(2013)で表示したサンプルの画面です。
-  &amp;#22259;2: nexus7の画面</description>
-    </item>
-    
-    <item>
-      <title>libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</title>
-      <link>https://zarudama.github.io/post/2014/06/libgdx03/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
-      
-      <guid>https://zarudama.github.io/post/2014/06/libgdx03/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに ログの出しかた スプライトアニメーション バーチャルパッド テクスチャラップ ソースコード 今回の記事のアセット一覧  テクスチャ 背景 BGM  おわりに 参考書籍 変更履歴  2014/6/21  注釈   
-はじめに tag libGDX libGDX入門 libGDX を勉強するついでに解説記事を書く シリーズ 3回目です。
+      <guid>https://zarudama.github.io/posts/libgdx-beginner5/</guid>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。
 前回 は、以下のことを学びました。
- カメラとビューポート タッチ処理  今回は次のことを学びます。
- ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  前回までは、最初の雛形コードに徐々にコードを継ぎたして完成させるというチュートリアル形式でしたが、実際にコードを入力しながら実行していくのは少ないんじゃないかという疑問と(自分も含めて)、記事を書くのが大変なので(手抜き)、最初に一気に解説し、最後にコードを載せるスタイルにします。
-ログの出しかた プログラムの動作を追うとき、ログ出力はとても重宝しますよね。デバッガもいいですが、私は昔ながらのデバッグプリントで追うのが好きです。
-ということで、ログ出力の方法を解説します。
+ Screenインタフェイスを使った画面遷移  今回は、前回作ったゲームに以下の機能を追加します。
+ BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示  これらの情報は、ゲームを再開したときも保持していて欲しいですね。
+そこで今回は、これら3つの情報を com.badlogic.gdx.Preferences というクラスを利用して 保存していきます。
+公式情報は下記にあります。
+ https://libgdx.com/wiki/preferences https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/Preferences.html  注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、 扱えるのはごく小さなデータのみです1。 また、データはテキストとして保存されるので、 ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
+インスタンスの取得方法 さらに、ゲーム中の複雑なデータを扱う場合は、 データをシリアライズしたりして保存する必要があるかと思います。 これらについては、今回は扱いません。
+下記で取得できます(公式からの引用)。
+Preferences prefs = Gdx.app.getPreferences(&amp;#34;My Preferences&amp;#34;); 文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。 個人的にこの名前は、javaのパッケージ名が良いかと思います。 (ただしそれがユニークであるという保証がある場合のみ)
+というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。 今回の例でいうと下記の名前になります。
+Preferences prefs = Gdx.app.getPreferences(&amp;#34;com.zarudama.fishcatch&amp;#34;);  この辺の考察は下記が詳しいので、一読をおすすめします。 doc.tir.ne.jp/devel/clan/libgdx preferencesについて  値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.util.Map クラスに少し似ています。
 公式から引用します。
-Gdx.app.log(&amp;#34;MyTag&amp;#34;, &amp;#34;my informative message&amp;#34;); Gdx.app.error(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;, exception); Gdx.app.debug(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;); log メソッドは普通に情報を出力したい場合、 error メソッドは、例外を共なうようなエラー出力(第3引数にはException型)をしたい場合、 debug メソッドは開発時のみ出力したい場合に使用します。</description>
+prefs.putString(&amp;#34;name&amp;#34;, &amp;#34;Donald Duck&amp;#34;); String name = prefs.</description>
     </item>
     
     <item>
       <title>libGDX入門 その04 画面遷移</title>
-      <link>https://zarudama.github.io/post/2014/06/libgdx04/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
+      <link>https://zarudama.github.io/posts/libgdx-beginner4/</link>
+      <pubDate>Sun, 29 Jun 2014 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/post/2014/06/libgdx04/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに ライフサイクルについて 画面遷移 Screenインタフェイス  show()とhide() dispose()  dispose()の方法  その1 hide() で解放する その2 Game#dispose() で全て解放する その3 Game クラスを拡張する  ゲームっぽい何か  ソースコードについて アセットの管理について  ゲーム中のフォントについて おわりに 参考書籍   
-はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。
+      <guid>https://zarudama.github.io/posts/libgdx-beginner4/</guid>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 4回目です。
 前回 は、以下のことを学びました。
  ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  今回は、簡単なゲームを作ったので、その中の画面遷移を解説します。
 ライフサイクルについて 今まであえて説明を避けてきたのですが(面倒そうなので←)、 Screenインタフェイスを扱うにあたり避けられそうもなかったので調査しました。
 libGDXのライフサイクルと呼びだしメソッドの関係は以下のようになっています。
-  &amp;#22259;1: libgdxのライフサイクル
-  メソッドは、 ApplicationListener のものです。
-注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。
-   create() アプリケーションが新しく生成された時に呼ばれます。     resize() アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。   pause() スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。   resume() 待機状態から、ウィンドウがアクティブになった時に呼ばれます。   dispose() アプリケーションが破棄される時に呼ばれます。    ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。</description>
+/img/libgdx-beginner/4/life-cycle.png
+メソッドは、 ApplicationListener のものです。
+注意して欲しいのは、PC版とAndroidで微妙に挙動が違うということです。 特にPC版は、待機状態のときもrenderメソッドが呼ばれ続けるので注意が必要です。 私はMacを持っていないのでわかりませんが、iOSも考慮したら更に違いがあるかもしれません。
+   create() アプリケーションが新しく生成された時に呼ばれます。   resize() アプリケーションが新しく起動されたとき、PC版でウィンドウサイズが変化したとき、スマホ版で、端末の向きが変わったときなどに呼ばれます。   pause() スマホで電話が鳴った時やHome画面にした時、PC版でフォーカスが外れたときなどに呼ばれます。   resume() 待機状態から、ウィンドウがアクティブになった時に呼ばれます。   dispose() アプリケーションが破棄される時に呼ばれます。     ライフサイクルに関する情報は下記が非常に詳しいです。一読をお勧めします。 clan libGDXメモ 上記サイトの説明にもありますが、ゲームの情報を保存するときは、 pause() が良いようです。   公式ドキュメントは下記にあります。 https://libgdx.com/wiki/app/the-life-cycle  画面遷移 今回作成したゲームでは、次のような遷移があります。
+/img/libgdx-beginner/4/screen.png
+まず「メインメニュー」が表示され、 「START」をタップすると「ゲーム」画面になり、 「QUIT」をタップすると「メインメニュー」画面に戻ります。 非常にシンプルですね。
+その1でも紹介しましたが、関連するクラス図を再掲します。
+/img/libgdx-beginner/4/class.png</description>
     </item>
     
     <item>
-      <title>libGDX入門 その05 ゲームデータの保存</title>
-      <link>https://zarudama.github.io/post/2014/07/libgdx05/</link>
-      <pubDate>Fri, 08 Nov 2019 16:24:00 +0900</pubDate>
+      <title>libGDX入門 その03 ログ出力とアニメーションとバーチャルパッド</title>
+      <link>https://zarudama.github.io/posts/libgdx-beginner3/</link>
+      <pubDate>Thu, 19 Jun 2014 14:01:39 +0900</pubDate>
       
-      <guid>https://zarudama.github.io/post/2014/07/libgdx05/</guid>
-      <description>&amp;#30446;&amp;#27425;  はじめに 注意 インスタンスの取得方法 値の書込みと読込み データを保存するタイミング 保存される場所 実際の実装例 ソースコード おわりに 参考書籍 注釈   
-はじめに libGDX を勉強するついでに解説記事を書く シリーズ 5回目です。
+      <guid>https://zarudama.github.io/posts/libgdx-beginner3/</guid>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 3回目です。
 前回 は、以下のことを学びました。
- Screenインタフェイスを使った画面遷移  今回は、前回作ったゲームに以下の機能を追加します。
- BGMのON/OFF機能 SEのON/OFF機能 HiScoreの表示  これらの情報は、ゲームを再開したときも保持していて欲しいですね。
-そこで今回は、これら3つの情報を com.badlogic.gdx.Preferences というクラスを利用して保存していきます。
-公式情報は下記にあります。
- https://github.com/libgdx/libgdx/wiki/Preferences http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/Preferences.html  注意 今回「ゲームデータの保存」というタイトルにしてしまいましたが、扱えるのはごく小さなデータのみです1。また、データはテキストとして保存されるので、ユーザーに改竄されて困るようなものは暗号化するなどの処置が必要です。
-さらに、ゲーム中の複雑なデータを扱う場合は、データをシリアライズしたりして保存する必要があるかと思います。これらについては、今回は扱いません。
-インスタンスの取得方法 下記で取得できます(公式からの引用)。
-Preferences prefs = Gdx.app.getPreferences(&amp;#34;My Preferences&amp;#34;); 文字列の部分が名前になります。名前を変えればひとつのアプリで複数のインスタンスを扱えるようです。個人的にこの名前は、javaのパッケージ名が良いかと思います。 (ただしそれがユニークであるという保証がある場合のみ)
-というのものPreferenceというのは、対象の端末全アプリの中でユニークである方が安全だからです。今回の例でいうと下記の名前になります。
-Preferences prefs = Gdx.app.getPreferences(&amp;#34;com.zarudama.fishcatch&amp;#34;); この辺の考察は下記が詳しいので、一読をおすすめします。
- doc.tir.ne.jp/devel/clan/libgdx preferencesについて  値の書込みと読込み libGDXの Preferences は、Javaの標準クラスの java.util.prefs.Preferences や java.</description>
+ カメラとビューポート タッチ処理  今回は次のことを学びます。
+ ログ出力 スプライト表示のアニメーション テクスチャラップ バーチャルパッド  前回までは、最初の雛形コードに徐々にコードを継ぎたして完成させるというチュートリアル形式でしたが、 実際にコードを入力しながら実行していくのは少ないんじゃないかという疑問と(自分も含めて)、 記事を書くのが大変なので(手抜き)、最初に一気に解説し、最後にコードを載せるスタイルにします。
+ログの出しかた プログラムの動作を追うとき、ログ出力はとても重宝しますよね。 デバッガもいいですが、私は昔ながらのデバッグプリントで追うのが好きです。
+ということで、ログ出力の方法を解説します。
+公式から引用します。
+Gdx.app.log(&amp;#34;MyTag&amp;#34;, &amp;#34;my informative message&amp;#34;); Gdx.app.error(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;, exception); Gdx.app.debug(&amp;#34;MyTag&amp;#34;, &amp;#34;my error message&amp;#34;); log メソッドは普通に情報を出力したい場合、 =error= メソッドは、例外を共なうようなエラー出力(第3引数にはException型)をしたい場合、 =debug= メソッドは開発時のみ出力したい場合に使用します。
+第一引数の MyTag は識別子ですね。一般的にはにはクラス名などが多いようです。 自分は下記のようにクラスフィールドを定義しておき、この LOG_TAG を使用します。
+public static final String LOG_TAG = GameScreen.class.getSimpleName(); こんな感じです。
+Gdx.app.log(LOG_TAG, &amp;#34;my informative message&amp;#34;); 次のように表示されます。
+GameScreen: my informative message こうするとログ出力にクラス名も一緒に表示されるので、 どこで出力したメッセージか一目でわかるので便利です。</description>
+    </item>
+    
+    <item>
+      <title>libGDX入門 その02 カメラとビューポート</title>
+      <link>https://zarudama.github.io/posts/libgdx-beginner2/</link>
+      <pubDate>Mon, 02 Jun 2014 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/libgdx-beginner2/</guid>
+      <description>はじめに libGDX を勉強するついでに解説記事を書く シリーズ 2回目です。
+前回 は、プロジェクトを作って、以下のことを学びました。
+ 画像の表示 キーボードによる操作 BGMの再生 効果音の再生  今回は次のことを学びます。
+ 物理画面に依存しない画面表示 タッチ処理  物理画面に依存しない画面表示  物理画面とは何でしょうか？ここでは次のように定義します。 スマホやタブレット画面解像度 デスクトップのウィンドウサイズ Androidには様々な画面サイズがありますし、 iPhoneもモデルチェンジ毎に画面サイズが変化しています。 これら様々な画面サイズのことを考慮しないと、 意図した通りの画面が表示できません。  ゲームを作るときの基本として、物理画面でプログラムしないというのがあります。 物理的なディスプレイのサイズに依存した座標管理をすると、 移植性が下がり仕様変更に弱くなったり、 端末毎の画面サイズの違いを吸収できないプログラムになってしまいます。
+例えば横スクロールアクションを作ったときに、 Aさんの画面は小さいから敵の動きがところ狭しとなるところが、 Bさんの端末だと画面が大きいからフィールドが遠くまで見わたせて楽々プレイできる、 なんてことが発生します。端末によって難易度が変わってくるのです。
+https://zarudama.github.io/img/libgdx-beginner/2/screen2.png
+実は既にこの問題は、私の手元で発生しています。 下記は、Nexus7(2013)で表示したサンプルの画面です。
+http://zarudama.github.io/img/libgdx-beginner/2/004.png
+/img/libgdx-beginner/2/003.png
+Nexus7版は、PCの画面と全然違いますね。キャラクターや文字が非常に小さくなってます。 これはPC版が640x480の解像度なのに対して、Nexus7版は1920x1200の解像度で表示しているからです。 この状態でゲームを作ってしまったら全然別ものになってしまいますよね。 ちなみにMac持ってないのでiOS系ではどうなるかわかりません。
+というわけで、どの端末でも公平に画面表示できるようにひと工夫必要になってきます (こういう処理は、ゲームづくりの序盤でやっておかないと、あとから変更するのは大変なので さっさと済ませておきたいことのひとつですね)。
+カメラとビューポート ではどうやってこの問題を解決するか。それにはカメラとビューポートを使用します。
+カメラとは、ゲームの世界を現実世界のディスプレイに届けるためのオブジェクトです。
+ビューポートとは、カメラの捉えたゲームの世界を、ディスプレイのどこに表示するかを 決める枠(矩形領域)のことです。
+https://zarudama.github.io/img/libgdx-beginner/2/screen3.png
+ビューポートは、ディスプレイサイズと一致しているわけではないことに注意してください。 ゲームのサンプルなどだと一致していることが多いですが、 今回のように様々なディスプレイサイズに対応させる場合は、 一致しなくなることの方が多くなるはずです。また、他の使い方としては、 カメラを2つ用意して一方はゲーム画面、 一方は小さな枠で別のシーンを表示するなんてこともできるかもしれません(やったことないですが)。
+ カメラを使うことにより、カメラとして定義した論理空間でゲームを制御できます。 この空間でやりとりすれば、あとはlibGDXがよろしく画面に表示してくれるわけです。 カメラでできることを列挙してみます。 物理的な画面サイズを気にせず、自分の定義した画面サイズでゲームを構築できる ズームイン、ズームアウト、画面を回転させたり、揺らしたりなど、画面全体にかかるエフェクトが簡単にできる カメラを動かすことで、スクロール処理が簡単に実装できる カメラを導入することでこのような自由が手に入るわけですが、 その代償として操作が複雑になってしまうのも事実です。 コーディング中は、今自分がどこの座標系で何を操作しているかを常に意識する必要があります。 ちょっと大袈裟ですが、慣れれば大したことありません。またこの考えはそのまま3Dプログラミングにも繋がります。   座標系には、以下の種類があります。 ワールド座標系。ゲームオブジェクトを置く論理空間。画面サイズは気にしなくて良い。 カメラ座標系。ワールドのゲームオブジェクトをカメラの枠での座標系で測りなおした座標系。真ん中が原点となる。 ビューポート座標系。左下を原点とした座標系。 スクリーン座標系。Android左上を原点とした最終的な座標系。タッチ座標などはOSからこの座標系の値が得られる。  ビューポート座標系とスクリーン座標系は他では別の呼びかたかもしれません。 座標系を意識する例を示します。</description>
     </item>
     
   </channel>
