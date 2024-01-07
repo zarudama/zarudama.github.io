@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文字コード on ざる魂</title>
+    <link>https://zarudama.github.io/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89/</link>
+    <description>Recent content in 文字コード on ざる魂</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 12 Dec 2019 14:01:39 +0900</lastBuildDate>
+    
+	<atom:link href="https://zarudama.github.io/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>文字コードメモ</title>
+      <link>https://zarudama.github.io/posts/moji-code/</link>
+      <pubDate>Thu, 12 Dec 2019 14:01:39 +0900</pubDate>
+      
+      <guid>https://zarudama.github.io/posts/moji-code/</guid>
+      <description>文字とは 区点番号 符号化文字集合の種類 ASCII ISO/IEC 646 JIS X 201 ISO/IEC 2022 JIS X 208 EUC-JP, Shift_JIS ISO/IEC 8859(ISO-8859-1, Latin-1) ISO/IEC 10646(Unicode) JIS X 0212 JIS X 0213 符号化方式 問題のある文字 JIS X 208 の改定により区点が変わった文字 機種依存文字  文字の集合 符号化文字集合: 文字の集合に数字を割り当てたもの 文字コード: 文字に割り当てた数字 コードポイント: 符号化文字集合の表の位置のこと(コードポジションとも) JIS規格のコードポイントを表す 区は行、点は列を表す たとえば16行目6列目は、区番号16、点番号6、すなわち16区6点となる 列が上位ビット、行が下位ビットを表す 例) 小文字のzの場合 7bitで表現 7列目10行目 7/10 111/1010 0x7A 7bit アメリカの文字を表す。 7bit ASCIIをもとに国ごとに書き換えて良い文字を定義したもの 国ごとにある 7bit ISO/IEC 646 をもとにした日本の規格 バックスラッシュが円記号、チルダがアッパーバーになっている 8bit / 2byte ISO/IEC 646では国ひとつしか定義できないので複数の国の文字を混在できるようにした 8bitの場合、符号表が下記のように分類される CL領域(ControlLeft) 左側の制御文字 GL領域(GraphicLeft) 左側の図形文字 CR領域(ControlRight) 右側の制御文字 GR領域(GraphicRight) 右側の図形文字 図形文字とは通常の文字のこと 1byteでは漢字などを表現しきれない 2byte以上使うことでその欠点を解消 1byteで94文字使うことができる。2byte使うと 94x94 文字使うことができる。 2byte ISO/IEC 2022をモトにした日本の規格 8836文字扱える(常用漢字は2136文字なので十分) ASCIIとJIS X 208 の漢字を組み合わせたもの 8bit ヨーロッパで普及している ISO/IEC 646は国ごとの定義だったものが、8859では地域ごとの定義に拡大 GLにASCII GRに各国の固有の文字集合 ISO/IEC 8859-1は通称 Latin-1とも呼ばれ欧米を中心に使用されている。 ISO/IEC 10646: ISOが規格したもの Unicode: 企業が規格したもの 両者は統合される 当初16bitで表現する規格だったが、文字が足りなくなり4byteになった Unicodeでは、文字の問題は解決しなかった 結果古い規格は現在も維持メンテナンスされている - 補助漢字 JIS X 208にない漢字を足したもの JIS X 208と一緒に使う事が前提 EUC-JPでは採用されているものの、Shift_JISでは使用されていない Shift_JISがISO/IEC 2022に準拠していないため使うことができなかった 最も普及しているShift_JISで作用されなかったためあまり普及していない JIS X 208 に足りない文字を足したもの JIS X 208 のスーパセットであるため、ISO/IEC 2022 に準拠してるかどうかは関係ない JIS X 0212 の失敗の反省から再度規格されたもの したがって JIS X 0212と文字がかなり被っている 符号化文字集合をどのようにコンピュータで表すかを定義したもの JISX 0208 EUC-JP ISO-2022-JP Shift_JIS Unicode UTF-16 UTF-32 UTF-8 - 森鴎外の 鴎など はしご亭 草なぎの彅  参考URL  https://tmtms.</description>
+    </item>
+    
+  </channel>
+</rss>

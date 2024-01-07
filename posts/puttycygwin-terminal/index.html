@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="puttyをやめて、cygwin Terminalにする" />
+<meta property="og:description" content="puttyベースのminntyがいつのまにcygwinに完全統合されて、 Cygwin Terminal というアプリになっていたので「putty &#43; pagent」の組み合わせを やめて、 Cygwin Terminal と ssh-agent を組みあわせてCygwinだけで SSH接続を実現することにした。
+その際、screenを導入することにした。screenを導入することによって、起動 の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の 設定をする必要がなくなるからだ。
+導入は簡単。
+$ apt-cyg install screen 次に設定ファイル。
+defencoding utf8 escape ^z^z startup_message off vbell off hardstatus alwayslastline &#34;%w&#34; で端末を利用するときは次の手順で。
+$ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A HOST ssh-agentを起動してから、screenすることで毎回ssh-agent とssh-addをする必要がなくなる。
+あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 =Cygwin Terminal= で疑似マルチターミナルが実現できた!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/puttycygwin-terminal/" />
+<meta property="article:published_time" content="2012-08-27T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2012-08-27T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="puttyをやめて、cygwin Terminalにする"/>
+<meta name="twitter:description" content="puttyベースのminntyがいつのまにcygwinに完全統合されて、 Cygwin Terminal というアプリになっていたので「putty &#43; pagent」の組み合わせを やめて、 Cygwin Terminal と ssh-agent を組みあわせてCygwinだけで SSH接続を実現することにした。
+その際、screenを導入することにした。screenを導入することによって、起動 の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の 設定をする必要がなくなるからだ。
+導入は簡単。
+$ apt-cyg install screen 次に設定ファイル。
+defencoding utf8 escape ^z^z startup_message off vbell off hardstatus alwayslastline &#34;%w&#34; で端末を利用するときは次の手順で。
+$ ssh-agent bash $ ssh-add ~/.ssh/id_dsa $ ssh-add -l # 確認 $ screen $ ssh -A HOST ssh-agentを起動してから、screenすることで毎回ssh-agent とssh-addをする必要がなくなる。
+あとは必要に応じて、 C-z c で仮想端末を追加すれば良い。これで、 =Cygwin Terminal= で疑似マルチターミナルが実現できた!"/>
+
+<title>puttyをやめて、cygwin Terminalにする | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">puttyをやめて、cygwin Terminalにする</h1>
+  <aside id="meta"><a class="tags" href="/tags/cygwin">cygwin</a><a class="tags" href="/tags/ssh">ssh</a>
+<section>
+      <span class="date">作成日: 2012-08-27</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2012-08-27</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;60 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>puttyベースのminntyがいつのまにcygwinに完全統合されて、 <code>Cygwin
+Terminal</code> というアプリになっていたので「putty + pagent」の組み合わせを
+やめて、 <code>Cygwin Terminal</code> と <code>ssh-agent</code> を組みあわせてCygwinだけで
+SSH接続を実現することにした。</p>
+
+<p>その際、screenを導入することにした。screenを導入することによって、起動
+の高速化はもちろん、ssh-agentプロセスの共有化ができるので、その都度鍵の
+設定をする必要がなくなるからだ。</p>
+
+<p>導入は簡単。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ apt-cyg install screen</code></pre></div>
+<p>次に設定ファイル。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">defencoding utf8
+escape ^z^z
+startup_message off
+vbell off
+hardstatus alwayslastline <span style="color:#c30">&#34;%w&#34;</span></code></pre></div>
+<p>で端末を利用するときは次の手順で。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh-agent bash
+$ ssh-add ~/.ssh/id_dsa
+$ ssh-add -l <span style="color:#09f;font-style:italic"># 確認</span>
+$ screen
+$ ssh -A HOST</code></pre></div>
+<p>ssh-agentを起動してから、screenすることで毎回ssh-agent
+とssh-addをする必要がなくなる。</p>
+
+<p>あとは必要に応じて、 <code>C-z c</code> で仮想端末を追加すれば良い。これで、
+=Cygwin Terminal= で疑似マルチターミナルが実現できた!</p>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/cygwinsvn-upgrade/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>cygwinでsvn upgradeに失敗する。</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/javap/">javapコマンドを使ってみた。<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

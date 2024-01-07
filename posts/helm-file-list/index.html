@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="helmのファイル一覧でパスを表示する" />
+<meta property="og:description" content="helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、 パス部分が表示されなくなってしまった。 デフォルトの挙動が変更されたようである。
+自分の場合、helm-git.elを使用しているが、 同じリポジトリに同名ファイルが複数あるため、 ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。 これでは困るので調査したところ、ファイル表示部分は、helm本体の =helm-files.el= の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
+(defcustom helm-ff-transformer-show-only-basename t &#34;Show only basename of candidates in `helm-find-files&#39;. This can be toggled at anytime from `helm-find-files&#39;with \ \\&lt;helm-find-files-map&gt;\\[helm-ff-run-toggle-basename].&#34; :type &#39;boolean :group &#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
+(setq helm-ff-transformer-show-only-basename nil)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/helm-file-list/" />
+<meta property="article:published_time" content="2013-06-14T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2013-06-14T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="helmのファイル一覧でパスを表示する"/>
+<meta name="twitter:description" content="helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、 パス部分が表示されなくなってしまった。 デフォルトの挙動が変更されたようである。
+自分の場合、helm-git.elを使用しているが、 同じリポジトリに同名ファイルが複数あるため、 ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。 これでは困るので調査したところ、ファイル表示部分は、helm本体の =helm-files.el= の機能を流用しており、下記のカスタム変数を定義すればよさそうである。
+(defcustom helm-ff-transformer-show-only-basename t &#34;Show only basename of candidates in `helm-find-files&#39;. This can be toggled at anytime from `helm-find-files&#39;with \ \\&lt;helm-find-files-map&gt;\\[helm-ff-run-toggle-basename].&#34; :type &#39;boolean :group &#39;helm-files) .emacsに下記の定義をすることで無事解決できた。
+(setq helm-ff-transformer-show-only-basename nil)"/>
+
+<title>helmのファイル一覧でパスを表示する | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">helmのファイル一覧でパスを表示する</h1>
+  <aside id="meta"><a class="tags" href="/tags/emacs">emacs</a><a class="tags" href="/tags/helm">helm</a>
+<section>
+      <span class="date">作成日: 2013-06-14</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2013-06-14</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;37 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>helmをアップデートしたら、ファイルの一覧がファイル名のみになってしまい、
+パス部分が表示されなくなってしまった。
+デフォルトの挙動が変更されたようである。</p>
+
+<p>自分の場合、helm-git.elを使用しているが、
+同じリポジトリに同名ファイルが複数あるため、
+ファイル名だけになると、どのディレクトリのファイルかがわからなくなってしまう。
+これでは困るので調査したところ、ファイル表示部分は、helm本体の =helm-files.el=
+の機能を流用しており、下記のカスタム変数を定義すればよさそうである。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">defcustom</span> <span style="color:#033">helm-ff-transformer-show-only-basename</span> <span style="color:#360">t</span>
+  <span style="color:#c30">&#34;Show only basename of candidates in </span><span style="color:#fc3">`helm-find-files&#39;</span><span style="color:#c30">.
+</span><span style="color:#c30">This can be toggled at anytime from </span><span style="color:#fc3">`helm-find-files&#39;</span><span style="color:#c30"> with \
+</span><span style="color:#c30">\\&lt;helm-find-files-map&gt;\\[helm-ff-run-toggle-basename].&#34;</span>
+  <span style="color:#366">:type</span> <span style="color:#fc3">&#39;boolean</span>
+  <span style="color:#366">:group</span> <span style="color:#fc3">&#39;helm-files</span>)</code></pre></div>
+<p>.emacsに下記の定義をすることで無事解決できた。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#366">setq</span> <span style="color:#033">helm-ff-transformer-show-only-basename</span> <span style="color:#360">nil</span>)</code></pre></div>
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/ubuntuxmonademacsprocessing/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>ubuntuでxmonadして、emacsでProcessingしてます</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/windowsmisaki/">Windowsでmisakiのデモが動かない<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

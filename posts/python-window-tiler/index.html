@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="python window tiler を試す" />
+<meta property="og:description" content="この記事 にxmonadがでてきたので、自分が普段使っているWindowsでもタイル 型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、 どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納 得のいくものがなかったので、使っていなかったのだ。でもその時から大分時 間も経ってるので、最近は何かないかなと調べたところPythonで実装されたそ の名もずばり「Python-windows-tiler」というものを見つけた。
+ https://github.com/Tzbob/python-windows-tiler http://d.hatena.ne.jp/uhiaha888/20121125/1353824257  使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日 本語を含むとエラーになるのでルートに解凍するのが良いと思う。
+キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て winにしてPWT.exeを再起動した。
+これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめで たし、と思ったのだが、Win&#43;Lキーでウィンドウの横幅を広げようとしたらロッ ク画面になってしまう。。。
+てことでWin&#43;Lを無効化する方法を模索したけど、結局どれもうまくいかなかっ たので横幅操作は封印することにした。てか、Winを使用するコンビネーション キーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win キー経由でタイル操作はとても使いやすい。多様する操作はこれ。
+   Win&#43;SPC ウィンドウレイアウトの変更   Win&#43;j, Win&#43;k ALT&#43;TABの代りになる   Win&#43;S&#43;Ent プライマリの切替   Win&#43;数字キー 仮想デスクトップの切替   Win&#43;S&#43;数字キー カレントアプリを仮想デスクトップへ移動    特にWin&#43;j,kがイイ!
+自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみの あるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが 逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの emacsでは windows.el を使用し、端末ではtmuxを使用してるので、タイル型 ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱する のだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分 にはAwesome系の操作体系のほうが向いているような気がした。
+ということで、Ubuntuではxmonadをもう一度使ってみようと思う。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/python-window-tiler/" />
+<meta property="article:published_time" content="2013-01-29T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2013-01-29T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="python window tiler を試す"/>
+<meta name="twitter:description" content="この記事 にxmonadがでてきたので、自分が普段使っているWindowsでもタイル 型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、 どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納 得のいくものがなかったので、使っていなかったのだ。でもその時から大分時 間も経ってるので、最近は何かないかなと調べたところPythonで実装されたそ の名もずばり「Python-windows-tiler」というものを見つけた。
+ https://github.com/Tzbob/python-windows-tiler http://d.hatena.ne.jp/uhiaha888/20121125/1353824257  使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日 本語を含むとエラーになるのでルートに解凍するのが良いと思う。
+キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て winにしてPWT.exeを再起動した。
+これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめで たし、と思ったのだが、Win&#43;Lキーでウィンドウの横幅を広げようとしたらロッ ク画面になってしまう。。。
+てことでWin&#43;Lを無効化する方法を模索したけど、結局どれもうまくいかなかっ たので横幅操作は封印することにした。てか、Winを使用するコンビネーション キーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win キー経由でタイル操作はとても使いやすい。多様する操作はこれ。
+   Win&#43;SPC ウィンドウレイアウトの変更   Win&#43;j, Win&#43;k ALT&#43;TABの代りになる   Win&#43;S&#43;Ent プライマリの切替   Win&#43;数字キー 仮想デスクトップの切替   Win&#43;S&#43;数字キー カレントアプリを仮想デスクトップへ移動    特にWin&#43;j,kがイイ!
+自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみの あるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが 逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの emacsでは windows.el を使用し、端末ではtmuxを使用してるので、タイル型 ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱する のだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分 にはAwesome系の操作体系のほうが向いているような気がした。
+ということで、Ubuntuではxmonadをもう一度使ってみようと思う。"/>
+
+<title>python window tiler を試す | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">python window tiler を試す</h1>
+  <aside id="meta"><a class="tags" href="/tags/windows">windows</a><a class="tags" href="/tags/xmonad">xmonad</a>
+<section>
+      <span class="date">作成日: 2013-01-29</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2013-01-29</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;44 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p><a href="http://www.lifehacker.jp/2013/01/130120mykids_command_line.html" title="この記事">この記事</a> にxmonadがでてきたので、自分が普段使っているWindowsでもタイル
+型マネージャを使いたくなった。実は以前にも何度か試したことがあったが、
+どれもキーバインドが好みでなかったり動作が不安定だったりで、いまいち納
+得のいくものがなかったので、使っていなかったのだ。でもその時から大分時
+間も経ってるので、最近は何かないかなと調べたところPythonで実装されたそ
+の名もずばり「Python-windows-tiler」というものを見つけた。</p>
+
+<ul>
+<li>https://github.com/Tzbob/python-windows-tiler</li>
+<li>http://d.hatena.ne.jp/uhiaha888/20121125/1353824257</li>
+</ul>
+
+<p>使用方法は簡単で、バイナリを解凍してPWT.exeを実行するだけだが、パスに日
+本語を含むとエラーになるのでルートに解凍するのが良いと思う。</p>
+
+<p>キーバインディングはAwesomeなどと似ている。ただ、Altキーを使用するので
+Emacsとキーバインディングが被ってしまうのでconfig.iniを開き、altを全て
+winにしてPWT.exeを再起動した。</p>
+
+<p>これでとりあえずEmacsとのキーバインディングの回避ができた。めでたしめで
+たし、と思ったのだが、Win+Lキーでウィンドウの横幅を広げようとしたらロッ
+ク画面になってしまう。。。</p>
+
+<p>てことでWin+Lを無効化する方法を模索したけど、結局どれもうまくいかなかっ
+たので横幅操作は封印することにした。てか、Winを使用するコンビネーション
+キーはどれもWindowsに奪われてしまってうまくイカナイ。。。とはいえ、Win
+キー経由でタイル操作はとても使いやすい。多様する操作はこれ。</p>
+
+<table>
+<tbody>
+<tr>
+<td>Win+SPC</td>
+<td>ウィンドウレイアウトの変更</td>
+</tr>
+
+<tr>
+<td>Win+j, Win+k</td>
+<td>ALT+TABの代りになる</td>
+</tr>
+
+<tr>
+<td>Win+S+Ent</td>
+<td>プライマリの切替</td>
+</tr>
+
+<tr>
+<td>Win+数字キー</td>
+<td>仮想デスクトップの切替</td>
+</tr>
+
+<tr>
+<td>Win+S+数字キー</td>
+<td>カレントアプリを仮想デスクトップへ移動</td>
+</tr>
+</tbody>
+</table>
+
+<p>特にWin+j,kがイイ!</p>
+
+<p>自宅のUbuntu環境ではStumpWMを使用していたが、これはEmacserにはなじみの
+あるキー操作なんだけど(Screen系のプリフィックスキーのあるやつ)、それが
+逆に操作の混乱を生んでしまう。というのもの、自分の場合デスクトップの
+emacsでは <code>windows.el</code> を使用し、端末ではtmuxを使用してるので、タイル型
+ウィンドウマネージャのキーバインドにプレフィックスを使用すると混乱する
+のだ。それにデスクトップのウィンドウ操作はできるだけすばやくしたいので
+Screen系のStumpWMよりAwesome系のほうがサクサク操作できる。以上から自分
+にはAwesome系の操作体系のほうが向いているような気がした。</p>
+
+<p>ということで、Ubuntuではxmonadをもう一度使ってみようと思う。</p>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/paragrah-html/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>org-modeの段落の改行を削除したい</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/emacspackage-elisp/">.emacsに必要なpackage を指定して自動で各種elispをインストールする<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

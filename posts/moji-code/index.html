@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="文字コードメモ" />
+<meta property="og:description" content="文字とは 区点番号 符号化文字集合の種類 ASCII ISO/IEC 646 JIS X 201 ISO/IEC 2022 JIS X 208 EUC-JP, Shift_JIS ISO/IEC 8859(ISO-8859-1, Latin-1) ISO/IEC 10646(Unicode) JIS X 0212 JIS X 0213 符号化方式 問題のある文字 JIS X 208 の改定により区点が変わった文字 機種依存文字  文字の集合 符号化文字集合: 文字の集合に数字を割り当てたもの 文字コード: 文字に割り当てた数字 コードポイント: 符号化文字集合の表の位置のこと(コードポジションとも) JIS規格のコードポイントを表す 区は行、点は列を表す たとえば16行目6列目は、区番号16、点番号6、すなわち16区6点となる 列が上位ビット、行が下位ビットを表す 例) 小文字のzの場合 7bitで表現 7列目10行目 7/10 111/1010 0x7A 7bit アメリカの文字を表す。 7bit ASCIIをもとに国ごとに書き換えて良い文字を定義したもの 国ごとにある 7bit ISO/IEC 646 をもとにした日本の規格 バックスラッシュが円記号、チルダがアッパーバーになっている 8bit / 2byte ISO/IEC 646では国ひとつしか定義できないので複数の国の文字を混在できるようにした 8bitの場合、符号表が下記のように分類される CL領域(ControlLeft) 左側の制御文字 GL領域(GraphicLeft) 左側の図形文字 CR領域(ControlRight) 右側の制御文字 GR領域(GraphicRight) 右側の図形文字 図形文字とは通常の文字のこと 1byteでは漢字などを表現しきれない 2byte以上使うことでその欠点を解消 1byteで94文字使うことができる。2byte使うと 94x94 文字使うことができる。 2byte ISO/IEC 2022をモトにした日本の規格 8836文字扱える(常用漢字は2136文字なので十分) ASCIIとJIS X 208 の漢字を組み合わせたもの 8bit ヨーロッパで普及している ISO/IEC 646は国ごとの定義だったものが、8859では地域ごとの定義に拡大 GLにASCII GRに各国の固有の文字集合 ISO/IEC 8859-1は通称 Latin-1とも呼ばれ欧米を中心に使用されている。 ISO/IEC 10646: ISOが規格したもの Unicode: 企業が規格したもの 両者は統合される 当初16bitで表現する規格だったが、文字が足りなくなり4byteになった Unicodeでは、文字の問題は解決しなかった 結果古い規格は現在も維持メンテナンスされている - 補助漢字 JIS X 208にない漢字を足したもの JIS X 208と一緒に使う事が前提 EUC-JPでは採用されているものの、Shift_JISでは使用されていない Shift_JISがISO/IEC 2022に準拠していないため使うことができなかった 最も普及しているShift_JISで作用されなかったためあまり普及していない JIS X 208 に足りない文字を足したもの JIS X 208 のスーパセットであるため、ISO/IEC 2022 に準拠してるかどうかは関係ない JIS X 0212 の失敗の反省から再度規格されたもの したがって JIS X 0212と文字がかなり被っている 符号化文字集合をどのようにコンピュータで表すかを定義したもの JISX 0208 EUC-JP ISO-2022-JP Shift_JIS Unicode UTF-16 UTF-32 UTF-8 - 森鴎外の 鴎など はしご亭 草なぎの彅  参考URL  https://tmtms." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/moji-code/" />
+<meta property="article:published_time" content="2019-12-12T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2019-12-12T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="文字コードメモ"/>
+<meta name="twitter:description" content="文字とは 区点番号 符号化文字集合の種類 ASCII ISO/IEC 646 JIS X 201 ISO/IEC 2022 JIS X 208 EUC-JP, Shift_JIS ISO/IEC 8859(ISO-8859-1, Latin-1) ISO/IEC 10646(Unicode) JIS X 0212 JIS X 0213 符号化方式 問題のある文字 JIS X 208 の改定により区点が変わった文字 機種依存文字  文字の集合 符号化文字集合: 文字の集合に数字を割り当てたもの 文字コード: 文字に割り当てた数字 コードポイント: 符号化文字集合の表の位置のこと(コードポジションとも) JIS規格のコードポイントを表す 区は行、点は列を表す たとえば16行目6列目は、区番号16、点番号6、すなわち16区6点となる 列が上位ビット、行が下位ビットを表す 例) 小文字のzの場合 7bitで表現 7列目10行目 7/10 111/1010 0x7A 7bit アメリカの文字を表す。 7bit ASCIIをもとに国ごとに書き換えて良い文字を定義したもの 国ごとにある 7bit ISO/IEC 646 をもとにした日本の規格 バックスラッシュが円記号、チルダがアッパーバーになっている 8bit / 2byte ISO/IEC 646では国ひとつしか定義できないので複数の国の文字を混在できるようにした 8bitの場合、符号表が下記のように分類される CL領域(ControlLeft) 左側の制御文字 GL領域(GraphicLeft) 左側の図形文字 CR領域(ControlRight) 右側の制御文字 GR領域(GraphicRight) 右側の図形文字 図形文字とは通常の文字のこと 1byteでは漢字などを表現しきれない 2byte以上使うことでその欠点を解消 1byteで94文字使うことができる。2byte使うと 94x94 文字使うことができる。 2byte ISO/IEC 2022をモトにした日本の規格 8836文字扱える(常用漢字は2136文字なので十分) ASCIIとJIS X 208 の漢字を組み合わせたもの 8bit ヨーロッパで普及している ISO/IEC 646は国ごとの定義だったものが、8859では地域ごとの定義に拡大 GLにASCII GRに各国の固有の文字集合 ISO/IEC 8859-1は通称 Latin-1とも呼ばれ欧米を中心に使用されている。 ISO/IEC 10646: ISOが規格したもの Unicode: 企業が規格したもの 両者は統合される 当初16bitで表現する規格だったが、文字が足りなくなり4byteになった Unicodeでは、文字の問題は解決しなかった 結果古い規格は現在も維持メンテナンスされている - 補助漢字 JIS X 208にない漢字を足したもの JIS X 208と一緒に使う事が前提 EUC-JPでは採用されているものの、Shift_JISでは使用されていない Shift_JISがISO/IEC 2022に準拠していないため使うことができなかった 最も普及しているShift_JISで作用されなかったためあまり普及していない JIS X 208 に足りない文字を足したもの JIS X 208 のスーパセットであるため、ISO/IEC 2022 に準拠してるかどうかは関係ない JIS X 0212 の失敗の反省から再度規格されたもの したがって JIS X 0212と文字がかなり被っている 符号化文字集合をどのようにコンピュータで表すかを定義したもの JISX 0208 EUC-JP ISO-2022-JP Shift_JIS Unicode UTF-16 UTF-32 UTF-8 - 森鴎外の 鴎など はしご亭 草なぎの彅  参考URL  https://tmtms."/>
+
+<title>文字コードメモ | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">文字コードメモ</h1>
+  <aside id="meta"><a class="tags" href="/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89">文字コード</a>
+<section>
+      <span class="date">作成日: 2019-12-12</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2019-12-12</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;155 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <h1 id="文字とは">文字とは</h1>
+
+<h1 id="区点番号">区点番号</h1>
+
+<h1 id="符号化文字集合の種類">符号化文字集合の種類</h1>
+
+<h2 id="ascii">ASCII</h2>
+
+<h2 id="iso-iec-646">ISO/IEC 646</h2>
+
+<h2 id="jis-x-201">JIS X 201</h2>
+
+<h2 id="iso-iec-2022">ISO/IEC 2022</h2>
+
+<h2 id="jis-x-208">JIS X 208</h2>
+
+<h2 id="euc-jp-shift-jis">EUC-JP, Shift_JIS</h2>
+
+<h2 id="iso-iec-8859-iso-8859-1-latin-1">ISO/IEC 8859(ISO-8859-1, Latin-1)</h2>
+
+<h2 id="iso-iec-10646-unicode">ISO/IEC 10646(Unicode)</h2>
+
+<h2 id="jis-x-0212">JIS X 0212</h2>
+
+<h2 id="jis-x-0213">JIS X 0213</h2>
+
+<h1 id="符号化方式">符号化方式</h1>
+
+<h1 id="問題のある文字">問題のある文字</h1>
+
+<h2 id="jis-x-208-の改定により区点が変わった文字">JIS X 208 の改定により区点が変わった文字</h2>
+
+<h2 id="機種依存文字">機種依存文字</h2>
+
+<ul>
+<li>文字の集合</li>
+<li>符号化文字集合: 文字の集合に数字を割り当てたもの</li>
+<li>文字コード: 文字に割り当てた数字</li>
+<li>コードポイント: 符号化文字集合の表の位置のこと(コードポジションとも)</li>
+<li>JIS規格のコードポイントを表す</li>
+<li>区は行、点は列を表す</li>
+<li>たとえば16行目6列目は、区番号16、点番号6、すなわち16区6点となる</li>
+<li>列が上位ビット、行が下位ビットを表す</li>
+<li>例) 小文字のzの場合</li>
+<li>7bitで表現</li>
+<li>7列目10行目</li>
+<li>7/10</li>
+<li>111/1010</li>
+<li>0x7A</li>
+<li>7bit</li>
+<li>アメリカの文字を表す。</li>
+<li>7bit</li>
+<li>ASCIIをもとに国ごとに書き換えて良い文字を定義したもの</li>
+<li>国ごとにある</li>
+<li>7bit</li>
+<li>ISO/IEC 646 をもとにした日本の規格</li>
+<li>バックスラッシュが円記号、チルダがアッパーバーになっている</li>
+<li>8bit / 2byte</li>
+<li>ISO/IEC 646では国ひとつしか定義できないので複数の国の文字を混在できるようにした</li>
+<li>8bitの場合、符号表が下記のように分類される</li>
+<li>CL領域(ControlLeft) 左側の制御文字</li>
+<li>GL領域(GraphicLeft) 左側の図形文字</li>
+<li>CR領域(ControlRight) 右側の制御文字</li>
+<li>GR領域(GraphicRight) 右側の図形文字</li>
+<li>図形文字とは通常の文字のこと</li>
+<li>1byteでは漢字などを表現しきれない</li>
+<li>2byte以上使うことでその欠点を解消</li>
+<li>1byteで94文字使うことができる。2byte使うと 94x94 文字使うことができる。</li>
+<li>2byte</li>
+<li>ISO/IEC 2022をモトにした日本の規格</li>
+<li>8836文字扱える(常用漢字は2136文字なので十分)</li>
+<li>ASCIIとJIS X 208 の漢字を組み合わせたもの</li>
+<li>8bit</li>
+<li>ヨーロッパで普及している</li>
+<li>ISO/IEC 646は国ごとの定義だったものが、8859では地域ごとの定義に拡大</li>
+<li>GLにASCII</li>
+<li>GRに各国の固有の文字集合</li>
+<li>ISO/IEC 8859-1は通称 Latin-1とも呼ばれ欧米を中心に使用されている。</li>
+<li>ISO/IEC 10646: ISOが規格したもの</li>
+<li>Unicode: 企業が規格したもの</li>
+<li>両者は統合される</li>
+<li>当初16bitで表現する規格だったが、文字が足りなくなり4byteになった</li>
+<li>Unicodeでは、文字の問題は解決しなかった</li>
+<li>結果古い規格は現在も維持メンテナンスされている</li>
+- 
+<li>補助漢字</li>
+<li>JIS X 208にない漢字を足したもの</li>
+<li>JIS X 208と一緒に使う事が前提</li>
+<li>EUC-JPでは採用されているものの、Shift_JISでは使用されていない</li>
+<li>Shift_JISがISO/IEC 2022に準拠していないため使うことができなかった</li>
+<li>最も普及しているShift_JISで作用されなかったためあまり普及していない</li>
+<li>JIS X 208 に足りない文字を足したもの</li>
+<li>JIS X 208 のスーパセットであるため、ISO/IEC 2022 に準拠してるかどうかは関係ない</li>
+<li>JIS X 0212 の失敗の反省から再度規格されたもの</li>
+<li>したがって JIS X 0212と文字がかなり被っている</li>
+<li>符号化文字集合をどのようにコンピュータで表すかを定義したもの</li>
+<li>JISX 0208</li>
+<li>EUC-JP</li>
+<li>ISO-2022-JP</li>
+<li>Shift_JIS</li>
+<li>Unicode</li>
+<li>UTF-16</li>
+<li>UTF-32</li>
+<li>UTF-8</li>
+  -
+<li>森鴎外の 鴎など</li>
+<li>はしご亭</li>
+<li>草なぎの彅</li>
+</ul>
+
+<h1 id="参考url">参考URL</h1>
+
+<ul>
+<li>https://tmtms.hatenablog.com/entry/201805/mysql-sjis-cp932</li>
+</ul>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/javascript-recipe-study/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>ゲームアルゴリズムレシピの練習と再実装</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/java-matome/">javaまとめ<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

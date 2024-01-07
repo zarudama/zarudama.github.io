@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="firefox の同期不具合" />
+<meta property="og:description" content="下記のエラーが頻繁に表示される。
+「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」  これの対処方法は、
+ 「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」  で、もとに戻るはず。
+追記 結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、 syncエラーの原因が読めることがわかった。
+about:sync-log 今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、 このログをみれば詳細な情報が手にはいるので大助かり。
+自分の場合、ログをみたところ、bookmark同期に原因があった模様。
+1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/firefox-sync-bug/" />
+<meta property="article:published_time" content="2013-05-03T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2013-05-03T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="firefox の同期不具合"/>
+<meta name="twitter:description" content="下記のエラーが頻繁に表示される。
+「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」  これの対処方法は、
+ 「メニュー」→「ツール」→「オプション」→「Syncタブ」 「アカウントを管理ボタン」→「Syncをリセット」  で、もとに戻るはず。
+追記 結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、 syncエラーの原因が読めることがわかった。
+about:sync-log 今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、 このログをみれば詳細な情報が手にはいるので大助かり。
+自分の場合、ログをみたところ、bookmark同期に原因があった模様。
+1368414694893	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items 1368414694893	Sync.Engine.Bookmarks	INFO	2 outgoing items pre-reconciliation 1368414695441	Sync.Engine.Bookmarks	WARN	Got exception &#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34; building GUID map. Skipping all other incoming items."/>
+
+<title>firefox の同期不具合 | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">firefox の同期不具合</h1>
+  <aside id="meta"><a class="tags" href="/tags/firefox">firefox</a>
+<section>
+      <span class="date">作成日: 2013-05-03</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2013-05-03</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;99 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>下記のエラーが頻繁に表示される。</p>
+
+<pre><code>「接続中にエラーが発生しました: 不明なエラー。この処理は自動的に再施行されます。」
+</code></pre>
+
+<p>これの対処方法は、</p>
+
+<ul>
+<li>「メニュー」→「ツール」→「オプション」→「Syncタブ」</li>
+<li>「アカウントを管理ボタン」→「Syncをリセット」</li>
+</ul>
+
+<p>で、もとに戻るはず。</p>
+
+<h1 id="追記">追記</h1>
+
+<p>結局もとに戻らなかった。さらにいろいろ調査してみたところ、アドレスバーに下記を入力すると、
+syncエラーの原因が読めることがわかった。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">about:sync-log</code></pre></div>
+<p>今まで同期エラーがでると、原因を示してくれないので対処のしようがなかったのだけれど、
+このログをみれば詳細な情報が手にはいるので大助かり。</p>
+
+<p>自分の場合、ログをみたところ、bookmark同期に原因があった模様。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f60">1368414694893</span>	Sync.Engine.Bookmarks	DEBUG	First sync, uploading all items
+<span style="color:#f60">1368414694893</span>	Sync.Engine.Bookmarks	INFO	<span style="color:#f60">2</span> outgoing items pre-reconciliation
+<span style="color:#f60">1368414695441</span>	Sync.Engine.Bookmarks	WARN	Got exception <span style="color:#c30">&#34;Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsINavBookmarksService.getItemType] Stack trace: _buildGUIDMap()@resource://gre/modules/services-sync/engines/bookmarks.js:233 &lt; resource://gre/modules/services-sync/engines/bookmarks.js:357 &lt; _mapDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:313 &lt; _findDupe()@resource://gre/modules/services-sync/engines/bookmarks.js:413 &lt; _reconcile()@resource://services-sync/engines.js:1120 &lt; resource://services-sync/engines.js:903 &lt; resource://gre/modules/services-sync/record.js:625 &lt; Channel_onDataAvail()@resource://gre/modules/services-sync/resource.js:542 &lt; &lt;file:unknown&gt;&#34;</span> building GUID map. Skipping all other incoming items.
+<span style="color:#f60">1368414695441</span>	Sync.Engine.Bookmarks	WARN	Reconciliation failed: aborting incoming processing.</code></pre></div>
+<p>そこで「ツール」→「オプション」→「Sync」→「同期するデータ」から、
+ブックマークを外して再度同期したところ、エラーが表示されなくなった。</p>
+
+<p>しかしこのままではブックマークの同期ができないのでなんとかしなくてはならない。
+そこで、下記の手順をとることにした。</p>
+
+<ul>
+<li>https://account.services.mozilla.com にアクセス</li>
+<li>左ペインの <code>Clear Your Sync data</code> をクリック </li>
+<li><code>Clear My Sync Data</code> をクリックしてサーバー上のデータを削除</li>
+<li>上述した方法でアカウントをリセット。そのとき、「他のすべてのデバイスのブラウザデータを、このパソコンのデータと置き換える」を選択する。</li>
+</ul>
+
+<p>ただしこの方法は、同期もとにするPCのデータに異常がない場合に有効。</p>
+
+<p>以上で同期が復活するはず。</p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>https://account.services.mozilla.com/sync/request_quota</li>
+<li>http://coffeecupman.blog28.fc2.com/blog-entry-25.html</li>
+</ul>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/windowsmisaki/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>Windowsでmisakiのデモが動かない</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/windowsemacs243/">windows版emacs24.3で画像を表示する。<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

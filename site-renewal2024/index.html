@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="約５年ぶりにサイトを更新し、ついでにリニューアルした" />
+<meta property="og:description" content="経緯 前回更新が2019年。仕事がクソ忙しくて調べ物をした記事。
+2014年頃は頻繁に更新していたものの、別の趣味に夢中になり10年近くブログ更新は停止していた。 いやー長すぎだろ（笑）
+今回久しぶりに時間が取れたので、2024年正月休みの時間を利用して放置していたgithub上のブログをリニューアルすることにした。 今どきの技術記事は、noteやqiita,zennなどで書くのがトレンドなんだろうけどorg-mode使ってデザインとか自前でいろいろやりたいので、Hugo使う！
+Javascriptのゲーム作りとかMSXとかの記事も書けたらなーと思う。
+どのように構築しているか 参考URL  Hugoを使用。 Hugoは標準でEmacsのorg-modeをサポートしており、mdファイルのかわりにorgファイルを使える。素晴らしい！ 全文検索は「くまくまノート」さまのサイトを参考に実装。ありがとうございます。 テーマは独自に記述。見た目はZennぽくしてみた。 ox-hugoを使わずに直接orgを使う話 https://mopemope.com/post/hugo-with-org/ hugoの使い方 https://knowledge.sakura.ad.jp/22908/  目次について 目次を入れる場合は下記を記述する。いらないときは記述しない
+目次調査の経緯  hugoではorg-modeのtocをサポートしてないっぽい 下記では「#&#43;toc: t」で表示されるとあるが、実際には反映しない https://discourse.gohugo.io/t/table-of-contents-for-org-mode-is-empty/6272/4 https://discourse.gohugo.io/t/toc-for-org-mode-missing/29899 どうもmarkdownパーサーが入れ替わったのでそのタイミングでデグレしたのかも。 org-modeは少数派なので、今後サポートされる可能性は低い。 以上から自前で実装する必要がある。 下記を参考にした https://toshikunblog.net/post/20200610/2020-0610/#google_vignette  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/site-renewal2024/" />
+<meta property="article:published_time" content="2024-01-07T23:05:39&#43;09:00"/>
+<meta property="article:modified_time" content="2024-01-07T23:05:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="約５年ぶりにサイトを更新し、ついでにリニューアルした"/>
+<meta name="twitter:description" content="経緯 前回更新が2019年。仕事がクソ忙しくて調べ物をした記事。
+2014年頃は頻繁に更新していたものの、別の趣味に夢中になり10年近くブログ更新は停止していた。 いやー長すぎだろ（笑）
+今回久しぶりに時間が取れたので、2024年正月休みの時間を利用して放置していたgithub上のブログをリニューアルすることにした。 今どきの技術記事は、noteやqiita,zennなどで書くのがトレンドなんだろうけどorg-mode使ってデザインとか自前でいろいろやりたいので、Hugo使う！
+Javascriptのゲーム作りとかMSXとかの記事も書けたらなーと思う。
+どのように構築しているか 参考URL  Hugoを使用。 Hugoは標準でEmacsのorg-modeをサポートしており、mdファイルのかわりにorgファイルを使える。素晴らしい！ 全文検索は「くまくまノート」さまのサイトを参考に実装。ありがとうございます。 テーマは独自に記述。見た目はZennぽくしてみた。 ox-hugoを使わずに直接orgを使う話 https://mopemope.com/post/hugo-with-org/ hugoの使い方 https://knowledge.sakura.ad.jp/22908/  目次について 目次を入れる場合は下記を記述する。いらないときは記述しない
+目次調査の経緯  hugoではorg-modeのtocをサポートしてないっぽい 下記では「#&#43;toc: t」で表示されるとあるが、実際には反映しない https://discourse.gohugo.io/t/table-of-contents-for-org-mode-is-empty/6272/4 https://discourse.gohugo.io/t/toc-for-org-mode-missing/29899 どうもmarkdownパーサーが入れ替わったのでそのタイミングでデグレしたのかも。 org-modeは少数派なので、今後サポートされる可能性は低い。 以上から自前で実装する必要がある。 下記を参考にした https://toshikunblog.net/post/20200610/2020-0610/#google_vignette  "/>
+
+<title>約５年ぶりにサイトを更新し、ついでにリニューアルした | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">約５年ぶりにサイトを更新し、ついでにリニューアルした</h1>
+  <aside id="meta">
+<section>
+      <span class="date">作成日: 2024-01-07</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2024-01-07</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;30 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      
+      <h1 id="経緯">経緯</h1>
+
+<p><a href="/posts/moji-code/" title="前回更新">前回更新</a>が2019年。仕事がクソ忙しくて調べ物をした記事。</p>
+
+<p>2014年頃は頻繁に更新していたものの、別の趣味に夢中になり10年近くブログ更新は停止していた。
+いやー長すぎだろ（笑）</p>
+
+<p>今回久しぶりに時間が取れたので、2024年正月休みの時間を利用して放置していたgithub上のブログをリニューアルすることにした。
+今どきの技術記事は、noteやqiita,zennなどで書くのがトレンドなんだろうけどorg-mode使ってデザインとか自前でいろいろやりたいので、Hugo使う！</p>
+
+<p><a href="/posts/javascript-recipe-study/" title="Javascriptのゲーム作り">Javascriptのゲーム作り</a>とかMSXとかの記事も書けたらなーと思う。</p>
+
+<h1 id="どのように構築しているか">どのように構築しているか</h1>
+
+<section class="toc">
+  <h2>Contents</h2>
+  
+</section>
+
+<h2 id="参考url">参考URL</h2>
+
+<ul>
+<li>Hugoを使用。</li>
+<li>Hugoは標準でEmacsのorg-modeをサポートしており、mdファイルのかわりにorgファイルを使える。素晴らしい！</li>
+<li>全文検索は「<a href="https://maku77.github.io/p/p4n5m3i/" title="くまくまノート">くまくまノート</a>」さまのサイトを参考に実装。ありがとうございます。</li>
+<li>テーマは独自に記述。見た目はZennぽくしてみた。</li>
+ox-hugoを使わずに直接orgを使う話
+https://mopemope.com/post/hugo-with-org/
+hugoの使い方
+https://knowledge.sakura.ad.jp/22908/
+</ul>
+
+<h1 id="目次について">目次について</h1>
+
+<p>目次を入れる場合は下記を記述する。いらないときは記述しない</p>
+
+<h2 id="目次調査の経緯">目次調査の経緯</h2>
+
+<ul>
+<li>hugoではorg-modeのtocをサポートしてないっぽい</li>
+<li>下記では「#+toc: t」で表示されるとあるが、実際には反映しない</li>
+<li>https://discourse.gohugo.io/t/table-of-contents-for-org-mode-is-empty/6272/4</li>
+<li>https://discourse.gohugo.io/t/toc-for-org-mode-missing/29899</li>
+<li>どうもmarkdownパーサーが入れ替わったのでそのタイミングでデグレしたのかも。</li>
+<li>org-modeは少数派なので、今後サポートされる可能性は低い。</li>
+<li>以上から自前で実装する必要がある。</li>
+<li>下記を参考にした</li>
+<li>https://toshikunblog.net/post/20200610/2020-0610/#google_vignette</li>
+</ul>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/about/">このサイトについて<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="org-modeの段落の改行を削除したい" />
+<meta property="og:description" content="当ブログは、o-blog で運営していて、org-modeで原稿を書いています。 その際、頻繁に fill-paragraph(M-q) を使用するのですが、 これが org-export-as-html すると都合が悪いのです。
+どう都合が悪いかというと、段落の文のなかに半角スペースが紛れこんでしまうのです。
+例をあげると
+今日はいい 天気ですね!  これは、HTMLエクスポートすると
+&lt;p&gt;今日はいい 天気ですね!&lt;/p&gt;  となるので、ブラウザ上では
+今日はいい 天気ですね!  となり、文の途中に空白文字が挿入されてしまいます。
+これはHTMLの仕様なので、変更するのはムズかしそうです。 cssなりorg-modeなりで「pタグの改行は空白にしない」オプションがあればいいのですが、 ざっと見たかぎり見つかりませんでした。1
+まあしょうがないので、これからは fill-paragraph(M-q) を使用せず、 1行ごとに改行することにします。
+今日はいい天気ですね! そうですね。  これはこうなる。
+今日はいい天気ですね!そうですね。  2わかち書きが基本の英語圈でできた仕様だからしかたないのだろうけど、 日本語の文章を書くときは不便だなあ。
+ DEFINITION NOT FOUND [return] DEFINITION NOT FOUND [return]   " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/paragrah-html/" />
+<meta property="article:published_time" content="2013-02-16T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2013-02-16T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="org-modeの段落の改行を削除したい"/>
+<meta name="twitter:description" content="当ブログは、o-blog で運営していて、org-modeで原稿を書いています。 その際、頻繁に fill-paragraph(M-q) を使用するのですが、 これが org-export-as-html すると都合が悪いのです。
+どう都合が悪いかというと、段落の文のなかに半角スペースが紛れこんでしまうのです。
+例をあげると
+今日はいい 天気ですね!  これは、HTMLエクスポートすると
+&lt;p&gt;今日はいい 天気ですね!&lt;/p&gt;  となるので、ブラウザ上では
+今日はいい 天気ですね!  となり、文の途中に空白文字が挿入されてしまいます。
+これはHTMLの仕様なので、変更するのはムズかしそうです。 cssなりorg-modeなりで「pタグの改行は空白にしない」オプションがあればいいのですが、 ざっと見たかぎり見つかりませんでした。1
+まあしょうがないので、これからは fill-paragraph(M-q) を使用せず、 1行ごとに改行することにします。
+今日はいい天気ですね! そうですね。  これはこうなる。
+今日はいい天気ですね!そうですね。  2わかち書きが基本の英語圈でできた仕様だからしかたないのだろうけど、 日本語の文章を書くときは不便だなあ。
+ DEFINITION NOT FOUND [return] DEFINITION NOT FOUND [return]   "/>
+
+<title>org-modeの段落の改行を削除したい | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">org-modeの段落の改行を削除したい</h1>
+  <aside id="meta"><a class="tags" href="/tags/hamari">hamari</a><a class="tags" href="/tags/oblog">oblog</a>
+<section>
+      <span class="date">作成日: 2013-02-16</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2013-02-16</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;40 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>当ブログは、<a href="http://renard.github.com/o-blog/" title="o-blog">o-blog</a> で運営していて、org-modeで原稿を書いています。
+その際、頻繁に <code>fill-paragraph(M-q)</code> を使用するのですが、
+これが <code>org-export-as-html</code> すると都合が悪いのです。</p>
+
+<p>どう都合が悪いかというと、段落の文のなかに半角スペースが紛れこんでしまうのです。</p>
+
+<p>例をあげると</p>
+
+<pre><code>今日はいい
+天気ですね!
+</code></pre>
+
+<p>これは、HTMLエクスポートすると</p>
+
+<pre><code>&lt;p&gt;今日はいい
+ 天気ですね!&lt;/p&gt;
+</code></pre>
+
+<p>となるので、ブラウザ上では</p>
+
+<pre><code>今日はいい 天気ですね!
+</code></pre>
+
+<p>となり、文の途中に空白文字が挿入されてしまいます。</p>
+
+<p>これはHTMLの仕様なので、変更するのはムズかしそうです。
+cssなりorg-modeなりで「pタグの改行は空白にしない」オプションがあればいいのですが、
+ざっと見たかぎり見つかりませんでした。<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
+
+<p>まあしょうがないので、これからは <code>fill-paragraph(M-q)</code> を使用せず、
+1行ごとに改行することにします。</p>
+
+<pre><code>今日はいい天気ですね!
+そうですね。
+</code></pre>
+
+<p>これはこうなる。</p>
+
+<pre><code>今日はいい天気ですね!そうですね。
+</code></pre>
+
+<p><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">2</a></sup>わかち書きが基本の英語圈でできた仕様だからしかたないのだろうけど、
+日本語の文章を書くときは不便だなあ。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">DEFINITION NOT FOUND <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+
+<li id="fn:1">DEFINITION NOT FOUND <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/file-open/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>ファイルオープン数が上限値に達した</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/python-window-tiler/">python window tiler を試す<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

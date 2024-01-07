@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる" />
+<meta property="og:description" content="まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。 その後、npmでsocket.ioをインストール。
+dos&gt; npm install socket.io あとは、swank-jsをインストールする。
+下記を参考にWindowsXP環境にインストールした。
+ http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html  上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。 もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
+ https://github.com/swank-js/swank-js  インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。 回避方法としてswank-js.elはMarmaladeからインストールした。
+M-x packagea-list-packages 下記を選択してixでインスール。
+slime-js 0.0.1 installed Slime extension for swank-js. あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
+M-x slime-connect 127.0.0.1 4005 その後、repl上で接続したいURLを指定する。
+,target-url 次にブラウザ上で下記にアクセスする。
+ http://localhost:8009/  その後、repl上で接続する。
+,select-remote あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
+alert (&#34;hoge&#34;)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/emacs-slime-nodejs-swank-js-emacsjavascript/" />
+<meta property="article:published_time" content="2012-05-10T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2012-05-10T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる"/>
+<meta name="twitter:description" content="まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。 その後、npmでsocket.ioをインストール。
+dos&gt; npm install socket.io あとは、swank-jsをインストールする。
+下記を参考にWindowsXP環境にインストールした。
+ http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html  上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。 もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。
+ https://github.com/swank-js/swank-js  インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。 回避方法としてswank-js.elはMarmaladeからインストールした。
+M-x packagea-list-packages 下記を選択してixでインスール。
+slime-js 0.0.1 installed Slime extension for swank-js. あとは裏でnode swank.jsを走らせて、SLIMEに接続する。
+M-x slime-connect 127.0.0.1 4005 その後、repl上で接続したいURLを指定する。
+,target-url 次にブラウザ上で下記にアクセスする。
+ http://localhost:8009/  その後、repl上で接続する。
+,select-remote あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。
+alert (&#34;hoge&#34;)"/>
+
+<title>emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">emacs &#43; SLIME &#43; node.js &#43; swank-js でemacsからブラウザ上のjavascriptを実行してみる</h1>
+  <aside id="meta"><a class="tags" href="/tags/emacs">emacs</a><a class="tags" href="/tags/javascript">javascript</a>
+<section>
+      <span class="date">作成日: 2012-05-10</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2012-05-10</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;39 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>まず、Windows版のnode.jsをインストールしておく。インストーラなので簡単。
+その後、npmでsocket.ioをインストール。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">dos&gt; npm install socket.io</code></pre></div>
+<p>あとは、swank-jsをインストールする。</p>
+
+<p>下記を参考にWindowsXP環境にインストールした。</p>
+
+<ul>
+<li>http://e-arrows.sakura.ne.jp/2011/06/connect-to-nodejs-and-chrome-from-emacs.html</li>
+</ul>
+
+<p>上記記事では、本家は更新が止っているとあるが、最近は更新を再開したっぽい。
+もろもろバグフィックスがされているようなのでオリジナルからswank-jsを取得した。</p>
+
+<ul>
+<li>https://github.com/swank-js/swank-js</li>
+</ul>
+
+<p>インストール方法などは表記のとおりすればOKだが、windowsなのでうまくlnコマンドの部分がうまくいかない。
+回避方法としてswank-js.elはMarmaladeからインストールした。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">M-x packagea-list-packages</code></pre></div>
+<p>下記を選択してixでインスール。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">slime-js          <span style="color:#f60">0</span>.0.1       installed  Slime extension <span style="color:#069;font-weight:bold">for</span> swank-js.</code></pre></div>
+<p>あとは裏でnode swank.jsを走らせて、SLIMEに接続する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">M-x slime-connect <span style="color:#f60">127</span>.0.0.1 <span style="color:#f60">4005</span></code></pre></div>
+<p>その後、repl上で接続したいURLを指定する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">,target-url</code></pre></div>
+<p>次にブラウザ上で下記にアクセスする。</p>
+
+<ul>
+<li>http://localhost:8009/</li>
+</ul>
+
+<p>その後、repl上で接続する。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">,select-remote</code></pre></div>
+<p>あとはrepl上で下記を実行するとlocalhost:8009上でjsが実行される。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">alert <span style="color:#555">(</span><span style="color:#c30">&#34;hoge&#34;</span><span style="color:#555">)</span></code></pre></div>
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/ubuntu-1204-lts-on-zenbook-ux21e/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>Ubuntu 12.04 LTS On ZENBOOK UX21E</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/ubuntu-install/">(超個人的)Ubuntuインストール後にやることまとめ<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

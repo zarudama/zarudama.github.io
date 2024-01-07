@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="SKKを導入してみる(WindowsXP)" />
+<meta property="og:description" content="去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、 ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのに クライアントが増えてます!。。。ということでいくつか検証してみて 最終的に下記の組み合わせを使用することにしました。快適!快適ー!
+ corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー)  ということで以下に調べた内容をメモしておきます。
+corvus-SKK  最近できたらしいWindows用のFEP 辞書が独自形式 取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。  「;」によるStickyShiftを実現する方法  設定画面で[位置] タブで下記の設定を施す。  開始：; 代替：なし 送り：なし
+SKK日本語入力FEP  軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。  wceSKKServ  wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。 linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。  google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
+また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、 このサーバを使えば、その問題も解決します。 スバラシス!
+xp環境でのインストール gemを入れてから下記でインストールする。
+dos gem install google-ime-skk dos gem install json" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/skkwindowsxp/" />
+<meta property="article:published_time" content="2012-09-09T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2012-09-09T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SKKを導入してみる(WindowsXP)"/>
+<meta name="twitter:description" content="去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、 emacsの外の世界ではgooglIME(or MOZC)を使用していました。 滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、 ふと最近のWindwosSKK界隈を調べてみると、今までskkime 一択だったのに クライアントが増えてます!。。。ということでいくつか検証してみて 最終的に下記の組み合わせを使用することにしました。快適!快適ー!
+ corvus-SKK(IME) wceSKKServ(辞書サーバー) google-ime-skk(辞書サーバー)  ということで以下に調べた内容をメモしておきます。
+corvus-SKK  最近できたらしいWindows用のFEP 辞書が独自形式 取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。 emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。 サーバーがひとつしか使えない wceSKKServであれば、複数の辞書を扱えるので問題なし トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない 独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。 StickyShiftが使える! Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。  「;」によるStickyShiftを実現する方法  設定画面で[位置] タブで下記の設定を施す。  開始：; 代替：なし 送り：なし
+SKK日本語入力FEP  軽快な動作を目的とした比較的新しいWindows版SKK。 Windowsアプリを使いやすくするための独自機能が特徴。 SKK-IME1.5改 と同じ作者であり基本理念が引き継がれている。 WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。 WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。  wceSKKServ  wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。 wceSKKServで使用する辞書は、euc-jpしか受付ない模様。 サーバにはユーザ辞書は指定できない。 従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。 どうしてもしたい場合は、コピーしたものを使う。 例えばスタートアップでユーザー辞書をコピーするとか。 サーバを使うメリットとしては、以下がある。 linux環境において辞書を共用することでメモリの節約 予めサーバーとして立ちあげておくことで、起動がスムーズになる サーバー側に複数の辞書を登録することで、クライアント側では、 そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。  google-ime-skk 最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、 Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。 この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、 ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。
+また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、 このサーバを使えば、その問題も解決します。 スバラシス!
+xp環境でのインストール gemを入れてから下記でインストールする。
+dos gem install google-ime-skk dos gem install json"/>
+
+<title>SKKを導入してみる(WindowsXP) | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">SKKを導入してみる(WindowsXP)</h1>
+  <aside id="meta"><a class="tags" href="/tags/windows">windows</a><a class="tags" href="/tags/skk">skk</a>
+<section>
+      <span class="date">作成日: 2012-09-09</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2012-09-09</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;77 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>去年からemacs上の日本語入力にはDDSKKを使い続けているのですが、
+emacsの外の世界ではgooglIME(or MOZC)を使用していました。
+滅多に外の世界で活動しないため、別にこれで不自由はなかったのですが、
+ふと最近のWindwosSKK界隈を調べてみると、今まで<a href="http://homepage3.nifty.com/monjya/skkime.jis.html" title="skkime">skkime</a> 一択だったのに
+クライアントが増えてます!。。。ということでいくつか検証してみて
+最終的に下記の組み合わせを使用することにしました。快適!快適ー!</p>
+
+<ul>
+<li><a href="http://code.google.com/p/corvus-skk/" title="corvus-SKK(IME)">corvus-SKK(IME)</a></li>
+<li><a href="http://www.megadriver.info/~fumi/wceskkserv/" title="wceSKKServ(辞書サーバー)">wceSKKServ(辞書サーバー)</a></li>
+<li><a href="http://d.hatena.ne.jp/hitode909/20110421/1303274561" title="google-ime-skk(辞書サーバー)">google-ime-skk(辞書サーバー)</a></li>
+</ul>
+
+<p>ということで以下に調べた内容をメモしておきます。</p>
+
+<h1 id="corvus-skk">corvus-SKK</h1>
+
+<ul>
+<li>最近できたらしいWindows用のFEP</li>
+<li>辞書が独自形式</li>
+<li>取り込みボタンを押したタイミングで辞書が独自形式に変換されるので、これは逆に長所になった。</li>
+<li>emacs側のユーザー辞書を直接指定しても別ファイルになるので、クライアント単位で競合せずにすむ。</li>
+<li>サーバーがひとつしか使えない</li>
+<li>wceSKKServであれば、複数の辞書を扱えるので問題なし</li>
+<li>トリガキーが「M-漢字キー」しかうけつけておらず、「漢字」キーのみでない</li>
+<li>独自のサーバ(corvuserv)を使用しているが、まだ完成度が低そう。</li>
+<li>StickyShiftが使える!</li>
+<li>Windows XPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
+</ul>
+
+<h2 id="によるstickyshiftを実現する方法">「;」によるStickyShiftを実現する方法</h2>
+
+<ul>
+<li>設定画面で[位置] タブで下記の設定を施す。</li>
+</ul>
+
+<p>開始：;
+  代替：なし
+  送り：なし</p>
+
+<h1 id="http-coexe-web-fc2-com-skkfep-html-skk日本語入力fep"><a href="http://coexe.web.fc2.com/skkfep.html" title="SKK日本語入力FEP">SKK日本語入力FEP</a></h1>
+
+<ul>
+<li>軽快な動作を目的とした比較的新しいWindows版SKK。</li>
+<li>Windowsアプリを使いやすくするための独自機能が特徴。</li>
+<li><a href="http://coexe.web.fc2.com/programs.html#skkime" title="SKK-IME1.5改">SKK-IME1.5改</a> と同じ作者であり基本理念が引き継がれている。</li>
+<li>WindowsXPのテキストサービスフレームワーク(TSF)が不安定なため、XPでの利用はあまり推奨されない。</li>
+<li>WindowsXPで使用する場合は、SKK-IME1.5改を使用したほうが良い。</li>
+</ul>
+
+<h1 id="wceskkserv">wceSKKServ</h1>
+
+<ul>
+<li>wceSKKServというサーバーを使って、ddskkと辞書の共有を図る。</li>
+<li>wceSKKServで使用する辞書は、euc-jpしか受付ない模様。</li>
+<li>サーバにはユーザ辞書は指定できない。</li>
+<li>従って、ddskkで育てた辞書をskkIMEでも利用するということはできない。</li>
+<li>どうしてもしたい場合は、コピーしたものを使う。</li>
+<li>例えばスタートアップでユーザー辞書をコピーするとか。</li>
+<li>サーバを使うメリットとしては、以下がある。</li>
+<li>linux環境において辞書を共用することでメモリの節約</li>
+<li>予めサーバーとして立ちあげておくことで、起動がスムーズになる</li>
+<li>サーバー側に複数の辞書を登録することで、クライアント側では、</li>
+   そのサーバーをひとつ設定するだけで複数の辞書を指定したことになり、設定が楽になる。
+</ul>
+
+<h1 id="google-ime-skk">google-ime-skk</h1>
+
+<p>最近は、GoogleIMEが流行っているので、SKKをこのまま使い続けていいのか若干気の迷いがありましたが、
+Google-IME-SKKの存在を知ってその不安もなくなりました。なぜなら、SKKからGoogleの辞書が使えるからです。
+この辞書のおかげで、ネットで話題の言葉とかも簡単に変換可能だし、
+ローカルの辞書でヒットしなかった場合でも大抵googleIMEが拾ってくれます。</p>
+
+<p>また、Linux上のGoogleIMEであるMOZCの場合、確かネットのデータは反映されないのですが、
+このサーバを使えば、その問題も解決します。
+スバラシス!</p>
+
+<h2 id="xp環境でのインストール">xp環境でのインストール</h2>
+
+<p>gemを入れてから下記でインストールする。</p>
+
+<p>dos> gem install google-ime-skk
+dos> gem install json</p>
+
+<p>下記のようなバッチファイルを作ってスタートアップに登録しておく。
+「gskk.bat」</p>
+
+<p>google-ime-skk.bat</p>
+
+<p>あとは下記に接続すればok。</p>
+
+<p>localhost:55100</p>
+
+<p>コンソールが表示されるのが嫌という向きもあるだろうが
+自分の場合は、あとでログが見れたほうが嬉しいことが多いので
+そのままにしている。</p>
+
+<p>また、バーチャルデスクトップ(WinDeskwide)を使っているので
+不要なウィンドウは全部そっちに集めてスッキリできるので問題ない。</p>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/xmonad/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>xmonadを試す</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/swank-clojurenrepl/">swank-clojureの後継モジュールのnREPLを試してみた<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

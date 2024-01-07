@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。" />
+<meta property="og:description" content="Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカ スが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作 性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとし ている自分にとっては不便極まりない。
+ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。
+代わりにGireaseMonkey1を使った代替方法が見つかったのでそのスクリプトを使用することにした。
+ http://javascripter.hatenablog.com/entry/20080620/1213923411  GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。
+新規ユーザスクリプトを追加する手順は以下。
+ [メニュー]-[ツール]-[GreasMonkey]-[新規ユーザースクリプト]  // ==UserScript== // @name no-focus // @namespace no-focus // @version 1 // @include http* // ==/UserScript= window.addEventListener(&#39;load&#39;, function() { document.activeElement.blur(); this.removeEventListener(&#39;load&#39;, arguments.callee, false); }, false);  コードの意味はよくわかってないから、問題があるかもしれないが、その場合 はその時考えよう。
+ Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。 [return]   " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/firefox-focus/" />
+<meta property="article:published_time" content="2012-09-06T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2012-09-06T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。"/>
+<meta name="twitter:description" content="Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカ スが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作 性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとし ている自分にとっては不便極まりない。
+ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。
+代わりにGireaseMonkey1を使った代替方法が見つかったのでそのスクリプトを使用することにした。
+ http://javascripter.hatenablog.com/entry/20080620/1213923411  GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。
+新規ユーザスクリプトを追加する手順は以下。
+ [メニュー]-[ツール]-[GreasMonkey]-[新規ユーザースクリプト]  // ==UserScript== // @name no-focus // @namespace no-focus // @version 1 // @include http* // ==/UserScript= window.addEventListener(&#39;load&#39;, function() { document.activeElement.blur(); this.removeEventListener(&#39;load&#39;, arguments.callee, false); }, false);  コードの意味はよくわかってないから、問題があるかもしれないが、その場合 はその時考えよう。
+ Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。 [return]   "/>
+
+<title>Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。 | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。</h1>
+  <aside id="meta"><a class="tags" href="/tags/firefox">firefox</a>
+<section>
+      <span class="date">作成日: 2012-09-06</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2012-09-06</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;39 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>Twitter,google,その他多くの検索サイトでは、ページを開くと勝手にフォーカ
+スが移動して入力待ち状態になる。この挙動は多くの普通の人にとっては操作
+性が良くなるんだろうけど、FirefoxのKeysnailでキーボード操作をメインとし
+ている自分にとっては不便極まりない。</p>
+
+<p>ってことで、この挙動をどうにかするAdd-Onを探していたんだけど、なぜかなかった。</p>
+
+<p>代わりにGireaseMonkey<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>を使った代替方法が見つかったのでそのスクリプトを使用することにした。</p>
+
+<ul>
+<li>http://javascripter.hatenablog.com/entry/20080620/1213923411</li>
+</ul>
+
+<p>GreaseMonkeyアドオンをインストールして、下記コードを追加すれば良い。</p>
+
+<p>新規ユーザスクリプトを追加する手順は以下。</p>
+
+<ul>
+<li>[メニュー]->[ツール]->[GreasMonkey]->[新規ユーザースクリプト]</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#09f;font-style:italic">// ==UserScript==
+</span><span style="color:#09f;font-style:italic">// @name        no-focus
+</span><span style="color:#09f;font-style:italic">// @namespace   no-focus
+</span><span style="color:#09f;font-style:italic">// @version     1
+</span><span style="color:#09f;font-style:italic">// @include     http*
+</span><span style="color:#09f;font-style:italic">// ==/UserScript=
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#366">window</span>.addEventListener(<span style="color:#c30">&#39;load&#39;</span>,
+<span style="color:#069;font-weight:bold">function</span>() {
+  <span style="color:#366">document</span>.activeElement.blur();
+  <span style="color:#069;font-weight:bold">this</span>.removeEventListener(<span style="color:#c30">&#39;load&#39;</span>, arguments.callee, <span style="color:#069;font-weight:bold">false</span>);
+},
+<span style="color:#069;font-weight:bold">false</span>);
+</code></pre></div>
+<p>コードの意味はよくわかってないから、問題があるかもしれないが、その場合
+はその時考えよう。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">Greasemonkeyはchromeにも移植されているので、chromeでも利用できるかもしれない。 <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/swank-clojurenrepl/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>swank-clojureの後継モジュールのnREPLを試してみた</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/git-repo-delete/">削除したはずリモートブランチが、別のリポジトリから見ると削除されていない。<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

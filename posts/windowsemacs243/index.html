@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="windows版emacs24.3で画像を表示する。" />
+<meta property="og:description" content=" Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。   自分の場合pngが表示されなかったので libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。 http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。  emacs(Windows版)で画像を表示している様子 /img/image-dired/image-dired.png
+w3mでakb48を検索してみた。 /img/image-dired/w3m.png
+参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/windowsemacs243/" />
+<meta property="article:published_time" content="2013-05-03T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2013-05-03T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="windows版emacs24.3で画像を表示する。"/>
+<meta name="twitter:description" content=" Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。 F1 v dynamic-library-alist で必要なdllを調べる。 表示されたdllをググッてダウンロードする。 PATHの通った場所へdllを置く。   自分の場合pngが表示されなかったので libpng14-14.dll が表示されたのでこれをググり、下記サイトからダウンロードした。 http://www.gtk.org/download/win32.php emacsを再起動後、 zlib1.dll がないと怒られたので、これもダウンロードして配置。 emacsを再起動し、 M-x image-dired でpng画像を開いたところ無事表示できた。 あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。  emacs(Windows版)で画像を表示している様子 /img/image-dired/image-dired.png
+w3mでakb48を検索してみた。 /img/image-dired/w3m.png
+参考  http://qiita.com/items/dc621c568a294004f5a2 http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files  "/>
+
+<title>windows版emacs24.3で画像を表示する。 | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">windows版emacs24.3で画像を表示する。</h1>
+  <aside id="meta"><a class="tags" href="/tags/emacs">emacs</a><a class="tags" href="/tags/windows">windows</a>
+<section>
+      <span class="date">作成日: 2013-05-03</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2013-05-03</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;26 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <ul>
+Windows版Emacsにおいて、image-diredなどで画像が表示されない場合、下記の方法で表示できる。
+<li><code>F1 v dynamic-library-alist</code> で必要なdllを調べる。</li>
+<li>表示されたdllをググッてダウンロードする。</li>
+<li>PATHの通った場所へdllを置く。</li>
+</ul>
+
+<ul>
+自分の場合pngが表示されなかったので
+<li><code>libpng14-14.dll</code> が表示されたのでこれをググり、下記サイトからダウンロードした。</li>
+<li>http://www.gtk.org/download/win32.php</li>
+<li>emacsを再起動後、 <code>zlib1.dll</code> がないと怒られたので、これもダウンロードして配置。</li>
+<li>emacsを再起動し、 <code>M-x image-dired</code> でpng画像を開いたところ無事表示できた。</li>
+あとはgifやjpegあたりも同様の手順で準備すればとりあえず困らないだろう。
+</ul>
+
+<p>emacs(Windows版)で画像を表示している様子
+<a href="/img/image-dired/image-dired.png" title="/img/image-dired/image-dired.png">/img/image-dired/image-dired.png</a></p>
+
+<p>w3mでakb48を検索してみた。
+<a href="/img/image-dired/w3m.png" title="/img/image-dired/w3m.png">/img/image-dired/w3m.png</a></p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>http://qiita.com/items/dc621c568a294004f5a2</li>
+<li>http://stackoverflow.com/questions/2650041/emacs-under-windows-and-png-files</li>
+</ul>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/firefox-sync-bug/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>firefox の同期不具合</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/file-open/">ファイルオープン数が上限値に達した<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

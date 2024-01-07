@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="swank-clojureの後継モジュールのnREPLを試してみた" />
+<meta property="og:description" content="いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
+ https://github.com/technomancy/swank-clojure  This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit.  超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。 もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
+ということで、el-getでレシピに下記を追加して nrepl.el をインストール。
+(:name nrepl :type github :pkgname &#34;kingtim/nrepl.el&#34; ) で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。
+ :dependencies [[org.clojure/clojure &quot;1.4.0&quot;] [org.clojure/tools.nrepl &quot;0.2.0-beta9&quot; ]]  最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。
+キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
+ シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)  ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/swank-clojurenrepl/" />
+<meta property="article:published_time" content="2012-09-07T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2012-09-07T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="swank-clojureの後継モジュールのnREPLを試してみた"/>
+<meta name="twitter:description" content="いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。
+ https://github.com/technomancy/swank-clojure  This project is no longer under active development. New users are strongly encouraged to try out nrepl.el instead. If you need an advanced debugger, Ritz might be a better fit.  超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。 もしイケテるデバッガが欲しいならRitzがいいかもYO!。」
+ということで、el-getでレシピに下記を追加して nrepl.el をインストール。
+(:name nrepl :type github :pkgname &#34;kingtim/nrepl.el&#34; ) で lein2.0 で適当にプロジェクトをつくって、 project.clj に下記を追加。
+ :dependencies [[org.clojure/clojure &quot;1.4.0&quot;] [org.clojure/tools.nrepl &quot;0.2.0-beta9&quot; ]]  最後に M-x nrepl-jack-in すると、nREPL-Server が起動して、nREPLが起動する。
+キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。
+ シンボルの補完(TABで補完できる) 関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)  ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。 たとえば、"/>
+
+<title>swank-clojureの後継モジュールのnREPLを試してみた | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">swank-clojureの後継モジュールのnREPLを試してみた</h1>
+  <aside id="meta"><a class="tags" href="/tags/clojure">clojure</a><a class="tags" href="/tags/nrepl">nrepl</a>
+<section>
+      <span class="date">作成日: 2012-09-07</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2012-09-07</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;75 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p>いつのまにかswank-clojureが非推奨になり、代わりにnREPLというものが推奨されていた。</p>
+
+<ul>
+<li>https://github.com/technomancy/swank-clojure</li>
+</ul>
+
+<pre><code>This project is no longer under active development.
+
+New users are strongly encouraged to try out nrepl.el instead. If you
+need an advanced debugger, Ritz might be a better fit.
+</code></pre>
+
+<p>超意訳。「swank-clojureは全然活動してないから、新規のユーザはnrepl.elを強く推奨する。
+もしイケテるデバッガが欲しいならRitzがいいかもYO!。」</p>
+
+<p>ということで、el-getでレシピに下記を追加して <code>nrepl.el</code> をインストール。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp"> (<span style="color:#366">:name</span> <span style="color:#033">nrepl</span>
+  <span style="color:#366">:type</span> <span style="color:#033">github</span>
+  <span style="color:#366">:pkgname</span> <span style="color:#c30">&#34;kingtim/nrepl.el&#34;</span>
+ )</code></pre></div>
+<p>で <code>lein2.0</code> で適当にプロジェクトをつくって、 <code>project.clj</code> に下記を追加。</p>
+
+<pre><code>  :dependencies [[org.clojure/clojure &quot;1.4.0&quot;]
+                 [org.clojure/tools.nrepl &quot;0.2.0-beta9&quot; ]]
+</code></pre>
+
+<p>最後に <code>M-x nrepl-jack-in</code> すると、nREPL-Server が起動して、nREPLが起動する。</p>
+
+<p>キーバインドはほとんどSLIMEと同様だし、SLIMEの下記の特徴も実現してるので、これは本格的に移行できる雰囲気。</p>
+
+<ul>
+<li>シンボルの補完(TABで補完できる)</li>
+<li>関数の引数表示(シンボルを打ちこむとミニバッファに自動表示)</li>
+</ul>
+
+<p>ただSLIMEを常用してきたわけではないので足りない機能もまだありそうだけど。
+たとえば、</p>
+
+<ul>
+<li>REPL上でエラーが発生してもデバッガが起動しない(例外が表示されるだけ)</li>
+<li>nREPLとは直接関係ないけど、auto-complte.elに対応するモジュール(ac-slime)がない。</li>
+<li>HyperSpecのようなドキュメントシステムは？(doc関数ががあるからいらないか)</li>
+</ul>
+
+<p>ちなみに下記の記事を読むと、nREPL開発に至る経緯がある。</p>
+
+<ul>
+<li>http://technomancy.us/163</li>
+</ul>
+
+<p>clojureでSLIMEを使用する場合、最新のバージョンだと動かなかったりするので、
+環境構築に苦労したけど、専用のSLIME代替モジュールができたおかげで環境構築が楽になりますな。</p>
+
+<p>nREPLは、まだまだできたばかりのプロジェクトだけれども、
+SLIMEの呪縛から解き放たれた期待のプロジェクト。
+積極的に使っていきたい。</p>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/skkwindowsxp/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>SKKを導入してみる(WindowsXP)</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/firefox-focus/">Firefoxでサイトを開いた時に自動フォーカスされるのを無効化する。<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta property="og:title" content="cygwinでssh接続できない" />
+<meta property="og:description" content="/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定し てる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成でき ないと怒られてしまう。
+$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &#39;/home/mikio/.ssh&#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
+ http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
+debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zarudama.github.io/posts/cygwinssh/" />
+<meta property="article:published_time" content="2012-12-22T14:01:39&#43;09:00"/>
+<meta property="article:modified_time" content="2012-12-22T14:01:39&#43;09:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="cygwinでssh接続できない"/>
+<meta name="twitter:description" content="/home/mikio にホームを設定してるのではなく、 c:/Users/mikio にHOMEを設定し てる場合でssh接続すると、下記のように /home/mikio ディレクトリが作成でき ないと怒られてしまう。
+$ ssh -v 192.168.10.2 -p 30890 -i ~/.ssh/id_rsa.whitebase OpenSSH_6.1p1, OpenSSL 1.0.1c 10 May 2012 debug1: Connecting to 192.168.10.2 [192.168.10.2] port 30890. debug1: Connection established. Could not create directory &#39;/home/mikio/.ssh&#39;. この場合は、 /etc/passwd の /home/mikio となってるところを、 /cygdrive/c/Users/mikio に書き換えれば良い。
+ http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html  しかし今度はpublickeyがパーミッションエラー。
+debug1: Authentications that can continue: publickey debug1: Next authentication method: publickey debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase debug1: No more authentication methods to try."/>
+
+<title>cygwinでssh接続できない | ざる魂</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/zarudama.css">
+
+<body><div class="header pure-u-1">
+  <div class="container">
+    <h1><a href="/"><img src="/img/logo.png" alt="" class="logo">ざる魂</a></h1>
+    <p>真似ぶ魂、学ぶの本質</p>
+  </div>
+</div>
+<div class="menu pure-u-1">
+  <div class="container">
+    <ul>
+      <li><a href="/search">全文検索</a></li>
+      <li><a href="/posts">全ページ一覧</a></li>
+      <li><a href="/tags">タグ一覧</a></li>
+      <li><a href="/about">このサイトについて</a></li>
+    </ul>
+  </div>
+</div>
+<article>
+        <div class="container">
+<div class="title pure-u-1">
+  <h1 id="title">cygwinでssh接続できない</h1>
+  <aside id="meta"><a class="tags" href="/tags/cygwin">cygwin</a><a class="tags" href="/tags/ssh">ssh</a>
+<section>
+      <span class="date">作成日: 2012-12-22</span>&nbsp;&nbsp;
+      <span class="date">最終更新日: 2012-12-22</span>&nbsp;&nbsp;
+      <sapn class="wordcount"> &lt;560 文字> </span>
+    </section>
+    
+  </aside>
+</div>
+<div class="content pure-u-1">
+    
+    
+    
+    
+      <p><code>/home/mikio</code> にホームを設定してるのではなく、 <code>c:/Users/mikio</code> にHOMEを設定し
+てる場合でssh接続すると、下記のように <code>/home/mikio</code> ディレクトリが作成でき
+ないと怒られてしまう。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh -v <span style="color:#f60">192</span>.168.10.2 -p <span style="color:#f60">30890</span> -i ~/.ssh/id_rsa.whitebase
+OpenSSH_6.1p1, OpenSSL <span style="color:#f60">1</span>.0.1c <span style="color:#f60">10</span> May <span style="color:#f60">2012</span>
+debug1: Connecting to <span style="color:#f60">192</span>.168.10.2 <span style="color:#555">[</span><span style="color:#f60">192</span>.168.10.2<span style="color:#555">]</span> port <span style="color:#f60">30890</span>.
+debug1: Connection established.
+Could not create directory <span style="color:#c30">&#39;/home/mikio/.ssh&#39;</span>.</code></pre></div>
+<p>この場合は、 <code>/etc/passwd</code> の <code>/home/mikio</code> となってるところを、
+ <code>/cygdrive/c/Users/mikio</code> に書き換えれば良い。</p>
+
+<ul>
+<li>http://ekawas.blogspot.jp/2007/03/solving-pesky-ssh-issues-in-cygwin.html</li>
+</ul>
+
+<p>しかし今度はpublickeyがパーミッションエラー。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">debug1: Authentications that can <span style="color:#069;font-weight:bold">continue</span>: publickey
+debug1: Next authentication method: publickey
+debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase
+debug1: No more authentication methods to try.
+Permission denied <span style="color:#555">(</span>publickey<span style="color:#555">)</span>.</code></pre></div>
+<p>下記よるとホスト側で <code>/etc/ssh/sshd_config</code> の設定でユーザを許可してな
+いのが原因とあったので調べたところドンピシャでした。</p>
+
+<ul>
+<li>http://lunatear.net/archives/000300.html</li>
+</ul>
+
+<p>早速編集して再起動したところ、まだ駄目。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># AllowUsersにユーザを追加</span>
+$ sudo vi /etc/ssh/sshd_config
+
+<span style="color:#09f;font-style:italic"># 再起動</span> 
+$ sudo /etc/init.d/ssh restart
+ ：
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can <span style="color:#069;font-weight:bold">continue</span>: publickey
+debug1: Next authentication method: publickey
+debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase
+debug1: No more authentication methods to try.
+Permission denied <span style="color:#555">(</span>publickey<span style="color:#555">)</span>.</code></pre></div>
+<p>接続ホスト側でログを確認してみる。</p>
+
+<p><code>/etc/ssh/sshd_config</code> を編集</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">SyslogFacility AUTH
+LogLevel VERBOSE</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo tail -f /var/log/auth.log
+ :
+Dec  <span style="color:#f60">1</span> <span style="color:#f60">21</span>:54:00 whitebase sshd<span style="color:#555">[</span><span style="color:#f60">20701</span><span style="color:#555">]</span>: Set /proc/self/oom_score_adj to <span style="color:#f60">0</span>
+Dec  <span style="color:#f60">1</span> <span style="color:#f60">21</span>:54:00 whitebase sshd<span style="color:#555">[</span><span style="color:#f60">20701</span><span style="color:#555">]</span>: Connection from <span style="color:#f60">192</span>.168.10.229 port <span style="color:#f60">64522</span>
+Dec  <span style="color:#f60">1</span> <span style="color:#f60">21</span>:54:01 whitebase sshd<span style="color:#555">[</span><span style="color:#f60">20701</span><span style="color:#555">]</span>: Connection closed by <span style="color:#f60">192</span>.168.10.229 <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+ :</code></pre></div>
+<p>...ログをみてもよくわからなかった。</p>
+
+<p>今度は、サーバー側でもデバッグモードにして接続してみる。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mikio@whitebase:~/.ssh$ whereis sshd
+sshd: /usr/sbin/sshd /usr/share/man/man8/sshd.8.gz
+mikio@whitebase:~/.ssh$ sudo /usr/sbin/sshd -d
+debug1: sshd version OpenSSH_5.9p1 Debian-5ubuntu1
+debug1: <span style="color:#366">read</span> PEM private key <span style="color:#069;font-weight:bold">done</span>: <span style="color:#366">type</span> RSA
+debug1: Checking blacklist file /usr/share/ssh/blacklist.RSA-2048
+debug1: Checking blacklist file /etc/ssh/blacklist.RSA-2048
+debug1: private host key: <span style="color:#09f;font-style:italic">#0 type 1 RSA</span>
+debug1: <span style="color:#366">read</span> PEM private key <span style="color:#069;font-weight:bold">done</span>: <span style="color:#366">type</span> DSA
+debug1: Checking blacklist file /usr/share/ssh/blacklist.DSA-1024
+debug1: Checking blacklist file /etc/ssh/blacklist.DSA-1024
+debug1: private host key: <span style="color:#09f;font-style:italic">#1 type 2 DSA</span>
+debug1: <span style="color:#366">read</span> PEM private key <span style="color:#069;font-weight:bold">done</span>: <span style="color:#366">type</span> ECDSA
+debug1: Checking blacklist file /usr/share/ssh/blacklist.ECDSA-256
+debug1: Checking blacklist file /etc/ssh/blacklist.ECDSA-256
+debug1: private host key: <span style="color:#09f;font-style:italic">#2 type 3 ECDSA</span>
+debug1: rexec_argv<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]=</span><span style="color:#c30">&#39;/usr/sbin/sshd&#39;</span>
+debug1: rexec_argv<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">]=</span><span style="color:#c30">&#39;-d&#39;</span>
+Set /proc/self/oom_score_adj from <span style="color:#f60">0</span> to -1000
+debug1: Bind to port <span style="color:#f60">30890</span> on <span style="color:#f60">0</span>.0.0.0.
+Server listening on <span style="color:#f60">0</span>.0.0.0 port <span style="color:#f60">30890</span>.
+debug1: Bind to port <span style="color:#f60">30890</span> on ::.
+Server listening on :: port <span style="color:#f60">30890</span>.
+debug1: Server will not fork when running in debugging mode.
+debug1: rexec start in <span style="color:#f60">5</span> out <span style="color:#f60">5</span> newsock <span style="color:#f60">5</span> pipe -1 sock <span style="color:#f60">8</span>
+debug1: inetd sockets after dupping: <span style="color:#f60">3</span>, <span style="color:#f60">3</span>
+Connection from <span style="color:#f60">192</span>.168.10.229 port <span style="color:#f60">64488</span>
+debug1: Client protocol version <span style="color:#f60">2</span>.0; client software version OpenSSH_6.1
+debug1: match: OpenSSH_6.1 pat OpenSSH*
+debug1: Enabling compatibility mode <span style="color:#069;font-weight:bold">for</span> protocol <span style="color:#f60">2</span>.0
+debug1: Local version string SSH-2.0-OpenSSH_5.9p1 Debian-5ubuntu1
+debug1: permanently_set_uid: <span style="color:#f60">105</span>/65534 <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: list_hostkey_types: ssh-rsa,ssh-dss,ecdsa-sha2-nistp256 <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: SSH2_MSG_KEXINIT sent <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: SSH2_MSG_KEXINIT received <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: kex: client-&gt;server aes128-ctr hmac-md5 none <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: kex: server-&gt;client aes128-ctr hmac-md5 none <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: expecting SSH2_MSG_KEX_ECDH_INIT <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: SSH2_MSG_NEWKEYS sent <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: expecting SSH2_MSG_NEWKEYS <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: SSH2_MSG_NEWKEYS received <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: KEX <span style="color:#069;font-weight:bold">done</span> <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: userauth-request <span style="color:#069;font-weight:bold">for</span> user mikio service ssh-connection method none <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: attempt <span style="color:#f60">0</span> failures <span style="color:#f60">0</span> <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: PAM: initializing <span style="color:#069;font-weight:bold">for</span> <span style="color:#c30">&#34;mikio&#34;</span>
+debug1: PAM: setting PAM_RHOST to <span style="color:#c30">&#34;miki-pc.lan&#34;</span>
+debug1: PAM: setting PAM_TTY to <span style="color:#c30">&#34;ssh&#34;</span>
+Connection closed by <span style="color:#f60">192</span>.168.10.229 <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: do_cleanup <span style="color:#555">[</span>preauth<span style="color:#555">]</span>
+debug1: monitor_read_log: child log fd closed
+debug1: do_cleanup
+debug1: PAM: cleanup</code></pre></div>
+<p>うーん、よくわからん。</p>
+
+<p>今度は、クライアント側のデバッグログの出力レベルをあげて試す。
+(vの数がレベルになる。知らなかった。)</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh -vvv whitebase
+  :
+  :
+debug1: Next authentication method: publickey
+debug1: Trying private key: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase
+debug3: no such identity: /cygdrive/c/Users/miki/.ssh/id_rsa.whitabase
+debug2: we did not send a packet, disable method
+debug1: No more authentication methods to try.
+Permission denied <span style="color:#555">(</span>publickey<span style="color:#555">)</span>.</code></pre></div>
+<p>おおおお!、なんという初歩的ミス!。 <code>.ssh/config</code> の秘密鍵の名前をタイポ。</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">- IdentityFile ~/.ssh/id_rsa.whitabase
++ IdentityFile ~/.ssh/id_rsa.whitebase</code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+
+<ul>
+これで無事接続できました。
+<li>パーミッションを疑え!</li>
+<li><code>$HOME</code> -> <code>700</code></li>
+<li><code>$HOME/.ssh</code> -> <code>700</code></li>
+<li><code>$HOME/.ssh/id_rsa</code> -> <code>644</code></li>
+<li>サーバ側の <code>$HOME/.ssh/authorized_keys</code> -> 644</li>
+<li>ログイン許可してるユーザを確認しろ!</li>
+<li>サーバ側の <code><em>etc/ssh/sshd_config</code> の <code>AllowUsers</code> </li>
+<li>クライアント側のログを確認しろ!</li>
+<li><code>ssh -v HOSTNAME</code></li>
+<li>vオプションの数でデバッグレベルを調節できる!</li>
+<li><code>ssh -v HOSTNAME</code></li>
+<li><code>ssh -vv HOSTNAME</code></li>
+<li><code>ssh -vvv HOSTNAME</code> </li>
+<li>サーバ側のログを確認しろ!</li>
+<li>サーバ側の <code>/etc/ssh/sshd_config</code></li>
+<li><code>SyslogFacility AUTH</code></li>
+<li><code>LogLevel VERBOSE</code></li>
+<li><code>sudo tail -f /var/log/auth.log</code></li>
+<li><code>/usr/sbin/sshd -d</code></li>
+<li><code>$HOME</em>.ssh/config</code> のタイポを確認しろ!</li>
+</ul>
+
+<p>以上で大体解決すると思います。</p>
+
+    
+</div>
+<div class="pager pure-u-1">
+  
+  <div class="pager-new">
+    <a href="https://zarudama.github.io/posts/emacsjdeejava/"><span class="date">&laquo;&nbsp;new&nbsp;&nbsp;</span>Emacs中毒者に贈るJDEEによるJava開発環境の構築</a>
+  </div>
+  
+  
+  <div class="pager-old">
+  <a href="https://zarudama.github.io/posts/howm-modeorg-mode/">howm-modeとorg-modeを同時に使ってみたい。<span class="date">&nbsp;&nbsp;old&nbsp;&raquo;</span></a>
+  </div>
+  
+</div>
+
+        </div>
+      </article><div class="footer pure-u-1">
+  <div class="container">
+    <div class="text">
+      <p>Copyright &copy; ざる魂</p>
+      <p>Powered by <a href="https://gohugo.io/">HUGO</a></p>
+    </div>
+    <div class="added">
+      <div class="menu">
+        <ul>
+          <li><a href="https://twitter.com/zarudama_games"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

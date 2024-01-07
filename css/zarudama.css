@@ -1,0 +1,304 @@
+@charset "UTF-8";
+
+body {
+    background-color: #edf2f7;
+    margin: 0;
+    font-family: BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif,"Segoe UI Emoji";
+    word-break: break-all;
+}
+
+h1, h2, h3, h4, h5, h6	{font-weight: normal;}
+
+
+/* コンテナ */
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 10px 0 10px;
+}
+
+/* ヘッダー */
+.header	{
+    padding: 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.header h1 {
+    margin: 4px 0 0 0;
+    font-size: 20px;
+    line-height: 1;
+}
+.header h1 a {
+    color: #000; 
+    text-decoration: none;
+}
+.header p {
+    margin: 8px 0 0 0;
+    font-size: 12px;
+    line-height: 1;
+}
+.logo {
+    float: left;
+    border: none;
+    margin: -4px 10px 0 0;
+}
+
+.header:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* メニュー */
+.menu {
+    padding: 0; 
+    background-color: #fff;
+}
+
+.menu ul,
+.menu ol {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    list-style: none;
+}
+.menu li a {
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+}
+.menu li a:hover {
+    background-color: #eee;
+}
+.menu li {
+    float: left;
+}
+.menu ul:after,
+.menu ol:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 横に並べたリンクを区切る罫線 */
+.menu li a {
+    padding: 2px 15px;
+}
+.menu li+li a {
+    border-left: solid 1px #aaa;
+}
+
+/* 記事一覧 */
+.list ul {
+    list-style: none;
+    line-height: 1.5;
+}
+.recent ul {
+    list-style: none;
+}
+
+/* 記事 */
+.title {
+    padding: 20px;
+    box-sizing: border-box;
+    box-sizing: border-box;
+}
+.content {
+    margin-top: 2.0em;
+    margin-bottom: 2.0em;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+.content h2 {
+    margin-top: 2.3em;
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 1.5;
+    border-bottom: 1px solid #5c93bb2b;
+}
+.content h3 {
+    font-size: 1.3em;
+    margin-top: 2.25em;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    line-height: 1.5;
+    outline: 0;
+}
+.content p {
+    line-height: 1.9;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.wordcount, .date {
+    font-size: 0.8em;
+    color: #9c9e9e;
+}
+
+/* タグ */
+.tags {
+    display: inline-block;
+    margin: 0.67em;
+    padding: 2px 15px 2px 15px;
+    border-radius: 4px;
+    background-color: #dfe3e8;
+    color: #000;
+    font-size: 12px;
+    text-decoration: none;
+}
+.tags:hover, 
+.tags:focus {
+    outline: none;
+}
+.tags:hover, 
+.tags:focus {
+    outline: none;
+}
+
+
+/* ページャー */
+.pager {
+    font-size: 1.3em;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.pager a {
+    display: inline-block;
+    margin: 0.67em;
+    padding: 0.67em;
+    border-radius: 4px;
+    background-color: #F7F7F7;
+    color: #000;
+    font-size: 12px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.pager .pager-new {
+    float: left;
+}
+.pager .pager-old {
+    float: right;
+}
+.pager:after	{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* リンク */
+a {
+    color: #0366d6;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* コード */
+pre {
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+    margin-bottom: 0;
+    word-break: normal;
+    word-wrap: normal;
+    margin-top: 0;
+    border-radius: 8px;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+code {
+    border-radius: 8px;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+
+/* 注釈 */
+.footnotes {
+    color: #9c9e9e;
+    font-size: 12px;
+}
+.footnotes-separatator {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.footnote-definition {
+}
+.footnote-definition sup {
+}
+.footnote-body p {
+    margin: 0;
+    padding: 0;
+}
+
+/* 画像 */
+img {
+    background-color: #fff;
+    box-sizing: content-box;
+    max-width: 100%;
+    border-style: none;
+    padding: 0;
+    border: 0;
+}
+
+/* テーブル */
+table {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 16px;
+    margin-top: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table td, .zarudam table th {
+    border: 1px solid #dfe2e5;
+    padding: 6px 13px;
+}
+table th {
+    font-weight: 600;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+/* フッター */
+.footer {
+    padding: 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.footer p {
+    margin: 0 0 3px 0;
+    font-size: 12px;
+    line-height: 1.4;
+}
+.footer a {
+    color: #666;
+    text-decoration: none;
+}
+.footer .text	{
+    float: left;
+}
+.footer .added {
+    float: right;
+}
+.footer:after	{
+  content: "";
+  display: block;
+  clear: both;
+}
+.fa-twitter-square {
+    *zoom: expression(this.innerHTML = '&#xf081;');
+}
