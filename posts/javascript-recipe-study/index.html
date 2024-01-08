@@ -3,13 +3,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta property="og:title" content="ゲームアルゴリズムレシピの練習と再実装" />
-<meta property="og:description" content=" 「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、 javascriptによるゲームプログラミングの練習をしています。2008年発売と古 いですが、平易な説明でわかりやすくサンプルも豊富で参考になります。ただ、 Javascriptのサンプルとしては書き方がちょっと古いので最近の書き方に直し つつ、Canvasベースで再実装しながら勉強していきます。
+<meta property="og:description" content=" 「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、 javascriptによるゲームプログラミングの練習をしています。
+2008年発売と古いですが、平易な説明でわかりやすくサンプルも豊富で参考に なります。ただ、Javascriptのサンプルとしては書き方がちょっと古いので最 近の書き方に直しつつ、Canvasベースで再実装しながら勉強していきます。
 作成したサンプル たくさんのスプライト(p71) たくさんのスプライト２(p71) ジャンプゲーム(p84) 今後使うかもしれないライブラリ候補 phinajs
 https://phinajs.com/ 日本製なのでやりやすそう PixiJS
 https://pixijs.com/ 自分でゲームライブラリを構築するときのグラフィックライブラリとして使う場合 PHASER
 https://phaser.io/ PixiJSを使ったゲームライブラリ Three.js
 https://threejs.org/ 3Dやるならとりあえずこれって感じ p5.js
-https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ " />
+https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p113から 障害物の回転アニメーションを作る スプライト表示 キーボード判定 スプライト回転 CELL_YMAXのいちを確認 gameObjectの空きを取得すr仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係
+マウス判定 タッチ操作判定 入力関係はisUp,isDown,isRight,isLeft,isAButton,isBbuttonというメソッドで、タッチ操作とキーボード操作をgameにまとめる。 バーチャルパッド対応 画面を縦長にする？ 音楽再生 FPS調整 スプライトがにじむ問題 screeの最大化 スプライト矩形切り出し
+フォントスプライト機能 TileMap表示 p92から " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zarudama.github.io/posts/javascript-recipe-study/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-01-05T19:41:39+09:00" />
@@ -18,13 +21,16 @@ https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使�
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta name="twitter:title" content="ゲームアルゴリズムレシピの練習と再実装"/>
-<meta name="twitter:description" content=" 「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、 javascriptによるゲームプログラミングの練習をしています。2008年発売と古 いですが、平易な説明でわかりやすくサンプルも豊富で参考になります。ただ、 Javascriptのサンプルとしては書き方がちょっと古いので最近の書き方に直し つつ、Canvasベースで再実装しながら勉強していきます。
+<meta name="twitter:description" content=" 「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、 javascriptによるゲームプログラミングの練習をしています。
+2008年発売と古いですが、平易な説明でわかりやすくサンプルも豊富で参考に なります。ただ、Javascriptのサンプルとしては書き方がちょっと古いので最 近の書き方に直しつつ、Canvasベースで再実装しながら勉強していきます。
 作成したサンプル たくさんのスプライト(p71) たくさんのスプライト２(p71) ジャンプゲーム(p84) 今後使うかもしれないライブラリ候補 phinajs
 https://phinajs.com/ 日本製なのでやりやすそう PixiJS
 https://pixijs.com/ 自分でゲームライブラリを構築するときのグラフィックライブラリとして使う場合 PHASER
 https://phaser.io/ PixiJSを使ったゲームライブラリ Three.js
 https://threejs.org/ 3Dやるならとりあえずこれって感じ p5.js
-https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ "/>
+https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p113から 障害物の回転アニメーションを作る スプライト表示 キーボード判定 スプライト回転 CELL_YMAXのいちを確認 gameObjectの空きを取得すr仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係
+マウス判定 タッチ操作判定 入力関係はisUp,isDown,isRight,isLeft,isAButton,isBbuttonというメソッドで、タッチ操作とキーボード操作をgameにまとめる。 バーチャルパッド対応 画面を縦長にする？ 音楽再生 FPS調整 スプライトがにじむ問題 screeの最大化 スプライト矩形切り出し
+フォントスプライト機能 TileMap表示 p92から "/>
 <meta name="twitter:site" content="@zarudama_games"/>
 
 <title>ゲームアルゴリズムレシピの練習と再実装 | ざる魂</title>
@@ -32,6 +38,19 @@ https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使�
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/zarudama.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7ESE4D7KCS"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-7ESE4D7KCS', { 'anonymize_ip': false });
+}
+</script>
+
+
 
 <body><div class="header pure-u-1">
   <div class="container">
@@ -53,11 +72,11 @@ https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使�
         <div class="container">
 <div class="title pure-u-1">
   <h1 id="title">ゲームアルゴリズムレシピの練習と再実装</h1>
-  <aside id="meta"><a class="tags" href="/tags/javascript">javascript</a>
+  <aside id="meta"><a class="tags" href="/tags/javascript">javascript</a><a class="tags" href="/tags/pr">PR</a>
 <section>
       <span class="date">作成日: 2024-01-05</span>&nbsp;&nbsp;
       <span class="date">最終更新日: 2024-01-07</span>&nbsp;&nbsp;
-      <sapn class="wordcount"> &lt;25 文字> </span>
+      <sapn class="wordcount"> &lt;51 文字> </span>
     </section>
     
   </aside>
@@ -69,13 +88,15 @@ https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使�
     
       
 <p>
-「<a href="https://www.amazon.co.jp/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%83%AC%E3%82%B7%E3%83%94forJavaScript-%E6%9D%BE%E6%B5%A6-%E5%81%A5%E4%B8%80%E9%83%8E/dp/4798021288/">ゲームアルゴリズムレシピforJavaScript</a>」という本を参考にして、
-javascriptによるゲームプログラミングの練習をしています。2008年発売と古
-いですが、平易な説明でわかりやすくサンプルも豊富で参考になります。ただ、
-Javascriptのサンプルとしては書き方がちょっと古いので最近の書き方に直し
-つつ、Canvasベースで再実装しながら勉強していきます。</p>
+「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、
+javascriptによるゲームプログラミングの練習をしています。</p>
+<a href="https://amzn.to/3S91Nnz">
+<img width="40%" src="/demo/javascript-recipe-study/image/recipe-book.jpg">
+</a>
 <p>
-<img src="/demo/javascript-recipe-study/image/recipe-book.jpg" alt="/demo/javascript-recipe-study/image/recipe-book.jpg" title="/demo/javascript-recipe-study/image/recipe-book.jpg" /></p>
+2008年発売と古いですが、平易な説明でわかりやすくサンプルも豊富で参考に
+なります。ただ、Javascriptのサンプルとしては書き方がちょっと古いので最
+近の書き方に直しつつ、Canvasベースで再実装しながら勉強していきます。</p>
 <div id="outline-container-headline-1" class="outline-2">
 <h2 id="headline-1">
 作成したサンプル
@@ -129,6 +150,48 @@ Javascriptのサンプルとしては書き方がちょっと古いので最近�
 <li>proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ</li>
 </ul>
 </li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+今後の予定
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<ul>
+<li>本を読みながら自作ライブラリを作る</li>
+<li>最終的にはマリオブラザーズを作る。</li>
+<li>疑似3Dレースのサンプルも作る。</li>
+<li>p113から</li>
+<li class="unchecked">障害物の回転アニメーションを作る</li>
+<li class="checked">スプライト表示</li>
+<li class="checked">キーボード判定</li>
+<li class="unchecked">スプライト回転</li>
+<li class="checked">CELL_YMAXのいちを確認</li>
+<li class="unchecked">gameObjectの空きを取得すr仕組みがいまいち。</li>
+<li class="unchecked">resetAnimの挙動がいまいち。</li>
+<li class="unchecked">
+<p>入力関係</p>
+<ul>
+<li class="unchecked">マウス判定</li>
+<li class="unchecked">タッチ操作判定</li>
+<li class="unchecked">入力関係はisUp,isDown,isRight,isLeft,isAButton,isBbuttonというメソッドで、タッチ操作とキーボード操作をgameにまとめる。</li>
+<li class="unchecked">バーチャルパッド対応</li>
+<li class="unchecked">画面を縦長にする？</li>
+</ul>
+</li>
+<li class="unchecked">音楽再生</li>
+<li class="unchecked">FPS調整</li>
+<li class="unchecked">スプライトがにじむ問題</li>
+<li class="unchecked">screeの最大化</li>
+<li class="unchecked">
+<p>スプライト矩形切り出し</p>
+<ul>
+<li class="unchecked">フォントスプライト機能</li>
+<li class="unchecked">TileMap表示</li>
+</ul>
+</li>
+<li>p92から</li>
 </ul>
 </div>
 </div>
