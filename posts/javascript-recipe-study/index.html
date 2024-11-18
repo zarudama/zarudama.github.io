@@ -10,9 +10,11 @@ https://phinajs.com/ 日本製なのでやりやすそう PixiJS
 https://pixijs.com/ 自分でゲームライブラリを構築するときのグラフィックライブラリとして使う場合 PHASER
 https://phaser.io/ PixiJSを使ったゲームライブラリ Three.js
 https://threejs.org/ 3Dやるならとりあえずこれって感じ p5.js
-https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p113から 障害物の回転アニメーションを作る スプライト表示 キーボード判定 スプライト回転 CELL_YMAXのいちを確認 gameObjectの空きを取得すr仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係
+https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る
+ok:スプライト表示 ok:キーボード判定 ok:CELL_YMAXのいちを確認 スプライト回転 gameObjectの空きを取得する仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係
 マウス判定 タッチ操作判定 入力関係はisUp,isDown,isRight,isLeft,isAButton,isBbuttonというメソッドで、タッチ操作とキーボード操作をgameにまとめる。 バーチャルパッド対応 画面を縦長にする？ 音楽再生 FPS調整 スプライトがにじむ問題 screeの最大化 スプライト矩形切り出し
-フォントスプライト機能 TileMap表示 p92から " />
+フォントスプライト機能 TileMap表示 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p77 「出会うと挨拶するキャラクター郡」から。
+旗揚げのアニメーションを作る " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zarudama.github.io/posts/javascript-recipe-study/" /><meta property="og:image" content="https://zarudama.github.io/img/site-feature-image.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-01-05T19:41:39+09:00" />
@@ -28,9 +30,11 @@ https://phinajs.com/ 日本製なのでやりやすそう PixiJS
 https://pixijs.com/ 自分でゲームライブラリを構築するときのグラフィックライブラリとして使う場合 PHASER
 https://phaser.io/ PixiJSを使ったゲームライブラリ Three.js
 https://threejs.org/ 3Dやるならとりあえずこれって感じ p5.js
-https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p113から 障害物の回転アニメーションを作る スプライト表示 キーボード判定 スプライト回転 CELL_YMAXのいちを確認 gameObjectの空きを取得すr仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係
+https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る
+ok:スプライト表示 ok:キーボード判定 ok:CELL_YMAXのいちを確認 スプライト回転 gameObjectの空きを取得する仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係
 マウス判定 タッチ操作判定 入力関係はisUp,isDown,isRight,isLeft,isAButton,isBbuttonというメソッドで、タッチ操作とキーボード操作をgameにまとめる。 バーチャルパッド対応 画面を縦長にする？ 音楽再生 FPS調整 スプライトがにじむ問題 screeの最大化 スプライト矩形切り出し
-フォントスプライト機能 TileMap表示 p92から "/>
+フォントスプライト機能 TileMap表示 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p77 「出会うと挨拶するキャラクター郡」から。
+旗揚げのアニメーションを作る "/>
 <meta name="twitter:site" content="@zarudama_games"/>
 
 <title>ゲームアルゴリズムレシピの練習と再実装 | ざる魂</title>
@@ -159,16 +163,14 @@ javascriptによるゲームプログラミングの練習をしています。<
 </h2>
 <div id="outline-text-headline-3" class="outline-text-2">
 <ul>
-<li>本を読みながら自作ライブラリを作る</li>
-<li>最終的にはマリオブラザーズを作る。</li>
-<li>疑似3Dレースのサンプルも作る。</li>
-<li>p113から</li>
-<li class="unchecked">障害物の回転アニメーションを作る</li>
-<li class="checked">スプライト表示</li>
-<li class="checked">キーボード判定</li>
+<li class="indeterminate">
+<p>本を読みながら自作ライブラリを作る</p>
+<ul>
+<li class="checked">ok:スプライト表示</li>
+<li class="checked">ok:キーボード判定</li>
+<li class="checked">ok:CELL_YMAXのいちを確認</li>
 <li class="unchecked">スプライト回転</li>
-<li class="checked">CELL_YMAXのいちを確認</li>
-<li class="unchecked">gameObjectの空きを取得すr仕組みがいまいち。</li>
+<li class="unchecked">gameObjectの空きを取得する仕組みがいまいち。</li>
 <li class="unchecked">resetAnimの挙動がいまいち。</li>
 <li class="unchecked">
 <p>入力関係</p>
@@ -191,7 +193,16 @@ javascriptによるゲームプログラミングの練習をしています。<
 <li class="unchecked">TileMap表示</li>
 </ul>
 </li>
-<li>p92から</li>
+</ul>
+</li>
+<li class="unchecked">最終的にはマリオブラザーズを作る。</li>
+<li class="unchecked">疑似3Dレースのサンプルも作る。</li>
+<li class="unchecked">
+<p>p77 「出会うと挨拶するキャラクター郡」から。</p>
+<ul>
+<li class="unchecked">旗揚げのアニメーションを作る</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

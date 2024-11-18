@@ -1,22 +1,29 @@
-<html>
+<html lang="ja">
   <head>
   </head>
 <body>
 
 <form>
-<input type=button value="Open Windows" onclick="open_win()">
+<input type=button value="Open Windows1" onclick="open_win1()">
+<div>OpenWndwos1:２つ連続でwindow.open</div>
+<input type=button value="Open Windows2" onclick="open_win2()">
+<div>OpenWndwos1:２つ目はsetTimeoutでwindow.open</div>
 </form>
 
 <script type="text/javascript">
 
-  function open_win() 
+  function open_win1() 
   {
-     window.open("https://www.google.com/", "_new1");
-     //window.open("https://www.ebay.com/", "_new2");
-     //window.open("https://www.amazon.com/", "_new3");
-     setTimeout(function () {window.open("https://www.yahoo.co.jp/", "_new2");}, 500);
-     setTimeout(function () {window.open("https://www.amazon.co.jp/", "_new3");}, 5000);
-   }
+      // ２つ連続でwindow.open()
+      window.open("https://www.livedoor.com/", "_blank");
+      window.open("https://www.yahoo.co.jp/", "_blank");
+  }
+  function open_win2() 
+  {
+      // ２つ目はsetTimeoutでwindow.open()
+      window.open("https://www.livedoor.com/", "_blank");
+      setTimeout(function () {window.open("https://www.yahoo.co.jp/", "_blank");}, 5000);
+  }
 </script>
 
 </body>

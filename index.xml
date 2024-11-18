@@ -27,7 +27,7 @@
       <link>https://zarudama.github.io/posts/javascript-recipe-study/</link>
       <pubDate>Fri, 05 Jan 2024 19:41:39 +0900</pubDate>
       <guid>https://zarudama.github.io/posts/javascript-recipe-study/</guid>
-      <description> 「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、 javascriptによるゲームプログラミングの練習をしています。&#xA;2008年発売と古いですが、平易な説明でわかりやすくサンプルも豊富で参考に なります。ただ、Javascriptのサンプルとしては書き方がちょっと古いので最 近の書き方に直しつつ、Canvasベースで再実装しながら勉強していきます。&#xA;作成したサンプル たくさんのスプライト(p71) たくさんのスプライト２(p71) ジャンプゲーム(p84) 今後使うかもしれないライブラリ候補 phinajs&#xA;https://phinajs.com/ 日本製なのでやりやすそう PixiJS&#xA;https://pixijs.com/ 自分でゲームライブラリを構築するときのグラフィックライブラリとして使う場合 PHASER&#xA;https://phaser.io/ PixiJSを使ったゲームライブラリ Three.js&#xA;https://threejs.org/ 3Dやるならとりあえずこれって感じ p5.js&#xA;https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p113から 障害物の回転アニメーションを作る スプライト表示 キーボード判定 スプライト回転 CELL_YMAXのいちを確認 gameObjectの空きを取得すr仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係&#xA;マウス判定 タッチ操作判定 入力関係はisUp,isDown,isRight,isLeft,isAButton,isBbuttonというメソッドで、タッチ操作とキーボード操作をgameにまとめる。 バーチャルパッド対応 画面を縦長にする？ 音楽再生 FPS調整 スプライトがにじむ問題 screeの最大化 スプライト矩形切り出し&#xA;フォントスプライト機能 TileMap表示 p92から </description>
+      <description> 「ゲームアルゴリズムレシピforJavaScript」という本を参考にして、 javascriptによるゲームプログラミングの練習をしています。&#xA;2008年発売と古いですが、平易な説明でわかりやすくサンプルも豊富で参考に なります。ただ、Javascriptのサンプルとしては書き方がちょっと古いので最 近の書き方に直しつつ、Canvasベースで再実装しながら勉強していきます。&#xA;作成したサンプル たくさんのスプライト(p71) たくさんのスプライト２(p71) ジャンプゲーム(p84) 今後使うかもしれないライブラリ候補 phinajs&#xA;https://phinajs.com/ 日本製なのでやりやすそう PixiJS&#xA;https://pixijs.com/ 自分でゲームライブラリを構築するときのグラフィックライブラリとして使う場合 PHASER&#xA;https://phaser.io/ PixiJSを使ったゲームライブラリ Three.js&#xA;https://threejs.org/ 3Dやるならとりあえずこれって感じ p5.js&#xA;https://p5js.org/ proccessingのjs版。お手軽2Dライブラリとして使うなら良さげ 今後の予定 本を読みながら自作ライブラリを作る&#xA;ok:スプライト表示 ok:キーボード判定 ok:CELL_YMAXのいちを確認 スプライト回転 gameObjectの空きを取得する仕組みがいまいち。 resetAnimの挙動がいまいち。 入力関係&#xA;マウス判定 タッチ操作判定 入力関係はisUp,isDown,isRight,isLeft,isAButton,isBbuttonというメソッドで、タッチ操作とキーボード操作をgameにまとめる。 バーチャルパッド対応 画面を縦長にする？ 音楽再生 FPS調整 スプライトがにじむ問題 screeの最大化 スプライト矩形切り出し&#xA;フォントスプライト機能 TileMap表示 最終的にはマリオブラザーズを作る。 疑似3Dレースのサンプルも作る。 p77 「出会うと挨拶するキャラクター郡」から。&#xA;旗揚げのアニメーションを作る </description>
     </item>
     <item>
       <title>Javascriptによるウィンドウポップアップの不具合について</title>
@@ -433,7 +433,7 @@
       <link>https://zarudama.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://zarudama.github.io/about/</guid>
-      <description> このサイトについて 自分用の備忘禄です。 Hugoにて構築しました。 記事はEmacsのorg-modeで記述してます。 Hugoが標準でサポートしているので、mdファイルではなくorgファイルを使用してます。 全文検索は「くまくまノート」さまのサイトを参考に実装しました。 Amazonアフィリエイトリンクあります。ご承知おきください。 中の人について 「ざるだま」と申します。 MSXが好きです。現在はウェブ系開発者です。趣味でたまにゲーム作ってます。 昔はプレステのゲームつくってました。 エディタはEmacsが好きだけどEvil使ってます。 最近の開発では、どうしてもお手軽なvscodeがメインになりつつあります…。 </description>
+      <description> このサイトについて 自分用の備忘禄です。 Hugoにて構築しました。 記事はEmacsのorg-modeで記述してます。 Hugoが標準でサポートしているので、mdファイルではなくorgファイルを使用してます。 全文検索は「くまくまノート」さまのサイトを参考に実装しました。 Amazonアフィリエイトリンクあります。ご承知おきください。 中の人について 「ざるだま」と申します。 MSXが好きです。現在はウェブ系開発者です。趣味でたまにゲーム作ってます。 昔はプレステのゲームつくってました。 エディタはEmacsが好きだけどEvil使ってます。 最近の開発では、どうしてもお手軽なvscodeがメインになりつつあります…。 昔のブログ https://o-cha.hatenadiary.org </description>
     </item>
     <item>
       <title>サイト内全文検索</title>
